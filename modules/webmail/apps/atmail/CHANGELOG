@@ -1,0 +1,100 @@
+Atmail Open Changelog
+---------------------
+
+For the complete version history please see our Trac timeline interface at:
+
+http://dev.atmail.com/atmailopentrac/timeline
+
+*** ATMAIL OPEN 1.05 - March 2012 ***
+
+- Fixed security vulnerability related to email attachment execution: All attachments that are uploaded or extracted from an email and stored in the users' temp dirs are now appended with a ".safe" extension to avoid any server execution of those file
+- Fixed path traversal vulnerability in compose.php, SendMsg.php and mime.php
+
+
+*** ATMAIL OPEN 1.04 - July 2010 ***
+
+- added support for marking multiple selected emails as read/unread
+- improved support for folder names with special chars (# for eg)
+- improved mime parsing
+- Added SQLite database option
+- various other small improvements
+- Added support for the following new languages: Chinese, Dutch, Russian, Japanese, Portuguese
+- Added LDAP Address Book configuration to installer
+
+*** AMAIL OPEN 1.03 - January 2009 ***
+
+- Added FCKeditor for composing HTML emails
+- Added better filtering of control characters in email headers that broke XML parser
+- Added better handling of unquoted or badly formatted email addresses
+- Fixed spellchecker (add path to aspell in Config.php's 'aspell_path' setting)
+- Removed display of CSS garbage when switching from HTML to text composing
+- added more plugin hooks
+- added script to upgrade the database to Atmail commercial structure
+- call to localtime() now uses correct arguments in GetMail.php
+- added hostname argument when creating Net_SMTP object; avoids possible mail rejection
+  due to use of default 'localhost' (thanks to bjornjohansen)
+
+Thanks to firemail, spluffer and ikaney from forums.atmail.org for helping supply 
+code for several bug fixes and new features as listed below.
+
+- Quota display when mail server supports it and account has quota set
+- Alert when over specific percentage of quota used
+- Use IMAP sort extension rather than client side sort if server supports it
+- Display LDAP addresses in Addressbook rather than Search->Import->Add
+- Use LDAP addresses in auto complete
+- Remove rogue save button on edit group page which made groups into users
+- Firefox always display scrollbars (no shifts to the left on scrollable pages)
+- When adding entries from LDAP server, use first and last name correctly
+
+To enable/disable above features, edit your Config.php and change or add the following entries:
+
+  'addressbook_ldap_entries' => '1' // show ldap entries in main addressbook
+  'autocomplete_ldap_entries'  => '1' // use ldap entries when performing auto complete
+  'imap_sort_extension'  => '1' // use imap sort extension where servers support it
+  'imap_sort_charset' => 'us-ascii' // Charset to use for IMAP SORT command
+  'quota_bar'  => '1' //display quota bar for users
+  'quota_alert'  => '1' // display alert if percentage used goes over value below
+  'quota_alert_over' => '90' // percentage level for quota alert to appear at
+  'quota_alert_html' => '' // html printed for quota alert above dismiss link
+  
+  
+*** ATMAIL OPEN 1.02 - 4th August 2008 ***
+
+- Added	support	for IMAPs (Secure IMAP using SSL)
+- Added	upgrade	script
+- Moved	default	location of IMAP debug file to avoid security risk of other users accessing it at /tmp/popimap_debug
+- Improved Subject/From	filters, can now accept	any chars for rule
+- Added	htmlentities() on email	body for plain text content
+- Folder names with ampersands now supported
+- Improved .eml	naming,	now uses subject as filename
+- Auto add quotes around 'real-name' part of email addresses returned from composebook
+- Fixed	bad return value in IMAP_Client::deleteMailbox()
+- updated lang packs
+- added	'onEmailSent' plugin hook to sendmail.php
+- fixed	pagination issue for email listing (no longer repeats last email on next page)
+- Fixed attachment filename encoding
+- Spell	check now uses value defined in $pref['aspell_path'] rather than hard coded 'aspell'
+- Filename extension check for abook import is now case	insensitive
+- Auto adds scroll bar when search results are longer than container
+- Fixed	charset	conversion for GB2312 (Simplified Chinese)
+- fixed issue with contacts not saving due to some MySQL versions not liking NULL
+  values passed for datetime columns
+  
+  
+*** ATMAIL OPEN 1.01 - 26th May 2008 ***
+
+- Fixed PGP.php path issue with release
+- Renamed INSTALL read-me file which conflicted with WinZip
+- Added missing gif's from help screen
+
+  
+*** ATMAIL OPEN 1.0 - 19th May 2008 ***
+
+- First version release
+
+
+
+  
+
+
+

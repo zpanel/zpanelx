@@ -1,0 +1,114 @@
+<html>
+
+<head>
+	<script language="Javascript">
+		<!--
+		function initLogin()	{
+			document.loginPage.username.focus();
+			<!-- if($pref['plesk']) { -->
+				var domain = window.location.hostname;
+				domain = domain.replace('webmail.', '');
+				document.loginPage.pop3host.value = domain;
+			<!-- } -->
+		}
+
+		function LoginForm()	{
+			var theForm = document.loginPage;
+			if (!theForm.username.value || !theForm.pop3host.value || !theForm.password.value || !theForm.MailServer.value) return false;
+         parent.document.title = "Atmail Webmail - " + theForm.username.value + "@" + theForm.pop3host.value;
+			parent.document.getElementById("ObjFadeWindow").style.cursor = "wait";
+			parent.WebmailLogin(theForm.username.value, theForm.pop3host.value, theForm.password.value, theForm.MailServer.value, theForm.MailType.options[theForm.MailType.selectedIndex].value, theForm.Language.options[theForm.Language.selectedIndex].value);
+		}
+		-->
+	</script>
+	<link rel="stylesheet" href="html/login.css" type="text/css">
+</head>
+
+<body scroll="no" style="overflow: hidden; padding: 10px; margin: 0px;" onload="initLogin();">
+
+<table width="100%" cellspacing="0" cellpadding="2" border="0">
+	<tr>
+		<td><font class="loginhead"><b>Webmail Access</b></font></td>
+	</tr>
+	<tr>
+		<td><img src="imgs/loginline.gif" width="405" height="1"></td>
+	</tr>
+	<tr>
+		<td><div id="AuthStatus" class="logintext" style="padding-left: 4px;">Please provide your username and password.</div></td>
+	</tr>
+</table>
+
+<br>
+<form name="loginPage" onsubmit="LoginForm(); return false;" style="margin: 0px;">
+<table width="100%" border="0" cellpadding="2" cellspacing="0">
+	<tr>
+		<td width="100">&nbsp;</td>
+		<td width="144" align="right" valign="top" nowrap > <input name="username" type=text class="logininput" id="username"></td>
+		<td width="18"><img src="imgs/atsymbol.gif" width="18" height="17"></td>
+		<td align="left" valign="top"><div id="externalaccount" style=""><input name="pop3host" type=text class="logininput">
+		<!-- if($pref['plesk']) { -->
+			 <input name="MailServer" type="hidden" class="logininput" id="MailServer" value="localhost">
+		<!-- } --></div></td>
+	</tr>
+
+		<td colspan="5" height="6"><img src="imgs/trans.gif" height="8"></td>
+	</tr>
+		<font class="inputtext"></font>
+		<input name="MailServer" value="localhost" type="hidden" class="logininput" id="MailServer">
+
+	<tr>
+		<td colspan="5" height="6"><img src="imgs/trans.gif" height="8"></td>
+	</tr>
+	<!-- } -->
+	<tr>
+		<td>&nbsp;</td>
+		<td colspan="2" align="right"><font class="inputtext">Password:</font></td>
+		<td align="left"><input name="password" type=password class="logininput" id="password"></td>
+		<td width="131">&nbsp;</td>
+	</tr>
+		<td colspan="5" height="8"><img src="imgs/trans.gif" height="8"></td>
+
+		<font class="inputtext"></font>
+			<select style='visibility:hidden' name="Language" class="loginselect">
+				<option value="" selected>Default</option>
+				<option value="english">English</option>
+				<option value="espanol">Espanol</option>
+				<option value="french">French</option>
+				<option value="german">German</option>
+				<option value="italiano">Italiano</option>
+			</select>
+
+		<td colspan="5" height="8"><img src="imgs/trans.gif" height="8"></td>
+	</tr>
+
+		<td>&nbsp;</td>
+		<td colspan="2" align="right"><font class="inputtext"></font></td>
+		<td align="left">
+			<select name="MailType" style='visibility:hidden' class="loginselect">
+				<!-- if($pref['mail_type_ssl'] != 'force') { -->
+				<option value="imap" selected>IMAP</option>
+				<!-- } -->
+				<!-- if(extension_loaded('openssl') && $pref['mail_type_ssl'] != 'deny') { -->
+				<option value="imaps">Secure IMAP</option>
+				<!-- } -->
+			</select>
+		</td>
+		<td width="131">&nbsp;</td>
+	</tr>
+	<tr>
+		<td colspan="5" height="8"><img src="imgs/trans.gif" height="8"></td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td align="right">&nbsp;</td>
+		<td width="18">&nbsp;</td>
+		<td align="right">&nbsp;<input type="submit" name="Submit" value="Login" class="loginsubmit">&nbsp;&nbsp;</td>
+		<td width="1"></td>
+	</tr>
+</table>
+
+</form>
+
+</body>
+
+</html>

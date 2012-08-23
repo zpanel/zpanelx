@@ -1,0 +1,49 @@
+Hastyamil2
+
+Hastymail2 is released under the GNU GPL license, see the COPYING FILE
+for details. Hastymail2 incorporates other open source software for some
+functonality. The following files are attributed to and licensed as follows:
+
+
+       lib/HTMLPurifier.standalone.php  Copyright (C) 2006-2008 Edward Z. Yang
+       lib/standalone/                  admin@htmlpurifier.org
+                                        released under the GNU LGPL v2.1
+        
+       lib/ajax_functions.php           modified version of the Sajax library
+                                        Copyright (c) 2005 modernmethod, inc
+                                        released under the BSD license
+
+       js/sajax_wrappers.js             modified version of the Sajax library
+                                        Copyright (c) 2005 modernmethod, inc
+                                        released under the BSD license
+
+       lib/htmlfilter.inc               Copyright (c) 2002-2004 by Duke University
+                                        <icon@linux.duke.edu> 
+                                        released under the GNU GPL
+
+       lib/htmlawed.php                 Copyright (c) Santosh Patnaik
+                                        released under the GNU LGPL v3 
+
+       lib/class.html2text.inc          Copyright (c) 2005-2007 Jon Abernathy
+                                        <jon@chuggnutt.com>
+                                        released uner the GNU GPL
+
+       plugins/notices/script/          Copyright (c) 2008, Scott Schiller
+       plugins/notices/swf/             http://schillmania.com/projects/soundmanager2/
+                                        release under the BSD License:
+
+       plugins/html_mail/tiny_mce       Copyright (C) 1991, 1999 Free Software Foundation, Inc.
+                                        http://tinymce.moxiecode.com/
+                                        released under the GNU GPL
+
+
+The Sajax includes can be disabled and Hastymail2 will still function, but
+without any AJAX functionality.
+
+Installation instructions for Hastymail2 can be found in the INSTALL file.
+Other documentation for Hastymail2 can be found in the docs/ directory.
+
+Thank you for trying Hastymail2. We love feedback so let us know what you
+think. You can find a list of ways to get in touch with us in the last
+point of the Troubleshooting section of the INSTALL file, or you can send
+me an email at jason@hastymail.org

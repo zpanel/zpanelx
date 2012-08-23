@@ -1,0 +1,90 @@
+<chapter>
+   <title>
+      Search
+   </title>
+   <summary>
+      Searches through a folder for given criteria.
+   </summary>
+   <description>
+      <p>
+      With this useful tool, you can search through a specific folder for
+      given criteria that match against different header fields.
+      </p>
+   </description>
+</chapter>
+
+<section>
+   <title>
+      General Overview
+   </title>
+   <description>
+      <p>
+      You simply choose the folder you wish to search, type in the search
+      criteria, and then choose the part of the message to search.  When
+      you submit your data, the list of messages will come up below the
+      search form.  You can choose the message you wish to view, and read
+      it just like a normal message.
+      </p>
+      <p>
+      Notice that when you are reading messages and then go into the search
+      section, your currently active folder will be the default to search
+      through.  For example, if you were browsing through your "Friends"
+      folder and then click on "Search", "Friends" will already be selected
+      for searching.
+      </p>
+   </description>
+</section>
+
+<section>
+   <title>
+      What to search through
+   </title>
+   <description>
+      <p>
+      To the left of the input field, you see a drop-down list of places
+      that are possible to search through.  This includes: Body, Everywhere,
+      Subject, From, Cc, To.
+      </p>
+      <p>
+      <b>Body</b> - Searches through the body of the message.  This is the
+      main part of the message where the important stuff is located.
+      </p>
+      <p>
+      <b>Everywhere</b> - This searches everything, including the entire
+      header for the message.  Unless you are sure this is what you want,
+      it probably isn't.  It can return results that you wouldn't normally
+      expect.
+      </p>
+      <p>
+      <b>Subject</b> - Searches through the subjects for all the messages.
+      </p>
+      <p>
+      <b>From</b> - Who the message is from.  Note that this might be more
+      than is actually displayed in the folder list.  A normal "From" field
+      includes the name AND email address, but SquirrelMail usually only
+      displays the name.  If your criteria matches the email address, but
+      it is not displayed, that message will still return as having matched.
+      </p>
+      <p>
+      <b>To</b> - Who the message was sent to.  This can be many addresses,
+      and is not always just one email address.
+      </p>
+      <p>
+      <b>Cc</b> - Same as "To", except who the message was carbon copied to.
+      </p>
+   </description>
+</section>
+
+<section>
+   <title>
+   Recent Searches
+   </title>
+   <description>
+   If you've enabled this option, the Search page also displays an overview of
+   up to 9 of your most recent searches for quick access. Click on Search
+   next to the listed search to perform it again. With the Save link
+   you can move a search to the Saved Searches which will be kept until you
+   explicitly press Delete. Click Forget to remove a search from the list of
+   recent searches.
+   </description>
+</section>

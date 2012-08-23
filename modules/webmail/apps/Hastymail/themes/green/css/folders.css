@@ -1,0 +1,32 @@
+/* folders page */
+
+#folder_page{
+    padding-left: 20px;
+}
+#folder_options_table {
+    padding-left: 10px;
+}
+#folder_options_table th{
+    padding-right: 20px;
+    font-style: italic;
+    font-size: 90%;
+    font-weight: normal;
+    text-align: left;
+    padding-left: 20px;
+    padding-bottom: 5px;
+}
+.hidden_folder{
+    color: #888;
+    background: #f3f3f3;
+    font-style: italic;
+}
+#folder_page table td {
+    white-space: nowrap;
+    padding: 5px;
+    padding-right: 10px;
+    padding-left: 20px;
+}
+#folder_controls{
+    clear: both;
+    padding-left: 10px;
+}

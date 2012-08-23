@@ -1,0 +1,44 @@
+<?php
+include("../lang/eng/dates.inc"); // <-- do not delete
+/********************************************************
+	lang/jp/dates.inc
+	(C) 2002 Ryo Chijiiwa <Ryo@IlohaMail.org>
+
+	This file is part of IlohaMail, and released under GPL.
+	See COPYING, or http://www.fsf.org/copyleft/gpl.html
+
+********************************************************/
+$lang_months[1] = "£±·î";
+$lang_months[2] = "£²·î";
+$lang_months[3] = "£³·î";
+$lang_months[4] = "£´·î";
+$lang_months[5] = "£µ·î";
+$lang_months[6] = "£¶·î";
+$lang_months[7] = "£··î";
+$lang_months[8] = "£¸·î";
+$lang_months[9] = "£¹·î";
+$lang_months[10] = "£±£°·î";
+$lang_months[11] = "£±£±·î";
+$lang_months[12] = "£±£²·î";
+
+$lang_datetime["short_mon"] = $lang_months;			
+
+$lang_datetime["dsow"] = array ("Æü","·î","²Ð","¿å","ÌÚ","¶â","ÅÚ");
+$lang_datetime["dsowl"] = array ("Æü","·î","²Ð","¿å","ÌÚ","¶â","ÅÚ");
+$lang_datetime["dsow_short"] = array ("Æü","·î","²Ð","¿å","ÌÚ","¶â","ÅÚ");
+
+$lang_datetime["today"] = "º£Æü %t";
+$lang_datetime["lastweek"] = "%t (%w)";
+$lang_datetime["thisyear"] = "%m·î%dÆü";
+$lang_datetime["prevyears"] = "%yÇ¯%m·î%dÆü";
+$lang_datetime["monthyear"] = "%yÇ¯%m";
+$lang_datetime["dsow_short"] = $lang_datetime["dsow"];
+$lang_datetime["verbal"] = "%yÇ¯%m%dÆü";  	//e.g. "Jan 1, 1900"
+$lang_datetime["verbal_short"] = "%m%dÆü";  	//e.g. "Jan 1"
+$lang_datetime["hour_system"] = 12;			// 12 or 24
+$lang_datetime["ampm"]["am"] = "am";
+$lang_datetime["ampm"]["pm"] = "pm";
+$lang_datetime["time_format"] = "%h:%m%a";	// %h=hour, %m=minutes, %a="am:pm"
+$lang_datetime["hour_format"] = "%h%a";
+
+?>

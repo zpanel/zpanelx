@@ -1,0 +1,44 @@
+<title>WebMail help gids</title>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<LINK href="javascript/stylehelp.css" rel=stylesheet type=text/css>
+
+<font face="Verdana, Arial" size="+1">WebMail help gids</font>
+
+<hr noshade>
+<p><font face="Arial, Helvetica, Condensed" size="2">Met dit helpbestand komt u meer te weten over WebMail. Voor meer informatie omtrent een bepaald onderwerp, kunt u uit bovenstaande lijst een onderwerp selecteren.</font></p>
+<ul>
+  <li><a href="parse.php?file=html/$this->Language/help/compose.html">Bericht schrijven/versturen</a></li>
+  <li><a href="parse.php?file=html/$this->Language/help/reademail.html">E-mail lezen</a></li>
+
+<!-- if($pref['allow_Calendar']) { -->
+ <li><a href="parse.php?file=html/$this->Language/help/calendar.html">De agenda</a></li>
+<!-- } -->
+
+<!-- if(file_exists("{$pref['install_dir']}/xhtml.php") && $pref['allow_Mobile']) { -->
+<li><a href="parse.php?file=html/$this->Language/help/wap.html">Draadloze e-mail</a></li>
+<!-- } -->
+
+<li><a href="parse.php?file=html/$this->Language/help/settings.html">Instellingen aanpassen</a></li>
+  <li><a href="parse.php?file=html/$this->Language/help/addressbook.html">Adresboek</a></li>
+
+<!-- if($pref['allow_MultiAccounts']) { -->
+  <li><a href="parse.php?file=html/$this->Language/help/addpop3.html">Meerdere POP3 accounts</a></li>
+<!-- } -->
+
+<!-- if($pref['allow_LDAP'] && extension_loaded('ldap')) { -->
+<li><a href="parse.php?file=html/$this->Language/help/ldap.html">LDAP zoekmotor</a></li>
+<!-- } -->
+
+<li><a href="parse.php?file=html/$this->Language/help/newmbox.html">Mailbox opties</a></li>
+
+<!-- if(file_exists($pref['aspell_dir']) || extension_loaded('pspell')) { -->
+<li><a href="parse.php?file=html/$this->Language/help/spell.html">Spellingscontrole-functie</a></li>
+<!-- } -->
+
+<!-- if($pref['allow_SMS'] && file_exists('sms.php')) { -->
+<li><a href="parse.php?file=html/$this->Language/help/sms.html">SMS Help</a></li>
+<!-- } -->
+</ul>
+
+Met dit helpbestand komt u meer te weten over WebMail. Voor meer informatie omtrent een bepaald onderwerp, kunt u uit bovenstaande lijst een onderwerp selecteren.

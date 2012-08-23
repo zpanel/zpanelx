@@ -1,0 +1,40 @@
+<?php
+$i_colors=array(
+	"tool_bg"=>"#111133",
+	"tool_link"=>"#FFFFFF",
+	"folder_bg"=>"#555555",
+	"folder_link"=>"#AAAAFF",
+	"main_bg"=>"#FFFFFF",
+	"main_hilite"=>"#efefef",
+	"main_text"=>"#000000",
+	"main_link"=>"#000099",
+	"quotes"=>"blue"
+);
+$init["my_colors"]=$i_colors;
+
+$i_prefs=array(
+	"colorize_quotes"=>1,
+    "detect_links"=>1,
+	"view_max"=>50,
+	"show_size"=>1,
+	"save_sent"=>0,
+	"sent_box_name"=>"",
+	"delete_trash"=>0,
+	"trash_name"=>"",
+	"rootdir"=>$rootdir,
+	"user_name"=>"",
+	"email_address"=>$user_name.(strpos($user_name, "@") > 0?"":"@".$host),
+	"signature1"=>"",
+	"show_sig1"=>0,
+	"lang"=>$lang,
+	"charset"=>$lang_charset,
+	"sort_field"=>"DATE",
+	"sort_order"=>"DESC",
+	"list_folders"=>1,
+	"view_inside"=>1,
+	"timezone"=>0,
+	"html_in_frame"=>0,
+	"show_images_inline"=>0
+);
+$init["my_prefs"]=$i_prefs;
+?>

@@ -1,0 +1,30 @@
+<?php
+/********************************************************
+	lang/eng/bookmarks.inc
+	(C)2003 Ryo Chijiiwa <Ryo@IlohaMail.org>
+
+	This file is part of IlohaMail, and released under GPL.
+	See COPYING, or http://www.fsf.org/copyleft/gpl.html
+
+********************************************************/
+
+//TRANSLATORS:  Uncomment next line for all non-English languages!!
+include("../lang/eng/bookmarks.inc");
+
+$bmStrings["bookmarks"] = "Þymës";
+$bmStrings["identities"] = "Profiliai";
+$bmStrings["edit"] = "Atnaujinti";
+$bmStrings["name"] = "Vardas";
+$bmStrings["url"] = "Adresas";
+$bmStrings["rss"] = "RSS/RDF";
+$bmStrings["category"] = "Kategorija";
+$bmStrings["other"] = "Nurodyti-&gt;";
+$bmStrings["comments"] = "Komentarai";
+$bmStrings["add"] = "Pridëti";
+$bmStrings["new"] = "Naujas áraðas";
+$bmStrings["edit_url"] = "Redaguoti áraðà";
+$bmStrings["delete"] = "Iðtrinti";
+
+$bmError[1] = "Reikia ávesti vardà arba adresà";
+$bmError[2] = "Ði funkcija yra panaikinta.";
+?>

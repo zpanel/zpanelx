@@ -1,0 +1,29 @@
+
+<html>
+<head>
+<title>Получение почты</title>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+</head>
+<body>
+<LINK href="javascript/stylehelp.css" rel=stylesheet type=text/css>
+<font face="Verdana,
+Arial" size="+1">
+Получение почты</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">Индекс справки</a> ]
+<hr noshade>
+
+	<p><u>Как блокировать получение почты от определенных отправителей?</u>
+	 <p> <ul>
+		<li>Для блокирования сделайте следующее:<br><br>
+			<ol>
+				<li>Перейдите в раздел Утилиты - Спам.
+				<li>Введите адрес который нужно заблокировать в окне Запрещенные Отправители (BlackList).
+				<li>Нажмите кнопку "Add".
+			</ol><br>
+		<li>The address will then appear on the list of blocked addresses. You can also block any email with a particular subject, Steps are similar to the above ones.
+	  </ul>
+	  <p><u>Какого максимального рамера сообщение я могу принять?</u> 
+	  <p>Максимальный размер входящего сообщения: $pref['max_msg_size'] MB. 
+	  <p><b>NOTE:</b> When attaching files to your email message, they must be encoded and in doing so, will increase in size. The attachments sent with email have to be translated into a different format so that other email programs can read it. This type of transformation will add about 33% to the original size of the attachment. Therefore, due to the translation a 2MB attachment may turn into a 2.66MB email after encoding.
+
+</body>
+</html>

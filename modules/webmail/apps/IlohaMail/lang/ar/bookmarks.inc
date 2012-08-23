@@ -1,0 +1,29 @@
+<?php
+/********************************************************
+	lang/eng/bookmarks.inc
+	(C)2003 Ryo Chijiiwa <Ryo@IlohaMail.org>
+
+	This file is part of IlohaMail, and released under GPL.
+	See COPYING, or http://www.fsf.org/copyleft/gpl.html
+
+********************************************************/
+
+//TRANSLATORS:  Uncomment next line for all non-English languages!!
+include("../lang/eng/bookmarks.inc");
+
+$bmStrings["bookmarks"] = "æÕáÇÊ";
+$bmStrings["identities"] = "åæíÇÊ";
+$bmStrings["edit"] = "ÛíÑ";
+$bmStrings["name"] = "ÇáÅÓã";
+$bmStrings["url"] = "ÚäæÇä ÇáãæÞÚ";
+$bmStrings["category"] = "ÇáÝÆÉ";
+$bmStrings["other"] = "ÍÏÏ-&gt;";
+$bmStrings["comments"] = "ãáÇÍÙÇÊ";
+$bmStrings["add"] = "ÃÖÝ";
+$bmStrings["new"] = "æÕáÉ ÌÏíÏÉ";
+$bmStrings["edit_url"] = "ÛíÑ ÇáæÕáÉ";
+$bmStrings["delete"] = "ÇãÓÍ ÇáæÕáÉ";
+
+$bmError[1] = "ÇáÅÓã Ãæ ÚäæÇä ÇáãæÞÚ ÖÑæÑíÇä.";
+$bmError[2] = "åÐå ÇáÎÏãÉ ÛíÑ ãÔÛáÉ.";
+?>

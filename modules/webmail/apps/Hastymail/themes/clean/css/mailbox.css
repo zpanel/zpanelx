@@ -1,0 +1,202 @@
+/* mailbox page */
+
+#mbx_outer{
+    padding-top: 0px;
+}
+#mbx_inner{
+    width: 100%;
+    overflow: auto;
+    clear: both;
+}
+.checkbox_cell_heading {
+    padding-left: 15px;
+}
+#sort_form{
+    font-size: 80%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 20px;
+    float: left;
+}
+#sort_form option {
+    padding-top: 1px;
+    padding-top: 1px;
+    border-top: dotted 1px #ccc;
+}
+#sort_form select{
+    padding-top: 1px;
+}
+.mc_inner{
+    padding-bottom: 5px;
+}
+#empty_mailbox{
+    clear: both;
+    width: 100%;
+    font-size: 120%;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    text-align: center;
+    font-style: italic;
+}
+#mbx_table{
+    padding: 5px;
+    clear: both;
+}
+#mbx_table td{
+    padding-top: 5px;
+    padding-bottom: 3px;
+    padding-right: 5px;
+    vertical-align: top;
+}
+#mbx_table th{
+    text-align: left;
+    padding-top: 4px;
+    font-size: 80%;
+    padding-bottom: 2px;
+}
+.indicators{ font-style: italic; }
+.mbx_unseen_from, .mbx_unseen_subject a{ font-weight: bold; }
+.mbx_unseen_checkbox, .mbx_unseen_indicators, .mbx_unseen_subject, .mbx_unseen_from, .mbx_unseen_date, .mbx_unseen_size{ background-color: transparent; }
+.mbx_unseen_indicators, .mbx_indicators, .mbx_unseen_size, .mbx_size{ white-space: nowrap; }
+.mbx_unseen_from, .mbx_unseen_date, .mbx_unseen_size, .mbx_size, .mbx_date, .mbx_from{
+    white-space: nowrap;
+    font-size: 90%;
+}
+.mbx_size, .mbx_unseen_size{
+    text-align: right !important;
+}
+.mbx_image_cell, .mbx_unseen_image_cell {
+    padding: 0px !important;
+    padding-top: 7px !important;
+    padding-right: 2px !important;
+    width: 45px;
+    white-space: nowrap;
+    font-size: 0px;
+}
+.mbx_image_cell div{
+    background: url('themes/clean/images/sprite.png') -80px -154px no-repeat;
+    width: 14px !important;
+    height: 13px !important;
+    margin-top: -2px;
+    margin-right: 8px;
+    float: left;
+}
+.mbx_unseen_image_cell{
+    background-color: transparent;
+}
+.mbx_unseen_image_cell .new_window_icon{
+    margin-bottom: 3px !important;
+}
+.mbx_unseen_image_cell div{
+    background: url('themes/clean/images/sprite.png') -64px -138px no-repeat;
+    margin-top: 3px;
+    width: 14px !important;
+    height: 10px !important;
+    margin-top: 0px;
+    margin-right: 8px;
+    float: left;
+}
+.mbx_subject a, .mbx_unseen_subject a{
+    text-decoration: none;
+    font-size: 110%;
+}
+.mbx_subject, .mbx_unseen_subject, .subject_cell_heading{
+    width: 60%;
+    padding-left: 3px;
+}
+.deleted_message a {
+    color: #888;
+    text-decoration: line-through;
+}
+.mbx_unseen_checkbox, .mbx_checkbox{
+    width: 1%;
+    white-space: nowrap;
+    padding-left: 5px;
+    padding-top: 3px !important;
+}
+.mbx_unseen_indicators, .mbx_indicators{
+    width: 1%;
+    white-space: nowrap;
+}
+#mailbox_search_form span{
+    font-weight: normal;
+    padding-left: 10px;
+    vertical-align: -20%;
+}
+#mailbox_search_form{
+    font-weight: normal;
+    font-size: 90%;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+#page_links img{
+    vertical-align: -40%;
+    padding-right: 3px;
+}
+#page_links b{
+    padding: 3px;
+    padding-right: 7px;
+}
+#page_links{
+    clear: both;
+    margin-top: 5px;
+    font-style: normal !important;
+    text-align: center;
+}
+#page_links a{
+    font-weight: normal;
+    padding-right: 3px;
+    text-decoration: none;
+    font-size: 125%;
+}
+.top_page_links{
+    margin-top: 0px !important;
+}
+.search_res {
+    background-color: #dce5f4;
+    font-style: italic;
+}
+.last_read_hidden{
+    visibility: hidden;
+    padding-right: 3px;
+}
+.last_read{
+    font-size: 90%;
+    vertical-align: 20%;
+    padding-right: 3px;
+}
+.reply_count{
+    font-size: 80%;
+    color: #666;
+    font-style: italic;
+    padding-left: 5px;
+}
+.flagged {
+}
+#mbx_table .last_row {
+    border-bottom: none;
+}
+#mbx_table tr:hover{background-color: #f1f1f1;}
+#frozen{
+    font-weight: bold;
+    padding-right: 10px;
+}
+.current_page_link{
+    font-weight: bold;
+}
+#track_folder a{
+    font-weight: normal;
+    font-size: 80%;
+}
+#track_folder{
+    float: right;
+    padding-right: 5px;
+    margin: 0px;
+    padding: 0px;
+}
+.folder_unread{
+    padding-left: 5px;
+}
+.show_all{
+    padding-left: 20px;
+}

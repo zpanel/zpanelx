@@ -1,0 +1,53 @@
+#!/bin/sh
+
+# **
+# ** This script merges global PO to locale PO files.
+# ** It creates a backup of the old PO file as squirrelmail.po.bak
+# ** and puts the merged version in squirrelmail.po
+# **
+# ** Usage:   mergepo <locale id>
+# ** Example: mergepo es_ES
+# **
+# ** Philipe Mingo <mingo@rotedic.com>
+# ** Konstantin Riabitsev <icon@duke.edu>
+# **
+# **  $Id: mergepo 5843 2003-10-05 09:57:38Z tokul $
+
+if [ -z "$1" ]; then
+ echo "USAGE: mergepo [localename]"
+ exit 1
+fi
+
+WORKDIR=../locale
+LOCALEDIR=$WORKDIR/$1
+
+if [ ! -d $LOCALEDIR ]; then
+ # lessee if it's been renamed.
+ DCOUNT=`find $WORKDIR/ -name $1* | wc -l` 
+ if [ $DCOUNT -eq 1 ]; then 
+  # aha
+  LOCALEDIR=`find $WORKDIR/ -name $1*`
+ elif [ $DCOUNT -gt 1 ]; then
+  # err out
+  echo "More than one locale matching this name found:"
+  find $WORKDIR/ -name $1*
+  echo "You have to be more specific."
+  exit 1
+ fi
+fi
+
+echo "Merging $LOCALEDIR/LC_MESSAGES/squirrelmail.po"
+mv $LOCALEDIR/LC_MESSAGES/squirrelmail.po \
+     $LOCALEDIR/LC_MESSAGES/squirrelmail.po.bak 
+msgmerge $LOCALEDIR/LC_MESSAGES/squirrelmail.po.bak ../po/squirrelmail.pot > \
+     $LOCALEDIR/LC_MESSAGES/squirrelmail.po
+
+# msgmerge will split long lines, such as the RCS Id line. If it did split
+# it, join the pieces back together.
+ed -s $LOCALEDIR/LC_MESSAGES/squirrelmail.po << END
+/^"Project-Id-Version:/v/\\n"$/j\\
+s/""//
+wq
+END
+
+echo "Old po file renamed to squirrelmail.po.bak"

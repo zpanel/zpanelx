@@ -1,0 +1,193 @@
+<!--Include="html/german/simple/header.html"-->
+
+$var['atmailstyle']
+$var['refresh']
+<script language="Javascript" src="javascript/trselect.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+window.focus();
+
+</SCRIPT>
+
+
+<SCRIPT LANGUAGE="JavaScript1.2" src="javascript/settings.js">
+</SCRIPT>
+
+<script LANGUAGE="JavaScript">
+function refreshfolders(type)	{
+location.href='util.php?func=imapfolders&type=list&FolderFilter=' + type;
+}
+
+function refreshfolderssub(type)	{
+location.href='util.php?func=imapfolders&type=list&lsub=1&FolderFilterSub=' + type;
+}
+
+var i=0;
+
+function selectall_folders(swch){
+len=swch.elements.length;
+for (i=0;i<len;i++){
+if (swch.elements[i].type=='checkbox'){
+swch.elements[i].checked=true;
+};
+}; 
+};
+
+function deselectall_folders(swch){
+len=swch.elements.length;
+for (i=0;i<len;i++){
+if (swch.elements[i].type=='checkbox'){
+swch.elements[i].checked=false;
+};
+}; 
+
+};
+</SCRIPT>
+<br>
+<form method="POST" name="mail" action="util.php">
+<input type="hidden" name="func" value="imapfolders">
+<input type="hidden" name="action" value="">
+
+ <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr bgcolor=""> 
+      <td height='20' colspan="7" bgcolor="$this->PrimaryColor" valign="middle"><font class="mheader"> 
+       &nbsp; Alle Ordner<br>
+        </font> </td>
+          <td bgcolor="$this->PrimaryColor" align="right" valign="top"><img src="$this->Bgtrans"></td> 
+    </tr>
+</table>
+
+ <table width="100%" border="0" cellspacing="0" cellpadding="3">
+    <tr> 
+      <td width="59%" bgcolor="$this->SecondaryColor" height="26" colspan='2'> <font class="sw"> 
+        Hier könne Sie Ordner eines IMAP Servers auswählen, die in Ihrer Mailbox angezeigt werden sollen. Sie können auswählen, ob der Ordner angezeigt oder versteckt werden soll. Mehr Informationen zu dieser Funktion finden Sie in der Online Dokumentation.<br></td>
+    </tr>
+	<tr>
+<td colspan=2 height='1' bgcolor='#E9E7DD'></td>
+</tr>
+    <tr> 
+      <td width="59%" bgcolor="$this->SecondaryColor" height="26" colspan='2'> <font class="sw"> 
+       Ordner anzeigen die den folgenden Namen enthalten:</font></td>
+	</tr>
+
+	<tr> 
+      <td width="59%" bgcolor="$this->SecondaryColor" height="26" colspan='2'> <font class="sw"> 
+      &nbsp;<input class=text type="text" name="FolderFilter" size="30" value=""></font></td>
+	</tr>
+
+    <tr bgcolor="$this->SecondaryColor" height='250'> 
+<td width='100%'>
+
+<table width="100%" height="100%" cellpadding="0" cellspacing="5" border="0">
+				<tr>
+					<td width='90%'>	
+  <TABLE border=0 cellPadding=0 cellSpacing=0 width="100%">
+<tr>
+<td height="1" bgcolor='$this->PrimaryColor' colspan="3"> 
+</td>
+  $var['imapfolders_all']
+  </table>
+  </td>
+
+<td width='10%' valign='top' align='right'>
+<input type='button' class='stdbtn' value='Ordner hinzufügen' onclick="document.mail.action.value='add';document.mail.submit();">&nbsp;<br>
+<img src="imgs/xp/shim.gif" width="4" height="4" border="0">
+
+<input type='button' class='stdbtn' value='Ordner verstecken' disabled>&nbsp;<br><img src="imgs/xp/shim.gif" width="4" height="4" border="0">
+
+<input type='button' class='stdbtn' value='alle auswählen' onclick="selectall_folders(document.mail)">&nbsp;<br>
+<img src="imgs/xp/shim.gif" width="4" height="4" border="0">
+
+<input type='button' class='stdbtn' value='abwählen' onclick="deselectall_folders(document.mail)">&nbsp;<br>
+<img src="imgs/xp/shim.gif" width="4" height="4" border="0">
+
+<input type='button' class='stdbtn' value='Refresh' onclick="refreshfolders(document.mail.FolderFilter.value);" >&nbsp;<br><img src="imgs/xp/shim.gif" width="4" height="4" border="0">
+
+</td>
+
+				</tr>
+
+</table>
+
+<td width='10' valign='top' align='right'>
+
+</td>
+
+</td>
+    </tr>
+  </table>
+
+<br><br>
+</form>
+
+<form method="POST" name="mail2" action="util.php">
+<input type="hidden" name="func" value="imapfolders">
+<input type="hidden" name="action" value="">
+
+ <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr bgcolor=""> 
+      <td height='20' colspan="7" bgcolor="$this->PrimaryColor" valign="middle"><font class="mheader"> 
+       &nbsp; sichtbare Ordner<br>
+        </font> </td>
+          <td bgcolor="$this->PrimaryColor" align="right" valign="top"><img src="$this->Bgtrans"></td> 
+    </tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+    <tr> 
+      <td width="59%" bgcolor="$this->SecondaryColor" height="26" colspan='2'> <font class="sw"> 
+        Hier sehen Sie die Liste der aktiven Ordner, die für Ihr Benutzerkonto abboniert wurden. Sie können einen Ordner über die untenstehenden Check Boxen verstecken.<br></td>
+    </tr>
+	<tr>
+<td colspan=2 height='1' bgcolor='#E9E7DD'></td>
+</tr>
+    <tr> 
+      <td width="59%" bgcolor="$this->SecondaryColor" height="26" colspan='2'> <font class="sw"> 
+       Ordner anzeigen die den folgenden Namen enthalten:</font></td>
+	</tr>
+
+	<tr> 
+      <td width="59%" bgcolor="$this->SecondaryColor" height="26" colspan='2'> <font class="sw"> 
+      &nbsp;<input class=text type="text" name="FolderFilterSub" size="30" value=""></font></td>
+	</tr>
+
+    <tr bgcolor="$this->SecondaryColor" height='250'> 
+<td width='100%'>
+
+<table width="100%" height="100%" cellpadding="0" cellspacing="5" border="0">
+				<tr>
+					<td width='90%'>
+					<TABLE border=0 cellPadding=0 cellSpacing=0 width="100%">
+<tr>
+<td height="1" bgcolor='$this->PrimaryColor' colspan="3"> 
+</td>
+$var['imapfolders_subscribe']</table>
+					
+					</td>
+
+<td width='10%' valign='top' align='right'>
+
+<input type='button' class='stdbtn' value='Ordner hinzufügen' disabled>&nbsp;<br>
+<img src="imgs/xp/shim.gif" width="4" height="4" border="0">
+
+<input type='button' class='stdbtn' value='Ordner verstecken' onclick="document.mail2.action.value='hide';document.mail2.submit();" >&nbsp;<br>
+<img src="imgs/xp/shim.gif" width="4" height="4" border="0">
+
+<input type='button' class='stdbtn' value='alle auswählen' onclick="selectall_folders(document.mail2)">&nbsp;<br>
+<img src="imgs/xp/shim.gif" width="4" height="4" border="0">
+
+<input type='button' class='stdbtn' value='abwählen' onclick="deselectall_folders(document.mail2)">&nbsp;<br>
+<img src="imgs/xp/shim.gif" width="4" height="4" border="0">
+
+<input type='button' class='stdbtn' value='Refresh' onclick="refreshfolderssub(document.mail2.FolderFilterSub.value);" >&nbsp;<br><img src="imgs/xp/shim.gif" width="4" height="4" border="0">
+</td>
+
+				</tr>
+</table>
+
+</td>
+    </tr>
+  </table>
+
+<br>
+</form>
+</body></html>

@@ -1,0 +1,11 @@
+Simple SquirrelMail plugin that displays a quote above the message listing.
+
+Original code contributed by paulm@spider.org, now maintained by the
+SquirrelMail Project Team.
+
+Plugin requires /usr/games/fortune or any other similar program, that outputs 
+short text messages. If you are running PHP in safe_mode, the path to this
+program must be present in the PHP safe_mode_exec_dir setting. If you are
+running a chrooted webserver, program must be present inside of your
+chroot jail.
+

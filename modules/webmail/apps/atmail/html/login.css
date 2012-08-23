@@ -1,0 +1,80 @@
+.loginhead        { FONT-SIZE: 12px;
+FONT-FAMILY: Verdana, Arial;
+FONT-WEIGHT: bold;
+BORDER-WIDTH: 2px;
+MARGIN: 4px; 
+COLOR: #7F9EBA;
+} 
+
+.logintext        { FONT-SIZE: 12px;
+FONT-FAMILY: Verdana, Arial;
+FONT-WEIGHT: lighter;
+BORDER-WIDTH: 2px;
+MARGIN: 1px; 
+COLOR: #000000;
+}  
+
+.loginalert        { FONT-SIZE: 12px;
+FONT-FAMILY: Verdana, Arial;
+FONT-WEIGHT: lighter;
+FONT-STYLE: italic;
+BORDER-WIDTH: 2px;
+MARGIN: 1px; 
+COLOR: #DA8D90;
+}
+
+.loginselect { FONT-SIZE: 12px;
+FONT-FAMILY: Verdana, Arial;
+FONT-WEIGHT: lighter;
+COLOR: #000000;
+
+border-style: 00; 
+border-left: solid 1px;
+border-color: #333333;
+border-top: solid 1px;
+border-color: #333333;
+border-right: solid 1px;
+border-color: #333333;
+border-bottom: solid 1px;
+border-color: #333333;
+height: 20px; width: 135px;
+}
+
+
+.inputtext        { FONT-SIZE: 14px;
+FONT-FAMILY: Verdana, Arial;
+FONT-WEIGHT: lighter;
+BORDER-WIDTH: 2px;
+MARGIN: 4px; 
+COLOR: #000000;
+}   
+
+.logintextinfo        { FONT-SIZE: 12px;
+FONT-FAMILY: Verdana, Arial;
+BORDER-WIDTH: 2px;
+MARGIN: 1px; 
+COLOR: #000000;
+} 
+
+
+.logintextsmall        { FONT-SIZE: 9px;
+FONT-FAMILY: Verdana, Arial;
+FONT-WEIGHT: lighter;
+BORDER-WIDTH: 2px;
+MARGIN: 1px; 
+COLOR: #000000;
+} 
+
+.logintextstar        { FONT-SIZE: 9px;
+FONT-FAMILY: Verdana, Arial;
+FONT-WEIGHT: bold;
+BORDER-WIDTH: 2px;
+MARGIN: 1px; 
+COLOR: #FF0000;
+}
+
+.logininput { BACKGROUND: #ffffff; FONT-FAMILY: verdana, Arial; font-color: #295E8C; FONT-SIZE: 12px; border: 1px solid #295E8C; padding: 2px; height: 20px; width: 135px; }
+.loginsubmit { BACKGROUND: #ffffff; FONT-FAMILY: verdana, Arial; font-color: #295E8C; FONT-SIZE: 13px; border: 1px solid #295E8C; padding: 0px; width: 70px; }
+.loginsubmitlong { BACKGROUND: #ffffff; FONT-FAMILY: verdana, Arial; font-color: #295E8C; FONT-SIZE: 13px; border: 1px solid #295E8C; padding: 0px; width: 135px; }
+
+A:hover { COLOR: #336699; }

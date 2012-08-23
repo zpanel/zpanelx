@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>拒絕存取</title>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+</head>
+<body bgcolor="#ffffff" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor">
+
+<style>
+
+.sw {font-family:Verdana;font-size:13px;color:#000000;}
+.swr {font-family:Verdana;font-size:13px;color:#FF0000;}
+</style>
+
+<LINK href="javascript/style$this->browser.css" rel="stylesheet" type="text/css">
+
+<img src="$pref['logo_big_img']"><br>
+<h1>安全錯誤</h1>
+
+<font class="swr">該帳戶，你正試圖登錄引發了安全警告.</font>
+<font class="sw"> 
+<ul>
+  <li>該帳戶中的數據庫與郵件服務器的<b>$var['origserver']</b> ，</li>
+  <li>訪問已被鎖定，因為相關的郵件服務器地址是不再使用</li>
+  <li>這是作為一項安全防範措施，以禁止未經授權的訪問主機</li>
+</ul>
+</font>
+
+<p><font class="swr">要解決錯誤的機會</font></p>
+<font class="sw">
+<ul>
+  <li>登錄到新的遠程郵件服務器與現有的密碼，用來$pref['brandname']</li>
+  <li>聯繫管理人$this->admin_email贊同你的帳戶與新的郵件服務器地址</li>
+</ul>
+</font>
+</body>
+</html>
+
+

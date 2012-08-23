@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>$lang['lang_help_sync_title']</title>
+$lang['lang_Global_content_type']
+<LINK href="javascript/stylehelp.css" rel=stylesheet type=text/css>
+<font face="Verdana,Arial" size="+1">
+$lang['lang_help_sync_title']</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">$lang['lang_help_index']</a> ]
+<hr noshade>
+
+<script>
+function expandentry()	 {
+
+<!-- if($var['FirstLoad']) { -->
+if(parent.document.getElementById('calendar').style.display != 'block')
+parent.expand('addressbook', parent.document.getElementById('addressbookimg'));
+<!-- } -->
+
+}
+</script>
+
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" onload="expandentry()">
+
+	<p><u>$lang['lang_help_sync_head1']</u>
+	<p>$lang['lang_help_sync_text1']
+
+	<br>
+	
+	<p><u>$lang['lang_help_sync_head2']</u>
+	 <p> $lang['lang_help_sync_text2']</ul>
+		<p><ol>
+		<li>$lang['lang_help_sync_text3'] <a href="http://atmail.com/websync/websync-53.exe">http://atmail.com/websync/websync-53.exe</a>
+		<li>$lang['lang_help_sync_text4']<br>
+		</ol>
+		<img src = "imgs/help/atmailsync1.gif " border = 1 color = black>
+		
+		<ol><li>$lang['lang_help_sync_text7']<br>
+		</ol>
+		<img src = "imgs/help/atmailsync5.gif" border = 1 color = black><br><br>
+<ol>		<li>$lang['lang_help_sync_text8']
+		</ol>
+
+	  <br><p><u>$lang['lang_help_sync_head3']</u> 
+	  <p>$lang['lang_help_sync_text9']<br><br>
+	  <img src = "imgs/help/atmailsync4.gif" border = 1 color = black><br>
+	  <p>$lang['lang_help_sync_text10']
+
+</body>
+</html>

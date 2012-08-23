@@ -1,0 +1,41 @@
+A { font-style: normal; text-decoration: none}
+
+TR         {     FONT-SIZE: 11px;
+                                FONT-FAMILY: Arial, Helvetica, sans-serif;
+                                FONT-WEIGHT: lighter;
+                                MARGIN: 5px; }
+TABLE.outline { BORDER-STYLE: outset;
+                                BORDER-WIDTH: 1px;
+                                BACKGROUND-COLOR: #B7C2F; }
+TABLE.inline  { BORDER-WIDTH: 0px;
+                                BACKGROUND-COLOR: #B7C2F1; }
+TABLE.outform { BORDER-STYLE: outset;
+                                BORDER-WIDTH: 1px;
+                                BACKGROUND-COLOR: #B7C2F1; }
+TABLE.inform  { BORDER-WIDTH: 0px;
+                                BACKGROUND-COLOR: #4285B7; }
+
+TD.head           {     BACKGROUND-COLOR: $this->SecondaryColor;
+border-top: 1px solid #D8D2BD; border-bottom: 1px solid #D8D2BD; border-left: 1px solid #D8D2BD;
+background-image: url("imgs/xp/object_header_tile.gif");
+}
+
+.headlite           {
+BACKGROUND-COLOR: $this->SecondaryColor;
+border-top: 1px solid #D8D2BD;
+border-bottom: 1px solid #D8D2BD;
+background-image: url("imgs/xp/object_header_tile.gif");
+}
+
+
+SMALL {
+	font : 8pt Tahoma;
+	color : #282211;
+}
+
+.stdbtnxp {
+	font : 8pt Tahoma;
+	color : #282211;
+	background-color: #F0F0F0;
+	width : 80px;
+}

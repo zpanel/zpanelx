@@ -1,0 +1,234 @@
+<!--Include="html/russian/simple/header.html"-->
+$var['atmailstyle']
+$var['mailstyle']
+
+<!--Include="html/russian/simple/headerbar.html"-->
+
+<script type="text/javascript" src="javascript/fckeditor/fckeditor.js"></script>
+
+<script language="Javascript" src="html/$this->Language/javascript/composewin.js"></script>
+<script language="Javascript" src="javascript/composebook.js"></script>
+<script language="Javascript" src="javascript/ajax/video_ids.js"></script>
+<script language="Javascript" src="javascript/livesearch.js"></script>
+<script language="Javascript" src="html/$this->Language/javascript/ajax-lang.js"></script>
+
+<script>
+	<!--
+	var MsgSendUIDL = "$var['UIDL']";
+	var MsgSendUnique = "$var['unique']";
+	var MsgSendType = "$var['type']";
+	var MsgSendDraftID = "$var['DraftID']";
+	var MsgSendCharset = "$var['Charset']";
+	var MailRefreshTime = "$this->Refresh";
+	-->
+</script>
+
+<div id="MsgListViewer" style="width: 97%; height: 97%; padding: 10px;">
+	<table class="border_contain" width="100%" height="100%" cellpadding="0" cellspacing="0" border="0">
+		<tr id="MsgSearchRow" style="display: none;">
+			<td class="SearchRow" colspan="7">
+				<table width="100%" cellpadding="0" cellspacing="0" border="0">
+					<tr>
+						<td width="65%">
+							<table class="SearchBorder" width="100%" cellpadding="0" cellspacing="0" border="0">
+								<tr>
+									<td><div class="SearchFields">От кого:</div></td>
+									<td width="25%">
+									<input type="text" id="SearchFrom" onfocus="FieldInFocus = true; document.body.setAttribute('style','-moz-user-select: normal;');" onblur="FieldInFocus = false; document.body.setAttribute('style','-moz-user-select: none;');"></td>
+									<td><div class="SearchFields">Кому:</div></td>
+									<td width="25%"><input type="text"  id="SearchTo" onfocus="FieldInFocus = true; document.body.setAttribute('style','-moz-user-select: normal;');" onblur="FieldInFocus = false; document.body.setAttribute('style','-moz-user-select: none;');"></td>
+									<td><div class="SearchFields">Тема:</div></td>
+									<td width="25%"><input type="text" id="SearchSubject" onfocus="FieldInFocus = true; document.body.setAttribute('style','-moz-user-select: normal;');" onblur="FieldInFocus = false; document.body.setAttribute('style','-moz-user-select: none;');"></td>
+									<td><div class="SearchFields">Письмо</div></td>
+									<td width="25%"><input type="text" id="SearchMessage" onfocus="FieldInFocus = true; document.body.setAttribute('style','-moz-user-select: normal;');" onblur="FieldInFocus = false; document.body.setAttribute('style','-moz-user-select: none;');"></td>
+								</tr>
+							</table>
+						</td>
+						<td class="searchpad"><span class="searchspan">In:</span></td>
+						<td width="100" style="padding: 1px 0px 1px 5px;">
+							<select style="width: 100px;" id="SearchLocation" class="swheader">
+
+							</select>
+						</td>
+						<td width="10%" style="padding: 1px 0px 1px 5px;" nowrap><input type="button" value="More" onclick="ToggleSearchRowMore();" class="stdbtn" style="width: 50px;" id="MsgSearchButton">
+
+						<td width="10%" style="padding: 1px 0px 1px 5px;" nowrap><input type="button" value="Поиск" onclick="LoadFolders(); LoadMsgs('Search');" class="stdbtn" style="width: 60px;">
+
+						</td>
+					</tr>
+
+					<tr id="MsgSearchRowMore" style="display: none;">
+						<td class="SearchRowMore" colspan="5">
+							Полученный до:
+              <select id="SearchBeforeDay" class="swheader">
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31" selected>31</option>
+              </select>
+              /
+              <select id="SearchBeforeMonth" class="swheader">
+                <option value="01">Янв</option>
+                <option value="02">Фев</option>
+                <option value="03">Мар</option>
+                <option value="04">Апр</option>
+                <option value="05">Май</option>
+                <option value="06">Июн</option>
+                <option value="07">Июл</option>
+                <option value="08">Авг</option>
+                <option value="09">Сен</option>
+                <option value="10">Окт</option>
+                <option value="11">Ноя</option>
+                <option value="12" selected>Дек</option>
+              </select>
+              /
+              <select id="SearchBeforeYear" class="swheader">
+$var['beforeYearOptions']
+              </select>
+
+							&nbsp;&nbsp;&nbsp;Полученные после:
+
+              <select id="SearchAfterDay" class="swheader"><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option></select>
+              /
+              <select id="SearchAfterMonth" class="swheader"><option value="01">Янв</option><option value="02">Фев</option><option value="03">Мар</option><option value="04">Апр</option><option value="05">Май</option><option value="06">Июн</option><option value="07">Июл</option><option value="08">Авг</option><option value="09">Сен</option><option value="10">Окт</option><option value="11">Ноя</option><option value="12">Дек</option></select>
+              /
+			  <select id="SearchAfterYear" class="swheader">$var['afterYearOptions']</select>
+							<br />
+							<input type="checkbox" id="SearchAttachments" value="1">&nbsp;Письма с вложениями
+							&nbsp;&nbsp;&nbsp;<input type="checkbox" id="SearchFlagged" value="1">&nbsp;Письма с отметками о важности
+						</td>
+					</tr>
+
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td class="SortBy" onclick="SortMsgsBy(10);"><img src="imgs/simple/shim.gif" width="22" height="1" border="0"></td>
+			<td class="SortBy" onclick="SortMsgsBy(4);"><img src="imgs/simple/shim.gif" width="22" height="1" border="0"></td>
+			<td class="SortBy" onclick="SortMsgsBy(9);"><img src="imgs/simple/shim.gif" width="22" height="1" border="0"></td>
+			<td class="SortBy2" onclick="SortMsgsBy(3);"><img src="imgs/simple/shim.gif" width="100" height="1" border="0"></td>
+			<td class="SortBy3" onclick="SortMsgsBy(2);"><img src="imgs/simple/shim.gif" width="100" height="1" border="0"></td>
+			<td class="SortBy2" onclick="SortMsgsBy(5);"><img src="imgs/simple/shim.gif" width="100" height="1" border="0"></td>
+			<td class="SortBy4" onclick="SortMsgsBy(11);"><img src="imgs/simple/shim.gif" width="87" height="1" border="0"></td>
+		</tr>
+		<tr>
+			<td class="headertile" onclick="SortMsgsBy(10);"><div class="headertilediv"><img id="MsgListBoxSort10Img" src="imgs/simple/shim.gif" width="9" height="18" border="0"></div></td>
+
+			<td class="headertile" onclick="SortMsgsBy(4);"><div  class="headertilediv"><img id="MsgListBoxSort4Img" src="imgs/simple/shim.gif" width="9" height="18" border="0"></div></td>
+
+			<td class="headertile" onclick="SortMsgsBy(9);"><div  class="headertilediv"><img id="MsgListBoxSort9Img" src="imgs/simple/shim.gif" width="9" height="18" border="0"></div></td>
+
+			<td class="headertile2" onclick="SortMsgsBy(3);"><div id="FromToField" class="swheadershowmail">От кого</div><div class="headertilediv3"><img id="MsgListBoxSort3Img" src="imgs/simple/shim.gif" width="7" height="18" border="0"></div></td>
+
+			<td class="headertile3" onclick="SortMsgsBy(2);"><div id="FromToField" class="swheadershowmail">Тема</div>
+			<div class="headertilediv3"><img id="MsgListBoxSort2Img" src="imgs/simple/shim.gif" width="7" height="18" border="0"></div></td>
+
+			<td class="headertile2"  onclick="SortMsgsBy(5);">
+			<div id="FromToField" class="swheadershowmail">Дата</div>
+
+			<div class="headertilediv3"><img id="MsgListBoxSort5Img" src="imgs/simple/shim.gif" width="7" height="18" border="0"></div></td>
+
+			<td class="headertile4"  onclick="SortMsgsBy(11);">
+			<div id="FromToField" class="swheadershowmail">Размер</div><div class="headertilediv3"><img id="MsgListBoxSort11Img" src="imgs/simple/shim.gif" width="7" height="18" border="0"></div></td>
+		</tr>
+		<tr>
+			<td colspan="7" height="100%" class="msglistbox"><div id="MsgListBox" style="width: 100%; height: 100%"></div></td>
+		</tr>
+		<tr id="MsgPageListRow" style="display: none;">
+			<td colspan="7" class="MsgPageListRow">
+				<table width="100%" cellpadding="0" cellspacing="0" border="0">
+					<tr>
+						<td width="75%"><span id="TotalMsgsStatus"  class="swheader"></span></td>
+						<td width="38" id="MsgPageListPrevious" onclick="LoadMsgs(MsgListData['CurrentFolder'], document.getElementById('MsgPageList').options[document.getElementById('MsgPageList').selectedIndex - 1].value);" style="cursor: pointer; display: none;"><img src="imgs/simple/sidebar_previous.gif" width="38" height="29"></td>
+						<td width="25%" valign="middle"><select id="MsgPageList" onchange="LoadMsgs(MsgListData['CurrentFolder'], this.value);" style="width: 100%;" class="swheader"></select></td>
+						<td width="38" id="MsgPageListNext" onclick="LoadMsgs(MsgListData['CurrentFolder'], document.getElementById('MsgPageList').options[document.getElementById('MsgPageList').selectedIndex + 1].value);" style="cursor: pointer;"><img src="imgs/simple/sidebar_next.gif" width="38" height="29"></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div id="MsgReader" style="width: 97%; height: 97%; padding: 10px; overflow: hidden; display: none;"></div>
+
+<div id="MsgComposer" style="width: 97%; height: 97%; padding: 10px; overflow: hidden; display: none;"></div>
+
+<!-- if($this->Signature = preg_replace('/\n/', '<br>', $this->Signature)) { -->
+<!-- } -->
+
+<div id="Signature" style="overflow: hidden; display: none;">$this->Signature</div>
+
+<!-- if($this->FromField) { -->
+<div id="EmailFrom" style="overflow: hidden; display: none;">$this->FromField</div>
+<!-- } -->
+
+<!-- if($this->Account) { -->
+<div id="EmailFrom" style="overflow: hidden; display: none;">$this->Account</div>
+<!-- } -->
+
+<!-- if(is_executable($pref['aspell_path'])) { -->
+<input type="hidden" name="spellcheck" id="spellcheck" value="1">
+<!-- } -->
+
+<!-- if(!is_executable($pref['aspell_path'])) { -->
+<input type="hidden" name="spellcheck" id="spellcheck" value="0">
+<!-- } -->
+
+<input type="hidden" name="VideoMail" id="VideoMail" value="$pref['allow_VideoMail']">
+<input type="hidden" name="VideoMailServer" id="VideoMailServer" value="$pref['videomail_server']">
+
+<input type="hidden" name="OpenSource" id="OpenSource" value="$pref['opensource']">
+<input type="hidden" name="HtmlEditor" id="HtmlEditor" value="$this->HtmlEditor">
+<input type="hidden" name="AutoComplete" id="AutoComplete" value="$this->AutoComplete">
+<input type="hidden" name="MailType" id="MailType" value="$this->MailType">
+<input type="hidden" name="Mode" id="Mode" value="$this->Mode">
+<input type="hidden" name="LoadFolder" id="FolderLoad" value="1">
+<input type="hidden" name="Expunge" id="Expunge" value="$pref['expunge_logout']">
+
+
+<!-- if(!$domains[$this->pop3host]) { -->
+<input type="hidden" name="LocalAccount" id="LocalAccount" value="">
+<!-- } -->
+
+<!-- if($domains[$this->pop3host]) { -->
+<input type="hidden" name="LocalAccount" id="LocalAccount" value="1">
+<!-- } -->
+
+<object id="NewMsgSound" width="0" height="0" classid="CLSID:05589FA1-C356-11CE-BF01-00AA0055595A">
+	<param name="FileName" value="javascript/newmail.wav">
+	<param name="PlayCount" value="1">
+	<param name="AutoStart" value="0">
+	<param name="ShowControls" value="0">
+	<param name="ShowDisplay" value="0">
+</object>
+
+<!-- <embed name="NewMsgSoundFF" src="javascript/newmail.wav" autostart="false" loop="false" hidden="true"> -->
+
+<!--Include="html/russian/simple/footer.html"-->

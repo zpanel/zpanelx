@@ -1,0 +1,166 @@
+/*****************************************************************
+ * Release Notes: SquirrelMail 1.2.6                             *
+ * The "Two Journeys" Release                                    *
+ * 29 April    2002                                              *
+ *****************************************************************/
+
+In this edition of SquirrelMail Release Notes:
+   * All about this Release!!!
+   * Reporting my favorite SquirrelMail 1.2 bug
+   * Important Note about PHP 4.2.0
+   * About our Release Aliases
+
+All about this Release!!!
+=========================
+
+Squirrelmail.
+It's feature set is that of a desktop client.
+It's ease of use is unheard of.
+It's ..ehem.. bug free.
+There is nowhere else to go...
+Except to the 1.2.6 stable version of Squirrelmail!!
+
+    We are excited to bring you the latest and greatest Squirrelmail release 
+to date. More features you say? You got it. Better performance is what
+you need? Expect it. Looking for a Sqirrelmail with less bugs? It is here.
+Here are some highlights:
+
+  * Greatly improved Cross Site Scripting Protection with a new custom
+    html filter.
+  * Improved search and filter functions, allowing for non-ascii search
+    and filter criteria.
+  * Server side sorting capability to improve performance with large 
+    mailboxes.
+  * Most importantly, Many, many bugfixes. And more bugfixes. did I mention 
+    bugfixes?
+
+See the Changelog file for details.
+
+   Being one of the most popular webmail clients, the developers of
+SquirrelMail feel a huge desire and responsibility to continue push
+the envelope and make SquirrelMail the best it can possibly be. You
+will not be disappointed with this release, as it is by far the most
+feature rich, and yet it is still the same sleek and unbloated and
+cuddly webmail application that we have all grown to love. Here is
+an incomplete list of some of the great features that Squirrelmail
+has to offer:
+
+  * Collapsible Folders - The folder list can be collapsed at any
+          parent folder. This makes folder lists with large
+          hierarchical structures much easier to manage and navigate.
+  * Fix for the "theme passed as cookie" exploit posted to the bug-
+          traq mailing list.
+  * The Paginator! - This enables quick access to any page in the
+          message list by simply choosing the page number to view
+          rather than tediously clicking "next" 50 times.
+  * Hundreds of UI tweaks - The user interface has been given a
+          face-lift. The HTML has been largely overhauled, and while
+          it still has the same general feel, it has been made more
+          intuitive.
+  * Drafts - It is now possible to compose a message and save it to
+          be sent at a later date with the drafts option.
+  * Ability to mark messages as read and unread from the message listing.
+  * New Options Page - The options page has been completely
+          rewritten for several reasons, the main of which was to
+          allow seamless integration of plugin options and to
+          provide uniformity throughout the entire section.
+  * Multiple Identities - It is now possible to create different
+          identities (home, work, school) that can be chosen upon
+          sending. Each identity can have its own email address,
+          full name, and signature.
+  * Ability to forward messages as attachments from the message listing.
+  * Reply Citations - Different types of citations are now possible
+          when replying to messages.
+  * Better Attachment Handling - The plugin, attachment_common, has
+          been fully integrated into the core of SquirrelMail.  This
+          allows inline viewing of several different types of
+          attachments.
+  * Integration of Several Plugins - The following plugins have been
+          put directly into the core. As a result, be sure not to
+          install these as plugins, as the result may be (at best)
+          unpredictable: attachment_common, paginator, priority,
+          printer_friendly, sqclock, xmailer.
+  * Improved support for newer versions of PHP. Recommended versions
+          are 4.0.3 -> 4.1.2. 
+  * Server-side sorting support adds speed to the mailbox display, even
+          with large mailboxes. Server-sid thread sorting support allows 
+          users to display mailboxes in thread-sort order.
+
+  
+I am sure there are plenty more features I have missed. You just have
+to try it for yourself!
+
+Having been involved with Squirrelmail for a while I can safely say
+that this stable release has the most bugfixes to date. The invaluable
+contributions of the Squirrelmail community, from developers and users
+alike have helped to make this release of Squirrelmail the best yet.
+
+   Home Page:    http://www.squirrelmail.org/
+   Download:     http://www.squirrelmail.org/download.php
+   ScreenShots:  http://www.squirrelmail.org/screenshots.php
+
+
+Reporting my favorite SquirrelMail 1.2 bug
+==========================================
+
+Of course, in the words of Linus Torvalds, this release is officially
+certified to be Bug-Free (tm).
+
+However, if for some reason some bugs manage to find their way to the
+surface, please report them at once (after all, they ARE uncertified
+bugs!!!) The PROPER place to report these bugs is the SquirrelMail Bug
+Tracker.
+
+   http://www.squirrelmail.org/bugs
+
+Thank you for your cooperation in that issue. That helps us to make
+sure that nothing slips through the cracks. Also, it would help if
+people would check existing tracker items for a bug before reporting
+it again. This would help to eliminate duplicate reports, and
+increase the time we can spend CODING by DECREASING the time we
+spend sorting through bug reports. And remember, check not only OPEN
+bug reports, but also closed ones as a bug that you report MAY have
+been fixed in CVS already.
+
+
+Important Note about PHP 4.2.0
+==============================
+
+  A few days before this release, PHP 4.2.0 hit the net. The Squirrelmail
+team has not had a chance to test this new version of PHP with the 1.2.6
+release. The recommended versions of PHP for Squirrelmail 1.2.6 is 4.0.3
+through 4.1.2.
+
+
+About our Release Aliases - By Jason Munro 
+=========================
+
+Squirrelmail has started on a new journey.
+Two journeys really. 
+  
+In one, our beloved hero delves deep inside its squirrel-self, 
+searching for calmness and peace with its surroundings. 
+Striving to hone its squirrel-skills against any and all obstacles.
+
+This is the stable path.
+
+In the other, our champion has shed the failures of its past and
+started anew on a wild adventure through uncharted territory. The
+dangers are great, but so are the rewards.
+
+This is the development path.
+
+
+  Squirrelmail 1.2.6 is the latest stepping-stone on the stable
+path. It leads to a Squirrelmail of unseen dependablity and
+performance.
+  Squirrelmail 2.0 development has begun. This is the first step
+on the journey down the development path. New worlds of possiblity
+are opening up with each step.
+
+Forget what you thought you knew about Squirrelmail, 
+and get ready for a whole new nut.
+
+
+                  Happy SquirrelMailing!
+                    - The SquirrelMail Project Team

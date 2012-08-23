@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# Redirects to the config directory and runs conf.pl
+
+cd `dirname $0`/config && ./conf.pl

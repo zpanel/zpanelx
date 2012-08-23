@@ -1,0 +1,5 @@
+# error page
+ErrorDocument 403 /_errorpages/403.php
+ErrorDocument 404 /_errorpages/404.php
+ErrorDocument 500 /_errorpages/500.php
+ErrorDocument 510 /_errorpages/510.php

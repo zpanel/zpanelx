@@ -1,0 +1,80 @@
+#!/bin/sh
+
+# This script regenerates main POT file
+#
+# Philipe Mingo <mingo@rotedic.com>
+#
+# $Id: xgetpo 13768 2009-05-28 06:19:45Z jervfors $
+
+# force use of same locale in order to keep same sorting order
+LC_ALL=en_US.ISO8859-1
+LANG=en_US.ISO8859-1
+export LC_ALL LANG
+
+# set common gettext options
+XGETTEXT_OPTIONS="--keyword=_ -keyword=N_ --default-domain=squirrelmail --no-location --add-comments=i18n"
+
+# Allows controlling language option
+# (gettext v.0.10.40 = -C, gettext 0.11+ = -L php).
+if [ $SM_LANG_PHP ] ; then
+ XGETTEXT_OPTIONS="${XGETTEXT_OPTIONS} -L php";
+else
+ XGETTEXT_OPTIONS="${XGETTEXT_OPTIONS} -C";
+fi
+
+cd ..
+xgettext ${XGETTEXT_OPTIONS} \
+    src/*.php --output=po/squirrelmail.pot
+xgettext ${XGETTEXT_OPTIONS} -j \
+    class/*.php --output=po/squirrelmail.pot
+xgettext ${XGETTEXT_OPTIONS} -j \
+    class/*/*.php --output=po/squirrelmail.pot
+xgettext ${XGETTEXT_OPTIONS} -j \
+    functions/*.php --output=po/squirrelmail.pot
+xgettext ${XGETTEXT_OPTIONS} -j \
+    include/*.php --output=po/squirrelmail.pot
+xgettext ${XGETTEXT_OPTIONS} -j \
+    include/options/*.php --output=po/squirrelmail.pot
+
+# Plugins
+
+xgettext ${XGETTEXT_OPTIONS} -j \
+    plugins/administrator/*.php --output=po/squirrelmail.pot
+xgettext ${XGETTEXT_OPTIONS} -j \
+    plugins/bug_report/*.php --output=po/squirrelmail.pot
+xgettext ${XGETTEXT_OPTIONS} -j \
+    plugins/calendar/*.php --output=po/squirrelmail.pot
+xgettext ${XGETTEXT_OPTIONS} -j \
+    plugins/delete_move_next/*.php --output=po/squirrelmail.pot
+xgettext ${XGETTEXT_OPTIONS} -j \
+    plugins/filters/*.php --output=po/squirrelmail.pot
+xgettext ${XGETTEXT_OPTIONS} -j \
+    plugins/fortune/*.php --output=po/squirrelmail.pot
+xgettext ${XGETTEXT_OPTIONS} -j \
+    plugins/info/*.php --output=po/squirrelmail.pot
+xgettext ${XGETTEXT_OPTIONS} -j \
+    plugins/listcommands/*.php --output=po/squirrelmail.pot
+xgettext ${XGETTEXT_OPTIONS} -j \
+    plugins/mail_fetch/*.php --output=po/squirrelmail.pot
+xgettext ${XGETTEXT_OPTIONS} -j \
+    plugins/message_details/*.php --output=po/squirrelmail.pot
+xgettext ${XGETTEXT_OPTIONS} -j \
+    plugins/newmail/*.php --output=po/squirrelmail.pot
+xgettext ${XGETTEXT_OPTIONS} -j \
+    plugins/sent_subfolders/*.php --output=po/squirrelmail.pot
+xgettext ${XGETTEXT_OPTIONS} -j \
+    plugins/spamcop/*.php --output=po/squirrelmail.pot
+xgettext ${XGETTEXT_OPTIONS} -j \
+    plugins/squirrelspell/*.php --output=po/squirrelmail.pot
+xgettext ${XGETTEXT_OPTIONS} -j \
+    plugins/squirrelspell/modules/*.mod --output=po/squirrelmail.pot
+xgettext ${XGETTEXT_OPTIONS} -j \
+    plugins/translate/*.php --output=po/squirrelmail.pot
+
+xgettext ${XGETTEXT_OPTIONS} -j \
+    po/independent_strings.txt --output=po/squirrelmail.pot
+
+# print stats
+msgfmt --statistics ${SM_LOCALES_PATH}/po/squirrelmail.pot -o /dev/null
+
+cd po

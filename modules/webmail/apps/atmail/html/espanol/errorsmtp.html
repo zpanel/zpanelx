@@ -1,0 +1,19 @@
+<!-- if($this->Ajax) { -->
+<Error>
+	<ErrorStatus>1</ErrorStatus>
+	<Status>1</Status>
+	<ErrorMessage><![CDATA[$var['error']]]></ErrorMessage>
+	<StatusMessage><![CDATA[$var['error']]]></StatusMessage>
+</Error>
+<!-- } -->
+
+<!-- if(!$this->Ajax) { -->
+	<HTML>
+	<body>
+	<script type="text/javascript">
+	alert("$var['error']");
+	document.location='$var['location']';
+	</script>
+	</body>
+	</HTML>
+<!-- } -->

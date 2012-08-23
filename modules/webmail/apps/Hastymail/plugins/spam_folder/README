@@ -1,0 +1,5 @@
+the spam folder  allows users to select a folder on the options page as their spam
+folder then provides an "empty spam" button in the message controls. One can also set
+a max age in days and spam older than that will be purged from the spam folder on logout.
+
+questions or comments can be sent to jason@hastymail.org

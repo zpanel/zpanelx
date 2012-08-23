@@ -1,0 +1,58 @@
+Welcome to AtMail Open
+----------------------
+
+To install is simple:
+
+1: Extract the atmailopen directory into your Webserver document root.
+
+2: Change the ownership of the atmailopen directory to the Webserver user.
+
+e.g
+
+chown -R apache atmailopen
+
+3. If you already have AtMail Open installed then simply run the upgrade script, e.g:
+
+http://server.url.com/atmailopen/upgrade.php
+
+No further action is required if you upgrade.
+
+If this is a fresh install then visit the URL AtMail is installed under, e.g
+
+http://server.url.com/atmailopen/
+
+4: Follow the on-screen installation wizard to complete the installation.
+
+5: Webmail is now installed! You can access any existing IMAP account
+
+Requirements
+------------
+
+* PHP 5.X recommended ( PHP 4.X supported )
+* MySQL database server
+* Access to the php.ini to set runtime configuration
+* IMAP4 server to access accounts
+
+More info
+---------
+
+For more details please consult: http://atmail.org/
+
+Installing from SVN
+-------------------
+
+If installing via SVN, after extraacting the atmailopen directory, visit
+the Web-installer to init the environment.
+
+Before clicking the next step in the Web-installer, the language templates
+must be created:
+
+Run the command:
+
+cd atmailopen ; php lang.php all
+
+Then continue using the Web-installer to complete installation.
+
+The unique language generated HTML templates are not included in the SVN
+version. These must be compiled using the lang.php command above.
+

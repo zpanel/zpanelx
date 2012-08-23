@@ -1,0 +1,40 @@
+<!-- if($var['on']) { -->
+<tr>
+<td bgcolor='#DEEBF6' width="38" class="optionselectedimg" onclick="location.href='showmail.php?Folder=$var['folderlink']'"><img src="imgs/simple/$var['foldericon']" width="38" height="31" border="0"></td>
+<td width="125">
+<table width='120' cellpadding='0' cellspacing=0 border=0 height="33" class='optionselected'>
+<tr>
+<td onClick="location.href='showmail.php?Folder=$var['folderlink']'">	
+<font class="menuoption">&nbsp;&nbsp;$var['folder']</font>
+
+<font class="smallbold">$var['counter']</font>
+</td></tr>
+</table>
+</td>
+</tr>
+
+<tr>
+<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="5" border="0"></td>
+<td width="125"><img src="imgs/simple/shim.gif" width="125" height="12" border="0"></td>
+</tr>
+<!-- } -->
+
+<!-- if(!$var['on']) { -->
+<tr>
+<td bgcolor='#DEEBF6' width="38" style="cursor: pointer; cursor: hand;" onclick="location.href='showmail.php?Folder=$var['folderlink']'"><img src="imgs/simple/$var['foldericon']" width="38" height="31" border="0"></td>
+<td width="125">
+
+<table width='120' cellpadding='0' cellspacing=0 border=0 height="31">
+<tr>
+<td onClick="location.href='showmail.php?Folder=$var['folderlink']'" onmouseover="this.className='optionroll'" onmouseout="this.className='optionover'" class='optionover'>	
+<font class="menuoption">&nbsp;&nbsp;$var['folder']</font>
+</td></tr>
+</table>
+</td>
+</tr>
+
+<tr>
+<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="5" border="0"></td>
+<td width="125"><img src="imgs/simple/shim.gif" width="125" height="12" border="0"></td>
+</tr>
+<!-- } -->

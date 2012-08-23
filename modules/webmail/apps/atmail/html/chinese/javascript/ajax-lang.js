@@ -1,0 +1,104 @@
+// Language strings for Ajax interface
+
+Lang_AllFolders = "所有文件夾";
+Lang_Page = "頁";
+Lang_First = "第一";
+Lang_Last = "上次";
+Lang_NextMsg = "下一個郵件";
+Lang_PrevMsg = "前郵件";
+Lang_Viewing = "觀察Viewing";
+Lang_Messages = "信息";
+Lang_To = "收件者";
+Lang_Of = "的";
+Lang_From = "寄件者";
+Lang_Subject = "主旨";
+Lang_Date = "日期";
+Lang_Size = "大小";
+Lang_DragDrop = "拖放到文件夾";
+Lang_DoubleClick = "雙擊打開";
+Lang_CacheStatus = "信息高速緩衝狀態";
+Lang_Type = "類型";
+Lang_Priority = "重要性";
+Lang_Normal = "正常";
+Lang_High = "高";
+Lang_Low = "低";
+Lang_Reply = "回覆";
+Lang_ReplyAll = "全部回覆";
+Lang_Forward = "轉寄";
+Lang_Delete = "刪除";
+Lang_Abook = "通訊簿";
+Lang_Print = "列印";
+Lang_BlockSender = "座寄件者";
+Lang_ViewHeaders = "查看標題";
+Lang_Next = "下一頁";
+Lang_Prev = "前";
+Lang_Back = "回";
+Lang_Send = "發送郵件";
+Lang_AddRecpt = "增加接收者";
+Lang_AddBCC = "新增BCC郵件帳戶";
+Lang_SpellCheck = "拼写检查";
+Lang_Attachments = "附件";
+Lang_SaveMsg = "儲存訊息";
+Lang_Resume = "簡歷編輯";
+Lang_BackTo = "回";
+Lang_Text = "文字";
+Lang_Open = "開啟";
+Lang_Editor = "編輯";
+Lang_Bcc = "密件副本";
+Lang_Cc = "副本";
+Lang_ItemsToMove = "物品移動";
+Lang_BlackListAdded = "該用戶已添加到你的垃圾郵件黑名單";
+Lang_AbookAdded = "用戶電子郵件地址已新增至addressbook";
+Lang_MoveHead = "信息不能移動";
+Lang_MoveHead2 = "獨特的信息標識不符合選定的訊息移動/刪除.這個";
+Lang_MoveReason1 = "你已更新了郵局窗口後，把某條消息移動.以前的郵件不能";
+Lang_MoveReason2 = "該郵件已移至另一個應用通過POP3/IMAP .請重新載入你的";
+Lang_MoveReason3 = "的信息不再存在於郵件服務器";
+Lang_Headers = "標頭";
+Lang_AddSender = "將發件人添加到地址簿";
+Lang_Sent = "寄件";
+Lang_AddWord = "購買Word來辭典";
+Lang_Edit = "編輯";
+Lang_BlockedAlert = "快訊：";
+Lang_Blocked = "$變種[ ' BlockImages ' ]圖像已被封鎖.";
+Lang_Display = "顯示圖像信息";
+Lang_DisplayAdd = "總是顯示圖像從這個用戶";
+Lang_AlertPerm = "你確定要永久刪除選定的郵件？";
+Lang_MarkAsRead = "標記為已讀";
+Lang_MarkAsUnread = "標記為未讀";
+
+// Calendar Language files
+Lang_Months = new Array("月1日", "2月", "March", "4月", "5月", "June", "July", "August", "September", "10月", "11月", "月12日");
+Lang_Days = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
+Lang_AllDayAdd = "雙擊添加全日任命";
+Lang_DayAdd = "點擊與拖放或雙擊添加任命";
+Lang_TaskAdd = "新增";
+Lang_TaskHeader = "任務";
+Lang_AllDayEvents = "全日活動";
+Lang_Done = "完成";
+Lang_Personal = "個人";
+Lang_Shared = "共享";
+Lang_VideoMail = "視頻郵件";
+Lang_Help = "幫助指南錄製視頻郵件";
+
+Lang_Start = "開始日期";
+Lang_End = "結束日期";
+
+// Used for the overdue.html template in the calendar
+Lang_Complete = "完成";
+Lang_Sleep = "提醒在30分鐘內";
+Lang_DueDate = "截止日期";
+Lang_OverDue = "逾期未任命";
+Lang_ViewDay = "查閱日";
+Lang_ViewWeek = "查看五天工作週";
+Lang_ViewWeek7 = "查看1週";
+Lang_ViewMonth = "觀月";
+Lang_BackToEmail = "回電子郵件";
+Lang_Sync = "同步實用的Outlook";
+Lang_HelpGuide = "幫助指南";
+Lang_ExportToIcal = "出口的iCal";
+
+Lang_HasNoMsgs = "$var['FolderName'] 沒有訊息";
+
+Lang_CalImportTitle = "進口從iCal";
+Lang_CalImportLabel = "導入日曆在iCal （ ICS ）的格式：";

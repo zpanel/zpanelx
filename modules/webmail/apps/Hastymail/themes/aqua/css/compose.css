@@ -1,0 +1,199 @@
+/* compose page */
+
+#compose_page{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.address_fld{
+    width: 100%;
+    max-width: 640px;
+    margin-right: 15px;
+    padding-right: 4px;
+}
+.sright, .sleft{
+    padding-top: 5px;
+}
+#compose_form table .aright select{
+    margin-top: 5px;
+    width: 200px;
+}
+.sleft, .aleft{
+    font-weight: bold;
+    font-size: 95%;
+    width: 1%;
+    text-align: right;
+    white-space: nowrap;
+}
+#compose_form{
+    clear: both;
+    padding-bottom: 30px;
+}
+#compose_form table{
+    margin-left: 10px;
+}
+#compose_form table td{
+    padding-right: 15px;
+    padding-bottom: 10px;
+    vertical-align: bottom;
+}
+#compose_form table td select, #compose_form table td input{
+    margin: 0px;
+    border: ridge 3px #ccc;
+    padding: 2px;
+}
+#compose_form table #mleft{
+    text-align: right;
+}
+#compose_form table .mright, #compose_form table #mleft{
+    font-weight: bold;
+    font-size: 95%;
+    padding-top: 10px;
+    vertical-align: top;
+}
+#compose_form table .mright{
+    text-align: left;
+    width: 100%;
+}
+#compose_form textarea{
+    padding: 4px;
+    padding-right: 0px;
+    height: 400px;
+    overflow-y: scroll;
+    font-family: monspace;
+    border: ridge 3px #ccc;
+}
+#compose_page input {
+    margin-left: 30px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+select{
+    color: #000;
+    border: ridge 3px #ccc;
+}
+#compose_form table td select{
+    padding-right: 0px;
+}
+#compose_form table .send_row input{
+    margin: 0px;
+    border: ridge 3px #ccc;
+}
+#compose_form table .send_row{
+    vertical-align: top;
+    padding-left: 20px;
+    white-space: nowrap;
+    width: 65%;
+    font-size: 115%;
+}
+#compose_contacts{
+    clear: both;
+    width: 100%; 
+    margin-left: 15px;
+    max-width: 640px;
+}
+#compose_form table td #compose_contacts select{
+    font-size: 95%;
+    width: 100%;
+    border: none;
+    margin-bottom: 5px;
+}
+#compose_form table td #compose_contacts option{
+    font-size: 95%;
+    padding-bottom: 2px;
+}
+#compose_form table #contact_buttons input{
+    font-size: 80%;
+    padding: 0px;
+    border: ridge 3px #ccc;
+    padding: 1px;
+    margin-bottom: 5px;
+}
+#compose_form table #contact_buttons{
+    padding-top: 5px;
+    vertical-align: top;
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 20px;
+    width: 1%;
+}
+#contact_search{
+    clear: both;
+}
+#contact_search .contact_search{
+    border: none;
+    border: ridge 3px #ccc;
+    width: 200px;
+    padding: 1px;
+    font-size: 100%;
+}
+#contact_search input{
+    margin: 0px;
+    font-size: 80%;
+    border: ridge 3px #ccc;
+    margin-top: 5px;
+    padding: 0px;
+}
+#compose_form table td .priority{
+    width: 40px;
+    border: ridge 3px #ccc;
+    font-size: 90%;
+}
+#compose_form table .compose_opts{
+    white-space: nowrap;
+    padding-top: 10px;
+    font-size: 85%;
+    text-align: left;
+    color: #777;
+    width: 1%;
+}
+#compose_form table td .attach{
+    margin-left: 20px;
+    border: ridge 3px #ccc;
+}
+#compose_form table .aright{
+    text-align: left;
+    white-space: nowrap;
+    font-size: 90%;
+}
+#compose_form table .aleft, #compose_form table .aright{
+    vertical-align: top;
+    padding-top: 10px;
+}
+#compose_form table td #attachment_table {
+    padding-top: 10px;
+    width: 600px;
+}
+#compose_form table td #attachment_table th{
+    font-size: 90%;
+    text-align: left;
+    border-bottom: solid 1px #ccc;
+}
+#compose_form table td #attachment_table td{
+    vertical-align: top;
+    padding-top: 3px;
+    text-align: left;
+}
+.send_button{
+    color: #22449b;
+    font-weight: bold;
+}
+#contact_page_links{
+    text-align: center;
+}
+#compose_form table td #contact_page_links input{
+    margin-left: 3px;
+    margin-right: 3px;
+    font-size: 75%;
+    padding: 1px;
+}
+#compose_form table td #source_update{
+    font-size: 80%;
+    margin-bottom: 5px;
+}
+#compose_form table td  #contact_source{
+    border: ridge 3px #ccc;
+    margin-left: 15px;
+    margin-bottom: 5px;
+    font-size: 80%;
+    width: 560px;;
+}

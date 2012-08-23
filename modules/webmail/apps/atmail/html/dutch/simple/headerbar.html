@@ -1,0 +1,128 @@
+<!--Include="html/ajax-int.css"-->
+
+<!-- if($this->Ajax) { -->
+			<td width="100%" valign="top">
+				<table width="100%" height="100%" cellpadding="0" cellspacing="0" border="0">
+					<tr>
+						<td valign="top">
+							<table width="100%" cellpadding="0" cellspacing="0" border="0">
+								<tr>
+									<td width="100%" class="headertiletop" height='42' valign='center'  nowrap>
+										<font class="headerfont">
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a class="swheader" href="javascript:LoadFolders(); LoadMsgs('Inbox');">Mail lezen</a>&nbsp;
+<a class="swheader" href="javascript:ComposeMsg();">Schrijven</a>&nbsp;
+<a class="swheader" href="javascript:ToggleSearchRow();">E-mail zoeken</a>&nbsp;
+
+<!-- } -->
+
+<!-- if($pref['allow_Calendar'] && $this->Ajax && file_exists('cal.php')) { -->
+<a class="swheader" href="javascript:LoadCalendar('$this->Language');">Agenda</a>&nbsp;
+<!-- } -->
+
+<!-- if($this->Ajax) { -->
+<a class="swheader" href="abook.php?func=open">Adressen</a>&nbsp;
+<!-- } -->
+
+<!-- if($pref['allow_Folders'] && $this->Ajax) { -->
+<a class="swheader" href="util.php?func=info">Mappen</a>&nbsp;
+<!-- } -->
+
+<!-- if($this->Ajax ) { -->
+<a class="swheader" href="util.php?func=settings">Instellingen</a>&nbsp;
+
+<a class="swheader" href="javascript:help('ajaxhelp.html', '$this->Language')">Help</a>&nbsp;
+
+<a class="swheader" href="javascript:logout_simple()">Uitloggen</a>
+
+										</font>
+										<br>
+									</td>
+
+<!-- } -->
+
+<!-- if(preg_match('/MSIE/', $_SERVER['HTTP_USER_AGENT']) && $this->Ajax) { -->
+<td id="BrandingLogo" colspan="2" width="37" style="display: none;"><a href="javascript:aboutwin()"><img src="imgs/trans.gif" alt="$pref['logo_small_alt']" border="0" style="filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='$pref['logo_small_img']', sizingMethod='image')"></a></td>
+<!-- } -->
+
+<!-- if(!preg_match('/MSIE/', $_SERVER['HTTP_USER_AGENT']) && $this->Ajax) { -->
+<td id="BrandingLogo" colspan="2" width="37" style="display: none;"><a href="javascript:aboutwin()"><img src="$pref['logo_small_img']" alt="$pref['logo_small_alt']" border="0"></a></td>
+<!-- } -->
+
+<!-- if($this->Ajax && $var['Ajax'] ) { -->
+									<td id="LoadingText" width="37" ><div id="Connecting">Connecting</div></td>
+									<td id="LoadingIcon" width="37"><img id="LoadingImage" src="imgs/simple/loading.gif" width="27" height="25" border="0"></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td height="100%" valign="top">
+							<table width="100%" height="100%" cellpadding="0" cellspacing="0" border="0" class="bodybackground">
+								<tr>
+									<td height="100%" valign="top">
+<!-- } -->
+
+<!-- if(!$this->Ajax) { -->
+		 <td width="100%" valign="top">
+			<table width="100%" cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td class="tdbackground" height='42' valign='center' nowrap>
+						<font class="headerfont">
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a class="swheader" href="showmail.php?Folder=Inbox">Mail lezen</a>&nbsp;
+<a class="swheader" href="compose.php?func=new">Schrijven</a>&nbsp;
+<a class="swheader" href="javascript:opensearch('$this->browser')">E-mail zoeken</a>&nbsp;
+
+<!-- } -->
+
+<!-- if($pref['allow_Calendar'] && !$this->Ajax && file_exists('cal.php')) { -->
+<a class="swheader" href="parse.php?file=html/$this->Language/calendar/index-simple.html">Agenda</a>&nbsp;
+<!-- } -->
+
+<!-- if(!$this->Ajax) { -->
+<a class="swheader" href="abook.php?func=open">Adressen</a>&nbsp;
+<!-- } -->
+
+<!-- if($pref['allow_Folders'] && !$this->Ajax) { -->
+<a class="swheader" href="util.php?func=info">Mappen</a>&nbsp;
+<!-- } -->
+
+<!-- if(!$this->Ajax ) { -->
+
+<a class="swheader" href="util.php?func=settings">Instellingen</a>&nbsp;
+
+<a class="swheader" href="javascript:help('file.html', '$this->Language')">Help</a>&nbsp;
+<a class="swheader" href="javascript:logout_simple()">Uitloggen</a>
+
+						</font>
+						<br>
+					</td>
+
+<!-- } -->
+
+<!-- if(preg_match('/MSIE/', $_SERVER['HTTP_USER_AGENT']) && $this->Ajax && !$var['Ajax'] ) { -->
+<td id="BrandingLogo" colspan="2" width="37" background="imgs/simple/header_tile.gif" style="padding: 4px 5px 4px 5px;"><a href="javascript:aboutwin()"><img src="imgs/trans.gif" width="75" height="18" border="0" style="filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='$pref['logo_small_img']', sizingMethod='image')"></a></td>
+<!-- } -->
+
+<!-- if(!preg_match('/MSIE/', $_SERVER['HTTP_USER_AGENT']) && $this->Ajax && !$var['Ajax']) { -->
+<td id="BrandingLogo" colspan="2" width="37" background="imgs/simple/header_tile.gif" style="padding: 4px 5px 4px 5px;"><a href="javascript:aboutwin()"><img src="$pref['logo_small_img']" border="0"></a></td>
+<!-- } -->
+
+<!-- if(preg_match('/MSIE/', $_SERVER['HTTP_USER_AGENT']) && !$var['Ajax'] && !$this->Ajax) { -->
+<td id="BrandingLogo" colspan="2" width="37"><img src="imgs/trans.gif" width="75" height="18" border="0" style="filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='$pref['logo_small_img']', sizingMethod='image')"></td>
+<!-- } -->
+
+<!-- if(!preg_match('/MSIE/', $_SERVER['HTTP_USER_AGENT']) && !$var['Ajax'] && !$this->Ajax) { -->
+<td id="BrandingLogo" colspan="2" width="37" ><img src="$pref['logo_small_img']" width="75" height="18" border="0"></td>
+<!-- } -->
+
+<!-- if(!$this->Ajax || $this->Ajax && !$var['Ajax'] ) { -->
+					<td id="LoadingText" width="37" background="imgs/simple/header_tile.gif" style="padding: 4px 5px 4px 5px; font: caption; color: #5B83A7; display: none;">Connecting</td>
+									<td id="LoadingIcon" width="37" background="imgs/simple/header_tile.gif" style="padding: 4px 5px 4px 5px; display: none;"><img src="imgs/simple/loading.gif" width="27" height="25" border="0"></td>
+				</tr>
+			</table>
+			<table width="100%" cellpadding="0" cellspacing="9" border="0" class="bodybackground">
+				<tr>
+				<td valign="top">
+<!-- } -->

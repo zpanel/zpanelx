@@ -1,0 +1,3138 @@
+#
+# @Mail Language File
+#
+
+# English Language File by Ben Duncan (ben@calacode.com) for
+# @Mail version 4.0
+
+# Russian Language File by Plusweb Ltd (info@plusweb.ru) for
+# @Mail version 4.0
+
+# Javascript messages are mostly marked with a
+# js
+# preceding lines of javascript messages.
+# After the javascript messages a newline is placed and normal
+# html messages are there again.
+#
+# Javascript Messages cannot contain single or double qoutes.
+# If you must use these characters consider using a backslash
+# before these characters like \'quoted text\', \"doublequoted text\"
+#
+# variable names can ONLY contain alphanumeric characters and the
+# underscore.
+#
+# Many of the variables include other variables from other parts of @Mail
+# like $pref['etc'], $this->etc and $var['etc']. Please consider keeping
+# these. Some vars also contain HTML source code like <a etc></a> <b></b>
+# please keep the formatting
+#
+
+# TABLE OF CONTENTS
+#
+# 1.0 G l o b a l   V a r i a b l e s
+#
+# 1.1 /html/*
+# 1.2 /html/blue_pane/*
+# 1.3 /html/blue_pane/heading/*
+#
+# 2.0 G l o b a l    C a l e n d a r   V a r i a b l e s
+#
+# 2.1 /html/calendar/*
+#
+# 3.0 G l o b a l    H e l p    V a r i a b l e s
+#
+# 3.1 /html/help/*
+#
+# 4.0 /html/javascript/*
+#
+# 5.0 /html/msg/*
+
+
+# 1.0 G l o b a l   V a r i a b l e s
+
+# THIS MUST be set to the correct encoding, depending on the translation language
+lang_Global_content_type = <META http-equiv=Content-Type content="text/html; charset=utf-8">
+
+# Noframes Message
+lang_Global_noframes = Ваш браузер не поддерживает фреймы - поддержка фреймов обязательна для нашего сервиса.
+
+# Compose/Abook/Reademail/Search vars
+lang_Global_from = От кого
+lang_Global_date = Дата
+lang_Global_to = Кому
+lang_Global_cc = Копия
+lang_Global_bcc = Скрытая
+lang_Global_priority = Приоритет
+lang_Global_normal = Нормальный
+lang_Global_low = Низкий
+lang_Global_high = Высокий
+lang_Global_subject = Тема
+lang_Global_send = Отправлено
+lang_Global_type = Формат
+lang_Global_reply = Ответить
+lang_Global_replyall = Ответить всем
+lang_Global_forward = Переслать
+lang_Global_print = Печать
+lang_Global_headers = Заголовки
+lang_Global_abookbutton = Добавить
+lang_Global_message = Письмо
+lang_Global_status = Состояние
+lang_Global_received = Получено
+lang_Global_yes = Да
+lang_Global_no = Нет
+lang_Global_options = Опции
+lang_Global_size = Размер
+lang_Global_messsage = Письмо
+lang_Global_sent = Отправлено
+lang_Global_default = По умолчанию
+
+# Address Related Fields
+lang_Address_email = Email адрес
+lang_Address_email2 = Дополнительный Email адрес
+lang_Address_fullname = Полное имя
+lang_Address_firstname = Имя
+lang_Address_surname = Фамилия
+lang_Address_birthdate = Дата рождения
+lang_Address_telhome = Домашний телефон
+lang_Address_telwork = Рабочий телефон
+lang_Address_faxhome = Домашний факс
+lang_Address_faxwork = Рабочий факс
+lang_Address_telmobile = Мобильный
+lang_Address_telpager = Пейджер
+lang_Address_address = Адрес
+lang_Address_city = Город
+lang_Address_state = Область
+lang_Address_postcode = Почтовый индекс
+lang_Address_country = Страна
+lang_Address_companyname = Название компании
+lang_Address_url = URL
+lang_Address_userinfo = Дополнительная информация
+
+
+# !!!!! BirthMonth Abreviations... please keep them 3 characters each, thank you.
+lang_BirthMonth_jan = Янв
+lang_BirthMonth_feb = Фев
+lang_BirthMonth_mar = Мар
+lang_BirthMonth_apr = Апр
+lang_BirthMonth_may = Май
+lang_BirthMonth_jun = Июн
+lang_BirthMonth_jul = Июл
+lang_BirthMonth_aug = Авг
+lang_BirthMonth_sep = Сен
+lang_BirthMonth_oct = Окт
+lang_BirthMonth_nov = Ноя
+lang_BirthMonth_dec = Дек
+
+# How do you say year?
+lang_BirthYear_year = Год
+
+# Industry.
+lang_Industry_industry = Отрасль
+lang_Industry_select = -- Выбор
+lang_Industry_bfr = Банковское дело/Финансы/Недвижимость
+lang_Industry_cre = Компьютеры (админ/инженер/Интернет)
+lang_Industry_crh = Компьютеры (железо)
+lang_Industry_crs = Компьютеры (программирование/веб-дизайн)
+lang_Industry_edu = Образование и Наука
+lang_Industry_eng = Проектирование / Строительство
+lang_Industry_man = Производство
+lang_Industry_bus = Сфера услуг
+lang_Industry_med = Медицина
+lang_Industry_ent = Развлечение / СМИ
+lang_Industry_hos = Туристические услуги
+lang_Industry_ret = Розничная / Оптовая торговля
+lang_Industry_npr = Некоммерческие организации
+lang_Industry_gov = Правительственные структуры
+lang_Industry_leg = Юридические услуги
+lang_Industry_oth = другое
+
+# Occupation
+lang_Occupation_occupation = Профессия
+lang_Occupation_select = -- Выбор
+lang_Occupation_exe = Руководитель/Администратор
+lang_Occupation_pro = Профессионал (доктор, адвокат, индежер..)
+lang_Occupation_aca = Преподаватель
+lang_Occupation_tec = Разработчик
+lang_Occupation_ote = Рабочий
+lang_Occupation_scs = Поддержка и обслуживание клиентов
+lang_Occupation_cle = Служащий
+lang_Occupation_sal = Продажи / маркетинг
+lang_Occupation_tra = Торговля
+lang_Occupation_col = Студент
+lang_Occupation_k12 = Школьник
+lang_Occupation_hom = Домохозяин(-ка)
+lang_Occupation_sel = Собственный бизнес
+lang_Occupation_une = Безработный, ищу работу
+lang_Occupation_ret = Безработный по жизни
+lang_Occupation_oth = другое
+
+# Gender Vars
+lang_Gender_gender = Пол
+lang_Gender_select = -- Выбор
+lang_Gender_male = Мужской
+lang_Gender_female = Женский
+
+# END OF GLOBAL VARS
+# 1.1 /html/*
+
+#/html/auth_accounts.html
+
+lang_accounts_alt = Вход во внешний ящик
+
+#/html/addgroup.html
+
+lang_addgroup_title = Создать группу в Адресной книге
+lang_addgroup_groupname = Название группы:
+lang_addgroup_addallemail = --- Добавить все адреса
+lang_addgroup_addbutton = Добавить
+lang_addgroup_deletebutton = Удалить
+lang_addgroup_savebutton = Сохранить
+lang_addgroup_cancelbutton = Отмена
+
+#/html/auth_disabled.html
+
+lang_auth_disabled_title = Отказ в доступе
+lang_auth_disabled_ld = Вход отключен
+lang_auth_disabled_cd = Учетная запись отключена.
+lang_auth_disabled_contact = Обратитесь к администратору ($this->admin_email) чтобы вернуть доступ к учетной записи.
+
+#/html/auth_error.html
+
+lang_auth_error_title = Доступ запрещен
+lang_auth_error_header = Ошибка авторизации
+lang_auth_error_nosessionid = Доступ запрещен - Ваш SessionID не зарегистрирован в базе
+lang_auth_error_userpass = Проверьте правильность логина и пароля.
+lang_auth_error_cookies = Проверьте установки вашего браузера и разрешите поддержку cookies.
+lang_auth_error_session = Убедитесь что у Вас не активно две сессии работы с учетной записью - только один сеанс будет работать.
+lang_auth_error_still = Если Вы все еще не можете получить доступ к учетной записи
+lang_auth_error_passret = Используйте <a href="index.php?func=passutil">Утилиту Восстановления Пароля</a> для восстановления утеряного пароля
+lang_auth_error_contact = Свяжитесь с администратором $this->admin_email для консультации
+lang_auth_error_newaccount = <a href="index.php?func=signup">Создать новый почтовый ящик</a>
+
+#/html/auth_license.html
+
+lang_auth_license_title = Доступ запрещен
+lang_auth_license_exceeded = Срок действия лицензии истек.
+lang_auth_license_msg = Срок действия лицензии истек. $var['error']
+lang_auth_license_domains = Проверьте количество пользователей и доменных имен $pref['brandname'].
+lang_auth_license_webadmin = Используйте <a href="webadmin/">WebAdmin</a> для удаления пользователей или лишних доменных имен $pref['brandname'].
+lang_auth_license_calacode = Обновите $pref['brandname'] лицензию <a href="mailto:$pref['admin_email']">$pref['admin_email']</a>
+lang_auth_license_upgradeinfo = Смотрите на $pref['brandname'] сайте <a href="$pref['company_url']">$pref['company_url']</a> для обновления информации.
+
+#/html/auth_misc.html
+lang_auth_misc_title = Отказ в доступе
+lang_auth_misc_error = Ошибка учетной записи
+lang_auth_misc_msg = Ответ сервера - $var['status']
+lang_auth_misc_refresh = Обновите страницу и повторите еще раз
+lang_auth_misc_title = Обновите страницу и повторите еще раз
+lang_auth_misc_check = Проверьте чтобы у Вас не был открыт почтовый ящик в двух и более окнах. Открытые на время сеанса файлы учетной записи блокируются
+lang_auth_misc_session = Убедитесь что у Вас не активно две сессии работы с учетной записью - только один сеанс будет работать.
+lang_auth_misc_tryagain = Повторите попытку входа через несколько минут
+lang_auth_misc_still = Если Вы все еще не можете получить доступ к учетной записи
+lang_auth_misc_contact = Обратитесь к администратору $this->admin_email за помощью
+
+#/html/auth_nouser.html
+
+lang_auth_nouser_title = Отказ в доступе.
+lang_auth_nouser_error = Нет такого имени пользователя
+lang_auth_nouser_msg = Вы пытаетесь получить доступ к несуществующей учетной записи.
+lang_auth_nouser_userpass = Проверьте правильность имени и пароля.
+lang_auth_nouser_cookies = В браузере должно быть разрешено использовать файлы cookies
+lang_auth_nouser_still = Если Вы все еще не можете получить доступ к учетной записи
+lang_auth_nouser_passret = Используйте <a href="index.php?func=passutil">Утилиту восстановления пароля</a> чтобы вспомнить забытый пароль
+lang_auth_nouser_contact = Обратитесь к администратору $this->admin_email за помощью
+lang_auth_nouser_newaccount = <a href="index.php?func=signup">Создать учетную запись</a>
+
+#/html/auth_reserved.html
+
+lang_auth_reserved_title = Отказ в доступе.
+lang_auth_reserved_error = Имя пользователя $var['user'] зарезервировано
+lang_auth_reserved_msg = Учетная запись которую Вы пытаетесь использовать зарезервирована. Вернитесь <a href="javascript:history.back('-1')">назад</a> и попытайтесь позднее.
+lang_auth_reserved_username = Выберите другое имя пользователя из других символов.
+lang_auth_reserved_admin = Спросите у Администратора об возобновлении пользования зарезервированных имен пользователя в настройках WebAdmin
+
+
+#/html/auth_timeout.html
+
+lang_auth_timeout_title = Время сессии истекло
+lang_auth_timeout_error = Время истекло
+lang_auth_timeout_msg = Время истекло - Время Вашей сессии истекло.
+lang_auth_timeout_inactive = Сеанс слишком долго был неактивен
+lang_auth_timeout_seconds = $pref['session_timeout'] секунд составляет максимальное время сеанса.
+lang_auth_timeout_relogin = <a href="index.php" target="_top">Выполните вход в учетную запись повторно</a>
+lang_auth_timeout_still = Если Вы все еще не можете получить доступ к учетной записи
+lang_auth_timeout_contact = Обратитесь к администратору $this->admin_email за помощью
+
+#/html/userexists.html
+
+lang_auth_userexists_title = Учетная запись уже используется
+lang_auth_userexists_error = Пользователь с таким именем уже существует
+lang_auth_userexists_msg = Учетная запись уже есть с таким именем в базе данных.
+lang_auth_userexists_name = Вернитесь назад и выберите другое имя.
+lang_auth_userexists_unique = Выберите себе уникальное имя
+lang_auth_userexists_alphanum = Имя пользователя может содержать буквы и цифры.
+lang_auth_userexists_still = Если Вы все еще не можете получить доступ к учетной записи
+lang_auth_userexists_contact = Обратитесь к администратору $this->admin_email за помощью
+
+#/html/composebook.html
+
+lang_composebook_title = Добавить адреса из адресной книги
+lang_composebook_viewing = Просмотр адресной книги : <b>Добавить получателей к письму</b>
+lang_composebook_addallemail = --- Добавить все адреса
+lang_composebook_addbutton = Добавить
+
+#/html/deditor.html
+
+lang_deditor_title = Написать письмо
+lang_deditor_paragraph = Стиль
+lang_deditor_normal = Обычный
+lang_deditor_h1 = Заголовок 1
+lang_deditor_h2 = Заголовок 2
+lang_deditor_h3 = Заголовок 3
+lang_deditor_h4 = Заголовок 4
+lang_deditor_h5 = Заголовок 5
+lang_deditor_h6 = Заголовок 6
+lang_deditor_addr = Адрес
+lang_deditor_pre = форматированный
+lang_deditor_rf = Убрать форматирование
+lang_deditor_font = Шрифт
+lang_deditor_arial = Arial
+lang_deditor_arialb = Arial Black
+lang_deditor_arialn = Arial Narrow
+lang_deditor_comic = Comic Sans MS
+lang_deditor_courier = Courier New
+lang_deditor_system = System
+lang_deditor_times = Times New Roman
+lang_deditor_georgia = Georgia
+lang_deditor_verdana = Verdana
+lang_deditor_wingdings = Wingdings
+lang_deditor_size = Размер
+lang_deditor_b = Полужирный
+lang_deditor_i = Курсив
+lang_deditor_udl = Подчеркивание
+lang_deditor_cut = Вырезать
+lang_deditor_copy = Копировать
+lang_deditor_paste = Вставить
+lang_deditor_fgc = Цвет текста
+lang_deditor_bgc = Цвет фона
+lang_deditor_al = По левому краю
+lang_deditor_ac = По центру
+lang_deditor_ar = По правому краю
+lang_deditor_ol = Нумерация
+lang_deditor_ul = Маркеры
+
+#/html/editgroup.html
+
+lang_editgroup_title = Редактирование группы адресов
+lang_editgroup_groupname = Имя группы:
+lang_editgroup_addallemail = --- Добавить все адреса
+lang_editgroup_addbutton = Добавить
+lang_editgroup_deletebutton = Удалить
+lang_editgroup_savebutton = Сохранить
+lang_editgroup_cancelbutton = Отмена
+lang_editgroup_editbutton = Редактирование подробностей группы
+
+
+#/html/login.html
+
+lang_login_title = Войти в $pref['brandname']
+lang_login_desc = Профессиональная система веб-почты
+lang_login_logindetails = Параметры входа
+lang_login_loginpass = Пожалуйста, введите имя учетной записи и пароль
+lang_login_about = О системе
+lang_login_faq = Вопросы (F.A.Q.)
+lang_login_passret = Восстановление пароля
+lang_login_help = Справка
+lang_login_username = E-Mail адрес
+lang_login_password = Пароль
+lang_login_interface = Интерфейс
+lang_login_language = Язык
+lang_login_loginbutton = Вход
+lang_login_signup = Зарегистрироваться
+lang_login_signuptext = У Вас нет учетной записи? Это не проблема - <a href="index.php?func=signup">Зарегистрируйтесь для получения адреса электронной почты</a> и получите доступ в течении минуты.
+lang_login_moreinfo = Подробнее...
+lang_login_moreinfotext = Для дополнительной информации о сервисе обращайтесь к администратору <a href="mailto:$pref['admin_email']">$this->admin_email</a>
+lang_login_copyright = WebMail Service (C) $pref['brandname'] 1998 - 2004
+lang_login_external = Внешняя почта
+lang_login_externaltext = Нужен доступ к внешнему POP3/IMAP ящику? <a href="index.php?func=ext">Перейдите сюда</a> для входа.
+lang_login_local = Локальная почта
+lang_login_localtext = Нужен доступ к локальной почте? <a href="index.php">Перейдите сюда</a> для входа
+lang_login_helpinfo = Информация Помощи
+lang_login_helpinfotext = Хотите узнать больше о $pref['brandname']? Смотрите <a href="javascript:help()">online документацию</a> о системе.
+lang_login_msg1 = Откройте свою учетную запись почты чтобы посылать и получать письма используя $pref['brandname'] .Через любой браузер Вы можете проверять вашу почту с легкостью. Используйте веб-сервис во время путешествия, чтобы контактировать с друзьями &amp;amp; коллегами, как дополнительный почтовый ящик или для просмотра существующего почтового ящика.
+lang_login_msg2 = Получите доступ к почтовому ящику через <a href="javascript:help('wap')">WAP по мобильному телефону</a>. Войдите чтобы получить доступ к планировщику и списку задач чтобы организовать свой рабочий день.
+lang_login_passrettext = Используйте <a href="index.php?func=passutil">утилиту восстановления пароля</a> для изменения или восстановления утраченного пароля.
+lang_login_demo = Перед регистрацией вы можете протестировать сервис войдя в <a href="/">Демо режим</a>-
+lang_login_webadmin = <a href="webadmin/">Удаленное администрирование </a>
+lang_login_docs = <a href="docs/index.html">Документация</a>
+lang_login_more_options = Дополнительные параметры
+
+
+#/html/passutil.html
+
+lang_passutil_title = Утилита восстановления пароля
+lang_passutil_desc = Профессиональная система веб-почты
+lang_passutil_passutil = Восстановление пароля
+lang_passutil_login = Вход
+lang_passutil_about = О системе
+lang_passutil_faq = Вопросы (F.A.Q.)
+lang_passutil_help = Справка
+lang_passutil_username = E-Mail адрес
+lang_passutil_hint = Получить подсказку
+lang_passutil_passwd = Изменить пароль
+lang_passutil_oldpass = Введите Ваш пароль:
+lang_passutil_newpass = Ваш новый пароль:
+lang_passutil_verify = Повторите новый пароль:
+lang_passutil_question = Секретный вопрос
+lang_passutil_update = Сохранить пароль
+lang_passutil_msg1 = Здесь Вы можете изменить пароль учетной записи веб-почты. Изменения вступят в силу после обновления страницы и <a href="index.php">повторного входа</a>.
+lang_passutil_msg2 = Забыли пароль? Воспользуйтесь этой утилитой для восстановления пароля. Во время регистрации вы указали 'секретный вопрос' который напомнит вам пароль. Если вы все же не можете вспомнить пароль напишите по адресу $pref['admin_email'] и укажите Логин, день рождения и город для проверки чтобы администратор сменил ваш пароль.
+lang_passutil_msg3 = Измените ваш пароль воспользовавшись формой. Выбырая пароль помните, что он должен быть уникальным, используйте в пароле цифры вместе с буквами для большей безопасности. Укажите Секретный вопрос который поможет вспомнить пароль если вы его забудете.
+
+
+#/html/signup.html
+
+lang_signup_title = $pref['brandname'] Зарегистрироваться
+lang_signup_desc = Профессиональная система веб-почты
+lang_signup_details = Параметры входа
+lang_signup_userpass = Укажите логин и пароль для создания учетной записи
+lang_signup_username = Email адрес
+lang_signup_usernamemsg = (Он также является именем пользователя Почты)
+lang_signup_password = Пароль
+lang_signup_password2 = Повторите пароль
+lang_signup_passwordq = Секретный вопрос
+lang_signup_passwordqmsg = (Подсказка, чтобы напомнить Вам о Вашем Пароле)
+lang_signup_altemail = Дополнительный E-Mail адрес
+lang_signup_altemailmsg = (Альтернативный способ войти с Вами контакт - можно не указывать)
+lang_signup_pdetails = Персональная информация
+lang_signup_pdetailsmsg = Информация которую Вы предоставите здесь поможет нам управлять учетной записью
+lang_signup_emailprefs = Настройки
+lang_signup_gender = Эта информация определяет вашу учетную запись
+lang_signup_loginstyle = Интерфейс входа
+lang_signup_language = Язык интерфейса
+lang_signup_submit = Подтверждение Регистрации
+lang_signup_disclaimer =  Перед регистрацией вы соглашаетесь с <a href="javascript:disclaimer()">Условиями</a>
+lang_signup_submitbutton = Зарегистрироваться >>
+
+#/html/startbutton.html
+
+#Complete
+lang_startbutton_submitbutton = Завершить
+
+#/html/startmboxempty.html
+
+lang_startmboxempty_msg = Нет новых писем
+
+#/html/startnocal.html
+
+lang_startnocal_calendar = Календарь пуст.
+lang_startnocal_newentry = Добавить новую запись
+
+#/html/startnotask.html
+
+lang_startnotask_notask = Список задач пуст.
+lang_startnotask_newtask = Добавить задачу.
+
+#/html/usage.html
+
+lang_usage_desc = Профессиональная система веб-почты
+lang_usage_faq = Часто задаваемые вопросы (FAQ)
+lang_usage_start = С чего начать в $pref['brandname']
+lang_usage_login = Войти в учетную запись
+lang_usage_about = О системе
+lang_usage_password = Забыли пароль?
+lang_usage_help = Справка
+lang_usage_whatis = Что такое $pref['brandname']?
+lang_usage_description = $pref['brandname'] это почтовая система Клиент / Сервер, причем в качестве клиента выступает Ваш браузер. Вы можете получить мгновенный доступ к Электронной почте,  используя существующую учетную запись или создав новую. С $pref['brandname'] Вы можете посылать и получать Электронную почту с любого Адреса электронной почты в Интернет.
+lang_usage_signup = Как я могу получить Почтовый ящик в системе $pref['brandname']?
+lang_usage_signupmsg = Получить учетную запись в системе $pref['brandname'] можно <a href="index.php?func=signup">здесь</a>. Вы немедленно получите доступ к миру электронной связи!
+lang_usage_access = Как пользоваться Почтой?
+lang_usage_accessmsg = Если у Вас уже есть адрес Электронной почты, то войти в него можно через 'Внешнюю почту' на главной странице. Интерфейс позволяет обратиться к почтовому ящику где бы он не находился в интернет.
+lang_usage_loginhow = Как войти в Почту?
+lang_usage_loginmsg = Введите свое Имя и Пароль, укажите сервер и стиль интерфейса, затем 'Вход'.   <br> Например: Если ваш Электронный адрес johnsmith@atmail.nl, введите johnsmith там где Имя(Логин) и atmail.nl там где имя сервера.<br><br> Если Вы хотите войти на сервер, имени которого нет в списке после символа '@', это можно сделать со страницы 'Внешняя почта', указав имя почтового сервера. Заметьте: Имя сервера может не совпадать с именем после '@'. Т.е.: имя сервера может быть domain.com и имя после '@' может быть mail.domain.com. Уточните адрес почтового сервера.
+lang_usage_loginwhere = Где я могу входить?
+lang_usage_loginwheremsg = Используя $pref['brandname'] вы можете войти через любой браузер, который поддерживает фреймы.
+lang_usage_password = Что делать если я забыл пароль?
+lang_usage_passwordmsg =  Забытый пароль можно <a href="index.php?func=passutil">восстановить здесь</a>.
+lang_usage_styles = Что означают различные 'Интерфейсы входа'
+lang_usage_stylesmsg = Это 'Скины' для $pref['brandname'], интерфейс зависит от возможностей браузера.
+lang_usage_pop3 = Что означает учетная запись POP3?
+lang_usage_pop3msg = Это Почтовый ящик обычно предоставляемый провайдером. Если Вы не уверены, обратитесь к провайдеру услуг интернет.
+lang_usage_logout = Что происходит с письмами когда я завершаю работу с Почтовым ящиком POP3?
+lang_usage_logoutmsg = POP3 письма который Вы прочитали в $pref['brandname'] не удаляются когда вы завершает сеанс работы. Если Вы удалите письмо в $pref['brandname'], то только в этом случае оно будет удалено с почтового сервера.
+lang_usage_email = Как я могу предотвратить доступ других людей к моей Почте?
+lang_usage_emailmsg =  Надо выбрать хороший пароль и не забывать завершать сеанс. Во время завершения сеанса, $pref['brandname'] удалит файл cookie и закроет доступ к почте пока вы не войдете вновь. $pref['brandname'] позволяет работать только одному пользователю с одним ящиком.
+lang_usage_help = Как получить больше информации?
+lang_usage_helpmsg = Читайте <a href="javascript:help()">$pref['brandname'] Разделы помощи</a> чтобы получить больше информации о программе.
+lang_usage_copyright = - Copyright <a href="$pref['company_url']">$pref['brandname']
+
+# 1.2 /html/blue_pane/*
+
+#/html/blue_pane/abook.html
+
+lang_blue_pane_abook_title = Адресная книга
+lang_blue_pane_abook_composebutton = Написать
+lang_blue_pane_abook_personal = Личная
+lang_blue_pane_abook_global = Общая
+
+#/html/blue_pane/abook_blank.html
+
+lang_blue_pane_abook_blank_empty = Адресная книга пуста
+
+#/html/blue_pane/abook_entry.html
+
+lang_blue_pane_abook_entry_edituseralt = Изменить контакт
+lang_blue_pane_abook_entry_deluseralt = Удалить контакт
+
+
+#/html/blue_pane/abook_entry_blank.html
+
+lang_blue_pane_abook_entry_blank_msg = Нет записей в адресной книге.
+
+#/html/blue_pane/abook_globalentry.html
+
+lang_blue_pane_abook_globalentry_viewuseralt = Просмотр контакта
+
+#/html/blue_pane/abook_globalview.html
+
+lang_blue_pane_abook_globalview_text = Просмотр $var['UserEmail'] Общей адресной книги. Щелкни по контакту чтобы написать письмо.
+lang_blue_pane_abook_globalview_msg = Просмотр Общих контактов
+lang_blue_pane_abook_globalview_backbutton = Назад
+
+#/html/blue_pane/abook_groupentry.html
+
+lang_blue_pane_abook_groupentry_editgrpalt = Изменить группу
+lang_blue_pane_abook_groupentry_delgrpalt = Удалить группу
+
+#/html/blue_pane/abook_new.html
+
+lang_blue_pane_abook_new_text = Создать новый контакт в адресной книге. В контакте можно указать также и другую информацию, например телефонный номер, или проста записать их имена и электронные адреса.
+lang_blue_pane_abook_new_msg = Добавить контакт в Адресную книгу
+lang_blue_pane_abook_new_addbutton = Сохранить контакт
+
+#/html/blue_pane/abook_view.html
+
+lang_blue_pane_abook_view_text = Просмотр $var['UserEmail'] Адресной книги. Вы можете изменять детали пользователей, редактируя поля ниже. Не забудьте сохранить изменения в Адресной книге.
+lang_blue_pane_abook_view_msg = Просмотр / Модификация Адресной книги
+lang_blue_pane_abook_view_updatebutton = Обновить запись
+
+#/html/blue_pane/account.html
+
+lang_blue_pane_account_enterpass = Введите пароль учетной записи:
+lang_blue_pane_account_text = В Панели учетной записи Вы можете создать другие Почтовые ящики. Это позволит Вам читать почту с разных Почтовых ящиков, все через один интерфейс. Используйте это чтобы читать почту POP3 с любого числа внешних серверов. Добавьте или удалите учетную запись, используя форму.
+lang_blue_pane_account_msg = Внешние Почтовые ящики
+lang_blue_pane_account_accountname = Название Аккаунта
+lang_blue_pane_account_nrmsg = Количество писем
+lang_blue_pane_account_delete = Удалить
+lang_blue_pane_account_newaccount = Создать Внешний Ящик
+lang_blue_pane_account_username = Логин
+lang_blue_pane_account_hostname = Имя Сервера
+lang_blue_pane_account_type = Тип
+lang_blue_pane_account_pop3 = POP3
+lang_blue_pane_account_imap = IMAP
+lang_blue_pane_account_addbutton = Добавить
+
+
+#/html/blue_pane/attachment.html
+
+lang_blue_pane_attachment_title = Прикрепить файлы
+lang_blue_pane_attachment_addatt = Прикрепить файлы
+lang_blue_pane_attachment_step1 = Шаг 1
+lang_blue_pane_attachment_step2 = Шаг 2
+lang_blue_pane_attachment_step3 = Шаг 3
+lang_blue_pane_attachment_step1msg = Щелкните на Просмотр и выберите файл.
+lang_blue_pane_attachment_step2msg = Щелкните Прикрепить файл.
+lang_blue_pane_attachment_step2msg2 = Повторите шаги 1 и 2 для того чтобы еще добавить файлы.
+lang_blue_pane_attachment_step3msg = Щелкните Конец когда закончите.
+lang_blue_pane_attachment_filename = Имя Файла
+lang_blue_pane_attachment_size = Размер
+lang_blue_pane_attachment_delete = Удалить
+lang_blue_pane_attachment_attachbutton = Прикрепить
+lang_blue_pane_attachment_donebutton = Конец
+
+#/html/blue_pane/blue_pane.html
+
+lang_blue_pane_blue_pane_title = Добро пожаловать $this->username@$this->pop3host - Powered by $pref['brandname']
+
+#/html/blue_pane/composehtml.html
+# &
+#/html/blue_pane/composetext.html (uses same lang vars)
+
+lang_blue_pane_composehtml_title = Написать письмо
+lang_blue_pane_composehtml_plain = Текст
+lang_blue_pane_composehtml_html = HTML
+lang_blue_pane_composehtml_editor = Редактор
+lang_blue_pane_composehtml_abookalt = Добавить адрес из Адресной книги
+
+
+lang_blue_pane_composehtml_addrecbutton = Добавьте получателей
+lang_blue_pane_composehtml_sendbutton = Отправить
+lang_blue_pane_composehtml_clearbutton = Очистить
+lang_blue_pane_composehtml_savemsgbutton = Сохранить письмо
+lang_blue_pane_composehtml_spellbutton = Проверка орфографии
+lang_blue_pane_composehtml_attachbutton = Прикрепленные файлы
+
+
+
+#/html/blue_pane/emailentry_blank.html
+lang_blue_pane_emailentry_blank_msg = $var['folder'] не содержит писем
+
+#/html/blue_pane/folders.html
+lang_blue_pane_folders_title = Свойства папки
+
+lang_blue_pane_folders_text1 = В Панели почтового ящика Вы можете контролировать Ваши почтовые папки. Есть такие опции как добавить ящик, читать содержимое и удалить ящик. Вы можете определить список внешних Ящиков POP3, чтобы проверять их все сразу. Есть также поддержка фильтров.
+lang_blue_pane_folders_mailbox = Название Папки
+lang_blue_pane_folders_totalmsg = Всего писем
+lang_blue_pane_folders_filesize = Размер файла (kb)
+lang_blue_pane_folders_delete = Удалить
+lang_blue_pane_folders_newmailbox = Создать новую папку
+lang_blue_pane_folders_block = Блокировать адрес/Спам
+lang_blue_pane_folders_addblock = Введите блокируемый адрес
+lang_blue_pane_folders_enterbox = Введите адрес
+lang_blue_pane_folders_addbutton = Добавить
+lang_blue_pane_folders_spamdb = Текущая база Спамеров
+lang_blue_pane_folders_delbutton = Добавить Запись
+lang_blue_pane_folders_autoreply =
+lang_blue_pane_folders_composeauto = Создать текст письма Автоответа
+lang_blue_pane_folders_compseautotext = Пользователь получит это письмо в ответ. Если оставить текст незаполненным Автоответ не произойтет.
+lang_blue_pane_folders_addautobutton = Добавить Автоответ
+lang_blue_pane_folders_delautobutton = Удалить
+lang_blue_pane_folders_sorting = Сортировка писем по Папкам
+lang_blue_pane_folders_sortaddress = Почтовый адрес
+lang_blue_pane_folders_sortsubject = <i>or</i> Тема письма
+lang_blue_pane_folders_sortto = Переместить письма
+lang_blue_pane_folders_sortaddbutton = Добавить
+lang_blue_pane_folders_emailsorting = Сортировка писем
+lang_blue_pane_folders_subjectsorting = Сортировка тем
+lang_blue_pane_folders_sortdelbutton = Удалить запись
+
+#/html/blue_pane/foldertr.html
+
+
+lang_blue_pane_foldertr_messages = писем
+lang_blue_pane_foldertr_delfolderalt = Удалить $var['folder']
+
+
+#/html/blue_pane/head_abook.html
+
+lang_blue_pane_head_abook_title = Просмотр файлов
+lang_blue_pane_head_abook_msg = Ящики
+
+#/html/blue_pane/head_search.html
+
+lang_blue_pane_head_search_title = Просмотр файлов
+lang_blue_pane_head_search_msg = Поиск - искать письма
+
+#/html/blue_pane/head_settings.html
+
+lang_blue_pane_head_settings_title = Просмотр файлов
+lang_blue_pane_head_settings_msg = Установки аккаунта - Измените ваш Email аккаунт
+
+#/html/blue_pane/ldap.html
+
+lang_blue_pane_ldap_search_tab_search = Поиск
+lang_blue_pane_ldap_search_tab_extended = Другие поля
+lang_blue_pane_ldap_search_tab_LDAPoptions = Настройки LDAP
+lang_blue_pane_ldap_text1 = Используйте поисковый сервера чтобы найти новые контакты. Обратитесь к службе каталогов LDAP чтобы найти друзей. Найдите их телефоны, почтовые адреса и адреса электронной почты.
+lang_blue_pane_ldap_text2 = Изменив 'Тип поиска' обращайтесь к разным базам данных. Для поиска в локальной базе пользователей выбирайте 'Системная База'.
+lang_blue_pane_ldap_msg = Искать людей
+lang_blue_pane_ldap_firstnamedesc = Имя
+lang_blue_pane_ldap_surnamedesc = Фамилия
+lang_blue_pane_ldap_emaildesc = Необязателен. Введите E-mail для лучших результатов
+lang_blue_pane_ldap_searchtype = Тип поиска
+lang_blue_pane_ldap_searchtypedesc = Выбирайте какой поиск выполнить
+lang_blue_pane_ldap_searchtypeserver = Искать LDAP Server
+lang_blue_pane_ldap_searchtypesystem = Искать $pref['brandname'] Системная База
+lang_blue_pane_ldap_server = LDAP Сервер
+lang_blue_pane_ldap_serverdesc = Введите адрес LDAP сервера
+lang_blue_pane_ldap_querybutton = Запросить базу данных
+
+#/html/blue_pane/ldap_bad_hostname.html
+
+lang_blue_pane_ldap_bad_hostname_msg = Ошибка произошла при попытке соединиться с LDAP Сервером. Сервер "<b>$var['error']</b>" не найден. Попробуйте другой.
+
+#/html/blue_pane/ldap_entry.html
+
+lang_blue_pane_ldap_entry_add = Добавить
+
+
+#/html/blue_pane/ldap_entry_blank.html
+
+lang_blue_pane_ldap_entry_blank_msg = Поиск содержит 0 результатов. Уточните условия поиска и <a href="ldap.php">повторите попытку</a>
+
+#/html/blue_pane/ldap_error.html
+
+lang_blue_pane_ldap_error_msg = Ошибка произошла при соединении с LDAP Сервером ($var['error']) . Пожалуйста, пробуйте снова через несколько минут.
+
+#/html/blue_pane/ldap_search.html
+
+lang_blue_pane_ldap_search_newsearch = Новый поиск
+
+#/html/blue_pane/menubar-blue.html
+
+lang_blue_pane_menubar_blue_readmailalt = Читать письма
+lang_blue_pane_menubar_blue_composealt = Написать
+lang_blue_pane_menubar_blue_searchalt = Поиск писем
+lang_blue_pane_menubar_blue_calendaralt = Календарь
+lang_blue_pane_menubar_blue_ldapalt = Искать людей
+lang_blue_pane_menubar_blue_abookalt = Контакты
+lang_blue_pane_menubar_blue_settingsalt = Настройки
+lang_blue_pane_menubar_blue_helpalt = Помощь
+lang_blue_pane_menubar_blue_logoffalt = Выход
+
+#/html/blue_pane/password.html
+
+lang_blue_pane_password_text = Пользуясь предложенной формой вы можете изменить пароль учетной записи. Чтобы создать новый пароль, введите текущий пароль учетной записи.
+lang_blue_pane_password_msg = Изменить пароль
+lang_blue_pane_password_curpass = Текущий пароль
+lang_blue_pane_password_curpassdesc = Введите текущий Пароль
+lang_blue_pane_password_newpass = Новый Пароль
+lang_blue_pane_password_newpassdesc = Введите новый Пароль для учетной записи
+lang_blue_pane_password_confirm = Принять новый Пароль
+lang_blue_pane_password_confirmdesc = Принять новый Пароль для учетной записи
+lang_blue_pane_password_question = Новый Секретный Вопрос
+lang_blue_pane_password_questiondesc = Введите новый Секретный Вопрос для напоминания пароля
+lang_blue_pane_password_backbutton = Вернуться в Профайл
+lang_blue_pane_password_submitbutton = Изменить пароль
+
+#/html/blue_pane/profile.html
+
+lang_blue_pane_profile_text1 = При использовании этой утилиты Вы можете изменить свой профиль пользователя. Уточните детали вашей учетной записи. Измените свой пароль здесь 'Изменить Пароль'.
+lang_blue_pane_profile_text2 = Информация хранимая здесь будет доступна в Общей Адресной книге.
+lang_blue_pane_profile_msg = Профиль Пользователя $var['status']
+
+lang_blue_pane_profile_personal = Личная информация
+lang_blue_pane_profile_account = Учетная запись
+lang_blue_pane_profile_accountdesc = Логин вашей учетной записи
+lang_blue_pane_profile_moddate = Дата модификации
+lang_blue_pane_profile_moddatedesc = Дата последнего изменения учетной записи
+lang_blue_pane_profile_firstnamedesc = Введите Имя
+lang_blue_pane_profile_surnamedesc = Введите Фамилию
+lang_blue_pane_profile_birthdatedesc = Введите день рождения
+lang_blue_pane_profile_genderdesc = Укажите свой пол
+
+lang_blue_pane_profile_contact = Контакт - подробно
+lang_blue_pane_profile_telhomedesc = Введите номер домашнего телефона
+lang_blue_pane_profile_faxhomedesc = Введите номер домашний факс
+lang_blue_pane_profile_telworkdesc = Введите номер рабочего телефона
+lang_blue_pane_profile_faxworkdesc = Введите номер рабочего факса
+lang_blue_pane_profile_telmobiledesc = Введите номер мобильного телефона
+lang_blue_pane_profile_telpagerdesc = Введите номер пейджера
+
+lang_blue_pane_profile_address = Адрес места жительства
+lang_blue_pane_profile_addressdesc = Введите улицу и ее номер
+lang_blue_pane_profile_citydesc = Введите ваш город
+lang_blue_pane_profile_postcodedesc = Введите почтовый индекс
+lang_blue_pane_profile_statedesc = Введите область, край, штат
+lang_blue_pane_profile_countrydesc = Введите страну проживания
+
+lang_blue_pane_profile_additional = Дополнительные детали
+lang_blue_pane_profile_email2desc = Введите дополнительный адрес Электронной почты
+lang_blue_pane_profile_question = Секретный Вопрос
+lang_blue_pane_profile_questiondesc = Введите Секретный Вопрос
+lang_blue_pane_profile_industrydesc = Выберите отрасль в который вы активны
+lang_blue_pane_profile_occupationdesc = Выберите профессию
+lang_blue_pane_profile_savebutton = Сохранить
+lang_blue_pane_profile_passwdbutton = Изменить
+
+#/html/blue_pane/readmail.html
+
+lang_blue_pane_reademail_title = $var['EmailSubject'] - $pref['brandname'] - Письмо $var['msgnum']
+lang_blue_pane_reademail_replyalt = Ответить отправителю
+lang_blue_pane_reademail_replyallalt = Ответить всем на выбранные письма
+lang_blue_pane_reademail_forwardalt = Переслать письмо
+lang_blue_pane_reademail_printalt = Распечатать письмо
+lang_blue_pane_reademail_headersalt = Просмотреть заголовки
+
+#/html/blue_pane/reademail_drafts.html
+
+lang_blue_pane_reademail_drafts_title = $var['EmailSubject'] - $pref['brandname'] -  $var['msgnum']
+lang_blue_pane_reademail_drafts_openmsg = Открыть письмо
+lang_blue_pane_reademail_drafts_openmsgalt = Открыть письмо
+
+
+#/html/blue_pane/reademail-frame.html
+
+lang_blue_pane_reademail_frame_title = $var['EmailSubject'] - $pref['brandname'] - Письмо $var['msgnum']
+
+#/html/blue_pane/reademail-frame_drafts.html
+
+lang_blue_pane_reademail_frame_drafts_title = $var['EmailSubject'] - $pref['brandname'] - Msg $var['msgnum']
+
+#/html/blue_pane/search.html
+
+lang_blue_pane_search_lookin = Искать
+lang_blue_pane_search_allfolders = Включая все папки
+lang_blue_pane_search_attach = Письма с вложениями
+lang_blue_pane_search_flagged = Письма с отметками о важности
+lang_blue_pane_search_before = Полученный до
+lang_blue_pane_search_after = Полученные после
+lang_blue_pane_search_newbutton = Новый поиск
+
+#/html/blue_pane/searchframe.html
+
+lang_blue_pane_searchframe_title = Поиск для почты
+
+
+#/html/blue_pane/searchmove.html
+
+lang_blue_pane_searchmove_msg = Переместить $var['move'] письма в $var['newfolder'] папку.
+
+#/html/blue_pane/searchresults.html
+
+lang_blue_pane_searchresults_movebutton = Переместить
+
+#/html/blue_pane/sendmsg.html
+
+lang_blue_pane_sendmsg_compose = Написать письмо
+lang_blue_pane_sendmsg_close = Закрыть окно
+
+#/html/blue_pane/settings.html
+
+lang_blue_pane_settings_text = В Настройке вы можете изменить параметры учетной записи Веб Почты. Добавить проверку других почтовых ящиков по POP3, Изменить вид и расположение  рабочего стола Почты, выбрать язык интерфейса и изменить цвет. Все параметры Вы можете изменить по вкусу.
+
+lang_blue_pane_settings_emailprefs = Настройки Почты
+lang_blue_pane_settings_account = Учетная запись
+lang_blue_pane_settings_accountdesc = Логин Вашей учетной записи
+lang_blue_pane_settings_dname = Имя
+lang_blue_pane_settings_dnamedesc = Введите имя, которое будет в исходящих письмах
+lang_blue_pane_settings_replyto = Обратный адрес
+lang_blue_pane_settings_replytodesc = Если ответ нужен на другой адрес, введите его
+lang_blue_pane_settings_sortby = Сортировка писем
+lang_blue_pane_settings_sortbydesc = Письма в окне Почты могут быть отсортированы
+lang_blue_pane_settings_font = Шрифт по умолчанию
+lang_blue_pane_settings_fontdesc = Выбирайте любимый шрифт для интерфейса Почты
+lang_blue_pane_settings_lang = Выбор языка
+lang_blue_pane_settings_langdesc = На каком языке будет интерфейс Почты
+lang_blue_pane_settings_leavemsg = Хранить письма на Сервере
+lang_blue_pane_settings_leavemsgdesc = Только для внешней почты POP3. Выбирайте, хотите ли вы оставлять сообщения на сервере.
+lang_blue_pane_settings_nrmsg = Количество писем при просмотре
+lang_blue_pane_settings_nrmsgdesc = Укажите количество писем отображаемых в окне Почты
+lang_blue_pane_settings_timezone = Укажите часовой пояс
+lang_blue_pane_settings_timezonedesc = Укажите в каком часовом поясе вы находитесь
+lang_blue_pane_settings_timeformat = Формат времени
+lang_blue_pane_settings_timeformatdesc = Настроить отображение времени в Почте и Календаре
+lang_blue_pane_settings_dateformat = Формат даты
+lang_blue_pane_settings_dateformatdesc = Настроить формат отображения даты
+
+lang_blue_pane_settings_popup = Всплывающие окна
+lang_blue_pane_settings_popupdesc = Нужны ли всплывающие окна при просмотре писем в папке
+lang_blue_pane_settings_autotrash = Авто очистка корзины
+lang_blue_pane_settings_autotrashdesc = Автоматически удалять письма посланные в корзину(Trash).
+lang_blue_pane_settings_deltrash = Очищать корзину при выходе?
+lang_blue_pane_settings_deltrashdesc = Если выбрано, корзина будет очищена при выходе из Почты.
+lang_blue_pane_settings_editor = Использовать HTML редактор?
+lang_blue_pane_settings_editordesc = Если выбрано, $pref['brandname'] будет создавать письма в HTML формате, а не в текстовом.
+lang_blue_pane_settings_sig = Подписать письмо
+lang_blue_pane_settings_sigdesc = Введите свою подпись. Она будет прикреплена ко всем исходящим письмам.
+lang_blue_pane_settings_diversion = Пересылка Почты - Пересылать всю Почту на другой адрес.
+lang_blue_pane_settings_forward = Пересылать на Адрес
+lang_blue_pane_settings_layout = Вид / Цветовые настройки - Выбирайте интерфейс и цветовые настройки
+lang_blue_pane_settings_layout_short = Вид / Цвет
+lang_blue_pane_settings_layouttype = Вид:
+lang_blue_pane_settings_scheme = Палира
+lang_blue_pane_settings_primary = Основной
+lang_blue_pane_settings_secondary = Вторичный
+lang_blue_pane_settings_tertiary = Третичный
+lang_blue_pane_settings_border = Рамка
+lang_blue_pane_settings_popupcolor = Всплывающий
+lang_blue_pane_settings_bgcolor = Цвет фона
+lang_blue_pane_settings_textcolor = Цвет текста
+lang_blue_pane_settings_textheader = Заголовок
+lang_blue_pane_settings_link = Гиперссылка
+lang_blue_pane_settings_vlink = Просмотренные ссылки
+lang_blue_pane_settings_oncolor = Цвет отмеченного
+lang_blue_pane_settings_offcolor = Цвет неотмеченного
+lang_blue_pane_settings_selectcolor = Цвет выделения
+lang_blue_pane_settings_topbarimg = Файл с Панелью Кнопок
+lang_blue_pane_settings_quota = Занимаемое место [Размер на диске $var['usedquota'] Kb из $var['totalquota'] Kb доступных]
+lang_blue_pane_settings_savebutton = Сохранить
+
+#/html/blue_pane/showmail_plain.html
+
+lang_blue_pane_showmail_plain_movebutton = Переместить
+lang_blue_pane_showmail_plain_searchalt = Искать письма
+lang_blue_pane_showmail_plain_settingsalt = Настройки Почты
+lang_blue_pane_showmail_plain_foldersalt = Почтовые Папки
+lang_blue_pane_showmail_plain_deltrashalt = Очистить Корзину
+lang_blue_pane_showmail_plain_checkalt = Пометить Все письма
+lang_blue_pane_showmail_plain_uncheckalt = Снять пометку со всех писем
+lang_blue_pane_showmail_plain_tag = Таг
+
+#/html/blue_pane/showmail_popup.html
+# shares vars from /html/blue_pane/showmail_plain.html
+
+
+#/html/blue_pane/spellcheck.html
+
+lang_blue_pane_spellcheck_title = Проверить орфографию
+
+
+lang_blue_pane_spellcheck_msg = Проверка орфографии:
+lang_blue_pane_spellcheck_current = Контекст:
+lang_blue_pane_spellcheck_new = Новое значение:
+lang_blue_pane_spellcheck_suggestions = Варианты
+lang_blue_pane_spellcheck_options = Опции
+lang_blue_pane_spellcheck_ignorebutton = Игнорировать
+lang_blue_pane_spellcheck_changebutton = Изменить
+lang_blue_pane_spellcheck_personalbutton = Добавить
+lang_blue_pane_spellcheck_returnbutton = Вернуться к письму
+
+
+#/html/blue_pane/startpage.html
+
+lang_blue_pane_startpage_text = Добро пожаловать $this->RealName на главную страницу. Здесь Вы видите список наступающих событий Календаря, список задач, количество новых писем в папке Входящие и общую статистику учетной записи. Воспользуйте кнопками навигации (вверху) для работы с системой $pref['brandname'].
+lang_blue_pane_startpage_calendar = Календарь
+lang_blue_pane_startpage_caddnew = Добавить
+lang_blue_pane_startpage_emailsum = Всего Писем
+lang_blue_pane_startpage_emailsumdesc = Входящие ( Новых Писем - $var['total'] )
+lang_blue_pane_startpage_quota = Занимаемое место
+lang_blue_pane_startpage_quotaused =[Использовано $var['usedquota'] Kb из $var['totalquota'] Kb]
+lang_blue_pane_startpage_tasks = Задачи
+lang_blue_pane_startpage_taddnew = Добавить
+lang_blue_pane_startpage_messages = Письма
+lang_blue_pane_startpage_history = История входа в систему
+lang_blue_pane_startpage_historynr = Всего, $var['totallogin']
+lang_blue_pane_startpage_autoinbox = При входе в $pref['brandname'], сразу переходить во <u>В</u>ходящие
+
+# 1.3 /html/blue_pane/heading/*
+
+lang_blue_pane_heading_abook_globalview_msg = Адресная книга - Просмотр общего контакта
+lang_blue_pane_heading_abook_new_msg = Адресная книга - Добавить новый контакт
+lang_blue_pane_heading_abook_view_msg = Адресная книга - Просмотр / Изменение контакта
+lang_blue_pane_heading_accounts_msg = Внешняя POP3 Почта
+lang_blue_pane_heading_contacts_msg = Контакты
+lang_blue_pane_heading_ldap_location = Расположение
+lang_blue_pane_heading_ldap_abook = Служба каталогов
+lang_blue_pane_heading_ldaphead_msg = Поисковый сервер LDAP
+lang_blue_pane_heading_mail_orderalt = Сортировать по прикрепленным файлам
+lang_blue_pane_heading_mboxfolder_msg = Менеджер Папок -Просмотр / Создание почтовых папок
+lang_blue_pane_heading_mboxhead_msg = Почтовые Ящики
+
+lang_blue_pane_heading_password_msg = Профиль пользователя - Изменение Пароля
+lang_blue_pane_heading_profile_msg = Профиль пользователя - Настройте ваш Профиль
+lang_blue_pane_heading_search_msg = Результаты поиска - найдено Писем
+lang_blue_pane_heading_settings_msg = Настройки учетной записи - Настройте вашу Почту
+lang_blue_pane_heading_startpage_msg = Добро пожаловать на Главную страницу
+
+# END OF /html/blue_pane/heading/
+# END OF /html/blue_pane/
+
+# 2.0 G l o b a l    C a l e n d a r   V a r i a b l e s
+
+lang_Calendar_startdate = Дата начала
+lang_Calendar_enddate = Дата окончания
+lang_Calendar_endtime = Время окончания
+lang_Calendar_duedate = Дата окончания
+lang_Calendar_datedue = Дата окончания
+lang_Calendar_selectdate = Выберите дату
+lang_Calendar_adddate = Добавить дату
+lang_Calendar_close = Закрыть
+lang_Calendar_updatebutton = Обновить
+lang_Calendar_deletebutton = Удалить
+
+# 2.1 /html/calendar/*
+
+#/html/calendar/calbook.html
+
+lang_calendar_calbook_title = Добавить адреса из Адресной книги
+lang_calendar_calbook_viewaddress = Просмотр Адресной книги:
+lang_calendar_calbook_add = Добавить получателей в Планировщик
+lang_calendar_calbook_addall = --- Добавить Все адреса
+lang_calendar_calbook_addbutton = Добавить
+
+#/html/calendar/index.html
+
+lang_calendar_index_title = $pref['brandname'] - Online Планировщик
+
+#/html/calendar/index-simple.html
+
+lang_calendar_index_simple_title = $pref['brandname'] - Планировщик он-лайн
+
+#/html/calendar/menubarcal.html
+
+lang_calendar_menubarcal_week = Неделя
+lang_calendar_menubarcal_fortnight = Две недели
+lang_calendar_menubarcal_quarter = Квартал
+lang_calendar_menubarcal_2quarter = Полугодие
+lang_calendar_menubarcal_year = Год
+
+lang_calendar_menubarcal_read = Читать письма
+lang_calendar_menubarcal_overview = Обзор
+lang_calendar_menubarcal_calendar = Календарь
+lang_calendar_menubarcal_tasks = Задачи
+lang_calendar_menubarcal_addresses = Адреса
+lang_calendar_menubarcal_help = Справка
+lang_calendar_menubarcal_logoff = Выход
+lang_calendar_menubarcal_view = Действия
+
+#/html/calendar/menubarcal-simple.html
+
+lang_calendar_menubarcal_simple_title = $pref['brandname'] система веб-почты
+lang_calendar_menubarcal_simple_brandname = $pref['brandname'] - Профессиональная система веб-почты
+lang_calendar_menubarcal_simple_read = Читать Письма
+lang_calendar_menubarcal_simple_overview = Обзор
+lang_calendar_menubarcal_simple_calander = Календарь
+lang_calendar_menubarcal_simple_tasks = Задачи
+lang_calendar_menubarcal_simple_contacts = Контакты
+lang_calendar_menubarcal_simple_signout = Выход
+
+#/html/calendar/newpost.html
+
+lang_calendar_newpost_title = Добавить запись
+lang_calendar_newpost_insertnew = Вставить новую запись в Календарь
+lang_calendar_newpost_edit = Allow Recipients to Edit
+lang_calendar_newpost_editalt = Allow Recipients to edit the post
+lang_calendar_newpost_notify = Послать уведомление получателям
+lang_calendar_newpost_notifyalt = Послать уведомление получателям
+
+
+#/html/calendar/newtask.html
+
+lang_calendar_newtask_title = Добавить новую задачу
+lang_calendar_newtask_msg = Вставить задачу
+
+lang_calendar_newtask_edit = Allow Recipients to Edit
+lang_calendar_newtask_editalt = Allow Recipients to edit the task
+lang_calendar_newtask_notify = Послать уведомление получателям
+lang_calendar_newtask_notifyalt = Послать уведомление получателям о задаче
+
+#/html/calendar/notify-add.html
+
+lang_calendar_notify_add_title = Создать новую запись
+lang_calendar_notify_add_new = Создать новую запись в Календаре
+
+#/html/calendar/notify-cal-body.html
+
+lang_calendar_notify_cal_body_summary = Новое событие Календаря назначено. В итоге:
+lang_calendar_notify_cal_body_title = Заголовок
+lang_calendar_notify_cal_body_assign = Назначено на
+lang_calendar_notify_cal_body_description = Описание
+
+#/html/calendar/notify-cal-subject.html
+
+lang_calendar_notify_cal_subject_new = Новое событие в Календаре
+
+#/html/calendar/notify-delete.html
+
+lang_calendar_notify_delete_delentry = Удаленная запись
+lang_calendar_notify_delete_delcalentry = Удаленная запись календаря -
+
+#/html/calendar/notify-modify.html
+
+lang_calendar_notify_modify_update = Обновленная запись
+lang_calendar_notify_modify_entry = Обновленная запись календаря -
+
+#/html/calendar/notify-taskadd.html
+
+lang_calendar_notify_taskadd_new = Создать новую запись
+lang_calendar_notify_taskadd_newtask = Создать новую задачу -
+
+#/html/calendar/notify-task-body.html
+
+lang_calendar_notify_task_body_summary = Новая задача назначена. В итоге
+lang_calendar_notify_task_body_title = Заголовок
+lang_calendar_notify_task_body_assign = Назначено на
+lang_calendar_notify_task_body_description = Описание
+
+#/html/calendar/notify-taskdelete.html
+
+lang_calendar_notify_taskdelete_entrydelete = Запись удалена
+lang_calendar_notify_taskdelete_deletetask = Удаленное задание -
+
+#/html/calendar/notify-taskmodify.html
+
+lang_calendar_notify_taskmodify_update = Обновленнная запись
+lang_calendar_notify_taskmodify_updatetask = Обновленное задание
+
+#/html/calendar/notify-task-subject.html
+
+lang_calendar_notify_task_subject_new = Новая задача
+
+#/html/calendar/readpost.html
+
+lang_calendar_readpost_title = Чтение календаря $var['id']
+lang_calendar_readpost_reading = Чтение записи календаря
+
+#/html/calendar/readtask.html
+
+lang_calendar_readtask_title = Чтение задания $var['id']
+
+#/html/calendar/summary.html
+
+lang_calendar_summary_welcome = Добро пожаловать $this->RealName Главную страницу. Обратите внимание на список наступающих событий Календаря, ожидающие задачи, новые письма в папке Входящие и общую статистику учетной записи. Воспользуйтесь кнопками навигации (вверху) для выполнения различных действий в $pref['brandname'].
+lang_calendar_summary_calendar = Календарь
+lang_calendar_summary_addnew = Добавить нов.
+lang_calendar_summary_tasks = Задачи
+
+#/html/calendar/summaryhead.html
+
+lang_calendar_summaryhead_overview = Обзор Календаря и задач
+
+#/html/calendar/task-empty.html
+
+lang_calendar_task_empty_empty = Список заданий пуст
+
+#/html/calendar/task-move.html
+
+lang_calendar_task_move_move = Переместить помеченные
+
+#/html/calendar/today.html
+
+lang_calendar_today_today = Календарь на сегодня
+
+#/html/calendar/todo.html
+
+lang_calendar_todo_view = Обзор файлов
+lang_calendar_todo_taskname = Название задачи -
+lang_calendar_todo_tasknamealt = Создать новую задачу
+lang_calendar_todo_addnew = Добавить нов.
+lang_calendar_todo_empty = Список задач пуст.
+lang_calendar_todo_newtask = Добавить новую задачу
+
+#/html/calendar/type-select.html
+
+lang_calendar_type_select_general = Разные
+lang_calendar_type_select_pending = Ожидающие
+lang_calendar_type_select_open = Открыть
+lang_calendar_type_select_complete = Выполненные
+lang_calendar_type_select_urgent = Срочные
+lang_calendar_type_select_appointment = Назначение
+lang_calendar_type_select_birthday = День рождения
+lang_calendar_type_select_friend = Друг
+lang_calendar_type_select_family = Семья
+lang_calendar_type_select_colleague = Коллега
+lang_calendar_type_select_other = Другое
+lang_calendar_type_select_business = Бизнес
+lang_calendar_type_select_conference = Конференция
+lang_calendar_type_select_deadline = Крайний срок
+lang_calendar_type_select_interview = Интервью
+lang_calendar_type_select_lunch = Ланч
+lang_calendar_type_select_meeting = Встреча
+lang_calendar_type_select_phonecall = Телефонный звонок
+lang_calendar_type_select_travel = Путешествие
+lang_calendar_type_select_entertainment = Развлечение
+lang_calendar_type_select_concert = Концерт
+lang_calendar_type_select_movie = Фильм
+lang_calendar_type_select_performance = Спектакль
+lang_calendar_type_select_sports = Спорт
+lang_calendar_type_select_television = Телевидение
+lang_calendar_type_select_friends = Друзья и семья
+lang_calendar_type_select_breakfast = Завтрак
+lang_calendar_type_select_brunch = Поздний завтрак
+lang_calendar_type_select_dinner = Обед
+lang_calendar_type_select_gettogether = Собрание
+lang_calendar_type_select_lunch = Ужин
+lang_calendar_type_select_movie = Фильм
+lang_calendar_type_select_party= Пати
+lang_calendar_type_select_picnic = Пикник
+lang_calendar_type_select_school = Школа
+lang_calendar_type_select_sports = Спорт
+lang_calendar_type_select_personal = Личное
+lang_calendar_type_select_doctor = Дантист
+lang_calendar_type_select_fitness = Фитнесс
+lang_calendar_type_select_haircut = Стрижка
+lang_calendar_type_select_paybills = Счета на оплату
+lang_calendar_type_select_shopping = Шоппинг
+lang_calendar_type_select_task = Задание
+lang_calendar_type_select_vacation = Отдых
+lang_calendar_type_select_event = Особые события
+lang_calendar_type_select_anniversary = Годовщина
+lang_calendar_type_select_gathering = Сбор
+lang_calendar_type_select_graduation = Окончание учебы
+lang_calendar_type_select_holiday = Выходной
+lang_calendar_type_select_reunion = Воссоединение
+lang_calendar_type_select_wedding = Свадьба
+
+#/html/calendar/weekhead.html
+
+lang_calendar_weekhead_viewing = Просмотр
+lang_calendar_weekhead_days = Дней
+
+# END OF /html/calendar/
+
+
+# 3.0 G l o b a l    H e l p    V a r i a b l e s
+
+lang_help_title = Справка Почты
+lang_help_index = Индекс справки
+lang_help_okbutton = ОК
+lang_help_top = Наверх
+lang_help_title_login = Справка
+lang_help_faq = ЧаВо (вопросы/ответы)
+
+# 3.1 /html/help/*
+
+#/html/help/addpop3.html
+
+lang_help_addpop3_title = Внешние Учетные записи POP3
+lang_help_addpop3_text1 = Секция <b>Добавить внешний POP3 ящик</b> позволяет получать письма с других ящиков в папку Входящие.
+lang_help_addpop3_text2 = Секция <b> Логин/Пароль</b> позволяет ввести данные для получения почты с внешних ящиков.
+lang_help_addpop3_text3 = Секция <b>Настройки Писем</b> позволяет изменить адрес ответа или адрес пересылки.
+lang_help_addpop3_text4 = Секция <b>Шифрование</b> позволит задать опции Шифрования для учетной записи.
+lang_help_addpop3_text5 = Секция <b>Создать учетную запись</b> - это последнее подтверждение перед сохранением.
+
+#/html/help/addressbook.html
+
+lang_help_addressbook_title = Адресная книга
+lang_help_addressbook_text1 = Используйте адресную книгу для хранения Ваших контактов. Вы сможете вернуться в будущем и написать письмо по адресам из адресной книги.
+lang_help_addressbook_text2 = Щелкните по 'Добавить запись' чтобы создать новую запись в адресной книге. Введите информацию о контакте, и сохраните запись в адресной книге. Изменить/удалить адрес контакта можно кликнув по иконке справа.
+lang_help_addressbook_text3 = Если есть доступ, то вы сможете увидеть Общую адресную  книгу. Изменив тип адресной книги с 'Личной' на 'Общую' вы попадете в Общую адресную книгу.
+
+#/html/help/calendar.html
+
+lang_help_calendar_title = Календарь
+lang_help_calendar_text1 = Здесь Вы можете организовать вашу работу, добавлять Задачи и напоминания к определенным временам и датам.
+lang_help_calendar_text2 = Чтобы Добавить напоминание, щелкните на соответствующе время. В примере ниже, Вы можете видеть Напоминание про Завтрак с CEO в 1300 (1:00pm). Вы можете теперь вводить детали для этого напоминания.
+lang_help_calendar_timeline = Шкала времени
+lang_help_calendar_timelinetext = Показывает сколько времени действуют напоминания. '00' и '30' представляют 9:00 и 9:30 соответственно. Напоминания до 9:30 будут показаны в поле '00', а после  в поле '30'. Когда вы создаете Напоминание оно может быть задано с 5-ти минутной точностью, '00' и '30' показаны только как пример.
+lang_help_calendar_appointment = Напоминание
+lang_help_calendar_appointmenttext = Колокольчик показывает Напоминание. Напоминание может быть создано щелчком по соответствующему времени в половину часа.
+lang_help_calendar_mselect = Выбор месяца
+lang_help_calendar_mselecttext1 = Чтобы просмотреть другой месяц, нужно выбрать &amp;quot;&amp;lt;&amp;lt;&amp;quot; для предыдущего месяца, и &amp;quot;&amp;gt;&amp;gt;&amp;quot; для следующего месяца. В этом примере &amp;quot;&amp;gt;&amp;gt;&amp;quot; перенесет нас в Август и &amp;quot;&amp;lt;&amp;lt;&amp;quot; перенесет в Июнь. Выбрав нужный месяц можно добавить / изменить / удалить напоминание.
+lang_help_calendar_mselecttext2 = Покажет текущий месяц. Сегодня помечено красным цветом, в примере выше это 13 июля. Перейти на другой день можно щелкнув под дате. На 13 и 18 есть напоминания, они выделены жирным.
+lang_help_calendar_addtask = Добавить новую задачу
+lang_help_calendar_addtasktext = Чтобы добавить задание щелкните здесь. Задание будет показано ниже, и пример здесь 'Позвонить Mr Herrod'. После того как задание будет выполнено Вы можете пометить его и щелкнуть 'Переместить отмеченное' или 'Удалить отмеченное'.
+lang_help_calendar_deltask = Удалить задание
+lang_help_calendar_deltasktext = Чтобы удалить задание, пометьте его и щелкните здесь. Задание будет удалено безвозвратно.
+lang_help_calendar_taskexample = 'Позвонить Mr Herrod' - пример задания, задание независит от времени, Вы не можете задать задание на определенную дату.
+
+#/html/help/compose.html
+
+lang_help_compose_title = Написать/Отправить почту
+lang_help_compose_sending = Отправка почты
+lang_help_compose_outfeat = Особенности Исходящих писем
+lang_help_compose_sendhtml = HTML редактор писем
+lang_help_compose_attachments = Прикрепленные файлы
+lang_help_compose_signatures = Подписи
+lang_help_compose_sendingtext = Через учетную запись Веб Почты, можно отправить письмо на любой активный почтовый ящик в Интернете. С мощным HTML-редактором (только в IE4/IE5) можно создавать навороченное оформление HTML писем, или, для совместимости (простой текст) используйте встроенный редактор обычного текста.</p>
+lang_help_compose_howtosend = Как послать почту
+lang_help_compose_li1 = Войдите в свой ящик.
+lang_help_compose_li2 = Щелкните Написать письмо в панели навигации
+lang_help_compose_li3 = Введите информацию в заголовке:
+lang_help_compose_li4 = <b>Кому:</b> Введите получателей письма, или выберите из адресной книги. Нескольких получателей введите через запятую.
+lang_help_compose_li5 = <b>Тема:</b> Введите тему письма.
+lang_help_compose_li6 = <b>Копия:</b> Введите адреса тех кто также должен получить письмо. Копия письма будет им отослана.
+lang_help_compose_li7 = <b>Скрытая копия:</b> Введите адреса тех, кому вы также хотите отправить копию письма, но при этом чтобы другие получатели этого не увидели.
+lang_help_compose_li8 = Напишите текст письма в специально предоставленной для этого области.
+lang_help_compose_li9 = Если нужно, щелкните кнопку Прикрепить файлы чтобы послать с письмом файлы.
+lang_help_compose_li10 = Щелкните кнопку Отправить Почту.
+lang_help_compose_features = Особенности Исходящих писем
+lang_help_compose_sendhtmldesc = Если вы используете IE4+ вы можете использовать в письмах HTML - форматирование. Т.е. Вы сможете менять шрифт письма, цвет, размер и форматирование. Используя HTML тэги можно вклеить практически любой объект в исходящее письмо, от таблиц до изображений и гиперссылок. Введите свои тэги по кнопке <b>HTML исходник</b> , можете скопировать тэги из другого редактора!
+lang_help_compose_sendhtmldesc2 = Примечание, эта возможность доступна на текущий момент только в IE4/5 на PC. Т.к. в браузерах Netscape нет корректной поддержки DHTML/CSS версий - эта возможность пока что в них недоступна.
+lang_help_compose_attachmentsdesc = Чтобы прикрепить файлы к письму, сначала щелкните кнопку Прикрепить файлы в окне создания письма. Откроется новое всплывающее окно; щелкните "Обзор" для выбора файла с жесткого диска. Щелкните "OK" когда вы выберет нужный файл. После того как файл закачается, вы можете проверить размер прикрепленных файлов  и удалить если надо. Можно прикрепиь много файлов; по соображениям безопасности и квотам на сервере прикрепления не могут занимать более &amp;lt;2-10 Мегабайт. Для точных размеров ограничения обратитесь к Администратору.
+lang_help_compose_signaturesdesc = При отправке письмо может быть <b>подписано</b>. См. панель настройки для дополнительной информации.
+
+#/html/help/file.html
+
+lang_help_file_text1 = Читайте справочные файлы для каждой определенной функции Веб Почты
+lang_help_file_text2 = С этим руководством Вы узнаете больше как пользоваться Веб Почтой. Выбирайте тему из списка чтобы получить информацию.
+
+#/html/help/ldap.html
+
+lang_help_ldap_title = Поисковый сервер LDAP
+lang_help_ldap_text1 = Используйте LDAP поисковый сервер, чтобы найти электронные адреса пользователей, адрес и телефонные номера. LDAP - общественная база данных информации о людях по всему миру. Чтобы начинать поиск, Вы должны определить полное имя пользователя, и необязательный адрес электронной почты.
+lang_help_ldap_text2 = При рассмотрении результатов поиска Вы можете выбирать - добавить пользователя к вашему списку контактов, написать письмо или щелкнуть для дополнительной информации относительно пользователя.
+lang_help_ldap_text3 = Если разрешено Вы можете искать в вашем домене, сменив  ' Тип Поиска '  на ' Искать в Системной Базе данных '.
+
+#/html/html/newmbox.html
+
+lang_help_newmbox_title = Опции почты
+lang_help_newmbox_text1 = Эта папка позволяет Вам настраивать Опции для Вашего Почтового ящика и папки.
+lang_help_newmbox_text2 = Секция <b>Активный Почтовый ящик's</b> содержит список всех папок, число писем в них, размер папок и возможность удаления папок.
+lang_help_newmbox_text3 = Секция <b>Создать новую папку</b> позволяет добавить новую папку.
+lang_help_newmbox_text4 = Секция <b>Поместить в черный список/Спамеры</b> позволяет Вам не получать письма с отобранных адресов. Просто добавьте сюда адрес с которого вы не хотите получать письма кликнув <b>Добавить адрес</b>.
+lang_help_newmbox_text5 = Секция <b>Добавить Автоответ</b> Пошлите ответ на КАЖДОЕ письмо, которое Вы получаете. Добавьте сообщение, что Вы хотите послать как Автоответ.
+lang_help_newmbox_text6 = Секция <b>Сортировка писем в Папках</b> позволяет Вам заставлять Веб Почту автоматически перемещать поступающую почту от вашего входного почтового ящика до определенных папок.
+
+#/html/html/reademail.html
+
+lang_help_reademail_title = Читать почту
+lang_help_reademail_text1 = Окно писем содержат список сообщений, полученных для вашей учетной записи электронной почты - перемещая мышь на сообщение, всплывающее меню будет появляться, которое отобразит первые 160 символов сообщения. Чтобы читать электронную почту, щелкните тему сообщений и перейдете к всему письму.
+lang_help_reademail_text2 = Через панель управления Предпочтения Вы можете выбирать порядок чтения писем. Сортировать в папке по теме, дате, отправителю и ID. Каждое сообщение в почтовом ящике может быть отмечено, чтобы быть перемещенным во внешний почтовый ящик; эта функция позволяет Вам выбирать сообщения, которые будут перемещены в Корзину или в дополнительный почтовый ящик.
+lang_help_reademail_text3 = Из окна писем можно сразу перейти к настройкам учетной записи, или перейти в окно информации Папки, чтобы рассмотреть параметры настройки для ваших папок.
+
+#/html/html/settings.html
+
+lang_help_settings_title = Изменение Параметров настройки
+lang_help_settings_text = Используйте панель параметров настройки, чтобы изменить предпочтение вашей учетной записи электронной почты. Настройте учетную запись на свои потребности, включая:
+lang_help_settings_fullname = Полное имя
+lang_help_settings_fullnamedesc = Это используется при создании электронной почты, ваше Полное имя будет показываться во всех исходящих письмах.
+lang_help_settings_replyto = Ответ на адрес
+lang_help_settings_replytodesc = Введите ваш ReplyTo адрес электронной почты если он отличается от вашего имени входящего в системе.
+lang_help_settings_sortby = Сортировка писем
+lang_help_settings_sortbydesc = Укажите порядок сортировки писем в папках.
+lang_help_settings_layout = Укажите вид
+lang_help_settings_layoutdesc = Выбирайте из различных интерфейсов Веб Почты. Рекомендуется Простой рекомендуется для старых браузеров, или если вы хотите отключить всплывающие окна при просмотре писем.
+lang_help_settings_language = Язык системы
+lang_help_settings_languagedesc = Укажите язык для использования в качестве основного в интерфейсе почты.
+lang_help_settings_nrmsg = Количество показываемых Писем
+lang_help_settings_nrmsgdesc = Укажите число писем для одновременного показа в папке Входящие. Пользуясь значками вперед/назад можно смотреть разные письма.
+lang_help_settings_timezone = Часовой пояс
+lang_help_settings_timezonedesc = Укажите часовой пояс где вы сейчас находитесь. Используется при отправке писем.
+lang_help_settings_signature = Подпись писем
+lang_help_settings_signaturedesc = Введите вашу подпись электронной почты. Она будет добавлена в конец ко всем исходящим письмам.
+lang_help_settings_deltrash = Очищать корзину при выходе
+lang_help_settings_deltrashdesc = Переключите, если Вы желаете очистить Корзину выходя из системы.
+lang_help_settings_editor = HTML редактор
+lang_help_settings_editordesc = Выберите, если Вы хотите использовать редактор HTML.
+lang_help_settings_diversion = Пересылка
+lang_help_settings_diversiondesc = Выбирайте, если хотите пересылать все письма на другой адрес.
+lang_help_settings_scheme = Цветовая схема
+lang_help_settings_schemedesc = Выберите, которые цвета Вы хотели бы использовать для вашего рабочего стола электронной почты.
+lang_help_settings_head1 = Настройки Почты
+lang_help_settings_inboxrefresh = Интервал запроса новой почты
+lang_help_settings_inboxrefreshdesc = Укажите интервал в минутах для запроса новой почты. При получении новых сообщений вы услышите звуковой сигнал.
+lang_help_settings_timeformat = Формат времени
+lang_help_settings_timeformatdesc = Выберите формат временя для интерфейса Почты и Календаря
+lang_help_settings_dateformat = Формат даты
+lang_help_settings_dateformatdesc = Выберите формат для показа даты
+lang_help_settings_msgpopup = Всплывающее сообщение
+lang_help_settings_msgpopupdesc = Выберите для использования всплывающие окна при просмотре сообщений
+lang_help_settings_autodeltrsh = Автоматическая очистка корзины
+lang_help_settings_autodeltrshdesc = Разрешить автоматическое удаление из Корзины при переносе сообщения в Корзину..
+lang_help_settings_deltrshlogout = Очитстить корзину при Выходе
+lang_help_settings_deltrshlogoutdesc = Если выбрано содержимое корзины будет автоматически удалено при выходе.
+lang_help_settings_newindowpop = Новое всплывающее окно
+lang_help_settings_newindowpopdesc = Автоматически открывать письма в новом окне.
+lang_help_settings_emailsig = Подпись
+lang_help_settings_emailsigdesc = Создайте вашу подпись. Она будет присоединятся к любым отправленным вами письмам.
+lang_help_settings_head2 = Тема/Цвет
+lang_help_settings_layouttype = Тема
+lang_help_settings_layouttypedesc = Выберите вашу тему
+lang_help_settings_head3 = Безопасность.
+lang_help_settings_enablecrypt = Включить шифрование почты.
+lang_help_settings_enablecryptdesc = Выберите включено/выключена поддержка шифрования почты
+lang_help_settings_encryptlevel = Уровень шифрования
+lang_help_settings_encryptleveldesc = Выберите уровень шифрования, который вы будете использовать. 512-Bit - Базовый уровень - БЫсрый процесс шифрования\дешифрования - низкий уровень безопасности; 1024-Bit - Нормальный уровень безопасности; 4096-Bit военный стандарт. Высокий уровень безопасности, длительный процесс шифровки\дешифровки.
+lang_help_settings_pgppass = PGP Пароль
+lang_help_settings_pgppassdesc = Выберите пароль для вашего PGP ключа. Рекомендуется использовать пароль отличный от вашего логина, имени и т.д..
+lang_help_settings_head4 = Установки почты
+lang_help_settings_forwardto = Перенаправить на адрес
+lang_help_settings_forwardtodesc = Укажите аккаунт на который будет перенаправлятся ваша почта.
+lang_help_settings_autoreplymsg = Автоответчик
+lang_help_settings_autoreplymsgdesc = Напишите сообщение, которое будет отправляться вашим автооветчиком
+
+
+
+#/html/help/spell.html
+
+lang_help_spell_title = Проверка орфографии
+lang_help_spell_text1 = Можно проверить письмо на орфографические ошибки. Если слово не будет найдено в базе данных, будет отображен список вариантов правильного написания. После того как выберите правильное слово из списка кликните 'Изменить'. Если слова нет в списке, можно ввести свое собственное.
+lang_help_spell_text2 = Если слово записано правильно, и появляется сообщение об ошибке, кликнув 'Добавить свое' можно добавить его в личный словарь. Чтобы проигнорировать ошибку кликните 'Пропустить'.
+lang_help_spell_text3 = Фокус получит окно редактирования письма если в нем не будет содержаться ошибок.
+
+#/html/help/wap.html
+
+lang_help_wap_title = Wap Почта
+lang_help_wap_desc = Доступ к почте по мобильному телефону посредством WAP!
+lang_help_wap_text1 = Система Веб Почты поддерживает <i>Wireless Application Protocol</i>, позволяя Вам посылать и получать письма по мобильному телефону. Войдите в свой ящик, и пользуйтесь всем тем что и в обычном POP3 ящике, все через WAP!
+lang_help_wap_text2 = Его легко использовать! В разделе меню 'services' вашего телефона, введите домен вашей учетной записи : <B>http://dropzone.ru/wap.php</B> затем просто введите логин и пароль. Через мобильный телефон вы можете воспользоваться беспроводным доступом к почте. Веб Почта через WAP позволяет 5 главных действий:
+lang_help_wap_unread = Показать непрочитанные
+lang_help_wap_unreaddesc = Эта функция показывает только непрочитанные письма. Полезна для быстрого доступа к новым письмам.
+lang_help_wap_showall = Показать Все
+lang_help_wap_showalldesc = Получить все письма папки Входящие. В настройках можно указать порядок сортировки писем и др.
+lang_help_wap_compose = Написать письмо
+lang_help_wap_composedesc = Написать письмо пользуясь клавиатурой вашего телефона; и отправить по любому адресу электронной почты в Internet.
+lang_help_wap_options = Опции
+lang_help_wap_optionsdesc = Определите опции учетной записи. Включая формат сообщения, стиль и предпочтения интерфейса.
+lang_help_wap_abooke = Адресная книга
+lang_help_wap_abookdesc = Хранилище контактов с последующим доступом. Воспользуйтесь адресной книгой для хранения ваших контактов, и быстрого добавления адреса к письму.
+lang_help_wap_text3 = Доступ к электронной почте, в любом месте, в любое время! За дополнительной информацией, или при возникновении трудностей, обратитесь к провайдеру электронной почты.
+
+
+# END OF /html/help/*
+
+# 4.0 /html/javascript/
+
+# The entries in this chapter are all JavaScript.
+# Javascript Messages cannot contain single or double qoutes.
+# If you must use these characters consider excaping them like
+#  \'quoted text\', \"doublequoted text\"
+# thanks
+
+lang_myfolders_menuroot = Почта - $pref['brandname']
+lang_myfolders_folders = Папки
+lang_myfolders_personal = Личные
+lang_myfolders_utilities = Утилиты
+lang_myfolders_startpage = Начальная страница
+lang_myfolders_settings = Настройки Почты
+lang_myfolders_profile = Профиль
+lang_myfolders_folderman = Менеджер папок
+lang_myfolders_filters = Фильтры
+lang_myfolders_wap = WAP доступ
+lang_myfolders_multiaccounts = Внешняя почта
+
+lang_passutil_minchars = Пожалуйста, введите по крайней мере 8 символов в поле \"Новый Пароль\".
+lang_passutil_mismatch = Неверный пароль.
+
+lang_schemes_select = -- Выбор
+lang_schemes_blue = Синий (по умолчанию)
+lang_schemes_forest = Лес
+lang_schemes_gray = Серый
+lang_schemes_lemon = Лимон
+lang_schemes_red = Красный
+
+lang_blue_pane_composehtml_recipientcheck = Пожалуйста, определите получателя письма
+lang_blue_pane_startpage_overquota = Размер вашего ящика превышает квоту. Удалите ненужные письма.
+lang_javascript_compose_uncheck = Снимите отметку с переключателя \"Просмотр в формате HTML\" для использования панели инструментов.
+lang_javascript_compose_linkprompt = Введите адрес (например http://www.adomain.com):
+lang_javascript_composewin_change = Are you sure you want to change editors and lose all changes currently made?
+lang_javascript_menubar_big_logoff = Вы точно желаете завершить работу с почтой?
+lang_javascript_schemes_chscheme = Цветовая схема и панель навигации изменены. Чтобы сохранить изменение нажмите кнопку Сохранить.
+
+lang_javascript_validate_username = Введите значение в поле \"Логин\".
+lang_javascript_validate_firstname = Введите значение в поле \"Имя\".
+lang_javascript_validate_lastname = Введите значение в поле \"Фамилия\".
+lang_javascript_validate_question = Введите значение в поле \"Секретный вопрос\".
+lang_javascript_validate_minusername = Введите хотя бы 3 символа в поле \"логин\".
+lang_javascript_validate_minpasswd = Введите по крайней мере 8 символов в поле \"пароль\".
+lang_javascript_validate_passwords = Пароли не совпадают.
+lang_javascript_validate_characters = Пожалуйста, используйте только буквы, цифры и символы \".-_\" в поле \"логин\".
+lang_javascript_validate_disclaimer = Вы должны согласится с Условиями перед регистрацией.
+lang_javascript_validate_domain = Введите значение в поле \"Домен\".
+
+lang_javascript_validate_folders_maxfolder = Логин не может содержать более 64 символов. Пожалуйста, укажите другое имя.
+lang_javascript_validate_folders_characters = Пожалуйста, используйте только буквы, цифры, точки, запятые, - _ [] {} или () в поле Логин.
+
+lang_javascript_validate_group_nogroup = Пожалуйста, введите значение для поля \"Имя группы\".
+lang_javascript_validate_group_maxgroup = Ограничение на длину строки \"Имя группы\" равно 32 символам.
+lang_javascript_validate_group_characters = Пожалуйста, используйте только буквы, цифры и символы \".-_\" в поле \"Название Группы\".
+
+lang_javascript_validate_password_minpasswd = Введите по крайней мере 8 символов в поле \'Новый пароль\'.
+lang_javascript_validate_password_maxpasswd = Поле \'Новый Пароль\' не может быть более 64 символов.
+lang_javascript_validate_password_passwords = Пароли не совпадают.
+lang_javascript_validate_password_question = Пожалуйста, введите что-нибудь в поле \'Секретный вопрос\' чтобы вы смогли вспомнить пароль если вдруг забудете его.
+
+lang_javascript_menu_DeleteConfirm = Вы уверены что хотите удалить папку?
+lang_javascript_menu_FolderMaxLength = Пожалуйста, укажите имя папки
+lang_javascript_menu_OpenFolder = Открыть
+lang_javascript_menu_NewFolder = Новая
+lang_javascript_menu_NewSubFolder = Вложенная
+lang_javascript_menu_RenameFolder = Переименовать
+lang_javascript_menu_DeleteFolder = Удалить
+lang_javascript_menu_SearchFolder = Искать
+lang_javascript_menu_RightClickMoreOptions = Правый клик мыши, чтобы увидеть опции
+
+lang_javascript_menu_ShowCalendar = Показать Календарь
+lang_javascript_menu_ShowMailboxes = Показать Папки
+lang_javascript_menu_ShowContacts = Показать Контакты
+lang_javascript_menu_HideCalendar = Скрыть Календарь
+lang_javascript_menu_HideMailboxes = Скрыть Папки
+lang_javascript_menu_HideContacts = Скрыть Контакты
+
+lang_javascript_openmail_waitalert = Пожалуйста, подождите пока страница загрузится до конца
+
+# Alerts
+lang_blue_pane_settings_leavemsgalert = Если выбрать \'Нет\' письма будут скачаны с сервера и сохранены локально.\nПри этом они будут удалены с удаленного сервера.\nВыбирайте \'Да\' если хотите чтобы письма остались на удаленном почтовом сервере.
+
+# Confirms
+lang_blue_pane_abook_delgroupconfirm = Вы уверены в том что хотите удалить группу \'' + email + '\' из Адресной книги?
+lang_blue_pane_abook_deluserconfirm = Вы действительно желаете удалить контакт \'' + email + '\' из Адресной книги?
+lang_blue_pane_folders_delfolderconfirm = Папка ' + FolderName +' содержит ' + FolderNum + ' письмо(писем). Удалить эту папку?
+lang_blue_pane_showmail_plain_deltrashconfirm = Вы действительно хотите удалить все письма из папки \'Корзина\' ?
+
+# WindowStatus
+lang_msg_totalmsgs_windowstatus = Папка $var['folder'] - Всего писем: $var['total']
+lang_blue_pane_abook_windowstatus = $var['status'] Просмотр Адресной книги
+lang_blue_pane_abook_new_windowstatus = Добавить нового пользователя в Адресную книгу
+lang_blue_pane_abook_view_windowstatus = Просмотр / Изменение контакта в Адресной книге.
+lang_blue_pane_ldap_windowstatus = Искать контакты в Службе каталогов LDAP
+lang_blue_pane_ldap_search_windowstatus = Просмотр результатов поиска в LDAP
+lang_blue_pane_searchmove_windowstatus = Перемещено $var['move'] писем в $var['newfolder']
+lang_blue_pane_searchresults_windowstatus = $var['status']
+
+# END OF /html/javascript/*
+
+# 5.0 /html/msg/*
+
+lang_msg_calentries_text = Записей в календаре - $var['count']
+lang_msg_caltoday_alt = Новая запись
+lang_msg_chpasswderror_text = Текущий пароль введен неправильно. Повторите ввод.
+lang_msg_chpasswdok_text = Пароль изменен . Завпомните свой новый пароль.
+lang_msg_emptycal_text = <i><font color='gray'>Пусто</font></i>
+lang_msg_onetask_text = Задание - $var['taskcount']
+lang_msg_moretasks_text = Заданий - $var['taskcount']
+lang_msg_movedmsgs_text = Перемещено $var['nrmsg'] писем в $var['newfolder'] : $var['status']
+lang_msg_msgqueue_text = Письмо помещено в очередь
+lang_msg_nextmsg_text = Следующее письмо
+lang_msg_prevmsg_text = Предыдущее письмо
+lang_msg_notitle_text = Без заголовка
+lang_msg_popdlmsg_text = <font class='sw'>Скачано писем - $var['num']. Всего $var['count'] .</font>
+lang_msg_popmsgnum_text = <font class='sw'> Письмо $var['msgnum'] ($var['msize'] bytes) . &amp;nbsp;</font>
+lang_msg_poprelogin_text = Войдите повторно ($var['msize'] bytes).
+lang_msg_printcal_title_text = Напоминания на сегодня
+lang_msg_safedraft_text = Сохранить черновик
+lang_msg_searchnr_text = $var['nrrecords'] записей соответствуют вашему запросу
+lang_msg_sentmsg_text = Письмо успешно отправлено
+lang_msg_sentmsga_text = Письмо успешно отправлено | Письмо содержит прикрепленные файлы
+lang_msg_sortmsgs_text = Перемещено в $var['folder']:
+lang_msg_spamtrash_text = Спам перемещен в Корзину
+lang_msg_spell_nomatch_text = Нет соответствия в базе для слова $var['word']
+lang_msg_spell_suggested_text = Предполагаемое написание слова $var['word']
+lang_msg_updated_text = &amp;nbsp;- <font color=#ff0000>Изменено успешно</font>
+
+lang_msg_viewday_alt = Просмотр дня
+lang_msg_viewingday_text = Просмотр $week дня(дней)
+
+lang_msg_wap_abookempty_text = <option value=\"$email\">$email</option>\n
+lang_msg_wap_allmsgs_text = Показать все Письма
+lang_msg_wap_display_text = Показать новые письма
+lang_msg_wap_nomsg_text = Нет новых писем
+
+# END OF /html/msgs/*
+# END OF /html/
+# END OF FILE
+
+# New ones
+lang_Global_refresh = Обновить
+lang_abook_globalview_status = Просмотр Общего контакта в Адресной книге
+
+# Xp menubar
+lang_xp_menubar_question = Задать вопрос
+lang_xp_menubar_file = Файл
+lang_xp_menubar_edit = Правка
+lang_xp_menubar_tools = Инструменты
+lang_xp_menubar_message = Письмо
+lang_xp_menubar_preferences = Предпочтения
+lang_xp_menubar_help = Справка
+lang_xp_menubar_signout = Выход
+lang_xp_menubar_signout_alt = Выход из Почты
+
+lang_xp_menubar_newmessage = Новое письмо
+lang_xp_menubar_newcalendar = Новое напоминание
+lang_xp_menubar_newtask = Новая задача
+lang_xp_menubar_printmessage = Распечатать письмо
+
+lang_xp_menubar_copy = Копировать
+lang_xp_menubar_selectall = Выделить Все
+lang_xp_menubar_deselect = Снять выделение
+lang_xp_menubar_searchmessages = Поиск писем
+lang_xp_menubar_movetotrash = Переместить в Корзину
+lang_xp_menubar_refreshinbox = Обновить Входящие
+lang_xp_menubar_accountpreferences = Предпочтения
+lang_xp_menubar_layouttype = Стиль
+lang_xp_menubar_accountprofile = Профиль
+lang_xp_menubar_changepassword = Изменить пароль
+lang_xp_menubar_checkinbox = Проверить Входящие
+lang_xp_menubar_deletetrash = Очистить Корзину
+lang_xp_menubar_foldermanager = Менеджер Папок
+lang_xp_menubar_emailrules = Правила сортировки
+lang_xp_menubar_addressbook = Адресная книга
+lang_xp_menubar_findpeople = Искать людей
+lang_xp_menubar_multiaccounts = Внешняя почта
+lang_xp_menubar_reply = Ответить
+lang_xp_menubar_replyall = Ответ на отмеченные
+lang_xp_menubar_forwardmessage = Переслать письмо
+lang_xp_menubar_blocksender = Заблокировать
+lang_xp_menubar_flagmessage = Флаг
+lang_xp_menubar_unflagmessage = Убрать флажок
+lang_xp_menubar_helpindex = Оглавление
+lang_xp_menubar_mailhelp = Почта
+lang_xp_menubar_settingshelp = Настройки
+lang_xp_menubar_calendarhelp = Календарь
+lang_xp_menubar_searchaddressbook = Искать в Адресной книге
+
+#
+lang_xp_menubar_alt_writemessage = Написать письмо
+lang_xp_menubar_alt_sendreceive = Отправить/Принять
+lang_xp_menubar_alt_find = Поиск
+lang_xp_menubar_alt_returntomail = Возврат к Почте
+lang_xp_menubar_alt_overview = Обзор
+
+
+
+#Xp Calendar Menubar
+
+lang_xp_menubarcal_returntomail = Возврат к Почте
+lang_xp_menubarcal_overview = Обзор
+
+#Xp javascript messages
+lang_xp_jscript_alert_reply = Пожалуйста, откройте письмо для ответа
+lang_xp_jscript_alert_block = Пожалуйста, откройте письмо для блокировки
+lang_xp_jscript_alert_blockconfirm = Вы уверены что хотите блокировать письма от:
+lang_xp_jscript_alert_flag = Пожалуйста, выберите письмо для установки флажка
+lang_xp_jscript_alert_delete = Пожалуйста, откройте письмо для удаления
+lang_xp_jscript_alert_deletemsg = Удалить письмо?
+lang_xp_jscript_alert_print = Пожалуйста, откройте письмо для печати
+
+lang_xp_jscript_nextmsg_text = Следующее письмо
+lang_xp_jscript_prevmsg_text = Предыдущее письмо
+lang_xp_jscript_firstmsg_text = Первое письмо
+lang_xp_jscript_lastmsg_text = Крайнее письмо
+
+lang_login_mailserver = Почтовый сервер
+
+lang_login_simple = Простой интерфейс входа
+lang_login_simpletext = Чтобы использовать простой интерфейс при доступе к внешнему ящику <a href="index.php?func=ext">Щелкните здесь</a>
+
+lang_login_advanced = Продвинутый интерфейс входа
+lang_login_advancedtext = Чтобы указать дополнительные установки почты для учетной записи <a href="index.php?func=ext&amp;advanced=1">щелкните здесь</a>
+
+lang_login_xp_window1 = Вы уже вошли в Почту в другом окне.
+lang_login_xp_window2 = Чтобы завершить сессию в $pref['brandname'], щелкните 'Выход' в окне Почты.
+
+# New Ones
+lang_xp_compose_menu_savetodrafts = Сохранить Черновик
+lang_xp_compose_menu_addbcc = Добавить поле BCC
+
+lang_xp_readmail_opennewwindow = Открыть Письмо в Новом окне
+lang_xp_global_showhide = Скрыть/Показать письмо
+lang_xp_jscript_alert_printmsg = Пожалуйста, откройте письмо для Печати
+
+#/html/auth_spammer.html
+
+lang_auth_spammer_title = Обнаружен Спам
+lang_auth_spammer_ld = Письмо отвергнуто
+lang_auth_spammer_cd = С вашего IP адреса больше не разрешается посылать письма сегодня. Чтобы исключить возможность спама, ваше исходящее письмо заблокировано.
+lang_auth_spammer_contact = Обратитесь к администратору ($this->admin_email) за помощью.
+
+#/html/auth_permission.html
+lang_auth_permission_title = Доступ отклонен
+lang_auth_permission_ld = Ошибка доступа к $pref['brandname'] Каталогу Пользователей
+lang_auth_permission_cd = Смените разрешения $pref['brandname'] каталога для пользователя Вебсервера. Доступ отклонен во время записи пользовательского файла : $var['error']
+lang_auth_permission_contact = Для дополнительной информации по установке $pref['brandname'] обратитесь к <a href="http://atmail.nl/docs/">online документации</a>
+
+#/html/deditor.html
+lang_deditor_emotions = Вставить Смайлик:
+lang_deditor_emotions_title = Показать/Скрыть панель смайликов
+
+#html/settings.html
+lang_settings_refresh_header = Частота обновления Входящих
+lang_settings_refresh_desc = Выберите через сколько минут входящие папка Входящие будет обновлена. Вы будет оповещены звуком если появится новая почта.
+lang_settings_refresh_disabled = Отключить
+lang_settings_refresh_5mins = 5 Минут
+lang_settings_refresh_10mins = 10 Минут
+lang_settings_refresh_20mins = 20 Минут
+lang_settings_refresh_30mins = 30 Минут
+lang_settings_refresh_60mins = 1 Час
+lang_settings_refresh_1mins = 1 Минута
+
+lang_alert_import = Импортировано новых контактов - $var['count']
+
+lang_login_xp_window3 = Если новое всплывающее окно не открылось автоматически <a href="javascript:loadwin()">щелкните здесь</a>
+lang_login_xp_popupalert = Всплывающие окна заблокированы для вашего браузера.\nЧтобы попасть в ящик вам нужно перейти по ссылке внизу
+
+# Changed values
+lang_blue_pane_abook_addcontactbutton = Новый контакт
+lang_blue_pane_abook_addgrpbutton = Новая группа
+lang_blue_pane_abook_searchbutton = Поиск
+lang_blue_pane_abook_abooktype = Тип:
+
+# New import function
+lang_blue_pane_abook_importbutton = Импорт
+
+lang_abook_import_desc = &amp;nbsp; Импортируйте существующую записную книжку в вашу учетную запись
+lang_abook_import_step2 = Шаг 2: Выберите какие поля импортируемого файла совпадает с колонками записи адресной книги. Вы можете указать какие поля импортировать в адресную книгу $pref['brand_name']
+lang_abook_import_match = Имена соответствующих полей
+lang_abook_import_entries = Импортируемые записи
+lang_abook_import_step1 = Шаг 1: Выберите тип импортируемой адресной книги. Большинство почтовых клиентов могут экспортировать адресную книгу в CSV формате, позволяя вам импортировать данные в $pref['brandname']. Укажите тип CSV файла, информацию заголовка и расположение файла.
+lang_abook_import_import = Укажите опции импортирования
+lang_abook_import_type = Тип импорта
+lang_abook_import_importtype = CSV файл ( поля разделены запятыми )
+lang_abook_import_column = Первая строка CSV файла содержит заголовки колонок
+lang_abook_import_fileselect = Укажите файл для импорта
+lang_abook_import_submitfile = Импортировать
+lang_xp_sendmsg_addbutton = Добавить Получателей в Адресную книгу
+
+### SMS utility
+
+lang_xp_sms_tab1 = &amp;nbsp;My&amp;nbsp;SMS&amp;nbsp;Credit
+lang_xp_sms_tab2 = &amp;nbsp;SMS&amp;nbsp;Filter
+lang_xp_sms_tab3 = &amp;nbsp;SMS&amp;nbsp;Log
+lang_xp_sms_description = Purchase credits to send SMS messages via $pref['brandname'] - Send messages to other mobile phones or be alerted of specified email.
+lang_xp_sms_description2 = See <a href="javascript:ChangeTab('2')">SMS Filters</a> for more information. Learn how to use the SMS module by consulting the <a href="javascript:helpwin('sms.html')">online documentation</a>.
+lang_blue_pane_sms_description2 = Learn how to use the SMS module by consulting the <a href="javascript:help('sms.html')">online documentation</a>.
+
+lang_xp_sms_credits = Credits Remaining : $var['SMSCredit']
+lang_xp_sms_purchase_credits = Purchase new SMS credits
+lang_xp_sms_purchase_desc = Purchase additional messages in blocks to add to your SMS credits.
+lang_xp_sms_purchase_price = SMS Purchase Price
+lang_xp_sms_purchase_price_10 = $ 2 - 10 Messages (20c each)
+lang_xp_sms_purchase_price_20 = $ 3 - 20 Messages (15c each)
+lang_xp_sms_purchase_price_50 = $ 6 - 50 Messages  (12c each)
+lang_xp_sms_purchase_price_100 = $ 8 - 100 Messages  (8c each)
+lang_xp_sms_purchase_card_type = Card Type
+lang_xp_sms_purchase_visa = VISA
+lang_xp_sms_purchase_mastercard = Mastercard
+lang_xp_sms_purchase_amex = Amex
+lang_xp_sms_purchase_cardname = Cardholder Name
+lang_xp_sms_purchase_cardnumber = Card Number
+lang_xp_sms_purchase_card_expire = Expiry Date
+lang_xp_sms_purchase_card_expire_01 = 01
+lang_xp_sms_purchase_card_expire_02 = 02
+lang_xp_sms_purchase_card_expire_03 = 03
+lang_xp_sms_purchase_card_expire_04 = 04
+lang_xp_sms_purchase_card_expire_05 = 05
+lang_xp_sms_purchase_card_expire_06 = 06
+lang_xp_sms_purchase_card_expire_07 = 07
+lang_xp_sms_purchase_card_expire_08 = 08
+lang_xp_sms_purchase_card_expire_09 = 09
+lang_xp_sms_purchase_card_expire_10 = 10
+lang_xp_sms_purchase_card_expire_11 = 11
+lang_xp_sms_purchase_card_expire_12 = 12
+lang_xp_sms_purchase_card_expire_2003 = 2003
+lang_xp_sms_purchase_card_expire_2004 = 2004
+lang_xp_sms_purchase_card_expire_2005 = 2005
+lang_xp_sms_purchase_card_expire_2006 = 2006
+lang_xp_sms_filter = SMS Filter - Define filters to alert via SMS
+lang_xp_sms_filter_desc = Define email filters to alert you of email messages via SMS. Use the utility to specify which messages will be alerted via SMS.
+lang_xp_sms_filter_active = Active Email to SMS filters
+lang_xp_sms_filter_subject = Subject
+lang_xp_sms_filter_piority = Priority
+lang_xp_sms_filter_date_created = Date Created
+lang_xp_sms_filter_mobile_num = Mobile Number
+lang_xp_sms_filter_matches = Matches
+lang_xp_sms_filter_define = &nbsp;Define Email Filter - Specify a filter to send an SMS alert to a mobile phone
+lang_xp_sms_filter_high_priority = High Priority
+lang_xp_sms_filter_high_priority_desc = Send an alert if an email message has a high-priority set in the header
+lang_xp_sms_filter_email_subject = Email Subject
+lang_xp_sms_filter_email_subject_desc = Send an SMS alert if the email subject matches a specified keyword.
+lang_xp_sms_filter_email_equal = Equal
+lang_xp_sms_filter_email_islike = Is Like
+lang_xp_sms_filter_email_email_from = Email From
+lang_xp_sms_filter_email_email_from_desc = Send an SMS alert if the email sender matches the following keyword
+lang_xp_sms_filter_mobile = Mobile Phone
+lang_xp_sms_filter_mobile_desc = Specify the mobile phone number to send the alert. You must specify the full country code of the mobile phone and take away any 0's located in the area-code. See the documentation for a full explanation of the number format.
+lang_xp_sms_log_total = Total SMS Messages sent :
+lang_xp_sms_log_total_desc = Below is a list of SMS messages send via @Mail. You can see the Status of a message, determining if it was sent successfully.
+lang_xp_sms_log_date = Date
+lang_xp_sms_log_to = To
+lang_xp_sms_log_message = Message
+lang_xp_sms_log_status = Status
+
+lang_myfolders_sms = SMS Utilities
+
+### SMS Compose Screen
+
+lang_xp_sms_compose = Написать SMS сообщение
+lang_xp_sms_number = Номер
+lang_xp_sms_normal = Обычное SMS сообщение
+lang_xp_sms_flash = Flash SMS сообщение
+lang_xp_sms_new = Новое SMS
+lang_xp_sms_send_sms = Отправить SMS
+
+#SMS Delivery Status
+
+lang_xp_sms_delivery = Статус доставки SMS
+lang_xp_sms_high_priority = Высокий приоритет
+lang_xp_sms_normal_priority = Нормальный приоритет
+lang_xp_sms_low_priority = Низкий приоритет
+lang_xp_sms_status_ok = Сообщение успешно послано
+lang_xp_sms_status_fail = Сообщение не отправлено
+
+
+# No SMS Credit
+
+lang_xp_sms_nocredit = Sorry, you have no SMS credits available. Please purchase credits via the SMS Utilities screen.
+lang_xp_sms_lowcredit = You have less than 5 SMS credits available. Purchase more credits via the SMS Utilities screen.
+
+lang_xp_compose_menu_togglesrc = HTML Редактор
+
+#html/virusmessage.html
+lang_virus_warning = Message contains a virus ($var['VirusName']) and cannot be opened . Recommended you delete the email message from your mailbox and use caution when opening mail from $var['EmailFrom']
+
+#SMS status
+lang_msg_sms_ok = OK
+lang_msg_sms_fail = Сбой
+
+lang_Address_notes = Примечания
+lang_deditor_tahoma = Tahoma
+lang_deditor_di = Уменьшить отступ
+lang_deditor_ii = Увеличить отступ
+lang_deditor_a = Создать гиперссылку
+lang_deditor_editmode = Режим редактирования
+lang_deditor_ae = Навороченный редактор
+lang_deditor_s1 = Размер 1
+lang_deditor_s2 = Размер 2
+lang_deditor_s3 = Размер 3
+lang_deditor_s4 = Размер 4
+lang_deditor_s5 = Размер 5
+lang_deditor_s6 = Размер 6
+lang_deditor_s7 = Размер 7
+lang_deditor_style = Стиль
+lang_deditor_font_name = Шрифт
+lang_deditor_text = Текст
+lang_deditor_undo = Отмена
+lang_deditor_redo = Вернуть ввод
+lang_deditor_sscript = Верхний индекс
+lang_deditor_subscript = Нижний индекс
+lang_deditor_symbol = Символ
+lang_deditor_jleft = Выравнивание слева
+lang_deditor_jright = Выравнивание справа
+lang_deditor_jcenter = Выровнять центр
+lang_deditor_jfull = Выровнять ширину
+lang_deditor_numbering = Нумерация
+lang_deditor_image = Картинка
+lang_deditor_table = Таблица
+lang_deditor_absolute = Абсолютный
+lang_deditor_clean = Чистый
+lang_deditor_asset = Актив
+lang_deditor_line = Строка
+lang_deditor_pageproperties = Свойства страницы
+lang_deditor_pasteword = Вставить из Word'a
+lang_deditor_self = Здесь
+lang_deditor_blank = Новое
+lang_deditor_parent = Родительское
+lang_deditor_0 = 0
+lang_deditor_1 = 1
+lang_deditor_2 = 2
+lang_deditor_3 = 3
+lang_deditor_4 = 4
+lang_deditor_5 = 5
+lang_deditor_name = Название
+lang_deditor_insert = Вставить
+lang_deditor_update = Изменить
+lang_deditor_st = Зачеркнуть
+
+#
+
+lang_blue_pane_composehtml_createtable = Вставить таблицу
+lang_blue_pane_composehtml_edittable = Изменить таблицу
+lang_blue_pane_composehtml_editcell = Изменить ячейку
+lang_blue_pane_composehtml_rows = Строки
+lang_blue_pane_composehtml_columns = Колонки
+lang_blue_pane_composehtml_width = Ширина
+lang_blue_pane_composehtml_pixels = Пикселей
+lang_blue_pane_composehtml_percent = проценты
+lang_blue_pane_composehtml_height = высота
+lang_blue_pane_composehtml_backgroundcolor = Цвет фона
+lang_blue_pane_composehtml_backgroundimage = адрес фоновой картинки (URL)
+lang_blue_pane_composehtml_bordersize = Размер рамки
+lang_blue_pane_composehtml_aligmnent = Выравнивание
+lang_blue_pane_composehtml_left = Слева
+lang_blue_pane_composehtml_right = Справа
+lang_blue_pane_composehtml_center = Центр
+lang_blue_pane_composehtml_bordercolor = Цвет рамки
+lang_blue_pane_composehtml_cellpadding = Отступ ячеек
+lang_blue_pane_composehtml_cellspacing = Интервал ячеек
+lang_blue_pane_composehtml_cellbackgroundcolor = Цвет фона ячейки
+lang_blue_pane_composehtml_cellbackgroundimage  = адрес фоновой картинки ячейки (URL)
+lang_blue_pane_composehtml_cellwidth = Ширина ячейки
+lang_blue_pane_composehtml_cellheight = Высота ячейки
+lang_blue_pane_composehtml_valign = Вертикальное Выравнивание
+lang_blue_pane_composehtml_top = Верх
+lang_blue_pane_composehtml_middle = Центр
+lang_blue_pane_composehtml_bottom = Низ
+lang_blue_pane_composehtml_wraptext = Перенос текста
+lang_blue_pane_composehtml_insertrow = Вставить строку
+lang_blue_pane_composehtml_insertcol = Вставить колонку
+lang_blue_pane_composehtml_delete = Удалить
+lang_blue_pane_composehtml_span = Интервал
+lang_blue_pane_composehtml_symbol = Символ
+lang_blue_pane_composehtml_x = X
+lang_blue_pane_composehtml_pageproperties = Свойства страницы
+lang_blue_pane_composehtml_titles = Заголовок
+lang_blue_pane_composehtml_leftmargin = Левое поле
+lang_blue_pane_composehtml_rightmargin = Правое поле
+lang_blue_pane_composehtml_topmargin = Верхнее поле
+lang_blue_pane_composehtml_bottommargin = Нижнее поле
+lang_blue_pane_composehtml_default_font_name = Шрифт по умолчанию
+lang_blue_pane_composehtml_default_font_size = Размер шрифта по умолчанию
+lang_blue_pane_composehtml_default_font_color = Цвет шрифта по умолчанию
+lang_blue_pane_composehtml_backgroundimage
+
+lang_blue_pane_settings_diversion_short = Email Diversion
+
+lang_xp_menubar_newsms = New SMS
+lang_xp_statusbar_loading = Loading Inbox ...
+lang_logoff = Вы вышли из системы
+
+# html/help/sms.html
+
+lang_help_sms_title = SMS Help
+lang_help_sms_titlehead = SMSAlert Help Guide
+lang_help_sms_header = Information found here will assist you in using the SMSAlert feature. Select from the topic list below for more information.
+lang_help_sms_sendmsg = Sending SMS messages
+lang_help_sms_notif = Notification of emails via SMS
+lang_help_sms_purchase = Purchasing credits
+lang_help_sms_sendheader = Sending an SMS
+lang_help_sms_sendintro = Via your email account you can send SMS (short-message-service) text messages to mobile phones around the world.
+lang_help_sms_sendhow = How to send SMS via your email account:
+lang_help_sms_sendaccess = To access the service select the &quot;Utilities&quot; folder from your side mailbox bar then click on &quot;SMS Utilities&quot;.
+lang_help_sms_sendcompose = In the main frame there will now be an option to click on the &quot;Compose SMS message&quot; link. This will open a window where you can enter SMS details
+lang_help_sms_sendfields =  Fill in the required fields:
+lang_help_sms_sendphone = <b>From:</b> This field is to display <strong>your</strong> mobile phone number. If the field is empty please type in your phone number as follows:
+lang_help_sms_sendformat = [country code][area code minus starting 0's][remainder of number]
+lang_help_sms_sendexample1 = For example a US mobile phone number 0208 7044627 would become 1 208 7044627
+lang_help_sms_sendset = To set your phone number here permanently or to change your mobile phone number please see &quot;User profile&quot; in the Utilities folder, and specify a &quot;Cellular No.&quot;
+lang_help_sms_sendcountry = <b>Country:</b> Select the county of the recipient. For example if you are sending a message to someone in Sydney, please select country Australia.
+lang_help_sms_sendnumber = <b>Number:</b> Type in the mobile number of the recipient. For example an Australian mobile phone number 0414 731 307 would be entered as : 414731307. You do not need to enter the country code in this field.
+lang_help_sms_sendexample = Example entry:
+lang_help_sms_sendtype = Type your SMS message in the box. The counter in the top right hand side will show how many characters you have remaining.
+lang_help_sms_sendcomplete = Once the SMS has been completed and all fields have been entered, click &quot;Send&quot;. The message will then appear in the &quot;SMS Logs&quot; which you can view from the SMS Utilities page
+lang_help_sms_note = Notification of emails via SMS
+lang_help_sms_noteintro =   The SMS service will allow you to receive an SMS notification of new emails received to your account. Using the Filters utility, you can set the criteria of which emails emails you are SMS notified about.
+lang_help_sms_notehow = How to set up SMS filters:
+lang_help_sms_noteaccess = To access the service select the &quot;Utilities&quot; folder from your side mailbox bar then click &quot;SMS Utilities&quot; and &quot;SMS filters&quot;<br>
+lang_help_sms_notepriority = To be alerted of all emails tagged as 'high priority&quot; in the message headers, select the checkbox and save the filter
+lang_help_sms_notecriteria = Fill in the fields you would like to set. Note: You don't need to enter criteria for both fields.
+lang_help_sms_notesubject = Email subject:</b> Specify key words in the subject. &quot;Equal&quot; will notify you only of subject lines with the exact match of this keyword, while &quot;like&quot; will match all subject lines with this key word.
+lang_help_sms_noteexp = For example: if you set &quot;ABC newsletter&quot; as the email subject with &quot;Equal&quot; you will only receive notifications with &quot;ABC newsletter&quot; as the subject line.
+lang_help_sms_noteexample = If you set &quot;ABC newsletter&quot; as the email subject with &quot;Like&quot; you will receive  notifications with subject line such as &quot;Re:ABC newsletter&quot; or &quot;ABC newsletter update&quot; as the subject line
+lang_help_sms_notefrom = <b>Email from:</b> Specify sender of the email. &quot;Equal&quot; will notify you only of senders with the exact match of this keyword, while &quot;like&quot; will match all senders with this key word.
+lang_help_sms_noterover = For example: if you set  &quot;rover@hotmail.com&quot; as the email subject with &quot;Equal&quot; you will only receive notifications from rover@hotmail.com
+lang_help_sms_notemissrover = If you set &quot;Hotmail&quot; as the sender with &quot;Like&quot; you will receive notifications from all email address's with the word 'hotmail' in it (e.g jim@myhotmail.com.au , missrover@hotmail.com )
+lang_help_sms_notemobile = Mobile phone :</b> Enter the mobile phone number you would like to have the SMS notifications sent to. You will need to enter the phone number with the country code. For example a US mobile phone number 0208 7044627 would be entered as :1 208 7044627.
+lang_help_sms_notefilter = Example filter entry:
+lang_help_sms_notesave = Select &quot;Save Settings&quot;. This will add the filter in the above list. If you would like to remove the filter check the box then &quot;delete selected&quot;.
+lang_help_sms_buy = Purchasing credits
+lang_help_sms_buyintro = Before you can send SMS messages you need to purchase credits. You can purchase via your email account using a valid credit card.
+lang_help_sms_buyhow = How to purchase credits:
+lang_help_sms_buyfind = To access the service select the &quot;Utilities&quot; folder from your side mailbox bar then click on &quot;SMS Utilities&quot; and &quot;My SMS credit&quot;<br>
+lang_help_sms_buyfields = Fill in the required fields:
+lang_help_sms_buyprice = <b>Purchase price :</b> Here you can select the number of credits you would like to purchase. One credit is equal to one SMS message. The more SMS messages you purchase, the cheaper the SMS messages become.
+lang_help_sms_buycard = <b>Card Type:</b> Select the type of credit card you are using to purchase.
+lang_help_sms_buyname = Card holder name:</b> Enter the full name as appears on the credit card. If the credit card is not in your name you will need permission from the Card-Holder before entering details.
+lang_help_sms_buynumber = <b>Card Number:</b> Full credit card number
+lang_help_sms_buyexp = <b>Expiry date:</b> Month then year.
+lang_help_sms_buybuy = Once you click on &quot;purchase&quot; your order will be processed. If the card is unsuccessful you will receive a pop-up message. Otherwise the credits will be added to your total shown above.
+
+lang_xp_drag_and_drop = Перетащить и бросить в папку
+lang_imapfolders_adddesc = Здесь можно определить папки удаленного IMAP сервера для проверки. Вы можете включить/отключить просмотр папкиe. За дополнительной информации обратитесь к документации.
+lang_imapfolders_hidedesc = Ниже находится список активных папок вашей учетной записи. Вы можете скрыть выбранную папку кликнув по полю внизу.
+lang_imapfolders_allfolders = Все папки
+lang_imapfolders_visible = Видимые папки
+lang_imapfolders_show = Показать папки которые содержат названия:
+lang_imapfolders_add = Добавить папку
+lang_imapfolders_selectall = Выбрать все
+lang_imapfolders_deselect = Отменит выбор
+lang_imapfolders_hidefolders = Спрятать папку
+lang_imapfolders_header = Папки IMAP - Подпишитесь на папки
+
+lang_myfolders_imapfolders = Папки IMAP
+
+lang_showmail_mailloadalert = Пожалуйста, подождите пока закончится загрузка почты
+
+lang_xp_sms_filter_emailall = Отклонить все
+lang_xp_sms_filter_emailall_desc = Послать все письма на мой мобильный
+
+lang_calendar_newpost_notifysms = Уведомить Письмом/SMS получателей
+lang_calendar_newpost_notifyhead = Уведомить о событии по SMS на мобильный
+lang_calendar_newpost_notifyemail = Уведомить письмом
+lang_calendar_newpost_smsremind = Напомнить по SMS
+lang_calendar_newpost_minutes = Минут до
+lang_calendar_newpost_hours = Часов до
+lang_calendar_newpost_days = Дней до
+lang_calendar_newpost_weeks = Недель до
+lang_calendar_newpost_mobilecountry = Мобильная страна
+
+lang_blue_pane_abook_pgp = Открытый ключ PGP
+lang_msg_encrypt_msg = Зашифровать письмо
+lang_msg_decrypt_msg = Расшифровать письмо
+lang_xp_pgp_decrypt_button = Вперед
+lang_xp_pgp_decrypt_email = Введите PGP пароль, чтобы расшифровать письмо
+lang_xp_pgp_encrypt_email = Пожалуйста, введите ваш PGP пароль
+lang_blue_pane_settings_mailsecurity = Безопасность Почты
+lang_xp_pgp_encrypt_makekey = Создается PGP ключ. Подождите 1-3 минуты пока будет создаваться ключ.
+
+lang_pgp_settings_enable_encryption = Включить шифрование Почты
+lang_pgp_settings_encryption_desc = $pref['brandname'] поддерживает шифрование исходящих/входящих писем. Чтобы включить эту возможность нужно создать уникальный PGP ключ с безопасным паролем. Чтобы узнать больше о шифровании почты обратитесь к документации
+lang_pgp_settings_encryption_enable = Включить
+lang_pgp_settings_encryption_disable = Отключить
+lang_pgp_settings_encryption_publickey = Открытый ключ PGP
+lang_pgp_settings_encryption_publickey_desc = Ваш открытый ключ используется для шифрования писем
+lang_pgp_settings_encryption_key = Открытый ключ
+lang_pgp_settings_encryption_key_desc = Автоматически добавлять открытый ключ ко всем исходящим письмам
+lang_pgp_settings_encryption_sign = Подписывать письма
+lang_pgp_settings_encryption_sign_desc = Автоматически подписывать исходящие письма открытым ключом.
+lang_pgp_settings_encryption_level = Стойкость шифра
+lang_pgp_settings_encryption_level_512 = 512-Bit - Слабая защита. Быстрая шифровка/дешифровка писем, низкий уровень безопасности.
+lang_pgp_settings_encryption_level_1024 = 1024-Bit - Нормальная защита. Длина ключа по умолчанию
+lang_pgp_settings_encryption_level_4096 = 4096-Bit - Военный уровень секретности. Сильный уровень безопасности, медленное шифрование/дешифрование писем.
+lang_pgp_settings_encryption_pgp_password = PGP Пароль
+lang_pgp_settings_encryption_pgp_password_desc = Укажите пароль для ключа PGP. Очень рекомендуется делать пароль отличный от логина для большей безопасности.
+lang_pgp_settings_encryption_pgp_password_confirm = Введите пароль PGP еще раз
+
+    lang_pgp_compose_encrypt_message = Зашифровать
+lang_pgp_compose_sign_message = Подписать
+lang_pgp_compose_encrypt_sign_message = Зашифровать&nbsp;и&nbsp;подписать
+lang_pgp_compose_encrypt_attach_pgp = PGP ключ
+
+lang_blue_pane_settings_new_window = Новое всплывающее окно
+lang_blue_pane_settings_new_window_desc = Автоматически открывать письма в новом окне
+
+lang_simple_readmail_header = Чтение писем
+lang_simple_readmail_header_draft = Чтение черновиков писем
+
+lang_xp_compose_add_abook = Добавить адрес из адресной книги
+lang_global_next_msg = Следующее письмо
+lang_global_prev_msg = Предыдущее
+
+lang_Global_Inbox = Входящие
+lang_Global_Sent = Отправленые
+lang_Global_Drafts = Черновики
+lang_Global_Trash = Корзина
+lang_Global_Spam = Спам
+
+lang_xhtml_abook_headerdesc = Получите доступ к адресной книге через мобильник
+lang_xhtml_abook_title = Адресная книга
+lang_xhtml_abook_back = Назад
+lang_xhtml_abook_options = Опции:
+lang_xhtml_abook_new = Создать
+lang_xhtml_abook_deleteselected = Удалить помеченные:
+lang_xhtml_abook_emailoptions = Опции Почты:
+lang_xhtml_abook_addto = Добавить Кому:
+lang_xhtml_abook_addcc = Добавить "CC":
+lang_xhtml_abook_compose = написать
+lang_xhtml_abook_mainmenu = Главное меню
+
+lang_xhtml_error_title = Ошибка
+lang_xhtml_error_errorcard = Предупреждение об ошибке!
+lang_xhtml_error_back = назад
+lang_xhtml_error_anerroroccured = При попытке соединиться произошла ошибка
+lang_xhtml_error_messagefollows = Сообщение следует:
+lang_xhtml_error_pressbackandcorrect = Нажмите "Назад" и исправьте ошибку!
+lang_xhtml_error_loginagain = Или войдите по новой
+
+lang_xhtml_loginpop_loginpoptitle = Внешние учетные записи
+lang_xhtml_loginpop_logincardtitle = Войти в Почту!
+lang_xhtml_loginpop_enteraccountdetails = Войдите во внешнюю запись электронной почты по мобильному телефону. Введите детали учетной записи.
+lang_xhtml_loginpop_usernametitle = Имя пользователя:
+lang_xhtml_loginpop_username = Логин:
+lang_xhtml_loginpop_password = Пароль:
+lang_xhtml_loginpop_domain = Домен:
+lang_xhtml_loginpop_protocol = Протокол:
+lang_xhtml_loginpop_mailtype = Тип почты
+lang_xhtml_loginpop_developedby = Developed by
+
+lang_xhtml_readmsg_subject = Тема:
+lang_xhtml_readmsg_from = От:
+lang_xhtml_readmsg_date = Дата:
+lang_xhtml_readmsg_movemsg  = Переместить сообщение
+lang_xhtml_readmsg_mainmenu = Главное меню
+
+lang_xhtml_addbook_titleaddentry = Добавить запись
+lang_xhtml_addbook_userinformation = Информация пользователя:
+lang_xhtml_addbook_email = Адрес E-mail:
+lang_xhtml_addbook_name = Имя:
+lang_xhtml_addbook_addedinfo = Дополнительная информация:
+lang_xhtml_addbook_addedinfoenter = Ввод
+lang_xhtml_addbook_save = Сохранить
+
+lang_xhtml_error_back = Назад
+lang_xhtml_help_intro = Вы можете подключить к учетной записи почты с мобильника. $pref['brandname'] WAP включает 5 основных действий, а именно:
+lang_xhtml_help_showunreadhead = Показать непрочитанные:
+lang_xhtml_help_showunreadhelp = Эта функция открывает ваш почтовый ящик и показывает только непрочитанные письма. Полезна для быстрого просмотра самых последних сообщений
+lang_xhtml_help_showallhead = Показать Все:
+lang_xhtml_help_showallhelp = Получить все письма из Входящих. В настройках можно указать порядок отображения писем
+lang_xhtml_help_composehead = Написать письмо:
+lang_xhtml_help_composehelp = Написать письмо пользуясь клавишами телефона; отправить на любой почтовый адрес в интернет
+lang_xhtml_help_optionshead = Опции:
+lang_xhtml_help_optionshelp = Определите опции учетной записи. Включая формат сообщения, стиль и предпочтения интерфейса
+lang_xhtml_help_addresshead = Адресная книга:
+lang_xhtml_help_addresshelp = Сохраните информацию в Адресной книге для более позднего использования. Используйте адресную книгу для хранения адресов электронной почты, и быстрого добавления получателей к исходящим письмам
+
+lang_xhtml_sent_title = Посланное сообщение
+lang_xhtml_sent_msgsent = Письмо отправлено!
+lang_xhtml_sent_success = Письмо удачно отправлено
+
+lang_xhtml_showmsgs_titleinbox = Входящие
+lang_xhtml_showmsgs_writeemail = Написать письмо
+
+lang_xhtml_compose_composetitle = Написать
+lang_xhtml_compose_composeintro = Написать письмо используя клавиши телефона.
+lang_xhtml_compose_enter = Ввод:
+lang_xhtml_compose_messagetext = Текст письма:
+lang_xhtml_compose_messagesend = Отправить
+lang_xhtml_compose_selectabook = Выбрать контакт из адресной книги
+lang_xhtml_compose_msgtext = Текст письма:
+lang_msg_compose_specifyto = Укажите получателей в поле Кому
+
+
+lang_xhtml_login_titlelogin = Войти
+lang_xhtml_login_intro = Обратитесь к электронной почте, используя ваш мобильный телефон.
+lang_xhtml_login_loginexternal = Войти во внешний ящик
+lang_xhtml_login_orlogin = или войти в локальную
+lang_xhtml_login_account = учетную запись:
+
+lang_xhtml_settings_titlesettings = Настройки
+lang_xhtml_settings_cardtitle = Настройки
+lang_xhtml_settings_settingsintro = Настройте ваши WAP параметры настроек электронной почты - нужно выбрать раскладку, стиль и форматирование писем.
+lang_xhtml_settings_fullname = Полное имя:
+lang_xhtml_settings_replyaddress = Адрес ответа:
+lang_xhtml_settings_buttonsave = Сохранить
+
+
+lang_xhtml_signup_titlesignup = Зарегистрироваться
+lang_xhtml_signup_cardtitlesignup = Зарегистрироваться
+lang_xhtml_signup_signupintrotitle = Получить свой беспроводную учетную запись!
+lang_xhtml_signup_signupintrotext = Зарегистрируйся сегодня чтобы получать почту на свой мобильный телефон через WAP. Пользуйтесь почтой когда вы вне оффиса, в машине, при путешествии за границей или когда Вы вдали от персонального компьютера подключенного к интернет.
+lang_xhtml_signup_accountrego = Регистрация учетной записи:
+lang_xhtml_signup_email = Адрес:
+lang_xhtml_signup_password = Пароль:
+lang_xhtml_signup_again = Введите пароль еще раз:
+lang_xhtml_signup_domain = Домен:
+lang_xhtml_signup_personalinformation = Личная информация:
+lang_xhtml_signup_firstname = Имя:
+lang_xhtml_signup_exstingemailaccount = Существующая учетная запись:
+
+lang_xhtml_mainmenu_titlemain = Главное меню
+lang_xhtml_mainmenu_readnewemail = Читать новые письма
+lang_xhtml_mainmenu_readallemail = Читать все письма
+lang_xhtml_mainmenu_writeemail = Написать письмо
+lang_xhtml_mainmenu_addressbook = Адресная книга
+lang_xhtml_mainmenu_settings = Настройки
+lang_xhtml_mainmenu_help = Справка
+
+lang_xhtml_redirect_desc = Перенаправление для сообщений
+
+lang_xhtml_readmsg_next = Дальше
+lang_xhtml_readmsg_prev = Назад
+lang_xhtml_readmsg_last = Крайний
+lang_xhtml_readmsg_first = Первый
+
+lang_myfolders_messagetemplate = Шаблоны писем
+lang_myfolders_spamsettings = Спам
+lang_blue_pane_heading_templates = Шаблоны писем - Создайте шаблоны для исходящих писем
+
+lang_auth_maxaccounts_error = Достигнут максимум учетных записей
+lang_auth_maxaccounts_msg = Максимальное количество учетных записей создано с в вашего IP адреса. Создавать учетные записи с этого адреса запрещено.
+
+lang_blue_pane_ldap_alert = Пожалуйтста, определить условия поиска
+
+lang_blue_pane_heading_spamsettings_msg = Спам. - Настройте фильтрацию для учетной записи
+
+lang_javascript_validate_email = Пожалуйста, введите адрес для контакта.
+
+lang_blue_pane_abook_exportbutton = Экспорт
+lang_xp_menubar_newcontact = Новый контакт
+
+lang_xp_menubar_viewpersonal_contact = Персональные
+lang_xp_menubar_viewshared_contact = Виртуальные
+lang_xp_menubar_viewglobal_contact = Глобальные
+
+lang_blue_pane_abook_shared = Виртуальные контакты
+
+lang_blue_pane_abook_entry_readonly = Только чтение
+
+lang_javascript_validate_permissions = Только один пользователь или группа имеют права на запись\чтение записей адресной книги
+
+lang_Address_home = Адрес
+lang_Address_notesprofile = Заметка/профиль
+lang_Address_permissions = Права доступа
+
+lang_Address_description = Создайте нового пользователя вашей адресной книги.
+lang_Address_middlename = Имя
+lang_Address_title = Заголовок
+lang_Address_submitbutton = Отправить
+lang_Address_setdefaultbutton = По умолчанию
+lang_Address_applybutton = Принять
+lang_Address_stateprovince = Штат / Регион
+lang_Address_postalzipcode = Индекс
+lang_Address_webpage = Web страница
+
+lang_Address_jobtitle = Место работы
+lang_Address_department = Департамент
+lang_Address_office = Офис
+lang_Address_workmobile = Мобильный
+
+lang_Address_optiondescription = Укажите добавочные данные для пользователей адресной книги, укажите почтовый PGP ключ.
+
+lang_Address_groupmembership = Члены группы
+lang_Address_extrainformation = Заметки / Важная информация
+lang_Address_pgpencryptionkey = PGP шифровальный ключ
+
+lang_Address_userselection = Выберите адресатов для добавления в поля Куда, Копия и Скрытая копия.
+lang_Address_userpermission = Выберите пользователей имеющих права на чтение\запись данных адресной книги.
+lang_Address_grouppermission = Выберите пользователей имеющих права на чтение\запись данных групповой адресной книги.
+
+lang_Address_selectgroupsusers = Выбрать Группы и Пользователей
+lang_Address_readwriteaccess = Права на Запись / Чтение
+lang_Address_readonlyaccess = Права только на чтение
+lang_Address_removebutton = Удалить
+
+lang_Address_optiondescpicture = Выберите изображение для пользователя адресной книги.
+
+
+lang_composebook_messagerecipients = Получатели сообщения
+lang_composebook_find = Искать
+
+lang_spamsettings_allowrecipient = Разрешенные Получатели
+lang_spamsettings_allowsenders = Разрешенные Отправители
+lang_spamsettings_denysenders = Запрещенные Отправители (BlackList)
+lang_spamsettings_viruscanning = Сканирование на вирусы
+lang_spamsettings_selectoptionscanviruses = Выбрать автоматическое сканирование на вирусы входящих писем.
+lang_spamsettings_spamtreatment = Спам Фильтр
+lang_spamsettings_selectspammethod = Выберите метод
+lang_spamsettings_methodmark = Пометить как SPAM (по умолчанию)
+lang_spamsettings_methodtrash = Переместить в папку для спама
+lang_spamsettings_methodbounce = Не принимать сообщение
+lang_spamsettings_trusteduserstitle = Разрешенные Пользователи
+lang_spamsettings_trustedusers =
+lang_spamsettings_expression = Выражение / Message String
+lang_spamsettings_expressionemail = Адрес Email
+lang_spamsettings_ruletype = Тип правил
+lang_spamsettings_deny = Запретить
+lang_spamsettings_allow = Позволить
+lang_spamsettings_score = Результат
+lang_spamsettings_passthrough_header = Pass-through code
+lang_spamsettings_passthrough_desc = Optionally, specify a pass-through code for the email-subject line. If a message matches the specified string, the users email-address will be automatically trusted to send you messages.
+
+
+lang_mailtemplate_description = Используя эту панель вы можете создать шаблон для исходящих сообщений.
+
+lang_mailtemplate_nametitle = Название шаблона
+lang_mailtemplate_createnew = Создать новый шаблон
+lang_mailtemplate_choosename = Выберите название шаблона.
+
+lang_newfoldermodal_foldernamealert = Вводите только буквы, цифры, пробел и \".-_[]()\" в поле \"НазваниеПапки\".
+
+lang_newfoldermodal_foldernamelimitalert = Укажите название Папки
+
+lang_newfoldermodal_placefolder = Выберите место для папки:
+
+lang_templatestep2_selectstyledesciption = Выберите стиль шаблона.
+
+lang_templatestep2_selectstyle = Выберите стиль шаблона
+lang_templatestep2_defaulttemplate = Шаблон по умолчанию
+lang_templatestep2_hightechtemplate = High-Tech шаблон
+lang_templatestep2_retrotemplate = Retro шаблон
+lang_templatestep2_simpletemplate = Simple шаблон
+lang_templatestep2_nextstep = Следующий шаг
+
+lang_templatestep3_specifyparagraph = Вы можете определить личную фотографию, логотип компании и подпись для шаблона. Выберите изображения на своем компьютери и нажмите кнопку 'Дальше' для загрузки на сервер. Для корректного форматирования изображений проверьти их длину-ширину.
+
+lang_templatestep3_imagepicturetitle = Фотография
+lang_templatestep3_photodescription = Фотография для отображения в исходящих письмах
+lang_templatestep3_photopixels = Рекомендуем: 200 pixels ширины / 100 pixels высоты
+lang_templatestep3_companylogotitle = Логотип компании
+lang_templatestep3_companylogoimage = Изображение логотипа компании
+lang_templatestep3_imagesignaturetitle = Изображение подписи
+lang_templatestep3_imagesignaturedescription = Выбрать изображение подписи для использования в исходящих письмах
+lang_templatestep3_tablebordertitle = Цвет границы таблиц в исходящих письмах
+lang_templatestep3_selectcolortitle = Выбрать цвет
+
+lang_templatestep4_optionaldetails = Укажите контактную информацию
+lang_templatestep4_websiteurl = ВебСайт URL
+lang_templatestep4_specifyurl = Укажите URL вашего сайта для показа в верхней части письма
+lang_templatestep4_jobtitle = Optionally your Job-title can be appended to the message template
+lang_templatestep4_workslogan = Work Slogan
+lang_templatestep4_specifyslogan = An optional slogan to appear under your name
+lang_templatestep4_worktelephone = Work Telephone Number
+lang_templatestep4_specifyworktelephone = Specify your work telephone number
+lang_templatestep4_faxnumber = Fax Number
+lang_templatestep4_specifyfaxnumber = Specify your fax number
+lang_templatestep4_homephone = Home Number
+lang_templatestep4_specifymobile = Specify the number of your mobile-phone
+lang_templatestep4_specifyhomephone = Specify the contact number of your home
+lang_templatestep4_zip = Zip
+lang_templatestep4_updateprofile = Update Profile
+lang_templatestep4_loadcontactdata = Load the contact data into your $pref['brandname'] user-profile
+
+lang_templatestep5_generatedtemplate = Below is the generated template based on your specified information. The template has been successfully created, when new messages are composed the template will be automatically used. To alter the HTML source of the template visit the <a href="util.php?func=settings">settings-panel</a> and modify the template within the email-signature field.
+
+lang_blue_pane_abook_email = Click to email
+
+lang_blue_pane_ldap_basedn = BaseDN
+lang_blue_pane_ldap_basedn_desc = Enter a Search Root parameter
+lang_blue_pane_ldap_passworddesc = Optionally specify a password for the LDAP server
+lang_blue_pane_ldap_binddn_desc = Optionally specify a username for the LDAP server
+
+lang_blue_pane_import_windowstatus = Import addressbook
+
+
+
+lang_javascript_validate_emaildefault = Only one email address can be set as the default
+lang_javascript_validate_validemail = Please specify a valid email-address
+lang_javascript_validate_maxemail = Maximum of 5 email-addresses can be specified
+
+lang_blue_pane_abook_personal_desc = Личный
+
+lang_addressbook_titlerw = Address-book entry - Read/Write access
+lang_addressbook_titlero = Address-book entry - Read only access
+lang_addressbook_addresstype = Address Type
+lang_addressbook_group = Group
+lang_addressbook_summarybelow = Below is an addressbook summary for the selected user. To edit the record click the 'Edit' button on the top menubar
+
+lang_addgroup_groupemails = Group Emails
+lang_addgroup_groupdetails = Group Details
+lang_addgroup_addgroup = Add Group
+lang_addgroup_createanewgroup = Create a new email-group by selecting email-addresses on the left panel and adding users to the right pane. Optionally specify the group details and which users have permission to read/write the entry.
+lang_addgroup_email = Email
+lang_addgroup_lastname = LastName
+lang_addgroup_optionally = Optionally specify additional information on the group, including the address details, contact information and miscellaneous notes.
+
+lang_attachmentmodal_upload = Загрузить файл на сервер
+lang_attachmentmodal_return = Вернутся к письму
+
+lang_attachmentmodallist_click = Кликните Обзор для выбора файла
+lang_attachmentmodallist_attach = Затем кликните Upload для загрузки
+
+lang_composebook_windowclosed =
+
+lang_composesms_toolongaltert = Message is too long for SMS\nPlease shorten the message length
+lang_composesms_recipietaltert = Please specify a recipient for the SMS
+lang_composesms_countryaltert = Please specify the country to send the SMS message
+
+lang_blue_pane_folders_create = Create Mbox
+
+lang_imapfolders_imapfolders = Папки IMAP
+
+
+lang_ldap_searchpersonal = Поиск в персональной адресной книге
+
+
+lang_ldap_searchshared = Поиск в виртуальной адресной книге
+
+lang_middletoggle_nopanes = There is currently no pane items open, you open panes from the views menu.
+
+
+lang_addressbook_viewingentry = Посмотреть
+lang_addressbook_dateadded = Дата добавления
+
+lang_blue_pane_spellcheck_changeword = Изменить слово
+lang_blue_pane_spellcheck_ignoreword = Пропустить слово
+lang_blue_pane_spellcheck_addword = Добавить в Словарь
+
+lang_xp_menubar_view = Вид
+
+
+lang_templatestep4_optionaldetailsformessage =
+
+
+lang_xp_header_hideshowalt =  Убрать/Показать Папки
+
+
+lang_deditor_pastetext = Вставить Текст
+lang_deditor_pastehtml = Вставить HTML
+
+lang_javascript_validatefilters = Please enter an Expression to add.
+
+lang_xp_menubar_encoding = Кодировка
+
+lang_Address_type = Тип
+
+lang_blue_pane_folders_entermailboxname = Введите название Папки
+
+lang_javascript_validate_alpha_characters = Пожалуйста, вводите только буквы.
+lang_header_refresh = Обновить
+lang_header_refresh_mailbox = Обновить
+lang_header_toggle_view = Просмотр
+lang_header_close_mail_pane = Закрыть
+lang_header_close_contact_pane = Закрыть
+
+lang_help_description = Описание
+lang_help_troubleshooting = Возможные проблемы
+
+
+### Additional help information
+
+lang_help_acctconfig_title = Конфигурация аккаунта
+lang_help_acctconfig_head1 = Как мне изменить имя отправителя?
+lang_help_acctconfig_text1 =
+lang_help_acctconfig_text2 = Выберите "Настройки Почты" в главном меню
+lang_help_acctconfig_text3 = Внесите нужное вам имя
+lang_help_acctconfig_text4 = Сохраните
+
+lang_help_acctconfig_text6 = Как создать подпись?
+lang_help_acctconfig_text7 = Подпись будет автоматически добавлятся к каждому вашему письму.
+lang_help_acctconfig_text8 = Нажмите "Настройки Почты" в главном меню.
+lang_help_acctconfig_text9 = Введите вашу подпись поле..
+lang_help_acctconfig_text10 = Сохраните.
+
+
+lang_help_mailerrors_title = Ошибки Почты
+lang_help_mailerrors_head1 = Я получил сообщение -  Ошибка соединения с почтовым сервером - домен существует и принимает входящие соединения?
+lang_help_mailerrors_text1 = Вы указали некорректную информацию о сервере:
+lang_help_mailerrors_text2 = Перейдите во "Внешние аккаунты" на входной странице
+lang_help_mailerrors_text3 = Введите <b>полные данные о сервере</b> откуда вы хотите забирать почту. К примеру mail.yourdomain.com, pop3.yourdomain.com, mail.ispserver.com, и т.д. Убедитесь что точно знаете используемый почтовым сервером адрес - многие нестандартно называют свои почтовые сервера.
+lang_help_mailerrors_text4 = Введите логин и пароль
+lang_help_mailerrors_text5 = Нажмите "Login"
+lang_help_mailerrors_head2 =
+lang_help_mailerrors_text6 =
+lang_help_mailerrors_text7 =
+lang_help_mailerrors_text8 =
+lang_help_mailerrors_text9 =
+lang_help_mailerrors_text10 =
+lang_help_mailerrors_text11 =
+lang_help_mailerrors_text12 =
+lang_help_mailerrors_text13 =
+lang_help_mailerrors_text14 =
+lang_help_mailerrors_text16 =
+lang_help_mailerrors_text17 =
+lang_help_mailerrors_text18 =
+lang_help_mailerrors_text19 =
+lang_help_mailerrors_head3 =
+lang_help_mailerrors_text20 =
+
+
+lang_help_mailsend_title = Отправка почты
+lang_help_mailsend_head1 = Могу ли я отправить почту нескольким получателям?
+lang_help_mailsend_text1= Вы можете отправить почту не более чем 100 получателям одновременно.
+lang_help_mailsend_text2 = Для отправки письма больше чем одному получателю добавьте нудных адресатов в поля To:, Cc:, и\или Bcc:
+lang_help_mailsend_head2 = Какого размера сообщения я могу отправлять?
+lang_help_mailsend_text3 = Максимальный размер вашего сообщения не должен привышать $pref['max_msg_size'] MB.
+lang_help_mailsend_text4 =
+lang_help_mailsend_head3 =
+lang_help_mailsend_text5 =
+lang_help_mailsend_text6 =
+lang_help_mailsend_text7 =
+lang_help_mailsend_text8 =
+lang_help_mailsend_head4 =
+lang_help_mailsend_text9 =
+lang_help_mailsend_text10 =
+lang_help_mailsend_head5 =
+lang_help_mailsend_text11 =
+## EOF
+
+
+lang_help_mngmsg_title = Менеджер Папок
+lang_help_mngmsg_head1 = Сколько почты я могу хранить в @Mail Webmail?
+lang_help_mngmsg_text1 = Установленный лимит для вашего почтового ящика и сколько уже заняты Вы можете увидеть перейдя в раздел Утилиты - Менеджер Папок.
+lang_help_mngmsg_head2 = Почта находящаяся в Корзине прибавляется к общему обьему?
+lang_help_mngmsg_text2 = Да. Физически письма в Корзине продалжаю оставаться на сервере. Чтобы не хранить ненужную вам почту переодически очищайте корзину.
+lang_help_mngmsg_text3 = <i>Замечание:</i> Можно настроить опцию удаления писем при перемещении их в Корзину.
+lang_help_mngmsg_head3 = Как я узнаю что исчерпал дисковую квоту?
+lang_help_mngmsg_text4 = @Mail Webmail показывает эти данные на Стартовой странице. Когда ваша квота исчерпана на 90% - самое время удалить ненужные письма.
+lang_help_mngmsg_head4 = Как очистить Корзину?
+lang_help_mngmsg_text5 = Ддя окончательно удаления ваших писем из Корзины кликните на иконку "Очистить Корзину".
+lang_help_mngmsg_text6 = <i>Замечание:</i> Удаленные из корзины письма не подлежат восстановлению. <br>
+lang_help_mngmsg_head5 = Как создать новую Папку?
+lang_help_mngmsg_text8 = Для того чтобы упростить организацию вашего почтового ящика вы можете создавать различные дополнительные папки. Помните папки могут иметь названия составленные только из латинских букв (русские буквы использовать нельзя). Для создания папки:
+lang_help_mngmsg_text9 = Перейтите в "Создать Новую Папку" в "Менеджере Папок".
+lang_help_mngmsg_text10 = Введите название папки (только латинскими буквами).
+lang_help_mngmsg_text11 = Нажмите кнопку "Добавить Папку".
+lang_help_mngmsg_head6 = Как переименовать папку?
+lang_help_mngmsg_text12 = Сделайте правый клик на названии папки, которую нужно переименовать:
+lang_help_mngmsg_text13 = В появившемся поле напишите новое название;
+lang_help_mngmsg_text14 = Кликните для принятия измменений
+lang_help_mngmsg_head7 =
+lang_help_mngmsg_text15 =
+lang_help_mngmsg_text16 =
+lang_help_mngmsg_text17 =
+lang_help_mngmsg_text18 =
+lang_help_mngmsg_text19 =
+lang_help_mngmsg_text20 =
+lang_help_mngmsg_text21 =
+lang_help_mngmsg_head8 =
+lang_help_mngmsg_text22 =
+lang_help_mngmsg_head9 =
+lang_help_mngmsg_text23 =
+lang_help_mngmsg_text24 =
+lang_help_mngmsg_text25 =
+lang_help_mngmsg_text26 =
+lang_help_mngmsg_text27 =
+
+
+lang_help_rcvattach_title = Прием сообщений с прицепленными фалами
+lang_help_rcvattach_head1 = Как просмотреть прицепленные файлы?
+lang_help_rcvattach_text1 = Вы не сможете просмотреть прицепленные файлы пока не сохраните их на локальном диске.
+lang_help_rcvattach_text2 =
+lang_help_rcvattach_head2 =
+lang_help_rcvattach_text3 =
+lang_help_rcvattach_text4 =
+lang_help_rcvattach_head3 =
+lang_help_rcvattach_text5 =
+
+
+lang_help_recvmail_title = Получение почты
+lang_help_recvmail_head1 = Как блокировать получение почты от определенных отправителей?
+lang_help_recvmail_text1 = Для блокирования сделайте следующее:
+lang_help_recvmail_text2 = Перейдите в раздел Утилиты - Спам.
+lang_help_recvmail_text3 = Введите адрес который нужно заблокировать в окне Запрещенные Отправители (BlackList).
+lang_help_recvmail_text4 = Нажмите кнопку "Add".
+lang_help_recvmail_text5 =
+lang_help_recvmail_head2 = Какого максимального рамера сообщение я могу принять?
+lang_help_recvmail_text6 = Максимальный размер входящего сообщения: $pref['max_msg_size'] MB.
+lang_help_recvmail_text7 =
+
+
+lang_help_sndattach_title =
+lang_help_sndattach_head1 =
+lang_help_sndattach_text1 =
+lang_help_sndattach_text2 =
+lang_help_sndattach_text3 =
+lang_help_sndattach_text4 =
+lang_help_sndattach_text5 =
+lang_help_sndattach_text6 =
+
+lang_help_addfaq_title = Address Book FAQ
+lang_help_addfaq_head1 = How can I import my existing addressbook?
+lang_help_addfaq_text1 = To import an addressbook, do the following:
+lang_help_addfaq_text2 = Export the addressbook from another client (Outlook, Express) as a text CSV file
+lang_help_addfaq_text3 = Import the addressbook into @Mail by going to <b>Addressbook > Import</b>
+lang_help_addfaq_text4 = Define the fields for the addressbook
+lang_help_addfaq_text5 = How can I export my existing addressbook?
+lang_help_addfaq_text6 =To export an addressbook, just click on "Export" on the Addressbook pane. The addressbook will be extracted as a CSV file.
+lang_help_addfaq_head2 = How can I create a group address book/addressbook contacts?
+lang_help_addfaq_text7 = To create a new group contact, do the following:
+lang_help_addfaq_text8 = Click on the Addressbook icon in your WebMail window;
+lang_help_addfaq_text9 = Go to New Address Entry, then Group Address;
+lang_help_addfaq_text10= In the group addressbook, specify which users have read/write access.
+lang_help_addfaq_head3 = How do I send an encrypted message to a user in the group addressbook?
+lang_help_addfaq_text11 = To send an encrypted message to another addressbook user, his/her PGP key must be stored in the profile; the PGP key is the public key, stored in ASCII format.
+lang_help_addfaq_head4 = How do I create my own personal group?
+lang_help_addfaq_text12 = To create your own personal group, just click on the "New Group" button in the addressbook menu.
+lang_help_addfaq_head5 = What is the difference between the Personal, Shared and Global address books?
+lang_help_addfaq_text13 = Personal addressbook are only visible to the user who created it. A shared address book is an addressbook visible to a specific number of people, and can be edited by users chosen in that particular group. The Global address book is similar to all - contacts can be read without restrictions.
+
+
+lang_help_apop3faq_title = POP3 FAQ
+lang_help_apop3faq_head1= How do I add another POP3 account?
+lang_help_apop3faq_text1 = To create a new external POP3.IMAP account, do the following:
+lang_help_apop3faq_text2 = Go to <b>Utilities > Multi Accounts</b>
+lang_help_apop3faq_text3 = Specify your External account first, in the drop down box
+lang_help_apop3faq_text4 = Specify your hostname and username in the text boxes.
+lang_help_apop3faq_head2 = My POP3 account does not work.
+lang_help_apop3faq_text5 = Please check if your POP3/IMAP account details are correct. You can reference your desktop client settings for the correct username,domain and mail-server information. Consult your ISP for additional details on your mail-account
+
+lang_help_acctconfig_title = Account Configuration
+lang_help_acctconfig_head1 = How can I change my outgoing email's name?
+lang_help_acctconfig_text1 = Your 'Displayed Name" is the name that appears in every outgoing email message that the receiver will see as a sender. To change the "Displayed Name" you have to:
+lang_help_acctconfig_text2 =  Click the "Settings" from the main menu.
+lang_help_acctconfig_text3 = Enter you wanted name into the "Displayed Name" field.
+lang_help_acctconfig_text4 = Click Save Settings
+lang_help_acctconfig_head2 = How can I create a signature?
+lang_help_acctconfig_text5 = A signature is a message that is automatically added to the bottom of every email you send it. It can be a convenient way to put your phone number and address in the email.
+lang_help_acctconfig_text6 = Click the "Settings" from the main menu.
+lang_help_acctconfig_text7 = Enter your signature into the "Email Signature" field.
+lang_help_acctconfig_text8 = Click Save Settings.
+lang_help_acctconfig_head3 = How do I disable message popups?
+lang_help_acctconfig_text9 = Toggle Popup (Checkbox)
+lang_help_acctconfig_head4 = How Can I Open Messages in a New Window?
+lang_help_acctconfig_text10 = Toggle New Window Popup (Checkbox)
+
+
+lang_help_calshared_title = Using the Shared Calendar
+lang_help_calshared_text1 = The Shared Calendar allows you to assign specific users tasks, and set up appointments which are visible to a particular group you define. Information here will guide you in using the Shared Calendar.
+lang_help_calshared_text2 = Creating a Shared Appointment
+lang_help_calshared_text3 = To create a shared appointment in the WebMail Calendar, just do the following:
+lang_help_calshared_text4 = In your Calendar pane, click on a date in which you want to set the appointment in.
+lang_help_calshared_text5 = You will see a pop-up window. Here, you can set the time, date and category of your appointment. On this window, click on the option called "Group Appointment".
+lang_help_calshared_text6 = Click on the tab called "Participants". Here, you can explicitly define which users have read/write or read-only access to the appointment.
+lang_help_calshared_text7 = Click on "Add Entry"
+
+
+lang_help_hints_title = Совет дня
+lang_help_hints_text1 = Совет дня
+lang_help_hints_text2 = Вы можете изменять размер колонок Вашей почтовой панели. Это специально сделано для просмотра почты на мониторах с малениким разрешением.
+lang_help_hints_text3 = Вы можете использовать контестное меню, нажав правую кнопку мыши при чтении и работе с письмами. Это самый короткий путь, если нужно Ответить, Переслать или Открыть письмо..
+lang_help_hints_text4 = Вы можете получить быстрый доступ к ваши вложенным папкам используя правый клик мыши на названии корневой папки.
+lang_help_hints_text5 = Знаете ли вы что можете зашифровать ваше сообщение?? Используйте <b>Утилиты > Настройки почты > Безопасность почты</b>.
+lang_help_hints_text6 = Ваш WebMail аккаунт может быть легко синхронизирован с Outlook.
+lang_help_hints_text7 = Вы можете легко настроить ваш персональный СПАМ фильтр. Сделайте вашу защиту от СПАМа еще эффективней.
+lang_help_hints_text8 = Не можете запомнить всех адресатов для вашей почты? Вы легко можете добавить нового получателя используя кнопку <b>Добавить получателя</b>.
+lang_help_hints_text9 = Хотите отправлять письма в HTML формате? Вы можете воспользоваться встроенным редактором HTML в Вашем окне создания письма.
+lang_help_hints_text10 = В вашем Календаре вы можете настроить различные полезные опции Напоминаний.
+lang_help_hints_text11 = Ищите адресата на других LDAP серверах? Нет проблем - используйте Поиск по LDAP северам.
+lang_help_hints_text12 = Вы можете забирать почту с других POP3/IMAP аккаунтов, используя WebMail. Сделайте соответсвующие настройки: <b>Утилиты > Внешняя почта</b>.
+lang_help_hints_text13 = Знаете ли вы что можно использовать click and drag для перемещения писем из одной папки в другую?.
+lang_help_hints_text14 = Вы можете настроить полезную функцию - Всплывающиее Окно при получении нового письма.
+lang_help_hints_text15 = Затруднительно будет пользоваться интерфейсом WebMail, если ваш браузер настроен на кэширование изображение и HTML. Настройте ваш браузер: Сервис -> Свойства Обозревателя -> Временные файлы Интернет - Параметры -> = "Автоматически".
+
+
+
+lang_help_import_title = Import Addressbook Help Guide
+lang_help_import_text1 = Information found here will assist you in importing an existing address book into your WebMail account.
+lang_help_import_text2 = Selecting Import options
+lang_help_import_text3 = Selecting Import options
+lang_help_import_text4 = Selecting corresponding fields
+lang_help_import_text5 = To import an address book you will need the date to be in CSV file format. CSV stands for Comma Separated Values, and would look similar to:
+lang_help_import_text6 = First Name,Last Name,Name,E-mail Address,Home Street,Home City,....
+lang_help_import_text7 = If your importing your address book from another email client such as Outlook, you can export your address data to CSV within this program.
+lang_help_import_text8 = For example if you would like to import an address book from Outlook Express, you would take the following steps.
+lang_help_import_text9 = 1: In Outlook, visit File --&gt; Export --&gt; Address Book.
+lang_help_import_text10 = 2: You will then have the option to select what sort of format you would like the export to convert to.
+lang_help_import_text11 = Select &quot;Text File (Comma Separated Values)&quot;
+lang_help_import_text12 = 3: You will then have the option to store the CSV file somewhere on your computer. Select the browser button to find a suitable place and name the file.
+lang_help_import_text13 = 4: You can now select which data from your address book you would like to import into your WebMail. Click &quot;Finish&quot; when your done.
+lang_help_import_text14 = 5: Your address book CSV should now be successfully completed. Now return to the WebMail interface.
+lang_help_import_text15 = Visit the Address Book function and select the below button &quot;Import&quot;. Fill in the necessary information.
+lang_help_import_text16 = First row contains CSV column description: </strong>Most CSV files, including files created via Outlook, contain the column descriptions. If your not sure, you can check if your CSV contains the headings by opening the file in Notepad.
+lang_help_import_text17 = Click on the &quot;browse&quot; button from the Address Import book and select the CSV file you created. Then click &quot;Import File&quot; and your almost there!
+lang_help_import_text18 = Selecting corresponding fields</strong></font>&nbsp;[<A HREF="#top">top</A>]<br><br> Here you can select which fields from your CSV match with the WebMail address book fields.
+lang_help_import_text19 = WebMail will try to find the best match, however if its not correct you can change it via each fields drop down menu.
+lang_help_import_text20 = If there is a field with &quot;Select&quot; it means that WebMail was unable to find data for this field. This may be because it was not included in your CSV. It won't affect the export or cause any problems, as long as the EMail address field is correctly linked up.
+lang_help_import_text21 = Once your done, click &quot;Export&quot;.
+lang_help_import_text22 = If successful you will be notified of the number of new contacts, then be directed to your newly updated Address book.
+
+
+lang_help_ldapfaq_title = LDAP FAQ
+lang_help_ldapfaq_head1 = How do I query an LDAP server?
+lang_help_ldapfaq_text1 = To query an LDAP server, do the following:
+lang_help_ldapfaq_text2 = Go to Search > Addressbook
+lang_help_ldapfaq_text3 = In the drop-drown box labeled "Search Type", select "LDAP Server"
+lang_help_ldapfaq_text4 = Specify your LDAP server details below
+lang_help_ldapfaq_text5 = Fill in the search fields, then click on "Query Database"
+lang_help_ldapfaq_text6 = How do I specify an external LDAP server?
+lang_help_ldapfaq_text7 = To specify an external LDAP server, fill in the text field in your query window called "LDAP server". Fill in the search fields as you would do with a normal query, then click on "Query Database"
+
+
+lang_help_smsfaq_title = SMS FAQ
+lang_help_smsfaq_head1 = Why can't I send SMS messages via @Mail?
+lang_help_smsfaq_text1 = Please remember that SMS messages via @Mail are not free - in order to be able to receive/send messages, you will need to purchase SMS blocks from your service provider/administrator.
+lang_help_smsfaq_head2 = Messages do no reach the intended recipient.
+lang_help_smsfaq_text2 = Should this happen, please check the following:
+lang_help_smsfaq_text3 = You have enough SMS credits for your account
+lang_help_smsfaq_text4 = The details for the recipient are correct
+lang_help_smsfaq_text5 = Should these be correct, please note that at times, the SMS gateway can experiences technical difficulties. For further information please contact the system administrator.
+
+
+
+lang_help_spellfaq_title =
+lang_help_spellfaq_head1 =
+lang_help_spellfaq_text1 =
+lang_help_spellfaq_head2=
+lang_help_spellfaq_text2 =
+lang_help_spellfaq_head3 =
+lang_help_spellfaq_text3 =
+
+
+
+lang_help_sync_title = Утилита Синхронизации с Outlook
+lang_help_sync_head1 = Что такое утилита синхронизации $pref['brandname']?
+lang_help_sync_text1 = Утилита позволяет синхронизировать данные адресной книги, календаря вашего аккаунта с Outlook.
+lang_help_sync_head2 = Как воспользоваться утилитой?
+lang_help_sync_text2 = Сделайте следующие шаги:
+lang_help_sync_text3 = Сначала загрузите инсталятор:
+lang_help_sync_text4 = После загрузки запустите скачанный файл и установите на своем компьютере. После окончания инсталяции перезапустите ваш Outlook и новый плугин будет автоматически инсталирован.
+lang_help_sync_text7 = Далее укажите данные вашего аккаунта. Выберите <b>Tools > Options</b> - "WebMail Sync Configuration"
+lang_help_sync_text8 = Сохраните все изменения и закройте окно.
+lang_help_sync_head3 = Как синхронизировать мой аккаунт и Outlook?
+lang_help_sync_text9 = После установки утилиты вы увидите кнопку "WebMail Sync" на вашей панели инструментов:
+lang_help_sync_text10 = Нажмите на кнопку и синхронизация произойдет автоматически.
+
+
+lang_help_wapfaq_title = Wireless Email FAQ
+lang_help_wapfaq_head1 = How do I access @Mail using my Wireless device?
+lang_help_wapfaq_text1 = You can access your Wireless Interface using http://yourserver.com/xhtml.php for WAP-2 compatible mobile devices and XHTML compatible browsers and devices.
+lang_help_wapfaq_text2 = Login page does not work on my device or browser
+lang_help_wapfaq_text3 = Check that you have an xhtml compatible device
+lang_help_wapfaq_head2 = I cannot log into my account
+lang_help_wapfaq_text4 = You may need to review your Username / domain and Mail-Server fields
+
+lang_help_calfaq_title = Календарь FAQ
+lang_help_calfaq_head1 = Как сделать новую запись в Календаре?
+lang_help_calfaq_text1 = Для создания новой записи в календаре сделайте следующее:
+lang_help_calfaq_text2 = Кликните на дату в правой панели календаря для выбора даты, на которую нужно поставить задачу или напоминание.
+lang_help_calfaq_text3 = Кликните на нужное вам время в левой панели календаря.
+lang_help_calfaq_text4 = Появится всплывающее окно - укажите в нем описание задачи или напоминания.
+lang_help_calfaq_head2 = Как добавить новую задачу?
+lang_help_calfaq_text5 = Для добавления новой задачи нажмите "Добавить новую задачу" на нужной дате и времени и в всплывающем окне введите описание новой задачи.
+lang_help_calfaq_text6 = Как я могу изменить отображение Календаря?
+lang_help_calfaq_text7 = Используйте переключатель на панели Календаря.
+
+lang_help_search_title = Поиск документации
+lang_help_search_header = Результаты для :
+lang_help_search_text1 = Результат поиска. Более релевантные ссылки показаны первыми.
+lang_help_search_text2 = Используйте форму для поиска ключевых слов в документации @Mail.
+lang_help_search_text3 = Правила поиска
+
+lang_help_loginhelp_title = Справка по входу в систему
+lang_help_loginhelp_head1 = Помощь при входе в ваш аккаунт:
+lang_help_loginhelp_text1 = Для входа в ваш @Mail аккаунт или для доступа к внешним почтовым аккаунтам с использованием клиента @Mail, вам нужно указать Логин и Пароль, выбрать тип используемого пользовательского интерфейса и выбрать язык. Для доступа к внешним аккаутам вам также нужно указать название mail сервера.
+lang_help_loginhelp_text2  =<b>Логин</b>: Это ваш персональный идентификатор в почтовой системе. К примеру логин Ivan будет соответсвовать почтовому ящику Ivan@dropzone.ru
+lang_help_loginhelp_text3 = <b>Пароль</b>: Не используйте простых паролей для обеспечения безопасности вашего ящика.
+lang_help_loginhelp_text4 = <b>Сервер</b>: Укажите название POP3/IMAP сервера. Пример: pop.mail.ru
+lang_help_loginhelp_text5 = <b>Протокол</b>: Укажите протокол, который использует ваш внешний почтовый сервер.
+lang_help_loginhelp_text6 =
+lang_help_loginhelp_text7 =
+lang_help_loginhelp_text8 = <b>Интерфейс</b>: Выберите интефейс для вашей сессии на почтовом сервере $pref['brand_name']. При выборе руководствуйтесь версией вашего браузера и скоростью вашего подключения.
+lang_help_loginhelp_text9 = <b>Язык</b>: Выберите язык интерфейса.
+lang_help_loginhelp_text10 = Новый аккаунт
+lang_help_loginhelp_text11 = Если у вас нет аккаунта на нашем сервере кликните Зарегистрировать и заполните форму регистрации.
+lang_help_loginhelp_text12 =
+lang_help_loginhelp_text13 = Возможные проблемы - я не могу войти в мой аккаунт:
+lang_help_loginhelp_text14 = Проверьте корректность введенных вами логин и название mail сервера, если это внешний аккаунт.
+lang_help_loginhelp_text15 = Убедитесь вводите ли вы правильный пароль. Возможно вы забыли пароль - воспользуйтесь утилитой Восстановления Пароля.
+lang_help_loginhelp_text16 =
+
+
+
+
+
+
+lang_calendar_titlerw = Calendar Entry - Права на чтение\запись
+lang_calendar_titlero = Calendar Entry  - Только чтение
+
+lang_blue_pane_abook_deleteselected = Удалить выбранное
+lang_xp_jscript_alert_delcaltask = Вы уверены, что хотите удалить эти записи?
+
+lang_blue_pane_settings_mail_settings = Опции
+
+lang_blue_pane_folders_text2 =
+lang_blue_pane_folders_xp =
+
+
+lang_calendar_newpost_personalappointment = Персональные
+lang_calendar_newpost_groupappointment = Общие
+lang_calendar_newpost_category = Категория
+lang_calendar_newpost_delegate = Выберите пользователей, которые могут вносить записи в Календарь. Укажите такше какие пользователи имеют право на чтение\запись
+
+lang_calendar_readtask_personaltask = Личные
+lang_calendar_readtask_grouptask = Общие
+
+lang_msg_loginerror_mail_head = Ошибка при соединении с почтовым сервером
+lang_msg_loginerror_mail_body = Вы уверены что домен существует и принимает внешние соединения? Обратитесь к <a href='javascript:helpwin("loginhelp.html")'>Справке</a> для за подробной информацией
+
+lang_help_loginhelp_title = Вход
+
+lang_menu_haventgot = Вам нужен почтовый ящик? Нет проблем - <a href="index.php?func=signup">ЗАРЕГИСТРИРУЙТЕСЬ</a> для создания нового ящика - это займет несколько минут.
+lang_menu_newaccount = Новый аккаунт
+lang_menu_clickhereext = <a href="javascript:switchtype()">Нажмите здесь</a>, чтобы использовать @Mail для доступа к любому Вашему существующему POP3/IMAP аккаунту.
+lang_menu_clickherelocal = <a href="javascript:switchtype()">Нажмите здесь</a> для доступа к почтовому ящику нашего сервера.
+lang_menu_provide = Введите Ваш логин и пароль для доступа к своему почтовому ящику
+lang_menu_mailserver = Сервер:
+lang_menu_password = Пароль:
+lang_menu_interface = Интерфейс:
+lang_menu_language = Язык:
+
+lang_msg_loginservererror_mail_body = Ответ сервера: $var['loginstatus']
+lang_msg_attach_too_large = Прицепленный файл превышает максимально разрешенный размер
+lang_msg_loginservererror_auth_body = Неправильный пароль или сессия уже активна. Проверьте логин\пароль и попробуйте снова.
+
+lang_address_popup_emailcontact = Email Контакт
+lang_address_popup_editcontact = Редактировать Контакт
+lang_address_popup_deletecontact = Удалить Контакт
+lang_address_popup_viewhisotry = История
+
+lang_blue_pane_abook_new_sender = Добавить Отправителя в Адресную Книгу
+lang_Global_Today = Сегодня
+lang_javascript_validate_jscript_chars = Неправильное имя папки. Не разрешается использовать: <, >, [, ], ?, *, одинарные и двойные ковычки
+lang_javascript_alert_perm = Вы уверены, что хотите удалить выбранные письма?
+lang_blue_pane_startpage_synchead = Синхронизация Аккаунта
+lang_blue_pane_startpage_syncbody = Синхронизируйте вашу Адресную Книгу, Календарь и Планировщик с Outlook. Для дополнительной информации обратитесь к соответсвующему разделу Справки.
+lang_xp_menubar_markspam = Это СПАМ
+lang_xp_menubar_unmarkspam = Это не СПАМ
+
+lang_simple_compose_menu_addbcc = Добавить BCC
+lang_Global_sync = Синхронизация
+
+lang_spamsettings_title = Используйте СПАМ фильтр $pref['brandname'] для блокирования невостребованной вами почты. Вы может заблокировать нежелательных отправителей или фильтровать почту по заголовку, ключевым словам и т.д.
+lang_spamsettings_spamdetect_head = Уровень фильтрации спама
+lang_spamsettings_spamdetect_body = Укажите уровень фильтрации сообщений. Вы можете использовать 10 уровней фильрации.
+lang_global_extreme = Агрессивный
+lang_spamsettings_spamtag_head = Метка для СПАМа
+lang_spamsettings_spamtag_body = Укажите метку, которую фильтр будет добавлять в заголовок письма, определив письмо как СПАМ.
+lang_spamsettings_spamreport = Включать отчет
+lang_spamsettings_spamreport_body = Исли входящее сообщение будет помечено как СПАМ в тело сообщения будет включен отчет о причинах определения этого письма как СПАМ.
+lang_spamsettings_bayesian_head = Фильтр Bayesian : Авто Обучение
+lang_spamsettings_bayesian_body = Использование технологии Bayesian.
+lang_spamsettings_trusted = Список разрешенных отправителей. Письма от этих отправителей будут приниматься в обход фильтров DropZone.ru
+lang_spamsettings_blacklist = Список отправителей почта от которых считается спамом и не принимается.
+lang_spamsettings_whitelist = Список разрешенных получателей. Если в поле Кому, Копия, Скрытая Копия (To, CC, BCC) содержится адрес одного из получателей из этого списка, то это письмо принимается автоматически, без фильтрации.
+
+# Invalid newuser chars
+lang_auth_invalidchars_title = Доступ запрещен
+lang_auth_invalidchars_error = Логин $var['user'] содержит некорректные символы
+lang_auth_invalidchars_msg = Логин, который вы ввели содержит некорректные символы. Разрешены A-Z-0-9, . - и _. Нажмите <a href="javascript:history.back('-1')">Вернуться</a> для исправления.
+lang_auth_invalidchars_username = Выберите другой логин.
+
+lang_javascript_popup_blocked = Всплывающие окна запрещены в настройках вашего браузера. Для того чтобы использовать WebMail нужно разрешить Всплывающие Окна для нашего домена
+lang_login_xp_popup_error1 = Всплывающие Окна блокированы вашим браузером.<br>Для корректного использования WebMail разрешите Всплывающие Окна для нашего сайта.
+lang_login_xp_popup_error2 = Кликнете на появившемся предупреждении браузера и выберите 'Всегда разрешать Всплывающие Окна для этого URL'.
+lang_login_xp_popup_error3 = <b>Замечание:</b> Разрешенные Всплывающие Окна никак не влияют на безопасность.<br>Вы разрешаете Всплывающие Окна только для этого сайта.
+
+lang_blue_pane_settings_dateformatDMY = DD/MM/YY
+lang_help_mailsend_text11 = You will normally get a "Failed Delivery" message when you have entered an incorrect or invalid email address. You will get mail from "Mail Delivery Subsystem" or from "MAILER-DAEMON" with a subject similar to "failure notice". This indicates that the sending of your message could not be completed and so it was bounced back/returned to you. Theses messages are produced automatically and will usually include a brief reason for the failed delivery.
+lang_calendar_menubarcal_simple_calender = Calendar
+lang_blue_pane_settings_timeformat24 = 24 Hour
+lang_help_mailmonitor_title = Mail Monitor Utility
+lang_Calendar_closebutton = Close
+lang_help_mailmonitor_text7 = 3. When you receive a new email, the Mail Monitor Utility will automatically notify you via a pop-up on the lower-right corner of your screen. It contains the heading, date, and a summary of the contents of the interface.
+lang_javascript_validate_move_folder = Please select the destination folder to move the email-messages
+lang_help_xulhelp_text9 = To move messages, highlight the subject line of the message(s) you want to move, and click on the &quot;Move&quot; button in the top pane.
+lang_help_mailmonitor_text1 = The Mail-Monitor Utility is a small program that checks for new emails on your mailbox periodically, depending on the timespan that you explicitly specify. It runs silently in your system tray, and notifies you automatically, if you have new emails.
+lang_msg_chpasswddup_text = The new password must be different from the previous ten passwords. Try again.
+lang_blue_pane_settings_saved = Settings saved successfully
+lang_addgroup_grouptype_personal = Personal Group
+lang_help_xulhelp_text3 = To access the XUL interface of @Mail, select the option labeled &quot;Advanced (Mozilla 1.0+)&quot; from the login page of Webmail - This interface requires a more recent version of Firefox, version 1.0+ recommended. The interface is cross platform and will run under Windows, Linux and Mac OSX using the Firefox browser.
+lang_pgp_compose_encrypt_message = Encrypt Message
+lang_blue_pane_folders_text2 = Optionally specify message routing rules to divert specific emails to another folder automatically.
+lang_xp_menubar_interfacetips = Interface Tips
+lang_help_hints_head = Tip of the Day
+lang_help_mailerrors_text11 = Here the server information should be as below:
+lang_help_xulhelp_title3 = How do I use the XUL interface?
+lang_help_settings_autoreplymsgdesc2 = Using the Mail-settings tab you can optionally specify an auto-reply message for incoming emails. Alternatively, you can forward your mail to another account using the mail-forwarding utility.
+lang_xp_menubar_about = About
+lang_blue_pane_settings_autocompletedesc = Enable email auto-completion when typing addresses in the email compose window
+lang_blue_pane_settings_autocomplete = Address Autocomplete
+lang_addgroup_grouptype = Select Type
+lang_blue_pane_settings_encodingdesc = When sending outgoing emails specify the default encoding for the message content
+lang_blue_pane_settings_encoding = Specify default mail-encoding
+lang_help_mailmonitor_head2 = Where can I get the Mail Monitor Utility?
+lang_help_xulhelp_title2 = How do I enable the XUL interface?
+lang_help_mailmonitor_text4 = 1. Access the Mail Monitor properties screen. This can be done by right clicking on the Mail Monitor icon, and choosing &quot;Properties&quot;.
+lang_xp_exportwindow_heading = Exporting addressbook ...
+lang_blue_pane_settings_dateformatMDY = MM/DD/YY
+lang_help_mailmonitor_text6 = <p>Where: <p>&quot;http://yourdomain.com/&quot; is the location of your Webmail login page, <p>&quot;yourdomain.com&quot; is your account domain name (e.g., myisp.co.uk, isp.com), <p>&quot;john@yourdomain.com&quot; is your account-name
+lang_help_mailmonitor_head1 = What is the Mail Monitor Utility for?
+lang_help_xulhelp_text10 =Columns for viewing email-messages and the addressbook can be automatically resized. Click the icon in the right-hand corner to choose which columns to display on the page.
+lang_xhtml_signup_existingemailaccount = Existing email account:
+lang_blue_pane_startpage_mailmonitorbody = Download a desktop utility which automatically checks new messages on the server, and alerts you of new messages via a popup display.
+lang_help_xulhelp_title = What is the XUL Interface?
+lang_help_xulhelp_text2 = The XUL interface is created via XUL - a markup language similar to HTML and based on XML. XUL is used to define what buttons, scrollbars, text boxes, and other user-interface items will appear, in addition with CSS the design/color/theme is defined.
+lang_Calendar_invalid_date = Invalid date - End date is before the start date for the event.
+lang_templatestep4_optionaldetailsformessage = Optionally specify your contact details to display on the message template.
+lang_blue_pane_settings_dateformatYDM = YY/DD/MM
+lang_addgroup_alreadyexists = The selected group name already exists - Please specify a new group
+lang_blue_pane_settings_dateformatYMD = YY/MM/DD
+lang_help_xulhelp_text1 = The XUL WebMail interface allows you to access a &quot;clone&quot; of the "Advanced" IE interface in Mozilla browsers. This interface has all, if not most, features that the Advanced interface has - and it runs native to your browser, which adds increased speed and browser/OS compatibility.
+lang_help_hints_text16 = Download the <a href="javascript:top.helpwin(\'mailmonitor.html\')">Mail Monitor</a> desktop utility to automatically check your account for new messages. You will be notified of new messages via a popup display.
+lang_addgroup_grouptype_shared = Shared Group
+lang_spamsettings_trustedusers = Addressbook users are trusted email sources. Bypass the Spam filters for addressbook users.
+lang_blue_pane_startpage_mailmonitorhead = Mail Monitor Utility
+lang_help_sndattach_text6 = <i>NOTE:</i> When attaching files to your email message, they must be encoded and in doing so, will increase in size. The attachments sent with email have to be translated into a different format so that other email programs can read it. This type of transformation will add about 33% to the original size of the attachment. Therefore, due to the translation a 2MB attachment may turn into a 2.66MB email after encoding.
+lang_help_mailmonitor_text2 = The Mail Monitor Utility can be downloaded from:
+lang_Calendar_addbutton = Add Entry
+lang_help_mailmonitor_head3 = How do I setup the Mail Monitor?
+lang_help_xulhelp_text4 = When using the XUL interface, you have access to the following functionalities:
+lang_blue_pane_startpage_quota_desc = Below is the mailbox usage of your account. Use the folder-manager to remove unwanted messages and folders to reduce the mailbox quota
+lang_help_mailmonitor_text5 = 2. Fill in the fields in the properties screen, as depicted in the image below:
+lang_help_xulhelp_text6 = You can hit the 'delete' key as a keyboard shortcut while highlighting a message subject in the email pane to remove the message.
+lang_help_mailmonitor_text8 = Clicking on the link will bring you to the @Mail interface, directly to the email.
+lang_help_xul_title = XUL Interface
+lang_help_xulhelp_text5 = You can press shift-click in the email pane to highlight a number of messages at the same time. Ctrl+click works as well.
+lang_blue_pane_settings_timeformat12 = 12 Hour
+lang_help_xulhelp_text7 = Right-clicking on the messages or address-book entry will bring up a pop-up menu containing additional options.
+lang_spamsettings_filterlist_checkbox = Expression
+lang_global_page = Page
+lang_help_xulhelp_text8 = Pressing the up and down buttons will scroll through the messages in the currently selected mailbox.
+lang_help_mailmonitor_text3 = Download the file, and go through the installation instructions - the utility should then be automatically installed in your System Tray.
+lang_signup_emailprefsmsg = Select your WebMail interface and language preference for the interface. Depending on your web-browser capability/version you can select an interface to suite your requirements.
+lang_javascript_validate_move_nomsgs = Please select which email-messages to move
+lang_xp_sms_filter_priority = Priority
+lang_xp_exportwindow_body = If the download does not start automatically, check the browser security settings or <a href="abook.php?func=export&abookview=$var['abookview']"><u>click here</u></a> to manually download the addressbook CSV file
+lang_blue_pane_composehtml_readreceipt = Enable Read Receipt
+lang_Global_viewheaders = View Headers
+lang_login_type_simple = Basic (Any browser)
+lang_login_type_adv_xul = Advanced (Mozilla 1.0+)
+lang_blue_pane_reademail_abookadd_alert = Alert:
+lang_blue_pane_reademail_abookadd = The users email-address has been added to the addressbook
+lang_login_type_adv = Advanced (IE/FF)
+lang_spamsettings_acceptwhitelist_body = Optionally deny all email-messages unless the recipient address is contained in the <font onclick="ChangeTab('1');" style="cursor: hand;"><u>trusted-senders</u></font>. Use this to receive messages from only "trusted" users. Any other messages will be automatically rejected from the system.
+lang_blue_pane_reademail_displayimages_optiondisplay = Display Images in message
+lang_blue_pane_settings_displayimages_option3 = Block all
+lang_blue_pane_settings_displayimages_head = Block images in email messages
+lang_blue_pane_reademail_displayimages_optionadd = Always display images from this user
+lang_blue_pane_reademail_displayimages_head = $var['BlockImages'] images have been blocked.
+lang_blue_pane_settings_displayimages_body = Optionally select to block URL referenced images in messages. This is a common technique used by spammers to identify your email account.
+lang_blue_pane_settings_displayimages_option2 = Display for trusted users in Addressbook
+lang_login_xp_popup_ff_error = Click the top header in the browser and enable 'Allow popups for domain.com' .<br>Use the image below as a guide on how to enable popup windows.
+lang_xp_jscript_alert_selectmsgs = Please select emails to delete by clicking the checkbox on the message row
+lang_spamsettings_acceptwhitelist_head = Accept Whitelist Mail Only
+lang_blue_pane_settings_displayimages_option1 = Display for any message
+lang_login_xp_popup_reload = Once enabled you must click the Reload button on your browser or <a href="javascript:location.reload()"><b>click here</b></a> to refresh the page.
+lang_calendar_newpost_alldayevent = All Day Event
+lang_help_ajaxhelp_text7 = Use the top mail-headers to sort emails within the browser, without having to request the messages from the mail-server again.
+lang_Global_in = In
+lang_javascript_doubleclick = Double Click to Open
+lang_help_ajaxhelp_text1 = The AJAX interface allows you to access a version of the Simple Interface, created in Javascript, that asynchronously loads data from the server - which  adds increased speed and browser/OS compatibility. It has most of the features of an in-house client-side interface, thus, adding to the useability of your webmail interface.
+lang_help_ajaxhelp_text4 = When using the AJAX interface, you have access to the following functionalities to manage email messages:
+lang_javascript_cachestatus = Message Cache Status
+lang_help_ajaxhelp_text8 = Messages read within a folder are cached in the browser, so if requesting the same message again no reloading of the page is required. The first column of the email-row indicates if a message is cached within the browser.
+lang_help_ajaxhelp_title = What is the AJAX interface?
+lang_Global_more = More
+lang_Global_of = of
+lang_help_ajaxhelp_text3 = The AJAX interface is automatically enabled when you login with that interface specified. To use the interface IE5.5+ or Firefox/Mozilla 1.X is required, please note this interface is not supported on older browsers.
+lang_help_ajaxhelp_text13 = Columns for viewing email-messages and the addressbook can be automatically resized. Click the icon in the right-hand corner to choose which columns to display on the page.
+lang_blue_pane_abook_delmultiple = Are you sure you want to delete the ' + deltotal + ' selected addressbook items?
+lang_help_ajaxhelp_text5 = You can press shift-click in the email pane to highlight a number of messages at the same time. Ctrl+click works as well.
+lang_help_ajaxhelp_text6 = You can hit the 'delete' key as a keyboard shortcut while highlighting a message subject in the email pane to remove the message.
+lang_help_ajaxhelp_title2 = How do I enable the AJAXinterface?
+lang_help_ajaxhelp_text11 = Pressing the up and down buttons will scroll through the messages in the currently selected mailbox.
+lang_help_ajaxhelp_text9 = When replying to a message the compose panel automatically pops up, and does not require a reload of the page.
+lang_login_type_ajax = Simple (Ajax browser)
+lang_help_ajaxhelp_text10 = Right-clicking on the messages will bring up a pop-up menu containing additional options.
+lang_help_simpleajax_title = Simple Ajax Interface
+lang_help_ajaxhelp_text2 = One of the major advantages of the Simple Ajax interface is a message cache function within the browser, which avoids the use of reloading the page.
+lang_javascript_resumeediting = Resume Editing
+lang_help_ajaxhelp_title3 = How do I use the AJAX interface?
+lang_javascript_backto = Back to
+lang_help_ajaxhelp_text12 = To move messages, highlight the subject line of the message(s) you want to move, and drag it to your desired folder
+lang_Global_connecting = Connecting
+lang_javascript_moveerror_reason3 = The message no longer exists on the mail-server
+lang_javascript_moveerror_reason2 = The message has been moved from another application via POP3/IMAP. Please reload your mailbox folder for an updated listing
+lang_javascript_moveerror_head2 = The unique message identifier does not match the selected message for move/deletion. This error can occur if:
+lang_javascript_blocksender_added = The user has been added to your Spam blacklist
+lang_javascript_itemstomove = Items to move
+lang_javascript_moveerror_head1 = Message cannot be moved
+lang_javascript_moveerror_reason1 = You have refreshed the WebMail window after moving a message. The previous message cannot be moved twice
+lang_Global_exportemail = Export Email
+lang_global_scheduling = Scheduling
+lang_javascript_int_warining_head3 = .\nAre you sure you want to continue logging in?
+lang_global_participants = Participants
+lang_javascript_int_warining_head2 = You need
+lang_javascript_int_warining_head1 = Version
+lang_javascript_int_warining_head = Your Browser does not match the recommended requirements for this Interface.\nYou are using
+lang_global_busy = Busy
+lang_global_taskdetails = Task Details
+lang_global_available = Available
+lang_javascript_int_ff_10_later = Firefox Version 1.0 or later
+lang_javascript_int_ie_60_later = Internet Explorer Version 6 or later
+lang_javascript_int_ff_15_later = Firefox Version 1.5 or later
+lang_smime_settings_encryption_privatekey_desc = Your private key, used to encrypt and verify messages
+lang_smime_compose_encrypt_sign_message = Encrypt and Sign
+lang_auth_serverswitch_msg5 = Login to the new remote-mailserver with the existing password used in $pref['brandname']
+lang_smime_compose_sign_message = Sign Message
+lang_smime_settings_encryption_encrypt = Encrypt Messages by Default
+lang_smime_settings_encryption_level = Encryption Level
+lang_smime_settings_encryption_privatekey = S/MIME Private Key
+lang_smime_settings_encryption_publiccert = S/MIME Public Certificate
+lang_smime_settings_encryption_level_1024 = 1024-Bit - Normal security. The default key-length for S/MIME encryption
+lang_xp_menubar_markread = Mark as Read
+lang_auth_serverswitch_header = Security Error
+lang_smime_settings_encryption_smime_password_desc = Specify the passphrase for your S/MIME private key. Highly recommended the passphrase is different from your account login for added security.
+lang_xp_smime_encrypt_email = Please enter your S/MIME private key passphrase
+lang_auth_serverswitch_error = The account you are trying to login as has triggered a security warning.
+lang_smime_settings_encryption_sign = Sign Messages by Default
+lang_xp_smime_decrypt_email = Enter S/MIME private key passphrase to decrypt email
+lang_auth_serverswitch_msg4 = To resolve the access error
+lang_smime_settings_encryption_encrypt_desc = Automatically encrypt outgoing email messages with the recipient's public key (if you have their public key stored).
+lang_smime_settings_encryption_smime_password_confirm = Confirm the S/MIME passphrase
+lang_smime_settings_encryption_level_4096 = 4096-Bit - Military grade encryption. Strong level of security, slower to decrypt/encrypt messages.
+lang_auth_serverswitch_msg6 = Contact the administrator $this->admin_email to assosciate your account with the new mail-server address
+lang_smime_settings_encryption_level_512 = 512-Bit - Basic security. Fast to encrypt/decrypt messages, lower level of security.
+lang_smime_settings_encryption_sign_desc = Automatically sign outgoing messages with your private key.
+lang_auth_serverswitch_msg2 = Access is locked since the assosiated mail-server address is no longer used
+lang_xp_menubar_markunread = Mark as Unread
+lang_auth_serverswitch_msg3 = This is used as a security precaution to disallow access from unauthorized hostnames
+lang_smime_compose_encrypt_message = Encrypt Message
+lang_xp_smime_encrypt_makekey = Generating S/MIME keypair. Please wait 1-3 minutes for the encryption keypair and certificate to be generated.
+lang_auth_serverswitch_msg1 = The account in the database is assosiated with the mail-server <b>$var['origserver']</b> , while you are trying to access the remote account with the mail-server <b>$var['server']</b>
+lang_smime_settings_encryption_smime_password = S/MIME Private Key Passphrase
+lang_smime_settings_encryption_publiccert_desc = Your public certificate, used to decrypt and sign messages
+lang_javascript_validate_folders_minfolder = Please specify at least one character for the folder-name
+lang_javascript_month_jul = July
+lang_javascript_calendar_alldayevents = All Day Events
+lang_javascript_day_mon = Monday
+lang_javascript_month_sep = September
+lang_javascript_day_thu = Thursday
+lang_javascript_month_jan = January
+lang_javascript_month_nov = November
+lang_javascript_day_sun = Sunday
+lang_javascript_calendar_shared = Shared
+lang_javascript_day_tue = Tuesday
+lang_javascript_month_aug = August
+lang_javascript_calendar_alldayadd = Double Click to Add an All Day Appointment
+lang_javascript_month_may = May
+lang_javascript_calendar_dayadd = Click & Drag or Double Click to Add an Appointment
+lang_javascript_month_dec = December
+lang_Address_smimeencryptionkey = S/MIME Encryption Key
+lang_javascript_day_wed = Wednesday
+lang_javascript_month_jun = June
+lang_javascript_month_mar = March
+lang_javascript_day_fri = Friday
+lang_javascript_month_feb = February
+lang_javascript_month_apr = April
+lang_javascript_month_oct = October
+lang_javascript_day_sat = Saturday
+lang_blue_pane_composehtml_videomail3 = People receiving your Video will see the content embedded in the email, or via a link which is streamed via the server.
+lang_Global_VideoMail = Video Mail
+lang_blue_pane_composehtml_videomail2 = Video Messages are quick and easy to create, all you need is a webcam, and you can record Video-mail within the browser.
+lang_blue_pane_composehtml_videomail1 = Using a webcam and $pref['brandname'] to create Video-mail is a great way to communicate online.
+lang_help_video_text6 = If you cannot see any Video, use the settings panel below and Click the Webcam icon. From the drop down list select your Webcam that is installed on your computer.
+lang_help_video_head3 = How will recipients see my Video Mail?
+lang_help_video_text7 = The Video Mail message is embedded in the email as a link, and users can simply click the Video-mail link to view the message in a browser. The remote server streams the video playback via Flash, and supports all modern browsers.
+lang_help_video_text5 = Check your OS audio settings and increase the microphone sensitivity if recording audio is still choppy.
+lang_help_video_text4 = Right click on the Flash video-mail screen , select Settings, then click the microphone tab. Verify you have selected the microphone that is connected to your computer and increase the microphone sensitivity to insure audio is recorded.
+lang_help_video_text8 = Optionally if the message is sent to another account using the same Webmail interface, the video is automatically displayed in the email message
+lang_help_videomail = Help Guide for Recording Video messages
+lang_help_video_head2 = I cannot see any Video or hear Audio while recording?
+lang_help_video_text2 = A browser with Flash is required, with Video mail supporting IE, Firefox and Safari
+lang_help_video_head1 = How can I send a Video Mail message?
+lang_help_video_text3 = Broadband access is recommended in order to record video mail message across the network without loss of quality
+lang_help_video_text1 = You require a Webcam connected to your computer, with either an inbuilt microphone or an external headset to record audio.
+lang_blue_pane_account_newpersonality = Create new Personality
+lang_blue_pane_account_personality = Personality
+#lang_help_calendar_taskexample = 'Call Mr. Herrod' is an example of a Task, A task is independent of time, You can not set a Calendar Task on a specific date.
+lang_help_mngmsg_head9 = How can I delete a folder?
+lang_help_mailsend_head5 = Why do I get a "Failed Delivery" message?
+lang_help_recvmail_text5 = The address will then appear on the list of blocked addresses. You can also block any email with a particular subject, Steps are similar to the above ones.
+lang_help_mailerrors_text20 = It is possible that the database on your server is corrupted. If this happens, please contact your Web Administrator and ask that the database be repaired.
+lang_blue_pane_folders_autoreply = Optionally specify an autoreply message for your email account
+lang_help_mngmsg_text19 = Click the "Move" button.
+lang_help_mailsend_text7 = Clicking the message that you want to continue composing.
+lang_help_rcvattach_head3 = How can I do the virus scanning?
+lang_help_mailerrors_text7 = Open Outlook
+lang_help_rcvattach_head2 = What is a virus?
+lang_help_loginhelp_text7 = <i>With IMAP accounts</i>, your session is mirrored on the IMAP server. Any folders you create, or messages moved will be reflected on the remote IMAP server. All messages are stored on kept on the remote machine, allowing you to access the same data in another mail-client.
+lang_help_sndattach_text2 = First click the Attach button in the compose screen.
+lang_help_rcvattach_text3 = A virus is a program which replicates itself,  infecting your computer much like the biological organisms of the same name. Malicious attackers can use viruses for a number of nefarious purposes. The most common method of distributing viruses is through email.
+lang_help_mngmsg_text23 = In order to delete a folder you first have to delete all the messages inside (only empty folders can be deleted). To delete the folder you have to:
+lang_help_rcvattach_text4 = Viruses can spread on their own once activated, and their effects are often disruptive and destructive.
+lang_help_mngmsg_text27 = <i>NOTE:</i> You cannot delete the permanent folders in your account. The permanent folders are the Inbox, Sent, Drafts and Trash folders.
+lang_help_mailerrors_text8 = Click on <b>Tools > Accounts</b>
+lang_help_mailerrors_head2 = I receive the following error when accessing via Outlook - <i>Relaying not permitted.</i>
+lang_help_mailerrors_text17 = Now click on "Advanced" tab
+lang_help_sndattach_title = Sending Attachments
+lang_help_rcvattach_text2 = Since every attachment you receive is a specific type of file, for example documents are ".doc" and images can be ".jpg" files you may have problems viewing the file if your browser is not configured to support that type of file. One way to deal with this problem is to upgrade your browser.
+lang_help_mailsend_text10 = NOTE: When attaching files to your email message, they must be encoded and in doing so, will increase in size. The attachments sent with the email have to be translated into a different format so that other email programs can read it. This type of transformation will add about 33% to the original size of the attachment. Therefore, due to the translation a 2MB attachment may turn into a 2.66MB email after encoding.
+lang_help_sndattach_text1 = To attach files to your email messages, do the following:
+lang_help_loginhelp_text16 = For @Mail systems with multiple domains, check that the domain in the field is correct.
+lang_help_mailerrors_text6 = To solve this, please do the following:
+lang_help_mngmsg_text16 = Open the folder that contains the message to be transferred.
+lang_help_mngmsg_text17 = For the message you would like to transfer, tick the box to the left of the message. More than one message can be selected at a time.
+lang_help_sndattach_text3 = A new window will popup to add attachments; click the "Browse" button to select a file from your hard drive
+lang_help_loginhelp_text12 = Most fields are optional, although you will need to provide a new Email Name ( Username ), Password ( and confirmation ), a First Name, a Surname and a Password Question. Fill in the required fields and submit the form, and your first account login will commence immediately.
+lang_Calendar_BackToEmail = Back to Email
+lang_Calendar_Sleep = Remind in 30 minutes
+lang_help_mailsend_text9 = With an @Mail Mail account, you can receive message up to $pref['max_msg_size'] MB. And send message up to $pref['max_msg_size'] MB. Therefore, the total encoded size of the email message you are sending cannot exceed $pref['max_msg_size'] MB.
+lang_help_mailerrors_text12 = Incoming: pop.mydomain.com
+lang_help_spellfaq_text2 = Please note that the message will not be sent until you click on the "Sent" Button. Should you experience this issues however, please contact your Web Administrator.
+lang_help_mngmsg_text24 = Click the "Folder Manager" on the main menu.
+lang_help_mailerrors_head3 = When I login, I receive a similar error - "Can't open file: 'sometable.MYD'"
+lang_help_mngmsg_head7 = How do I transfer messages to one of my folders?
+lang_help_mngmsg_text22 = To view the contents of the folder, click on the folder that you would like to open.
+lang_help_mngmsg_head8 = How can I view the contents of the folder?
+lang_help_mngmsg_text26 = The folder will be deleted.
+lang_help_recvmail_text7 = <b>NOTE:</b> When attaching files to your email message, they must be encoded and in doing so, will increase in size. The attachments sent with email have to be translated into a different format so that other email programs can read it. This type of transformation will add about 33% to the original size of the attachment. Therefore, due to the translation a 2MB attachment may turn into a 2.66MB email after encoding.
+lang_blue_pane_folders_xp = To rename a folder or create a sub-folder, right click the desired folder on the menubar tree in the left frame.
+lang_help_mailsend_head4 = What is the largest message I can send?
+lang_help_mailerrors_text10 = Choose your account and then choose "Server" tab
+lang_help_mailsend_head3 = Can I save unfinished email as draft without sending it?
+lang_help_mngmsg_text20 = The message(s) will be transferred.
+lang_help_mailsend_text8 = Messages saved in your Drafts folder will remain until you delete them.
+lang_help_sndattach_text4 =  Click "OK" when you have selected the appropriate file attachment.
+lang_composebook_windowclosed = The original email window has been closed, cannot add recipients
+lang_help_mailerrors_text16 = Now check the box that says <i>"My server requires authentication".</i> And then click on "Settings" here verify that first radio button that says <i>"Use same settings as my incoming mail server"</i> is checked.
+lang_help_mngmsg_text21 = (<i>NOTE</i>:  Messages cannot be transferred into your Inbox and all External POP3 account folders. You do not need to transfer messages to your trash folder; you can just select the box to the left of the message and click the "Delete" button. )
+lang_help_spellfaq_head2= My message sends without notification
+lang_help_mailsend_text6 = Clicking the "Drafts" link on the left-hand folder navigation bar.
+lang_Calendar_OverDue = Overdue Appointments
+lang_help_spellfaq_head1 = How do I know my email is spell-checked?
+lang_help_mailsend_text5 = Yes. To save an unfinished email composition without sending it, click the "Save Message" button near the top of the Compose Message window. After saving it you can open the message anytime by:
+lang_help_mngmsg_text18 = Select the destination folder.
+lang_help_mailerrors_text9 = Click on "Mail" tab.
+lang_help_sndattach_head1 = How can I add an attachment to a message?
+lang_help_sndattach_text5 = Once files are uploaded, you can check the size of the attachment or choose to delete the file.
+lang_help_mailerrors_text18 = Here make sure that "Outgoing mail" port is set to : 25
+lang_help_mngmsg_text15 = To transfer a message to one of your folders you have to:
+lang_help_mailerrors_text14 = Account name: you must type your complete email address here, including the domain
+lang_help_mailsend_text4 = Messages which have spelling errors will be highlighted in red. Click the work you wish to modify, and a list of suggestions will appear. Select the new word and it will be automatically replaced. Once finished spell-checking, click the Resume button to return to the message composition page.
+lang_help_spellfaq_text1 = When the spell check is complete the browser will refresh the email-window with the new spelling. If no spelling errors are found the page is refreshed automatically
+lang_help_loginhelp_text6 = <i>With POP3 accounts</i>, you have the option of moving your messages or copying messages from the external POP3 mailserver.
+lang_help_spellfaq_text3 = Depending on which Language you have logged into the WebMail interface, the spell-check dictionary will default the local language. The default dictionary for the spell-check is set to English.
+lang_Calendar_ViewWeek = View 5 day Week
+lang_help_spellfaq_title = Spell Check FAQ
+lang_help_rcvattach_text5 = You don't need to take any action if you have subscribed to the service, because the @Mail Anti-Virus Scanner automatically intercepts viruses on the server side.
+lang_help_spellfaq_head3 = The spell-checker changes the words to a foreign language.
+lang_help_mailerrors_text19 = Click on "Apply" to save the changes and you should be able to send out emails.
+lang_help_mailerrors_text13 = SMTP: smtp.mydomain.com
+lang_help_mngmsg_text25 = Select the folder that you would like to delete and click the "Delete" link located at the right hand side of the listing.
+lang_Calendar_ViewMonth = View Month
+lang_blue_pane_folders_rename_submit = Rename
+lang_alerts_csv_import_bad_filetype = Incorrect filetype - please import only .csv or .txt (plain text files)
+lang_alerts_csv_import_file_oversize = The import file is too large - try importing in stages
+lang_alerts_csv_import_file_empty = The import file was empty
+lang_alerts_csv_import_failed = The import failed
+lang_Global_sendmail = Send Mail
+lang_blue_pane_folders_rename_choose = Select folder to rename
+lang_blue_pane_folders_rename = Rename Personal Folder
+lang_xp_jscript_alert_fwdmulti = Would you like to forward the multiple selected emails?
+lang_blue_pane_folders_newname = New Name
+lang_blue_pane_composehtml_disable_readreceipt = Disable Read Receipt
+lang_blue_pane_composehtml_attachments = Attachments
+lang_global_outofoffice = Out of Office
+icalendar_email_participants = Participants
+lang_calendar_remind_60mins = 60 Minutes
+lang_blue_pane_folders_purgefolderconfirm = The Folder ' + FolderName +' contains ' + FolderNum + ' Message(s). Are you sure you want to delete all messages from this folder?
+lang_calendar_repeat_occurrences = occurrences
+lang_Calendar_ExportToIcal = Export to iCal
+lang_calendar_remind_1day = 1 Day
+lang_global_tentative = Tentative
+lang_xp_pgp_encrypt_button = Encrypt
+lang_calendar_availability = Availability
+icalendar_email_title = Title
+lang_global_repeat_event = Repeat Event
+icalendar_opt_out_text = Click here to remove yourself from this event
+icalendar_email_enddate = Ends
+lang_calendar_repeat_of_every = of every
+lang_calendar_repeat_The = The
+lang_calendar_repeat_daily = Repeat Daily
+icalendar_email_author = Author
+lang_calendar_repeat_of = of
+lang_global_close_window = Close Window
+icalendar_calendar_actions = Calendar Actions
+icalendar_request_failed = The request failed, try again later
+icalendar_email_heading = Calendar Event Invitation
+lang_calendar_repeat_day = day
+lang_calendar_remind_30mins = 30 Minutes
+lang_calendar_repeat_no_end = No End Date
+lang_calendar_repeat_end_by = End By
+lang_calendar_repeat_adv = Define Advanced Pattern
+lang_blue_pane_account_imaps = IMAP Secure
+lang_calendar_repeat_first = first
+lang_calendar_repeat_yearly = Repeat Yearly
+lang_calendar_repeat_none = Repeat None
+icalendar_email_text = You have been included in a calendar event. The details follow:
+lang_calendar_repeat_every = Every
+lang_Calendar_ViewWeek7 = View 7 day Week
+lang_calendar_remind_2days = 2 Days
+lang_calendar_remind_15mins = 15 Minutes
+icalendar_email_startdate = Starts
+lang_calendar_repeat_Every_weekday = Every weekday
+lang_calendar_repeat_third = third
+icalendar_ajax_not_supported = Your browser does not support AJAX - you cannot be removed using this method
+icalendar_attachment_info = You can also click on the attachment link to download the icalendar file (.ics) and add the event to a desktop calendering application that supports the icalendar format
+lang_calendar_repeat_weekly = Repeat Weekly
+lang_calendar_repeat_days = day(s)
+lang_calendar_repeat_forth = forth
+icalendar_removed_from_event = You were successfully removed from the calendar event
+lang_calendar_repeat_end_after = End After
+lang_calendar_repeat_weeks_on = week(s) on
+lang_calendar_remind_me = Remind me
+icalendar_removed_text = You have removed yourself from this event
+icalendar_link_text = Click here to add this event to your calendar
+lang_calendar_repeat_last = last
+lang_calendar_remind_2hours = 2 Hours
+lang_calendar_repeat_months = month(s)
+lang_calendar_repeat_recur_every = Recur every
+lang_calendar_repeat_weekday = weekday
+lang_calendar_repeat_Day = Day
+lang_calendar_repeat_weekend_day = weekend day
+icalendar_email_description = Description
+icalendar_removed_from_event_error = Error: you could not be removed from the event
+lang_calendar_repeat_second = second
+lang_calendar_remind_1week = 1 Week
+lang_calendar_repeat_monthly = Repeat Monthly
+lang_blue_pane_account_pop3s = POP3 Secure
+lang_blue_pane_foldertr_purgefolderalt = Purge $var['FolderName']
+support_form_title = Mail Support
+lang_help_iphonehelphow_text7 = After saving your settings, your Apple iPhone &reg; will attempt to synchronize emails and contacts. 
+lang_about_version = Version
+lang_help_iphonehelp_text1 = The Push Email feature allows AtMail to provide an "always-on" capability - where new emails are instantly and actively transferred (<i>pushed</i>) as they arrive. This feature assures that you are continually updated addressbook entries and emails as soon as they are created or modified.</p><p>Push support in Atmail is available for iPhone, Windows Mobile, and Activesync compatible mobile phones ( Ericsson, Nokia business models )
+support_form_name = Your Name
+lang_help_iphonehelphow_text4 = Select Microsoft Exchange as an account type. 
+support_form_main_text = For support on the WebMail application, please complete the form below. One of the technical team will respond to your request via email. For more information on the Email system consult the online documentation.
+lang_help_iphonehelptroub_title = Troubleshooting
+lang_help_iphonehelphow_text1 = The push email capability is not difficult to set up for an Apple iPhone &reg;. Just go through the following steps:
+lang_help_iphonehelphow_text3 = Go to Mail > Add Account.
+lang_about_build_date = Build Date
+lang_help_iphonehelp_title = Push E-mails
+lang_cal_require_ics_ext = The icalendar file you import must have a .ics extension
+lang_login_rememberme = Remember Me
+support_email_header = Support Question
+lang_help_iphonehelphow_text2 = Open the Settings window for the Apple iPhone &reg;.
+lang_cal_import_title = Import from iCal 
+lang_help_iphonehelp_wireless_desc = <a href="javascript:helpwin('iphonehelphow.html')">View information</a> on how to configure your iPhone, Windows mobile, or Activesync device
+lang_about_operating_system = Operating System
+lang_Calendar_calendars = Calendars
+lang_cal_import_label = Import Calendar in iCal (ics) format:
+lang_help_iphonehelptroub_text2 = This is only a warning, and should not affect the functionality of the Push Email feature. Select "Accept". 
+lang_help_iphonehelp_wireless_title = Wireless Push Support
+support_email_account = Account
+lang_help_iphonehelphow_title = Push E-mails for Apple iPhone &reg;
+support_form_sub_heading = Information on Support
+lang_help_iphonehelphow_text6 = You can then enable the synchronization of emails and contacts. Support for calendars will be available in thefuture, but we recommend having it turned off for now. 
+lang_about_admin_email = Admin Email
+<a href="javascript:helpwin('iphonehelphow.html')">View information</a> on how to configure your iPhone, Windows mobile, or Activesync device
+support_email_question = Question
+support_form_question = Question
+lang_blue_pane_profile_text_chpass = To change your password click 'Change Password' button below.
+support_email_name = Received From
+lang_help_iphonehelphow_text5 = Set the details corresponding with your account. Make sure that the username setting also contains the domain. For example, the username setting for an account called 'ben@domain.com' will be 'ben@domain.com'. 
+support_form_email = Your Email Address
+support_email_email = Email
+lang_help_iphonehelptroub_text1 = <b>Error: Unable to Verify Certificate</b>
+lang_Global_addrecipient = Add Recipients
+lang_menu_help_about = About $pref['brandname']
+lang_blue_pane_profile_text1_chpass = To change your password click 'Change Password' button below.
+lang_blue_pane_abook_new_default_email = Default Email
+lang_cal_import_submit = import
+could_not_move_message = A message could not be moved, possibly due to message size restrictions in the destination folder
+Lang_confirm_cal_delete = Are you sure you wish to delete this calendar and all associated appointments?
+lang_save_sent_error = Your email was sent, however it could not be saved to your Sent folder due to size restrictions
+lang_cal_import_close = close
+lang_blue_pane_account_modify = Edit Account

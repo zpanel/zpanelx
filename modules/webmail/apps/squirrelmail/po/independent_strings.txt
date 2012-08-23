@@ -1,0 +1,25 @@
+<?php
+
+
+/**
+ * independent_strings.php
+ *
+ * Copyright (c) 1999-2011 The SquirrelMail Project Team
+ * Licensed under the GNU GPL. For full terms see the file COPYING.
+ *
+ * The purpose of this module is to store translation strings that
+ * are not into the code. For example strings that can come
+ * through an external source like emails.
+ *
+ * $Id: independent_strings.txt 14084 2011-01-06 02:44:03Z pdontthink $
+ */
+
+
+_("Delivery error report");
+_("Undelivered Message Headers");
+
+/* The string for unsafe images */
+_("This image has been removed for security reasons")
+
+
+?>

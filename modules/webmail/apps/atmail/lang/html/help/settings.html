@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>$lang['lang_help_settings_title']</title> 
+$lang['lang_Global_content_type']       
+
+<script>
+function expandentry()	 {
+
+<!-- if($var['FirstLoad']) { -->
+if(parent.document.getElementById('calendar').style.display != 'block')
+parent.expand('settings', parent.document.getElementById('settingsimg') );
+<!-- } -->
+
+}
+</script>
+</head>
+
+<LINK href="javascript/stylehelp.css" rel="stylesheet" type="text/css">
+
+<body bgcolor="#FFFFFF" text="#000000" onload="expandentry()">
+<font face="Verdana, Arial" size="+1">
+$lang['lang_help_settings_title']</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">$lang['lang_help_index']</a> ]</font>
+
+<hr noshade>
+<p>
+
+$lang['lang_help_settings_text']<BR><BR>
+<u>$lang['lang_help_settings_head1']</u>
+
+<ul>
+<li><B>$lang['lang_help_settings_fullname']</B><BR>
+$lang['lang_help_settings_fullnamedesc']</li>
+
+<li><B>$lang['lang_help_settings_replyto']</B><BR>
+$lang['lang_help_settings_replytodesc']</li>
+
+<li><B>$lang['lang_help_settings_sortby']</B><BR>        
+$lang['lang_help_settings_sortbydesc']</li>
+
+<li><B>$lang['lang_help_settings_layout']</B><BR>        
+$lang['lang_help_settings_layoutdesc']</li>
+
+<li><B>$lang['lang_help_settings_language']</B><BR>                       
+$lang['lang_help_settings_languagedesc']</li>
+
+<li><B>$lang['lang_help_settings_nrmsg']</B><BR>             
+$lang['lang_help_settings_nrmsgdesc']</li>
+
+<li><B>$lang['lang_help_settings_inboxrefresh']</B><BR>             
+$lang['lang_help_settings_inboxrefreshdesc']</li>
+
+<li><B>$lang['lang_help_settings_timeformat']</B><BR>             
+$lang['lang_help_settings_timeformatdesc']</li>
+
+<li><B>$lang['lang_help_settings_dateformat']</B><BR>             
+$lang['lang_help_settings_dateformatdesc']</li>
+
+<li><B>$lang['lang_help_settings_timezone']</b><BR>
+$lang['lang_help_settings_timezonedesc']</li>
+
+<li><B>$lang['lang_help_settings_signature']</B><BR>             
+$lang['lang_help_settings_signaturedesc']</li>     
+
+<li><B>$lang['lang_help_settings_deltrash']</B><BR>                     
+$lang['lang_help_settings_deltrashdesc']</li>         
+
+<li><B>$lang['lang_help_settings_editor']</B><BR>                
+$lang['lang_help_settings_editordesc']</li>                                                              
+
+<li><B>$lang['lang_help_settings_emailsig']</B><BR>          
+$lang['lang_help_settings_emailsigdesc']</li></ul>
+
+</ul>
+
+</font></p>
+</body>
+</html>

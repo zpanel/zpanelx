@@ -1,0 +1,125 @@
+BODY {
+        scrollbar-3dlight-color : #E0E0E0;
+        scrollbar-arrow-color : #8D887A;
+        scrollbar-darkshadow-color : #DED6BD;
+        scrollbar-face-color : #F7F7EF;
+        scrollbar-highlight-color : #F7F7EF;
+        scrollbar-shadow-color : #EAE4D5;
+        scrollbar-track-color : #DEEBF6;
+}
+
+A,  A:LINK, A:VISITED, A:ACTIVE {
+	font : 8pt Tahoma, Arial;
+	color : #282211;
+	text-decoration : none;
+}
+
+A:HOVER {
+	font : 8pt Tahoma, Arial;
+	color : #CE6665;
+	text-decoration : underline;
+}
+
+SMALL {
+	font : 8pt Tahoma, Arial;
+	color : #282211;
+}
+
+STRONG {
+	font : 8pt Tahoma, Arial;
+	font-weight: bold;
+	color : #282211;
+}
+
+TEXTAREA, INPUT {
+	font : 8pt Tahoma, Arial;
+	color : #282211;
+	width : 100%;
+}
+
+SELECT	{
+        font : 8pt Tahoma, Arial;
+        color : #282211;
+}
+
+.MenuDown {
+	padding-left : 8px;
+	padding-right : 8px;
+	border : 1px solid;
+	border-top-color : #D8D2BD;
+	border-left-color : #D8D2BD;
+	border-bottom-color : #FFFFFF;
+	border-right-color : #FFFFFF;
+	font : 8pt Tahoma, Arial;
+	color : #282211;
+	cursor : hand;
+}
+
+.MenuUp {
+	padding-left : 8px;
+	padding-right : 8px;
+	border : 1px solid;
+	border-top-color : #FFFFFF;
+	border-left-color : #FFFFFF;
+	border-bottom-color : #D8D2BD;
+	border-right-color : #D8D2BD;
+	font : 8pt Tahoma, Arial;
+	color : #282211;
+	cursor : hand;
+}
+
+.MenuFlat {
+	padding-left : 8px;
+	padding-right : 8px;
+	border : 1px solid #F3F3EE;
+	font : 8pt Tahoma, Arial;
+	color : #282211;
+	cursor : hand;
+}
+
+.MenuDisabled {
+	padding-left : 8px;
+	padding-right : 8px;
+	border : 1px solid #F3F3EE;
+	font : 8pt Tahoma, Arial;
+	color : #8C8C7B;
+}
+
+.MenuItemFlat {
+	padding-left : 15px;
+	padding-right : 5px;
+	border : 1px solid #FCFCF8;
+	background-color : #FCFCF8;
+	font : 8pt Tahoma, Arial;
+	color : #282211;
+	cursor : hand;
+}
+
+.MenuItemOver {
+	padding-left : 15px;
+	padding-right : 5px;
+	border : 1px solid #468BC7;
+	background-color : #C0D8EE;
+	font : 8pt Tahoma, Arial;
+	color : #295E8C;
+	cursor : hand;
+}
+
+.MenuPlain		
+{
+	font : 8pt Tahoma, Arial;
+	color : #000000;
+}
+
+.msgview	{
+	color : #295E8C;
+}
+
+
+#ttl_out {
+	BORDER-RIGHT: 1px solid; BORDER-TOP: 1px solid; PADDING-LEFT: 1px; BORDER-LEFT: 1px solid; BORDER-BOTTOM: 1px solid; BACKGROUND-COLOR: #e8f1f9
+}
+#ttl_over {
+	cursor : hand; BORDER-RIGHT: 1px inset; BORDER-TOP: 1px inset; PADDING-LEFT: 1px; BORDER-LEFT: 1px inset; BORDER-BOTTOM: 1px inset; BACKGROUND-COLOR: #FAFAFA
+}
+

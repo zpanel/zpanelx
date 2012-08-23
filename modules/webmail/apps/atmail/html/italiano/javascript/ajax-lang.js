@@ -1,0 +1,104 @@
+// Language strings for Ajax interface
+
+Lang_AllFolders = "Tutte le cartelle";
+Lang_Page = "Pagina";
+Lang_First = "Primo";
+Lang_Last = "Ultimo";
+Lang_NextMsg = "Prossimo Messaggio";
+Lang_PrevMsg = "Messaggio Precedente";
+Lang_Viewing = "Visualizza";
+Lang_Messages = "Messaggi";
+Lang_To = "A";
+Lang_Of = "di";
+Lang_From = "Da";
+Lang_Subject = "Oggetto";
+Lang_Date = "Data";
+Lang_Size = "Dimensione";
+Lang_DragDrop = "Trascina nella cartella";
+Lang_DoubleClick = "Doppio clic per aprire";
+Lang_CacheStatus = "Stato Cache Messaggi";
+Lang_Type = "Tipo";
+Lang_Priority = "Priorità";
+Lang_Normal = "Normale";
+Lang_High = "Alta";
+Lang_Low = "Bassa";
+Lang_Reply = "Rispondi";
+Lang_ReplyAll = "Rispondi a tutti";
+Lang_Forward = "Inoltra";
+Lang_Delete = "Cancella";
+Lang_Abook = "Rubrica Contatti";
+Lang_Print = "Stampa";
+Lang_BlockSender = "Blocca mittente";
+Lang_ViewHeaders = "Visualizza Headers";
+Lang_Next = "Avanti";
+Lang_Prev = "Precedente";
+Lang_Back = "Indietro";
+Lang_Send = "Send Mail";
+Lang_AddRecpt = "Aggiungi i destinatari";
+Lang_AddBCC = "Aggiungi BCC";
+Lang_SpellCheck = "Correttore Ortografico";
+Lang_Attachments = "Allegati";
+Lang_SaveMsg = "Salva il messaggio";
+Lang_Resume = "Resume Editing";
+Lang_BackTo = "Ritorna a";
+Lang_Text = "Testo";
+Lang_Open = "Apri";
+Lang_Editor = "Editor";
+Lang_Bcc = "Bcc";
+Lang_Cc = "Cc";
+Lang_ItemsToMove = "Articoli da spostare";
+Lang_BlackListAdded = "L’utente è stato aggiunto alla lista degli utenti bloccati per Spam";
+Lang_AbookAdded = "L’e-mail dell’utente è stata aggiunta alla rubrica";
+Lang_MoveHead = "Il messaggio non può essere spostato";
+Lang_MoveHead2 = "L’identificativo unico dei messaggi non corrisponde con i messaggi selezionati. Questo errore si verifica quando:";
+Lang_MoveReason1 = "Avete aggiornato la finestra WebMail dopo lo spostamento del messaggio. Il messaggio precedente non può essere spostato nuovamente";
+Lang_MoveReason2 = "Il messaggio è stato spostato da un'altra applicazione via POP3/IMAP. Ricarica la tua cartella per un elenco aggiornato";
+Lang_MoveReason3 = "Il messaggio più lungo non esiste sul mail-server";
+Lang_Headers = "Intestazioni";
+Lang_AddSender = "Aggiungi mittente alla rubrica";
+Lang_Sent = "Posta Inviata";
+Lang_AddWord = "Aggiungi parola al dizionario";
+Lang_Edit = "Modifica";
+Lang_BlockedAlert = "Avviso:";
+Lang_Blocked = "$var['BlockImages'] immagini sono state bloccate.";
+Lang_Display = "Mostra le immagini nel messaggio";
+Lang_DisplayAdd = "Abilita visualizzazione immagini da questo utente";
+Lang_AlertPerm = "Sei sicuro di voler cancellare definitivamente i messaggi selezionati?";
+Lang_MarkAsRead = "Segna come Letto";
+Lang_MarkAsUnread = "Segna NON Letto";
+
+// Calendar Language files
+Lang_Months = new Array("Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre");
+Lang_Days = new Array("Domenica", "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato");
+Lang_AllDayAdd = "Doppio clic tu aggiungi tutti gli appuntamenti del giorno";
+Lang_DayAdd = "Clicca e trascina per aggiungere un appuntamento";
+Lang_TaskAdd = "Aggiungi";
+Lang_TaskHeader = "Impegni";
+Lang_AllDayEvents = "Appuntamento per l'intera giornata";
+Lang_Done = "Fatto";
+Lang_Personal = "Personali";
+Lang_Shared = "Condiviso";
+Lang_VideoMail = "Video Mail";
+Lang_Help = "Guida per la registrazione dei Video Messaggi";
+
+Lang_Start = "Dalla data";
+Lang_End = "Alla data";
+
+// Used for the overdue.html template in the calendar
+Lang_Complete = "Completa";
+Lang_Sleep = "Ricorda tra 30 minuti";
+Lang_DueDate = "Data scadenza";
+Lang_OverDue = "Appuntamenti Scaduti";
+Lang_ViewDay = "Mostra Giorno";
+Lang_ViewWeek = "Vedi Settimana Lavorativa";
+Lang_ViewWeek7 = "View 7 day Week";
+Lang_ViewMonth = "Vedi Mese";
+Lang_BackToEmail = "Ritorna a Posta in Arrivo";
+Lang_Sync = "Utilità di sincronizzazione per Outlook";
+Lang_HelpGuide = "Guida in linea";
+Lang_ExportToIcal = "Export to iCal";
+
+Lang_HasNoMsgs = "$var['folder'] non ha messaggi";
+
+Lang_CalImportTitle = "Import from iCal";
+Lang_CalImportLabel = "Import Calendar in iCal (ics) format:";

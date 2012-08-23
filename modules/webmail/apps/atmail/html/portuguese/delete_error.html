@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>Acesso Negado</title>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+</head>
+<body bgcolor="#ffffff" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor">
+
+<!--
+<script>
+parent.mailtabs.FindTab('reademail.php?id=$_&folder=$var['folder']&newwin=0');
+</script>
+-->
+
+<style>
+.sw {font-family:Verdana;font-size:13px;color:#000000;}
+.swr {font-family:Verdana;font-size:13px;color:#FF0000;}
+</style>
+
+<LINK href="javascript/style$this->browser.css" rel="stylesheet" type="text/css">
+
+<h1>Message cannot be moved</h1>
+
+<font class="swr">The unique message identifier does not match the selected message for move/deletion. This error can occur if:</font>
+<font class="sw"> 
+<ul>
+  <li>You have refreshed the WebMail window after moving a message. The previous message cannot be moved twice</li>
+  <li>The message has been moved from another application via POP3/IMAP. Please reload your mailbox folder for an updated listing</li>
+  <li>The message no longer exists on the mail-server</li>
+</ul>
+</font>
+
+<p><font class="swr">Se você continua com dificuldades em acessar sua conta</font></p>
+<font class="sw">
+<ul>
+  <li>Contate o Administrador - $this->admin_email</li>
+</ul>
+</font>
+
+</body>
+</html>

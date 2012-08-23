@@ -1,0 +1,877 @@
+STABLE 1.1 RC2
+---------------------------------------
+
+- Sanitize unknown function name in ajax.php before returning
+  it in an error message to the client. Thanks to Bruno Teixeira
+  for disclosing this potential security issue.
+- Added AJAX callback function white-list filtering. Thanks to
+  Bruno Teixeira for disclosing this potential security issue.
+- Added plugin javascript event handler debugging option
+- Added the ability to do full E-mail address validation or supply
+  your own prefered regular expression in the index.php file
+- Added Auto focus To: field on the compose page
+- Fixed problems handling E-mail addresses with a single quote
+- Updated themes to deal with an IE9 layout issue
+- Misc small fixes
+
+STABLE 1.1 RC1
+---------------------------------------
+
+- Turkish interface translation update thanks to pardus.org.tr
+- Fixed broken redirect url used after replying to or forwarding an HTML
+  message
+- Made the default message filter in the main index.php file HTMLPurifier
+- Improved image replacement logic for viewing HTML message parts
+- Fixed a bug with the saving of company information when importing a vcard
+- Fix extra line breaks being inserted into a message body when resuming a draft
+- Capture and use decoded attachment size from the IMAP server when available
+- Improved body formatting when replying to text messages
+- Stop IE6 from using quirks mode to correct display issues with sprite images
+- Fixed a character set issue with the auto-sign feature
+- Fixed Javascript links and AJAX callbacks in cookie-less sessions
+- Removed legacy PHP4 object assignment routine that caused warnings in PHP5
+- Correctly display To: values that use a semi-colon delimiter
+- Fixed a big in the "find response" link on the message view page
+- Improved the AJAX page update mechanism to be more theme friendly
+- Improved message list column handling
+- Fixed a bug in the saved search plugin that caused extra search term form
+  sections to not be displayed when editing/running a saved search
+- Added support for using HTMLPurifier 4.3.0 as the HTML message filter/sanitizer.
+  This is set in the main index.php file using the $filter_backend variable
+- Updated the htmLawed HTML filter to version 1.1.9.5
+- Added a new theme called "Clean"
+- Fixed the thread view page in the newstyle theme
+- Added a new plugin called "select_range" that makes it possible to select ranges
+  of messages using Shift and the mouse
+- Lots of various small UI/theme tweaks and fixes
+- Improved message list column formatting and added a default coulumn order
+  to the main index.php file which can be overridden by themes
+- Fixed two XSS issues, one affecting plugins and one on the compose page
+- Fixed a bug with the theme template selection for the login page
+- Added the ldap_mailhost plugin that makes it possible define a user's IMAP server
+  in their LDAP account, thanks to Jesse Thompson
+- Fixed a warning in the calendar plugin
+- Improved the ldap_addessbook plugin to work on Solaris
+- Fixed a problem that could effect large attachment downloads
+- Fixed a bug that reset the form when deleting an attachment from an outbound
+  message
+- Fixed PHP warnings generated when one attempts to load a message view page
+  for a message that is no longer present
+- Added support for opening attachments types that are natively supported by
+  the browser (like PDF files) either inline or in a new window. The mime
+  types to support are defined in the main index.php file
+- Added a variable to the main index.php file to control the font-size of
+  messages in simple mode
+- Several simple mode fixes
+- Fixed a bug with contact groups that could cause contacts to disappear
+  from the display
+- Shortened the auto-complete plugin AJAX callback delay to 100 millis
+- Upgraded soundmanager2 used by the notices plugin to v297a-20110306
+- Upgraded tinyMCE to 3.4.1 and the tinyMCE spellchecker to 2.0.5
+- Show the "To" column in the Drafts folder instead of the "From" column
+- Fixed a potential CSS folder indent problem with the folder tree
+- Fixed a bug with the javascript in the "context" plugin
+- Added a new theme called "Dark Gray"
+- Update the AJAX system to skip creating a new request if a prior
+  request is still in flight
+- Fix a bug with empty text message parts that could display the "NIL"
+  string instead of the empty text
+- Updated the message view to at least show message headers for a message
+  with a broken MIME bodystructure
+- Added a new plugin called "message_tags" that lets users assign free
+  form tags to messages
+- Added a new plugin called "spam_folder" that lets users setup a spam
+  folder that can be easily emptied and can auto-delete messages of a
+  certain age
+- Updated plugins to add the plugin name to the page title for plugin
+  specific pages
+- Added a value to set the maximum number of allowed messages per page
+  in a message list
+- Fix a formatting bug with E-mail groups and the auto-complete plugin
+- Fix a problem with encoding non-ascii characters in outbound mail headers
+- Removed incorrect content-length HTTP header from attachment downloads
+- Updated the INSTALL file with a better cron job example for cleaning
+  out the attachment directory
+- Fix a bug with the auto-save feature on the compose page breaking when
+  the message has attachments
+- Filter out non-printable characters from the utf-8 to HTML conversion
+  function
+- Fixed several address parsing issues
+- Removed some duplicate processing when viewing text message parts
+- Added pagination to search results that uses the same user setting
+  as the message view
+- Added an interval of 30 seconds to the folder list "Automatic detail
+  updates" and the new mail page "Automatic refresh" options
+- Fixed a bug that caused the To: field to be displayed on the new mail
+  page instead of the From: field when the folder is set as the "Sent"
+  folder
+- Added a simple mode check for the iPhone user agent
+- Added a Javascript version of PHP's urlencode() to the site.js file
+- Removed use of the deprecated split() function
+- Added a plugin API method to display the standard mailbox message
+  controls
+- W3C validation clean up
+- Fixed a bug with displaying non-ascii content due to an overridden
+  character set value
+- Fixed a bug on the contacts page that broke deleting contacts after
+  performing a search
+- Fixed a bug that could cause HTML messages to be truncated on the
+  message view page
+- Fixed a few bugs with searching on the contacts page
+- Added a new plugin API hook that executes after an IMAP message
+  action
+- Fixed a bug with INBOX subfolders
+- Fixed a bug in the special folders dropdowns on the options page 
+- Fixed a bug in the auto-selection of the initial message part to view
+  on the message page 
+- Added the ability to limit profiles and lock down profile fields to
+  the main index.php file
+- Added support for falling back to using an email login name as the
+  default profile email address
+- Fixed a bug with message list parsing in the IMAP class 
+- Expanded the plugin API to provide the current theme name and support
+  printing message lists
+- Fixed a bug with the duration value in calendar plugin events
+- Fixed a bug with message part indentation on the message view page
+- Made it possible to limit the number of outbound message recipients
+- Fixed a bug with incorrect parent message part detection
+- Added two new work hooks that execute on the mailbox and message pages
+  after the current IMAP folder has been selected
+- Fixed a bug in the plugin API that broke display hook arguments
+- Fixed a bug in the plugin API that returns the current hastymail2 page
+- Added a work hook that executes when an IMAP action occurs
+- Added a display hook that outputs to the subject cell of message lists
+- Improved the flagged message style in the moss theme
+- Fixed several message headers parsing issues
+- Fixed a bug with the max read length setting in the imap class
+- Fixed a bug that marked forwarded messages with the \Answered flag
+- Fixed a layout problem with the page links on the mailbox view of the
+  newstyle theme
+- FIxed the "close" link in the js_notice plugin notices
+- Optimized the code by replacing many in_array() function calls with isset()
+- Fixed a bug that could cause the IMAP message flags to not be displayed
+  in the header section of the message view
+- Added an experimental PHP5 module to offload computationally expensive
+  operations to C++
+
+
+STABLE 1.01
+---------------------------------------
+
+- Fixed an XSS problem in the implementation of the htmLawed HTML message
+  filter. Thanks to Julien CAYSSO for reporting this issue
+
+
+STABLE 1.0
+---------------------------------------
+
+- Upgraded the tinyMCE WYSIWYG HTML editor used by the html mamil plugin
+  to version 3.3.9
+- Fixed a possible read loop bug when the IMAP server connection goes away
+- Fixed some bugs with how contacts are handled
+- Fixed a bug that could break some HTML messages with inline attached images
+- Fixed a bug in the message digest plugin that caused entities in subjects
+  to not be decoded
+- Updated the message detail and message list views to localize all date
+  fields to the user's current timezone
+- Fixed some rendering bugs with the folder list when using the "flat" display
+  style
+- Updated all plugins to use the include path and filesystem delimiter values
+  set in the index.php file
+- Fixed a bug on the options page that cause the folder list update interval
+  to not be set correctly
+- Dynamically compress and stream all the CSS for a page into a single HTML
+  include
+- Combined all the images in the default and moss themes to use a single
+  sprite image
+- XHTML fixes so all the main pages validate with the W3C
+- Moved most of the theme images into CSS backgrounds instead of inline
+  img tags
+- Lots of fixes and tweaks to all the theme's CSS 
+- Expanded the filters plugin to support filtering from the new mail page
+- Added an optional source folder setting to filters created with the
+  filters plugin
+- Enhanced the message uid cache to minimize mailbox resorting
+- A few small fixes to the client side sorting routines
+- Sort messages on the "new mail" page by the default sort method for
+  each folder (set on the folders page)
+- Added a plugin that maps login email address domains to different IMAP
+  server backends
+- Added a Google Maps search to the context plugin
+- Added a new plugin called custom_reply_to that lets users set a custom
+  reply-to value on the compose page that overrides the currently selected
+  profile.
+- Added a new theme called "moss"
+- Updated the plugin api documentation
+- Updated the Soundmanager2 sound playing utility used by the notices
+  plugin to version 296a-20100520
+- Updated the tinyMCE WYSIWYG HTML editor used by the html mail plugin
+  to version 3.3.6
+- Updated the htmLawed HTML filter to version 1.1.9.4
+- Updated the config file with defaults for all the settings available
+  on the options page
+- Improved IMAP NAMESPACE support 
+- Changed the file extension used when attaching messages to an outgoing
+  message from .eml to .mime
+- Added an option to work around incorrectly formatted messages that
+  are missing the mime-version mail header
+- Cleaned up the code and updated the js_help plugin with all the
+  latest options.
+- Improve the IMAP parsing to handle both CRLF and "bare" CR line
+  endings
+- Clean up the code responsible for setting up the message view page
+- Added a saved_search plugin that allows searches to be easily saved,
+  edited or re-run from the search page.
+- Hide PHP timezone warnings in PHP5 when no default server timezone is
+  set
+- Added an option to enable an "open in new window" link on message
+  lists
+- Fixed some bugs with the "newstyle" theme
+- Improved mobile browser detection
+- Added a simple new plugin called "username" that displays the current
+  username to the top of each page
+- Fixed the folder tree and dropdowns to properly handle having "special"
+  folders that are, or have, subfolders
+- Fixed a bug with the toggle all links on the folders page
+- Display a notice when a login is attempted and the IMAP server cannot
+  be reached
+- Fixed a bug with simultaneous compose sessions
+- Fixed encoding problems with javascript alert boxes when the interface
+  is set to a non-ascii based language
+- Added an "Attach" button to the message lists that will add selected
+  messages as attachments to an outgoing message
+- Fixed the "Attach" feature on the message view page
+- Added a Greek interface translation thanks to Konstantinidis Andreas
+- Fixed a bug with "show all external images" link on the message view
+- Updated the previous/up/next + action dialog on the message view
+  page to remember the last used folder
+- Added a beta version of a pop3 fetch plugin that can pop messages
+  from other Email accounts and deliver them to a specified IMAP
+  folder
+- Fixed a bug in the uuencode plugin
+- Improved HTML message rendering to be safer, more robust, and
+  faster
+- Added HTML flitering with htmLawed. The old legacy filter is
+  still available via a setting in the index.php file
+- Fixed some various small theme bugs
+- Fixed a warning in the message digest plugi
+- Improved HTML message inline image support
+- Added a "!" indicator in message lists for messages with an
+  x-priority of 1
+- Improved reply/forward/resume formatting with HTML message parts
+  and the html_mail plugin
+- Fixed the from address formatting in the message digest plugin
+- Improvements to the javascript in the auto_address plugin
+- Fixed a bug with the "compose in a new window" options and inline
+  mailto links in text message parts
+- Added a few missing interface translation strings
+- Improvements to the javascript in the js_notice plugin
+- Fixed the auto-save as draft feature on the compose page when
+  using the html_mail plugin
+- Fixed a bug with the js_sign plugin with the html_mail plugin
+- Plugin API improvements
+- Updated the TinyMce WYSIWYG editor used by the html_mail plugin
+  and enabled the TinyMce spellcheck ability
+- Fixed the redirect after sending a message to return to the last
+  viewed page
+- Added support for using iconv character set conversion when
+  mb_string is not available
+- Allow "+" in email addresses
+- Translated some missing strings for the filters plugin management
+  page
+- Fixed multiple bugs with the filter plugin search string that could
+  cause the search to fail
+- Improved the auto complete plugin to ignore case when matching
+  email addresses
+- Fixed a plugin API bug that broke the context plugin
+- Fixed the javascript warning message used when expunging messages
+- Added a few missing strings to the translation files
+- Added an option to set the maximum length of the subject field in
+  message lists
+- Added a "delete" button to the simple UI message view that deletes
+  the current message and navigates back to the mailbox view
+- Fixed a javascript error in simple UI mode
+- Fixed a bug with the routines that encrypt/unencrypt strings that
+  could cause a user to be logged out of the IMAP server
+- Added an SMTP debug config setting that works similar to the IMAP
+  debugging option
+ 
+
+---------------------------------------
+RELEASE CANDIDATE 9
+---------------------------------------
+
+- Updated Finnish translation thanks to Lari Huttunen
+- Truncate long header values in the message view with an option to
+  view the full value
+- Added an option to auto-close the browser window after successfully
+  sending a message when using the "compose messages in a new window"
+  option
+- Big Polish translation update thanks to Pawel Hertel
+- Fixed two javascript bugs with the compose in new window option
+- Updated the js_help plugin to handle all the options page settings
+- Added an option to the html_mail plugin to dynacially switch between
+  HTML and Text mode on the compose page
+- Fixed a bug with the "attach contact" option on the compose page
+- Added a lot of comments to the main index.php file
+- A few AJAX system fixes and enhancements
+- Made trimming white-space off usernames and passwords when logging
+  in optional, defaults to no trimming
+- Fixed a bug with the "remove folder" dropdown on the new mail page
+- Made it possible to change the field order of message lists using an
+  array defined in the main index.php file
+- Updated Dutch interface translation file thanks to Wim
+- Added an option to trim the From field in message lists to a specified
+  length
+- Updated the js_notice plugin to not shift the page contents when
+  the notice is hidden
+- Improved the HTTP headers sent when downloading message parts
+- Improved the js_help plugin to not alter the option text cell size
+  during a mouse over
+- Expanded filter plugin rules to allow a time period match without a
+  search pattern
+- Added initial contact group support
+- Fixed a bug with saving the auto-save setting for the compose page
+- Added a message_digest plugin that adds enhanced navigation to
+  digest messages
+- Added a move_sent plugin that allows the selection of a different
+  Sent folder on the compose page and has the ability to move 
+  replied-to messages to the same folder. Thanks to Joerg S
+- Expanded the plugin API with some new hooks and tools methods
+- Fixed a bug that could cause HTML message parts to be missing content
+- Updated the Polish translation thanks to Pawel Hertel
+- Added a Russian interface translation thanks to Maxim Velichko
+- Added an option to set a default email address for each configured
+  IMAP server login
+- Fixed a bug with the IMAP validation layer and the auto-create
+  special folders setting.
+
+
+---------------------------------------
+RELEASE CANDIDATE 8
+---------------------------------------
+
+- Updated the ldap_addessbook plugin to work with Active Directory
+- Fixed a problem with AJAX updates not correctly updating the page title
+- Added previous/next unread message links to the message view when the
+  folder has unread messages
+- Reduced the size required to save user contacts
+- Updated the Mysql contacts table to store contacts in a field type of
+  longtext instead of just text
+- Fixed a bug with the clickable Emails and clickable links settings for
+  text message parts when a link URL contains an email address
+- Moved the html_content_type header option into the hastymail2.conf file
+- French interface language update thanks to Bernard Fouche
+- Removed the buggy html_squish config setting
+- Simple mode layout improvements
+- Added a search feature to the contacts page
+- Added a mouse over help icon to the context plugin
+- Added theme support to the js_notice plugin
+- Added theme support to the js_help plugin
+- Expanded the plugin API to support custom pages when not logged in
+- Added javascript to highlight selected messages in any message listing,
+  can be disabled on the options page
+- Moved the message part to search option from the advanced search to the
+  default search
+- Added a "show all" link on the mailbox view that shows all the messages in
+  the folder (up to 1000)
+- Fixed two bugs with the contact page export as vcard routines 
+- Fixed a PHP warning when parsing an invalid date string 
+- Added a new layer of input validation support to the IMAP and SMTP classes
+- Improved the clean up routine of attachments uploaded to the server but
+  never sent in an outgoing message
+- Fixed a problem with attachments and multiple compose pages. Now each
+  compose page instance has it's own attachment set
+- Improved the HTML to text converter used when replying or forwarding
+  HTML message parts
+- Improve INBOX hanlding with Courier IMAP when it has the /noselect
+  flag set
+- More secure cookie hanlding thanks to Joerg S
+- Improved support for displaying inline images in HTML message parts that
+  use inline "CID" formatted src attributes
+- Improved and unified internal URL parsing routines
+- Fix possible warnings with the prev/next + action form on the message page
+- Added the current page number to the contacts page for the existing
+  contacts list
+- Added an option to the filters plugin to filter on message age
+- Some small IE related theme fixes
+- Updated the HTML message part filter to allow https links
+- Fixed a bug that sometimes caused downloaded files to have extra
+  garbage data appended to the end
+- Made quoted-printable decoding support lowercase encoded sequences
+- Added a plugin called js_help that uses AJAX and javascript to
+  display extended help about settings when mousing over the label
+- Added folder icons to the folder list/tree with a setting on the
+  options page to disable them
+- Added read/unread icons to all message lists with a setting on the
+  options page to disable them
+- Added a simple plugin called js_notice that uses javascript to show
+  and hide interface notices
+- Updated tinyMce to in the html_mail plugin to the latest (3.2.7)
+- Added a user setting on the options page to update the mailbox view
+  when the folder list/dropdown updates
+- Added a js_sign plugin that uses javascript to insert signatures
+  into messages on the compose page at the cursor position instead of
+  the default behavior of appending the signature to the bottom
+- Converted the compose_warning, context, and auto_address plugins to
+  use the new plugin javascript event registration system
+- Added a plugin javascript event handler registration system so multiple
+  plugins can register callbacks for the same javascript event
+- Added an initial version of an auto-complete address plugin for the
+  compose page
+- Made it possible for translations to translate the "time since arrival"
+  date format
+- Improved message header encoding/decoding routines
+- Updated the Japanese interface translation thanks to Takao abe
+- Added a plugin to display IMAP quota information
+- Improved the character set handling of the compose page autosave feature
+- Fixed a bug with the compose page autosave feature when saving messages
+  with attachments
+- Fixed a warning when using SMTP over SSL/TLS
+- Added two new options to the compose section of the options page for
+  the html_mail plugin that set the default font family and size for the
+  WYSIWYG HTML editor on the compose page
+- Added a "Sending Message.." notice to the compose page after send is
+  clicked and some javascript that disables the send button while a sent
+  mail is being processed.
+- Fixed a problem with folder hierarchies and the Citadel mail server
+- Fixed some strict XHTML formatting problems
+- Added an option to use the message controls on the mailbox page on all
+  messages in the folder
+- Added an HTML META tag to the HEAD section to ensure that the browser
+  knows the content is in UTF-8
+- Added an option to shorten the parts display on the message view page
+  to exclude "container" messages and alternative message parts.
+- Disabled the multipart "+" indicator in message lists if the top level
+  message part is multipart/alternative
+- Added an uuencode plugin that allows users to download uuencoded attachments
+- Fixed the context plugin to only output inline javascript when required
+- Improved the selection of addresses in the "add contact" dropdown on the
+  message view page
+- Expanded the plugin API with more tools methods and hooks
+- Fixed a javascript bug when reading or composing in a new browser window
+
+
+---------------------------------------
+RELEASE CANDIDATE 7
+---------------------------------------
+
+- Updated the "toggle all" links for message listings to work correctly
+  without javascript support.
+- Added a setting in the main index.php file that can enable the strict
+  application/xml-xhtml content header for hastymail pages 
+- Fixed a bug with the option to hide the time from the toolbar clock
+- Fixed some quoted printable encoding problems
+- Fixed a problem with the reply to all link since reading messages in
+  a new window was introduced.
+- Added mouse over titles to the previous/up/next + action form on
+  the message page
+- Fixed the default action setting for the previous/up/next + action
+  form on the message page
+- Fixed a bug with outgoing messages containing attachments not having
+  a closing MIME boundary
+- Added an option to read messages in a new browser window
+- Added an option to compose messages in a new browser window
+- Fixed a bug in the filters plugin that caused the auto-filter feature
+  to be run on every selected folder instead of just the INBOX
+- Fixed a problem with URLs on the Cherokee web server
+- Fixed a problem with text wrapping on the print view page
+- Fixed a bug with SMTP CRAM-MD5 authentication
+- Fixed a regression that broke HTTP basic authentication
+- Added a context plugin that provides a toolbar on the message view page
+  that is activated by selecting text. The selected text can then be
+  searched for or looked up using the toolbar. It currently supports
+  google, wikipedia, a dictionary and a thesaurus. requires javascript
+- Added a plugin method to insert javascript into the window.onload event
+- Added a login alias plugin that maps the username from the login
+  page to an alias for the IMAP server. Aliases can be stored in
+  a file or db using the hastymail plugin db API. sql for creating
+  the table is included for mysql and postgres
+- Expanded the plugin API to allow plugins to be executed before logging in
+  Added a work hook called "on_login" that fires just when a user submits
+  the form on the login page but has not logged in yet.
+- Fixed some w3c validation issues with several pages
+- Fixed a bug that caused moving a message from the message view to leave
+  a deleted but not expunged copy of the message in the original folder
+- Expanded the hastymail2.conf alt_<number> options to override any
+  setting and not just the IMAP related settings
+- Added an option to the main index.php file to set an include_path
+  value that is prepended to any filesystem path for an include statement
+- Unified the way filesystem paths are handles throughout the code
+- Moved the filesystem_delim option to the main index.php file and out of
+  the hastymail2.conf file
+- Added an option to delete a draft after the message is sent
+- Improved the layout of TinyMce on the compose page in the html_mail plugin
+- Updated TinyMce in the html_mail plugin to the latest (3.2.3.1)
+- Fixed a problem that could cause forwarded or replyed to messages
+  with quoted printable encoding to not be properly decoded.
+- Updated the html_mail plugin to use the new HTML to text converter class
+- Incorporated a nice HTML to text converter class,
+  Copyright (c) 2005-2007 Jon Abernathy. Used for replying to and
+  forwarding HTML messages and made availble to the plugin API
+- Fixed a bug with the forward as attachment feature
+- Fixed a bug that broke toggle all on the new mail page when
+  javascript is disabled
+- Fixed a regression that caused text parts to be incorrectly formatted
+- Fixed a bug with reply highlighting for text message parts
+- Added some javascript to resize the iframe used for HTML message parts
+- Fixed a bug with HTML message parts in simple display mode
+- Added an option to hide deleted messages
+- Fixed a bug with the cache debug option
+- Changed the logger plugin to not try to use a db by default
+
+
+---------------------------------------
+RELEASE CANDIDATE 6
+---------------------------------------
+
+- Cleaned up some minor problems with simple mode
+- Added an Italian translation thanks to Luca Scomazzon
+- Fixed a bug on the new mail page that caused a PHP error when
+  a message action was taken without any messages selected
+- Unified the code that handles lists of messages for different pages.
+  Now the mailbox view, search results, new mail page, and thread view
+  all use the same method for outputting message list rows
+- Start of a Romanian translation thanks to Stas Sushkov
+- Added an option to allow the web browser to handle long lines in
+  messages instead of forcing lines to break
+- Added a Japanese interface translation thanks to Takao Abe
+- Fixed a bug with the IMAP debug option that caused debug information
+  to be lost after a POST form submission
+- Fixed a bug causing theme sub-templates to be ignored and the default
+  used instead
+- Fixed several bugs with the advanced search feature that cause searches
+  to fail
+- Expanded themes in several ways to allow greater modifications of
+  the interface
+- Improved the rounded borders in the theme css
+- Fixed a bug that broke images and image thumbnails when not using
+  session cookies
+- Improved the folder list routines to better handle folders that
+  where referred to as parents but where not present in the IMAP
+  LIST response
+- Improved the vCard import routine to handle the charset property
+  in the name and display name fields
+- Fixed a bug that broke SMTP CRAM-MD5 authentication
+- Fixed a bug in the search syntax that caused searching to fail for
+  some IMAP servers
+- Fixed a few small bugs with the new HTTP basic authentication option
+- Updated the translatable strings in the filters plugin and
+  added a Bulgarion translation for the filters plugin thanks
+  to Stoyan Marinov
+- Added a Bulgarian interface translation thanks to Stoyan Marinov
+- Fixed a bug cause a message to not be base64 decoded when
+  using the forward or "edit as new" options
+
+
+---------------------------------------
+RELEASE CANDIDATE 5
+---------------------------------------
+
+- Added a new theme called "aqua"
+- Added a PHP CLI script to convert profiles and some settings
+  from Hastymail 1.x format to Hastymail2
+- Added support to the hastymail2.conf file for a custom logout
+  URL to redirect users to after they logout.
+- Updated the defaults in the ldap addressbook plugin and
+  added an authentication related option to the settings file
+- Added an option to force HTML formatted message parts to
+  be displayed in an HTML iframe within the hastymail interface
+- Added HTTP basic authentication support
+- Fixed several layout issues with different browsers, greatly 
+  increasing compatibility
+- Added the ability to forward a message as an attachment
+- Fixed a bug that caused the clock to not update consistently
+- Refactored the AJAX update mechanism cutting down on javascript
+  and reducing requests by 70% 
+- Fixed a bug that incorrectly set the SMTP authentication type
+- More layout tweaking, fixed a problem with textareas overflowing the
+  interface with smaller window widths
+- Added IMAP-UTF7 foldername support controlled by a config file option
+  called utf7_folders. This requires MB (multi-byte) support in PHP
+- Reorganized the codebase to reduce server side memory usage from 1 to
+  3 MB depending on the page and user action
+- Cleaned up the theme css and template to be more IE6 friendly
+- Cleaned up some interface strings missing from the translation files
+  and made the "INBOX" string translatable
+- Improved message attachment filename determination
+- Added an option to the hastymail2.conf file to set the "persistent"
+  flag for the PEAR database connection
+- Update the Dutch interface translation thanks to Wim Paulussen
+- Cleaned up the notices, filters, and news plugins to be W3C valid
+- Added the news source with a link to the news feed for each item
+  in the "All News" merged list of the news plugin
+- Added support for using "%d" to substitue the domain the user logged
+  in from with the default email and append login domain options in the
+  hastymail2.conf file
+- Added a German interface translation thanks to Joerg Gronmayer
+
+
+---------------------------------------
+RELEASE CANDIDATE 4
+---------------------------------------
+
+- Added an rss/atom news reader plugin called "news"
+- Added a user option to display only folders subscribed with the IMAP server 
+- Added an option to the calendar plugin that links to the current days calendar
+  and shows the total number of events
+- Recompressed the notices plugin javascript down to 18K
+- Compressed the site.js and sajax javascript and combined them into a single
+  include cutting the include size by 1/2 and elimitating one request
+- Fixed a display bug that made the folder tree be rendered incorrectly after hiding
+  then redisplaying it with the javascript links
+- Added a config option to alter the folders management page to better handle
+  IMAP servers that only support folders that can contain either messages or
+  other folders but not both
+- Fixed some problems with folder dropdowns and lists that only support folders
+  that can only contain messages or other folders but not both
+- Added a set of quick links to the calendar plugin that navigate to
+  "this year", "this month", "this week", or "today"
+- Added a "list all" page to the calendar plugin that lists all a users
+  created events.
+- Added yearly, monthly, weekly, and daily repeating event support to
+  the calendar plugin
+- Added add/edit/delete event support to the calendar plugin. Events are saved
+  using the plugin db api and support both Mysql and Postgres
+- Fixed a bug in the date format of the logger plugin when using
+  Mysql or Postgres storage
+- Fixed a possible warning in PHP4 when replying to HTML message parts
+- Updated the logger plugin to work with Postgres and Mysql
+- Changed the AJAX calls to use POST instead of GET so we are not limited
+  to the maximum URL length of GET requests
+- Fixed problems with the notices plugin in IE and a bug in the soundmanager urls
+  that broke playback
+- Added an initial version of a notices plugin that lets users play a sound
+  file or pop open a notice window when new mail arrives.
+- Fixed a redirect bug after replying to a message when viewing certain message
+  part types.
+- Fixed a bug causing the previous/up/next + action buttons on the message view
+  page to not respond
+- Fixed a layout problem with the track/untrack links on the mailbox page
+
+
+---------------------------------------
+RELEASE CANDIDATE 3
+---------------------------------------
+
+- Added a config option to alter the charset used for the IMAP
+  search command
+- Fixed a bug in the SMTP DATA command that was sending an extra
+  CRLF which violates the SMTP RFC
+- Added some classes and ids to the message control submit buttons to
+  give themes more control over their appearence
+- Added new theme "albook_sepia" thanks to Shawn Turpin 
+- Add missing stmp_starttls setting to the example config and fix a bug
+  with the smtp_tls setting.
+- Added Postgres support for settings and contact storage. Expected
+  table definitions are in db/contacts.pgsql.sql and db/user_settings.pgsql.sql
+- Added the ability it use pear DB or MDB2 libraries for DB support
+- Added the ability to set a default email address for new users to the
+  hastymail2.conf file
+- Added a PHP CLI script to convert contacts from Hastymail1 format
+  to Hastymail2
+- Added custom header filtering support to the filters plugin
+- Converted the filters and hello world plugins to use the plugin
+  translation system so they can be easily translated for other
+  interface languages.
+- Added a simple plugin translation system. Details are in
+  docs/plugin_languages.txt
+- Added functionality to the main template to override the output of plugins
+  to the main menu
+- Moved the "Message Parts" link on the message view into the previous/next
+  message part section
+- Added database storage support for user contacts with a mysql table
+  in db/contacts.mysql.sql
+- Added the "tango" theme, thanks to Shawn Turpin
+- Fixed a bug that caused the sort order of folders on the new mail page
+  to be inconsistent.
+- Expanded the default user options in the conf file to cover almost
+  all of the options page settings.
+- Fixed a bug that caused some outgoing messages with multiple attachments
+  to not be saved in the sent folder.
+- Update folder routines to handle subfolders whose parent folders
+  are missing from the hierarchy
+- Add missing interface string to translation files
+- Fixed a bug that caused the timezone option to not be set correctly
+- Fixed a PHP warning with strtotime when changing the default date format
+
+
+---------------------------------------
+RELEASE CANDIDATE 2
+---------------------------------------
+
+- Expanded the new filters plugin with support for managing
+  the filter rule order and the ability to delete or flag a message
+  instead of just moving it.
+- Fixed a bug in the delete message method in the plugin API
+- Added support for importing vcards with a text/directory
+  mime type
+- Added a logging plugin that allows sites to log activity called
+  "logger"
+- Added a message filter plugin that allows users to filter messages
+  based on message contents called "filters"
+- Fixed several translation string related problems
+- Fixed a bug that made the folder update interval setting not
+  changable on the options page
+- Fixed a bug that caused plugin specific settings be lost after
+  a user updates their Hastymail2 settings on the options page
+- Added a simple search method to the plugin api
+- Fixed a typo in the select mailbox method of the plugin api, and
+  made all the arguments but the mailbox to select optional
+- Added an option for the message page to set the default message
+  action in the navigation controls
+- Made some small UI changes to hopefully make the navigation and
+  message action controls more understandable
+- Fixed a bug causing folders within excluded folders to be
+  visible even when imap_folder_exclude_hidden was enabled
+- Added an unread count to the mailbox view meta information that shows
+  the unread amount for the folder even when it is not being tracked
+- Fixed a bug that caused the total unread count to include the
+  currently selected folder even when it's not being tracked for
+  unread mail
+- Added an "expunge INBOX on logout" option
+- Moved the javascript warning options on the compose page to a
+  plugin called "compose_warning" and added a third warning option
+  that confirms exiting the compose page when a message is in progress
+- Fixed a bug that broke the move and copy IMAP functions
+  in the plugin API
+- Fixed folder list bugs with some UW-IMAP versions
+- Improved folder list handling for UW-IMAP server
+- Added select all links to the checkboxes on the folders page
+- Deleting from the message view now respects the "confirm when
+  deleting" option
+- Fixed w3c validation problems introduced by fixing the non-ascii
+  character display bug
+- Added missing ajax.php to the sample "hello world" plugin
+- Fixed incorrect colors in the dark theme for html messages
+- Fixed a problem with non-ascii characters not displaying
+- Fixed conflicting default config file paths in the INSTALL file
+- Commented out example alt_1 IMAP server settings the
+  hastymail.conf.example file
+- Fixed incorrect color in the dark theme for flagged messages
+
+
+---------------------------------------
+RELEASE CANDIDATE 1
+---------------------------------------
+
+- Fixed a bug with the previous/next + action buttons being enabled
+  at the start or end of a message list
+- Added a new dark theme
+- Added theme support for an icon on the profile page
+- Added a selective expunge opiton that forces expunge to only
+  remove selected messages. The default expunge behavior is now
+  the standard expunge all
+- Fixed a bug that caused the IMAP search command to have double
+  spaces between command keywords
+- Lowered the maximum read length for viewable parts and moved the
+  setting into index.php
+- Updated the Spanish interface translation
+- Fixed a bug that caused resumed drafts to have poorly formatted
+  line lengths resulting in poor line wrapping
+- Fixed a bug that caused PHP warnings and a composed message to be
+  lost when hastymail cannot connect to the SMTP server 
+- Fix a PHP warning triggered by trying to resume a non-existant draft
+- Fixed a bug with the auto save as draft option on the compose page that
+  that caused the draft to have escaped quotes
+- Fixed a bug that broke the "first page after login" option
+- Made it possible to setup a site specific "logo" in the config file
+  The logo appears on every page after the page icon and before the folder
+  list in the toolbar. It defaults to "Hm2"
+- Added a SORT parsing speed up that greatly improves load times for
+  large folders. It is NOT RFC compliant so there is also an option
+  in the config file (imap_disable_sort_speedup) to disable this option
+  and use the standard compliant line parsing routine for SORT responses
+- Added a class to themes to style messages in a list that are flagged
+- Improved HTML to text conversion when replying to HTML parts
+- Fixed a bug that made folders with only numbers in the name unselectable
+- Fixed the mailbox page to automatically adjust to the correct page number
+  if the supplied page is greater than the maximum (can be triggered by going
+  to the last page of a mailbox listing and deleting all the messages on that page)
+- Removed unneeded character set lookup in imap class
+- Added support for Firefox 3 mailto: protocol
+
+
+---------------------------------------
+BETA 3
+---------------------------------------
+
+- 2 new themes from a generous and talented contributor "terpmeister"
+  from redmutt.com
+- Converted usable strings from Hastymail 1 for the Finnish, Catalan,
+  and Turkish interface translations
+- Fixed the new page message list so that after an AJAX update any
+  checkboxes that where checked are re-checked when the list is
+  regenerated
+- Fixed an incorrect string in the compose section of the options page
+- Fixed a bug with importing vCards that caused the display name to
+  be set incorrectly
+- Added an option to show the page links on the mailbox view above
+  and below the message list
+- Added an option to the message page to show or hide images in HTML
+  message from external sources (defaulting to hidden) The options
+  page has a setting to always show external images by default
+- Added partial Dutch translation thanks to Olav Lavell
+- Fix for attachment downloading failure with older versions of IE when
+  using HTTPS
+- Added a redirect after sending a message to whatever page was being viewed
+  before loading the compose page
+- Allow unqualified addresses to be used in the to/cc/bcc fields of outgoing
+  messages
+- Changed the settings, attachments, and config dirs to hastymail2 instead
+  of hastymail
+- Fixed strict javascript warnings displayed with the Firebug
+  for Firefox 3
+- Fixed a typo in the example config for the "exclude hidden folders" option
+- Replaced a str_ireplace function call with a preg_replace compatible with PHP4
+- Added functionality to the plugin system for plugins to alter outgoing message
+  bodies and send a multipart/alternative body
+- first version of an HTML mail plugin for the compose page using TinyMCE
+
+
+---------------------------------------
+BETA 2
+---------------------------------------
+
+- Added an option to the mailbox page to always show the expunge operation
+  which is normally disabled if the user has a trash folder enabled
+- changed the default folder list behavior to hide folders beginning with a "."
+- Moved the unread count to the far left of the title to make it visible
+  when in a tab title
+- Fix unused "app_pages" array in index.php to be functional
+- Several fixes to the SMTP routines. The comment for SSL/TLS in the config
+  file was incorrect (stating instead STARTTLS which is automatically
+  negotiated by the code) and there were several bugs causing sending
+  problems that are now resolved
+- Fixed a problem with the minimum PHP 5 version required to use the Timezone
+  option
+- Fixed a bug in the folder list dropdowns and the folder tree that caused some
+  combinations of folder names to appear in duplicate locations in the folder
+  tree
+- Added an "Empty Trash" button to the message controls when viewing the Trash
+  folder
+- Fixed a bug that caused a file include error when not using the default theme
+  and the page was not found
+- Moved some missing strings into the translation files
+- Fixed a bug in the IMAP cram-md5 authentication routine that caused it to
+  send an incorrect challenge response
+- Fixed a bug on the about page that caused the initial IMAP response, or
+  "banner" to be displayed as blank
+- Changed the default for the hostname setting in the config file to be blank
+  (auto-detect) instead of localhost
+- Reset the default site theme to the default theme rather than the green theme
+- Fixed a PHP notice when saving settings due to a missing global statement
+- Fixed a bug in the IMAP sort routines that allowed ordered subject thread
+  sorting to be executed when not available in the IMAP capability response
+
+
+---------------------------------------
+BETA 1 JUNE 2008 
+---------------------------------------
+
+- This is the first offical release of the new Hastymail code
+  Development notes and changes up to this release can be viewed
+  online at http://www.hastymail.org/blogs/News/. Changes for
+  for future releases will be documented at both the website and
+  in this file.
+

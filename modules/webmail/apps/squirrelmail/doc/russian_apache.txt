@@ -1,0 +1,31 @@
+HOW TO CONFIGURE SQUIRRELMAIL WITH RUSSIAN APACHE
+--------------------------------------------------
+
+This text is available in Russian at 
+http://mricon.com/SM/russian_apache.html
+
+It is no longer advised to try and make SquirrelMail live in peace with
+RussianApache. Too many problems arise trying to make charset recoding
+co-exist with SquirrelMail. SM is completely capable of providing necessary
+charset headers, so most modern browsers will not have any problems 
+interacting with SquirrelMail in the necessary Charset.
+
+To turn off Charset Recoding of Russian Apache, use the following
+directive:
+
+CharsetDisable on
+
+You may put this directive into VirtualHost, Directory, Location, or
+a .htaccess file in the SquirrelMail's main directory (unless you
+turned off .htaccess files).
+
+This is the best solution so far -- others involve so many steps that
+they are no longer viable.
+
+If you have any questions or problems, please address them to
+the squirrelmail-users@lists.sourceforge.net to have them 
+promptly answered. ;)
+
+--
+Konstantin Riabitsev (a.k.a. Graf)
+graf@relhum.org

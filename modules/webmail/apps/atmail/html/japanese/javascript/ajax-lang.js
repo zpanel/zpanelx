@@ -1,0 +1,104 @@
+// Language strings for Ajax interface
+
+Lang_AllFolders = "全フォルダ";
+Lang_Page = "Page";
+Lang_First = "最初に";
+Lang_Last = "最新";
+Lang_NextMsg = "次のメール";
+Lang_PrevMsg = "前のメール";
+Lang_Viewing = "見る";
+Lang_Messages = "メール";
+Lang_To = "宛先";
+Lang_Of = "of";
+Lang_From = "差出人";
+Lang_Subject = "件名";
+Lang_Date = "送信日時";
+Lang_Size = "サイズ";
+Lang_DragDrop = "フォルダへのドラッグ＆ドロップ";
+Lang_DoubleClick = "Double Click to Open";
+Lang_CacheStatus = "Message Cache Status";
+Lang_Type = "新規作成";
+Lang_Priority = "重要度";
+Lang_Normal = "通常";
+Lang_High = "高";
+Lang_Low = "低";
+Lang_Reply = "返信";
+Lang_ReplyAll = "全員へ返信";
+Lang_Forward = "転送";
+Lang_Delete = "削除";
+Lang_Abook = "アドレス帳";
+Lang_Print = "印刷";
+Lang_BlockSender = "受信拒否設定";
+Lang_ViewHeaders = "View Headers";
+Lang_Next = "次へ";
+Lang_Prev = "前のメッセージへ";
+Lang_Back = "戻る";
+Lang_Send = "Send Mail";
+Lang_AddRecpt = "受取人追加";
+Lang_AddBCC = "Add BCC";
+Lang_SpellCheck = "スペルチェック";
+Lang_Attachments = "添付ファイル";
+Lang_SaveMsg = "保存";
+Lang_Resume = "Resume Editing";
+Lang_BackTo = "Back to";
+Lang_Text = "テキスト";
+Lang_Open = "開く";
+Lang_Editor = "エディター";
+Lang_Bcc = "Bcc";
+Lang_Cc = "Cc";
+Lang_ItemsToMove = "Items to move";
+Lang_BlackListAdded = "The user has been added to your Spam blacklist";
+Lang_AbookAdded = "The users email-address has been added to the addressbook";
+Lang_MoveHead = "Message cannot be moved";
+Lang_MoveHead2 = "The unique message identifier does not match the selected message for move/deletion. This error can occur if:";
+Lang_MoveReason1 = "You have refreshed the WebMail window after moving a message. The previous message cannot be moved twice";
+Lang_MoveReason2 = "The message has been moved from another application via POP3/IMAP. Please reload your mailbox folder for an updated listing";
+Lang_MoveReason3 = "The message no longer exists on the mail-server";
+Lang_Headers = "メールヘッダー";
+Lang_AddSender = "差出人をアドレス帳に追加";
+Lang_Sent = "送信済";
+Lang_AddWord = "辞書に単語を追加";
+Lang_Edit = "編集";
+Lang_BlockedAlert = "Alert:";
+Lang_Blocked = "$var['BlockImages'] images have been blocked.";
+Lang_Display = "Display Images in message";
+Lang_DisplayAdd = "Always display images from this user";
+Lang_AlertPerm = "選択されたメールを削除すると復元できません。削除しますか？";
+Lang_MarkAsRead = "Mark as Read";
+Lang_MarkAsUnread = "Mark as Unread";
+
+// Calendar Language files
+Lang_Months = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+Lang_Days = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
+Lang_AllDayAdd = "Double Click to Add an All Day Appointment";
+Lang_DayAdd = "Click & Drag or Double Click to Add an Appointment";
+Lang_TaskAdd = "追加";
+Lang_TaskHeader = "ToDo";
+Lang_AllDayEvents = "All Day Events";
+Lang_Done = "完了";
+Lang_Personal = "個人用フォルダ";
+Lang_Shared = "Shared";
+Lang_VideoMail = "Video Mail";
+Lang_Help = "Help Guide for Recording Video messages";
+
+Lang_Start = "開始日";
+Lang_End = "終了日";
+
+// Used for the overdue.html template in the calendar
+Lang_Complete = "完了";
+Lang_Sleep = "Remind in 30 minutes";
+Lang_DueDate = "期限";
+Lang_OverDue = "Overdue Appointments";
+Lang_ViewDay = "日付を見る";
+Lang_ViewWeek = "View 5 day Week";
+Lang_ViewWeek7 = "View 7 day Week";
+Lang_ViewMonth = "View Month";
+Lang_BackToEmail = "Back to Email";
+Lang_Sync = "ユーティリティをOutlookに同期化";
+Lang_HelpGuide = "ヘルプガイド";
+Lang_ExportToIcal = "Export to iCal";
+
+Lang_HasNoMsgs = "$var['folder'] にはメールがありません";
+
+Lang_CalImportTitle = "Import from iCal";
+Lang_CalImportLabel = "Import Calendar in iCal (ics) format:";

@@ -1,0 +1,62 @@
+<!-- if($this->Ajax) { -->
+<Error>
+	<ErrorStatus>1</ErrorStatus>
+	<ErrorMessage><![CDATA[
+<!-- } -->
+
+<html>
+<head>
+<title>Refresh and try again</title>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">    
+</head>
+<body bgcolor="$this->BgColor" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor">
+
+<style>
+
+.sw {font-family:Verdana;font-size:13px;color:#000000;}
+.swr {font-family:Verdana;font-size:13px;color:#FF0000;}
+</style>
+
+
+<LINK href="javascript/style$this->browser.css" rel="stylesheet" type="text/css">
+<img src="$pref['logo_big_img']"><br>
+<h1>Mailbox Error</h1>
+
+<font class="swr">The server responded - $var['status']
+</font>
+
+<font class="sw"> 
+<ul>
+
+<!-- if($this->Ajax) { -->
+  <li><a href="javascript:history.back()">Refresh and try again</a>
+<!-- } -->
+
+<!-- if(!$this->Ajax) { -->
+  <li><a href="javascript:location.reload()">Refresh and try again</a>
+<!-- } -->
+
+</li>
+
+  <li>Check that you are not accessing your mailbox simultaneously in two or more windows. A file-lock is active for the session accessing your mailbox.</li>
+
+  <li>Check that two sessions of your account are not active - only one user per login is accepted</li>
+
+  <li>Try accessing again in a few minutes</li>
+
+</ul>
+</font>
+
+<p><font class="swr">If you are still unsuccessful accessing your account</font></p>
+<font class="sw">
+<ul>
+  <li>Contact the Administrator $this->admin_email for assistance</li>
+</ul>
+</font>
+</body>
+</html>
+
+<!-- if($this->Ajax) { -->
+	]]></ErrorMessage>
+</Error>
+<!-- } -->

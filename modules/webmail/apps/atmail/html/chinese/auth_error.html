@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>拒絕存取</title>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+</head>
+<body bgcolor="#ffffff" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor">
+
+<style>
+
+.sw {font-family:Verdana;font-size:13px;color:#000000;}
+.swr {font-family:Verdana;font-size:13px;color:#FF0000;}
+</style>
+
+<LINK href="javascript/style$this->browser.css" rel="stylesheet" type="text/css">
+
+<img src="$pref['logo_big_img']"><br>
+<h1>登入錯誤</h1>
+
+<font class="swr">拒絕存取 - 你的 SessionID 不能在資料庫內核實</font>
+<font class="sw"> 
+<ul>
+  <li>檢查使用者名稱及密碼.</li>
+  <li>檢查你的瀏覽器是否支援Cookies及已啟動.</li>
+  <li>檢查了你的兩個工作時段未啟用 - 只容許每一個使用者同時登入一次</li>
+</ul>
+</font>
+
+<p><font class="swr">如果你仍然無法成功登入你的帳戶</font></p>
+<font class="sw">
+<ul>
+  <li>使用 <a href="index.php?func=passutil">密碼恢復工具</a> 去取回已失去的密碼</li>
+  <li>聯絡管理員 $this->admin_email 要求協助</li>
+  <!--  if($pref['allow_Signup']) { -->
+  <li><a href="index.php?func=signup">建立新帳戶</a></li>
+  <!-- } -->
+</ul>
+</font>
+</body>
+</html>
+
+

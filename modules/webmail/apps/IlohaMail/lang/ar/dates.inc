@@ -1,0 +1,69 @@
+<?php
+/********************************************************
+	lang/eng/dates.inc
+	(C) 2002 Ryo Chijiiwa <Ryo@IlohaMail.org>
+
+	This file is part of IlohaMail, and released under GPL.
+	See COPYING, or http://www.fsf.org/copyleft/gpl.html
+
+********************************************************/
+
+//TRANSLATORS:  Uncomment next line for all non-English languages!!
+//include("../lang/eng/dates.inc");
+
+$lang_months[1] = "íäÇíÑ";
+$lang_months[2] = "ÝÈÑÇíÑ";
+$lang_months[3] = "ãÇÑÓ";
+$lang_months[4] = "ÃÈÑíá";
+$lang_months[5] = "ãÇí";
+$lang_months[6] = "íæäíæ";
+$lang_months[7] = "íæáíæÒ";
+$lang_months[8] = "ÛÔÊ";
+$lang_months[9] = "ÔÊäÈÑ";
+$lang_months[10] = "ÃßÊæÈÑ";
+$lang_months[11] = "äæäÈÑ";
+$lang_months[12] = "ÏÍäÈÑ";
+
+$lang_datetime["short_mon"][1] = "íäÇíÑ";
+$lang_datetime["short_mon"][2] = "ÝÈÑÇíÑ";
+$lang_datetime["short_mon"][3] = "ãÇÑÓ";
+$lang_datetime["short_mon"][4] = "ÃÈÑíá";
+$lang_datetime["short_mon"][5] = "ãÇí";
+$lang_datetime["short_mon"][6] = "íæäíæ";
+$lang_datetime["short_mon"][7] = "íæáíæÒ";
+$lang_datetime["short_mon"][8] = "ÛÔÊ";
+$lang_datetime["short_mon"][9] = "ÔÊäÈÑ";
+$lang_datetime["short_mon"][10] = "ÃßÊæÈÑ";
+$lang_datetime["short_mon"][11] = "äæäÈÑ";
+$lang_datetime["short_mon"][12] = "ÏÍäÈÑ";
+
+$lang_datetime["dsow"][0] = "ÇáÃÍÏ";
+$lang_datetime["dsow"][1] = "ÇáÅËäíä";
+$lang_datetime["dsow"][2] = "ÇáËáÇËÇÁ";
+$lang_datetime["dsow"][3] = "ÇáÃÑÈÚÇÁ";
+$lang_datetime["dsow"][4] = "ÇáÎãíÓ";
+$lang_datetime["dsow"][5] = "ÇáÌãÚÉ";
+$lang_datetime["dsow"][6] = "ÇáÓÈÊ";
+
+$lang_datetime["dsowl"][0] = "ÇáÃÍÏ";
+$lang_datetime["dsowl"][1] = "ÇáÅËäíä";
+$lang_datetime["dsowl"][2] = "ÇáËáÇËÇÁ";
+$lang_datetime["dsowl"][3] = "ÇáÃÑÈÚÇÁ";
+$lang_datetime["dsowl"][4] = "ÇáÎãíÓ";
+$lang_datetime["dsowl"][5] = "ÇáÌãÚÉ";
+$lang_datetime["dsowl"][6] = "ÇáÓÈÊ";
+			
+$lang_datetime["dsow_short"] = array("S", "M", "T", "W", "T", "F", "S");
+$lang_datetime["today"] = "Çáíæã %t";		//e.g. "Today 12:02"
+$lang_datetime["lastweek"] = "%w %t";		//e.g. "Wed 12:00"
+$lang_datetime["thisyear"] = "%m/%d";		//e.g. "2/13"
+$lang_datetime["prevyears"] = "%m/%d/%y"; 	//e.g. "1/1/2100"
+$lang_datetime["monthyear"] = "%m %y";		//e.g. "January 2002"
+$lang_datetime["verbal"] = "%m %d, %y";  	//e.g. "Jan 1, 1900"
+$lang_datetime["verbal_short"] = "%m %d";  	//e.g. "Jan 1"
+$lang_datetime["hour_system"] = 24;			// 12 or 24
+$lang_datetime["ampm"]["am"] = "Þ.Ò";
+$lang_datetime["ampm"]["pm"] = "È.Ò";
+$lang_datetime["time_format"] = "%h:%m%a";	// %h=hour, %m=minutes, %a="am:pm"
+$lang_datetime["hour_format"] = "%h%a";
+?>

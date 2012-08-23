@@ -1,0 +1,40 @@
+<!-- if($this->Ajax) { -->
+<Error>
+	<ErrorStatus>1</ErrorStatus>
+	<ErrorMessage><![CDATA[
+<!-- } -->
+
+<html>
+<head>
+<title>再読み込みしてもう一度行ってください。</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">       
+</head>
+<body bgcolor="$this->BgColor" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor">
+
+<style>
+
+.sw {font-family:Verdana;font-size:13px;color:#000000;}
+.swr {font-family:Verdana;font-size:13px;color:#FF0000;}
+</style>
+
+
+<LINK href="javascript/style$this->browser.css" rel="stylesheet" type="text/css">
+<img src="$pref['logo_big_img']"><br>
+<h1>ファイルパーミッションにより拒否されました</h1>
+
+<font class="swr">サーバーが応答しました - $var['status']
+</font>
+
+<p><font class="swr">ご使用のアカウントにアクセスできない場合は、</font></p>
+<font class="sw">
+<ul>
+  <li>管理者に$this->admin_email連絡してください。 $pref['admin_email']</li>
+</ul>
+</font>
+</body>
+</html>
+
+<!-- if($this->Ajax) { -->
+	]]></ErrorMessage>
+</Error>
+<!-- } -->

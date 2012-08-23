@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>編輯群組地址內容</title>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">       
+</head>
+<BODY bgcolor="$this->BgColor" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor" onload="doOnLoad()" MARGINWIDTH=2 MARGINHEIGHT=2 TOPMARGIN=5 LEFTMARGIN=5>
+
+$var['atmailstyle']
+<script language="JavaScript" src="javascript/composebook.js"></script>
+<script language="javascript" src="javascript/abookadd.js"></script>
+<script language="javascript" src="html/$this->Language/javascript/validate_group.js"></script>
+
+<div class="main" id="MainDiv">
+<form name="MainForm" action="abook.php" target="emailwin" onsubmit="return validate_group(this)">
+    <table width="100%" border="0" cellspacing="1" cellpadding="1" bgcolor='$this->HeaderColor'>
+      <tr height='19'> 
+        <td bgcolor='$this->PrimaryColor' colspan="3" height='15'><font class='sw'>&nbsp;群組名稱:<br>
+          &nbsp;
+          <input type="text" class="text" name="UserGroup" value="$var['edit']">
+          </font></td>
+      </tr>
+      <tr> 
+        <td bgcolor='$this->SecondaryColor' width="11%"> 
+          <select name="Addresses" multiple size="16" class="select">
+            <option value="-1">--- 新增所有電郵地址</option>
+$var['rows']
+		  </select>
+        </td>
+        <td bgcolor='#FFFFFF' align="center" width="52%"><font class='sw'> 
+          <input class="stdbtn" type="button" value="&nbsp;新增 &gt;&gt;  " onClick="moveItems(this.form.Addresses,this.form.ToAddress)" name="button2">
+          <br>
+          <input class="stdbtn" type="button" value="&nbsp;&nbsp;刪除 &lt;&lt;&nbsp;&nbsp;" onClick="deleteItems(this.form.ToAddress)" name="button">
+          </font></td>
+        <td bgcolor='#FFFFFF' width="37%"> 
+          <select name="ToAddress" width="50" multiple size="16" class="select">
+            <option value='' selected>---------------------------</option>
+	$var['emailto']
+          </select>
+        </td>
+      </tr>
+    </table>
+    <hr width="100%" size="4">
+    <div align="right"></div>
+    <input type="hidden" name="func" value="open">
+    <input type="hidden" name="savegroup" value="1">
+    <input class="stdbtn" type="submit" name="add3" value="儲存" onclick="javascript:savelist(this.form.ToAddress)">
+    <input class="stdbtnlong" type="button" name="add32" value="編輯群組內容" onclick="opener.window.location.href='abook.php?func=view&email=$var['edit']'">
+    <input class="stdbtn" type="button" name="add22" value="取消" onClick="window.close()">
+  </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,402 @@
+<html>
+<head>
+<title>Add Emails from Address Book</title>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<link rel="stylesheet" href="html/english/xp/css/gui.css" type="text/css">
+<script language="JavaScript" src="javascript/selectxp.js"></script>
+<script language="JavaScript" src="javascript/abooksearch.js"></script>
+	
+<script language="JavaScript" src="javascript/composebook.js"></script>
+<script language="JavaScript">
+
+function LoadSelectXPVars() {
+// Define our data array here
+$var['rows']
+
+<!-- if($this->Ajax) { -->
+var LoadToAddress = opener.window.document.getElementById("ComposeMsgTo").value;
+var LoadCCAddress = opener.window.document.getElementById("ComposeMsgCc").value;
+var LoadBCCAddress = opener.window.document.getElementById("ComposeMsgBcc").value;
+<!-- } -->
+
+<!-- if(!$this->Ajax) { -->
+var LoadToAddress = opener.window.document.Compose.emailto.value;
+var LoadCCAddress = opener.window.document.Compose.emailcc.value;
+var LoadBCCAddress = opener.window.document.Compose.emailbcc.value;
+<!-- } -->
+
+// Loop through the To, Cc, Bcc fields and append the previous emails to our arrays
+if (LoadToAddress) {
+	var LoadedToAddress = LoadToAddress.split(/;|,/);
+	for (var i in LoadedToAddress) {
+		var email = FindEmail(LoadedToAddress[i])
+
+			if(email)	{
+			eval("Users['" + email + "'] = '" + email + "'");
+			eval("Gender['" + email + "'] = 'male'");
+			eval("AddedUsers['" + email + "'] = 'To'");
+			}
+		
+			var group = FindGroup(LoadedToAddress[i]);
+
+			if(group)	{
+			eval("AddedGroups['" + group + "'] = 'To'");
+			eval("GroupNames['" + group + "'] = '" + group + "'");
+			eval("Groups['" + group + "'] = '" + group + " Group'");			
+			}
+
+
+	}
+}
+if (LoadCCAddress) {
+	var LoadedCCAddress = LoadCCAddress.split(/;|,/);
+	for (var i in LoadedCCAddress) {
+		var email = FindEmail(LoadedCCAddress[i])
+
+			if(email)	{
+			eval("Users['" + email + "'] = '" + email + "'");
+			eval("Gender['" + email + "'] = 'male'");
+			eval("AddedUsers['" + email + "'] = 'Cc'");
+			}
+
+			var group = FindGroup(LoadedCCAddress[i]);
+
+			if(group)	{
+			eval("AddedGroups['" + group + "'] = 'Cc'");
+			eval("GroupNames['" + group + "'] = '" + group + "'");
+			eval("Groups['" + group + "'] = '" + group + " Group'");			
+			}
+
+	}
+}
+if (LoadBCCAddress) {
+	var LoadedBCCAddress = LoadBCCAddress.split(/;|,/);
+	for (var i in LoadedBCCAddress) {
+		var email = FindEmail(LoadedBCCAddress[i])
+
+			if(email)	 {
+			eval("Users['" + email + "'] = '" + email + "'");
+			eval("Gender['" + email + "'] = 'male'");
+			eval("AddedUsers['" + email + "'] = 'Bcc'");
+			}
+
+			var group = FindGroup(LoadedBCCAddress[i]);
+
+			if(group)	{
+			eval("AddedGroups['" + group + "'] = 'Bcc'");
+			eval("GroupNames['" + group + "'] = '" + group + "'");
+			eval("Groups['" + group + "'] = '" + group + " Group'");			
+			}
+
+		}
+	}
+}
+
+// Sanity check a string for a certain character
+function checkToken(inStr,token) {
+	for (var i = 0; i < inStr.length; i++) {
+		if (inStr.charAt(i) == token) {
+			return true;
+		}
+	}
+	return false;
+}
+
+// Write the results to our parent window
+function insertAddr(type) {
+	var ToAddress = new Array();
+	var CCAddress = new Array();
+	var BCCAddress = new Array();
+
+	var l_ToAddress = "";
+	var l_CCAddress = "";
+	var l_BCCAddress = "";
+
+	// Next, loop through the AddedGroups
+	var BccToggle;
+
+	// Loop each user array
+	for (var i in AddedUsers) {
+	//alert(i + ":" + AddedUsers[i]);
+
+		if (AddedUsers[i] == "To") {
+			ToAddress.push(Users[i]);
+		} else if (AddedUsers[i] == "Cc") {
+			CCAddress.push(Users[i]);
+		} else if (AddedUsers[i] == "Bcc") {
+			BCCAddress.push(Users[i]);
+			BccToggle = 1;
+		}
+	}
+	
+
+	for (var i in AddedGroups) {
+	//alert(i + ":" + AddedGroups[i] + ":" + Groups[i]);
+
+		if (AddedGroups[i] == "To") {
+		l_ToAddress += Groups[i] + "; ";
+		} else if (AddedGroups[i] == "Cc") {
+		l_CCAddress += Groups[i] + "; ";
+		} else if (AddedGroups[i] == "Bcc") {
+		l_BCCAddress += Groups[i] + "; ";
+		BccToggle = 1;
+		}
+	}
+
+
+	for (var i in ToAddress) {
+		if (checkToken(ToAddress[i],"@")) {
+			l_ToAddress += ToAddress[i] + "; ";
+		}
+	}
+	
+
+	if(BccToggle == 1)	 {
+<!-- if($this->Ajax) { -->
+	opener.window.ToggleBccRow(true);
+<!-- } -->
+
+<!-- if(!$this->Ajax) { -->
+	opener.window.BccToggle('1');
+	opener.window.resize_iframe;
+<!-- } -->
+
+	}
+
+	if (type) {
+<!-- if($this->Ajax) { -->
+opener.window.document.getElementById("ComposeMsgTo").value = l_ToAddress;
+<!-- } -->
+
+<!-- if(!$this->Ajax) { -->
+opener.window.document.Compose.emailto.value = l_ToAddress;
+<!-- } -->
+		window.close();
+	} else	{
+		for (var i in CCAddress) {
+			if (checkToken(CCAddress[i],"@")) {
+				l_CCAddress += CCAddress[i] + "; ";
+			}
+		}
+		for (var i in BCCAddress) {
+			if (checkToken(BCCAddress[i],"@")) {
+				l_BCCAddress += BCCAddress[i] + "; ";
+			}
+
+		}
+
+		l_ToAddress = l_ToAddress.replace(/&lt;/g, '<');
+		l_ToAddress = l_ToAddress.replace(/&gt;/g, '>');
+		l_CCAddress = l_CCAddress.replace(/&lt;/g, '<');
+		l_CCAddress = l_CCAddress.replace(/&gt;/g, '>');
+		l_BCCAddress = l_BCCAddress.replace(/&lt;/g, '<');
+		l_BCCAddress = l_BCCAddress.replace(/&gt;/g, '>');
+
+		// Finally, parse the results back to our parent window and replace the To/Cc/Bcc fields, only if our window is open
+		if( !window.opener.closed )	{
+			
+<!-- if($this->Ajax) { -->
+		opener.window.document.getElementById("ComposeMsgTo").value = l_ToAddress;
+		opener.window.document.getElementById("ComposeMsgCc").value = l_CCAddress;
+		opener.window.document.getElementById("ComposeMsgBcc").value = l_BCCAddress;
+<!-- } -->
+
+<!-- if(!$this->Ajax) { -->
+		opener.window.document.Compose.emailto.value = l_ToAddress;
+		opener.window.document.Compose.emailcc.value = l_CCAddress;
+		opener.window.document.Compose.emailbcc.value = l_BCCAddress;
+<!-- } -->
+
+		// Bring the parent window to focus, close our window
+		opener.window.focus();
+		} else	{
+		alert('The original email window has been closed, cannot add recipients');
+		}
+
+		window.close();
+
+	}
+}
+</script>
+
+<style>
+
+   .table_control {
+    padding: 0;
+    font: 11px verdana,arial,helveetica;
+	  background: url('imgs/tile_back1.gif');
+}
+.table_control th {
+    font: bold 11px verdana,arial,helveetica;
+    margin: 0;
+    text-align: left;
+
+}
+.middle {
+   font: bold 11px verdana,arial,helveetica;
+    margin: 0;
+    text-align: left;
+    background: url('imgs/tile_back1.gif');
+}
+.table_control td {
+    font: 11px verdana,arial,helveetica;
+    margin: 0;
+}
+.topleft {
+    background: url('imgs/round_left.gif') top left no-repeat;
+
+
+}
+.topright {
+    background: url('imgs/round_right.gif') top right no-repeat;
+}
+		table.borderstyle
+{ 
+border-left: 1px #96BDE0 solid;
+border-right: 1px #96BDE0 solid;
+border-bottom: 1px #96BDE0 solid;
+border-top: 1px #96BDE0 solid;
+border-spacing: 0px;
+}
+
+
+</style>
+
+
+</head>
+
+<body onLoad="LoadSelectXP('To,Cc,Bcc'); mainForm = document.abook; window.focus();" bgcolor="#ffffff" topmargin="4" bottommargin="4" leftmargin="4" rightmargin="4" marginheight="0" marginwidth="0">
+
+$var['atmailstyle']
+
+<table border='0' cellspacing='0' cellpadding='1' class='maintable'>
+
+
+<TABLE border='0' width='100%' cellpadding='4' cellspacing='0' class="table_control">
+
+<TR><TH class="topleft"><font class='mheader'>&nbsp;Add Recipients</font></TH><TH class="middle"></TH><TH class="topright"></TH></TR>
+
+
+
+</TABLE>
+
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5" class="borderstyle">
+    <tr>
+		<td bgcolor="$this->SecondaryColor">
+
+  <table width="100%" border="0" cellspacing="0" cellpadding="5">
+
+<form method="post" name="abook">
+<!-- The permissions hidden values -->
+<input type="hidden" name="ToSelectedGroups">
+<input type="hidden" name="ToSelectedUsers">
+<input type="hidden" name="CcSelectedGroups">
+<input type="hidden" name="CcSelectedUsers">
+<input type="hidden" name="BccSelectedGroups">
+<input type="hidden" name="BccSelectedUsers">
+
+	<tr>
+		<td height="100%">
+			<table width="100%" height="450" cellspacing="10" cellpadding="0" border="0">
+				<tr>
+					<td colspan="3"><small>Select which users to append into the To, Cc and Bcc fields. Select users from the Personal, Shared or Global address-book below</small></td>
+				</tr>
+				<tr>
+					<td>
+
+<select name="abookview" class="select" style="width : 100%;" onchange="changeview('To,Cc,Bcc')">
+
+<!-- if($pref['GlobalAbook'] || $pref['GlobalAbookRead'] ) { -->
+<option value="personal">Personal</option>
+<option value="shared">Shared Contacts</option>
+<option value="global"
+<!-- } -->
+<!-- if($var['abookview'] == "global" && ( $pref['GlobalAbook'] || $pref['GlobalAbookRead'] ) ) { -->
+selected
+<!-- } -->
+<!-- if($pref['GlobalAbook'] || $pref['GlobalAbookRead'] ) { -->
+>Global</option>
+<!-- } -->
+
+<!-- if(!$pref['GlobalAbook'] && !$pref['GlobalAbookRead']) { -->
+<option value="personal">Personal</option>
+<!-- } -->
+
+<!-- if($pref['allow_LDAPsearch']) { -->
+<option value="ldap">LDAP Server ($pref['ldap_server'])</option>
+<!-- } -->
+
+
+</select>
+
+					</td>
+					<td><small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					</small></td>
+					<td>
+				
+				<table width="100%" cellpadding="0" cellspacing="3">
+				<tr>
+				<td width="50%">
+					<input type="button" name="Insert" value="Add Recipients" onclick="insertAddr()">
+				</td>
+				<td width="50%">
+					<input type="button" name="Insert" value="Cancel" onclick="window.close()">
+				</td>
+				</table>
+
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="3" width="50%" height="100%"><iframe name="GroupsUsersFrame" width="100%" height="100%" marginwidth="0" marginheight="0" frameborder="0" style="border :1px solid #D8D2BD;" src="html/blankiframe.html"></iframe></td>
+
+					<td height="33%" align="center"><small>To:</small><br><br><input onClick="RemoveAdded('To');" type="button" name="Remove" value="<-" style="width : 50%" class="stdbtnxp"><input onClick="AddSelected('To');" type="button" name="Add" value="->" style="width : 50%" class="stdbtnxp"></td>
+					<td width="50%" height="110"><iframe name="ToSelectedFrame" width="100%" height="100%" marginwidth="0" marginheight="0" frameborder="0" style="border :1px solid #D8D2BD;" src="html/blankiframe.html"></iframe></td>
+				</tr>
+				<tr>
+					<td height="33%" align="center"><small>Cc:</small><br><br><input onClick="RemoveAdded('Cc');" type="button" name="Remove" value="<-" style="width : 50%" class="stdbtnxp"><input onClick="AddSelected('Cc');" type="button" name="Add" value="->" style="width : 50%" class="stdbtnxp"></td>
+					<td width="50%" height="110"><iframe name="CcSelectedFrame" width="100%" height="100%" marginwidth="0" marginheight="0" frameborder="0" style="border :1px solid #D8D2BD;" src="html/blankiframe.html"></iframe></td>
+				</tr>
+				<tr>
+					<td height="33%" align="center"><small>Bcc:</small><br><br><input onClick="RemoveAdded('Bcc');" type="button" name="Remove" value="<-" style="width : 50%" class="stdbtnxp"><input onClick="AddSelected('Bcc');" type="button" name="Add" value="->" style="width : 50%" class="stdbtnxp"></td>
+					<td width="50%" height="110"><iframe name="BccSelectedFrame" width="100%" height="100%" marginwidth="0" marginheight="0" frameborder="0" style="border :1px solid #D8D2BD;" src="html/blankiframe.html"></iframe></td>
+				</tr>
+				
+
+<tr>
+<td height="1" bgcolor='#D8D2BD' colspan="8">
+</td>
+</tr>
+
+				<tr>
+					<td colspan="3">
+						<table width="100%" cellpadding="2" cellspacing="0" border="0">
+							<tr>
+								<td width="55%" nowrap><small>Search:&nbsp;</small><input type="text" name="PermissionsSearchQuery" style="width : 86%" onkeypress="if(event.keyCode ==13) { submit_search('To,Cc,Bcc'); return false; }">&nbsp;</td>
+								<td width="10"><img src="imgs/xp/shim.gif" width="10" height="1" border="0"></td>
+								<td width="30%" align="right">
+									<select name="PermissionsSearchField" style="width : 100%" class="select">
+										<option value="FirstName">First Name</option>
+										<option value="LastName">Last Name</option>
+										<option value="Account" selected>Email</option>
+									</select>
+								</td>
+								<td width="10"><img src="imgs/xp/shim.gif" width="10" height="1" border="0"></td>
+								<td width="15%">	<input type="button" name="PermissionsSearch" value="Search" class="stdbtnxp" style="width: 100%" onclick="submit_search('To,Cc,Bcc')"></td>
+							</tr>
+
+
+						</table>
+					</td>
+				</tr>
+
+			</table>
+		</td>
+	</tr>
+</form>
+</table>
+
+</body>
+</html>

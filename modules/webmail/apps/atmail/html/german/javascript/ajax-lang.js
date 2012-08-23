@@ -1,0 +1,104 @@
+// Language strings for Ajax interface
+
+Lang_AllFolders = "Alle Ordner";
+Lang_Page = "Seite";
+Lang_First = "erst";
+Lang_Last = "letzte";
+Lang_NextMsg = "Nächste Nachricht";
+Lang_PrevMsg = "Vorherige Nachricht";
+Lang_Viewing = "Betrachte";
+Lang_Messages = "Nachrichten";
+Lang_To = "An";
+Lang_Of = "von";
+Lang_From = "Von";
+Lang_Subject = "Betreff";
+Lang_Date = "Datum";
+Lang_Size = "Größe";
+Lang_DragDrop = "Drag and Drop zum Ordner";
+Lang_DoubleClick = "Doppelklick zum &Ouml;ffnen";
+Lang_CacheStatus = "Message Cache Status";
+Lang_Type = "Typ";
+Lang_Priority = "Priorität";
+Lang_Normal = "normale";
+Lang_High = "hoch";
+Lang_Low = "niedrige";
+Lang_Reply = "Antworten";
+Lang_ReplyAll = "Allen antworten";
+Lang_Forward = "Weiterleiten";
+Lang_Delete = "Löschen";
+Lang_Abook = "Adressbuch";
+Lang_Print = "Drucken";
+Lang_BlockSender = "Absender blockieren";
+Lang_ViewHeaders = "Kopfzeilen anzeigen";
+Lang_Next = "nächstes";
+Lang_Prev = "vorheriges";
+Lang_Back = "zurück";
+Lang_Send = "Nachricht senden";
+Lang_AddRecpt = "Empfänger hinzufügen";
+Lang_AddBCC = "BCC einfügen";
+Lang_SpellCheck = "Rechtschreibprüfung";
+Lang_Attachments = "Anhänge";
+Lang_SaveMsg = "Nachricht speichern";
+Lang_Resume = "Bearbeitung fortsetzen";
+Lang_BackTo = "Zurück zu";
+Lang_Text = "Text";
+Lang_Open = "Offen";
+Lang_Editor = "Editor";
+Lang_Bcc = "Bcc";
+Lang_Cc = "Cc";
+Lang_ItemsToMove = "OBjekte zum Verschieben";
+Lang_BlackListAdded = "Der Absender wurde Ihrer Spam Blacklist hinzugefügt";
+Lang_AbookAdded = "Die e-mail Adresse wurde dem Adressbuch hinzugefügt.";
+Lang_MoveHead = "Nachricht kann nicht verschoben werden";
+Lang_MoveHead2 = "Der Unique Message Identifier stimmt nicht mehr der selektierten Nachrichten überein. Dieser Fehler kann in folgenden Fällen auftreten:";
+Lang_MoveReason1 = "Sie haben die Seite nach dem Verschieben einer Nachricht neu geladen. Die zuvor selektierte Nachricht kann nicht erneut verschoben werden.";
+Lang_MoveReason2 = "Die Nachricht wurde von einer anderen Anwendung via POP3/IMAP verschoben. Aktualisieren Sie die Seite um die Anzeige zu aktualisieren.";
+Lang_MoveReason3 = "Diese Nachricht ist auf dem Mail-Server nicht mehr vorhanden.";
+Lang_Headers = "Kopfzeilen";
+Lang_AddSender = "Sender zum Adressbuch hinzufügen";
+Lang_Sent = "Gesendete Nachrichten";
+Lang_AddWord = "Wort zu Wörterbuch hinzufügen";
+Lang_Edit = "Bearbeiten";
+Lang_BlockedAlert = "Warnung:";
+Lang_Blocked = "$var['BlockImages'] Bilder wurden blockiert.";
+Lang_Display = "Bilder in E-Mails anzeigen lassen.";
+Lang_DisplayAdd = "Bilder in E-Mails von diesem Benutzer anzeigen.";
+Lang_AlertPerm = "Sind Sie sicher, daß Sie die Nachricht endgültig löschen möchten?";
+Lang_MarkAsRead = "Als gelesen markieren";
+Lang_MarkAsUnread = "Als ungelesen markieren";
+
+// Calendar Language files
+Lang_Months = new Array("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember");
+Lang_Days = new Array("Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag");
+Lang_AllDayAdd = "Doppelklicken um Termin zu erfassen";
+Lang_DayAdd = "Klicken + Ziehen oder Doppelklicken um Termin zu erfassen";
+Lang_TaskAdd = "Hinzufügen";
+Lang_TaskHeader = "Aufgaben";
+Lang_AllDayEvents = "Alle Termine";
+Lang_Done = "Fertig";
+Lang_Personal = "Persönlich";
+Lang_Shared = "Shared";
+Lang_VideoMail = "Video Mail";
+Lang_Help = "Hilfe zur Aufzeichnung von Video-Nachrichten";
+
+Lang_Start = "Start Datum";
+Lang_End = "Ende Datum";
+
+// Used for the overdue.html template in the calendar
+Lang_Complete = "Abgeschlossen";
+Lang_Sleep = "In 30 Minuten erinnern";
+Lang_DueDate = "Fälligkeits Datum";
+Lang_OverDue = "Fällige Termine";
+Lang_ViewDay = "Heute";
+Lang_ViewWeek = "Diese Woche";
+Lang_ViewWeek7 = "View 7 day Week";
+Lang_ViewMonth = "Dieser Monat";
+Lang_BackToEmail = "Zurück zum Posteingang";
+Lang_Sync = "Sync Utility für Outlook";
+Lang_HelpGuide = "Hilfe";
+Lang_ExportToIcal = "Export to iCal";
+
+Lang_HasNoMsgs = "$var['folder'] hat keine Nachrichten";
+
+Lang_CalImportTitle = "Import from iCal";
+Lang_CalImportLabel = "Import Calendar in iCal (ics) format:";

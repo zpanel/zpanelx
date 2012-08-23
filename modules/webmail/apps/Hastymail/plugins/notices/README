@@ -1,0 +1,26 @@
+notices is a plugin that will let users setup a notification when new messages arrive
+in any folders they are tracking for new mail. This is not complete
+
+To play sounds the plugin uses SoundManager 2 a free flash/javascript solution for
+playing sounds inline in different browsers. The software is free and pretty lightweight:
+
+http://www.schillmania.com/projects/soundmanager2/
+
+The sounds I collected online, some of which I edited a bit to clean up. If any infringe
+anybody's copyright please notify me at jason@hastymail.org and they will promptly be
+removed.
+
+To add sounds:
+
+1 Put the sounds you want to add in the sounds directory of this plugin
+2 Edit the sounds.php file and add them to the list. The list indexes are
+  the names that show on the options page, the values are the mp3 filenames
+
+
+Note: This plugins requires javascript, and to play sound files flash support
+
+This is the initial version of the plugin so some bugs are expected.
+Suggestions and feedback are welcome.
+
+Jason Munro
+jason@hastymail.org

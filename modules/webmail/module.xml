@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+<name>WebMail</name>
+<version>100</version>
+<defaultcat>Mail</defaultcat>
+<desc>Webmail is a convenient way for you to check your email accounts online without the need to configure an email client.</desc>
+<authorname>andykimpe</authorname>
+<assistance the installation script>Elsys</assistance the installation script>
+<authoremail>andykimpe@gmail.com</authoremail>
+<authorurl>http://www.hebergement-web-gratuit.fr/</authorurl>
+<updateurl>http://zpx.frabelu.eu/webmail.xml</updateurl>
+</module>

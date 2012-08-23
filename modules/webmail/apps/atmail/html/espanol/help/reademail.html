@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>Ayuda Webmail</title> 
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">       
+
+<script>
+function expandentry()	 {
+
+<!-- if($var['FirstLoad']) { -->
+if(parent.document.getElementById('calendar').style.display != 'block')
+parent.expand('reademail', parent.document.getElementById('readmsgimg') );
+<!-- } -->
+
+}
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" onload="expandentry()">
+
+<LINK href="javascript/stylehelp.css" rel="stylesheet" type="text/css">
+
+<font face="Verdana, Arial" size="+1">Leer Correo</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">Indice de ayuda</a> ]</font>
+
+<hr noshade>
+
+
+<p>La ventana de email contiene una lista de mensajes recibidos, moviendo el cursor sobre un mensaje determinado, un menu emergente aparece con los primeros 160 caracteres del mensaje, para una lectura completa, basta con hacer clic en el mensaje.</p>
+<p>A traves de la opción preferencias en el Panel de Control puedes elegir en que orden leer tus mensajes. Para ordenar el email que hay en tu carpera por orden de asunto, fecha de recepción, remitente o ID.Puedes seleccionar cada mensaje que se encuentra en tu carpeta de email y enviarlo a una carpeta externa, esta función te permite seleccionar mensajes y moverlos a la papelera, o bien seleccionar un mensaje u moverlo a otra carpeta que no sea la Bandeja de Entrada.</p>
+<p>A través de la ventana del email puedes obtener directamente las opciones de la Cuenta, o ir a la carpeta de información para ver las características de tus carpetas.</p>
+
+</font>
+</body>
+</html>

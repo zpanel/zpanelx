@@ -1,0 +1,10 @@
+#main_table{ width: 300px; margin-top: 100px; }
+.rtop, .rbottom{ width: 300px; }
+#login span{ color: #000; }
+#login img{ vertical-align: -20%; }
+#login{ margin-left: 20px; padding-top: 30px; padding-bottom: 50px; }
+#content{ min-width: 300px; }
+form { font-size: 9pt; }
+select, input { margin-bottom: 10px; font-size: 11pt; }
+.logintext{ width: 260px; }
+.default_icon{margin-top: -3px; display: block; width: 30px; height: 28px; background: transparent url('themes/dark_gray/images/sprite.png') 0px -320 no-repeat; float: left;}

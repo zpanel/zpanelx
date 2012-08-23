@@ -1,0 +1,84 @@
+SQUIRRELSPELL
+
+v0.3.7
+------
+- General formatting updates, javadoc-style comments, and cleanups.
+- Potential privacy vulnerability fixed (possible symlink attack)
+- Moving some strings from .js files into .mod or .php so they can be
+  translated.
+- Miscellaneous code moves and smallish rewrites.
+	
+v0.3.6
+------
+- Remote arbirtary execution as apache user vulnerability fix.
+
+v0.3.5
+-------
+- Making it work with 1.1.1 broke it under 1.0.6. Decided not to support
+  developmental versions after this release.
+
+v0.3.4
+-------
+- Changes to unbreak it in 1.1.1. :)
+
+v0.3.3
+-------
+- Apparently, magic quotes wasn't a bug, but something introduced in 1.0.6,
+  so I took out all magic-quotes escaping routines, since it's done
+  automatically now by validate.php.
+
+v0.3.2
+-------
+- Rolled back changes in v0.3.1
+- Workaround for an odd bug with PHP's magic_quotes_gpc
+- Changed trim to chop so the newline-trimming function doesn't trim
+  leading spaces.
+- Changed SOUP_NAZI to only deny Opera-4 versions
+- Moved SQSPELL_VERSION to sqspell_functions.php for easier
+  upgrades.
+
+v0.3.1
+-------
+Changes to make it work with 1.0.5.
+
+v0.3
+-----
+Added vlink and alink settings, plus fixed some colors.
+
+v0.3b
+------
+- Major code re-organization. 
+- Moved modules into separate directory.
+- Moved most JavaScript out of the main code into separate .js files
+- Created generic GUI-wrappers for most interface screens.
+- Added support for multiple international dictionaries.
+- Added MCRYPT support for encrypting the user dictionaries.
+- No longer checks lines starting with ">" (reply).
+- No longer checks anything past the "--" on a single line (signature).
+- SquirrelSpell options are now on the main OPTIONS page, not on the
+  personal options page.
+
+v0.2.1
+------
+Added a SoupNazi function. :)) Checks for bad browsers which are known not to
+work with SquirrelSpell due to their odd JavaScript.
+
+v0.2pl1
+-------
+Fixed the Magic Quotes problems.
+
+v0.2
+-----
+Added user dictionaries.
+
+v0.1.1
+-------
+Added support for aspell
+
+v0.1pl1
+--------
+Fixed Magic Quotes errors.
+
+version v0.1
+-------------
+Initial release.

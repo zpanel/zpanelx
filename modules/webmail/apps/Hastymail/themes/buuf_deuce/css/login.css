@@ -1,0 +1,32 @@
+/* login page */
+#main_table{
+    width: 300px;
+    margin-top: 100px;
+}
+.rtop, .rbottom{
+    width: 300px;
+}
+#login span{
+    color: #22449b;
+}
+#login img{
+    vertical-align: -20%;
+}
+#login{
+    margin-left: 20px;
+    margin-top: 30px;
+    padding-bottom: 50px;
+}
+#content{
+    min-width: 300px;
+}
+form {
+    font-size: 9pt;
+}
+select, input {
+    margin-bottom: 10px;
+    font-size: 11pt;
+}
+.logintext{
+    width: 260px;
+}

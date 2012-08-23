@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>Modificando preferencias</title> 
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">       
+
+<script>
+function expandentry()	 {
+
+<!-- if($var['FirstLoad']) { -->
+if(parent.document.getElementById('calendar').style.display != 'block')
+parent.expand('settings', parent.document.getElementById('settingsimg') );
+<!-- } -->
+
+}
+</script>
+</head>
+
+<LINK href="javascript/stylehelp.css" rel="stylesheet" type="text/css">
+
+<body bgcolor="#FFFFFF" text="#000000" onload="expandentry()">
+<font face="Verdana, Arial" size="+1">
+Modificando preferencias</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">Indice de ayuda</a> ]</font>
+
+<hr noshade>
+<p>
+
+Utiliza el Panel de Preferencias para modificar las características de tu Cuenta de email. Ajusta el servicio de email a tus necesidades. Las preferencias incluyen:<BR><BR>
+<u>WebMail Preferences</u>
+
+<ul>
+<li><B>Nombre Completo</B><BR>
+El nombre completo se utiliza para escribir emails, tu nombre completo aparecerá en todos los emails que envíes.</li>
+
+<li><B>Responder a</B><BR>
+Introduce la dirección de email al que quieres que te respondan si ésta no coincide con tu usuario.</li>
+
+<li><B>Ordenar emails por</B><BR>        
+Elige como ordenar tus mensajes en tus carpetas.</li>
+
+<li><B>Elige el Estilo</B><BR>        
+Cambia entre versiones de Webmail con mas funcionalidades. Recomendamos que utilices la opción simple para navegadores antiguos, o si quieres cerrar los menus de popup mientras ves los emails en tu buzón de email.</li>
+
+<li><B>Idioma del servicio</B><BR>                       
+Selecciona el lenguaje que quieres usar para el Interface.</li>
+
+<li><B>Mensajes to Display</B><BR>             
+Selecciona el número de emails a display en el buzón de email. Utiliza los iconos de anterior/siguiente para moverte de mensaje en mensaje.</li>
+
+<li><B>Inbox Refresh Rate</B><BR>             
+Select the number of minutes for the Inbox to refresh. You will be alerted of new mail with a sound.</li>
+
+<li><B>Time Format</B><BR>             
+Select the preference to view the time within the Webmail and Calendar interface</li>
+
+<li><B>Date Format</B><BR>             
+Select which format to display the date</li>
+
+<li><B>Selecciona la Zona Horaria</b><BR>
+Introduce la zona horaria de tu país. Este dato aparecerá en todos los emails que envíes, en ellos aparecerá la fecha y hora que has indicado.</li>
+
+<li><B>Firma de email</B><BR>             
+Inserta tu firma de email. Esta firma aparecerá adjunta en todos los emails que envíes.</li>     
+
+<li><B>Borra la Papelera en Logout</B><BR>                     
+Cambia si quieres borrar la Papelera cuando salga del sistema.</li>         
+
+<li><B>Editor HTML</B><BR>                
+Elige si quieres utilizar el Editor HTML.</li>                                                              
+
+<li><B>Email Signature</B><BR>          
+Specify your signature . It will be attached to all outgoing emails</li></ul>
+
+</ul>
+
+</font></p>
+</body>
+</html>

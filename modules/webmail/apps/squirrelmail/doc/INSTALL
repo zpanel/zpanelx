@@ -1,0 +1,233 @@
+Installing SquirrelMail
+=======================
+
+NOTE!  More thorough and possibly up-to-date information about how
+to install, use and maintain SquirrelMail is available in our online
+documentation here:
+
+http://squirrelmail.org/docs/admin/admin.html
+
+
+Table of Contents:
+  0.  (QUICK!)   Quick install guide
+  1.  (PHP)      Configure your webserver to work with PHP
+  2.  (IMAP)     Setting up IMAP (not covered)
+  3.  (INSTALL)  Obtaining and installing SquirrelMail
+  4.  (RUN)      Running SquirrelMail
+  5.  (CHARSETS) Russian Charsets
+  6.  (LOCALES)  Translations of SquirrelMail
+
+
+0. QUICK INSTALL GUIDE
+----------------------
+
+Each of these steps is covered in detail below.
+
+- Install webserver and PHP (at least 4.1.0).
+- Install IMAP server (see docs of that server).
+- Unpack the SquirrelMail package in a web-accessible location.
+- Select a data-dir and attachment dir, outside the webtree (e.g. in /var).
+  The data-dir (for user prefs) should be owned by the user the webserver
+  runs as (e.g. www-data). The attachment dir (for uploading files as
+  attachments) should be file mode 0730 and in the same group as the
+  webserver.
+- Run config/conf.pl from the command line. Use the D option to load
+  predefined options for specific IMAP servers, and edit at least the
+  Server Settings and General Options (datadir).
+- Browse to http://example.com/yourwebmaillocation/src/configtest.php
+  to test your configuration for common errors.
+- Browse to http://example.com/yourwebmaillocation/ to log in.
+
+
+1. CONFIGURE YOUR WEBSERVER TO WORK WITH PHP
+--------------------------------------------
+
+  If your webserver does not already have PHP you must configure it
+  to work with PHP. You need at least PHP v4.1.0. SquirrelMail uses
+  the standard suffix .php for all PHP files.
+
+  You can find PHP at http://php.net. See the documentation that
+  comes with PHP for instructions how to set it up.
+
+  The PHP IMAP extension is NOT necessary at all (but won't harm)!
+  Below is a list of optional PHP extensions:
+
+  --with-ldap
+    Required for LDAP addressbooks
+
+  --with-pear and --with-mysql
+    For MySQL storage of preferences or addressbooks. You will need PHP
+    compiled with --with-pgsql option, if you want to use PostgreSQL instead
+    of MySQL. You will need PHP with appropriate database extension, if you
+    want to use any other database.
+
+  --with-openssl
+    Required for encrypted IMAP or SMTP connections (TLS)
+
+  --with-mcrypt
+    Can be used by SquirrelSpell plugin for encryption of personal
+    dictionaries
+
+  --with-iconv or --with-recode
+    Can be used by Eastern charset decoding functions
+
+  --enable-mbstring
+    Required for Japanese translation. Optional for translations that
+    use non-ISO-8859-1 charset
+
+  It is highly advised to NOT turn on register_globals, as this can lead
+  to security holes. If you must use register_globals for some applications,
+  turn it on locally for only those directories, or turn it off for the
+  SquirrelMail folder.
+  If you want your users to attach files to their mails, make sure
+  File Uploads in php.ini is set to On.
+
+
+2. SETTING UP IMAP
+------------------
+
+  This depends a lot on the server your choose. See the documentation
+  that comes with your server.
+
+  If you're concerned about people accessing it directly, you can
+  limit access to only the IP of the webserver.
+
+
+3. OBTAINING AND INSTALLING SQUIRRELMAIL
+----------------------------------------
+
+  SquirrelMail is constantly being improved. Therefore you should always
+  get the newest version around. Look at http://squirrelmail.org
+  to see what it is. If you want to be bleeding edge you might want to
+  consider using the latest SVN version (with the latest and most
+  fashionable bugs).
+
+a. Download SquirrelMail
+
+  Get SquirrelMail from the address above if you do not have it or are
+  uncertain if you have the newest version. Untar (again tar xvfz
+  filename.tgz) SquirrelMail in a directory that is readable for your
+  webserver.
+
+b. Setting up directories
+
+  SquirrelMail uses two directories to store user configuration and
+  attachments that are about to be sent. You might want to have these
+  directories outside of your web tree.
+
+  The data directory is used for storing user preferences, like
+  signature, name and theme. When unpacking the sources this directory
+  is created as data/ in your SquirrelMail directory. This directory
+  must be writable by the webserver. If your webserver is running as
+  the user "nobody" you can fix this by running:
+
+    $ chown -R nobody:nobody data
+
+  Keep in mind that with different installations, the web server could
+  typically run as userid/groupid of nobody/nobody, nobody/nogroup,
+  apache/apache or www-data/www-data.  The best way to find out is to read
+  the web server's configuration file.
+
+  There also needs to be a directory where attachments are stored
+  before they are sent. Since personal mail is stored in this
+  directory you might want to be a bit careful about how you set it
+  up. It should be owned by another user than the webserver is running
+  as (root might be a good choice) and the webserver should have directory
+  write and execute permissions, but should not have read
+  permissions. You could do this by running these commands (still
+  granted that the webserver is running as nobody/nobody):
+
+    $ cd /var/local/squirrelmail/
+    $ mkdir attach
+    $ chgrp -R nobody attach
+    $ chmod 730 attach
+
+  If you trust all the users at your system not to read mail they are
+  not supposed to read, you can simply use /tmp as you attachments
+  directory.
+
+  If a user is aborting a mail but has uploaded some attachments to it
+  the files will be lying around in this directory forever if you do not
+  remove them.  To fix this, it is recommended to create a cron job that
+  deletes everything in the attachment directory.  Something similar
+  to the following will be good enough:
+
+    $ cd /var/local/squirrelmail/attach && rm -f *
+
+  However, this will delete attachments that are currently in use by people
+  sending email when the cron job runs.  You can either (1) make sure that
+  the cron job runs at an obscure hour and hope that nobody gets upset, or
+  (2) you can run a modified version of the commands above.  Check out the
+  man pages for other commands such as 'find' or 'tmpreaper'.
+
+  One sample script you could set up that would erase all attachments, but
+  wouldn't erase preferences, address books, or the like (just in case your
+  attachment directory is the same as your data directory) might look like
+  this:
+
+    $ find /var/local/squirrelmail/attach -type f -atime +2 -exec rm {} \;
+
+  Remember to be careful with whatever method you do use, and to test out
+  the command before it potentially wipes out everyone's preferences.
+
+c. Setting up SquirrelMail
+
+  There are three ways to configure SquirrelMail.  In the config/ directory,
+  there is a perl script called conf.pl that will aid you in the
+  configuration process.  This is the recommended way of handling
+  the config.
+
+  There's also a plugin called 'administrator' for the webinterface but you'll
+  have to be able to at least log in to SquirrelMail first.
+
+  You can also copy the config/config_default.php file to config/config.php
+  and edit that manually.
+
+  After you've created a configuration, you can use your webbrowser to
+  browse to http://your-squirrelmail-location/src/configtest.php.
+  This will perform some basic checks on your configuration to make sure
+  everything works like it should.
+
+
+4. RUNNING SQUIRRELMAIL
+-----------------------
+
+  Point your browser at the URL at which SquirrelMail is installed.  A
+  possible example of this is:
+     http://example.com/squirrelmail
+
+  It should be pretty straight forward to use. Some more documentation
+  might show up one day or another.
+
+
+5. RUSSIAN CHARSETS
+-------------------
+
+  For information on how to make SquirrelMail work with Russian
+  Apache, see the russian_apache.txt in the doc/ subdirectory.
+
+
+6. TRANSLATIONS
+---------------
+
+  In order to use translated versions of SquirrelMail, you need
+  to download and install locale packages that contain translations
+  that you want to use with SquirrelMail.
+
+  Locale packages can be downloaded from SquirrelMail SourceForge
+  project page.
+
+     http://sourceforge.net/project/showfiles.php?group_id=311&package_id=110388
+
+  Each translation contains an install script that copies the required files
+  into their appropriate locations. If you can't run that script, you can
+  extract the contents of a translation package into your SquirrelMail
+  directory.
+
+  NOTE No.1: *-src.tar.gz, *-src.tar.bz2 and *-src.zip archives do not contain
+  compiled translation files. You will need to run the "compilelocales" script
+  in order to get all gettext binary translations.
+
+  NOTE No.2: You might need to restart your webserver before using translations.
+  If you can't do that, install your translations _before_ you use SquirrelMail.
+

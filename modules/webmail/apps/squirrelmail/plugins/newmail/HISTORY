@@ -1,0 +1,72 @@
+This is the history for the newmail plugin in SquirrelMail.  Currently
+works with the 1.1.2+ versions of SquirrelMail.
+
+2.1
+
+Fixes bug in when used with the 1.1.3 distro 
+
+
+
+2.0
+
+Adds a "try" sounds option to the Newmail plugins works with 1.1.2
+
+
+
+
+1.4
+
+Tyler Akins cleaned up the javascript and now it can change the title
+bar's text if you have new mail.  Additionally, this now correctly
+uses the new 1.1.1 validate.php format.  Uses the new
+sqimap_unseen_messages() format in 1.1.2.
+
+1.3a
+
+Hm. Apparently the Sent box is being used to indicate new mail when
+checking all folders.  Disabled this.  Ditto for the Trash folder
+as well.
+
+Changed the plugin name to "newmail", seeing that it really is more
+than just a sound plugin ;)
+
+
+1.3
+
+Now added the ability to only check for RECENT messages (those that
+have not had their information not yet looked at).  Once a message
+is "noticed", it will not show up again as recent.  Nice for
+people who want to limit the number of notifications.
+
+Also changed the popup from a javascript alert to a popup window.
+This way, it doesn't screw up the browser near as much.
+
+Finally, I added a new sub-directory called sounds.  Put in here
+any sounds you want users to choose from.  They now can choose
+from any file in that directory via a drop-down menu in the options 
+screen (or, they can still choose a local file).
+
+1.2
+
+Added the ability to show a popup window on new mail arrival (via a
+JavaScript function).
+
+Added the ability to check for ONLY the INBOX for unseen messages
+(the default).  Also fixed a bug in counting unseen messages. ;)
+
+1.1
+
+Now added the ability to turn off this feature for users who don't want
+it.  The default is NOT enabled, so you need to go to the options menu to
+turn it on.
+
+Also a nice way to reset the file back to the server default.
+
+1.0
+
+First release (with an option page)!
+
+0.9
+
+First pass-through of making a plugin.  Hack hack hack . . .
+

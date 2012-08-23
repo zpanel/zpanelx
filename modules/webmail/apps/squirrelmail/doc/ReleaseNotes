@@ -1,0 +1,130 @@
+/**************************************
+ * Release Notes: SquirrelMail 1.4.22 *
+ * The "Buried At Sea" Release        *
+ * 12 Jul 2011                        *
+ **************************************/
+
+In this edition of SquirrelMail Release Notes:
+   * All about this Release!
+   * Security issues
+   * Locales / Translations / Charsets
+   * Reporting your favorite SquirrelMail bug
+
+
+All about this release
+======================
+
+This release contains a large number of performance
+enhancements, stability fixes and a few bug/security fixes.
+
+The most important thing to note when upgrading to version
+1.4.22 is that due to a fix made that standardizes the folder
+list display, administrators who had their configuration file
+set to work around this issue in the past will need to update
+their configuration.  This will commonly affect those using
+Courier IMAP, but could affect others as well.
+
+If you have $default_sub_of_inbox set to FALSE in your main
+configuration (or, using the configuration tool, see
+"3. Folder Defaults" ===> "12. Default Sub. of INBOX"),
+and you find after upgrade that your special folders (e.g.,
+Trash, Drafts, Sent) are no longer listed at the top of your
+folder list, please change that value to TRUE.
+
+Also, if you find that this upgrade prevents users from
+logging in with an error such as "ERROR: Could not complete
+request.  Query: CREATE "Trash" Reason Given: Invalid mailbox
+name.", you will need to correct the user preference values
+for the problem folders.  You can do so with commands such as
+the following for file-based preferences (adjust the data
+directory location as needed):
+
+   find /var/lib/squirrelmail/data/ -name *.pref -exec sed --in-place 's/trash_folder=Trash/trash_folder=INBOX.Trash/g' {} \;
+   find /var/lib/squirrelmail/data/ -name *.pref -exec sed --in-place 's/trash_folder=Drafts/trash_folder=INBOX.Drafts/g' {} \;
+   find /var/lib/squirrelmail/data/ -name *.pref -exec sed --in-place 's/trash_folder=Sent/trash_folder=INBOX.Sent/g' {} \;
+
+Or, for database-based preferences:
+
+   UPDATE userprefs SET prefval = 'INBOX.Trash' WHERE prefkey = 'trash_folder' AND prefval = 'Trash';
+   UPDATE userprefs SET prefval = 'INBOX.Drafts' WHERE prefkey = 'draft_folder' AND prefval = 'Drafts';
+   UPDATE userprefs SET prefval = 'INBOX.Sent' WHERE prefkey = 'sent_folder' AND prefval = 'Sent';
+
+MAKE SURE to back up your user preferences before doing any
+of the above!
+
+For a complete list of changes, please see the file "ChangeLog"
+in the doc/ directory.
+
+
+Security issues
+===============
+
+This release also addresses several security issues, including
+some harsh but hard to exploit XSS bugs, a general clickjacking
+vulnerability, and a small problem with message santizing.
+
+If only for the clickjacking protection, we recommend that
+users of previous versions of SquirrelMail upgrade at their
+earliest convenience.
+
+For a more detailed discussion of the security fixes in this
+version, please see the listings for CVE-2010-4554, CVE-2010-4555,
+and CVE-2011-2023 at http://squirrelmail.org/security/
+
+
+Locales / Translations / Charsets
+=================================
+
+Translations are not a part of the main SquirrelMail package.  They
+are downloaded separately; you can obtain all languages in one
+package or get an individual language.  You can find these packages
+on our web site.  They also contain installation instructions.
+
+
+Reporting your favorite SquirrelMail bug
+========================================
+
+We constantly aim to make SquirrelMail even better. So we need you to
+submit any bug you come across! However, before you do so, please have
+a look at our various support resources to make sure the issue isn't
+already known or solved:
+
+   http://squirrelmail.org/docs/admin/admin-10.html
+   http://squirrelmail.org/docs/admin/admin-12.html
+   http://squirrelmail.org/wiki/KnownBugs
+   http://squirrelmail.org/wiki/SolvingProblems
+
+You should also search existing tracker items for your issue (remember
+to check for CLOSED and PENDING items as well as OPEN ones) - if you
+find such an (open) item, please do add any more details you have to
+it to help us fix and close the bug report.
+
+When reporting a new bug, please mention what SquirrelMail release(s)
+it pertains to, and list as many details about your system as possible,
+including your IMAP server and web server details.
+
+   http://squirrelmail.org/bugs
+
+Thanks for your cooperation! This helps us to make sure nothing slips
+through the cracks. 
+
+Any questions about installing or using SquirrelMail can be directed
+to our user support list:
+
+   squirrelmail-users@lists.sourceforge.net
+
+When posting support requests there, please carefully follow our posting
+guidelines:
+
+   http://squirrelmail.org/postingguidelines
+
+If you want to join us in coding SquirrelMail, or have other things to
+share with the developers, join the development mailinglist:
+
+   squirrelmail-devel@lists.sourceforge.net
+
+
+                  Happy SquirrelMailing!
+
+                    - The SquirrelMail Project Team
+

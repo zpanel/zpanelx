@@ -1,0 +1,233 @@
+<!--Include="html/russian/simple/header.html"-->
+
+<script language="JavaScript" src="javascript/composebook.js"></script>
+<script language="javascript" src="javascript/abookadd.js"></script>
+<script language="javascript" src="javascript/ajax/validate.js"></script>
+<script language="javascript" src="html/$this->Language/javascript/validate_group.js"></script>
+
+<!-- here is our custom sidebar -->
+
+			<table width="163" cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="5" border="0"></td>
+					<td width="125"><img src="imgs/simple/shim.gif" width="125" height="5" border="0"></td>
+				</tr>
+
+			
+				<tr>
+					<td width="38" bgcolor="#DEEBF6" class="optionselectedimg"><img onclick="document.abook_new.submit()" style="cursor: pointer; cursor: hand;" src="imgs/simple/sidebar_addentry_on.gif" width="38" height="31" border="0"></td>
+
+<td width="125">
+<table width='115' cellpadding='0' cellspacing=0 border=0 height="33" class='optionselected'>
+<tr>
+<td onclick="SubmitGroup()">
+<font class="menuoption">&nbsp;&nbsp;Сохранить контакт</small>
+</td>
+</tr>
+</table>
+</td>
+
+				</tr>
+				<tr>
+					<td width="38"><img src="imgs/simple/sidebar_bottom_tile.gif" width="38" height="95" border="0"></td>
+					<td width="125"><img src="imgs/simple/shim.gif" width="125" height="95" border="0"></td>
+				</tr>
+			</table>
+		 </td>
+
+<!--Include="html/russian/simple/headerbar.html"-->
+
+<SCRIPT language=JavaScript src="javascript/opencompose.js"></script>
+<script language="JavaScript">
+window.status = ' Добавить нового пользователя в Адресную книгу ';
+
+</script>
+
+
+$var['atmailstyle']
+
+<font class="sw">Create a new email-group by selecting email-addresses on the left panel and adding users to the right pane. Optionally specify the group details and which users have permission to read/write the entry.</font><br><br>
+
+<div class="main" id="MainDiv">
+
+<table border='0' cellspacing='1' cellpadding='0' class='maintable'>
+<form name="MainForm" action="abook.php" onsubmit="return validate_group(this)" method="POST">
+<input type="hidden" name="savegroupxp" value=1>
+<input type="hidden" name="func" value="open">
+
+<TABLE border='0' width='100%' cellpadding='4' cellspacing='0' class="table_control">
+
+<TR><TH class="topleft"><font class='mheader'>&nbsp;Group Emails</font></TH>
+<TH class="middle"></TH>
+<TH class="topright"></TH></TR>
+
+
+
+</TABLE>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5" class="borderstyle">
+    <tr>
+		<td bgcolor="$this->SecondaryColor">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5">
+<tr> 
+<td bgcolor="$this->SecondaryColor" nowrap><font class="sw">Название группы:</font></td>
+<td bgcolor="$this->SecondaryColor" width="100%" nowrap> 
+<input type="text" class="inputfield" name="UserGroup" size="40" maxlength="64" value="$var['UserGroup']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor" colspan=2>
+	
+    <table width="100%" border="0" cellspacing="1" cellpadding="1">
+      <tr> 
+        <td bgcolor='$this->SecondaryColor' width="45%"> 
+          <select name="Addresses" id="Addresses" multiple size="16" class="select" style="width:98%" >
+            <option value="-1">--- Добавить все адреса</option>
+$var['rows']
+		  </select>
+        </td>
+        <td align="center" width="10%" nowrap><font class='sw'> 
+          <input class="stdbtn" type="button" value="&nbsp;Добавить     &gt;&gt;  " onClick="moveItems(this.form.Addresses,'ToAddress')" name="button2">
+          <br>
+          <input class="stdbtn" type="button" value="&nbsp;&nbsp;Удалить &lt;&lt;&nbsp;&nbsp;" onClick="deleteItems('ToAddress')" name="button">
+          </font></td>
+        <td width="45%"> 
+          <select name="ToAddress[]" id="ToAddress" width="50" multiple size="16" class="select" style="width:98%">$var['emailto']</select>
+        </td>
+      </tr>
+    </table>
+
+</td>
+</tr>
+
+</table>
+
+</td>
+</tr>
+</table>
+
+<br><br>
+
+<table border='0' cellspacing='1' cellpadding='0' class='maintable'>
+
+<TABLE border='0' width='100%' cellpadding='4' cellspacing='0' class="table_control">
+
+<TR><TH class="topleft"><font class='mheader'>&nbsp;Group Details</font></TH>
+<TH class="middle"></TH>
+<TH class="topright"></TH></TR>
+
+
+
+</TABLE>
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5" class="borderstyle">
+    <tr>
+		<td bgcolor="$this->SecondaryColor">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5">
+
+<tr> 
+<td bgcolor="$this->SecondaryColor" width="150"><font class="sw">Имя</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserFirstName" size="40" maxlength="64" value="$var['UserFirstName']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Имя</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserMiddleName" size="40" maxlength="64" value="$var['UserMiddleName']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Фамилия</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserLastName" size="40" maxlength="64" value="$var['UserLastName']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Адрес</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserHomeAddress" size="30" maxlength="64" value="$var['UserHomeAddress']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Город</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserHomeCity" size="30" maxlength="64" value="$var['UserHomeCity']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Область</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserHomeState" size="20" maxlength="64" value="$var['UserHomeState']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Почтовый индекс</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserHomeZip" size="20" maxlength="64" value="$var['UserHomeZip']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Страна</font></td>
+<td bgcolor="$this->SecondaryColor">
+<input type="text" class="inputfield" name="UserHomeCountry" size="35" maxlength="64" value="$var['UserHomeCountry']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">URL</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserURL" size="40" maxlength="128" value="$var['UserURL']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Домашний телефон</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserHomePhone" size="20" maxlength="64" value="$var['UserHomePhone']">
+</td>
+</tr>
+
+<td bgcolor="$this->SecondaryColor"><font class="sw">Домашний факс</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserHomeFax" size="20" maxlength="64" value="$var['UserHomeFax']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Дополнительная информация</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<textarea name="UserInfo" cols="40" rows="5" class="inputfieldtextarea">$var['UserInfo']</textarea>
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+</form>
+</table>
+
+</div>
+
+<script>
+document.MainForm.UserGroup.focus();
+</script>
+
+<!--Include="html/russian/simple/footer.html"-->

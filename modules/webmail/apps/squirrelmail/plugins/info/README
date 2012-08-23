@@ -1,0 +1,38 @@
+README for the info plugin for SquirrelMail
+
+  This plugin is designed to aid a system admin
+or SquirrelMail developer troubleshoot IMAP commands
+and responses.
+
+IMPORTANT NOTE:
+
+*****************************************************
+* THIS PLUGIN IS NOT MEANT FOR END USERS. IT ALLOWS *
+* UNVALIDATED DATA TO BE PASSED TO THE IMAP SERVER. *
+* IT IS BY NO MEANS SECURE AND SHOULD ONLY BE USED  *
+* FOR TESTING, TROUBLESHOOTING AND DEVELOPMENT.     *
+*****************************************************
+
+You have been warned :)
+
+Ok, now to the good stuff. Enable this plugin as you would any other.
+Its called 'info'. You will then have an "IMAP server information"  section
+on your options page. This will take you to an IMAP command workshop
+where you can select pre-made commands, send them to the IMAP server
+and see the response. All selected commands will be run one at a time
+starting with the first selected command and working down.
+
+Commands can be modified however you like, but remember, you are
+performing these commands on the account you are logged into, so
+any command that changes the contents of  your mailbox will ..er..
+change the contents of your mailbox :)
+
+Changes and custom commands are maintained as long as you are on
+the IMAP server options page (even after submitting tests).
+Once you leave this page and return then the commmands are reset
+to the defaults. You can manually reset the commands using the
+'default' button, or clear the contents of all the commands with
+the 'clear' button.
+
+This plugin has been originally developed by Jason Munro and is now
+maintained by the SquirrelMail Project Team.

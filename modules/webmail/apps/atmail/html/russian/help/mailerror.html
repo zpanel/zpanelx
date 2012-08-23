@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Ошибки Почты</title>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+</head>
+
+<body>
+
+<LINK href="javascript/stylehelp.css" rel=stylesheet type=text/css>
+<font face="Verdana,
+Arial" size="+1">
+Ошибки Почты</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">Индекс справки</a> ]
+
+<hr noshade>
+<br><u>Я получил сообщение -  Ошибка соединения с почтовым сервером - домен существует и принимает входящие соединения?</u>
+	<p>Вы указали некорректную информацию о сервере:
+	<p><ol>
+	<li>Перейдите во "Внешние аккаунты" на входной странице
+	<li>Введите <b>полные данные о сервере</b> откуда вы хотите забирать почту. К примеру mail.yourdomain.com, pop3.yourdomain.com, mail.ispserver.com, и т.д. Убедитесь что точно знаете используемый почтовым сервером адрес - многие нестандартно называют свои почтовые сервера.
+	<li>Введите логин и пароль
+	<li>Нажмите "Login"
+	</ol>
+
+	<p><u>I receive the following error when accessing via Outlook - <i>Relaying not permitted.</i></u>
+	<p>To solve this, please do the following:
+	<p><ol>
+	<li>Open Outlook
+	<li>Click on <b>Tools > Accounts</b>
+	<li>Click on "Mail" tab.
+	<li>Choose your account and then choose "Server" tab
+	</ol>
+
+	<p>Here the server information should be as below:
+	<p><i>Incoming: pop.mydomain.com<br>
+	SMTP: smtp.mydomain.com</i>
+
+	<p>Account name: you must type your complete email address here, including the domain<br>
+
+	<p><u>When I login, I receive a similar error - "Can't open file: 'sometable.MYD'"</i></u>
+	<p>It is possible that the database on your server is corrupted. If this happens, please contact your Web Administrator and ask that the database be repaired.
+
+</body>
+</html>

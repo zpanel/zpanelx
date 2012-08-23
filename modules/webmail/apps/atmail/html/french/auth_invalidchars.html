@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>Accès non-autorisé</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">       
+</head>
+<body bgcolor="$this->BgColor" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor">
+
+<style>
+.sw {font-family:Verdana;font-size:13px;color:#000000;}
+.swr {font-family:Verdana;font-size:13px;color:#FF0000;}
+</style>
+
+
+
+<LINK href="javascript/style$this->browser.css" rel="stylesheet" type="text/css">
+<img src="$pref['logo_big_img']"><br>
+<h1>Le nom d'utilisateur $var['user'] contient des caractères invalides</h1>
+
+<font class="swr">Le compte que vous tentez d'atteindre contient des caractères invalides. A-Z-0-9, . - et _ sont les caractères autorisés. Cliquer <a href="javascript:history.back('-1')">sur le bouton Précédent</a> et essayez à nouveau.</font>
+<font class="sw"> 
+<ul>
+  <li>Choisissez un autre nom d'utilisateur.</li>
+</ul>
+</font>
+
+</body>
+</html>
+
+

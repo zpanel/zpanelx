@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>Modifying Settings</title> 
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">       
+
+<script>
+function expandentry()	 {
+
+<!-- if($var['FirstLoad']) { -->
+if(parent.document.getElementById('calendar').style.display != 'block')
+parent.expand('settings', parent.document.getElementById('settingsimg') );
+<!-- } -->
+
+}
+</script>
+</head>
+
+<LINK href="javascript/stylehelp.css" rel="stylesheet" type="text/css">
+
+<body bgcolor="#FFFFFF" text="#000000" onload="expandentry()">
+<font face="Verdana, Arial" size="+1">
+Modifying Settings</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">Help Index</a> ]</font>
+
+<hr noshade>
+<p>
+
+Use the settings panel to modify the preferences of your email account. Tailor the email service to your needs, preferences include:<BR><BR>
+<u>WebMail Preferences</u>
+
+<ul>
+<li><B>Displayed Name</B><BR>
+This is used when composing emails , your Full Name will be shown on all outgoing emails.</li>
+
+<li><B>Reply To</B><BR>
+Enter your Reply-To email address if different from your login name.</li>
+
+<li><B>Sort Email By</B><BR>        
+Select the Order to sort your emails in your Mailboxes.</li>
+
+<li><B>Default Font Style</B><BR>        
+Select which font you prefer to style the interface in</li>
+
+<li><B>Service Language</B><BR>                       
+Select the language you would like to use for the Interface.</li>
+
+<li><B>Number of Messages to Display</B><BR>             
+Select the number of emails to display in the Inbox. Using the back/forward icons you can browse between emails.</li>
+
+<li><B>Inbox Refresh Rate</B><BR>             
+Select the number of minutes for the Inbox to refresh. You will be alerted of new mail with a sound.</li>
+
+<li><B>Time Format</B><BR>             
+Select the preference to view the time within the WebMail and Calendar interface</li>
+
+<li><B>Date Format</B><BR>             
+Select which format to display the date</li>
+
+<li><B>Select Time zone</b><BR>
+Enter the time zone you are currently in. This is referenced when sending emails, your time/date will be used.</li>
+
+<li><B>Email Signature</B><BR>             
+Enter your email signature. This is appended to all outgoing emails.</li>     
+
+<li><B>Delete Trash on Logout</B><BR>                     
+Toggle if you wish to delete your Trash on logout.</li>         
+
+<li><B>HTML Editor</B><BR>                
+Select if you want to use the HTML editor.</li>                                                              
+
+<li><B>Email Signature</B><BR>          
+Specify your signature . It will be attached to all outgoing emails</li></ul>
+
+</ul>
+
+</font></p>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>ウェブメールヘルプガイド</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">       
+
+<script>
+function expandentry()	 {
+
+<!-- if($var['FirstLoad']) { -->
+if(parent.document.getElementById('calendar').style.display != 'block')
+parent.expand('reademail', parent.document.getElementById('readmsgimg') );
+<!-- } -->
+
+}
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" onload="expandentry()">
+
+<LINK href="javascript/stylehelp.css" rel="stylesheet" type="text/css">
+
+<font face="Verdana, Arial" size="+1">メールを読む</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">ヘルプインデックス</a> ]</font>
+
+<hr noshade>
+
+
+<p>Eメールウィンドウのフレームには受信したメールのリストが表示されます。目的のメールにカーソルを移動するとそのメールの最初の160文字（半角英数の場合）が表示されます。メールを読むにはメールの件名をクリックして全文を表示してください。</p>
+<p>Eメール設定パネルでは受信メールリスト表示の優先度を設定できます。件名、受信日時、送信者、ID等で並べ替えることができます。他のフォルダに移動したりゴミ箱に移動して削除することもできます。</p>
+<p>EメールウィンドウパネルからはEメール設定オプション、フォルダ情報等に直接移動することができます。</p>
+
+</font>
+</body>
+</html>

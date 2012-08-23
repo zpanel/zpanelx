@@ -1,0 +1,878 @@
+TOOLS OVERVIEW
+
+    The tools object provides a wide array of features to the plugin system.
+    It can be used to perform Hastymail related functions like send a user
+    a notice with the notification system or save/retrieve user settings.
+    It also contains several methods intended to make plugin writing more
+    convinient and secure. The tools object is only instantiated if at least
+    one plugin is activated. It is availble to plugins from any plugin function
+    or file as an argument. Some methods are designed to be called from certain hooks,
+    while others ca be called from any type of hook. There are 2 types of hooks,
+    work hooks and display hooks, and one special hook called the "page hook".
+    The tools object can be used from any function associated with a
+    hook. The following list defines all the tools methods available to
+    plugins, a description of how to use the method, as well as from which
+    hook types it is applicable.
+
+TOOLS METHODS
+
+  $tools->add_to_store($name, $value);
+
+        Description:
+            Store a variable called $name with a value of $value in the data store.
+            Part of a simple way to store vales to pass between work hooks to display
+            hooks. This can also be used to pass information from the url_action
+            function to the print function of a page hook. Data in the store is
+            lost when page execution ends.
+
+        Hook compatibility:
+            Can be used anywhere but was designed to by called from a work hook
+            or the url_action function of a page hook.
+
+
+  $tools->remove_from_store($name);
+
+        Description:
+            Removes the variable named $name from the data store. All data in the
+            store is erased when the page ends so this function is net really needed
+            unless you have a requirement to manually remove something that was set
+            earlier.
+
+        Hook compatibility:
+            This method can be used from any hook function.
+
+
+  $tools->get_from_store($name);
+
+        Description:
+            Returns the value for the variable $name if its being held in the store.
+            if no varible with the specified name is found it returns false.
+
+        Hook compatibility:
+            Can be used from any hook function, however the data requested must already
+            have been setup in the store. Work hooks run before display hooks so this is
+            usaully used to retrieve data in a display hook function that was setup by a
+            work hook. Also could be used to pass data between work hooks or between the
+            url_action and print functions of a page hook.
+
+
+  $tools->decode_mail_field($string);
+
+        Description:
+            Decodes a mail header entity of the form =?<charset>?<encoding>?0ASDF=?=
+            $string can contain multiple entities. It will be returned with
+            entities replaced with their decoded versions.
+
+        Hook compatibility:
+            Can be used from any hook.
+
+   
+  $tools->display_safe($string, $charset=false, $decode=false, $mailbox=false);
+       
+        Description:
+            returns a safe version of $string by properly handling any HTML
+            or mark up within it. All other arguments are optional. $charset
+            is the charset of the string which will then be converted to
+            UTF-8. $decode is a boolean that signifies that encoded email
+            header entities may be present, and $mailbox is for special
+            handling if the string is an IMAP mailbox name. Normal use for
+            sanitizing display content only requires $string.
+    
+        Hook compatibility:
+            Can be called from anywhere, but is normally called from a display
+            hook or the print_ function of the page hook.
+
+
+  $tools->save_setting($name, $value);
+
+        Description:
+            Save a user setting named $name with a value of $value. The setting
+            is available right away and written to the users permanent settings.
+
+        Hook compatibility:
+            Intended to be used from work hooks or the url_action function of a
+            page hook, but will work when called from any hook.
+
+
+  $tools->get_setting($name);
+      
+        Description:
+            returns the user's setting value for $name. If unfound returns false
+
+        Hook compatibility:
+            Can be run from any plugin function and any hook point.
+
+
+  $tools->send_notice($string);
+       
+        Description: 
+            Adds $string to the list of user notices to be displayed above the
+            primary content area below the folder dropdown and the main menu.
+
+        Hook compatibility:
+            Should be run from the url_action function of a page hook or from
+            work hooks
+
+  $tools->get_mailbox();
+
+        Description:
+            Returns the currently selected mailbox, false if none is set.
+
+        Hook compatibility:
+            Can be run from any hook.
+
+
+  $tools->set_mailbox($mailbox);
+
+        Description:
+            Sets the currently selected mailbox to $mailbox. Does not run
+            select the mailbox in IMAP only sets it as the current mailbox
+            for Hastymail.
+
+        Hook compatibility:
+            Should onlly be used from the url_action function of the page
+            hook
+
+
+  $tools->get_db();
+
+        Description:
+            This supplies a plugin with the ability to perform SQL commands on a configured
+            database. This requires that Hastymail be configured to properly access a
+            databse in the hastymail2.conf file. Hastymail uses a shared system in which
+            the database connection can be used by plugins without each plugin having
+            to authenticate to a server or setup it's own db connection.
+
+        Hook compatibility:
+            Can be used from any hook function. It is preferable to only use from work hooks
+            or the url_action function of a page hook, but is available from any. Can be called
+            once from the 'init' work hook making the db connection available for the rest of the
+            plugin functions.
+
+
+  $tools->db_insert($sql);
+
+        Description:
+            Inserts a row. $sql is a full valid SQL statement as a string. Returns the number of
+            rows inserted. $tools->get_db(); must be run at some point by the plugin before this
+            method can be used.
+
+        Hook compatibility:
+            Can be used anywhere but is intended to be used in work hooks or the url_action function
+            of the page hook.
+
+
+  $tools->db_delete($sql);
+
+        Description:
+            Deletes a row. $sql is a full valid SQL statement as a string. Returns the number of
+            rows deleted. $tools->get_db(); must be run at some point by the plugin before this
+            method can be used.
+
+        Hook compatibility:
+            Can be used anywhere but is intended to be used in work hooks or the url_action function
+            of the page hook.
+
+
+  $tools->db_update($sql);
+
+        Description:
+            Update a row. $sql is a full valid SQL statement as a string. Returns the number of
+            rows updated. $tools->get_db(); must be run at some point by the plugin before this
+            method can be used.
+
+        Hook compatibility:
+            Can be used anywhere but is intended to be used in work hooks or the url_action function
+            of the page hook.
+
+
+  $tools->db_query($sql);
+
+        Description:
+            Run a select statement.  $sql is a full valid SQL statement as a string. Returns an array
+            of matching rows. or an empty array on error or no matches. When rows are returned they are in
+            the format of:
+            
+            array(
+                0 => array(
+                    'filed_name' => 'value',
+                    'field_name2' => 'value2',
+                    ...
+                ),
+                1 => array(
+                ...
+                
+            $tools->get_db(); must be run at some point by the plugin before this
+            method can be used.
+
+        Hook compatibility:
+            Can be used anywhere but is intended to be used in work hooks or the url_action function
+            of the page hook.
+
+
+  $tools->db_quote($string);
+    
+        Description:
+            Accepts a string input and returns it with double quotes and proper escaping for use
+            in a a SQL query. $tools->get_db(); must be run at some point by the plugin before this
+            method can be used.
+
+        Hook compatibility:
+            Can be used anywhere but is intended to be used in work hooks or the url_action function
+            of the page hook. 
+
+
+  $tools->db_puke();
+
+        Description:
+            dumps a bunch of information about the SLQ connection and transactions, including any
+            sql errors and all SQL queries run up until that point. $tools->get_db(); must be run
+            at some point by the plugin before this method can be used.
+
+   
+        Hook compatibility:
+           Can be run from any hook but will only show debug information for SQL activity that occured
+           in a prior hook.
+
+
+  $tools->register_ajax_callback($function_name, $argument_count, $div_id=false);
+
+        Description:
+            Sets up an AJAX callback for the plugin to use. Using this method plugins can make AJAX
+            calls to the server without reloading the page, and return chunks of XHTML to be inserted
+            into the page. $function_name is the base name of the javascript and php functions that will
+            be used, $argument_count is the number of arguments the javascript will pass to the corresponding
+            php function, and $div_id is an optional arguement that if present will result in that div being
+            replaced with the output of the AJAX callback.
+        
+            This feature requires the addition of a file called ajax.php that must have a function
+            with the correct name. Please docs/plugin_ajax.txt for more information.
+
+        Hook compatibility:
+            This function MUST be run from the "init" work hook.
+
+
+  $tools->imap_get_folders($force_update=false);
+
+        Description:
+            Returns a detailed array of the users folders and their properties. 
+            If $force_update is set to true then the folder cache is refreshed
+            with an IMAP LIST response.
+
+        Hook compatibility
+            Can be called from any work hook or the url_action function of
+            the page hook.
+
+
+  $tools->imap_get_capability();
+    
+        Description:
+            Returns the IMAP capability response
+
+        Hook compatibility:
+            Can be called from any work hook or the url_action function of
+            the page hook.
+
+
+  $tools->imap_select_mailbox($mailbox, $sort_by, $unseen, $quick, $filter);
+
+        Description:
+            At the most basic this method runs an IMAP select on a mailbox.
+            If the select response indicates a mailbox change this method
+            can also automatically resort a mailbox and check for new messages.
+            $mailbox is the folder to select. $sort_by is the sorting method
+            in case the mailbox needs to be resorted. $unseen causes the method
+            to run an IMAP UNSEEN query on the mailbox and to incorporate it's
+            results into the folder information (which can be retrieved with the
+            imap_get_folders() method. The $quick argument causes the method
+            to only select the mailbox without resorting or running an unseen
+            fetch. Finally $filter is any sort filter being applied to the IMAP
+            sort if being run.
+
+        Hook compatibility:
+            Can be run from any work hook or the url_action function of
+            the page hook.
+
+
+  $tools->imap_sort_mailbox($mailbox, $sort_type, $filter);
+
+        Description:
+            Sort a folder with the IMAP SORT command. $mailbox is the folder
+            to sort. $sort_type is the sort method (ARRIVAL, SUBJECT, etc).
+            $filter is the SORT filter (ALL, UNREAD, FLAGGED, etc). This
+            method does not need to be run directly in many cases, because
+            the imap_select_mailbox() method will automatically sort the mailbox
+            and refresh the cache when needed if desired.
+
+        Hook compatibility:
+            Can be run from any work hook or the url_action function of
+            the page hook.
+
+
+  $tools->imap_get_mailbox_uids($mailbox);
+        
+        Description:
+            Returns the IMAP UIDS for the folder in $mailbox.
+
+        Hook compatibility:
+            Can be run from any work hook or the url_action function of
+            the page hook.
+
+
+  $tools->imap_get_header_list($mailbox, $uids);
+    
+        Description:
+            Returns a list of message headers for the given UIDS.
+            $mailbox is hte folder and $uids is an array of IMAP UIDS.
+
+        Hook compatibility:
+            Can be run from any work hook or the url_action function of
+            the page hook.
+
+
+  $tools-> get_message_headers($uids, $part);
+
+        Description:
+            returns an array of headers for the given IMAP message
+            UID. If $part is 0 returns the primary message headers,
+            otherwise returns any available headers for the specified
+            part. the folder in which the message resides MUST be
+            selected with imap_select_mailbox() before this can be run.
+
+        Hook compatibility:
+            Can be run from any work hook or the url_action function of
+            the page hook.
+
+
+  $tools->imap_move_messages($source_mailbox, $uids, $destination_mailbox);
+    
+        Description:
+            Move messages from one folder to another. $uids is an array of
+            message uids to move, $source_mailbox is the current mailbox, and
+            $destination_mailbox is the folder to move the messages to.
+
+        Hook compatibility:
+            Can be run from any work hook or the url_action function of a page hook
+
+
+  $tools->imap_copy_messages($source_mailbox, $uids, $destination_mailbox);
+
+        Description:
+            Copy messages from one folder to another. $uids is an array of
+            message uids to move, $source_mailbox is the current mailbox, and
+            $destination_mailbox is the folder to copy the messages to.
+
+        Hook compatibility:
+            Can be run from any work hook or the url_action function of a page hook
+
+
+  $tools->imap_delete_messages($mailbox, $uids);
+
+        Description:
+            Delete messages from a folder. $uids is an array of message UIDs to
+            delete, $mailbox is the folder name.
+
+        Hook compatibility:
+            Can be run from any work hook or the url_action function of a page hook
+
+
+  $tools->imap_flag_messages($mailbox, $uids, $flag);
+
+        Description:
+            Used to set/unset message flags in IMAP. $mailbox is the folder the
+            messages reside in, $uids is an array of message UIDS to flag, and flag
+            can be one of the following: READ, UNREAD, FLAG or UNFLAG, 
+
+
+        Hook compatibility:
+            Can be run from any work hook or the url_action function of a page hook
+
+
+  $tools->imap_expunge_mailbox($mailbox);
+
+        Description:
+            Expunges any messages with the deleted flag set in the given mailbox.
+
+        Hook compatibility:
+            Can be run from any work hook or the url_action function of a page hook
+
+
+  $tools->merge_contacts_source($contacts);
+
+        Description:
+            Merges an array of contacts from an external source into the contact list
+            for the compose page.
+
+        Hook compatibility:
+            Can only be run from the compose_contact_list work hook
+
+
+  $tools->register_contacts_source($title,$source);
+
+        Description:
+            Sets up the display name and internal source lable used by contacts merged
+            from an external source.
+
+        Hook compatibility:
+            Can only be run from the compose_contact_list work hook
+
+
+  $tools->get_strings();
+
+        Description:
+            Returns the interface translation strings setup by this plugin in the
+            config.php file
+
+        Hook compatibility:
+            Can be run from any hook.
+
+
+  $tools->is_new_window();
+
+        Description:
+            Returns true if the current page request is a message or compose page in a new
+            window.
+        
+        Hook compatibility:
+            Can be run from any hook.
+
+            
+  $tools->get_hm_strings();
+
+        Description:
+            Returns the interface translation strings for the main interface
+
+        Hook compatibility:
+            Can be run from any hook.
+
+
+  $tools->imap_get_message_headers($uid, $part);
+
+        Description:
+            Returns a list of mail headers for the given message uid and part id
+
+        Hook compatibility:
+            Can be run from any work hook or the url_action function of a page hook
+
+            
+  $tools->imap_get_message_structure($uid);
+
+        Description:
+            Returns a complex array representing the MIME structure of the supplied
+            message uid.
+
+        Hook compatibility:
+            Can be run from any work hook or the url_action function of a page hook
+
+
+  $tools->imap_search_mailbox($terms);
+
+        Description:
+            Search the currently selected mailbox for the provided search terms. The terms
+            must be formatted for the IMAP SEARCH command
+
+        Hook compatibility:
+            Can be run from any work hook or the url_action function of a page hook
+
+
+  $tools->imap_append_start($mailbox, $size, $seen=true);
+
+        Description:
+            Start an IMAP APPEND command
+
+        Hook compatibility:
+            Can be run from any work hook or the url_action function of a page hook
+
+
+  $tools->imap_append_end();
+
+        Description:
+            End an IMAP APPEND command
+
+        Hook compatibility:
+            Can be run from any work hook or the url_action function of a page hook
+
+
+  $tools->imap_append_feed($string, $as_is=false);
+
+        Description:
+            Feed data to an alread started IMAP APPEND command
+
+        Hook compatibility:
+            Can be run from any work hook or the url_action function of a page hook
+
+
+  $tools->imap_custom_command($command, $chunked=false);
+
+        Description:
+            Send a custom command to the IMAP server. If $chunked is set to true the
+            results will be parsed by the imap line parser into logical "chunks".
+        Hook compatibility:
+            Can be run from any work hook or the url_action function of a page hook
+
+
+  $tools->get_url();
+        Description:
+            Returns the current complete page url
+
+        Hook compatibility:
+            Can be run from any hook
+
+
+  $tools->get_page();
+
+        Description:
+            Returns the currently viewed Hastymail page (compose, mailbox, login, etc) 
+
+        Hook compatibility:
+            Can be run from any hook
+
+
+  $tools->page_not_found();
+
+        Description:
+            Sets the display page to "not found" which will result in the user getting
+            the "not found" page.
+
+        Hook compatibility:
+            Can be run from any work hook or the url_action function of a page hook
+
+
+  $tools->logged_in();
+
+        Description:
+            Will return true if the user is current logged into Hastymail
+
+        Hook compatibility:
+            Can be run from any hook
+   
+ 
+  $tools->set_current_message($string);
+
+        Description:
+            Overrides the message body fetched from the IMAP server on the message view
+            
+        Hook compatibility:
+            Only usable from the message view page, and then only after the core code has
+            fetched the message part. Can be run from any display hook that executes on
+            the message page
+
+
+  $tools->get_current_message_uid();
+
+        Description:
+            Returns the uid of the currently viewed message
+
+        Hook compatibility:
+            Only usable from the message view page, and then only after the core code has
+            fetched the message part. Can be run from any display hook that executes on
+            the message page
+
+
+  $tools->get_current_message_type();
+
+        Description:
+            Returns the MIME type of the currently viewed message
+
+        Hook compatibility:
+            Only usable from the message view page, and then only after the core code has
+            fetched the message part. Can be run from any display hook that executes on
+            the message page
+
+
+  $tools->get_current_message();
+
+        Description:
+            Returns the body of the currently viewed message and message part
+
+        Hook compatibility:
+            Only usable from the message view page, and then only after the core code has
+            fetched the message part. Can be run from any display hook that executes on
+            the message page
+
+
+  $tools->get_current_message_headers();
+
+        Description:
+            Returns the message headers for the currently viewed message
+        Hook compatibility:
+            Only usable from the message view page, and then only after the core code has
+            fetched the message part. Can be run from any display hook that executes on
+            the message page
+
+
+  $tools->add_outgoing_header($name, $val);
+
+        Description:
+            Adds a header to an outgoing message
+
+        Hook compatibility:
+            Only usable from the message_send work hook
+
+
+  $tools->db_query_one($sql);
+
+        Description:
+            Useful for DB queries that return only one value instead of a list of values
+
+        Hook compatibility:
+            Can be run from any work hook or the url_action function of a page hook
+
+
+  $tools->save_to_global_store($name, $value);
+
+        Description:
+            Allows plugins to share data by saving values in the session. Plugins
+            cannot overwrite each others data.
+
+        Hook compatibility:
+            Can be used by any hook.
+
+
+  $tools->get_from_global_store($name);
+
+        Description:
+            Allows plugins to fetch data from the global store, including data
+            saved by other plugins
+
+        Hook compatibility:
+            Can be used by any hook.
+
+
+  $tools->remove_from_global_store($name);
+
+        Description:
+            Allows plugins to remove data previously saved in the global store. Plugins
+            cannot delete data saved by other plugins.
+
+        Hook compatibility:
+            Can be used by any hook.
+
+
+  $tools->save_options_page_setting($name, $value);
+
+        Description:
+            Allows plugins to save settings that have been added to the options page.
+
+        Hook compatibility:
+            Callable only from the update_settings work hook.
+
+
+  $tools->set_search_params($vals);
+
+        Description:
+            Sets the search paramaters for a page, expects the $vals array to be formatted
+            just as the core code formats search paramaters.
+
+        Hook compatibility:
+            Only usable from the page_end work hook and then only if the current page is the
+            search page.
+
+
+  $tools->disable_xhtml_http_header();
+
+        Description:
+            Allows a plugin to override the strict xhtml http header if the site has it enabled.
+            
+        Hook compatibility:
+            Only usable in the init work hook. This should be used as little as possible otherwise
+            it could completely override the site setting for every page.
+
+
+  $tools->ajax_utf8_decode($string);
+
+        Description:
+            Decodes unicode strings that have been escaped because they were passed to the server
+            using ajax.
+
+        Hook compatibility:
+            Can be used in any hook.
+
+
+  $tools->html2text($string);
+
+        Description:
+            Converts HTML to text with some attempts to preserve formatting.
+
+        Hook compatibility:
+            Can be used from any hook
+
+
+  $tools->format_size($val, $extra=false);
+
+        Description:
+            Foramts a size in kb to a human readable format with the best suited size unit
+            depending on the input value.
+
+        Hook compatibility:
+            Can be called from any hook.
+
+
+  $tools->get_notices();
+
+        Description:
+            Returns a list of all the notices that have been registered to display to the user for the
+            current page load
+         
+        Hook compatibility:
+            Can be called from any hook but will only return the notices registered before it is called.
+
+
+  $tools->display_html($string, $tags=array(), $qt=false, $charset=false);
+
+        Description:
+            Filters HTML content and preps it for correct display, included character set conversion
+            if required.
+
+        Hook compatibility:
+            Can be called from any hook.
+
+
+  $tools->add_js_event_handler($element_id, $event, $callback);
+
+        Description:
+            Adds an event handler to the HTML element with the $element_id id. The $event arguement
+            is the event to trigger on and the $callback argument is the name of the function to run.
+
+        Hook compatibility:
+            Should be run from the init work hook.
+
+  $tools->add_js_onload($string);
+
+        Description:
+            Add javascript to be executed when the wnidow.onload event fires. The input should not
+            have script tags.
+
+        Hook compatibility:
+            Should be run from the init work hook.
+
+
+  $tools->add_style($string);
+
+        Description:
+            Add a style section to the head of the page. The input should be enclosed in style tags
+
+        Hook compatibility:
+            Should be run from the init work hook.
+
+
+  $tools->add_inline_js($string);
+
+        Description:
+            Add javascript to a page. No script tags are needed.
+
+        Hook compatibility:
+            Should be run from the init work hook.
+
+
+  $tools->add_js_tag($string);
+
+        Description:
+            Add an javascript section in the head of the page. Requires that the input include
+            opening an closing script tags
+
+        Hook compatibility:
+            Should be run from the init work hook.
+
+
+  $tools->add_js_update_function($func_name);
+
+        Description:
+            Allows plugins to utilize the built in js timer and execute a method when the normal
+            periodic page update fires.
+             
+        Hook compatibility:
+            Should be run from the init work hook.
+
+
+  $tools->print_folder_dropdown($folders, $selected, $clean=false);
+
+        Description:
+            Returns a list of preformatted HTML options tags for the $folders argument. $selected is
+            a list of folders that should be formatted as being selected already. The $clean arguement
+            determines if the folder list should have the unread/total counts.
+
+        Hook compatibility:
+            Can be run from any hook.
+
+
+  $tools->start_cdata();
+
+        Description:
+            Outputs the start of a CDATA section if the page requires it. This should be used when using
+            the add_js_tag method.
+
+        Hook compatibility:
+            can be run from any hook
+
+
+  $tools->end_cdata();
+
+        Description:
+            Outputs the start of a CDATA section if the page requires it. This should be used when using
+            the add_js_tag method.
+
+        Hook compatibility:
+            can be run from any hook
+
+
+  $tools->alter_compose_type($mime_type, $body, $alt_body, $alt_encoding);
+
+        Description:
+            Allows a plugin to alter an outgoing messages mime type and alternate part
+
+        Hook compatibility:
+            Should be called from the message_send work hook.
+
+
+  $tools->override_sent_folder($folder);
+
+        Description:
+            Allows plugins to change the sent folder used to save an outgoing message on the fly.
+
+        Hook compatibility:
+            Should be used with the message_send work hook.
+
+
+  $tools->get_string($val);
+
+        Description:
+
+        Hook compatibility:
+
+
+  $tools->get_contact_list($sort='sort_name', $page=1, $source='local', $filter=false, $page_size=false, $filter_regex=false);
+
+        Description:
+            Looks up an interface string in the current list and returns it if found.
+
+        Hook compatibility:
+            Can be called from any hook.
+
+
+  $tools->add_compose_get_content($content_type, $value_str);
+
+        Description:
+            Register a content type and js method for retrieving the primary body of the message on the compose page
+
+        Hook compatibility:
+            Should only be used in the init work hook.
+
+
+  $tools->add_compose_content_type($type);
+
+        Description:
+            Register a content type for the compose page so a plugin can alter the primary outbound content type on the fly
+
+        Hook compatibility:
+            Should only be used in the init work hook.
+
+
+  $tools->get_compose_content_type();
+
+        Description:
+            Returns the currently used content_type for the main area of the compose page.
+
+        Hook compatibility:
+            Should be run from the page_end work hook
+

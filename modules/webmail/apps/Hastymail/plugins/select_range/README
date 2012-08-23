@@ -1,0 +1,16 @@
+This select_range plugin adds javascript to pages with message lists that
+provides more convinient ways to select multiple messages. This first
+release has only one mode, "shift_click", which is similar to desktop apps
+that use shift to select multiple list items. To use it select a message in
+the list, then hold shift and select another. All the messages between the
+first and second will be selected.
+
+To enable this plugin add or uncomment the following in your hastymail2.conf
+file then rebuild and reinstall your hastymail2.rc file.
+
+plugin = select_range
+
+You must logout then back in to Hastymail2 for your changes to take effect.
+
+Questions or comments can be sent to jason@hastymail.org
+Jason Munro

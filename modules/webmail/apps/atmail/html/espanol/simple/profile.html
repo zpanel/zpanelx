@@ -1,0 +1,1083 @@
+<!-- if($var['extratitle'] = "- {Perfil del Usuario}") { -->
+<!-- } -->
+
+<!--Include="html/espanol/simple/header.html"-->
+<!-- here is our custom sidebar -->
+
+
+
+			<table width="163" cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="5" border="0"></td>
+					<td width="125"><img src="imgs/simple/shim.gif" width="125" height="5" border="0"></td>
+				</tr>
+
+				<tr>
+					<td width="38" bgcolor="#DEEBF6" onclick="javascript:document.profile.submit()" style="cursor: pointer; cursor: hand;" class="optionselectedimg"><img src="imgs/simple/sidebar_save_on.gif" width="38" height="31" border="0"></td>
+					<td width="125" class="optionselected" onclick="javascript:document.profile.submit()"><font class="menuoption">&nbsp;&nbsp;Guardar Opciones</td>
+				</tr>
+				
+
+				<tr>
+					<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="10" border="0"></td>
+					<td width="125"><img src="imgs/simple/shim.gif" width="125" height="10" border="0"></td>
+				</tr>
+
+<!-- if($domains[$this->pop3host] && ($pref['allow_Passutil'] || $pref['allow_UserChangePass']))  { -->
+<tr>
+					<td width="38" onclick="javascript:location.href='util.php?func=password'" style="cursor: pointer; cursor: hand;"><img src="imgs/simple/sidebar_password.gif" width="38" height="31" border="0"></td>
+					<td width="125" >
+					
+					<table width='125' cellpadding='0' cellspacing=0 border=0 height="31">
+					<tr>
+					<td nowrap onclick="javascript:location.href='util.php?func=password'" style="cursor: pointer; cursor: hand;" onmouseover="this.className='optionroll'" onmouseout="this.className='optionover'" class='optionover'>
+
+					<font class="menuoption">&nbsp;Cambiar contraseña<IMG SRC="imgs/simple/shim.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></td>
+					</tr>
+					</table>
+					
+					</td>
+				</tr>
+				<tr>
+					<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="5" border="0"></td>
+					<td width="125"><img src="imgs/simple/shim.gif" width="125" height="5" border="0"></td>
+				</tr>
+<!-- } -->
+
+				<tr>
+					<td width="38"><img src="imgs/simple/sidebar_bottom_tile.gif" width="38" height="95" border="0"></td>
+					<td width="125"><img src="imgs/simple/shim.gif" width="125" height="95" border="0"></td>
+				</tr>
+			</table>
+		 </td>
+
+<!--Include="html/espanol/simple/headerbar.html"-->
+<SCRIPT LANGUAGE="JavaScript" SRC="javascript/keypress.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript">
+
+<!--  Begin
+var MSIE=navigator.userAgent.indexOf("MSIE");
+var NETS=navigator.userAgent.indexOf("Netscape");
+var OPER=navigator.userAgent.indexOf("Opera");
+if((MSIE>-1) || (OPER>-1)) {
+document.write("<style>.stdbtn { background-color: #F4F4F4; font: 8pt Tahoma; width: 75px;}");
+document.write(".stdbtnlong { background-color: #F4F4F4; font: 8pt Tahoma; width: 95px;}</style>");
+} else {
+document.write("<!--Netscape Style Sheet-->");
+}
+// End -->
+</SCRIPT>
+
+<font class="sw">Con esta opción se pueden modificar las preferencias de usuario. Especifica los detalles de contacto y dirección para tus preferencias de usuario. Para cambiar la contraseña haz clic en el boton 'cambiar contraseña'. 
+<!-- if($pref['GlobalAbook']) { -->
+  La informacion aquí guardada será accesible desde la Libreta de Direcciones global.
+<!-- } -->
+</font><br><br>
+
+<table border='0' cellspacing='1' cellpadding='0' class='maintable'>
+<form method="POST" name="profile">
+<input type="hidden" name="func" value="profile">
+<input type="hidden" name="save" value="1">
+
+	<TABLE border='0' width='100%' cellpadding='4' cellspacing='0' class="table_control">
+
+<TR><TH class="topleft"><font class='mheader'>&nbsp;Detalles personales</font></TH><TH class="middle"></TH><TH class="topright"></TH></TR>
+
+<!-- if($var['saved']) { -->
+<font id="saved" class="mheader"><img src="imgs/tick.gif">&nbsp;Settings saved successfully - </font>
+<!-- } -->
+
+
+
+</TABLE>
+
+
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5" class="borderstyle">
+    <tr>
+		<td bgcolor="$this->SecondaryColor">
+
+  <table width="100%" border="0" cellspacing="0" cellpadding="5">
+	<!-- Account [nochange] -->
+    <tr> 
+      <td width="59%" bgcolor="$this->SecondaryColor" height="26"> <font class="swbold"> 
+        Cuenta</font><br>
+        <font class="sw">El nombre de usuario de la Cuenta de email</font></td>
+      <td width="41%" bgcolor="$this->SecondaryColor" height="26"> <font class="swbold">$this->username@$this->pop3host</b></font></td>
+    </tr>
+
+    <!-- Created [nochange] -->
+    <tr> 
+      <td width="59%" bgcolor="$this->SecondaryColor" height="26"> <font class="swbold">Fecha de modificacion</font><br>
+        <font class="sw">Esta es la fecha de la última modificación realizada a la Cuenta de email</font></td>
+      <td width="41%" bgcolor="$this->SecondaryColor" height="26"> <font class="swbold">$var['DateModified']</b></font></td>
+    </tr>
+
+	<!-- First Name -->
+    <tr bgcolor="$this->SecondaryColor"> 
+      <td height="12" width="59%" bgcolor="$this->SecondaryColor"> <font class="swbold">Nombre</font><br><font class="sw">
+        Introduce tu nombre</font></td>
+      <td height="12" width="41%" bgcolor="$this->SecondaryColor"> 
+<!-- if($pref['pallow_FirstName'])	{ -->        
+		<input class="inputfield" type="text" name="FirstName" size="30" value="$var['FirstName']">
+<!-- } -->
+<!-- if(!$pref['pallow_FirstName'])	{ -->        
+		<input class="inputfield" type="text" name="RealName_dummy" size="30" value="$var['FirstName']" disabled>
+        <input type="hidden" name="FirstName" size="30" value="$var['FirstName']">
+<!-- } -->
+	  </td>
+    </tr>
+
+	<!-- Last Name -->
+	<tr bgcolor="$this->SecondaryColor"> 
+      <td height="12" width="59%" bgcolor="$this->SecondaryColor"> <font class="swbold">Apellido</font><br><font class="sw">
+        Introduce tus apellidos</font></td>
+      <td height="12" width="41%" bgcolor="$this->SecondaryColor"> 
+<!-- if($pref['pallow_LastName'])	{ -->        
+		<input class="inputfield" type="text" name="LastName" size="30" value="$var['LastName']">
+<!-- } -->
+<!-- if(!$pref['pallow_LastName'])	{ -->        
+		<input class="inputfield" type="text" name="RealName_dummy" size="30" value="$var['LastName']" disabled>
+        <input type="hidden" name="LastName" size="30" value="$var['LastName']">
+<!-- } -->
+	  </td>
+    </tr>
+
+	<!-- Date Of  Birth -->
+	<tr bgcolor="$this->SecondaryColor"> 
+      <td height="12" width="59%" bgcolor="$this->SecondaryColor"><font class="swbold">Fecha de Nacimiento</font><br><font class="sw">
+        Introduce tu fecha de nacimiento</font></td>
+    <td width="41%">
+
+<!-- if($pref['pallow_DOB'])	{ -->      
+<table cellspacing="2" cellpadding="0">
+<tr>
+
+<TD width="60" nowrap> 
+  <select name="BirthDay" class="inputfieldselect"><option value="1">01</option><option value="2">02</option><option value="3">03</option><option value="4">04</option><option value="5">05</option><option value="6">06</option><option value="7">07</option><option value="8">08</option><option value="9">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option>
+  </select>
+</TD>
+<TD width="60" nowrap> 
+  <select name="BirthMonth" class="inputfieldselect"><option value="1">Ene</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Abr</option><option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Ago</option><option value="9">Sep</option><option value="10">Oct</option><option value="11">Nov</option><option value="12">Dic</option></select>
+</TD>
+<TD align=middle width="13%"><font class="sw">$lang['lang_BirthYear_Year']</font></TD>
+<TD width="43%"> 
+  <INPUT CLASS="inputfield" TYPE="TEXT" NAME="BirthYear" VALUE="$var['BirthYear']" SIZE="6" MAXLENGTH="4" onFocus="NumOnly=true;EnterOn=true;" onBlur="NumOnly=false;EnterOn=false;" >
+</TD>
+</tr>
+</table>
+<!-- } -->
+
+<!-- if(!$pref['pallow_DOB'])	{ -->   
+<table cellspacing="0" cellpadding="0">
+<tr>
+
+<TD width="12%"> 
+  <select myname="BirthDay" name="dummy" class="inputfieldselect" disabled><option>01</option><option>02</option><option>03</option><option>04</option><option>05</option><option>06</option><option>07</option><option>08</option><option>09</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option><option>21</option><option>22</option><option>23</option><option>24</option><option>25</option><option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option></select>
+</TD>
+<TD width="13%"> 
+  <select myname="BirthMonth" name="dummy" class="inputfieldselect" disabled><option value="1">Ene</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Abr</option><option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Ago</option><option value="9">Sep</option><option value="10">Oct</option><option value="11">Nov</option><option value="12">Dic</option></select>
+</TD>
+<TD align=middle width="13%"><font class="sw">Año</font></TD>
+<TD width="43%"> 
+  <INPUT name="dummy" size=6 value="$var['BirthYear']" class="text" disabled>
+</TD>
+</tr>
+</table>
+<input class="inputfield" type="hidden" name="BirthDay" size="30" value="$var['BirthDay']">
+<input class="inputfield" type="hidden" name="BirthMonth" size="30" value="$var['BirthMonth']">
+<input class="inputfield" type="hidden" name="BirthYear" size="30" value="$var['BirthYear']">
+<!-- } -->
+    </td>
+    </tr>
+
+	<!-- Gender -->
+	<tr bgcolor="$this->SecondaryColor"> 
+      <td height="12" width="59%" bgcolor="$this->SecondaryColor"> <font class="swbold">Sexo</font><br><font class="sw">
+        Selecciona sexo</font></td>
+      <td height="12" width="41%" bgcolor="$this->SecondaryColor"> 
+<!-- if($pref['pallow_Gender'])	{ -->        
+		<select name="Gender" class="inputfieldselect"><option value="0">-- Selecciona&nbsp;&nbsp;</option><option value="M">Hombre</option><option value="F">Mujer</options></select>
+<!-- } -->
+<!-- if(!$pref['pallow_Gender'])	{ -->        
+        <select name="dummy" class="inputfieldselect" disabled><option value="0">-- Selecciona&nbsp;&nbsp;</option><option value="M">Hombre</option><option value="F">Mujer</options></select>
+        <input type="hidden" name="Gender" size="30" value="$var['Gender']">
+<!-- } -->
+	  </td>
+    </tr>
+
+
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
+
+<br>
+
+<table border='0' cellspacing='1' cellpadding='0' class='maintable'>
+
+
+<TABLE border='0' width='100%' cellpadding='4' cellspacing='0' class="table_control">
+
+<TR><TH class="topleft"><font class='mheader'>&nbsp;Detalles de contacto</font></TH>
+<TH class="middle"></TH>
+<TH class="topright"></TH></TR>
+
+
+
+</TABLE>
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5" class="borderstyle">
+    <tr>
+		<td bgcolor="$this->SecondaryColor">
+
+  <table width="100%" border="0" cellspacing="0" cellpadding="5">
+  
+  <!-- TelHome -->
+	<tr bgcolor="$this->SecondaryColor"> 
+      <td height="12" width="59%" bgcolor="$this->SecondaryColor"> <font class="swbold">Teléfono Particular</font><br><font class="sw">
+        Introduce tu número de Teléfono</font></td>
+      <td height="12" width="41%" bgcolor="$this->SecondaryColor"> 
+<!-- if($pref['pallow_TelHome'])	{ -->        
+		<input class="inputfield" type="text" name="TelHome" size="15" value="$var['TelHome']">
+<!-- } -->
+<!-- if(!$pref['pallow_TelHome'])	{ -->        
+		<input class="inputfield" type="text" name="dummy" size="15" value="$var['TelHome']" disabled>
+        <input type="hidden" name="TelHome" size="15" value="$var['TelHome']">
+<!-- } -->
+	  </td>
+    </tr>
+
+	<!-- FaxHome -->
+	<tr bgcolor="$this->SecondaryColor"> 
+      <td height="12" width="59%" bgcolor="$this->SecondaryColor"> <font class="swbold">Fax Particular</font><br><font class="sw">
+        Introduce tu número de Fax</font></td>
+      <td height="12" width="41%" bgcolor="$this->SecondaryColor"> 
+<!-- if($pref['pallow_FaxHome'])	{ -->        
+		<input class="inputfield" type="text" name="FaxHome" size="15" value="$var['FaxHome']">
+<!-- } -->
+<!-- if(!$pref['pallow_FaxHome'])	{ -->        
+		<input class="inputfield" type="text" name="dummy" size="15" value="$var['FaxHome']" disabled>
+        <input type="hidden" name="FaxHome" size="15" value="$var['FaxHome']">
+<!-- } -->
+	  </td>
+    </tr>
+
+	<!-- TelWork -->
+	<tr bgcolor="$this->SecondaryColor"> 
+      <td height="12" width="59%" bgcolor="$this->SecondaryColor"> <font class="swbold">Teléfono de Trabajo</font><br><font class="sw">
+        Introduce un segundo número de contacto</font></td>
+      <td height="12" width="41%" bgcolor="$this->SecondaryColor"> 
+<!-- if($pref['pallow_TelWork'])	{ -->        
+		<input class="inputfield" type="text" name="TelWork" size="15" value="$var['TelWork']">
+<!-- } -->
+<!-- if(!$pref['pallow_TelWork'])	{ -->        
+		<input class="inputfield" type="text" name="dummy" size="15" value="$var['TelWork']" disabled>
+        <input type="hidden" name="TelWork" size="15" value="$var['TelWork']">
+<!-- } -->
+	  </td>
+    </tr>
+
+	<!-- FaxWork -->
+	<tr bgcolor="$this->SecondaryColor"> 
+      <td height="12" width="59%" bgcolor="$this->SecondaryColor"> <font class="swbold">Fax de Trabajo</font><br><font class="sw">
+        Introduce un segundo número de Fax</font></td>
+      <td height="12" width="41%" bgcolor="$this->SecondaryColor"> 
+<!-- if($pref['pallow_FaxWork'])	{ -->        
+		<input class="inputfield" type="text" name="FaxWork" size="15" value="$var['FaxWork']">
+<!-- } -->
+<!-- if(!$pref['pallow_FaxWork'])	{ -->        
+		<input class="inputfield" type="text" name="dummy" size="15" value="$var['FaxWork']" disabled>
+        <input type="hidden" name="FaxWork" size="15" value="$var['FaxWork']">
+<!-- } -->
+	  </td>
+    </tr>
+
+	<!-- TelMobile -->
+	<tr bgcolor="$this->SecondaryColor"> 
+      <td height="12" width="59%" bgcolor="$this->SecondaryColor"> <font class="swbold">Teléfono Móvil</font><br><font class="sw">
+        Introduce número de móvil</font></td>
+      <td height="12" width="41%" bgcolor="$this->SecondaryColor"> 
+<!-- if($pref['pallow_TelMobile'])	{ -->        
+		<input class="inputfield" type="text" name="TelMobile" size="15" value="$var['TelMobile']">
+<!-- } -->
+<!-- if(!$pref['pallow_TelMobile'])	{ -->        
+		<input class="inputfield" type="text" name="dummy" size="15" value="$var['TelMobile']" disabled>
+        <input type="hidden" name="TelMobile" size="15" value="$var['TelMobile']">
+<!-- } -->
+	  </td>
+    </tr>
+
+	<!-- TelPager -->
+	<tr bgcolor="$this->SecondaryColor"> 
+      <td height="12" width="59%" bgcolor="$this->SecondaryColor"> <font class="swbold">Número de Busca</font><br><font class="sw">
+        Introduce el número de tu Busca (buscapersonas)</font></td>
+      <td height="12" width="41%" bgcolor="$this->SecondaryColor"> 
+<!-- if($pref['pallow_TelPager'])	{ -->        
+		<input class="inputfield" type="text" name="TelPager" size="15" value="$var['TelPager']">
+<!-- } -->
+<!-- if(!$pref['pallow_TelPager'])	{ -->        
+		<input class="inputfield" type="text" name="dummy" size="15" value="$var['TelPager']" disabled>
+        <input type="hidden" name="TelPager" size="15" value="$var['TelPager']">
+<!-- } -->
+	  </td>
+    </tr>
+
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
+
+<br>
+
+<table border='0' cellspacing='1' cellpadding='0' class='maintable'>
+
+<TABLE border='0' width='100%' cellpadding='4' cellspacing='0' class="table_control">
+
+<TR><TH class="topleft"><font class='mheader'>&nbsp;Detalles de la direccion de email</font></TH>
+<TH class="middle"></TH>
+<TH class="topright"></TH></TR>
+
+
+
+</TABLE>
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5" class="borderstyle">
+    <tr>
+		<td bgcolor="$this->SecondaryColor">
+
+  <table width="100%" border="0" cellspacing="0" cellpadding="5">
+  
+  <!-- Address -->
+	<tr bgcolor="$this->SecondaryColor"> 
+      <td height="12" width="59%" bgcolor="$this->SecondaryColor"> <font class="swbold">Dirección</font><br><font class="sw">
+        Introduce número y nombre de la calle</font></td>
+      <td height="12" width="41%" bgcolor="$this->SecondaryColor"> 
+<!-- if($pref['pallow_Address'])	{ -->        
+		<input class="inputfield" type="text" name="Address" size="30" value="$var['Address']">
+<!-- } -->
+<!-- if(!$pref['pallow_Address'])	{ -->        
+		<input class="inputfield" type="text" name="dummy" size="30" value="$var['Address']" disabled>
+        <input type="hidden" name="Address" size="30" value="$var['Address']">
+<!-- } -->
+	  </td>
+    </tr>
+
+	<!-- City -->
+	<tr bgcolor="$this->SecondaryColor"> 
+      <td height="12" width="59%" bgcolor="$this->SecondaryColor"> <font class="swbold">Ciudad</font><br><font class="sw">
+        Introduce el nombre de tu ciudad</font></td>
+      <td height="12" width="41%" bgcolor="$this->SecondaryColor"> 
+<!-- if($pref['pallow_City'])	{ -->        
+		<input class="inputfield" type="text" name="City" size="30" value="$var['City']">
+<!-- } -->
+<!-- if(!$pref['pallow_City'])	{ -->        
+		<input class="inputfield" type="text" name="dummy" size="30" value="$var['City']" disabled>
+        <input type="hidden" name="City" size="30" value="$var['City']">
+<!-- } -->
+	  </td>
+    </tr>
+
+	<!-- PostCode -->
+	<tr bgcolor="$this->SecondaryColor"> 
+      <td height="12" width="59%" bgcolor="$this->SecondaryColor"> <font class="swbold">Código Postal</font><br><font class="sw">
+        Introduce tu código postal</font></td>
+      <td height="12" width="41%" bgcolor="$this->SecondaryColor"> 
+<!-- if($pref['pallow_PostCode'])	{ -->        
+		<input class="inputfield" type="text" name="PostCode" size="30" value="$var['PostCode']">
+<!-- } -->
+<!-- if(!$pref['pallow_PostCode'])	{ -->        
+		<input class="inputfield" type="text" name="dummy" size="30" value="$var['PostCode']" disabled>
+        <input type="hidden" name="PostCode" size="30" value="$var['PostCode']">
+<!-- } -->
+	  </td>
+    </tr>
+
+	<!-- State -->
+	<tr bgcolor="$this->SecondaryColor"> 
+      <td height="12" width="59%" bgcolor="$this->SecondaryColor"> <font class="swbold">Provincia</font><br><font class="sw">
+        Introduce tu comunidad</font></td>
+      <td height="12" width="41%" bgcolor="$this->SecondaryColor"> 
+<!-- if($pref['pallow_State'])	{ -->        
+		<input class="inputfield" type="text" name="State" size="30" value="$var['State']">
+<!-- } -->
+<!-- if(!$pref['pallow_State'])	{ -->        
+		<input class="inputfield" type="text" name="dummy" size="30" value="$var['State']" disabled>
+        <input type="hidden" name="State" size="30" value="$var['State']">
+<!-- } -->
+	  </td>
+    </tr>
+
+    <!-- Country -->
+	<tr bgcolor="$this->SecondaryColor"> 
+      <td height="12" width="59%" bgcolor="$this->SecondaryColor"> <font class="swbold">País</font><br><font class="sw">
+        Introduce tu pais</font></td>
+      <td height="12" width="41%" bgcolor="$this->SecondaryColor"> 
+<!-- if($pref['pallow_Country'])	{ -->        
+		<select name="Country" class="inputfieldselect">
+			          <option value="nocountry"> -- Select</option>
+                      <option value="au">Australia</option>
+                      <option value="us">United States of America</option>
+                      <option value="ca">Canada</option>
+                      <option value="af">Afghanistan</option>
+                      <option value="al">Albania</option>
+                      <option value="dz">Algeria</option>
+                      <option value="as">American Samoa</option>
+                      <option value="ad">Andorra</option>
+                      <option value="ao">Angola</option>
+                      <option value="ai">Anguilla</option>
+                      <option value="aq">Antarctica</option>
+                      <option value="ag">Antigua and Barbuda</option>
+                      <option value="ar">Argentina</option>
+                      <option value="am">Armenia</option>
+                      <option value="aw">Aruba</option>
+                      <option value="at">Austria</option>
+                      <option value="az">Azerbaijan</option>
+                      <option value="bs">Bahamas</option>
+                      <option value="bh">Bahrain</option>
+                      <option value="bd">Bangladesh</option>
+                      <option value="bb">Barbados</option>
+                      <option value="by">Belarus</option>
+                      <option value="be">Belgium</option>
+                      <option value="bz">Belize</option>
+                      <option value="bj">Benin</option>
+                      <option value="bm">Bermuda</option>
+                      <option value="bt">Bhutan</option>
+                      <option value="bo">Bolivia</option>
+                      <option value="ba">Bosnia and Herzegovina</option>
+                      <option value="bw">Botswana</option>
+                      <option value="bv">Bouvet Island</option>
+                      <option value="br">Brazil</option>
+                      <option value="io">British Indian Ocean Territory</option>
+                      <option value="vg">British Virgin Islands</option>
+                      <option value="bn">Brunei</option>
+                      <option value="bg">Bulgaria</option>
+                      <option value="bf">Burkina Faso</option>
+                      <option value="bi">Burundi</option>
+                      <option value="kh">Cambodia</option>
+                      <option value="cm">Cameroon</option>
+                      <option value="cv">Cape Verde</option>
+                      <option value="ky">Cayman Islands</option>
+                      <option value="cf">Central African Republic</option>
+                      <option value="td">Chad</option>
+                      <option value="cl">Chile</option>
+                      <option value="cn">China</option>
+                      <option value="cx">Christmas Island</option>
+                      <option value="cc">Cocos Islands</option>
+                      <option value="co">Colombia</option>
+                      <option value="km">Comoros</option>
+                      <option value="cg">Congo</option>
+                      <option value="ck">Cook Islands</option>
+                      <option value="cr">Costa Rica</option>
+                      <option value="hr">Croatia</option>
+                      <option value="cu">Cuba</option>
+                      <option value="cy">Cyprus</option>
+                      <option value="cz">Czech Republic</option>
+                      <option value="dk">Denmark</option>
+                      <option value="dj">Djibouti</option>
+                      <option value="dm">Dominica</option>
+                      <option value="do">Dominican Republic</option>
+                      <option value="tp">East Timor</option>
+                      <option value="ec">Ecuador</option>
+                      <option value="eg">Egypt</option>
+                      <option value="sv">El Salvador</option>
+                      <option value="gq">Equatorial Guinea</option>
+                      <option value="er">Eritrea</option>
+                      <option value="ee">Estonia</option>
+                      <option value="et">Ethiopia</option>
+                      <option value="fk">Falkland Islands</option>
+                      <option value="fo">Faroe Islands</option>
+                      <option value="fj">Fiji</option>
+                      <option value="fi">Finland</option>
+                      <option value="fr">France</option>
+                      <option value="gf">French Guiana</option>
+                      <option value="pf">French Polynesia</option>
+                      <option value="tf">French Southern Territories</option>
+                      <option value="ga">Gabon</option>
+                      <option value="gm">Gambia</option>
+                      <option value="ge">Georgia</option>
+                      <option value="de">Germany</option>
+                      <option value="gh">Ghana</option>
+                      <option value="gi">Gibraltar</option>
+                      <option value="gr">Greece</option>
+                      <option value="gl">Greenland</option>
+                      <option value="gd">Grenada</option>
+                      <option value="gp">Guadeloupe</option>
+                      <option value="gu">Guam</option>
+                      <option value="gt">Guatemala</option>
+                      <option value="gn">Guinea</option>
+                      <option value="gw">Guinea-Bissau</option>
+                      <option value="gy">Guyana</option>
+                      <option value="ht">Haiti</option>
+                      <option value="hm">Heard and McDonald Islands</option>
+                      <option value="hn">Honduras</option>
+                      <option value="hk">Hong Kong</option>
+                      <option value="hu">Hungary</option>
+                      <option value="is">Iceland</option>
+                      <option value="in">India</option>
+                      <option value="id">Indonesia</option>
+                      <option value="ir">Iran</option>
+                      <option value="iq">Iraq</option>
+                      <option value="ie">Ireland</option>
+                      <option value="il">Israel</option>
+                      <option value="it">Italy</option>
+                      <option value="ci">Ivory Coast</option>
+                      <option value="jm">Jamaica</option>
+                      <option value="jp">Japan</option>
+                      <option value="jo">Jordan</option>
+                      <option value="kz">Kazakhstan</option>
+                      <option value="ke">Kenya</option>
+                      <option value="ki">Kiribati</option>
+                      <option value="kp">Korea, North</option>
+                      <option value="kr">Korea, South</option>
+                      <option value="kw">Kuwait</option>
+                      <option value="kg">Kyrgyzstan</option>
+                      <option value="la">Laos</option>
+                      <option value="lv">Latvia</option>
+                      <option value="lb">Lebanon</option>
+                      <option value="ls">Lesotho</option>
+                      <option value="lr">Liberia</option>
+                      <option value="ly">Libya</option>
+                      <option value="li">Liechtenstein</option>
+                      <option value="lt">Lithuania</option>
+                      <option value="lu">Luxembourg</option>
+                      <option value="mo">Macau</option>
+                      <option value="mk">Macedonia</option>
+                      <option value="mg">Madagascar</option>
+                      <option value="mw">Malawi</option>
+                      <option value="my">Malaysia</option>
+                      <option value="mv">Maldives</option>
+                      <option value="ml">Mali</option>
+                      <option value="mt">Malta</option>
+                      <option value="mh">Marshall Islands</option>
+                      <option value="mq">Martinique</option>
+                      <option value="mr">Mauritania</option>
+                      <option value="mu">Mauritius</option>
+                      <option value="yt">Mayotte</option>
+                      <option value="mx">Mexico</option>
+                      <option value="fm">Micronesia, Federated States of</option>
+                      <option value="md">Moldova</option>
+                      <option value="mc">Monaco</option>
+                      <option value="mn">Mongolia</option>
+                      <option value="ms">Montserrat</option>
+                      <option value="ma">Morocco</option>
+                      <option value="mz">Mozambique</option>
+                      <option value="mm">Myanmar</option>
+                      <option value="na">Namibia</option>
+                      <option value="nr">Nauru</option>
+                      <option value="np">Nepal</option>
+                      <option value="nl">Netherlands</option>
+                      <option value="an">Netherlands Antilles</option>
+                      <option value="nc">New Caledonia</option>
+                      <option value="nz">New Zealand</option>
+                      <option value="ni">Nicaragua</option>
+                      <option value="ne">Niger</option>
+                      <option value="ng">Nigeria</option>
+                      <option value="nu">Niue</option>
+                      <option value="nf">Norfolk Island</option>
+                      <option value="mp">Northern Mariana Islands</option>
+                      <option value="no">Norway</option>
+                      <option value="om">Oman</option>
+                      <option value="pk">Pakistan</option>
+                      <option value="pw">Palau</option>
+                      <option value="pa">Panama</option>
+                      <option value="pg">Papua New Guinea</option>
+                      <option value="py">Paraguay</option>
+                      <option value="pe">Peru</option>
+                      <option value="ph">Philippines</option>
+                      <option value="pn">Pitcairn Island</option>
+                      <option value="pl">Poland</option>
+                      <option value="pt">Portugal</option>
+                      <option value="pr">Puerto Rico</option>
+                      <option value="qa">Qatar</option>
+                      <option value="re">Reunion</option>
+                      <option value="ro">Romania</option>
+                      <option value="ru">Russia</option>
+                      <option value="rw">Rwanda</option>
+                      <option value="gs">S. Georgia and S. Sandwich Isls.</option>
+                      <option value="kn">Saint Kitts &amp; Nevis</option>
+                      <option value="lc">Saint Lucia</option>
+                      <option value="vc">Saint Vincent and The Grenadines</option>
+                      <option value="ws">Samoa</option>
+                      <option value="sm">San Marino</option>
+                      <option value="st">Sao Tome and Principe</option>
+                      <option value="sa">Saudi Arabia</option>
+                      <option value="sn">Senegal</option>
+                      <option value="sc">Seychelles</option>
+                      <option value="sl">Sierra Leone</option>
+                      <option value="sg">Singapore</option>
+                      <option value="sk">Slovakia</option>
+                      <option value="si">Slovenia</option>
+                      <option value="so">Somalia</option>
+                      <option value="za">South Africa</option>
+                      <option value="es">Spain</option>
+                      <option value="lk">Sri Lanka</option>
+                      <option value="sh">St. Helena</option>
+                      <option value="pm">St. Pierre and Miquelon</option>
+                      <option value="sd">Sudan</option>
+                      <option value="sr">Suriname</option>
+                      <option value="sj">Svalbard and Jan Mayen Islands</option>
+                      <option value="sz">Swaziland</option>
+                      <option value="se">Sweden</option>
+                      <option value="ch">Switzerland</option>
+                      <option value="sy">Syria</option>
+                      <option value="tw">Taiwan</option>
+                      <option value="tj">Tajikistan</option>
+                      <option value="tz">Tanzania</option>
+                      <option value="th">Thailand</option>
+                      <option value="tg">Togo</option>
+                      <option value="tk">Tokelau</option>
+                      <option value="to">Tonga</option>
+                      <option value="tt">Trinidad and Tobago</option>
+                      <option value="tn">Tunisia</option>
+                      <option value="tr">Turkey</option>
+                      <option value="tm">Turkmenistan</option>
+                      <option value="tc">Turks and Caicos Islands</option>
+                      <option value="tv">Tuvalu</option>
+                      <option value="um">U.S. Minor Outlying Islands</option>
+                      <option value="ug">Uganda</option>
+                      <option value="ua">Ukraine</option>
+                      <option value="ae">United Arab Emirates</option>
+                      <option value="uk">United Kingdom</option>
+                      <option value="uy">Uruguay</option>
+                      <option value="uz">Uzbekistan</option>
+                      <option value="vu">Vanuatu</option>
+                      <option value="va">Vatican City</option>
+                      <option value="ve">Venezuela</option>
+                      <option value="vn">Vietnam</option>
+                      <option value="vi">Virgin Islands</option>
+                      <option value="wf">Wallis and Futuna Islands</option>
+                      <option value="eh">Western Sahara</option>
+                      <option value="ye">Yemen</option>
+                      <option value="yu">Yugoslavia (Former)</option>
+                      <option value="zr">Zaire</option>
+                      <option value="zm">Zambia</option>
+                      <option value="zw">Zimbabwe</option>
+
+                    </select>
+<!-- } -->
+<!-- if(!$pref['pallow_Country'])	{ -->        
+		<select name="dummy" class="inputfieldselect" disabled>
+			          <option value="nocountry"> -- Select</option>
+                      <option value="au">Australia</option>
+                      <option value="us">United States of America</option>
+                      <option value="ca">Canada</option>
+                      <option value="af">Afghanistan</option>
+                      <option value="al">Albania</option>
+                      <option value="dz">Algeria</option>
+                      <option value="as">American Samoa</option>
+                      <option value="ad">Andorra</option>
+                      <option value="ao">Angola</option>
+                      <option value="ai">Anguilla</option>
+                      <option value="aq">Antarctica</option>
+                      <option value="ag">Antigua and Barbuda</option>
+                      <option value="ar">Argentina</option>
+                      <option value="am">Armenia</option>
+                      <option value="aw">Aruba</option>
+                      <option value="at">Austria</option>
+                      <option value="az">Azerbaijan</option>
+                      <option value="bs">Bahamas</option>
+                      <option value="bh">Bahrain</option>
+                      <option value="bd">Bangladesh</option>
+                      <option value="bb">Barbados</option>
+                      <option value="by">Belarus</option>
+                      <option value="be">Belgium</option>
+                      <option value="bz">Belize</option>
+                      <option value="bj">Benin</option>
+                      <option value="bm">Bermuda</option>
+                      <option value="bt">Bhutan</option>
+                      <option value="bo">Bolivia</option>
+                      <option value="ba">Bosnia and Herzegovina</option>
+                      <option value="bw">Botswana</option>
+                      <option value="bv">Bouvet Island</option>
+                      <option value="br">Brazil</option>
+                      <option value="io">British Indian Ocean Territory</option>
+                      <option value="vg">British Virgin Islands</option>
+                      <option value="bn">Brunei</option>
+                      <option value="bg">Bulgaria</option>
+                      <option value="bf">Burkina Faso</option>
+                      <option value="bi">Burundi</option>
+                      <option value="kh">Cambodia</option>
+                      <option value="cm">Cameroon</option>
+                      <option value="cv">Cape Verde</option>
+                      <option value="ky">Cayman Islands</option>
+                      <option value="cf">Central African Republic</option>
+                      <option value="td">Chad</option>
+                      <option value="cl">Chile</option>
+                      <option value="cn">China</option>
+                      <option value="cx">Christmas Island</option>
+                      <option value="cc">Cocos Islands</option>
+                      <option value="co">Colombia</option>
+                      <option value="km">Comoros</option>
+                      <option value="cg">Congo</option>
+                      <option value="ck">Cook Islands</option>
+                      <option value="cr">Costa Rica</option>
+                      <option value="hr">Croatia</option>
+                      <option value="cu">Cuba</option>
+                      <option value="cy">Cyprus</option>
+                      <option value="cz">Czech Republic</option>
+                      <option value="dk">Denmark</option>
+                      <option value="dj">Djibouti</option>
+                      <option value="dm">Dominica</option>
+                      <option value="do">Dominican Republic</option>
+                      <option value="tp">East Timor</option>
+                      <option value="ec">Ecuador</option>
+                      <option value="eg">Egypt</option>
+                      <option value="sv">El Salvador</option>
+                      <option value="gq">Equatorial Guinea</option>
+                      <option value="er">Eritrea</option>
+                      <option value="ee">Estonia</option>
+                      <option value="et">Ethiopia</option>
+                      <option value="fk">Falkland Islands</option>
+                      <option value="fo">Faroe Islands</option>
+                      <option value="fj">Fiji</option>
+                      <option value="fi">Finland</option>
+                      <option value="fr">France</option>
+                      <option value="gf">French Guiana</option>
+                      <option value="pf">French Polynesia</option>
+                      <option value="tf">French Southern Territories</option>
+                      <option value="ga">Gabon</option>
+                      <option value="gm">Gambia</option>
+                      <option value="ge">Georgia</option>
+                      <option value="de">Germany</option>
+                      <option value="gh">Ghana</option>
+                      <option value="gi">Gibraltar</option>
+                      <option value="gr">Greece</option>
+                      <option value="gl">Greenland</option>
+                      <option value="gd">Grenada</option>
+                      <option value="gp">Guadeloupe</option>
+                      <option value="gu">Guam</option>
+                      <option value="gt">Guatemala</option>
+                      <option value="gn">Guinea</option>
+                      <option value="gw">Guinea-Bissau</option>
+                      <option value="gy">Guyana</option>
+                      <option value="ht">Haiti</option>
+                      <option value="hm">Heard and McDonald Islands</option>
+                      <option value="hn">Honduras</option>
+                      <option value="hk">Hong Kong</option>
+                      <option value="hu">Hungary</option>
+                      <option value="is">Iceland</option>
+                      <option value="in">India</option>
+                      <option value="id">Indonesia</option>
+                      <option value="ir">Iran</option>
+                      <option value="iq">Iraq</option>
+                      <option value="ie">Ireland</option>
+                      <option value="il">Israel</option>
+                      <option value="it">Italy</option>
+                      <option value="ci">Ivory Coast</option>
+                      <option value="jm">Jamaica</option>
+                      <option value="jp">Japan</option>
+                      <option value="jo">Jordan</option>
+                      <option value="kz">Kazakhstan</option>
+                      <option value="ke">Kenya</option>
+                      <option value="ki">Kiribati</option>
+                      <option value="kp">Korea, North</option>
+                      <option value="kr">Korea, South</option>
+                      <option value="kw">Kuwait</option>
+                      <option value="kg">Kyrgyzstan</option>
+                      <option value="la">Laos</option>
+                      <option value="lv">Latvia</option>
+                      <option value="lb">Lebanon</option>
+                      <option value="ls">Lesotho</option>
+                      <option value="lr">Liberia</option>
+                      <option value="ly">Libya</option>
+                      <option value="li">Liechtenstein</option>
+                      <option value="lt">Lithuania</option>
+                      <option value="lu">Luxembourg</option>
+                      <option value="mo">Macau</option>
+                      <option value="mk">Macedonia</option>
+                      <option value="mg">Madagascar</option>
+                      <option value="mw">Malawi</option>
+                      <option value="my">Malaysia</option>
+                      <option value="mv">Maldives</option>
+                      <option value="ml">Mali</option>
+                      <option value="mt">Malta</option>
+                      <option value="mh">Marshall Islands</option>
+                      <option value="mq">Martinique</option>
+                      <option value="mr">Mauritania</option>
+                      <option value="mu">Mauritius</option>
+                      <option value="yt">Mayotte</option>
+                      <option value="mx">Mexico</option>
+                      <option value="fm">Micronesia, Federated States of</option>
+                      <option value="md">Moldova</option>
+                      <option value="mc">Monaco</option>
+                      <option value="mn">Mongolia</option>
+                      <option value="ms">Montserrat</option>
+                      <option value="ma">Morocco</option>
+                      <option value="mz">Mozambique</option>
+                      <option value="mm">Myanmar</option>
+                      <option value="na">Namibia</option>
+                      <option value="nr">Nauru</option>
+                      <option value="np">Nepal</option>
+                      <option value="nl">Netherlands</option>
+                      <option value="an">Netherlands Antilles</option>
+                      <option value="nc">New Caledonia</option>
+                      <option value="nz">New Zealand</option>
+                      <option value="ni">Nicaragua</option>
+                      <option value="ne">Niger</option>
+                      <option value="ng">Nigeria</option>
+                      <option value="nu">Niue</option>
+                      <option value="nf">Norfolk Island</option>
+                      <option value="mp">Northern Mariana Islands</option>
+                      <option value="no">Norway</option>
+                      <option value="om">Oman</option>
+                      <option value="pk">Pakistan</option>
+                      <option value="pw">Palau</option>
+                      <option value="pa">Panama</option>
+                      <option value="pg">Papua New Guinea</option>
+                      <option value="py">Paraguay</option>
+                      <option value="pe">Peru</option>
+                      <option value="ph">Philippines</option>
+                      <option value="pn">Pitcairn Island</option>
+                      <option value="pl">Poland</option>
+                      <option value="pt">Portugal</option>
+                      <option value="pr">Puerto Rico</option>
+                      <option value="qa">Qatar</option>
+                      <option value="re">Reunion</option>
+                      <option value="ro">Romania</option>
+                      <option value="ru">Russia</option>
+                      <option value="rw">Rwanda</option>
+                      <option value="gs">S. Georgia and S. Sandwich Isls.</option>
+                      <option value="kn">Saint Kitts &amp; Nevis</option>
+                      <option value="lc">Saint Lucia</option>
+                      <option value="vc">Saint Vincent and The Grenadines</option>
+                      <option value="ws">Samoa</option>
+                      <option value="sm">San Marino</option>
+                      <option value="st">Sao Tome and Principe</option>
+                      <option value="sa">Saudi Arabia</option>
+                      <option value="sn">Senegal</option>
+                      <option value="sc">Seychelles</option>
+                      <option value="sl">Sierra Leone</option>
+                      <option value="sg">Singapore</option>
+                      <option value="sk">Slovakia</option>
+                      <option value="si">Slovenia</option>
+                      <option value="so">Somalia</option>
+                      <option value="za">South Africa</option>
+                      <option value="es">Spain</option>
+                      <option value="lk">Sri Lanka</option>
+                      <option value="sh">St. Helena</option>
+                      <option value="pm">St. Pierre and Miquelon</option>
+                      <option value="sd">Sudan</option>
+                      <option value="sr">Suriname</option>
+                      <option value="sj">Svalbard and Jan Mayen Islands</option>
+                      <option value="sz">Swaziland</option>
+                      <option value="se">Sweden</option>
+                      <option value="ch">Switzerland</option>
+                      <option value="sy">Syria</option>
+                      <option value="tw">Taiwan</option>
+                      <option value="tj">Tajikistan</option>
+                      <option value="tz">Tanzania</option>
+                      <option value="th">Thailand</option>
+                      <option value="tg">Togo</option>
+                      <option value="tk">Tokelau</option>
+                      <option value="to">Tonga</option>
+                      <option value="tt">Trinidad and Tobago</option>
+                      <option value="tn">Tunisia</option>
+                      <option value="tr">Turkey</option>
+                      <option value="tm">Turkmenistan</option>
+                      <option value="tc">Turks and Caicos Islands</option>
+                      <option value="tv">Tuvalu</option>
+                      <option value="um">U.S. Minor Outlying Islands</option>
+                      <option value="ug">Uganda</option>
+                      <option value="ua">Ukraine</option>
+                      <option value="ae">United Arab Emirates</option>
+                      <option value="uk">United Kingdom</option>
+                      <option value="uy">Uruguay</option>
+                      <option value="uz">Uzbekistan</option>
+                      <option value="vu">Vanuatu</option>
+                      <option value="va">Vatican City</option>
+                      <option value="ve">Venezuela</option>
+                      <option value="vn">Vietnam</option>
+                      <option value="vi">Virgin Islands</option>
+                      <option value="wf">Wallis and Futuna Islands</option>
+                      <option value="eh">Western Sahara</option>
+                      <option value="ye">Yemen</option>
+                      <option value="yu">Yugoslavia (Former)</option>
+                      <option value="zr">Zaire</option>
+                      <option value="zm">Zambia</option>
+                      <option value="zw">Zimbabwe</option>
+                    </select>
+
+        <input type="hidden" name="Country" size="30" value="$var['Country']">
+<!-- } -->
+	  </td>
+    </tr>
+
+ 
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
+
+<br>
+
+<table border='0' cellspacing='1' cellpadding='0' class='maintable'>
+
+<TABLE border='0' width='100%' cellpadding='4' cellspacing='0' class="table_control">
+
+<TR><TH class="topleft"><font class='mheader'>&nbsp;Detalles adicionales</font></TH>
+<TH class="middle"></TH>
+<TH class="topright"></TH></TR>
+
+
+
+</TABLE>
+
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5" class="borderstyle">
+    <tr>
+		<td bgcolor="$this->SecondaryColor">
+
+  <table width="100%" border="0" cellspacing="0" cellpadding="5">
+  
+	<tr bgcolor="$this->SecondaryColor"> 
+      <td height="12" width="59%" bgcolor="$this->SecondaryColor"> <font class="swbold">Dirección de email Secundaria</font><br><font class="sw">
+        Introduce una Cuenta de email alternativa</font></td>
+      <td height="12" width="41%" bgcolor="$this->SecondaryColor"> 
+<!-- if($pref['pallow_OtherEmail'])	{ -->        
+		<input class="inputfield" type="text" name="OtherEmail" size="30" value="$var['OtherEmail']">
+<!-- } -->
+<!-- if(!$pref['pallow_OtherEmail'])	{ -->        
+		<input class="inputfield" type="text" name="dummy" size="30" value="$var['OtherEmail']" disabled>
+        <input type="hidden" name="OtherEmail" size="30" value="$var['OtherEmail']">
+<!-- } -->
+	  </td>
+    </tr>
+
+<!--	 Industry -->
+	<tr bgcolor="$this->SecondaryColor"> 
+      <td height="12" width="59%" bgcolor="$this->SecondaryColor"> <font class="swbold">Actividad</font><br><font class="sw">
+        Selecciona el tipo de empleo que posees</font></td>
+      <td height="12" width="41%" bgcolor="$this->SecondaryColor"> 
+<!-- if($pref['pallow_Industry'])	{ -->        
+		
+<select name="Industry" class="inputfieldselect">
+<option value="noindustry"> -- Selecciona</OPTION>
+<option value="banking/finance/real estate">banca/finanzas/bienes raices</option>
+<option value="computer-related IS, MIS, DP, Internet">informática (IS, MIS, DP, Inet)</option>
+<option value="computer-related hardware">informática (hardware)</option>
+<option value="computer-related software">informática (software)</option>
+<option value="education, research">educación, investigación</option>
+<option value="engineering/construction">ingeniería/construcción</option>
+<option value="manufacturing/distribution">manufactura/distribución</option>
+<option value="business supplies or services">distribución</option>
+<option value="medical/health services">medicina/servicios de salud</option>
+<option value="entertainment/media/publishing">entretenimiento/medios/publicidad</option>
+<option value="hospitality travel/accommodations">turismo (tviajes/hoteles)</option>
+<option value="consumer retail/wholesale">venta minorista</option>
+<option value="onprofit/membership organizations">ONG´s</option>
+<option value="government">gobierno</option>
+<option value="legal services">sevicios legales</option>
+<option value="other">otros</option>
+</select>
+
+<!-- } -->
+<!-- if(!$pref['pallow_Industry'])	{ -->        
+		
+<select name="dummy" class="inputfieldselect" disabled>
+<option value="noindustry"> -- Selecciona</OPTION>
+<option value="banking/finance/real estate">banca/finanzas/bienes raices</option>
+<option value="computer-related IS, MIS, DP, Internet">informática (IS, MIS, DP, Inet)</option>
+<option value="computer-related hardware">informática (hardware)</option>
+<option value="computer-related software">informática (software)</option>
+<option value="education, research">educación, investigación</option>
+<option value="engineering/construction">ingeniería/construcción</option>
+<option value="manufacturing/distribution">manufactura/distribución</option>
+<option value="business supplies or services">distribución</option>
+<option value="medical/health services">medicina/servicios de salud</option>
+<option value="entertainment/media/publishing">entretenimiento/medios/publicidad</option>
+<option value="hospitality travel/accommodations">turismo (tviajes/hoteles)</option>
+<option value="consumer retail/wholesale">venta minorista</option>
+<option value="onprofit/membership organizations">ONG´s</option>
+<option value="government">gobierno</option>
+<option value="legal services">sevicios legales</option>
+<option value="other">otros</option>
+</select>
+        <input type="hidden" name="Industry" size="30" value="$var['Industry']">
+<!-- } -->
+	  </td>
+    </tr>
+
+<!-- Occupation -->
+	<tr bgcolor="$this->SecondaryColor"> 
+      <td height="12" width="59%" bgcolor="$this->SecondaryColor"> <font class="swbold">Ocupación</font><br><font class="sw">
+        Selecciona tu puesto actual</font></td>
+      <td height="12" width="41%" bgcolor="$this->SecondaryColor"> 
+<!-- if($pref['pallow_Occupation'])	{ -->        
+		
+<select name="Occupation" class="inputfieldselect">
+<option value="nooccupation"> -- Selecciona</OPTION>
+<option value="executive/managerial">ejecutivo/gerencial</OPTION>
+<option value="professional doctor, lawyer, etc.">profesional (doctor, abogado, etc.)</OPTION>
+<option value="academic/educator">académico/educativo</OPTION>
+<option value="academic/tech">informática/ingeniería</OPTION>
+<option value="other technical/engineering">tecnico/ingeniero</OPTION>
+<option value="service/customer support">servicios/soporte de clientes</OPTION>
+<option value="clerical/administrative">empleado/administrativo</OPTION>
+<option value="sales/marketing">ventas/marketing</OPTION>
+<option value="tradesman/craftsman">vendedor/artesano</OPTION>
+<option value="college/graduate student">estudiante/graduado</OPTION>
+<option value="K-12 student">K-12 student</OPTION>
+<option value="homemaker">constructor</OPTION>
+<option value="self-employed/own company">freelance/autonomo</OPTION>
+<option value="unemployed, looking for work">desempleado, en busca de trabajo</OPTION>
+<option value="retired">jubilado</OPTION>
+<option value="other">otro</OPTION>
+</select>
+
+<!-- } -->
+<!-- if(!$pref['pallow_Occupation'])	{ -->        
+		
+<select name="dummy" class="disabled">
+<option value="nooccupation"> -- Selecciona</OPTION>
+<option value="executive/managerial">ejecutivo/gerencial</OPTION>
+<option value="professional doctor, lawyer, etc.">profesional (doctor, abogado, etc.)</OPTION>
+<option value="academic/educator">académico/educativo</OPTION>
+<option value="academic/tech">informática/ingeniería</OPTION>
+<option value="other technical/engineering">tecnico/ingeniero</OPTION>
+<option value="service/customer support">servicios/soporte de clientes</OPTION>
+<option value="clerical/administrative">empleado/administrativo</OPTION>
+<option value="sales/marketing">ventas/marketing</OPTION>
+<option value="tradesman/craftsman">vendedor/artesano</OPTION>
+<option value="college/graduate student">estudiante/graduado</OPTION>
+<option value="K-12 student">K-12 student</OPTION>
+<option value="homemaker">constructor</OPTION>
+<option value="self-employed/own company">freelance/autonomo</OPTION>
+<option value="unemployed, looking for work">desempleado, en busca de trabajo</OPTION>
+<option value="retired">jubilado</OPTION>
+<option value="other">otro</OPTION>
+</select>
+        <input type="hidden" name="Occupation" size="30" value="$var['Occupation']">
+<!-- } -->
+	  </td>
+    </tr>
+
+    
+  </table>
+  </td>
+  </tr>
+  </table>
+  </td>
+  </tr>
+  </table>
+<br>
+</form>
+
+<!--Include="html/espanol/simple/footer.html"-->

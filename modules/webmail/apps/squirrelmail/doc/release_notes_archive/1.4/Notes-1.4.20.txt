@@ -1,0 +1,101 @@
+/*******************************************************************
+ * Release Notes: SquirrelMail 1.4.20                              *
+ * The "Say It Enough Times And You'll Start Believing It" Release *
+ * 06 Mar 2010                                                     *
+ *******************************************************************/
+
+In this edition of SquirrelMail Release Notes:
+   * All about this Release!
+   * Security issues
+   * Locales / Translations / Charsets
+   * Reporting your favorite SquirrelMail bug
+
+
+All about this release
+======================
+
+This release makes final the changes implemented in our last
+two release candidates and adds several smaller fixes and
+feature improvements.
+
+Of those new fixes and improvements not included in our last
+release candidate, the most notable fix is that for the
+formerly broken search page, but we've also fixed sorting in
+the Sent folder, handling of complex mailto: addresses, display
+of multibyte subjects, quoting of encoded headers, automatic
+installation address detection (especially useful for lighttpd
+environments), a privacy issue related to DNS prefetching of
+email content, and added unread links in the message view and
+a Gmail IMAP configuration option.
+
+For a complete list of changes, please see the file "ChangeLog"
+in the doc/ directory.
+
+
+Security issues
+===============
+
+If you are upgrading from version 1.4.19 (and not one of our
+more recent release candidates), please be aware that some
+important new security fixes have been made.  Please review
+the release notes for 1.4.20 release candidates 1 and 2 for
+more details.  Those release notes can be found in the
+doc/release_notes_archive/1.4/ directory.
+
+
+Locales / Translations / Charsets
+=================================
+
+Translations are not a part of the main SquirrelMail package.  They
+are downloaded separately; you can obtain all languages in one
+package or get an individual language.  You can find these packages
+on our web site.  They also contain installation instructions.
+
+
+Reporting your favorite SquirrelMail bug
+========================================
+
+We constantly aim to make SquirrelMail even better. So we need you to
+submit any bug you come across! However, before you do so, please have
+a look at our various support resources to make sure the issue isn't
+already known or solved:
+
+   http://squirrelmail.org/docs/admin/admin-10.html
+   http://squirrelmail.org/docs/admin/admin-12.html
+   http://squirrelmail.org/wiki/KnownBugs
+   http://squirrelmail.org/wiki/SolvingProblems
+
+You should also search existing tracker items for your issue (remember
+to check for CLOSED and PENDING items as well as OPEN ones) - if you
+find such an (open) item, please do add any more details you have to
+it to help us fix and close the bug report.
+
+When reporting a new bug, please mention what SquirrelMail release(s)
+it pertains to, and list as many details about your system as possible,
+including your IMAP server and web server details.
+
+   http://squirrelmail.org/bugs
+
+Thanks for your cooperation! This helps us to make sure nothing slips
+through the cracks. 
+
+Any questions about installing or using SquirrelMail can be directed
+to our user support list:
+
+   squirrelmail-users@lists.sourceforge.net
+
+When posting support requests there, please carefully follow our posting
+guidelines:
+
+   http://squirrelmail.org/postingguidelines
+
+If you want to join us in coding SquirrelMail, or have other things to
+share with the developers, join the development mailinglist:
+
+   squirrelmail-devel@lists.sourceforge.net
+
+
+                  Happy SquirrelMailing!
+
+                    - The SquirrelMail Project Team
+

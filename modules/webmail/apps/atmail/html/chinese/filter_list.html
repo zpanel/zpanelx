@@ -1,0 +1,120 @@
+<html>
+<head>
+<title></title>
+</head>
+
+<!-- if($var['Added']) { -->
+<body bgcolor='#ffffff' onload="parent.ClearForm($var['Filter'])" style="">
+<!-- } -->
+
+<!-- if(!$var['Added']) { -->
+<body bgcolor='#ffffff' style="">
+<!-- } -->
+
+$var['atmailstyle']
+<style>SMALL {	font : 8pt Tahoma; color : #282211; }</style>
+
+<style type="text/css">a {text-decoration:none;}</style>
+
+<script language="JavaScript">
+
+<!-- if($var['Add']) { -->
+parent.document.trustedsender.Value.value='';
+parent.document.blacklistfrom.Value.value='';
+parent.document.trustedrecipient.Value.value='';
+<!-- } -->
+
+var i=0; 
+var filename="";
+              
+function checkall(swch){
+        len=document.spamdefinitions.elements.length;
+        for (i=0;i<len;i++){
+                if (document.spamdefinitions.elements[i].type=='checkbox'){
+                        document.spamdefinitions.elements[i].checked=true;
+                };
+        }; 
+};
+
+function uncheckall(swch){
+        len=document.spamdefinitions.elements.length;
+        for (i=0;i<len;i++){
+                if (document.spamdefinitions.elements[i].type=='checkbox'){
+                        document.spamdefinitions.elements[i].checked=false;
+                };
+        }; 
+};
+
+function megacheck() {
+  if(document.spamdefinitions.checker.checked) {
+    checkall();
+  }
+  if(!document.spamdefinitions.checker.checked) {
+    uncheckall();
+  }
+}
+
+function delselected()	{
+document.spamdefinitions.DeleteSelected.value='1';
+document.spamdefinitions.submit();
+}
+
+function delprompt(id,name) {
+
+  if (confirm(['Are you sure you want to Delete the Expression '] + name + ' ?' )) {
+    location.href='util.php?func=spamsettings&Filter=1&Header=$var['Header']&Delete=1&id=' + id;
+	  }
+}
+
+function modify(id, Value, Score, Filter, Type) {
+	Filter.Value.value=Value;
+	Filter.Score.value=Score;
+
+	if(Type == 'Deny')	{
+	Filter.Type.options[0].selected = 1;
+	} else	{
+	Filter.Type.options[1].selected = 1;
+	}
+
+	Filter.Submit.value = 'Save';
+	Filter.Cancel.disabled = false;
+	parent.document.spamsubmit.Modify.value = '1';
+	parent.document.spamsubmit.id.value = id;
+
+    //parent.location.href='util.php?func=spamsettings&Header=$var['Header']&Type=$var['Type']&Modify=1&id=' + id;
+}
+
+</script>
+
+<table border="0" cellspacing="0" cellpadding="5" width="100%" height="20">
+<form name="spamdefinitions">
+  <tr>    
+
+    <td nowrap>
+	<input type="checkbox" name="checker" onclick="javascript:megacheck()">
+	</td>
+
+	<td width='90%' colspan=2>
+	<a href="util.php?func=spamsettings&Filter=1&Display=1&Header=$var['Header']&Sort=Value"><font class="sw"><u>Expression</u></font></a>
+	</td>
+
+  </tr>
+
+$var['list']
+
+<tr>
+<td colspan=3>
+<input type="hidden" name="func" value="spamsettings">
+<input type="hidden" name="Header" value="$var['Header']">
+<input type="hidden" name="Type" value="$var['Type']">
+<input type="hidden" name="Display" value="1">
+<input type="hidden" name="Filter" value="1">
+<input type="hidden" name="DeleteSelected" value="">
+</td>
+</tr>
+</form>
+</table>
+</form>
+
+</body>
+</html>

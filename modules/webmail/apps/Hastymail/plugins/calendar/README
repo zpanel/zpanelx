@@ -1,0 +1,15 @@
+Basic calendar plugin. Provides yearly, monthly, weekly, and daily views
+for any date. Calendar event support is in progress. Adding/editing/deleting
+events is functional but there are still issues to address. Event support
+requires that Hastymail be configured to use a database. This can be configured
+in the hastymail2.conf file. It supports both postgres and mysql.
+Table definition files for each can be found in the plugin directory:
+
+plugins/calendar/calendar.mysql.sql
+plugins/calendar/calendar.psql.sql
+
+TODO as of 1/13:
+    - add duration, maybe other detail to day view
+    - fix week "month wrap around" bug
+    - fix width display bug (interface does not adjust to
+      calendar width when the calendar is wider)

@@ -1,0 +1,110 @@
+/*****************************************************************
+ * Release Notes: SquirrelMail 1.4.20RC1                         *
+ * The "Empire's Dying Breath" Release                           *
+ * 12 Aug 2009                                                   *
+ *****************************************************************/
+
+In this edition of SquirrelMail Release Notes:
+   * All about this Release!
+   * Security issues
+   * Locales / Translations / Charsets
+   * Reporting your favorite SquirrelMail bug
+
+
+All about this release
+======================
+
+This release addresses a security hole, removes the use of some
+deprecated PHP functions, fixes a problem in the filters plugin
+and addresses some privacy issues. 
+
+Because of the somewhat invasive nature of the changes required
+for the security and deprecation issues addressed herein, we are
+issuing a "release candidate" before we officially move to version
+1.4.20.  While we have been very careful to ensure the stability
+of SquirrelMail, this version, 1.4.20 release candidate 1, has
+undergone limited testing, and we'd like to have more feedback
+before we make version 1.4.20 final.
+
+For a complete list of changes, please see the file "ChangeLog"
+in the doc/ directory.
+
+
+Security issues
+===============
+
+All form submissions (send message, change preferences, etc.) in
+SquirrelMail were previously subject to cross-site request forgery
+(CSRF), wherein data could be sent to them from an offsite location,
+which could allow an attacker to inject malicious content into user
+preferences or possibly send emails without user consent.  This
+issue is tracked as Secunia Advisory SA34627.
+
+Two fixes for this issue are available as of SquirrelMail 1.4.20RC1.
+A security token system is enabled by default which protects all
+page requests that change user state in any meaningful way.  An
+additional page referal verification system is available but not
+enabled by default due to the less controllable nature of the
+page "referer" (sic) that is sent by most browsers.  In many cases,
+it can be enabled without trouble, which can be done with the
+configuration tool or in the SquirrelMail configuration file.  The
+administrator can also disable the security token system therein,
+which we DO NOT recommend.
+
+
+Locales / Translations / Charsets
+=================================
+
+Translations are not a part of the main SquirrelMail package.  They
+are downloaded separately; you can obtain all languages in one
+package or get an individual language.  You can find these packages
+on our web site.  They also contain installation instructions.
+
+
+Reporting your favorite SquirrelMail bug
+========================================
+
+We constantly aim to make SquirrelMail even better. So we need you to
+submit any bug you come across! However, before you do so, please have
+a look at our various support resources to make sure the issue isn't
+already known or solved:
+
+   http://squirrelmail.org/docs/admin/admin-10.html
+   http://squirrelmail.org/docs/admin/admin-12.html
+   http://squirrelmail.org/wiki/KnownBugs
+   http://squirrelmail.org/wiki/SolvingProblems
+
+You should also search existing tracker items for your issue (remember
+to check for CLOSED and PENDING items as well as OPEN ones) - if you
+find such an (open) item, please do add any more details you have to
+it to help us fix and close the bug report.
+
+When reporting a new bug, please mention what SquirrelMail release(s)
+it pertains to, and list as many details about your system as possible,
+including your IMAP server and web server details.
+
+   http://squirrelmail.org/bugs
+
+Thanks for your cooperation! This helps us to make sure nothing slips
+through the cracks. 
+
+Any questions about installing or using SquirrelMail can be directed
+to our user support list:
+
+   squirrelmail-users@lists.sourceforge.net
+
+When posting support requests there, please carefully follow our posting
+guidelines:
+
+   http://squirrelmail.org/postingguidelines
+
+If you want to join us in coding SquirrelMail, or have other things to
+share with the developers, join the development mailinglist:
+
+   squirrelmail-devel@lists.sourceforge.net
+
+
+                  Happy SquirrelMailing!
+
+                    - The SquirrelMail Project Team
+

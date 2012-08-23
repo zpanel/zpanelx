@@ -1,0 +1,29 @@
+
+<html>
+<head>
+<title>Réception d'email</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<LINK href="javascript/stylehelp.css" rel=stylesheet type=text/css>
+<font face="Verdana,
+Arial" size="+1">
+Réception d'email</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">Index</a> ]
+<hr noshade>
+
+	<p><u>Comment est-ce que je bloque l'email d'un expéditeur en particulier ?</u>
+	 <p> <ul>
+		<li>en bloquant l'adresse email de quelqu'un vous empêcherez tous les emails provenant de cette personne de vous atteindre lorsque vous utilisez le webmail de $pref['brandname']. Pour bloquer une adresse, vous devez:<br><br>
+			<ol>
+				<li>Allez à la section "Bloquer une adresse email/Spammer" située sur la page des dossiers.
+				<li>Entrez l'adresse dans le champs "Entrez l'adresse email à bloquer".
+				<li>Cliquez sur "Ajouter l'email".
+			</ol><br>
+		<li>L'adresse apparaîtra ensuite sur la liste des adresses bloquées. Vous pouvez également bloquer un email à partir de son sujet. Les étapes sont similaires à celles ci_dessus.
+	  </ul>
+	  <p><u>Quel est le plus gros message que je puisse recevoir ?</u> 
+	  <p>Avec votre compte $pref['brandname'], vous pouvez recevoir et envoyer des messages jusqu'à $pref['max_msg_size'] Mo. Par conséquent, la taille maximale message d'un message encodé != peut excéder $pref['max_msg_size'] Mo. 
+	  <p><i>NOTE:</i> Quand vous attachez des fichiers dans vos emails, ceux-ci doivent être encodés, ce qui en augmentera la taille. Les attachements envoyés avec chaque email doivent être traduits dans un format différent avec que chaque programme puisse les lire. Ce type de transformation ajoutera environ 33% à la taille originelle de l'attachement. Par conséquent, suite à une traduction un attachement de 2 Mo deviendra un email faisant environ 2,66 Mo après encodage.
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+First off, you MUST have BIND 9.x or later compiled and installed.  You
+need the lwres libraries and bind libraries (and include files) and you
+will also need lwresd.  Once you have it compiled and installed, try running
+lwresd.  On solaris I had to use the -i flag to specify where to write
+the pid file, and on linux I didn't. (shrug) Go figure. But you gotta get
+lwresd running before moving on. Don't panic, this is FAR easier to get
+going than a full-blown BIND server (grin).
+
+Building bulkquery
+
+First, edit the Makefile and uncomment out the section of CC, CFLAGS, and
+LDFLAGS settings for your operating system and set DESTDIR to the directory
+you want to install it in.
+
+Then, edit bulkquery.c and edit the MAXTHREADS and DEFTTL values. You probably
+don't need to fiddle with anything else and the defaults for MAXTHREADS and
+DEFTTL should be fine.
+
+MAXTHREADS is the maximum number of threads you will spawn.  The more you
+spawn, the harder you will work your DNS server (and the RBLs) and the
+more resources you'll use up on your own machine -- AND the faster the 
+queries will complete. If you set this too high your operating system might
+not permit bulkquery to run. The default of 50 works fine on Solaris and
+and Linux.
+
+DEFTTL is the default time to live value.  This is sort of a misnomer, since
+the REAL time to live values will be obtained in the replies for queries
+that were found. But for the queries that were NOT found, DEFTTL will be
+used. This is so that the non-existence of an IP in one of the RBLs will be
+cached by the filters plugin for DEFTTL seconds.
+
+After looking at bulkquery.c, just run "make" to compile it.  If it compiles
+without errors, you can run "make install" (you may need to be root to
+write to DESTDIR).  You can test it with the included sample input file
+bq.in
+
+If all you get back are entries with the default TTL value (ie. 7200), then
+something isn't working.  Make sure you have lwresd running. You should also
+make sure the machine you're running it on CAN make DNS queries (grin). So
+check your /etc/resolv.conf file (on UNIX machines anyway).  I'll include
+the file bq.out to show what the output of bulkquery looked like at the time
+of this writing (assuming everything was working).

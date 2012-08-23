@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>Access Denied</title>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">       
+</head>
+<body bgcolor="$this->BgColor" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor">
+
+<style>
+
+.sw {font-family:Verdana;font-size:13px;color:#000000;}
+.swr {font-family:Verdana;font-size:13px;color:#FF0000;}
+</style>
+
+
+
+<LINK href="javascript/style$this->browser.css" rel="stylesheet" type="text/css">
+<img src="$pref['logo_big_img']"><br>
+<h1>No Such Username</h1>
+
+<font class="swr">The account you are accessing does not exist in the database.</font>
+<font class="sw"> 
+<ul>
+  <li>Verify the correct username and password.</li>
+  <li>Check your browser supports cookies and enable in the browser settings</li>
+</ul>
+</font>
+
+<p><font class="swr">If you are still unsuccessful accessing your account</font></p>
+<font class="sw">
+<ul>
+  <li>Use the <a href="index.php?func=passutil">Password Retrieval Utility</a> to remember lost passwords</li>
+  <li>Contact the Administrator $this->admin_email for assistance</li>
+    <!-- if($pref['allow_Signup']) { -->
+	<li><a href="index.php?func=signup">Create a new account</a></li>
+	<!-- } -->
+</ul>
+</font>
+</body>
+</html>
+
+

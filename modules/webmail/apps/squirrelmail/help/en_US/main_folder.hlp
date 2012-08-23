@@ -1,0 +1,66 @@
+<chapter>
+   <title>
+      Message Index
+   </title>
+   <summary>
+      The name may sound complex, but this is just the list of email
+      messages that are in a particular folder.
+   </summary>
+</chapter>
+
+<section>
+   <title>
+      The Message Index
+   </title>
+   <description>
+      <p>
+      After you click on a folder, you will be taken (in the right frame) to the
+      message index.  This lists messages in the selected folder.  Below the
+      menu choice is a line which informs you which mails you are viewing
+      numerically and how many total you have.
+      </p><p>
+      For example: Viewing messages <b>20</b> to <b>30</b> (45 total).
+      </p><p>
+      Notice that the total message count might be different from the unread
+      mail count which is to the right of the main mail folder.
+      </p><p>
+      A bar containing four buttons is next.  On the left side is a drop down
+      list box.  This box lists your currently subscribed folders.  Any selected
+      message will be moved to the selected folder when the move button is pushed.
+      Multiple messages may be moved at once.  On the far right side of this bar is
+      a button used to delete selected messages.  Just select the junk mail and
+      press the button. To the left of the Delete button are two buttons which
+      allow you to mark selected messages either as Read or as Unread.
+      </p><p>
+      A bar containing three fields (From, Date, and Subject) is next.  These headings
+      separate the message table into logical parts.  From tells you who sent
+      you the message, or at least what email address it came from.  Date
+      shows the day which the email was sent.  Subject displays what the sender
+      entered as the subject.  <b>Note:</b> Between the Date and Subject
+      columns is a small column that is unlabeled.  There could be a "+", "!"
+      or an "A" in there.  If you see the "+", that means that the message has
+      attachments; if you see the "A", that means that you have answered the
+      message, and if you see the "!", then the message was marked as urgent!
+      </p><p>
+      What remains is the actual message table.  You will notice that unread
+      messages are <b>bold</b> while viewed messages are in normal text.
+      Four fields form this table.  On the far left is a select box.  When
+      selected, the message on the same line is subject to the actions previously
+      discussed (moving, marking (un)read and deletion).
+      The Toggle All link at the top of the list allows you to check all
+      select boxes at once.<br />
+      Under the From header is listed whom
+      the message is from.  Surprising, we know. But hey, you don't have to read
+      this.  The date is listed next, and finally the subject.
+      </p>
+      <p>
+      If your mailbox contains many messages, the list will by default be split into
+      multiple pages and the first page will be displayed. To view other pages, use the
+      Previous and Next links at the top and bottom of the message list. You can also
+      jump to a specific page directly by clicking one of the numbers (each represents
+      a page). If you click Show All you will disable the so-called paginating and
+      all messages will be displayed on one big page.
+      </p>
+
+   </description>
+</section>

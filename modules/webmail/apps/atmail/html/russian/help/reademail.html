@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>Справка Почты</title> 
+<META http-equiv=Content-Type content="text/html; charset=utf-8">       
+
+<script>
+function expandentry()	 {
+
+<!-- if($var['FirstLoad']) { -->
+if(parent.document.getElementById('calendar').style.display != 'block')
+parent.expand('reademail', parent.document.getElementById('readmsgimg') );
+<!-- } -->
+
+}
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" onload="expandentry()">
+
+<LINK href="javascript/stylehelp.css" rel="stylesheet" type="text/css">
+
+<font face="Verdana, Arial" size="+1">Читать почту</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">Индекс справки</a> ]</font>
+
+<hr noshade>
+
+
+<p>Окно писем содержат список сообщений, полученных для вашей учетной записи электронной почты - перемещая мышь на сообщение, всплывающее меню будет появляться, которое отобразит первые 160 символов сообщения. Чтобы читать электронную почту, щелкните тему сообщений и перейдете к всему письму.</p>
+<p>Через панель управления Предпочтения Вы можете выбирать порядок чтения писем. Сортировать в папке по теме, дате, отправителю и ID. Каждое сообщение в почтовом ящике может быть отмечено, чтобы быть перемещенным во внешний почтовый ящик; эта функция позволяет Вам выбирать сообщения, которые будут перемещены в Корзину или в дополнительный почтовый ящик.</p>
+<p>Из окна писем можно сразу перейти к настройкам учетной записи, или перейти в окно информации Папки, чтобы рассмотреть параметры настройки для ваших папок.</p>
+
+</font>
+</body>
+</html>

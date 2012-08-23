@@ -1,0 +1,46 @@
+Securing Your SquirrelMail Setup
+--------------------------------
+
+We try to make SquirrelMail as secure as possible, but the security of
+an install depends on a lot of factors. This file lists some tips to
+further improve the security of your webmail system.
+
+- PHP configuration. It's very important to turn register_globals OFF.
+  The majority of security issues discovered in SquirrelMail in the past
+  could only be exploited when register_globals was set to on. If you
+  need register_globals for other web applications, turn it on specifically
+  for those apps.
+
+- HTTPS/SSL Logins. SquirrelMail runs fine over an https / SSL connection,
+  and it's not that hard to set one up.
+
+- Data dir / attachment dir. Make sure that you've set these up with the
+  right permissions (only for the webserver user) and that they're outside
+  of your webserver's document root. See INSTALL for details.
+
+- IMAPS / TLS. If your IMAP server is not on the same host as SquirrelMail,
+  you can configure SquirrelMail to use an encrypted connection to your
+  IMAP server. Note that this makes no sense if both are on the same machine.
+  See doc/authentication.txt for info.
+
+- config.php. Some options in conf.pl / config.php allow for passwords to
+  be set in that file, e.g. the addressbook/preferences DSN, and LDAP
+  addressbooks. When setting a sensitive password, check that config.php
+  is not readable for untrusted system users, and consider the possibility
+  of it being read by other users of the same webserver.
+
+- Subscribe to the squirrelmail-announce mailinglist to be informed about new
+  releases which may fix security bugs. If you run SquirrelMail packaged by
+  your distribution, make sure to apply their security upgrades.
+
+- If you use SELinux, SquirrelMail will not work unless you create a policy
+  for it. In the SELinux Policy Editor, under HTTPD Service, enable
+  "allow HTTPD scripts and modules to connect to the network".
+
+These are only some tips to get you started. A truly secure system needs
+careful tweaking of all components, including PHP, Apache, mailserver,
+the underlying OS, which users can login, etc. Searching the web will turn
+up lots of information.
+
+
+$Id: security.txt 11186 2006-06-08 15:53:54Z kink $

@@ -1,0 +1,58 @@
+Hastymail plugins support a simple translation method (similar to how Hastymail
+hanldes interface translations). To setup string translations for a plugin add
+an array to the plugin's config.php file like so:
+
+    $<plugin_name>_langs = array(
+        'en_US' => array(
+            1 => 'Phrase one',
+            2 => 'Phrase two',
+            ...
+        ),
+        'es_ES' => array(
+        ),
+        ...
+    );
+
+The plugin system will store this array on login and if a section exists that
+matches the users currently selected language it will be used. Otherwise the default
+site language will be used if it is found. If that is not present than the first
+entry in the array will be used (en_US in this case). Interface strings are made
+available to a plugin through the tools object. Using the above example a
+translated string can be used in the display.php and page.php files of a plugin
+by replacing this:
+
+    $data = 'Phrase one';
+
+with this:
+
+    $data = $tools->str[1];
+
+
+To add a translation just copy the default set of
+strings, change the name to one of the supported languages, and translate
+each string accordingly. As of this writing the language names supported by
+Hastymail are:
+
+bg_BG Bulgarian
+ca_ES Catalan
+zh_CN Chinese
+nl_NL Dutch
+en_US English
+fi_FI Finnish
+fr_FR French
+de_DE German
+gr_GR Greek
+it_IT Italian
+ja_JP Japanese
+pl_PL Polish
+ro_RO Romanian
+ru_RU Russian
+es_ES Spanish
+tr_TR Turkish
+uk_UA Ukranian
+
+
+- The array of strings is only read when logging in, so existing logins
+  have to logout and back in before seeing the new strings.
+- Both the hello_world and filters plugins are now setup to use this
+  system so see the plugin code for examples.

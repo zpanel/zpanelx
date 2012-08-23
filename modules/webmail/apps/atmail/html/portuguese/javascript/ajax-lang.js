@@ -1,0 +1,104 @@
+// Language strings for Ajax interface
+
+Lang_AllFolders = "Todas as Pastas";
+Lang_Page = "Page";
+Lang_First = "Primeira";
+Lang_Last = "Última";
+Lang_NextMsg = "Próximas Mensagens";
+Lang_PrevMsg = "Mensagens Anterires";
+Lang_Viewing = "Visualizando";
+Lang_Messages = "Mensagem";
+Lang_To = "Para";
+Lang_Of = "of";
+Lang_From = "De";
+Lang_Subject = "Assunto";
+Lang_Date = "Data";
+Lang_Size = "Tamanho";
+Lang_DragDrop = "Arrastar e Soltar em uma Pasta";
+Lang_DoubleClick = "Double Click to Open";
+Lang_CacheStatus = "Message Cache Status";
+Lang_Type = "Tipo";
+Lang_Priority = "Prioridade";
+Lang_Normal = "Normal";
+Lang_High = "Alta";
+Lang_Low = "Baixa";
+Lang_Reply = "Resposta";
+Lang_ReplyAll = "Responder Todos";
+Lang_Forward = "Encaminhar";
+Lang_Delete = "Apagar";
+Lang_Abook = "Livro de Endereços";
+Lang_Print = "Imprimir";
+Lang_BlockSender = "Bloquear Remetente";
+Lang_ViewHeaders = "View Headers";
+Lang_Next = "Próxima";
+Lang_Prev = "Mensagem Anterior";
+Lang_Back = "Voltar";
+Lang_Send = "Send Mail";
+Lang_AddRecpt = "Adicionar Destinatários";
+Lang_AddBCC = "Adicionar Cópia Oculta";
+Lang_SpellCheck = "Verificar Ortografia";
+Lang_Attachments = "Anexos";
+Lang_SaveMsg = "Salvar Msg";
+Lang_Resume = "Resume Editing";
+Lang_BackTo = "Back to";
+Lang_Text = "Texto";
+Lang_Open = "Aberto";
+Lang_Editor = "Editor";
+Lang_Bcc = "Bcc";
+Lang_Cc = "Cc";
+Lang_ItemsToMove = "Items to move";
+Lang_BlackListAdded = "The user has been added to your Spam blacklist";
+Lang_AbookAdded = "The users email-address has been added to the addressbook";
+Lang_MoveHead = "Message cannot be moved";
+Lang_MoveHead2 = "The unique message identifier does not match the selected message for move/deletion. This error can occur if:";
+Lang_MoveReason1 = "You have refreshed the WebMail window after moving a message. The previous message cannot be moved twice";
+Lang_MoveReason2 = "The message has been moved from another application via POP3/IMAP. Please reload your mailbox folder for an updated listing";
+Lang_MoveReason3 = "The message no longer exists on the mail-server";
+Lang_Headers = "Cabeçalho";
+Lang_AddSender = "Adicionar no Livro de Endereços";
+Lang_Sent = "Enviadas";
+Lang_AddWord = "Adicionar Palavra";
+Lang_Edit = "Editar";
+Lang_BlockedAlert = "Alert:";
+Lang_Blocked = "$var['BlockImages'] images have been blocked.";
+Lang_Display = "Display Images in message";
+Lang_DisplayAdd = "Always display images from this user";
+Lang_AlertPerm = "Tem certeza que deseja apagar permenentemente as mensagens selecionadas?";
+Lang_MarkAsRead = "Mark as Read";
+Lang_MarkAsUnread = "Mark as Unread";
+
+// Calendar Language files
+Lang_Months = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+Lang_Days = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
+Lang_AllDayAdd = "Double Click to Add an All Day Appointment";
+Lang_DayAdd = "Click & Drag or Double Click to Add an Appointment";
+Lang_TaskAdd = "Adicionar";
+Lang_TaskHeader = "Tarefas";
+Lang_AllDayEvents = "All Day Events";
+Lang_Done = "Finalizar";
+Lang_Personal = "Pessoal";
+Lang_Shared = "Shared";
+Lang_VideoMail = "Video Mail";
+Lang_Help = "Help Guide for Recording Video messages";
+
+Lang_Start = "Data de Início";
+Lang_End = "Data de Fim";
+
+// Used for the overdue.html template in the calendar
+Lang_Complete = "Completo";
+Lang_Sleep = "Remind in 30 minutes";
+Lang_DueDate = "Até Data";
+Lang_OverDue = "Overdue Appointments";
+Lang_ViewDay = "Vendo Hoje";
+Lang_ViewWeek = "View 5 day Week";
+Lang_ViewWeek7 = "View 7 day Week";
+Lang_ViewMonth = "View Month";
+Lang_BackToEmail = "Back to Email";
+Lang_Sync = "Ajuda do Outlook-Sync";
+Lang_HelpGuide = "Guia de Ajuda";
+Lang_ExportToIcal = "Export to iCal";
+
+Lang_HasNoMsgs = "$var['FolderName'] não há mensagens";
+
+Lang_CalImportTitle = "Import from iCal";
+Lang_CalImportLabel = "Import Calendar in iCal (ics) format:";

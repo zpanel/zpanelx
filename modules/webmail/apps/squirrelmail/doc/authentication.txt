@@ -1,0 +1,86 @@
+**********************************************
+IMAP AND SMTP AUTHENTICATION WITH SQUIRRELMAIL
+$Id: authentication.txt 9448 2005-05-23 17:08:07Z tokul $
+Chris Hilts tassium@squirrelmail.org
+**********************************************
+
+Prior to SquirrelMail 1.3.3, only plaintext logins for IMAP and SMTP were
+supported.  With the release of SquirrelMail 1.3.3, support for the
+CRAM-MD5 and DIGEST-MD5 auth mechanisms has been added.  TLS support has
+also been added.  It is possible to use different methods for both IMAP and
+SMTP. TLS is able to be enabled on a per-service basis as well.
+Unless the administrator changes the authentication methods, SquirrelMail
+will default to the "classic" plaintext methods, without TLS.
+
+Note: There is no point in using TLS if your IMAP server is localhost. You need
+root to sniff the loopback interface, and if you don't trust root, or an attacker
+already has root, the game is over.  You've got a lot more to worry about beyond
+having the loopback interface sniffed.
+
+REQUIREMENTS
+------------
+
+CRAM/DIGEST-MD5
+* SquirrelMail 1.3.3 or higher
+* If you have the mhash extension to PHP, it will automatically
+  be used, which may help performance on heavily loaded servers.
+  ** NOTE: mhash is optional and no longer a requirement **
+
+TLS
+* SquirrelMail 1.3.3 or higher
+* PHP 4.3.0 or higher (Check Release Notes for PHP 4.3.x information)
+* The "STARTTLS" command is NOT supported.  The server you wish to use TLS
+  on must have a dedicated port listening for TLS connections. (ie. port
+  993 for IMAP, 465 for SMTP)
+* If you use PHP 4.3.x, OpenSSL support must be compiled staticly. See
+  PHP bug #29934 (http://bugs.php.net/bug.php?id=29934) 
+
+CONFIGURATION
+-------------
+
+All configuration is done using conf.pl, under main menu option #2.
+
+conf.pl can now attempt to detect which mechanisms your servers support.
+You must have set the host and port before attempting to detect, or you
+may get inaccurate results, or a long wait while the connection times out.
+
+If you get results that you know are wrong when you use auto-detection, I
+need to know about it. Please send me the results you got, the results you
+expected, and server type, name, and version (eg. "imap, Cyrus, v2.1.9").
+
+KNOWN ISSUES
+------------
+
+DIGEST-MD5 has three different methods of operation. (qop options "auth",
+"auth-int" and "auth-conf").  This implementation currently supports "auth"
+only.  Work is being done to add the other two modes.
+
+DIGEST-MD5 _may_ fail when authenticating with servers that supply more
+than one "realm".  I have no servers of this type to test on, so if you do
+and it fails, let me know!  (A big help would be for you to telnet to your
+server, start a DIGEST-MD5 auth session, and include the challenge from the
+server in your bug report.)
+
+To get the challenge with IMAP:
+	telnet <your server> imap
+	[server says hello]
+	A01 AUTHENTICATE DIGEST-MD5
+	<copy the gobbledygook that the server sends - this is what I need>
+	*
+	[server says auth aborted]
+	A02 LOGOUT
+	[server says goodbye, closes connection]
+
+To get the challenge with SMTP:
+	telnet <your server> smtp
+	[server sends some sort of "hello" banner]
+	EHLO myhostname
+	[server will probably list a bunch of capabilities]
+	AUTH DIGEST-MD5
+	<copy the gobbledygook that the server sends - this is what I need>
+	*
+	[server says auth aborted]
+	QUIT
+	[server says bye, closes connection]
+
+[End]

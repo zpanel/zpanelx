@@ -1,0 +1,44 @@
+<title>Guide et aide WebMail</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<LINK href="javascript/stylehelp.css" rel=stylesheet type=text/css>
+
+<font face="Verdana, Arial" size="+1">Guide et aide WebMail</font>
+
+<hr noshade>
+<p><font face="Arial, Helvetica, Condensed" size="2">Avec ce fichier d'aide vous en apprendrez davantage sur l'utilisation du webmail. Séléctionnez une rubrique dans la liste pour avoir plus d'information sur chaque sujet.</font></p>
+<ul>
+  <li><a href="parse.php?file=html/$this->Language/help/compose.html">écrire/envoyer un email</a></li>
+  <li><a href="parse.php?file=html/$this->Language/help/reademail.html">Lire les messages</a></li>
+
+<!-- if($pref['allow_Calendar']) { -->
+ <li><a href="parse.php?file=html/$this->Language/help/calendar.html">Le calendrier</a></li>
+<!-- } -->
+
+<!-- if(file_exists("{$pref['install_dir']}/xhtml.php") && $pref['allow_Mobile']) { -->
+<li><a href="parse.php?file=html/$this->Language/help/wap.html">message WAP</a></li>
+<!-- } -->
+
+<li><a href="parse.php?file=html/$this->Language/help/settings.html">Changer les paramètres</a></li>
+  <li><a href="parse.php?file=html/$this->Language/help/addressbook.html">Carnet d'adresses</a></li>
+
+<!-- if($pref['allow_MultiAccounts']) { -->
+  <li><a href="parse.php?file=html/$this->Language/help/addpop3.html">Comptes POP3 multiples</a></li>
+<!-- } -->
+
+<!-- if($pref['allow_LDAP'] && extension_loaded('ldap')) { -->
+<li><a href="parse.php?file=html/$this->Language/help/ldap.html">Moteur de recherche LDAP</a></li>
+<!-- } -->
+
+<li><a href="parse.php?file=html/$this->Language/help/newmbox.html">Options de la boîte email</a></li>
+
+<!-- if(file_exists($pref['aspell_dir']) || extension_loaded('pspell')) { -->
+<li><a href="parse.php?file=html/$this->Language/help/spell.html">Particularité de la correction orthographique</a></li>
+<!-- } -->
+
+<!-- if($pref['allow_SMS'] && file_exists('sms.php')) { -->
+<li><a href="parse.php?file=html/$this->Language/help/sms.html">Aide SMS</a></li>
+<!-- } -->
+</ul>
+
+Avec ce fichier d'aide vous en apprendrez davantage sur l'utilisation du webmail. Séléctionnez une rubrique dans la liste pour avoir plus d'information sur chaque sujet.

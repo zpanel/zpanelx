@@ -1,0 +1,54 @@
+SquirrelSpell
+--------------
+
+SquirrelSpell is a JavaScript-powered spellchecker written to work with
+SquirrelMail webmail interface.
+
+LICENSE: 
+--------- 
+This is free software released under GNU GPL license and comes with no
+warranty of any kind. You may modify, borrow, or redistribute code as long
+as it doesn't violate the GNU GPL license. You can read more about this
+license at http://www.gnu.org/
+
+FEATURES:
+----------
+SquirrelSpell works with UN*X's ISPELL or ASPELL libraries and
+SquirrelMail version 1.4 and higher. No PHP recompilation required,
+unless you wish to enable MCRYPT support.
+
+* SpellChecker:
+ISPELL or ASPELL. It all depends on them. Read configuration parameters in
+sqspell_config.php. Starting with version v0.3 supports multiple international
+dictionaries.
+
+* User Dictionary:
+SquirrelSpell adds words to the user dictionary. You may edit your
+dictionary under options->personal options->Edit my dictionary.
+
+* Encryption:
+Starting with version v0.3 SquirrelSpell is capable of working with
+encrypted user dictionaries. See doc/CRYPTO for information on how to
+enable this feature.
+
+* i18n and l10n:
+SquirrelSpell supports any international dictionaries provided by ispell
+or aspell. However, since there isn't a translation interface available
+for SquirrelMail plugins, all messages produced by SquirrelSpell will be
+in English.
+
+AUTHOR:
+--------
+This plugin was originally authored by Konstantin Riabitsev
+(http://www.mricon.com/) and is now maintained by the SquirrelMail Project
+Team.
+
+SUPPORT:
+---------
+Send support questions and bug reports to the plugins mailing list:
+squirrelmail-plugins@lists.sourceforge.net. When reporting a bug
+don't forget to mention your browser version, SquirrelMail and
+SquirrelSpell versions, as well as any other useful info.
+
+ENJOY. :)
+---------

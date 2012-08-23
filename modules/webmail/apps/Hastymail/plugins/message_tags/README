@@ -1,0 +1,42 @@
+This is the first beta version of the message tags plugin for Hastymail2.
+This plugin lets users add free-form tags to messages.
+
+The basics:
+----------
+- Messages can have multiple tags and be from any folder.
+- To add or edit a message tag click on the tag icon in the message list or
+  message view, edit the tag value, and hit the Enter key to save
+- To cancel a tag addition or edit click anywhere else in the display before
+  pressing Enter
+- Tag values are limited to a-z upper or lower case, 0-9, underscore and dash
+  (/^[a-zA-Z0-9_\-]{2,}$/)
+- Tagged messages can be viewed in a single list with the ability to filter
+  the display combining tags with "and" and "or".
+- Tagged message lists are accessed from the Tags link in the main menu or by
+  enabling the tags summary display in the folder tree on the options page.
+- When viewing a message in a tagged messge list their are prev/next/list links
+  on the far right of the page below the header to navigate through the list
+- Messages in tagged message lists can be acted on as a group with the standard
+  message controls (move/copy/delete/etc)
+
+Other stuff
+-----------
+
+- The plugin attempts to use the IMAP server to save tags as custom IMAP
+  message flags. Not all IMAP servers support this ability (notably MS
+  Exchange does not)
+- The plugin maintains a map of the IMAP UID of a message to the tags assigned
+  to that message. It is unlikely but possible that the message UIDs in a
+  mailbox could change meaning the tag association would be lost.
+- Message tags can be lost if a message is moved from one folder to another
+  with a different mail client.
+- If the IMAP server supports custom IMAP flags using the "Repair Tag Data"
+  option on the main tags page will attempt to locate all the tagged messages
+  and reconstruct the tag map
+- If your IMAP sever does not support custom IMAP flags then this option will
+  clean up any missing map references but will not be able to locate any
+  lost tags
+
+
+This plugin is a work in progress. Questions or comments can be
+directed to jason@hastymail.org.

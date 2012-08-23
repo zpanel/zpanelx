@@ -1,0 +1,31 @@
+/* login page */
+#main_table{
+    width: 300px;
+    margin-top: 100px;
+}
+#login span{
+    color: #22449b;
+}
+#login{
+    margin-left: 20px;
+    padding-bottom: 50px;
+}
+#content{
+    width: 300px;
+}
+form {
+    font-size: 9pt;
+}
+select, input {
+    margin-bottom: 10px;
+    font-size: 11pt;
+}
+.logintext{
+    width: 260px;
+}
+#top table{width: 300px;}
+#menu{width: 100%;}
+#main_table{margin-top: 60px;}
+.clean_td{background: none !important;}
+.clean_td span{font-size: 16pt;}
+#notices{margin: 15px;}

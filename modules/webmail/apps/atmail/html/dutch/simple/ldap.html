@@ -1,0 +1,237 @@
+<!--Include="html/dutch/simple/header.html"-->
+
+<!-- here is our custom sidebar -->
+
+<script language="Javascript">
+function LdapToggle(v)	{
+var ldapq = document.getElementById('ldapdiv');
+
+v = document.ldap.type.options[document.ldap.type.selectedIndex].value;
+
+// If using the LDAP server, add another tab on the table ( advanced LDAP settings)
+if(v == 0)	{
+<!-- if($pref['ldap_chserver']) { -->
+ldapq.style.display='';
+<!-- } -->
+
+document.ldap.action='ldap.php';
+document.ldap.func.value='search';
+document.ldap.search.value='0';
+
+} else	{
+<!-- if($pref['ldap_chserver']) { -->
+ldapq.style.display='none';
+<!-- } -->
+
+document.ldap.action='abook.php';
+document.ldap.func.value='open';
+document.ldap.search.value='1';
+}
+
+
+}
+</script>
+
+
+
+			<table width="163" cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="5" border="0"></td>
+					<td width="125"><img src="imgs/simple/shim.gif" width="125" height="5" border="0"></td>
+				</tr>
+
+				<tr>
+					<td width="38" bgcolor="#DEEBF6" class="optionselectedimg"><img onclick="document.ldap.submit()" style="cursor: pointer; cursor: hand;" src="imgs/simple/sidebar_save_on.gif" width="38" height="31" border="0"></td>
+					<td width="125" style="border-top: 1px solid #468BC7; border-bottom: 1px solid #468BC7; border-right: 1px solid #468BC7;"><small onclick="document.ldap.submit()" style="cursor: pointer; cursor: hand;" class="menuoption">&nbsp;&nbsp;Database doorzoeken</small></td>
+				</tr>
+				<tr>
+					<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="5" border="0"></td>
+					<td width="125"><img src="imgs/simple/shim.gif" width="125" height="5" border="0"></td>
+				</tr>
+				
+				<tr>
+					<td width="38"><img src="imgs/simple/sidebar_bottom_tile.gif" width="38" height="95" border="0"></td>
+					<td width="125"><img src="imgs/simple/shim.gif" width="125" height="95" border="0"></td>
+				</tr>
+			</table>
+		 </td>
+
+<!--Include="html/dutch/simple/headerbar.html"-->
+
+
+<script language="JavaScript">
+
+window.status = ' Personen zoeken via LDAP ';
+</script>
+
+
+<script language="javascript">
+
+function searchtype(v)	{
+  if(v == 1 || v == 2)	{
+
+<!-- if($pref['ldap_chserver'] && $pref['ldap_local']) { -->   
+document.ldap.servername.disabled = true;
+LdapToggle(v);
+<!-- } -->
+
+	} 
+  else {
+	LdapToggle();
+}
+}
+
+</script>
+
+<body bgcolor="$this->BgColor" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor">
+
+<STYLE type=text/css>
+A:hover {
+        COLOR: #990000
+}
+</STYLE>
+
+$var['atmailstyle']
+
+<font class="sw">Gebruik de zoekmotor om contactgegevens op te sporen. Doorzoek de algemene LDAP contactendatabase om contactgegevens van vrienden en familie op te sporen. Vind telefoonnummers, adresgegevens en e-mail adressen van andere gebruikers.
+<!-- if($pref['ldap_local'])	{ -->
+Via Type zoeken kan u kiezen welke database u wenst te doorzoeken. Indien u de lokale gebruikersdatabase wenst te doorzoeken, dient u op Systeemdatabase te klikken.
+<!-- } -->
+  </font><br><br>
+<form method="POST" action="ldap.php" name="ldap">
+<input type="hidden" name="func" value="open">
+<input type=hidden name='search' value=''>
+
+<table border='0' cellspacing='1' cellpadding='0' class='maintable'>
+
+
+<TABLE border='0' width='100%' cellpadding='4' cellspacing='0' class="table_control">
+
+<TR><TH class="topleft"><font class='mheader'>&nbsp;Personen zoeken</font></TH>
+<TH class="middle"></TH>
+<TH class="topright"></TH></TR>
+
+
+
+</TABLE>
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5" class="borderstyle">
+    <tr>
+		<td bgcolor="$this->SecondaryColor">
+
+  <table width="100%" border="0" cellspacing="0" cellpadding="5">
+  <tr>
+      <td width="59%" height="26"> <font class="swbold">Voornaam</font><br><font class="sw">Voornaam gebruiker</font></td>
+      <td width="41%" height="26"> 
+        <input class="inputfield" type="text" name="FirstName" size="40" value="">
+      </td>
+    </tr>
+    <tr bgcolor="$this->SecondaryColor"> 
+      <td height="12" width="59%"> <font class="swbold">Familienaam</font><br>
+<font class="sw">Familienaam gebruiker</font></td>
+      <td height="12" width="41%"> 
+        <input class="inputfield" type="text" name="LastName" size="40" value="">
+      </td>
+    </tr>
+    <tr bgcolor="$this->SecondaryColor"> 
+      <td height="12" width="59%"> <font class="swbold">E-mail adres</font><br><font class="sw">
+        Geef desgewenst een e-mail hostnaam in om uw zoekopdracht te verfijnen.</font></td>
+      <td height="12" width="41%"> 
+        <input class="inputfield" type="text" name="email" size="40">
+      </td>
+    </tr>
+
+<!-- if($pref['GlobalAbook'])	{ -->
+              <tr bgcolor="$this->SecondaryColor"> 
+                <td valign='top' colspan="1" nowrap>
+<font class="swbold">Type zoeken:</font><br><font class="sw">Selecteer welke zoekopdracht u wenst uit te voeren.</font>
+				</td>
+				<td valign='top' colspan="3" width="70%">
+  <select name="type" class="inputfieldselect" onchange="javascript:searchtype()" style="width: 100%;">
+
+<!-- } -->
+
+<!-- if($pref['allow_LDAP'] && $pref['GlobalAbook']) { -->
+<option value="0">LDAP server zoeken</option>
+<!-- } -->
+
+<!-- if($pref['GlobalAbook'])      { -->
+<option value="global" selected>$pref['brandname'] systeemdatabase zoeken</option>
+
+<option value="personal">Persoonlijk adresboek zoeken</option>
+<option value="shared">Gemeenschappelijk adresboek zoeken</option>
+</select>
+</td>
+</tr>
+<!-- } -->
+
+<!-- if(!$pref['GlobalAbook'] && $pref['allow_LDAP']) { -->
+<tr bgcolor="$this->SecondaryColor"> 
+<td valign='top' colspan="1" nowrap>
+<font class="swbold">Type zoeken:</font><br><font class="sw">Selecteer welke zoekopdracht u wenst uit te voeren.</font>
+</td>
+<td valign='top' colspan="3" width="70%">		
+<select name="type" class="inputfieldselect" onchange="javascript:searchtype(this.options[this.selectedIndex].value)" style="width: 100%;">
+<option value="0">LDAP server zoeken</option>
+<option value="personal">Persoonlijk adresboek zoeken</option>
+</select>
+</td>
+</tr>
+<!-- } -->
+
+<!-- if(!$pref['GlobalAbook'] && !$pref['allow_LDAP']) { -->
+<tr bgcolor="$this->SecondaryColor"> 
+<td valign='top' colspan="1" nowrap>
+<font class="swbold">Type zoeken:</font><br><font class="swbold">Selecteer welke zoekopdracht u wenst uit te voeren.</font>
+</td>
+<td valign='top' colspan="3" width="70%">		
+<select name="type" class="inputfieldselect" onchange="javascript:searchtype(this.options[this.selectedIndex].value)" style="width: 100%;">
+<option value="personal">Persoonlijk adresboek zoeken</option>
+</select>
+</td>
+</tr>
+<!-- } -->                                                                                                    
+                                                                                                                  
+<!-- if($pref['ldap_chserver']) { -->                                                                               
+                                                                                                                  
+    <tr bgcolor="$this->SecondaryColor" id='ldapdiv' style="display:none">    
+      <td height="12" width="59%"> <font class="swbold">LDAP server</font><br>                  
+<font class="sw">Selecteer de LDAP server die u wenst te  doorzoeken.</font></td>                                                                 
+      <td height="12" width="41%">                                                                                
+        <input name="servername" class="inputfield" type="text" size="40" value="$pref['ldap_server']">                     
+      </td>                                                                                                       
+    </tr>                                                                                                         
+<!-- } -->                                                                                                        
+                                                                                                                  
+<!-- if(!$pref['ldap_chserver']) { -->                                                                              
+                                                                                                                  
+    <tr bgcolor="$this->SecondaryColor" id='ldap' style="display:none">
+      <td height="12" width="59%"> <font class="swbold">LDAP server</font><br>                  
+<font class="sw">Selecteer de LDAP server die u wenst te  doorzoeken.</font></td>                                                                 
+      <td height="12" width="41%">                                                                                
+          <input name="dummy" class="inputfield" type="text" size="40" value="$pref['ldap_server']" disabled>               
+        <input name="servername" type="hidden" size="40" value="$pref['ldap_server']">                   
+      </td>                                                                                                       
+    </tr>                                                                                                         
+<!-- } -->
+
+	
+  </table>
+
+</td>
+</tr>
+</table>
+
+  </tr>
+  </td>
+  </table>
+
+<script>
+LdapToggle();
+</script>
+
+</form>
+
+<!--Include="html/dutch/simple/footer.html"-->

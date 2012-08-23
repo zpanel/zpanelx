@@ -1,0 +1,118 @@
+<!--Include="html/dutch/simple/header.html"-->
+
+<table width="163" cellpadding="0" cellspacing="0" border="0">
+<tr>
+	<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="5" border="0"></td>
+	<td width="125"><img src="imgs/simple/shim.gif" width="125" height="5" border="0"></td>
+</tr>
+
+<tr>
+<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="5" border="0"></td>
+<td width="125"><img src="imgs/simple/shim.gif" width="125" height="5" border="0"></td>
+</tr>
+<tr>
+<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="10" border="0"></td>
+<td width="125"><img src="imgs/simple/shim.gif" width="125" height="10" border="0"></td>
+</tr>
+
+<tr>
+<td width="38"><img src="imgs/simple/sidebar_bottom_tile.gif" width="38" height="95" border="0"></td>
+<td width="125"><img src="imgs/simple/shim.gif" width="125" height="95" border="0"></td>
+</tr>
+
+</table>
+</td>
+
+
+<!--Include="html/dutch/simple/headerbar.html"-->
+
+<form name=Compose method=post action="spell.php" ENCTYPE="multipart/form-data">
+
+<input type="hidden" name="path" value="$var['path']">
+<input type="hidden" name="start" value="$var['i']">
+<input type="hidden" name="count" value="$var['wcount']">
+
+<input type="hidden" name="wordreplace" value="$var['word']">
+<input type="hidden" name="HtmlEditor" value="$var['HtmlEditor']">
+
+<input type="hidden" name="emailto" value="$var['emailto']">
+<input type="hidden" name="emailsubject" value="$var['emailsubject']">
+<input type="hidden" name="emailcc" value="$var['emailcc']">
+<input type="hidden" name="emailbcc" value="$var['emailbcc']">
+<input type="hidden" name="unique" value="$var['unique']">
+<input type="hidden" name="emailpriority" value="$var['emailpriority']">
+<input type="hidden" name="Charset" value="$var['Charset']">
+
+<input type="hidden" name="uidl" value="$var['uidl']">
+<input type="hidden" name="msgtype" value="$var['msgtype']">
+
+<table border='0' cellspacing='1' cellpadding='0' class='maintable'>
+
+
+
+<TABLE border='0' width='100%' cellpadding='4' cellspacing='0' class="table_control">
+
+<TR><TH class="topleft"><font class='mheader'>&nbsp;Spellingscontrole:</font></TH>
+<TH class="middle"></TH>
+<TH class="topright"></TH></TR>
+
+
+
+</TABLE>
+
+
+
+
+  <table width='100%' cellspacing='0' cellpadding='2' bgcolor="$this->SecondaryColor" class="borderstyle">
+    <tr> 
+      <td align="right" width=14%  bgcolor="$this->SecondaryColor"> 
+        <div class="sw"> Inhoud: </div>
+      </td>
+      <td bgcolor="$this->SecondaryColor" colspan="2" height="23"> 
+        <div align="left" class="sw">&nbsp;$var['msgline']</div>
+      </td>
+    </tr>
+    <tr> 
+      <th align="right" width=14%  bgcolor="$this->SecondaryColor" nowrap> 
+        <div class="sw"> Nieuwe spelling:</div>
+      </th>
+      <td bgcolor="$this->SecondaryColor" colspan="2">&nbsp; 
+        <input type="text" name="replace" size="50" class="inputfield" value="">
+        &nbsp;</td>
+    </tr>
+    <tr> 
+      <th align="right" bgcolor="$this->SecondaryColor" colspan="3"> 
+        <div align="left" class="swb"> &nbsp;&nbsp;Voorstellen<br>
+          &nbsp; 
+          
+<select name="creplace" size="6" 
+onChange="document.Compose.replace.value=this.options[this.selectedIndex].value" class="inputfieldselect">
+	$var['replace']
+</select>
+
+        </div>
+      </th>
+    </tr>
+    <tr> 
+      <th align="right" bgcolor="$this->ThirdColor" height=23 width=14% class="swb">Opties</th>
+      <td bgcolor="$this->ThirdColor" colspan="2"> 
+        <div align="left">
+          <input class="stdbtn" type="submit" name="ignore" value="Negeren">
+		  &nbsp;
+          <input class="stdbtn" type="submit" name="change" value="Wijzigen">
+		  &nbsp;
+          <input class="stdbtn" type="submit" name="add" value="Persoonlijk toevoegen">
+		  &nbsp;
+          <input class="stdbtn" type="submit" name="finish" value="Terug naar bericht">
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  </td>
+  </tr>
+  </table>
+
+</form>
+
+<!--Include="html/dutch/simple/footer.html"-->

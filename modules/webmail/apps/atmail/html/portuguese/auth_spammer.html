@@ -1,0 +1,38 @@
+<!-- if($this->Ajax) { -->
+<Error>
+	<ErrorStatus>1</ErrorStatus>
+	<Status>1</Status>
+	<ErrorMessage><![CDATA[$var['error']]]></ErrorMessage>
+	<StatusMessage><![CDATA[Mensagem Negada - Seu endereço IP atingiu o número máximo de mensagens enviadas por dia. Para reduzir a possibilidade de Spam, você está bloqueado para o envio de mensagens.  ]]></StatusMessage>
+</Error>
+<!-- } -->
+
+<!-- if(!$this->Ajax) { -->
+<html>
+<head>
+<title>Spam Detectado</title></head><body bgcolor="$this->BgColor" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+
+
+
+<style>
+
+.sw {font-family:Verdana;font-size:13px;color:#000000;}
+.swr {font-family:Verdana;font-size:13px;color:#FF0000;}
+</style>
+
+
+
+<LINK href="javascript/style$this->browser.css" rel="stylesheet" type="text/css">
+<img src="$pref['logo_big_img']"><br>
+<h1>Mensagem Negada</h1>
+
+<font class="swr">Seu endereço IP atingiu o número máximo de mensagens enviadas por dia. Para reduzir a possibilidade de Spam, você está bloqueado para o envio de mensagens. </font> <font class="sw"> 
+<ul>
+<li>Qualquer dúvida, entre em contato com o administrador ($this->admin_email).</li>
+</ul>
+</font>
+</body>
+</html>
+
+<!-- } -->

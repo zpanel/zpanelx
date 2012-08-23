@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>ユーティリティをOutlookに同期化</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<LINK href="javascript/stylehelp.css" rel=stylesheet type=text/css>
+<font face="Verdana,Arial" size="+1">
+ユーティリティをOutlookに同期化</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">ヘルプインデックス</a> ]
+<hr noshade>
+
+<script>
+function expandentry()	 {
+
+<!-- if($var['FirstLoad']) { -->
+if(parent.document.getElementById('calendar').style.display != 'block')
+parent.expand('addressbook', parent.document.getElementById('addressbookimg'));
+<!-- } -->
+
+}
+</script>
+
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" onload="expandentry()">
+
+	<p><u>$pref['brandname']の同期ユーティリティは何ですか？</u>
+	<p>ユーティリティを使用してOutlookとウェブメールアカウントを同期化することができます。これにより、アドレス帳にある全ての情報をウェブメールとOutlookの間で相互に転用することが可能となります。
+
+	<br>
+	
+	<p><u>Outlookとのメールの同期化を有効にするにはどうしたら良いですか？</u>
+	 <p> Outlookとウェブメールアカウントを同期化するには下記を行ってください：</ul>
+		<p><ol>
+		<li>最初にウェブメール同期化アドインファイル<a href = "http://atmail.com/atmailsync.dll">http://atmail.com/atmailsync.dll</a>をダウンロードしてください。 <a href="http://atmail.com/websync/websync-53.exe">http://atmail.com/websync/websync-53.exe</a>
+		<li>Microsoft Outlookウィンドウの<b>ツール > オプション</b>に行ってください。<br>
+		</ol>
+		<img src = "imgs/help/atmailsync1.gif " border = 1 color = black>
+		
+		<ol><li>次に、メールの同期化ユーティリティパネルに全ての変更点について定義します。<b>ツール > オプション</b>をクリックしてから"ウェブメールの同期化設定"タブに進んでください。<br>
+		</ol>
+		<img src = "imgs/help/atmailsync5.gif" border = 1 color = black><br><br>
+<ol>		<li>全ての変更を保存してアカウントオプションウィンドウを閉じます。
+		</ol>
+
+	  <br><p><u>ウェブメールアカウントとOutlookを同期化するにはどのようにしたら良いですか？</u> 
+	  <p>メールの同期化を有効にすると（上記参照）、ツールバー上に"ウェブメールの同期化"というマクロボタンが表示されます：<br><br>
+	  <img src = "imgs/help/atmailsync4.gif" border = 1 color = black><br>
+	  <p>ボタンをクリックすれば、Outlookがウェブメールアカウントに自動的に同期化されます。
+
+</body>
+</html>

@@ -1,0 +1,4 @@
+  The news plugin is an rss/atom feed reader. On the "News" page users
+can add/modify/delete news sources. It supports both rss and atom format
+news feeds. It is not complete but it is functional and has a few options
+like caching lifetime and content filtering.

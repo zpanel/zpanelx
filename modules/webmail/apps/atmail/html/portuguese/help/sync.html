@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>Ajuda do Outlook-Sync</title>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<LINK href="javascript/stylehelp.css" rel=stylesheet type=text/css>
+<font face="Verdana,Arial" size="+1">
+Ajuda do Outlook-Sync</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">Índice de Ajuda</a> ]
+<hr noshade>
+
+<script>
+function expandentry()	 {
+
+<!-- if($var['FirstLoad']) { -->
+if(parent.document.getElementById('calendar').style.display != 'block')
+parent.expand('addressbook', parent.document.getElementById('addressbookimg'));
+<!-- } -->
+
+}
+</script>
+
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" onload="expandentry()">
+
+	<p><u>O que é o $pref['brandname'] Outlook-Sync?</u>
+	<p>Este utilitário permite que você sincronize seu Webmail com o Outlook. Com ele, todas as informações de seu livro de endereços no Outlook são transferidos para o Webmail ou Vice-Versa.
+
+	<br>
+	
+	<p><u>Como eu habilito a sincronização com o Outlook?</u>
+	 <p> Para sincronizar seu webmail com o Outlook faça o seguinte:</ul>
+		<p><ol>
+		<li>Primeiro, primeiro faça o download do utilitário de Outlook-Sync <a href="http://atmail.com/websync/websync-53.exe">http://atmail.com/websync/websync-53.exe</a>
+		<li>Na janela do Otulook, vá até <b>Ferramentas > Opções</b><br>
+		</ol>
+		<img src = "imgs/help/atmailsync1.gif " border = 1 color = black>
+		
+		<ol><li>Agora defina as opções para sincronização no painel Outlook-Sync. Clique em <b>Ferramentas > Opções</b>, e vá até a tab chamada "Opções Outlook-Sync"<br>
+		</ol>
+		<img src = "imgs/help/atmailsync5.gif" border = 1 color = black><br><br>
+<ol>		<li>Salve todas as mudanças e saia para a janela de opções da conta.
+		</ol>
+
+	  <br><p><u>Como eu sincronizo meu Webmail com o Outlook?</u> 
+	  <p>Depois de habilitar a sincronização de e-mail (veja acima), você deverá ver o botão macro chamado de "Outlook-Sync" na sua barra de ferramentas:<br><br>
+	  <img src = "imgs/help/atmailsync4.gif" border = 1 color = black><br>
+	  <p>Clique neste botão e o Outlook irá se sincronizar automaticamente com sua conta de e-mail.
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+CRYPTOGRAPHY SUPPORT IN SQUIRRELSPELL
+--------------------------------------
+
+Starting with version v0.3 SquirrelSpell is capable of working with encrypted
+user dictionaries. However, this option is only available when PHP
+is compiled with support for MCRYPT. This is relatively easy -- to enable
+MCRYPT support, follow instructions at:
+
+http://www.php.net/mcrypt
+
+NOTE: You will need libmcrypt version 2.4.x or above for SquirrelSpell
+to work.
+
+HOW IT'S DONE
+--------------
+SquirrelSpell encrypts the dictionary with the user's mailbox password, 
+thus making the encryption/decryption process transparent to the user. 
+The algorythm used for encryption is Blowfish, but you may manually override 
+it in the code if you so wish.
+
+The only shortcoming this approach has -- when mailbox password is changed, 
+SquirrelSpell asks the user to enter the old password in order to re-encrypt
+the file with the new key. If the user doesn't remember the password, then
+the file is lost, unless you want to brute-force it open.
+
+The encryption is off by default and users are warned about remembering
+their passwords before they enable encryption of their personal dictionary.
+
+I haven't tested the overhead. If anyone has any benchmarks -- you are
+welcome to share them.

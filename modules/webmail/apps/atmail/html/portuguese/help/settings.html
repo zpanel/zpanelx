@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>Modificando as Opções</title> 
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">       
+
+<script>
+function expandentry()	 {
+
+<!-- if($var['FirstLoad']) { -->
+if(parent.document.getElementById('calendar').style.display != 'block')
+parent.expand('settings', parent.document.getElementById('settingsimg') );
+<!-- } -->
+
+}
+</script>
+</head>
+
+<LINK href="javascript/stylehelp.css" rel="stylesheet" type="text/css">
+
+<body bgcolor="#FFFFFF" text="#000000" onload="expandentry()">
+<font face="Verdana, Arial" size="+1">
+Modificando as Opções</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">Índice de Ajuda</a> ]</font>
+
+<hr noshade>
+<p>
+
+Use o painel de opções para modificar suas preferências de sua conta de email. Consulte os serviços assim que precisar:<BR><BR>
+<u>Opções do WebMail</u>
+
+<ul>
+<li><B>Seu Nome</B><BR>
+Esse nome é o utilizado quando você está escrevendo um email.</li>
+
+<li><B>Responder Para</B><BR>
+Digite um email caso o email de resposta seja diferente de seu email.</li>
+
+<li><B>Ordenar por</B><BR>        
+Selecione o campo para ordenar a lista de email.</li>
+
+<li><B>Fonte Padrão</B><BR>        
+Selecione a fonte padrão que deseja usar.</li>
+
+<li><B>Idioma do WebMail</B><BR>                       
+Selecione o idioma padrão para o WebMail</li>
+
+<li><B>Número de Mensagens amostra</B><BR>             
+Selecione o número máximo de mensagens que você deseja na lista.</li>
+
+<li><B>Atualização da Caixa de Entrada</B><BR>             
+Selecione o número de minutos para atualização da caixa de entrada. Ao chegar uma nova mensagem, um som tocará para lhe avisar.</li>
+
+<li><B>Formato da Hora</B><BR>             
+Selecione o tipo de formato de hora que lhe é familiar. Servirá tanto para o WebMail quanto para o Calendário.</li>
+
+<li><B>Formato da Data</B><BR>             
+Selecione o tipo de formato de data de sua preferência.</li>
+
+<li><B>Selecione o Fuso Horário</b><BR>
+Selecione o fuso horário do lugar em que você está. Isso tem referência quando você envia emails, seu fuso horário será utilizado.</li>
+
+<li><B>Assinatura</B><BR>             
+Digite sua Assinatura. Ela será colocada automaticamente no final de sua mensage.</li>     
+
+<li><B>Apagar Lixeira ao Sair</B><BR>                     
+Se selecionado, sua lixeira será automaticamente apagada ao sair do WebMail.</li>         
+
+<li><B>Editor de Email HTML</B><BR>                
+Se selecionado, irá automaticamente redigir suas mensagens em um editor de HTML ao invés de texto corrido.</li>                                                              
+
+<li><B>Assinatura</B><BR>          
+Digite sua Assinatura. Ela será colocada automaticamente no final de sua mensage.</li></ul>
+
+</ul>
+
+</font></p>
+</body>
+</html>

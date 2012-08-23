@@ -1,0 +1,12 @@
+The saved_search plugin is a simple addtion to the search page that keeps track of
+previous searches and allows you to save, edit, or rerun them with a single click.
+To enable the plugin add or uncomment the following in your hastymail2.conf file:
+
+plugin = saved_search
+
+Don't forget to rebuild the hastymail2.rc file after editing the hastymail2.conf.
+Plugin configs are cached when you login so be sure to logout and back in to
+enable the plugin.
+
+Jason Munro
+jason@hastymail.org

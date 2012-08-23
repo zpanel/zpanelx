@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>修改設置</title> 
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">       
+
+<script>
+function expandentry()	 {
+
+<!-- if($var['FirstLoad']) { -->
+if(parent.document.getElementById('calendar').style.display != 'block')
+parent.expand('settings', parent.document.getElementById('settingsimg') );
+<!-- } -->
+
+}
+</script>
+</head>
+
+<LINK href="javascript/stylehelp.css" rel="stylesheet" type="text/css">
+
+<body bgcolor="#FFFFFF" text="#000000" onload="expandentry()">
+<font face="Verdana, Arial" size="+1">
+修改設置</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">幫助索引</a> ]</font>
+
+<hr noshade>
+<p>
+
+使用設置面板修改你的電子郵件帳戶偏好.定制的電子郵件服務的需求喜好：<BR><BR>
+<u>網頁郵件偏好</u>
+
+<ul>
+<li><B>顯示名稱</B><BR>
+這是用來撰寫電子郵件時，你的全名會顯示在所有外發郵件.</li>
+
+<li><B>引為</B><BR>
+如果不同的登錄名﹐輸入你的回復電子郵件地址.</li>
+
+<li><B>排序的電子郵件</B><BR>        
+在你的郵箱選擇命令進行排序你的電子郵件.</li>
+
+<li><B>默認字體樣式</B><BR>        
+選擇你喜歡的風格界面字體</li>
+
+<li><B>服務語言</B><BR>                       
+選擇使用的語言.</li>
+
+<li><B>信息顯示</B><BR>             
+選擇在收件箱顯示一些電子郵件.利用返回/前進的圖標，你可以瀏覽之間的電子郵件.</li>
+
+<li><B>收件箱刷新頻率</B><BR>             
+選擇的分鐘數的收件箱刷新.你會被提醒收到新郵件.</li>
+
+<li><B>時間格式</B><BR>             
+選擇的偏好，以查看時間內郵箱和日曆界面</li>
+
+<li><B>日期格式</B><BR>             
+選擇哪種格式來顯示日期</li>
+
+<li><B>選擇時區</b><BR>
+輸入的時區你目前英寸這是參照發送電子郵件時，你的時間/日期將被用於.</li>
+
+<li><B>電子郵件簽名</B><BR>             
+請輸入你的電子郵件簽名.這是附在所有即將發出的電子郵件.</li>     
+
+<li><B>在登出時刪除垃圾</B><BR>                     
+如果你想切換登出時刪除你的垃圾桶上按鍵. Toggle if you wish to delete your Trash on logout</li>         
+
+<li><B>HTML編輯器</B><BR>                
+選擇如果你要使用的HTML編輯器.</li>                                                              
+
+<li><B>電子郵件簽名</B><BR>          
+指定你的簽字.這將附在所有外發郵件</li></ul>
+
+</ul>
+
+</font></p>
+</body>
+</html>

@@ -1,0 +1,128 @@
+
+<style TYPE="text/css">	
+
+	.pagetitle
+	{
+		font-size: 12pt;
+		font-family: Arial;
+		font-weight: bold;
+		padding-bottom: 12px;
+	}
+
+	.pagetitle
+	{
+		font-size: 12pt;
+		font-family: Arial;
+		font-weight: bold;
+		padding-top: 2px;	
+	}
+
+	.introtext
+	{
+		line-height: 17px;
+		font-size: 8.5pt;
+		font-family: Arial;
+		font-weight: bold;
+		padding-bottom: 12px;
+	}
+
+	.subtitle
+	{
+		font-size: 12pt;
+		font-family: Arial;
+		font-weight: bold;
+		color: #5EA65E;
+	}
+
+	.expander
+	{
+		height: 20px;
+		cursor: pointer; cursor: hand;
+	}
+	
+	SPAN
+	{
+		height: 20px;
+	}
+	
+	LI
+	{
+		position: relative;
+		left: -10;
+		nobreak: true;
+	}
+	UL
+	{
+		margin-top: 0px;
+		margin-bottom: 0px;
+	}
+	OL
+	{
+		margin-left: 47px;
+		margin-top: 0px;
+		margin-bottom: 0px;
+	}
+	BLOCKQUOTE
+	{
+		margin-left: 13px;
+		margin-top: 0px;
+		margin-right: 0px;
+		margin-bottom: 0px;
+		padding-top: 6px;
+		padding-bottom: 6px;
+	}
+	HTML
+	{
+		font-size: 8pt;
+		font-family: Arial;
+		overflow: auto;
+	}
+
+    BODY
+	{
+		font-size: 8pt;
+		font-family: Arial;		
+		background-color: white;
+		overflow-y: scroll;
+		margin-left: 0px;
+		margin-top: 0px;
+		margin-right: 0px;
+		margin-bottom: 0px;
+	}
+
+    TD
+	{
+		font-size: 9pt;
+		font-family: Arial
+	}
+
+    TEXTAREA
+	{
+		font-size: 8pt;
+		font-family: Arial
+	}
+
+    INPUT
+	{
+		font-size: 8pt;
+		font-family: Arial
+	}
+
+    SELECT
+	{
+		font-size: 8pt;
+		font-family: Arial
+	}    
+
+    A
+	{  
+		color: black;
+		text-decoration: none;
+	}
+
+    A:HOVER  
+	{ 
+		color: black;
+		text-decoration: underline;
+	}
+</style>

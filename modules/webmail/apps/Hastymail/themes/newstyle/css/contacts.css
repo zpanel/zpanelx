@@ -1,0 +1,145 @@
+#mailbox_title2{
+    float: none;
+    padding: 5px;
+    text-align: center;
+    margin: 0px;
+    margin-left: -20px;
+}
+#contacts_page{
+    padding-left: 20px;
+    padding-bottom: 20px;
+    border: solid 1px #ccc;
+}
+#contact_form table {
+    width: 600px;
+    clear: both;
+    padding-left: 10px;
+}
+#contact_form table td{
+    padding-right: 15px;
+    padding-bottom: 5px;
+    vertical-align: top;
+    padding-top: 2px;
+}
+.contacts_leftcol{
+    white-space: nowrap;
+    padding-left: 20px;
+    color: #000;
+    padding-right: 15px;
+    width: 130px;
+}
+#contact_form table td b{
+    font-size: 95%;
+    font-style: italic;
+}
+h5, h4{ 
+    margin: 0px; 
+    color: #444;
+    margin-top: 15px;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    clear: both;
+}
+h5 {
+    width: 600px;
+    border: none;
+    padding-bottom: 0px;
+    margin-left: 20px;
+}
+#contacts_table .no_contacts{
+    font-style: italic;
+    padding-left: 20px;
+    padding-bottom: 15px;
+    border: none;
+    padding-top: 10px;
+    font-style: italic;
+    font-size: 90%;
+    color: #999;
+}
+#contacts_table{
+    clear: both;
+    padding-left: 10px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+}
+#contacts_table th{
+    font-size: 90%;
+    padding-left: 10px;
+    padding-top: 3px;
+    text-align: left;
+    padding-bottom: 3px;
+    background-color: #F3F7FD;
+}
+#contacts_table td{
+    padding-left: 10px;
+    padding-top: 2px;
+    font-size: 90%;
+    vertical-align: top;
+    border-bottom: dotted 1px #ccc;
+    padding-bottom: 2px;
+}
+#card_details {
+    padding-left: 20px;
+}
+#card_details th{
+    text-align: right;
+    padding-right: 10px;
+    font-size: 90%;
+}
+.notices{
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 110%;
+    font-style: italic;
+}
+.edit_buttons input{
+    font-size: 90%;
+}
+.edit_buttons{
+    width: 600px;
+    text-align: right;
+    margin-top: 10px;
+}
+#importform{
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
+#contact_links a{
+    padding-left: 10px;
+}
+#contact_links{
+    margin-top: 10px;
+    font-size: 90%;
+    font-weight: normal;
+    float: right;
+    padding-right: 30px;
+}
+#sort_contacts{
+    float: right;
+    font-size: 80%;
+    padding-right: 15px;
+    padding-bottom: 5px;
+    margin-top: -5px;
+}
+.contact_table_links{
+    white-space: nowrap;
+    padding-right: 10px;
+    width: 1%;
+}
+#contacts_table .contact_links a{
+    padding-left: 5px;
+}
+#contacts_table .contact_links{
+    padding-top: 5px;
+    border-bottom: none;
+    text-align: center;
+}
+#search_contacts{
+    float: left;
+    font-size: 80%;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    margin-top: -5px;
+}

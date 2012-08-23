@@ -1,0 +1,45 @@
+<SCRIPT LANGUAGE="JavaScript">
+var MSIE=navigator.userAgent.indexOf("MSIE");
+var NETS=navigator.userAgent.indexOf("Netscape");
+var OPER=navigator.userAgent.indexOf("Opera");
+
+//if((MSIE>-1) || (OPER>-1)) {
+
+document.write('<style>');
+document.write('INPUT.text        { FONT-SIZE: 12px;');
+document.write('                                FONT-FAMILY: Arial, Helvetica, sans-serif;');
+document.write('                                FONT-WEIGHT: lighter;');
+document.write('                                BORDER-WIDTH: 2px;');
+document.write('                                MARGIN: 2px; ');
+document.write(' }   ');
+document.write('');
+document.write('TEXTAREA.texta        { FONT-SIZE: 12px;');
+document.write('                                FONT-FAMILY: Arial, Helvetica, sans-serif;');
+document.write('                                FONT-WEIGHT: lighter;');
+document.write('                                BORDER-WIDTH: 2px;');
+document.write('                                MARGIN: 2px; ');
+document.write(' }   ');
+document.write('');
+document.write('SELECT.select { FONT-SIZE: 12px;');
+document.write('                                FONT-FAMILY: Arial, Helvetica, sans-serif;');
+document.write('                                FONT-WEIGHT: lighter;');
+document.write('                                COLOR: #000000;');
+document.write('                                BORDER-COLOR: #FFFF33;   ');
+document.write('                                BORDER-WIDTH: thin;');
+document.write('');
+document.write('                                BORDER-LEFT: inset 1px white;');
+document.write('                                BORDER-TOP: inset 1px white;');
+document.write('                                BORDER-RIGHT: outset 1px white;');
+document.write('                                BORDER-BOTTOM: outset 1px white;');
+document.write('');
+document.write('                                BACKGROUND-COLOR: Window;');
+document.write('                                MARGIN: 2px; ');
+document.write('}');
+document.write('');
+document.write('</style>');
+
+//}	else	{
+
+//}
+
+</script>

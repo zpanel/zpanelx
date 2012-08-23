@@ -1,0 +1,51 @@
+SpamCop Reporting
+
+Helps you identify spam and send a proper message to the correct address to
+SpamCop.  (See http://spamcop.net/ for more information)
+
+
+Features
+========
+
+* Quick one-click interface to report spam via email
+* Alternate, but immediate form-based processing
+
+
+Description
+===========
+
+Tired of getting spam?  SpamCop helps you report it to the proper people.
+It even creates spam reports and will mail them off for you.  All that is
+required to send a spam report is about a few seconds of your time and about
+five clicks.
+
+It is strongly suggested you set up a mail forwarder account and have it
+forwarded to your current mailbox.  Sometimes mail reported with SpamCop
+gets on weird spam mailing lists.  If your happens to get on the list, you
+can then just delete the forwarder and get a new one.  Make sure to use the
+forwarder to sign up for SpamCop and get the required information for the
+plugin.
+
+
+Installation
+============
+
+Go back to the main directory, run configure and add the plugin.
+
+
+API
+===
+
+SquirrelMail hooks used by plugin:
+* loading_prefs
+* optpage_register_block
+* read_body_header_right
+* compose_send
+
+Plugin preference keys:
+* spamcop_enabled
+* spamcop_delete
+* spamcop_save
+* spamcop_method
+* spamcop_type
+* spamcop_id

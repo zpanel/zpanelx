@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>Utilitaire de synchronisation pour Outlook</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<LINK href="javascript/stylehelp.css" rel=stylesheet type=text/css>
+<font face="Verdana,Arial" size="+1">
+Utilitaire de synchronisation pour Outlook</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">Index</a> ]
+<hr noshade>
+
+<script>
+function expandentry()	 {
+
+<!-- if($var['FirstLoad']) { -->
+if(parent.document.getElementById('calendar').style.display != 'block')
+parent.expand('addressbook', parent.document.getElementById('addressbookimg'));
+<!-- } -->
+
+}
+</script>
+
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" onload="expandentry()">
+
+	<p><u>Quel est l'utilitaire de synchronisation de $pref['brandname'] ?</u>
+	<p>L'utilitaire vous permet de synchroniser votre compte webmail avec Outlook. Avec cela, toute l'information du carnet d'adresses que vous avez sur le webmail est transférée sur Outlook, et réciproquement.
+
+	<br>
+	
+	<p><u>Comment est-ce que je peux autoriser la synchronisation de messagerie avec Outlook ?</u>
+	 <p> Pour synchroniser votre compte Webmail avec Outlook, faites la chose suivante:</ul>
+		<p><ol>
+		<li>Premièrement, téléchargez le fichier additionnel de synchronisation @Mail <a href="http://atmail.com/websync/websync-53.exe">http://atmail.com/websync/websync-53.exe</a>
+		<li>Sur votre fenêtre Outlook de Microsoft , allez sur <b>Outils > Options</b><br>
+		</ol>
+		<img src = "imgs/help/atmailsync1.gif " border = 1 color = black>
+		
+		<ol><li>Ensuite, définissez tous les changements dans le panneau de synchronisation des emails. Cliquez sur <b>Outils > Options</b>, ensuite allez sur l'onglet intitulé "Configuration de la synchronisation @Mail"<br>
+		</ol>
+		<img src = "imgs/help/atmailsync5.gif" border = 1 color = black><br><br>
+<ol>		<li>Sauvegarder tous les changements, ensuite quittez la fenêtre des options de comptes.
+		</ol>
+
+	  <br><p><u>Comment est-ce que je synchronise mon compte webmail avec Outlook ?</u> 
+	  <p>Après avoir autorisé la synchronisation d'email (voir ci-dessus), vous devriez voir un bouton portant le label "Synchro @Mail" sur votre barre d'outil:<br><br>
+	  <img src = "imgs/help/atmailsync4.gif" border = 1 color = black><br>
+	  <p>Cliquez sur le bouton, et Outlook se synchronisera automatiquement avec votre compte webmail.
+
+</body>
+</html>

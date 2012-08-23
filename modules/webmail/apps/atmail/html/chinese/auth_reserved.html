@@ -1,0 +1,30 @@
+<html>
+<head>
+<title>拒絕存取</title>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">       
+</head>
+<body bgcolor="$this->BgColor" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor">
+
+<style>
+.sw {font-family:Verdana;font-size:13px;color:#000000;}
+.swr {font-family:Verdana;font-size:13px;color:#FF0000;}
+</style>
+
+
+
+<LINK href="javascript/style$this->browser.css" rel="stylesheet" type="text/css">
+<img src="$pref['logo_big_img']"><br>
+<h1>使用者名稱 $var['user'] 被保留</h1>
+
+<font class="swr">你正在存取的帳戶於資料庫中被保留.按 <a href="javascript:history.back('-1')">返回</a> 然後再嘗試.</font>
+<font class="sw"> 
+<ul>
+  <li>用不同的字符, 選擇其他使用者名稱.</li>
+  <li>要求管理員在WebAdmin中刪除被保留的使用者名稱.</li>
+</ul>
+</font>
+
+</body>
+</html>
+
+

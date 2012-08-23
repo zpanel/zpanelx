@@ -1,0 +1,13 @@
+Username plugin
+This is a simple plugin that adds the currently logged in username to the
+top of the display next to the unread page link.
+
+Enable the plugin by adding or uncommenting the following line in your
+hastymail2.conf file:
+
+plugin = username
+
+Then rebuild your hastymail2.rc file, logout of hastymail2 and back in
+and the plugin should be activated.
+
+Problems or comments can be sent to jason@hastymail.org

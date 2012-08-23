@@ -1,0 +1,3364 @@
+#
+# @Mail Language File
+#
+
+# Japanese Language File by Eiji Miyazaki, Vistarica Designs Co., Ltd.
+# (miyazaki@vistarica.com)
+
+# Javascript messages are mostly marked with a
+# js
+# preceding lines of javascript messages.
+# After the javascript messages a newline is placed and normal
+# html messages are there again.
+#
+# Javascript Messages cannot contain single or double qoutes.
+# If you must use these characters consider using a backslash
+# before these characters like \'quoted text\', \"doublequoted text\"
+#
+# variable names can ONLY contain alphanumeric characters and the
+# underscore.
+#
+# many of the variables include other variables from other parts of @Mail
+# like $pref['etc'], $this->etc and $var['etc']. Please consider keeping
+# these. Some vars also contain HTML source code like <a etc></a> <b></b>
+# <i></i> etc.
+#
+# thanks.
+
+
+# TABLE OF CONTENTS
+#
+# 1.0 G l o b a l   V a r i a b l e s
+#
+# 1.1 /html/*
+# 1.2 /html/blue_pane/*
+# 1.3 /html/blue_pane/heading/*
+#
+# 2.0 G l o b a l    C a l e n d a r   V a r i a b l e s
+#
+# 2.1 /html/calendar/*
+#
+# 3.0 G l o b a l    H e l p    V a r i a b l e s
+#
+# 3.1 /html/help/*
+#
+# 4.0 /html/javascript/*
+#
+# 5.0 /html/msg/*
+
+
+# 1.0 G l o b a l   V a r i a b l e s
+
+# THIS MUST be set to the correct encoding, depending on the translation language
+lang_Global_content_type = <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+# Noframes Message
+lang_Global_noframes = ご使用のブラウザではフレーム表示に対応していません。対応している他のブラウザをお使いください。
+
+# Compose/Abook/Reademail/Search vars
+lang_Global_from = 差出人
+lang_Global_date = 送信日時
+lang_Global_to = 宛先
+lang_Global_cc = Cc
+lang_Global_bcc = Bcc
+lang_Global_priority = 重要度
+lang_Global_normal = 通常
+lang_Global_low = 低
+lang_Global_high = 高
+lang_Global_subject = 件名
+lang_Global_send = 送信
+lang_Global_type = 新規作成
+lang_Global_reply = 返信
+lang_Global_replyall = 全員へ返信
+lang_Global_forward = 転送
+lang_Global_print = 印刷
+lang_Global_headers = メールヘッダー
+lang_Global_abookbutton = アドレス帳
+lang_Global_message = メール
+lang_Global_status = 状態
+lang_Global_received = 受信済
+lang_Global_yes = はい
+lang_Global_no = いいえ
+lang_Global_options = オプション
+lang_Global_size = サイズ
+lang_Global_messsage = メール
+lang_Global_sent = 送信済
+lang_Global_default = 既定言語
+
+# Address Related Fields
+lang_Address_email = Eメールアドレス
+lang_Address_email2 = セカンダリ Eメールアドレス
+lang_Address_fullname = 氏名
+lang_Address_firstname = 名
+lang_Address_surname = 姓
+lang_Address_birthdate = 誕生日
+lang_Address_telhome = 自宅電話番号
+lang_Address_telwork = 勤務先電話番号
+lang_Address_faxhome = 自宅ファックス番号
+lang_Address_faxwork = 勤務先ファックス番号
+lang_Address_telmobile = 携帯電話番号
+lang_Address_telpager = ポケットベル番号
+lang_Address_address = 番地
+lang_Address_city = 市区町村
+lang_Address_state = 都道府県
+lang_Address_postcode = 郵便番号
+lang_Address_country = 国
+lang_Address_companyname = 会社名
+lang_Address_url = URL
+lang_Address_userinfo = 追加情報
+
+
+# !!!!! BirthMonth Abreviations... please keep them 3 characters each, thank you.
+lang_BirthMonth_jan = 1
+lang_BirthMonth_feb = 2
+lang_BirthMonth_mar = 3
+lang_BirthMonth_apr = 4
+lang_BirthMonth_may = 5
+lang_BirthMonth_jun = 6
+lang_BirthMonth_jul = 7
+lang_BirthMonth_aug = 8
+lang_BirthMonth_sep = 9
+lang_BirthMonth_oct = 10
+lang_BirthMonth_nov = 11
+lang_BirthMonth_dec = 12
+
+# How do you say year?
+lang_BirthYear_year = 年
+lang_BirthMonth_month = 月
+
+# Industry.
+lang_Industry_industry = 業種
+lang_Industry_select = -- 選択
+lang_Industry_bfr = 金融/証券/保険/不動産
+lang_Industry_cre = コンピュータ関連 (IS, MIS, DP, インターネット)
+lang_Industry_crh = コンピュータ関連 (ハードウエア)
+lang_Industry_crs = コンピュータ関連 (ソフトウエア)
+lang_Industry_edu = 教育/研究
+lang_Industry_eng = 土木/建設
+lang_Industry_man = 製造
+lang_Industry_bus = サービス
+lang_Industry_med = 医療関連
+lang_Industry_ent = 娯楽/メディア/出版
+lang_Industry_hos = 運輸/交通/旅客
+lang_Industry_ret = 卸売/小売
+lang_Industry_npr = 非営利
+lang_Industry_gov = 公務員
+lang_Industry_leg = 法務関連
+lang_Industry_oth = その他
+
+# Occupation
+lang_Occupation_occupation = 職種
+lang_Occupation_select = -- 選択
+lang_Occupation_exe = 経営者/役員
+lang_Occupation_pro = 専門職 (医師、弁護士、etc.)
+lang_Occupation_aca = 教職員
+lang_Occupation_tec = コンピュータ技術者
+lang_Occupation_ote = その他の技術者
+lang_Occupation_scs = サービス/カスタマサポート
+lang_Occupation_cle = 総務/人事/経理/事務
+lang_Occupation_sal = 営業/販促/広報
+lang_Occupation_tra = 商店/職人
+lang_Occupation_col = 大学生/各種学校生
+lang_Occupation_k12 = 小中高生
+lang_Occupation_hom = 主婦
+lang_Occupation_sel = 自営業
+lang_Occupation_une = 無職
+lang_Occupation_ret = 退職
+lang_Occupation_oth = その他
+
+# Gender Vars
+lang_Gender_gender = 性別
+lang_Gender_select = -- 選択
+lang_Gender_male = 男性
+lang_Gender_female = 女性
+
+# Country
+lang_Country_select = -- 選択
+lang_Country_au = オーストラリア
+lang_Country_us = アメリカ合衆国
+lang_Country_ca = カナダ
+lang_Country_af = アフガニスタン
+lang_Country_al = アルバニア
+lang_Country_dz = アルジェリア
+lang_Country_as = アメリカンサモア
+lang_Country_ad = アンドラ
+lang_Country_ao = アンゴラ
+lang_Country_ai = アンギラ
+lang_Country_aq = 南極
+lang_Country_ag = アンティグァ・バーブーダ
+lang_Country_ar = アルゼンチン
+lang_Country_am = アルメニア
+lang_Country_aw = アルバ
+lang_Country_at = オーストリア
+lang_Country_az = アゼルバイジャン
+lang_Country_bs = ブラジル
+lang_Country_bh = バーレーン
+lang_Country_bd = バングラデシュ
+lang_Country_bb = バルバドス
+lang_Country_by = ベラルーシ
+lang_Country_be = ベルギー
+lang_Country_bz = ベリーズ
+lang_Country_bj = ベナン
+lang_Country_bm = バーミューダ
+lang_Country_bt = ブータン
+lang_Country_bo = ボリビア
+lang_Country_ba = ボスニア・ヘルツェゴビナ
+lang_Country_bw = ボツワナ
+lang_Country_bv = ブーベ島
+lang_Country_br = ブラジル
+lang_Country_io = 英インド洋領
+lang_Country_vg = バージン諸島(英領)
+lang_Country_bn = ブルネイ
+lang_Country_bg = ブルガリア
+lang_Country_bf = ブルキナファソ
+lang_Country_bi = ブルンジ
+lang_Country_kh = カンボジア
+lang_Country_cm = カメルーン
+lang_Country_cv = カーボベルデ
+lang_Country_ky = ケイマン諸島
+lang_Country_cf = 中央アフリカ共和国
+lang_Country_td = チャド
+lang_Country_cl = チリ
+lang_Country_cn = 中国
+lang_Country_cx = クリスマス諸島
+lang_Country_cc = ココス諸島
+lang_Country_co = コロンビア
+lang_Country_km = コモロ
+lang_Country_cg = コンゴ
+lang_Country_ck = クック諸島
+lang_Country_cr = コスタリカ
+lang_Country_hr = クロアチア
+lang_Country_cu = キューバ
+lang_Country_cy = キプロス
+lang_Country_cz = チェコ
+lang_Country_dk = デンマーク
+lang_Country_dj = ジブチ
+lang_Country_dm = ドミニカ
+lang_Country_do = ドミニカ共和国
+lang_Country_tp = 東ティモール
+lang_Country_ec = エクアドル
+lang_Country_eg = エジプト
+lang_Country_sv = エルサルバドル
+lang_Country_gq = 赤道ギニア
+lang_Country_er = エリトリア
+lang_Country_ee = エストニア
+lang_Country_et = エチオピア
+lang_Country_fk = フォークランド諸島
+lang_Country_fo = フェロー諸島
+lang_Country_fj = フィジー
+lang_Country_fi = フィンランド
+lang_Country_fr = フランス
+lang_Country_gf = ギニア(仏領)
+lang_Country_pf = ポリネシア
+lang_Country_tf = 仏南方領
+lang_Country_ga = ガボン
+lang_Country_gm = ガンビア
+lang_Country_ge = グルジア
+lang_Country_de = ドイツ
+lang_Country_gh = ガーナ
+lang_Country_gi = ジブラルタル
+lang_Country_gr = ギリシャ
+lang_Country_gl = グリーンランド
+lang_Country_gd = グレナダ
+lang_Country_gp = グアドループ
+lang_Country_gu = グアム
+lang_Country_gt = グアテマラ
+lang_Country_gn = ギニア
+lang_Country_gw = ギニアビサウ
+lang_Country_gy = ガイアナ
+lang_Country_ht = ハイチ
+lang_Country_hm = ハード・マクドナルド諸島
+lang_Country_hn = ホンジュラス
+lang_Country_hk = 香港
+lang_Country_hu = ハンガリー
+lang_Country_is = アイスランド
+lang_Country_in = インド
+lang_Country_id = インドネシア
+lang_Country_ir = イラン
+lang_Country_iq = イラク
+lang_Country_ie = アイルランド
+lang_Country_il = イスラエル
+lang_Country_it = イタリア
+lang_Country_ci = コートジボアール
+lang_Country_jm = ジャマイカ
+lang_Country_jp = 日本
+lang_Country_jo = ヨルダン
+lang_Country_kz = カザフスタン
+lang_Country_ke = ケニア
+lang_Country_ki = キリバス
+lang_Country_kp = 朝鮮民主主義人民共和国
+lang_Country_kr = 大韓民国
+lang_Country_kw = クウェート
+lang_Country_kg = キルギスタン
+lang_Country_la = ラオス
+lang_Country_lv = ラトビア
+lang_Country_lb = レバノン
+lang_Country_ls = レソト
+lang_Country_lr = リベリア
+lang_Country_ly = リビア
+lang_Country_li = リヒテンシュタイン
+lang_Country_lt = リトアニア
+lang_Country_lu = ルクセンブルク
+lang_Country_mo = マカオ
+lang_Country_mk = マケドニア
+lang_Country_mg = マダガスカル
+lang_Country_mw = マラウイ
+lang_Country_my = マレーシア
+lang_Country_mv = モルディブ
+lang_Country_ml = マリ
+lang_Country_mt = マルタ
+lang_Country_mh = マーシャル諸島
+lang_Country_mq = マルチニーク
+lang_Country_mr = モーリタニア
+lang_Country_mu = モーリシャス
+lang_Country_yt = マヨット島
+lang_Country_mx = メキシコ
+lang_Country_fm = ミクロネシア
+lang_Country_md = モルドバ
+lang_Country_mc = モナコ
+lang_Country_mn = モンゴル
+lang_Country_ms = モントセラト
+lang_Country_ma = モロッコ
+lang_Country_mz = モザンビーク
+lang_Country_mm = ミャンマー
+lang_Country_na = ナミビア
+lang_Country_nr = ナウル
+lang_Country_np = ネパール
+lang_Country_nl = オランダ
+lang_Country_an = アンティル
+lang_Country_nc = ニューカレドニア
+lang_Country_nz = ニュージーランド
+lang_Country_ni = ニカラグア
+lang_Country_ne = ニジェール
+lang_Country_ng = ナイジェリア
+lang_Country_nu = ニウエ
+lang_Country_nf = ノーフォーク諸島
+lang_Country_mp = 北マリアナ諸島
+lang_Country_no = ノルウェー
+lang_Country_om = オマーン
+lang_Country_pk = パキスタン
+lang_Country_pw = パラオ
+lang_Country_pa = パナマ
+lang_Country_pg = パプアニューギニア
+lang_Country_py = パラグアイ
+lang_Country_pe = ペルー
+lang_Country_ph = フィリピン
+lang_Country_pn = ピトケアン諸島
+lang_Country_pl = ポーランド
+lang_Country_pt = ポルトガル
+lang_Country_pr = プエルトリコ
+lang_Country_qa = カタール
+lang_Country_re = レユニオン島
+lang_Country_ro = ルーマニア
+lang_Country_ru = ロシア連邦
+lang_Country_rw = ルワンダ
+lang_Country_gs = サウスジョージア島・サウスサンドイッチ島
+lang_Country_kn = セントクリストファー・ネイビス
+lang_Country_lc = セントルシア
+lang_Country_vc = セントビンセントおよびグレナディーン諸島
+lang_Country_ws = 西サモア
+lang_Country_sm = サンマリノ
+lang_Country_st = サントメ・プリンシペ
+lang_Country_sa = サウジアラビア
+lang_Country_sn = セネガル
+lang_Country_sc = セイシェル
+lang_Country_sl = シエラレオネ
+lang_Country_sg = シンガポール
+lang_Country_sk = スロバキア
+lang_Country_si = スロベニア
+lang_Country_so = ソマリア
+lang_Country_za = 南アフリカ共和国
+lang_Country_es = スペイン
+lang_Country_lk = スリランカ
+lang_Country_sh = セントヘレナ島
+lang_Country_pm = サンピエール・ミクロン諸島
+lang_Country_sd = スーダン
+lang_Country_sr = スリナム
+lang_Country_sj = スバールバル・ヤンマイエン島
+lang_Country_sz = スワジランド
+lang_Country_se = スウェーデン
+lang_Country_ch = スイス
+lang_Country_sy = シリア
+lang_Country_tw = 台湾
+lang_Country_tj = タジキスタン
+lang_Country_tz = タンザニア
+lang_Country_th = タイ
+lang_Country_tg = トーゴ
+lang_Country_tk = トケラウ
+lang_Country_to = トンガ
+lang_Country_tt = トリニダード・トバゴ
+lang_Country_tn = チュニジア
+lang_Country_tr = トルコ
+lang_Country_tm = トルクメニスタン
+lang_Country_tc = タークス諸島・カイコス諸島
+lang_Country_tv = ツバル
+lang_Country_um = 米島嶼部
+lang_Country_ug = ウガンダ
+lang_Country_ua = ウクライナ
+lang_Country_ae = アラブ首長国連邦
+lang_Country_uk = イギリス
+lang_Country_uy = ウルグアイ
+lang_Country_uz = ウズベキスタン
+lang_Country_vu = バヌアツ
+lang_Country_va = バチカン市国
+lang_Country_ve = ベネズエラ
+lang_Country_vn = ベトナム
+lang_Country_vi = バージン諸島(米領)
+lang_Country_wf = ワリスフツナ諸島
+lang_Country_eh = 西サハラ
+lang_Country_ye = イエメン
+lang_Country_yu = ユーゴスラビア
+lang_Country_zr = ザイール(現コンゴ民主共和国)
+lang_Country_zm = ザンビア
+lang_Country_zw = ジンバブエ
+
+
+
+# END OF GLOBAL VARS
+
+# 1.1 /html/*
+
+#/html/auth_accounts.html
+
+lang_accounts_alt = 外部アカウントにログイン
+
+#/html/addgroup.html
+
+lang_addgroup_title = アドレス帳にグループを追加
+lang_addgroup_groupname = グループ名:
+lang_addgroup_addallemail = --- すべてのEメールを追加
+lang_addgroup_addbutton = 追加
+lang_addgroup_deletebutton = 削除
+lang_addgroup_savebutton = 保存
+lang_addgroup_cancelbutton = キャンセル
+
+#/html/auth_disabled.html
+
+lang_auth_disabled_title = アクセスが拒否されました。
+lang_auth_disabled_ld = ログイン不可能です。
+lang_auth_disabled_cd = このアカウントは現在無効です。
+lang_auth_disabled_contact =  ($this->admin_email) このアカウントを再度有効にするためには、Eメール管理者に連絡してください。
+
+#/html/auth_error.html
+
+lang_auth_error_title = アクセスが拒否されました。
+lang_auth_error_header = 認証エラーです。
+lang_auth_error_nosessionid = セッションIDがデータベースと一致しません。アクセスが拒否されました。
+lang_auth_error_userpass = ユーザー名とパスワードを確認してください。
+lang_auth_error_cookies = ご使用のブラウザがcookiesに対応していて、それが有効になっているか確認してください。
+lang_auth_error_session = 複数のユーザーが同時にログインすることはできません。複数のウィンドウでアカウントを開いていないか確認してください。
+lang_auth_error_still = それでもアカウントにアクセスできなければ、
+lang_auth_error_passret = <a href="index.php?func=passutil">パスワード回復ユーティリティ</a>で失われたパスワードを回復してください。
+lang_auth_error_contact = 管理者に連絡 $this->admin_emailしてください。
+lang_auth_error_newaccount = <a href="index.php?func=signup">新しいアカウントを作成</a>
+
+#/html/auth_license.html
+
+lang_auth_license_title = アクセスが拒否されました。
+lang_auth_license_exceeded = ライセンス数を超過しています。
+lang_auth_license_msg = ご契約ソフトウエアライセンス数を超過しています。 $var['error']
+lang_auth_license_domains = ユーザーとドメインのリスト$pref['brandname']に掲載されている数を確認してください。
+lang_auth_license_webadmin = <a href="webadmin/">ウェブアドミン</a>を使用してユーザーアカウントとドメイン$pref['brandname']を削除してください。
+lang_auth_license_calacode = ご使用の$pref['brandname']ライセンスをEメールでアップデートしてください<a href="mailto:$pref['admin_email']">$pref['admin_email']</a>
+lang_auth_license_upgradeinfo = $pref['brandname']のウェブサイト<a href="$pref['company_url']">$pref['company_url']</a>でアップグレード情報をご確認いただけます。
+lang_auth_license_upgradeinfo = アップグレードするためには$pref['brandname']のウェブサイト<a href="$pref['company_url']">$pref['company_url']</a>にアクセスしてください。
+
+#/html/auth_misc.html
+
+lang_auth_misc_title = アクセスが拒否されました。
+lang_auth_misc_error = メールボックスエラーです。
+lang_auth_misc_msg = サーバーが応答しました - $var['status']
+lang_auth_misc_refresh = 再読み込みしてもう一度行ってください。
+lang_auth_misc_title = 再読み込みしてもう一度行ってください。
+lang_auth_misc_check = 複数のウィンドウで開いていないか確認してください。一度のセッションでは一つのウィンドウのみ使用できます。
+lang_auth_misc_session = 複数のセッションが開いていないか確認してください。一度に一人のユーザーのみログインが可能です。
+lang_auth_misc_tryagain = 数分後にもう一度アクセスしてください。
+lang_auth_misc_still = ご使用のアカウントにアクセスできない場合は、
+lang_auth_misc_contact = 管理者に$this->admin_email連絡してください。
+
+#/html/auth_nouser.html
+
+lang_auth_nouser_title = アクセスが拒否されました。
+lang_auth_nouser_error = 該当するユーザー名は存在しません。
+lang_auth_nouser_msg = アクセスしようとしているアカウントはデータベースに存在しません。
+lang_auth_nouser_userpass = ユーザー名とパスワードを確認してください。
+lang_auth_nouser_cookies = ご使用のブラウザがcookiesに対応しているか、また有効に設定されているか確認してください。
+lang_auth_nouser_still = ご使用のアカウントにアクセスできない場合は、
+lang_auth_nouser_passret = <a href="index.php?func=passutil">パスワード回復ユーティリティ</a>で失われたパスワードを回復してください。
+lang_auth_nouser_contact = 管理者に$this->admin_email連絡してください。
+lang_auth_nouser_newaccount = <a href="index.php?func=signup">アカウントの作成</a>
+
+
+#/html/auth_reserved.html
+
+lang_auth_reserved_title = アクセスが拒否されました。
+lang_auth_reserved_error = ユーザー名$var['user']は既に使用されています。
+lang_auth_reserved_msg = このアカウントはデータベースで予約されています。<a href="javascript:history.back('-1')">戻るボタン</a>をクリックしてもう一度行ってください。
+lang_auth_reserved_username = 別のユーザー名を選択してください。
+lang_auth_reserved_admin = 予約されたユーザー名を変更したい場合は管理者に相談してください。
+
+
+#/html/auth_timeout.html
+
+lang_auth_timeout_title = セッションがタイムアウトされました。
+lang_auth_timeout_error = セッションがタイムアウトされました。
+lang_auth_timeout_msg = セッションがタイムアウトされました。 - ログインは取り消されました。
+lang_auth_timeout_inactive = このアカウントは長時間操作されませんでした。
+lang_auth_timeout_seconds = $pref['session_timeout']秒のセッションタイムアウト期限が設定されています。
+lang_auth_timeout_relogin = <a href="index.php" target="_top">もう一度ログイン</a>
+lang_auth_timeout_still = ご使用のアカウントにアクセスできない場合は、
+lang_auth_timeout_contact = 管理者に$this->admin_email連絡してください。
+
+#/html/userexists.html
+
+lang_auth_userexists_title = そのアカウントは使用中です。
+lang_auth_userexists_error = そのアカウント名は既に使われています。
+lang_auth_userexists_msg = 作成中のアカウントは既にデータベースに存在します。
+lang_auth_userexists_name = クリックして別のユーザー名を入力してください。
+lang_auth_userexists_unique = 一般的な名前は既に使用されていることが多くあります。
+lang_auth_userexists_alphanum = ユーザー名には英数字のみが使用できます。
+lang_auth_userexists_still = ご使用のアカウントにアクセスできない場合は、
+lang_auth_userexists_contact = 管理者に$this->admin_email連絡してください。
+
+#/html/composebook.html
+
+lang_composebook_title = アドレス帳に追加
+lang_composebook_viewing = アドレス帳を見る : <b>受取人を追加</b>
+lang_composebook_addallemail = --- 全てのEメールを追加
+lang_composebook_addbutton = Eメールを追加
+
+#/html/deditor.html
+
+lang_deditor_title = Eメールの作成
+lang_deditor_paragraph = 書式
+lang_deditor_normal = 通常
+lang_deditor_h1 = 見出し1
+lang_deditor_h2 = 見出し2
+lang_deditor_h3 = 見出し3
+lang_deditor_h4 = 見出し4
+lang_deditor_h5 = 見出し5
+lang_deditor_h6 = 見出し6
+lang_deditor_addr = アドレス
+lang_deditor_pre = 体裁
+lang_deditor_rf = 体裁のクリア
+lang_deditor_font = フォント
+lang_deditor_arial = Arial
+lang_deditor_arialb = Arial Black
+lang_deditor_arialn = Arial Narrow
+lang_deditor_comic = Comic Sans MS
+lang_deditor_courier = Courier New
+lang_deditor_system = System
+lang_deditor_times = Times New Roman
+lang_deditor_georgia = Georgia
+lang_deditor_verdana = Verdana
+lang_deditor_wingdings = Wingdings
+
+#Japanese Fonts
+lang_deditor_msmincho = MS 明朝
+lang_deditor_mspmincho = MS P明朝
+lang_deditor_msgochic = MS ゴシック
+lang_deditor_mspgochic = MS Pゴシック
+#
+
+lang_deditor_size = 文字サイズ
+lang_deditor_b = 太字
+lang_deditor_i = 斜字
+lang_deditor_udl = 下線
+lang_deditor_cut = 切り取り
+lang_deditor_copy = コピー
+lang_deditor_paste = 貼り付け
+lang_deditor_fgc = 文字色
+lang_deditor_bgc = 背景色
+lang_deditor_al = 左揃え
+lang_deditor_ac = 中央揃え
+lang_deditor_ar = 右揃え
+lang_deditor_ol = 番号付箇条書き
+lang_deditor_ul = 箇条書き
+
+#/html/editgroup.html
+
+lang_editgroup_title = 宛先グループの編集
+lang_editgroup_groupname = グループ名:
+lang_editgroup_addallemail = --- 全てのEメールを追加
+lang_editgroup_addbutton = 追加
+lang_editgroup_deletebutton = 削除
+lang_editgroup_savebutton = 保存
+lang_editgroup_cancelbutton = キャンセル
+lang_editgroup_editbutton = グループの詳細を編集
+
+
+#/html/login.html
+
+lang_login_title = $pref['brandname']にログイン
+lang_login_desc = ウェブメールシステム
+lang_login_logindetails = ログインの詳細
+lang_login_loginpass = ログイン情報を入力してください。
+lang_login_about = 概要
+lang_login_faq = よくある使用上の質問
+lang_login_passret = パスワードユーティリティ
+lang_login_help = ヘルプ
+lang_login_username = Eメール ユーザー名
+lang_login_password = パスワード
+lang_login_interface = インターフェイス
+lang_login_language = 言語
+lang_login_loginbutton = ログイン
+lang_login_signup = 新しいアカウントのサインアップ
+lang_login_signuptext = アカウントが無い場合は、<a href="index.php?func=signup">無料のEメールアドレスを取得して</a>すぐにアクセスできます。
+lang_login_moreinfo = 詳細
+lang_login_moreinfotext = このサービスについてより詳しい情報はサイト管理者にご連絡を
+<a href="mailto:$pref['admin_email']">$this->admin_email</a>
+lang_login_external = 外部アカウント
+lang_login_externaltext = 外部のPOP3/IMAPメールボックスにアクセスするためには<a href="index.php?func=ext">ここをクリックして</a>ログインページへお進みください。
+lang_login_local = ローカルアカウント
+lang_login_localtext = ローカルメールボックスにアクセスするためには<a href="index.php">ここをクリックして</a>ログインページへお進みください。
+lang_login_helpinfo = ヘルプ情報
+lang_login_helpinfotext = $pref['brandname']についてより詳しい情報をお知りになりたい場合は、<a href="javascript:help()">オンラインドキュメント</a>をご参照ください。
+lang_login_msg1 =あなたのアカウントでログインすれば$pref['brandname']によるEメールの送受信ができます。ウェブメールサービスは、ウェブブラウザからのメール確認が簡単に行うことができ、旅行中の友人や同僚との連絡、また既に受信済のメールの確認にも便利なサービスです。
+lang_login_msg2 =お使いのモバイル器機からも<a href="javascript:help('wap')">WAP</a>を利用すれば受信メールの確認が可能です。ログインすればスケジューラやTo Doリストなどによるビジネス管理も可能です。
+lang_login_passrettext = <a href="index.php?func=passutil">パスワードユーティリティ</a> を使用すれば、パスワードの変更や忘れてしまったパスワードの検索が可能です。
+lang_login_demo =サインアップの前に<a href="/">デモアカウント</a>でログインすることによりこのウェブメールサービスの機能をお試し頂くことができます。
+lang_login_webadmin = <a href="webadmin/">サイト管理者</a>
+lang_login_docs = <a href="docs/index.html">オンラインドキュメント</a>
+lang_login_more_options = より多くの選択
+
+#/html/passutil.html
+
+lang_passutil_title = パスワード検索ユーティリティ
+lang_passutil_desc =ウェブメールシステムプロ版
+lang_passutil_passutil = パスワードユーティリティ
+lang_passutil_login = ログイン
+lang_passutil_about = ウェブメールシステムについて
+lang_passutil_faq = よくある質問
+lang_passutil_help = ヘルプ
+lang_passutil_username = ユーザー名
+lang_passutil_hint = パスワードのヒントを見る
+lang_passutil_passwd = パスワードの変更
+lang_passutil_oldpass = 旧パスワード
+lang_passutil_newpass = 新パスワード
+lang_passutil_verify = パスワード確認
+lang_passutil_question = パスワードのヒント
+lang_passutil_update = パスワード更新
+lang_passutil_msg1 =このユーティリティによりご使用のメールアカウントのパスワードを変更できます。変更はすぐに反映されますので変更後ご自分のアカウントで<a href="index.php">もう一度ログインしてください。</a>
+lang_passutil_msg2 =パスワードを紛失されましたか？このユーティリティで紛失したパスワードを検索することができます。アカウントを作成した際、ログインパスワードを思い出すための「パスワードのヒント｣を記入されたはずです。それでも思い出せない場合は確認のためEメールにサインアップ時に記入されたお名前、生年月日、市区町村をご記入の上$pref['admin_email']に送信してください。
+lang_passutil_msg3 = フォームに記入してパスワードを変更してください。パスワード変更の際はセキュリティの為、単純すぎるものは避け、できるだけ数字とアルファベットの両方を使用されることをお勧めします。パスワードを忘れてしまった時の為にパスワードのヒントもご記入ください。
+
+
+#/html/signup.html
+
+lang_signup_title = $pref['brandname'] サインアップ
+lang_signup_desc =ウェブメールシステムプロ版
+lang_signup_details = Eメール詳細
+lang_signup_userpass = アカウントを作成するためにユーザー名とパスワードを記入してください。
+lang_signup_username = Eメールネーム
+lang_signup_usernamemsg = (これがあなたのユーザー名になります。)
+lang_signup_password =パスワード
+lang_signup_password2 = パスワード確認
+lang_signup_passwordq = パスワードのヒント
+lang_signup_passwordqmsg = (パスワードを思い出すためのヒントをご記入ください)
+lang_signup_altemail = セカンダリEメールアドレス
+lang_signup_altemailmsg = (連絡用の代替手段としてご記入ください。オプション)
+lang_signup_pdetails = 個人情報詳細
+lang_signup_pdetailsmsg = この情報はアカウントを管理する為に使用します。
+lang_signup_emailprefs = Eメール設定
+lang_signup_gender =この情報によりあなたのアカウントの各種設定を行います。
+lang_signup_loginstyle = ログインスタイル
+lang_signup_language = 言語
+lang_signup_submit = サインアップ
+lang_signup_disclaimer =  サインアップされる前にこちらの<a href="javascript:disclaimer()">免責条項</a>への同意が必要です。
+lang_signup_submitbutton = アカウント作成 &gt;&gt;
+
+#/html/startbutton.html
+
+lang_startbutton_submitbutton = 完了
+
+#/html/startmboxempty.html
+
+lang_startmboxempty_msg = 受信箱にメールがありません。
+
+#/html/startnocal.html
+
+lang_startnocal_calendar = カレンダーは空欄です。
+lang_startnocal_newentry = クリックして記入
+
+#/html/startnotask.html
+
+lang_startnotask_notask = 何も項目がありません。
+lang_startnotask_newtask = 項目追加
+
+#/html/usage.html
+
+lang_usage_desc = ウェブメールシステムプロ版
+lang_usage_faq = よくある質問
+lang_usage_start = $pref['brandname']を始める
+lang_usage_login = ログイン
+lang_usage_about = ウェブメールシステムについて
+lang_usage_password = パスワードユーティリティ
+lang_usage_help = ヘルプ
+lang_usage_whatis = $pref['brandname']とは？
+lang_usage_description = $pref['brandname'] はインターネットブラウザベースのEメールクライアント/サーバーです。お持ちのPOPアカウントを使って、または新たにアカウントを作成して簡単にEメールにアクセスする事ができます。$pref['brandname'] を使えばインターネット上のあらゆるメールアドレスを使ってEメールの送受信が可能です。
+lang_usage_signup = $pref['brandname']にサインアップするためには?
+lang_usage_signupmsg =  $pref['brandname'] にサインアップするためにはただ<a href="index.php?func=signup">こちら</a>をクリックするだけ。簡単にEコミュニケーションの世界にアクセスできます！
+lang_usage_access =自分のEメールにアクセスするためには?
+lang_usage_accessmsg = 既にEメールアドレスをお持ちの場合、メインログインページの「外部アカウント」をクリックしてください。インターネット上のPOP Eメールアドレスへのアクセスが可能です。
+lang_usage_loginhow =ログインするためには?
+lang_usage_loginmsg =ユーザー名とパスワードを入力し、ホスト名とスタイルを選択後「ログイン」をクリックしてください。<br> 例: Eメールアドレスが johnsmith@atmail.nl, なら、ユーザー名は johnsmithとなり、atmail.nl がホスト名となります。<br><br>もし '@' マークの後ろのメニュー内のリストにないアカウントにログインしたい場合は「外部アカウント」オプションをクリックし、あなたのホスト名を記入してください。注：ホスト名とメールホストが異なる場合があります。（例：ホスト名dmain.comでメールホストmail.dmain.com等）その場合ホストにご確認ください。
+lang_usage_loginwhere = どこでログインすればいいの?
+lang_usage_loginwheremsg =インターネットに接続されたフレーム対応のウェブブラウザがあればどこでも $pref['brandname'] に接続できます。
+lang_usage_password = パスワードを忘れたときはどうすればいいの?
+lang_usage_passwordmsg =  パスワードをお忘れになった時は <a href="index.php?func=passutil">パスワードユーティリティ</a>をご利用ください。
+lang_usage_styles = 「スタイル」とは何ですか？
+lang_usage_stylesmsg = $pref['brandname']には「スキン」が提供されており、ご使用のブラウザに合わせて異なるインターフェースを選択できます。
+lang_usage_pop3 = POP3 アカウントとはなにですか？?
+lang_usage_pop3msg = 通常あなたのホスト、またはインターネットサービスプロバイダ（ISP）から提供されているEメールアカウントのことを意味します。不明の場合はご利用のインターネットサービスプロバイダ（ISP）にお問い合せください。
+lang_usage_logout = POP3メールはログイン後どうなるのですか
+lang_usage_logoutmsg = $pref['brandname'] 上で受信し読んだPOP3メールはログアウト後もサーバーからは削除されません。ただし、$pref['brandname']上で削除したPOP3メールはサーバー上からも削除されます。
+lang_usage_email =第三者が私のEメールアカウントにアクセスするのを避けるにはどうすればいいですか?
+lang_usage_emailmsg =  パスワードを簡単すぎるものを選ばないようにし、またご利用後は必ずログアウトするようにご注意ください。$pref['brandname'] はクッキーを削除し、あなたが再びログインするまでアカウントを使えないようにします。$pref['brandname'] では、あなたのアカウントに同時に複数の人間がアクセスすることができないようになっています。
+lang_usage_help = もっと詳しい情報を見ることはできますか?
+lang_usage_helpmsg = <a href="javascript:help()">$pref['brandname'] ヘルプガイド</a> をお読みください。より詳しい情報とソフトウェアの使用法がご覧いただけます。
+lang_usage_copyright = - コピーライト <a href="$pref['company_url']">$pref['brandname']
+
+# 1.2 /html/blue_pane/*
+
+#/html/blue_pane/abook.html
+
+lang_blue_pane_abook_title = アドレス帳
+lang_blue_pane_abook_composebutton = メール作成
+lang_blue_pane_abook_personal = 個人用フォルダ
+lang_blue_pane_abook_global = グローバル
+
+#/html/blue_pane/abook_blank.html
+
+lang_blue_pane_abook_blank_empty = アドレス帳が空です
+
+#/html/blue_pane/abook_entry.html
+
+lang_blue_pane_abook_entry_edituseralt = 連絡先編集
+lang_blue_pane_abook_entry_deluseralt = 連絡先削除
+
+
+#/html/blue_pane/abook_entry_blank.html
+
+lang_blue_pane_abook_entry_blank_msg = アドレス帳には情報が登録されていません。画面上部にある｢新規連絡先｣ボタンをクリックして登録してください。
+
+#/html/blue_pane/abook_globalentry.html
+
+lang_blue_pane_abook_globalentry_viewuseralt = ユーザーを見る
+
+#/html/blue_pane/abook_globalview.html
+
+lang_blue_pane_abook_globalview_text = $var['UserEmail'] のユーザー情報の詳細を閲覧する。 こちらではユーザー情報の詳細を見ることができます。こちらで設定の変更はできません。Eメールを作成するためにはEメールアドレスをクリックしてください。
+lang_blue_pane_abook_globalview_msg = ユーザーを見る
+lang_blue_pane_abook_globalview_backbutton = 戻る
+
+#/html/blue_pane/abook_groupentry.html
+
+lang_blue_pane_abook_groupentry_editgrpalt = グループ編集
+lang_blue_pane_abook_groupentry_delgrpalt = グループ削除
+
+#/html/blue_pane/abook_new.html
+
+lang_blue_pane_abook_new_text = アドレス帳に新規ユーザーを追加します。 ユーザーの名前とEメールアドレスだけでなく、連絡先や電話番号の詳細も記入できます。
+lang_blue_pane_abook_new_msg = アドレス帳にユーザーを追加する
+lang_blue_pane_abook_new_addbutton = 登録する
+
+#/html/blue_pane/abook_view.html
+
+lang_blue_pane_abook_view_text = $var['UserEmail'] のユーザー情報を見る。ここでは下の情報を編集することによりユーザー情報を訂正、変更できます。「登録」ボタンをクリックすることでアドレス帳の変更は保存されます。
+lang_blue_pane_abook_view_msg = アドレス帳の閲覧、編集
+lang_blue_pane_abook_view_updatebutton = 更新
+
+#/html/blue_pane/account.html
+
+lang_blue_pane_account_enterpass = アカウントパスワードを入力:
+lang_blue_pane_account_text =アカウントパネルにより、追加のEメールアカウントを作成できます。 同一のインターフェースで複数のEメールアカウントを使用できます。このユーティリティはあなたがお持ちの外部POP3アカウントをいくつでも使用できます。下記のフォームからアカウントを追加/削除してください。
+lang_blue_pane_account_msg = 外部POP3アカウント
+lang_blue_pane_account_accountname = アカウント名
+lang_blue_pane_account_nrmsg = メール総数
+lang_blue_pane_account_delete = 削除
+lang_blue_pane_account_newaccount = 外部POP3アカウントを作成する
+lang_blue_pane_account_username = ユーザー名
+lang_blue_pane_account_hostname = ホスト名
+lang_blue_pane_account_type = タイプ
+lang_blue_pane_account_pop3 = POP3
+lang_blue_pane_account_imap = IMAP
+lang_blue_pane_account_addbutton = アカウント追加
+
+
+#/html/blue_pane/attachment.html
+
+lang_blue_pane_attachment_title = 添付ファイルを追加
+lang_blue_pane_attachment_addatt = 添付ファイルを追加
+lang_blue_pane_attachment_step1 = ステップ1
+lang_blue_pane_attachment_step2 = ステップ 2
+lang_blue_pane_attachment_step3 = ステップ 3
+lang_blue_pane_attachment_step1msg =「参照」をクリックしファイルを選択
+lang_blue_pane_attachment_step2msg = 「ファイルを添付」をクリック
+lang_blue_pane_attachment_step2msg2 = さらにファイルを追加するなら1.2を繰り返してください
+lang_blue_pane_attachment_step3msg = 「完了」をクリック
+lang_blue_pane_attachment_filename = ファイル名
+lang_blue_pane_attachment_size = サイズ
+lang_blue_pane_attachment_delete = 削除
+lang_blue_pane_attachment_attachbutton = ファイルを添付
+lang_blue_pane_attachment_donebutton = 完了
+
+#/html/blue_pane/blue_pane.html
+
+lang_blue_pane_blue_pane_title = Welcome $this->username@$this->pop3host - Powered by $pref['brandname']
+
+
+#/html/blue_pane/composehtml.html
+# &
+#/html/blue_pane/composetext.html (uses same lang vars)
+
+
+lang_blue_pane_composehtml_plain = プレーン
+lang_blue_pane_composehtml_html = HTML
+lang_blue_pane_composehtml_editor = エディター
+lang_blue_pane_composehtml_abookalt =アドレス帳からアドレスを追加
+
+
+lang_blue_pane_composehtml_addrecbutton = 受取人追加
+lang_blue_pane_composehtml_sendbutton = 送信
+lang_blue_pane_composehtml_clearbutton = 削除
+lang_blue_pane_composehtml_savemsgbutton = 保存
+lang_blue_pane_composehtml_spellbutton = スペルチェック
+lang_blue_pane_composehtml_attachbutton = 添付ファイル
+
+
+
+#/html/blue_pane/emailentry_blank.html
+lang_blue_pane_emailentry_blank_msg = $var['folder'] にはメールがありません
+
+#/html/blue_pane/folders.html
+lang_blue_pane_folders_title = フォルダ設定
+
+lang_blue_pane_folders_text1 =メールボックスパネルではメールフォルダの管理が可能です。フォルダの作成や削除、ボックス内の閲覧などができます。迷惑メール等に対応するため、Eメールフィルタ設定も可能です。
+lang_blue_pane_folders_mailbox = フォルダ名
+lang_blue_pane_folders_totalmsg = メール数合計
+lang_blue_pane_folders_filesize = ファイルサイズ (KB)
+lang_blue_pane_folders_delete = 削除
+lang_blue_pane_folders_newmailbox = 新規フォルダ作成
+lang_blue_pane_folders_block =特定のアドレス、スパマーからのメール受信拒否
+lang_blue_pane_folders_addblock = 受信拒否するEメールアドレスを入力してください
+lang_blue_pane_folders_enterbox = Eメールアドレスを入力
+lang_blue_pane_folders_addbutton = アドレスを追加
+lang_blue_pane_folders_spamdb =現在の迷惑メールデータベース
+lang_blue_pane_folders_delbutton = リストから削除
+lang_blue_pane_folders_autoreply = 自動返信リストへ追加
+lang_blue_pane_folders_composeauto = 自動返信文を編集
+lang_blue_pane_folders_compseautotext =ユーザーにはこのメールが自動的に返信されます。この欄を空白にしておけば自動返信はされません。
+lang_blue_pane_folders_addautobutton = 自動返信リストに追加
+lang_blue_pane_folders_delautobutton = 自動返信リストから削除
+lang_blue_pane_folders_sorting = Eメールフィルタ
+lang_blue_pane_folders_sortaddress = Eメールアドレス
+lang_blue_pane_folders_sortsubject = 件名
+lang_blue_pane_folders_sortto = 振り分け先フォルダ
+lang_blue_pane_folders_sortaddbutton = ルール追加
+lang_blue_pane_folders_emailsorting = 振り分け設定済みEメールアドレス
+lang_blue_pane_folders_subjectsorting = 振り分け設定済み件名
+lang_blue_pane_folders_sortdelbutton = リストから削除
+
+#/html/blue_pane/foldertr.html
+
+
+lang_blue_pane_foldertr_messages = メール
+lang_blue_pane_foldertr_delfolderalt =  $var['FolderName']を削除する
+
+
+#/html/blue_pane/head_abook.html
+
+lang_blue_pane_head_abook_title = ファイル閲覧
+lang_blue_pane_head_abook_msg = メールボックス
+
+#/html/blue_pane/head_search.html
+
+lang_blue_pane_head_search_title = ファイル閲覧
+lang_blue_pane_head_search_msg = メール検索
+
+#/html/blue_pane/head_settings.html
+
+lang_blue_pane_head_settings_title = ファイル閲覧
+lang_blue_pane_head_settings_msg = Eメール設定 - Eメールアカウントの設定
+
+#/html/blue_pane/ldap.html
+
+lang_blue_pane_ldap_search_tab_search = 名前・Eメールで検索
+lang_blue_pane_ldap_search_tab_extended = その他の情報で検索
+lang_blue_pane_ldap_search_tab_LDAPoptions = LDAPオプション
+lang_blue_pane_ldap_text1 = 登録されている連絡先を検索することができます。あなたの友人やご家族の電話番号、住所、Eメールアドレスなどを調べることができます。
+lang_blue_pane_ldap_text2 =「検索タイプ」で照会するデータベースを選択してください。$pref['brandname']のデータベースを使用するためには「システムデータベース」を選択してください。
+lang_blue_pane_ldap_msg = 人名で検索
+lang_blue_pane_ldap_firstnamedesc = 検索したい名前
+lang_blue_pane_ldap_surnamedesc = 検索したい姓
+lang_blue_pane_ldap_emaildesc = 検索したいEメールアドレス
+lang_blue_pane_ldap_searchtype = 検索タイプ
+lang_blue_pane_ldap_searchtypedesc = 検索タイプを選択してください
+lang_blue_pane_ldap_searchtypeserver = LDAP サーバー
+lang_blue_pane_ldap_searchtypesystem = $pref['brandname'] システムデータベース
+lang_blue_pane_ldap_server = LDAP サーバー
+lang_blue_pane_ldap_serverdesc = LDAPサーバーを選択
+lang_blue_pane_ldap_querybutton = データベースに照会
+
+#/html/blue_pane/ldap_bad_hostname.html
+
+lang_blue_pane_ldap_bad_hostname_msg = LDAPサーバー接続中にエラーが発生しました。 サーバー "<b>$var['error']</b>"は見つかりません。 他のサーバーをご利用ください。
+
+#/html/blue_pane/ldap_entry.html
+
+lang_blue_pane_ldap_entry_add = 追加
+
+
+#/html/blue_pane/ldap_entry_blank.html
+
+lang_blue_pane_ldap_entry_blank_msg =該当するデータが見つかりませんでした。 検索条件を変えて、<a href="ldap.php">もう一度ご確認ください</a>
+
+#/html/blue_pane/ldap_error.html
+
+lang_blue_pane_ldap_error_msg = ($var['error']) と通信中にエラーが発生しました。しばらく時間をおいてからもう一度お試しください。
+
+#/html/blue_pane/ldap_search.html
+
+lang_blue_pane_ldap_search_newsearch = 新規検索
+
+#/html/blue_pane/menubar-blue.html
+
+lang_blue_pane_menubar_blue_readmailalt = メールを読む
+lang_blue_pane_menubar_blue_composealt = メール作成
+lang_blue_pane_menubar_blue_searchalt = メール検索
+lang_blue_pane_menubar_blue_calendaralt = カレンダー
+lang_blue_pane_menubar_blue_ldapalt = 人名検索
+lang_blue_pane_menubar_blue_abookalt = アドレス帳
+lang_blue_pane_menubar_blue_settingsalt = 設定
+lang_blue_pane_menubar_blue_helpalt = ヘルプ
+lang_blue_pane_menubar_blue_logoffalt = ログアウト
+
+#/html/blue_pane/password.html
+
+lang_blue_pane_password_text =ここではあなたのパスワードを変更できます。現在のパスワードを入力してから、新しいパスワードを入力してください。
+lang_blue_pane_password_msg = パスワードの変更
+lang_blue_pane_password_curpass = 現在のパスワード
+lang_blue_pane_password_curpassdesc = 現在使用しているパスワードを記入してください
+lang_blue_pane_password_newpass = 新しいパスワード
+lang_blue_pane_password_newpassdesc = 新しいパスワードを記入してください
+lang_blue_pane_password_confirm = 新しいパスワードの確認
+lang_blue_pane_password_confirmdesc = 確認のため新しいパスワードをもう一度記入してください
+lang_blue_pane_password_question = パスワードのヒント
+lang_blue_pane_password_questiondesc = パスワードを紛失、または忘れてしまった時の為にパスワードを思い出すためのヒントを記入してください
+lang_blue_pane_password_backbutton = 戻る
+lang_blue_pane_password_submitbutton = パスワードの変更
+
+#/html/blue_pane/profile.html
+
+lang_blue_pane_profile_text1 = ここではあなたのユーザープロファイルの編集が行えます。
+lang_blue_pane_profile_text2 = あなたがここに記入した情報はアドレス帳で参照できます。
+lang_blue_pane_profile_msg = ユーザープロファイル $var['status']
+
+lang_blue_pane_profile_personal = 詳細
+lang_blue_pane_profile_account =アカウント
+lang_blue_pane_profile_accountdesc =Eメールアカウントのログイン名
+lang_blue_pane_profile_moddate = データの編集
+lang_blue_pane_profile_moddatedesc = 最終編集日
+lang_blue_pane_profile_firstnamedesc = あなたの名前
+lang_blue_pane_profile_surnamedesc = あなたの姓
+lang_blue_pane_profile_birthdatedesc = あなたの誕生日
+lang_blue_pane_profile_genderdesc = あなたの性別
+
+lang_blue_pane_profile_contact = 連絡先詳細
+lang_blue_pane_profile_telhomedesc = ご自宅の電話番号
+lang_blue_pane_profile_faxhomedesc = ご自宅のFAX番号
+lang_blue_pane_profile_telworkdesc = 勤務先の電話番号
+lang_blue_pane_profile_faxworkdesc = 勤務先のFSX番号
+lang_blue_pane_profile_telmobiledesc = 携帯、PHSの電話番号
+lang_blue_pane_profile_telpagerdesc = ポケベルの電話番号
+
+lang_blue_pane_profile_address = 住所の詳細
+lang_blue_pane_profile_addressdesc = 番地、部屋番号
+lang_blue_pane_profile_citydesc = 市区町村名
+lang_blue_pane_profile_postcodedesc = 郵便番号
+lang_blue_pane_profile_statedesc = 都道府県名
+lang_blue_pane_profile_countrydesc = 国名
+
+lang_blue_pane_profile_additional = 追加情報
+lang_blue_pane_profile_email2desc = Eメールアドレス
+lang_blue_pane_profile_question = パスワードヒント
+lang_blue_pane_profile_questiondesc = パスワードを思い出すためのヒントを入力してください
+lang_blue_pane_profile_industrydesc = 勤務先の業種
+lang_blue_pane_profile_occupationdesc = あなたの職種
+lang_blue_pane_profile_savebutton = 保存
+lang_blue_pane_profile_passwdbutton = パスワード変更
+
+#/html/blue_pane/readmail.html
+
+lang_blue_pane_reademail_title = $var['EmailSubject'] - $pref['brandname'] - Msg $var['msgnum']
+lang_blue_pane_reademail_replyalt = 差出人に返信
+lang_blue_pane_reademail_replyallalt = 差出人とすべての受取人に返信
+lang_blue_pane_reademail_forwardalt = 転送
+lang_blue_pane_reademail_printalt = メールを印刷
+lang_blue_pane_reademail_headersalt = メールヘッダーを表示
+
+#/html/blue_pane/reademail_drafts.html
+
+lang_blue_pane_reademail_drafts_title = $var['EmailSubject'] - $pref['brandname'] - Msg $var['msgnum']
+lang_blue_pane_reademail_drafts_openmsg = メールを開く
+lang_blue_pane_reademail_drafts_openmsgalt = メールを開く
+
+
+#/html/blue_pane/reademail-frame.html
+
+lang_blue_pane_reademail_frame_title = $var['EmailSubject'] - $pref['brandname'] - Msg $var['msgnum']
+
+#/html/blue_pane/reademail-frame_drafts.html
+
+lang_blue_pane_reademail_frame_drafts_title = $var['EmailSubject'] - $pref['brandname'] - Msg $var['msgnum']
+
+#/html/blue_pane/search.html
+
+lang_blue_pane_search_lookin = 開く
+lang_blue_pane_search_allfolders = すべてのフォルダ
+lang_blue_pane_search_attach = 添付ファイルを含むメール
+lang_blue_pane_search_flagged = 印を付けたメール
+lang_blue_pane_search_before = 受信日
+lang_blue_pane_search_before_jp = より前
+lang_blue_pane_search_after = 受信日
+lang_blue_pane_search_after_jp = より後
+lang_blue_pane_search_newbutton = 新規検索
+
+#/html/blue_pane/searchframe.html
+
+lang_blue_pane_searchframe_title = Eメールを検索
+
+
+#/html/blue_pane/searchmove.html
+
+lang_blue_pane_searchmove_msg = $var['newfolder']フォルダに移動した$var['move']メール
+
+#/html/blue_pane/searchresults.html
+
+lang_blue_pane_searchresults_movebutton = 移動
+
+#/html/blue_pane/sendmsg.html
+
+lang_blue_pane_sendmsg_compose = 新規メール作成
+lang_blue_pane_sendmsg_close = ウィンドウを閉じる
+
+#/html/blue_pane/settings.html
+
+lang_blue_pane_settings_text = Eメール設定では、ウェブメール機能の設定を行うことができます。
+
+lang_blue_pane_settings_emailprefs = Eメール設定
+lang_blue_pane_settings_account = アカウント
+lang_blue_pane_settings_accountdesc = Eメールアカウントのログイン名
+lang_blue_pane_settings_dname = 差出人名
+lang_blue_pane_settings_dnamedesc = Eメールに表示する名前
+lang_blue_pane_settings_replyto = 返信先
+lang_blue_pane_settings_replytodesc = 返信先に設定するEメールアドレス
+lang_blue_pane_settings_sortby = メールのソート
+lang_blue_pane_settings_sortbydesc =メールウィンドウに表示されるメールは以下の条件でソートすることができます
+lang_blue_pane_settings_font = 既定のフォント
+lang_blue_pane_settings_fontdesc = どのフォントを使用するか選択してください
+lang_blue_pane_settings_lang = 言語
+lang_blue_pane_settings_langdesc = Eメールをどの言語で使用するか選択してください
+lang_blue_pane_settings_leavemsg = メールをサーバーに残す
+lang_blue_pane_settings_leavemsgdesc =サーバーにメールを残すか選択してください。（外部POP3アカウントに限る）
+lang_blue_pane_settings_nrmsg = 表示メール数
+lang_blue_pane_settings_nrmsgdesc = 画面に表示されるメールの数を設定してください
+lang_blue_pane_settings_timezone = 時間帯
+lang_blue_pane_settings_timezonedesc = お住まいの地域の時間帯を設定してください。これによりメールの日付が設定されます
+lang_blue_pane_settings_timeformat = 時間表示フォーマット
+lang_blue_pane_settings_timeformatdesc = メールの時間表示フォーマットを選択してください
+lang_blue_pane_settings_dateformat = 日付表示フォーマット
+lang_blue_pane_settings_dateformatdesc = 日付表示フォーマットを選択してください
+
+lang_blue_pane_settings_popup =メールのプレビュー
+lang_blue_pane_settings_popupdesc =フォルダ内のメール件名上にマウスポインタを置いた際にプレビューを表示するか選択してください
+lang_blue_pane_settings_autotrash = 自動消去
+lang_blue_pane_settings_autotrashdesc =ゴミ箱フォルダに入れたメールは自動的に削除されます
+lang_blue_pane_settings_deltrash = ログアウト時にゴミ箱を空にしますか？
+lang_blue_pane_settings_deltrashdesc = 選択するとゴミ箱フォルダ内のメールははログアウト時に自動的に消去されます
+lang_blue_pane_settings_editor = HTMLメールエディター
+lang_blue_pane_settings_editordesc = 選択すると$pref['brandname']は自動的にプレーンテキストではなくHTML形式でメールを作成します
+lang_blue_pane_settings_sig = 署名
+lang_blue_pane_settings_sigdesc =署名を作成します。この署名は送信されるすべてのメールに追加されます
+lang_blue_pane_settings_diversion = メール転送 - メールを別のアカウントに転送します
+lang_blue_pane_settings_forward = 転送先
+lang_blue_pane_settings_layout = レイアウト / カラー設定 - インターフェースの選択と色のカスタマイズ
+lang_blue_pane_settings_layout_short = レイアウト / カラー
+lang_blue_pane_settings_layouttype = レイアウトタイプ:
+lang_blue_pane_settings_scheme = スキーム
+lang_blue_pane_settings_primary = 第1
+lang_blue_pane_settings_secondary = 第2
+lang_blue_pane_settings_tertiary = 第3
+lang_blue_pane_settings_border = 境界線
+lang_blue_pane_settings_popupcolor = ポップアップ
+lang_blue_pane_settings_bgcolor = 背景
+lang_blue_pane_settings_textcolor = テキスト色
+lang_blue_pane_settings_textheader = テキストヘッダ
+lang_blue_pane_settings_link = リンク
+lang_blue_pane_settings_vlink = 訪問済リンク
+lang_blue_pane_settings_oncolor = On
+lang_blue_pane_settings_offcolor = Off
+lang_blue_pane_settings_selectcolor = 強調色
+lang_blue_pane_settings_topbarimg = トップバー画像
+lang_blue_pane_settings_quota = メールボックス容量 [ディスクスペース使用量 $var['totalquota'] KB中$var['usedquota'] KB]
+lang_blue_pane_settings_savebutton = 保存
+
+#/html/blue_pane/showmail_plain.html
+
+lang_blue_pane_showmail_plain_movebutton = 移動
+lang_blue_pane_showmail_plain_searchalt = メール検索
+lang_blue_pane_showmail_plain_settingsalt =Eメール設定
+lang_blue_pane_showmail_plain_foldersalt = Eメールフォルダ
+lang_blue_pane_showmail_plain_deltrashalt = ゴミ箱を空にする
+lang_blue_pane_showmail_plain_checkalt = すべてのメールにチェックを入れる
+lang_blue_pane_showmail_plain_uncheckalt = すべてのメールのチェックをはずす
+lang_blue_pane_showmail_plain_tag = タグ
+
+#/html/blue_pane/showmail_popup.html
+# shares vars from /html/blue_pane/showmail_plain.html
+
+
+#/html/blue_pane/spellcheck.html
+
+lang_blue_pane_spellcheck_title = スペルチェック
+
+
+lang_blue_pane_spellcheck_msg = スペルチェック:
+lang_blue_pane_spellcheck_current = 使用箇所:
+lang_blue_pane_spellcheck_new = 新しいスペル:
+lang_blue_pane_spellcheck_suggestions = 訂正案
+lang_blue_pane_spellcheck_options = オプション
+lang_blue_pane_spellcheck_ignorebutton = 無視する
+lang_blue_pane_spellcheck_changebutton = 変更する
+lang_blue_pane_spellcheck_personalbutton = 個人用フォルダに追加
+lang_blue_pane_spellcheck_returnbutton =戻る
+
+
+#/html/blue_pane/startpage.html
+
+lang_blue_pane_startpage_text = ようこそ、「$this->RealName」の個人用フォルダのスタートページへ！ こちらでは、アカウントの要約や使用状況、ログイン履歴を確認することができます。$pref['brandname']で提供されている他機能へは、画面上のナビゲーションボタンおよびメニューバーを使用して移動してください。
+lang_blue_pane_startpage_calendar = カレンダー
+lang_blue_pane_startpage_caddnew = 新規追加
+lang_blue_pane_startpage_emailsum = Eメール要約
+lang_blue_pane_startpage_emailsumdesc = 受信箱を見る 計($var['total'] 件)
+lang_blue_pane_startpage_quota = メールボックス容量
+lang_blue_pane_startpage_quotaused =[使用量： $var['totalquota'] KB中$var['usedquota'] KB]
+lang_blue_pane_startpage_tasks = ToDo
+lang_blue_pane_startpage_taddnew = 新規追加
+lang_blue_pane_startpage_messages = メール
+lang_blue_pane_startpage_history = ログイン履歴
+lang_blue_pane_startpage_historynr =ログイン回数$var['totallogin']
+lang_blue_pane_startpage_autoinbox = $pref['brandname'] にログインした時、受信箱を開く
+
+# 1.3 /html/blue_pane/heading/*
+
+lang_blue_pane_heading_abook_globalview_msg = アドレス帳 - ユーザーを見る
+lang_blue_pane_heading_abook_new_msg = アドレス帳 - 新規ユーザー追加
+lang_blue_pane_heading_abook_view_msg = アドレス帳 -ユーザーの閲覧/編集
+lang_blue_pane_heading_accounts_msg = 外部 POP3 アカウント
+lang_blue_pane_heading_contacts_msg = 連絡先
+lang_blue_pane_heading_ldap_location = LDAPロケーション
+lang_blue_pane_heading_ldap_abook = LDAPアドレス帳
+lang_blue_pane_heading_ldaphead_msg = アドレス帳検索
+lang_blue_pane_heading_mail_orderalt = 並び替え/添付ファイル順
+lang_blue_pane_heading_mboxfolder_msg = フォルダマネージャ ：メールフォルダの閲覧/作成
+lang_blue_pane_heading_mboxhead_msg = メールボックス
+
+lang_blue_pane_heading_password_msg = ユーザープロファイル - パスワード変更
+lang_blue_pane_heading_profile_msg =ユーザープロファイル- プロファイル編集
+lang_blue_pane_heading_search_msg = 検索- メールの検索
+lang_blue_pane_heading_settings_msg = Eメール設定 -メールアカウントのカスタマイズ
+lang_blue_pane_heading_startpage_msg = スタートページにようこそ！
+
+# END OF /html/blue_pane/heading/
+# END OF /html/blue_pane/
+
+# 2.0 G l o b a l    C a l e n d a r   V a r i a b l e s
+
+lang_Calendar_startdate = 開始日
+lang_Calendar_enddate = 終了日
+lang_Calendar_endtime = 終了時
+lang_Calendar_duedate = 期限
+lang_Calendar_datedue = 支払日
+lang_Calendar_selectdate = 日付選択
+lang_Calendar_adddate = 日付追加
+lang_Calendar_close = 閉じる
+lang_Calendar_updatebutton = 更新
+lang_Calendar_deletebutton = 削除
+
+# 2.1 /html/calendar/*
+
+#/html/calendar/calbook.html
+
+lang_calendar_calbook_title =アドレス帳からメールを追加
+lang_calendar_calbook_viewaddress = アドレス帳を見る：
+lang_calendar_calbook_add =スケジューラに受取人を追加
+lang_calendar_calbook_addall = --- 　すべてのメールを追加
+lang_calendar_calbook_addbutton = メールを追加
+
+#/html/calendar/index.html
+
+lang_calendar_index_title = $pref['brandname'] - オンラインスケジューラ
+
+#/html/calendar/index-simple.html
+
+lang_calendar_index_simple_title = $pref['brandname'] - オンラインスケジューラ
+
+#/html/calendar/menubarcal.html
+
+lang_calendar_menubarcal_week = 1週間
+lang_calendar_menubarcal_fortnight = 2週間
+lang_calendar_menubarcal_quarter = 3ヶ月
+lang_calendar_menubarcal_2quarter = 半年
+lang_calendar_menubarcal_year = 1年
+
+lang_calendar_menubarcal_read = メールを読む
+lang_calendar_menubarcal_overview = 概要
+lang_calendar_menubarcal_calendar = カレンダー
+lang_calendar_menubarcal_tasks = ToDo
+lang_calendar_menubarcal_addresses = アドレス帳
+lang_calendar_menubarcal_help = ヘルプ
+lang_calendar_menubarcal_logoff = ログアウト
+lang_calendar_menubarcal_view = 表示の選択
+
+#/html/calendar/menubarcal-simple.html
+
+lang_calendar_menubarcal_simple_title = $pref['brandname'] ウェブメールシステム
+lang_calendar_menubarcal_simple_brandname = $pref['brandname'] プロフェッショナルウェブメールソフトウェア
+lang_calendar_menubarcal_simple_read = メールを読む
+lang_calendar_menubarcal_simple_overview = 概要
+lang_calendar_menubarcal_simple_calander = カレンダー
+lang_calendar_menubarcal_simple_tasks = ToDo
+lang_calendar_menubarcal_simple_contacts = 連絡先
+lang_calendar_menubarcal_simple_signout = ログアウト
+
+#/html/calendar/newpost.html
+
+lang_calendar_newpost_title = 新規追加
+lang_calendar_newpost_insertnew = カレンダーに項目を追加
+lang_calendar_newpost_edit = 対象者を編集
+lang_calendar_newpost_editalt = 対象者に編集を許可する
+lang_calendar_newpost_notify = 対象者にEメールで通知
+lang_calendar_newpost_notifyalt = 項目の対象者にEメールで通知
+
+
+#/html/calendar/newtask.html
+
+lang_calendar_newtask_title = ToDoの新規追加
+lang_calendar_newtask_msg = ToDoを追加
+
+lang_calendar_newtask_edit = 対象者に編集を許可する
+lang_calendar_newtask_editalt = 対象者にToDoの編集を許可する
+lang_calendar_newtask_notify = 対象者にEメールで通知
+lang_calendar_newtask_notifyalt = ToDoの対象者にEメールで通知
+
+#/html/calendar/notify-add.html
+
+lang_calendar_notify_add_title = 新規作成
+lang_calendar_notify_add_new = カレンダーを新規に作成する -
+
+#/html/calendar/notify-cal-body.html
+
+lang_calendar_notify_cal_body_summary =以下のようにカレンダーが作成されました:
+lang_calendar_notify_cal_body_title = タイトル
+lang_calendar_notify_cal_body_assign = 対象
+lang_calendar_notify_cal_body_description = 注釈
+
+#/html/calendar/notify-cal-subject.html
+
+lang_calendar_notify_cal_subject_new = 新規カレンダー
+
+#/html/calendar/notify-delete.html
+
+lang_calendar_notify_delete_delentry = 削除
+lang_calendar_notify_delete_delcalentry = カレンダーの削除 -
+
+#/html/calendar/notify-modify.html
+
+lang_calendar_notify_modify_update = 更新
+lang_calendar_notify_modify_entry = カレンダーの更新 -
+
+#/html/calendar/notify-taskadd.html
+
+lang_calendar_notify_taskadd_new = 新規作成
+lang_calendar_notify_taskadd_newtask = ToDoの新規作成 -
+
+#/html/calendar/notify-task-body.html
+
+lang_calendar_notify_task_body_summary = 新規のToDoが以下のように作成されました
+lang_calendar_notify_task_body_title = タイトル
+lang_calendar_notify_task_body_assign = 対象
+lang_calendar_notify_task_body_description = 注釈
+
+#/html/calendar/notify-taskdelete.html
+
+lang_calendar_notify_taskdelete_entrydelete = 削除
+lang_calendar_notify_taskdelete_deletetask = ToDoの削除 -
+
+#/html/calendar/notify-taskmodify.html
+
+lang_calendar_notify_taskmodify_update = 更新
+lang_calendar_notify_taskmodify_updatetask = ToDoの更新
+
+#/html/calendar/notify-task-subject.html
+
+lang_calendar_notify_task_subject_new = 新規ToDo
+
+#/html/calendar/readpost.html
+
+lang_calendar_readpost_title = カレンダー $var['id']を見る
+lang_calendar_readpost_reading = カレンダーを見ます
+
+#/html/calendar/readtask.html
+
+lang_calendar_readtask_title = ToDoを見る $var['id']
+
+#/html/calendar/summary.html
+
+lang_calendar_summary_welcome =ようこそ $this->RealNameの個人用フォルダのスタートページへ！ こちらでは未処理のカレンダー項目、ToDo等の概要、未読メール数やあなたのアカウント情報がご覧になれます。その他の$pref['brandname']のサービスをご利用の場合は上部のナビゲーションバーをご利用ください。
+lang_calendar_summary_calendar = カレンダー
+lang_calendar_summary_addnew = 新規追加
+lang_calendar_summary_tasks = ToDo
+
+#/html/calendar/summaryhead.html
+
+lang_calendar_summaryhead_overview = ToDo、カレンダーの概要
+
+#/html/calendar/task-empty.html
+
+lang_calendar_task_empty_empty = ToDoリストは空です
+
+#/html/calendar/task-move.html
+
+lang_calendar_task_move_move = 選択項目を移動
+
+#/html/calendar/today.html
+
+lang_calendar_today_today = 今日のカレンダー
+
+#/html/calendar/todo.html
+
+lang_calendar_todo_view = ファイル閲覧
+lang_calendar_todo_taskname = ToDo名 -
+lang_calendar_todo_tasknamealt = 新規ToDo作成
+lang_calendar_todo_addnew = 追加
+lang_calendar_todo_empty = ToDoリストは空です
+lang_calendar_todo_newtask = 新規ToDo追加
+
+#/html/calendar/type-select.html
+
+lang_calendar_type_select_general = 一般
+lang_calendar_type_select_pending = 未処理
+lang_calendar_type_select_open = 開く
+lang_calendar_type_select_complete = 完了
+lang_calendar_type_select_urgent = 緊急
+lang_calendar_type_select_appointment = アポイント
+lang_calendar_type_select_birthday = 誕生日
+lang_calendar_type_select_friend = 友人
+lang_calendar_type_select_family = 家族
+lang_calendar_type_select_colleague = 同僚
+lang_calendar_type_select_other = その他
+lang_calendar_type_select_business = ビジネス
+lang_calendar_type_select_conference = 会議
+lang_calendar_type_select_deadline = 締切
+lang_calendar_type_select_interview = 面接
+lang_calendar_type_select_lunch = ランチ
+lang_calendar_type_select_meeting = 打ち合わせ
+lang_calendar_type_select_phonecall = 電話
+lang_calendar_type_select_travel = 旅行
+lang_calendar_type_select_entertainment = 娯楽
+lang_calendar_type_select_concert = コンサート
+lang_calendar_type_select_movie = 映画
+lang_calendar_type_select_performance = 公演
+lang_calendar_type_select_sports = スポーツ
+lang_calendar_type_select_television = TV
+lang_calendar_type_select_friends = 家族、友人
+lang_calendar_type_select_breakfast = 朝食
+lang_calendar_type_select_brunch = ブランチ
+lang_calendar_type_select_dinner = 夕食
+lang_calendar_type_select_gettogether = 会食
+lang_calendar_type_select_lunch = ランチ
+lang_calendar_type_select_movie = 映画
+lang_calendar_type_select_party= パーティ
+lang_calendar_type_select_picnic = ピクニック、バーベキュー
+lang_calendar_type_select_school = 学校
+lang_calendar_type_select_sports = スポーツ
+lang_calendar_type_select_personal = 個人用フォルダ
+lang_calendar_type_select_doctor = 病院
+lang_calendar_type_select_fitness = フィットネス
+lang_calendar_type_select_haircut = 美容、理髪
+lang_calendar_type_select_paybills = 支払い
+lang_calendar_type_select_shopping = ショッピング
+lang_calendar_type_select_task = その他
+lang_calendar_type_select_vacation = バカンス
+lang_calendar_type_select_event = イベント
+lang_calendar_type_select_anniversary =記念日
+lang_calendar_type_select_gathering = 会合
+lang_calendar_type_select_graduation = 卒業
+lang_calendar_type_select_holiday = 休暇
+lang_calendar_type_select_reunion = 同窓会
+lang_calendar_type_select_wedding = 結婚式
+
+#/html/calendar/weekhead.html
+
+lang_calendar_weekhead_viewing = 見る
+lang_calendar_weekhead_days = 日
+
+# END OF /html/calendar/
+
+
+# 3.0 G l o b a l    H e l p    V a r i a b l e s
+
+lang_help_title = ウェブメールヘルプガイド
+lang_help_index = ヘルプインデックス
+lang_help_okbutton = OK
+lang_help_top = トップ
+
+
+# 3.1 /html/help/*
+
+#/html/help/addpop3.html
+
+lang_help_addpop3_title = マルチPOP3アカウント
+lang_help_addpop3_text1 = <b>外部POP3アカウント追加</b>オプションではご使用のPOP3アカウントのメールをウェブメールの受信箱に受信することができます。こちらにはあなたが使用する外部アカウントのリストがあります。
+lang_help_addpop3_text2 = <b>アカウントユーザー名/パスワードの詳細</b>では、外部アカウントのメールを受信するために必要な情報を追加することができます。
+lang_help_addpop3_text3 = <b>メール設定</b>では、返信や転送先に別のアドレスを設定する際に必要な設定を行うことができます。
+lang_help_addpop3_text4 = <b>エンコード</b>ではアカウント毎のエンコードの設定が可能です。
+lang_help_addpop3_text5 = <b>アカウント作成</b>をクリックすることでメールボックスにアカウントを追加することができます。
+
+#/html/help/addressbook.html
+
+lang_help_addressbook_title = アドレス帳
+lang_help_addressbook_text1 = アドレス帳では友人や連絡先、重要な住所などの情報の管理ができます。アドレス帳からメールを作成することも、受信メールからアドレス帳にアドレスを追加することもできます。
+lang_help_addressbook_text2 =「新規連絡先」ボタンでアドレス帳にユーザーを追加できます。ユーザーの詳細を入力し、「追加」を選択してアドレス帳に追加してください。リストアップされた連絡先の右のアイコンを選択することでアドレス帳の内容を編集/削除できます。
+lang_help_addressbook_text3 =あなたが許可すればすべての一般ユーザーが使用するグローバルアドレス帳を使うことができます。グローバルアドレス帳を使用するためにはアドレス帳のタイプを「個人用フォルダ」から「グローバル」に変更してください。
+
+#/html/help/calendar.html
+
+lang_help_calendar_title = カレンダー
+lang_help_calendar_text1 =ここでは仕事、アポイント、ToDo、など各種スケジュールを管理できます。
+lang_help_calendar_text2 =予定を追加するためには目的の時間をクリックしてください。下の例では13:00 (1:00pm)にCEOとの昼食の予定がご覧になれます。予定にさらに詳細な情報を追加することも可能です。
+lang_help_calendar_timeline = 予定時間表
+lang_help_calendar_timelinetext = こちらでは何時に予定が入っているかを見ることができます。 '00'は9:00 を'30' は9:30 をそれぞれ示しています。9:30 以前の予定は'00'の欄に、9:30 以降の予定は'30' の欄に表示されます。予定を作成する時は5分単位で好きな時間に設定できます。'00' や'30' は目安としてご利用ください。
+lang_help_calendar_appointment = 予定
+lang_help_calendar_appointmenttext =ベルは予定を表しています。予定は目的の時間をクリックすることで作成できます。
+lang_help_calendar_mselect = 月選択
+lang_help_calendar_mselecttext1 =前の月の予定を見る時は&quot;&lt;&lt;&quot;を、次の月の予定を見る時は&quot;&gt;&gt;&quot;を選択してください。この例では&quot;&gt;&gt;&quot;を押すと8月に、&quot;&lt;&lt;&quot;を押すと6月に移動します。表示後は予定の追加/削除/編集が可能です。
+lang_help_calendar_mselecttext2 = こちらでは月間予定を見ることができます。今日は赤で表示されます。（上の例では7月13日）他の日に移動するためには日付をクリックしてください。予定の入っている日（例では13日と18日）は太字で表示されます。
+lang_help_calendar_addtask = 新規追加
+lang_help_calendar_addtasktext =予定を追加するためにはこちらをクリックしてください。予定は下に表示されます。予定終了後は項目を選択し、「選択項目を削除」か「選択項目を移動」をクリックしてください。
+lang_help_calendar_deltask =削除
+lang_help_calendar_deltasktext =予定を削除するためには目的の予定を選択し「削除」をクリックしてください。予定は永久に削除されます。
+lang_help_calendar_taskexample = ‘ハロルド氏に電話’は予定の入力例です。この予定は時間とは関係なく設定されています。カレンダー上の特定の日にセットすることはできません。
+
+#/html/help/compose.html
+
+lang_help_compose_title = Eメールの作成/送信
+lang_help_compose_sending = メール送信
+lang_help_compose_outfeat = メール作成機能
+lang_help_compose_sendhtml = HTML メールコンポーザ
+lang_help_compose_attachments = 添付ファイル
+lang_help_compose_signatures = 署名
+lang_help_compose_sendingtext =ウェブメールアカウントを使うことでインターネット上のあらゆるアドレスにメールを送信することができます。</p>
+lang_help_compose_howtosend = ウェブメールからメールを送信するためには
+lang_help_compose_li1 = ご使用のアカウントでログインしてください
+lang_help_compose_li2 = ナビゲーションバーの「メール作成」をクリックしてください
+lang_help_compose_li3 = メールヘッダー情報を入力してください:
+lang_help_compose_li4 = <b>宛先：</b> 受取人のアドレスを入力してください。またはアドレス帳からアドレスを選択してください。受取人を複数設定する場合はアドレスの間にコンマ(,) を入れてください。
+lang_help_compose_li5 = <b>件名：</b> 件名を入力してください。
+lang_help_compose_li6 = <b>Cc:</b> 追加する受取人のアドレスを入力してください。メールのコピーが送信されます。
+lang_help_compose_li7 = <b>BCC:</b> 追加する受取人のアドレスを入力してください。他の受取人には追加された受取人の情報は送信されません。
+lang_help_compose_li8 = メール欄にメッセージを入力してください。
+lang_help_compose_li9 = 必要なら、送信するメールに添付するファイルを選択してください。
+lang_help_compose_li10 = 画面上部または下部の「送信」ボタンを押してください。
+lang_help_compose_features = メール送信機能
+lang_help_compose_sendhtmldesc =IE4以上をご使用の場合、強力なHTMLメール作成機能を使用することができます。タグの使用により、メールの文字フォントや文字の色、フォーマット等を変更し、メールに色を使用することができます。タグを使えばHTML のテーブル機能から画像やハイパーリンクなど様々な表現が可能になります。<b>HTMLソース</b>ボタンからタグを選択したり、他のアプリケーションからタグをコピー/貼り付けすることもできます。
+lang_help_compose_sendhtmldesc2 =注：この機能は今のところWindows版IE4以上でのみお使いいただけます。DHTML/CSSに対応していないブラウザでは現在利用できません。ご了承ください。
+lang_help_compose_attachmentsdesc = メールにファイルを添付するためには、まずメール作成画面の「ファイル添付」ボタンをクリックしてください。ファイルを添付するための新規ウィンドウがポップアップします。「参照」ボタンをクリックし、ご使用のハードディスクから添付するファイルを選び、「OK」をクリックしてください。ファイルがアップロードされ、ファイルサイズの確認、または削除が可能になります。
+lang_help_compose_signaturesdesc =メール送信時には、メールの最後に<b>署名</b>の追加ができます。詳しくは設定パネルをご覧ください。
+
+#/html/help/file.html
+
+lang_help_file_text1 = ウェブメールの各機能に関してはヘルプをご覧ください。
+lang_help_file_text2 =各ヘルプファイルでは、ウェブメールについてより詳しくご紹介しています。上部のトピックリストよりご覧になりたい情報を選択してください。
+
+#/html/help/ldap.html
+
+lang_help_ldap_title = LDAP サーチエンジン
+lang_help_ldap_text1 = LDAPサーチエンジンによりユーザーのメールアドレス、住所、電話番号の検索ができます。LDAP は世界中の個人情報の公共データベースです。検索を開始するためには捜したい個人のフルネーム、またはオプションとしてメールアドレスを入力する必要があります。
+lang_help_ldap_text2 = When viewing the results of the search 検索結果閲覧時に検索結果からご自分のアドレス帳へアドレスを追加したり、ユーザーの情報を編集、あるいはメールを作成したりすることができます。
+lang_help_ldap_text3 = メールサービス設定の「検索タイプ」を「システムデータベースを検索」に変更すれば各ユーザーのドメインやサイトの検索が可能になります。
+
+#/html/html/newmbox.html<a href="">
+</a>
+lang_help_newmbox_title = メールボックスオプション
+lang_help_newmbox_text1 =ここではご使用のメールボックスやフォルダのオプション設定が可能です。
+lang_help_newmbox_text2 = <b>アクティブメールボックス</b>では、ご使用のメールボックス内のフォルダのリストや、総メール数、各フォルダの容量の表示、フォルダの削除が可能です。
+lang_help_newmbox_text3 = <b>新規フォルダ作成</b>ではメールボックスフォルダの追加が可能です。
+lang_help_newmbox_text4 = <b>受信拒否</b>オプションは特定のメールアドレスから送られてくるメールの受信を拒否することができます。受信したくないメールのアドレスを選択し、<b>追加</b>ボタンを押してください。
+lang_help_newmbox_text5 = <b>自動返信</b>オプションでは、受け取ったメールのすべてに対し自動的に返信することができます。自動返信に使用するメールを入力してください。
+lang_help_newmbox_text6 = <b>メール振り分け</b>オプションでは、受信したメールを自動的に受信箱の特定のフォルダに振り分けることができます。
+
+#/html/html/reademail.html
+
+lang_help_reademail_title = メールを読む
+lang_help_reademail_text1 = Eメールウィンドウのフレームには受信したメールのリストが表示されます。目的のメールにカーソルを移動するとそのメールの最初の160文字（半角英数の場合）が表示されます。メールを読むにはメールの件名をクリックして全文を表示してください。
+lang_help_reademail_text2 = Eメール設定パネルでは受信メールリスト表示の優先度を設定できます。件名、受信日時、送信者、ID等で並べ替えることができます。他のフォルダに移動したりゴミ箱に移動して削除することもできます。
+lang_help_reademail_text3 = EメールウィンドウパネルからはEメール設定オプション、フォルダ情報等に直接移動することができます。
+
+#/html/html/settings.html
+
+lang_help_settings_title = 設定変更
+lang_help_settings_text = Eメール設定を使ってEメールアカウントの設定を変更できます。以下の設定を自由に変更することが可能です。
+lang_help_settings_fullname = 名前
+lang_help_settings_fullnamedesc = ここでは送信するメールに表示される、あなたの名前を設定できます。
+lang_help_settings_replyto =返信先
+lang_help_settings_replytodesc =既定のアドレス以外に返信先を設定したい場合は、こちらで設定できます。
+lang_help_settings_sortby = リスト表示
+lang_help_settings_sortbydesc = メールボックス内でのメールの表示順を設定します。
+lang_help_settings_layout = レイアウト
+lang_help_settings_layoutdesc = ウェブメールが提供するインターフェースからお好きな物を選択できます。初めはシンプルな物からお使いになることをお勧めします。メールボックスでのメールポップアップ機能をオフにすることもできます。
+lang_help_settings_language = 言語
+lang_help_settings_languagedesc = インターフェースで使用する言語を選択します。
+lang_help_settings_nrmsg = 表示メール数
+lang_help_settings_nrmsgdesc = 受信箱で一度に表示するメール数を設定します。進む/戻るボタンで前後のメールを表示できます。
+lang_help_settings_timezone = 時間帯
+lang_help_settings_timezonedesc = お住まいの地域の時間帯を設定します。メールを送信する際にこれに基づいた日時が使用されます。
+lang_help_settings_signature = 署名
+lang_help_settings_signaturedesc = 使用する署名を設定します。送信するメールの最後に追加されます。
+lang_help_settings_deltrash = ログアウト時にゴミ箱を空にしますか？
+lang_help_settings_deltrashdesc = ログアウト時に自動的にゴミ箱を空にしたいとき設定します。
+lang_help_settings_editor = HTMLエディター
+lang_help_settings_editordesc = HTMLエディターを使用したい時に選択します。
+lang_help_settings_diversion = 転送
+lang_help_settings_diversiondesc = 受信メールを他のアカウントに転送したいときに設定します。
+lang_help_settings_scheme = スキーム
+lang_help_settings_schemedesc = Eメールデスクトップでどのカラースキームを使用するか設定します。
+
+#/html/help/spell.html
+
+lang_help_spell_title = スペルチェック機能
+lang_help_spell_text1 = メールにスペルミスがないか確認したいときに使用します。使用した単語がデータベースにない場合、それに対する候補の単語リストが表示されます。リストから単語を選択し、「変更」ボタンをクリックしてください。単語がリストにない場合、ご自分で入力することもできます。
+lang_help_spell_text2 =スペルが正しいのにも関わらずスペルミスが指摘される場合は、「ワードを追加」ボタンをクリックしてユーザ辞書に単語を追加してください。無視する場合は「無視」ボタンをクリックしてください。
+lang_help_spell_text3 = メールにスペルミスがない場合はメール作成ウィンドウに戻ります。
+
+#/html/help/wap.html
+
+lang_help_wap_title = WAP Eメール
+lang_help_wap_desc = あなたのメールにWAP対応携帯電話からアクセスできます。
+lang_help_wap_text1 =あなたのメールアカウントが<i>WAP(Wireless Application Protocol)</i>に対応していれば、携帯電話を利用してEメールの送受信が可能になります。あなたのアカウントでログインすればお使いのPOP3アカウントのすべてのオプションがWap上で使用可能です。
+lang_help_wap_text2 =使い方は簡単です！お使いのWAP対応携帯電話のサービスメニューから<B>http://atmail.nl/wap.php</B>（ドメイン名はあなたのホスト名に変更してください）にアクセスしてください。あなたのユーザ名とパスワードを入力すれば携帯からあなたのEメールにワイヤレスでアクセスできます。ウェブメールのWAPでは以下の5つの機能がご利用になれます。：
+lang_help_wap_unread = 未読メール表示
+lang_help_wap_unreaddesc =メールボックス内の未読メールのみを表示します。簡単、迅速に最新のメールを確認できます。
+lang_help_wap_showall = すべて表示
+lang_help_wap_showalldesc =受信箱内のすべてのメールを表示します。設定パネルからメールの表示順、レイアウトを変更できます。
+lang_help_wap_compose = メール作成
+lang_help_wap_composedesc =新規メールの作成ができます。インターネット上のすべてのアドレスに送信可能です。
+lang_help_wap_options = オプション
+lang_help_wap_optionsdesc =アカウントのオプションを設定できます。メールのフォーマット、スタイル、インターフェースの設定等が変更できます。
+lang_help_wap_abooke = アドレス帳
+lang_help_wap_abookdesc = 最終アクセス時のアドレス帳の情報を保存します。送信メールに素早くアドレスを追加することができます。
+lang_help_wap_text3 =Eメールにいつでもどこでも簡単にアクセスできます！詳しい情報やトラブルに関してはお使いのサービスプロバイダにお問い合せください。
+
+
+# END OF /html/help/*
+
+# 4.0 /html/javascript/
+
+# The entries in this chapter are all JavaScript.
+# Javascript Messages cannot contain single or double qoutes.
+# If you must use these characters consider excaping them like
+#  \'quoted text\', \"doublequoted text\"
+# thanks
+
+lang_myfolders_menuroot = $pref['brandname']
+lang_myfolders_folders = フォルダ
+lang_myfolders_personal = 個人用フォルダ
+lang_myfolders_utilities = ユーティリティ
+lang_myfolders_startpage = スタートぺージ
+lang_myfolders_settings = Eメール設定
+lang_myfolders_profile = ユーザープロファイル
+lang_myfolders_folderman = フォルダマネージャ
+lang_myfolders_filters = Eメールフィルタ
+lang_myfolders_wap = WAP アクセス
+lang_myfolders_multiaccounts = マルチアカウント
+
+lang_passutil_minchars =「新パスワード」欄には5文字以上の文字を記入してください。
+lang_passutil_mismatch = パスワードが違います
+
+lang_schemes_select = -- 選択
+lang_schemes_blue = ブルー(既定)
+lang_schemes_forest = フォレスト
+lang_schemes_gray = グレー
+lang_schemes_lemon = レモン
+lang_schemes_red =レッド
+
+lang_blue_pane_composehtml_recipientcheck =メールの受取人を設定してください。
+lang_blue_pane_startpage_overquota =アカウントのメールボックスは容量をオーバーしています。メールを削除してください。
+lang_javascript_compose_uncheck =ツールバーを使うには\"HTMLソースを見る\"のチェックを外してください。
+lang_javascript_compose_linkprompt =リンク先を設定してください (例： http://www.adomain.com):
+lang_javascript_composewin_change =エディター設定を変更し現在の変更点を消去してもよろしいですか？
+lang_javascript_menubar_big_logoff = ログアウトしますか？
+lang_javascript_schemes_chscheme =カラースキームとトップバー画像は変更されました。保存するためには「保存」ボタンをクリックしてください。
+
+lang_javascript_validate_username = \"ユーザー名\" フィールドを記入してください
+lang_javascript_validate_firstname = \"名\" フィールドを記入してください
+lang_javascript_validate_lastname = \"姓\" フィールドを記入してください
+lang_javascript_validate_question = \"パスワードヒント\"フィールドを記入してください
+lang_javascript_validate_minusername = \"ユーザー名\" フィールドには3文字以上記入してください
+lang_javascript_validate_minpasswd = \"パスワード\" フィールドには5文字以上記入してください
+lang_javascript_validate_passwords = パスワードが違います
+lang_javascript_validate_characters = \"ユーザー名\" フィールドには半角英数字、ハイフン、アンダーバー以外の文字は使用できません
+lang_javascript_validate_disclaimer =サインアップの前に免責条項に同意していただく必要があります
+
+lang_javascript_validate_folders_maxfolder =フォルダ名には64文字以上は使用できません。他の名前を使用してください。
+lang_javascript_validate_folders_characters =フォルダ名には半角英数字・ドット、コンマ、- _ [] {} ()以外は使用できません。
+
+lang_javascript_validate_group_nogroup = \"グループ名\" フィールドに記入してください
+lang_javascript_validate_group_maxgroup = \"グループ名\" は32文字以内にしてください。.
+lang_javascript_validate_group_characters = \"グループ名\" フィールドには半角英数字、ハイフン、アンダーバー以外の文字は使用できません
+
+lang_javascript_validate_password_minpasswd = \'新パスワード\' フィールドには8文字以上記入してください
+lang_javascript_validate_password_maxpasswd = \'新パスワード\' フィールドは64文字以内にしてください
+lang_javascript_validate_password_passwords = パスワードが違います
+lang_javascript_validate_password_question = パスワードを忘れたり紛失した時のために \'パスワードヒント\' を記入してください
+
+lang_javascript_menu_DeleteConfirm = このフォルダを削除してもよろしいですか？
+lang_javascript_menu_FolderMaxLength = フォルダ名を64文字以内で指定してください。
+lang_javascript_menu_OpenFolder = フォルダを開く
+lang_javascript_menu_NewFolder = 新しいフォルダ
+lang_javascript_menu_NewSubFolder = 新しいサブフォルダ
+lang_javascript_menu_RenameFolder = フォルダ名変更
+lang_javascript_menu_DeleteFolder = フォルダを削除
+lang_javascript_menu_SearchFolder = フォルダを検索
+lang_javascript_menu_RightClickMoreOptions = 右クリックして他のオプションを表示
+
+lang_javascript_menu_ShowCalendar = カレンダーを表示
+lang_javascript_menu_ShowMailboxes = メールボックスを表示
+lang_javascript_menu_ShowContacts = 連絡先を表示
+lang_javascript_menu_HideCalendar = カレンダーを隠す
+lang_javascript_menu_HideMailboxes = メールボックスを隠す
+lang_javascript_menu_HideContacts = 連絡先を隠す
+
+# Alerts
+lang_blue_pane_settings_leavemsgalert = \'いいえ\' を選択すると、ダウンロードしたメールはローカルに保存され、\nリモートホスト内のメールは削除されます。\n \nメールをリモートホスト内に残しておきたい場合は\'はい\' を選択してください。
+
+# Confirms
+lang_blue_pane_abook_delgroupconfirm =グループ\'' + email + '\' をアドレス帳から削除しますか？
+lang_blue_pane_abook_deluserconfirm =連絡先 \'' + email + '\'をアドレス帳から削除しますか？
+lang_blue_pane_folders_delfolderconfirm = フォルダ「 ' + FolderName +' 」には' + FolderNum + ' 件のメールがあります。 このフォルダを削除しますか？
+
+lang_blue_pane_showmail_plain_deltrashconfirm = \'ゴミ箱\' フォルダ内のメールを削除してよろしいですか？
+
+# WindowStatus
+lang_msg_totalmsgs_windowstatus = $var['folder'] フォルダ- 総メール数: $var['total']
+lang_blue_pane_abook_windowstatus = $var['status'] アドレス帳を見る
+lang_blue_pane_abook_new_windowstatus = アドレス帳にユーザーを追加
+lang_blue_pane_abook_view_windowstatus = アドレス帳内のユーザの編集/追加
+lang_blue_pane_ldap_windowstatus = アドレス帳検索
+lang_blue_pane_ldap_search_windowstatus = アドレス帳検索結果を見る
+lang_blue_pane_searchmove_windowstatus = $var['move'] 件のメールを$var['newfolder']フォルダに移動しました
+lang_blue_pane_searchresults_windowstatus = $var['status']
+
+
+# END OF /html/javascript/*
+
+# 5.0 /html/msg/*
+
+lang_msg_calentries_text = $var['count'] カレンダー作成
+lang_msg_caltoday_alt = 追加
+lang_msg_chpasswderror_text =パスワードが違います。もう一度入力してください。
+lang_msg_chpasswdok_text =パスワードが更新されました。大切に保管してください。
+lang_msg_emptycal_text = <i><font color='gray'>空</font></i>
+lang_msg_onetask_text = 予定 $var['taskcount'] 件
+lang_msg_moretasks_text = 予定 $var['taskcount'] 件
+lang_msg_movedmsgs_text = $var['nrmsg'] 件のメールを$var['newfolder']フォルダ : $var['status']に移動しました
+lang_msg_msgqueue_text = メールを並べる
+lang_msg_nextmsg_text =次のメール
+lang_msg_prevmsg_text = 前のメール
+lang_msg_notitle_text = 無題
+lang_msg_popdlmsg_text = <font class='sw'> $var['num'] 件のメールをダウンロード中。　計 $var['count'] 件</font>
+lang_msg_popmsgnum_text = <font class='sw'> メール $var['msgnum'] ($var['msize'] bytes) . &nbsp;</font>
+lang_msg_poprelogin_text = 再ログイン中($var['msize'] bytes).
+lang_msg_printcal_title_text = 本日のエントリー
+lang_msg_safedraft_text = 下書きフォルダに保存
+lang_msg_searchnr_text = $var['nrrecords'] 件のレコードが該当しました
+lang_msg_sentmsg_text = メール送信完了
+lang_msg_sentmsga_text = メールは正しく送信されました | メールにはファイルが添付されています
+lang_msg_sortmsgs_text = $var['folder']:フォルダに移動する
+lang_msg_spamtrash_text = 迷惑メールはゴミ箱に移動しました
+lang_msg_spell_nomatch_text = $var['word']はデータベースにありません
+lang_msg_spell_suggested_text = 予測される単語： $var['word']
+lang_msg_updated_text = &nbsp;- <font color=#ff0000>正しく更新されました</font>
+
+lang_msg_viewday_alt =日付を見る
+lang_msg_viewingday_text = $week曜日を見る
+
+lang_msg_wap_abookempty_text = <option value=\"$email\">$email</option>\n
+lang_msg_wap_allmsgs_text = すべてのメールを表示
+lang_msg_wap_display_text = 新規受信メールを表示
+lang_msg_wap_nomsg_text = メールボックス内にメールがありません
+
+# END OF /html/msgs/*
+# END OF /html/
+# END OF FILE
+
+# New ones
+lang_Global_refresh = 再読込
+lang_abook_globalview_status = アドレス帳の中のグローバルユーザーを見る
+
+# Xp menubar
+lang_xp_menubar_question = 質問する
+lang_xp_menubar_file = ファイル
+lang_xp_menubar_edit = 編集
+lang_xp_menubar_tools = ツール
+lang_xp_menubar_message = メール
+lang_xp_menubar_preferences = 設定
+lang_xp_menubar_help = ヘルプ
+lang_xp_menubar_signout = ログ&nbsp;アウト
+lang_xp_menubar_signout_alt = ログアウト
+
+lang_xp_menubar_newmessage = 新規メール
+lang_xp_menubar_newcalendar = 新規カレンダー
+lang_xp_menubar_newtask = 新規予定
+lang_xp_menubar_printmessage = メール印刷
+
+lang_xp_menubar_copy = コピー
+lang_xp_menubar_selectall = すべてを選択
+lang_xp_menubar_deselect = 選択解除
+lang_xp_menubar_searchmessages = メール検索
+lang_xp_menubar_movetotrash = ゴミ箱に入れる
+lang_xp_menubar_refreshinbox = 受信箱再読込
+lang_xp_menubar_accountpreferences = Eメール設定
+lang_xp_menubar_layouttype = レイアウトタイプ
+lang_xp_menubar_accountprofile = ユーザープロファイル
+lang_xp_menubar_changepassword = パスワード変更
+lang_xp_menubar_checkinbox = 受信箱を確認
+lang_xp_menubar_deletetrash = ゴミ箱を空にする
+lang_xp_menubar_foldermanager = フォルダマネージャ
+lang_xp_menubar_emailrules = Eメールフィルタ設定
+lang_xp_menubar_addressbook = アドレス帳
+lang_xp_menubar_findpeople = アドレス帳検索
+lang_xp_menubar_multiaccounts = マルチアカウント
+lang_xp_menubar_reply = 返信
+lang_xp_menubar_replyall = 全員に返信
+lang_xp_menubar_forwardmessage = 転送
+lang_xp_menubar_blocksender = 受信拒否設定
+lang_xp_menubar_flagmessage = マークを付ける
+lang_xp_menubar_unflagmessage = マークを外す
+lang_xp_menubar_helpindex = ヘルプ索引
+lang_xp_menubar_mailhelp = メールヘルプ
+lang_xp_menubar_settingshelp = 設定ヘルプ
+lang_xp_menubar_calendarhelp = カレンダーヘルプ
+lang_xp_menubar_searchaddressbook = アドレス帳検索
+
+#
+lang_xp_menubar_alt_writemessage = メール作成
+lang_xp_menubar_alt_sendreceive = 送受信
+lang_xp_menubar_alt_find = 検索
+lang_xp_menubar_alt_returntomail = メールに戻る
+lang_xp_menubar_alt_overview = 概要
+
+
+
+#Xp Calendar Menubar
+
+lang_xp_menubarcal_returntomail = メールに戻る
+lang_xp_menubarcal_overview = 概要
+
+#Xp javascript messages
+lang_xp_jscript_alert_reply = 返信するメールを開いてください
+lang_xp_jscript_alert_block = 受信拒否するメールを開いてください
+lang_xp_jscript_alert_blockconfirm = このアドレスからのメールの受信を拒否しますか？
+lang_xp_jscript_alert_flag = マークを付けるメールを開いてください
+lang_xp_jscript_alert_delete = 削除するメールを開いてください
+lang_xp_jscript_alert_deletemsg = 今開いているメールを削除しますか？
+lang_xp_jscript_alert_print = 印刷するメールを開いてください
+
+lang_xp_jscript_nextmsg_text = 次のメール
+lang_xp_jscript_prevmsg_text = 前のメール
+lang_xp_jscript_firstmsg_text = 最初のメール
+lang_xp_jscript_lastmsg_text = 最新のメール
+
+lang_login_mailserver = メールサーバー
+
+lang_login_simple = 簡易ログイン
+lang_login_simpletext = リモートアカウントにアクセスする為に簡易ログインを使うには<a href="index.php?func=ext">こちら</a>をクリックしてください。
+
+lang_login_advanced = 上級ログイン
+lang_login_advancedtext = 追加メールサーバーの設定を行うには <a href="index.php?func=ext&advanced=1">こちら</a> をクリックして上級ログインへ進んでください
+
+lang_login_xp_window1 = あなたは別ウィンドウにログインしました
+lang_login_xp_window2 = $pref['brandname'] からログアウトするためにはEメールウィンドウの「ログアウト」をクリックしてください
+
+# New Ones
+lang_xp_compose_menu_savetodrafts = 下書きを保存する
+lang_xp_compose_menu_addbcc = 受取人をBCCに追加する
+
+lang_xp_readmail_opennewwindow = メールを新規ウィンドウで開く
+lang_xp_global_showhide = メールを隠す/表示する
+lang_xp_jscript_alert_printmsg = 印刷するメールをひらいてください
+
+#/html/auth_spammer.html
+
+lang_auth_spammer_title = 迷惑メールを発見しました
+lang_auth_spammer_ld = 受信を拒否しました
+lang_auth_spammer_cd =あなたのIPアドレスは一日のメール送信数制限を越えています。迷惑メール防止の為にメール送信は中止されました。
+lang_auth_spammer_contact = Eメール管理者 ($this->admin_email)にお問い合せください。
+
+#/html/auth_permission.html
+lang_auth_permission_title = ファイルパーミッションにより拒否されました
+lang_auth_permission_ld = $pref['brandname'] ユーザーディレクトリでパーミッションエラーが発生しました
+lang_auth_permission_cd = $pref['brandname'] のパーミッションをユーザーディレクトリからウェブサーバーユーザーに変更してください。ユーザーファイル : $var['error']書き込み中にパーミッションにより拒否されました。
+lang_auth_permission_contact = $pref['brandname'] の設定に関する詳しい情報は <a href="http://atmail.nl/docs/">オンラインドキュメント</a>を参照してください。
+
+#/html/deditor.html
+lang_deditor_emotions = 絵文字挿入
+lang_deditor_emotions_title = 絵文字ポップアップを隠す/表示
+
+#html/settings.html
+lang_settings_refresh_header = 自動受信タイマー設定
+lang_settings_refresh_desc = 自動的に受信を行う時間を設定してください。
+lang_settings_refresh_disabled = 使用しない
+lang_settings_refresh_1mins = 1 分
+lang_settings_refresh_5mins = 5 分
+lang_settings_refresh_10mins = 10 分
+lang_settings_refresh_20mins = 20 分
+lang_settings_refresh_30mins = 30 分
+lang_settings_refresh_60mins = 1 時間
+
+lang_alert_import = $var['count'] 件の連絡先をインポートしました
+
+lang_login_xp_window3 = 自動的に新規ウィンドウが開かない場合は <a href="javascript:loadwin()">こちら</a>をクリックしてください
+lang_login_xp_popupalert = 自動ポップアップ機能はご使用のブラウザでは機能しません　\nメールを開くには下のリンクをご自分でクリックしてください
+
+# Changed values
+lang_blue_pane_abook_addcontactbutton = 新規連絡先
+lang_blue_pane_abook_addgrpbutton = 新規グループ
+lang_blue_pane_abook_searchbutton = 検索
+lang_blue_pane_abook_abooktype =タイプ:
+
+# New import function
+lang_blue_pane_abook_importbutton = インポート
+
+lang_abook_import_desc = &nbsp; 既存のアドレス帳からインポート
+lang_abook_import_step2 = ステップ 2: インポートファイル中の各項目がアドレス帳の中のどの項目に該当するのか選択してください。$pref['brand_name']中のアドレス帳のどの項目にインポートするのかを選択することができます。
+lang_abook_import_match = 該当する項目名
+lang_abook_import_entries = インポート
+lang_abook_import_step1 = ステップ1: アドレス帳のインポート形式を選択してください。一般的なEメールクライアントのほとんどがアドレス帳を$pref['brandname']にインポート可能なCSV形式のファイルに書き出すことができます。CSVのファイル形式、メールヘッダー情報、ファイルの場所を指定してアップロードしてください。
+lang_abook_import_import = インポートオプションの選択
+lang_abook_import_type = インポート形式
+lang_abook_import_importtype = CSV ファイル ( コンマで区切られた物 )
+lang_abook_import_column = CSVのコラム情報を含む第一列
+lang_abook_import_fileselect = インポートするファイルを選択
+lang_abook_import_submitfile =ファイルインポート &gt;&gt;
+lang_xp_sendmsg_addbutton = 受取人をアドレス帳に追加
+
+### SMS utility
+
+lang_xp_sms_tab1 = &nbsp;My&nbsp;SMS&nbsp;クレジット
+lang_xp_sms_tab2 = &nbsp;SMS&nbsp;フィルター
+lang_xp_sms_tab3 = &nbsp;SMS&nbsp;ログ
+lang_xp_sms_description = $pref['brandname'] を利用してSMS(short-message-service)メールを送信するためにはクレジットを購入してください。- 他の解体電話にメッセージを送信したりEメールの受信通知を受けることができます。詳しくは<a href="javascript:ChangeTab('2')">SMS フィルター</a>をご覧ください。<a href="javascript:helpwin('sms.html')">オンラインドキュメント</a>ではSMSモジュールの利用方法がご覧になれます。
+lang_xp_sms_credits = 残りクレジット : $var['SMSCredit']
+lang_xp_sms_purchase_credits = SMS クレジットを購入する
+lang_xp_sms_purchase_desc = SMS クレジットの追加購入
+lang_xp_sms_purchase_price = SMS 購入価格
+lang_xp_sms_purchase_price_10 = $ 2 - 10 メッセージ (一通につき20c )
+lang_xp_sms_purchase_price_20 = $ 3 - 20メッセージ(一通につき15c)
+lang_xp_sms_purchase_price_50 = $ 6 - 50メッセージ  (一通につき12c)
+lang_xp_sms_purchase_price_100 = $ 8 - 100メッセージ  (一通につき8c)
+lang_xp_sms_purchase_card_type = カード会社
+lang_xp_sms_purchase_visa = VISA
+lang_xp_sms_purchase_mastercard = Mastercard
+lang_xp_sms_purchase_amex = Amex
+lang_xp_sms_purchase_cardname = 契約者名
+lang_xp_sms_purchase_cardnumber = カード番号
+lang_xp_sms_purchase_card_expire = カード有効期限
+lang_xp_sms_purchase_card_expire_01 = 01
+lang_xp_sms_purchase_card_expire_02 = 02
+lang_xp_sms_purchase_card_expire_03 = 03
+lang_xp_sms_purchase_card_expire_04 = 04
+lang_xp_sms_purchase_card_expire_05 = 05
+lang_xp_sms_purchase_card_expire_06 = 06
+lang_xp_sms_purchase_card_expire_07 = 07
+lang_xp_sms_purchase_card_expire_08 = 08
+lang_xp_sms_purchase_card_expire_09 = 09
+lang_xp_sms_purchase_card_expire_10 = 10
+lang_xp_sms_purchase_card_expire_11 = 11
+lang_xp_sms_purchase_card_expire_12 = 12
+lang_xp_sms_purchase_card_expire_2003 = 2003
+lang_xp_sms_purchase_card_expire_2004 = 2004
+lang_xp_sms_purchase_card_expire_2005 = 2005
+lang_xp_sms_purchase_card_expire_2006 = 2006
+lang_xp_sms_filter = SMS フィルター - SMSで通知するEメールのフィルタ設定
+lang_xp_sms_filter_desc = SMSを利用してEメールの受信通知を行うためのフィルタ設定を行います。ユーティリティを使用して通知するメールを特定してください。
+lang_xp_sms_filter_active =SMS フィルタにかけるEメールを設定
+lang_xp_sms_filter_subject = 件名
+lang_xp_sms_filter_piority = 重要度
+lang_xp_sms_filter_date_created = 作成日
+lang_xp_sms_filter_mobile_num = 携帯電話番号
+lang_xp_sms_filter_matches = 該当数
+lang_xp_sms_filter_define = &nbsp; Eメールフィルタ設定- 携帯電話にSMS通知を行うためのフィルタ設定を行います
+lang_xp_sms_filter_high_priority = 重要度:高
+lang_xp_sms_filter_high_priority_desc =重要度:高に設定されたメールを受信した際に通知する
+lang_xp_sms_filter_email_subject = 件名
+lang_xp_sms_filter_email_subject_desc = 特定のキーワードに該当するメールを受信した際に通知する
+lang_xp_sms_filter_email_equal = 等しい
+lang_xp_sms_filter_email_islike = ?を含む
+lang_xp_sms_filter_email_email_from = 差出人
+lang_xp_sms_filter_email_email_from_desc =メールの差出人が特定のキーワードに該当する際に通知する
+lang_xp_sms_filter_mobile = 携帯電話番号
+lang_xp_sms_filter_mobile_desc =通知する携帯電話の電話番号を設定してください。国番号まで完全に記入し、またエリア番号の最初の0は削除してください。電話番号のフォーマットに関しての説明はドキュメントを参照してください。
+lang_xp_sms_log_total = SMS メール送信総数:
+lang_xp_sms_log_total_desc =下記は@Mailから送信されたSMSメールのリストです。メールの詳細をご覧になり、送信が正しく行われているかご確認ください。
+lang_xp_sms_log_date = 日付
+lang_xp_sms_log_to = 受取人
+lang_xp_sms_log_message = メッセージ
+lang_xp_sms_log_status = ステータス
+
+lang_myfolders_sms = SMS ユーティリティ
+
+### SMS Compose Screen
+
+lang_xp_sms_compose = SMS メールを作成ｇ
+lang_xp_sms_number = 電話番号
+lang_xp_sms_normal = ノーマル SMS メール
+lang_xp_sms_flash = SMS メール：ノーマル
+lang_xp_sms_new = SMSメール：フラッシュ
+lang_xp_sms_send_sms = SMSメール送信
+
+#SMS Delivery Status
+
+lang_xp_sms_delivery = SMS 送信状況
+lang_xp_sms_high_priority = 重要度 : 高
+lang_xp_sms_normal_priority =重要度 : 通常
+lang_xp_sms_low_priority =重要度 : 低
+
+lang_xp_sms_status_ok = メールは正常に送信されました
+lang_xp_sms_status_fail = 送信に失敗しました
+
+# No SMS Credit
+
+lang_xp_sms_nocredit = SMSクレジットがありません。SMSユーティリティ画面でクレジットを購入してください。
+lang_xp_sms_lowcredit =残りのSMSクレジットが5以下です。SMSユーティリティ画面でクレジットを追加購入してください。
+
+lang_xp_compose_menu_togglesrc = HTML ソースを表示
+
+#html/virusmessage.html
+lang_virus_warning = メールにウィルス ($var['VirusName'])が含まれているため開くことができません。このメールは削除することをお勧めします。また$var['EmailFrom']から送信されたメールを開く際は注意が必要です。
+
+#SMS status
+lang_msg_sms_ok = OK
+lang_msg_sms_fail = 失敗
+
+lang_Address_notes = 注釈
+lang_deditor_tahoma = Tahoma
+lang_deditor_di = インデント解除
+lang_deditor_ii = インデント
+lang_deditor_a = ハイパーリンク作成
+lang_deditor_editmode = 編集モード
+lang_deditor_ae = 上級編集モード
+lang_deditor_s1 = Size 1
+lang_deditor_s2 = Size 2
+lang_deditor_s3 = Size 3
+lang_deditor_s4 = Size 4
+lang_deditor_s5 = Size 5
+lang_deditor_s6 = Size 6
+lang_deditor_s7 = Size 7
+lang_deditor_style = スタイル
+lang_deditor_font_name = フォント
+lang_deditor_text = テキスト
+lang_deditor_undo = 元に戻す
+lang_deditor_redo = やり直し
+lang_deditor_sscript = 肩付き文字
+lang_deditor_subscript = 下付き添え字
+lang_deditor_symbol = 記号
+lang_deditor_jleft = 左詰め
+lang_deditor_jright = 右詰め
+lang_deditor_jcenter = 中央揃え
+lang_deditor_jfull = 均等割り付け
+lang_deditor_numbering = 段落番号
+lang_deditor_image = 画像
+lang_deditor_table = 表
+lang_deditor_absolute = 絶対位置
+lang_deditor_clean = 削除
+lang_deditor_asset = アセット
+lang_deditor_line = 列
+lang_deditor_pageproperties = ページ設定
+lang_deditor_pasteword = Wordから貼り付けする
+lang_deditor_self = セルフ
+lang_deditor_blank = 空白
+lang_deditor_parent = ペアレント設定
+lang_deditor_0 = 0
+lang_deditor_1 = 1
+lang_deditor_2 = 2
+lang_deditor_3 = 3
+lang_deditor_4 = 4
+lang_deditor_5 = 5
+lang_deditor_name = 名前
+lang_deditor_insert = 挿入
+lang_deditor_update = 更新
+lang_deditor_st = 取消線
+
+#
+
+lang_blue_pane_composehtml_createtable = 表を作成
+lang_blue_pane_composehtml_edittable = 表を編集
+lang_blue_pane_composehtml_editcell = セルを編集
+lang_blue_pane_composehtml_rows = 列
+lang_blue_pane_composehtml_columns = 段
+lang_blue_pane_composehtml_width = 幅
+lang_blue_pane_composehtml_pixels = ピクセル
+lang_blue_pane_composehtml_percent = ％
+lang_blue_pane_composehtml_height = 高さ
+lang_blue_pane_composehtml_backgroundcolor = 背景色
+lang_blue_pane_composehtml_backgroundimage = 背景画像 URL
+lang_blue_pane_composehtml_bordersize = 境界線のサイズ
+lang_blue_pane_composehtml_aligmnent = 配置
+lang_blue_pane_composehtml_left = 左
+lang_blue_pane_composehtml_right = 右
+lang_blue_pane_composehtml_center = 中央
+lang_blue_pane_composehtml_bordercolor = 境界線の色
+lang_blue_pane_composehtml_cellpadding = セル詰め
+lang_blue_pane_composehtml_cellspacing = セル間隔
+lang_blue_pane_composehtml_cellbackgroundcolor = セル背景色
+lang_blue_pane_composehtml_cellbackgroundimage  = セル背景画像 URL
+lang_blue_pane_composehtml_cellwidth = セルの幅
+lang_blue_pane_composehtml_cellheight = セルの高さ
+lang_blue_pane_composehtml_valign = 縦配置
+lang_blue_pane_composehtml_top = 上揃え
+lang_blue_pane_composehtml_middle = 中央揃え
+lang_blue_pane_composehtml_bottom = 下揃え
+lang_blue_pane_composehtml_wraptext = テキストを折り返して表示
+lang_blue_pane_composehtml_insertrow = 列を挿入
+lang_blue_pane_composehtml_insertcol = 段を挿入
+lang_blue_pane_composehtml_delete = 削除
+lang_blue_pane_composehtml_span = 間隔
+lang_blue_pane_composehtml_symbol = 記号
+lang_blue_pane_composehtml_x = X
+lang_blue_pane_composehtml_pageproperties = ページ設定
+lang_blue_pane_composehtml_title = メール送信
+lang_blue_pane_composehtml_leftmargin = 左余白
+lang_blue_pane_composehtml_rightmargin = 右余白
+lang_blue_pane_composehtml_topmargin = 上部余白
+lang_blue_pane_composehtml_bottommargin = 下部余白
+lang_blue_pane_composehtml_backgroundimage
+lang_blue_pane_composehtml_default_font_name = 既定のフォント
+lang_blue_pane_composehtml_default_font_size = 既定の文字サイズ
+lang_blue_pane_composehtml_default_font_color = 既定の文字色
+
+lang_blue_pane_settings_diversion_short = メール転送
+
+lang_xp_menubar_newsms = 新規SMSメール
+lang_xp_statusbar_loading = 受信箱を読み込んでいます ...
+lang_logoff = - ログアウトしました
+
+# html/help/sms.html
+
+lang_help_sms_title = SMS ヘルプ
+lang_help_sms_titlehead = SMS通知機能 ヘルプガイド
+lang_help_sms_header =ここではSMS通知機能の使い方についてご説明します。下のトピックリストから選択し詳しい情報をお読みください。
+lang_help_sms_sendmsg = SMS メール送信
+lang_help_sms_notif = SMSを使ってメールの到着を通知する
+lang_help_sms_purchase = クレジットの購入
+lang_help_sms_sendheader = SMSメールの送信
+lang_help_sms_sendintro =あなたのEメールアカウントから世界中の携帯電話にSMS (short-message-service) メールを送信することができます。
+lang_help_sms_sendhow = あなたのEメールアカウントからSMS メールを送信するためには:
+lang_help_sms_sendaccess = SMSサービスにアクセスするためには、&quot;ユーティリティ&quot; フォルダをメールボックスバーから選択し、&quot;SMS ユーティリティ&quot;をクリックしてください。
+lang_help_sms_sendcompose =メインフレームには &quot; SMS メールを作成&quot; リンクが表示されますのでそれをクリックしてください。SMSメールの詳細を入力するウィンドウが開きます。
+lang_help_sms_sendfields =  必要な項目を入力してください:
+lang_help_sms_sendphone = <b>差出人:</b>このフィールドには <strong>あなたの</strong> 携帯の電話番号を入力してください。このフィールドが空欄の場合は、次のようにあなたの電話番号を記入してください:
+lang_help_sms_sendformat = [国番号][エリア番号（最初の0は入力しない）][残りの番号]
+lang_help_sms_sendexample1 =例えばアメリカの場合 0208 7044627 は 1 208 7044627となります。
+lang_help_sms_sendset =このフィールドに電話番号を自動的に入力したい場合、または入力された番号を変更したい場合は ユーティリティフォルダ内の&quot;ユーザー情報&quot; を開き、&quot;携帯番号.&quot;を設定してください。
+lang_help_sms_sendcountry = <b>国名:</b> 受取人の国名を選択してください。例えばシドニーにいる相手に送信したい場合は「オーストラリア」を選択してください。
+lang_help_sms_sendnumber = <b>電話番号:</b> 受取人の携帯の電話番号を記入してください。例えばオーストラリアの電話番号0414 731 307 は414731307となります。このフィールドには国番号を入力する必要はありません。
+lang_help_sms_sendexample = 入力例:
+lang_help_sms_sendtype =メールを入力してください。上部右側には入力可能な残り文字数が表示されます。
+lang_help_sms_sendcomplete =メールを作成し、すべての必要事項の記入が完了したら &quot;送信&quot;. を押してください。送信したメッセージはSMSユーティリティページ内の&quot;SMS ログ&quot;で確認できます。
+lang_help_sms_note = SMSによるEメール受信通知
+lang_help_sms_noteintro =  SMS サービスにより、あなたのアカウントに届いたメールをＳＭＳで通知することができます。フィルターユーティリティによりどのようなメールが届いた時に通知するか設定できます。
+lang_help_sms_notehow = SMSフィルターの設定:
+lang_help_sms_noteaccess = このサービスにアクセスするためには メールボックスバーから&quot;ユーティリティ&quot; を選択し、&quot;SMS ユーティリティ&quot; をクリックして&quot;SMS フィルター&quot;を選択してください。<br>
+lang_help_sms_notepriority =重要度：高のメールをすべて通知するためにはチェックボックスを選択した後フィルタ設定を保存してください。
+lang_help_sms_notecriteria = 設定したい項目に記入してください。 注：両方のフィールドに記入する必要はありません。
+lang_help_sms_notesubject = Eメール件名:</b> フィルタをかけたいキーワードを入力してください。 &quot;等しい&quot; は設定したキーワードと件名が全く同じメールのみ通知します。&quot;?を含む&quot; では件名の中に設定されたキーワードが含まれる場合に通知します。
+lang_help_sms_noteexp = 例: もし &quot;ABC ニュースレター&quot; というキーワードで&quot;「等しい」&quot; を選択した場合、&quot;ABC ニュースレター&quot; という件名のメールのみが通知されます。
+lang_help_sms_noteexample = &quot;ABC ニュースレター&quot; というキーワードで &quot;「?を含む」&quot; を選択した場合、&quot;Re:ABC ニュースレター&quot; や &quot;ABC ニュースレター更新&quot; という件名のメール等も通知されます。
+lang_help_sms_notefrom = <b>差出人:</b> Eメールの差し出し人をせっていしてください。. &quot;「等しい」&quot; では、設定した差出人からのメールをすべて通知します。&quot; 「?を含む」&quot;では、差出人に設定したキーワードが含まれる場合に通知します。
+lang_help_sms_noterover = 例: もしあなたが  &quot;rover@hotmail.com&quot; と設定し、&quot; 「等しい」&quot;を選択した場合、rover@hotmail.comからあなたに送られたメールのみが通知されます。
+lang_help_sms_notemissrover = もし &quot;Hotmail&quot; と設定し、 &quot; 「?を含む」&quot; を選択した場合、キーワード'hotmail' を含むすべての差出人(例： jim@myhotmail.com.au , missrover@hotmail.com )からのメールを通知します。
+lang_help_sms_notemobile = 電話番号 :</b> SMS 通知をする電話番号を入力してください。記入の際は国番号まで記入する必要があります。たとえば、アメリカ国内の番号 0208 7044627 は 1 208 7044627となります。
+lang_help_sms_notefilter = フィルタ記入例:
+lang_help_sms_notesave = S&quot;設定保存&quot;. を選択すると上部のリストに追加されます。フィルタ条件を削除したい場合は削除したい項目を選択し、&quot;選択項目を削除&quot;をクリックしてください。
+lang_help_sms_buy = クレジット購入
+lang_help_sms_buyintro = SMS メールを送信する前に、クレジットを購入する必要があります。あなたのEメールアカウントからクレジットカードでの購入が可能です。
+lang_help_sms_buyhow = クレジットを購入するためには:
+lang_help_sms_buyfind = &quot;ユーティリティ&quot; フォルダをメールボックスバーから選択し、&quot;SMS ユーティリティ&quot;をクリックし、  &quot;マイSMS クレジット&quot;を選択してください。<br>
+lang_help_sms_buyfields = 必要項目を記入:
+lang_help_sms_buyprice = <b>購入価格 :</b> こちらでクレジットをいくつ購入したいか選択してください。1クレジットにつき、SMSメールを1通送信できます。一度にたくさん購入すればするほどお得になります。
+lang_help_sms_buycard = <b>カード会社:</b> あなたが使用するカードのカード会社を選択してください。
+lang_help_sms_buyname = 契約者名:</b> クレジットカードに記載されている名前を記入してください。もしカードの契約者があなたと異なる場合はお使いのカード会社に使用許諾をお問い合せください。
+lang_help_sms_buynumber = <b>カード番号:</b> カード番号をすべて記入してください。
+lang_help_sms_buyexp = <b>有効期限:</b> 月の次に年を入力してください。.
+lang_help_sms_buybuy = &quot;購入&quot; を押せば申込は完了です。カードの認証に失敗した場合はポップアップメッセージが表示されます。成功すれば購入したクレジット数が上部に表示されます。
+
+lang_xp_drag_and_drop = フォルダへのドラッグ＆ドロップ
+lang_imapfolders_adddesc = ここではリモートIMAPサーバーからフォルダを選択してあなたがお使いのメールボックスに表示できます。フォルダの表示のon/off の切り替えも可能です。この機能の詳しい情報はオンラインドキュメントをごらんください。
+lang_imapfolders_hidedesc = 下記はあなたのアカウントで使用可能なフォルダのリストです。下のチェックボックスを選択することにより、選択したフォルダを非表示にすることが可能です。
+lang_imapfolders_allfolders = 全フォルダ
+lang_imapfolders_visible = 可視フォルダ
+lang_imapfolders_show = 名前に以下を含むフォルダ:
+lang_imapfolders_add = フォルダ追加
+lang_imapfolders_selectall = すべてを選択
+lang_imapfolders_deselect = 選択解除
+lang_imapfolders_hidefolders = フォルダを隠す
+lang_imapfolders_header = IMAP フォルダ - メッセージフォルダに加える
+
+lang_myfolders_imapfolders = IMAP フォルダ
+
+lang_showmail_mailloadalert =メールボックスがメールを開くまでお待ちください。
+## EOF
+
+
+
+lang_xhtml_compose_msgtext = 本文:
+lang_xhtml_signup_accountrego = アカウントの登録:
+lang_xhtml_error_back = 戻る
+lang_calendar_newpost_hours = 時間前
+lang_xp_pgp_encrypt_makekey = PGPキーの生成中です。１～３分の間、お待ちください。
+lang_xhtml_error_anerroroccured = アクセス中にエラーが発生しました。
+lang_xhtml_signup_domain = ドメイン:
+lang_msg_encrypt_msg = 暗号化メッセージ
+lang_xhtml_help_optionshead = オプション:
+lang_xhtml_signup_again = もう一度:
+lang_xp_pgp_encrypt_email = あなたのPGPパスワードを入力してください。
+lang_xhtml_addbook_titleaddentry = 連絡先の追加
+lang_xhtml_addbook_name = 氏名:
+lang_xhtml_help_composehelp = 携帯電話でEメールを作成; 送信はすべてのインターネットメールアドレスに対して行えます。
+lang_xhtml_compose_selectabook = アドレス帳からEメールの選択
+lang_xhtml_showmsgs_writeemail = Eメールの作成
+lang_calendar_newpost_notifyemail = Eメールの通知
+lang_pgp_settings_encryption_sign = 署名されたメッセージ
+lang_pgp_compose_encrypt_sign_message = 暗号化と署名
+lang_xhtml_help_showunreadhead =未読メール表示:
+lang_calendar_newpost_notifysms = Eメール/SMSの通知受信者
+lang_xhtml_signup_personalinformation = 個人情報:
+lang_xhtml_readmsg_last = 最新
+lang_xhtml_signup_firstname = 名前:
+lang_pgp_settings_encryption_pgp_password = PGPパスワード
+lang_xhtml_sent_title = 送信済メッセージ
+lang_pgp_settings_encryption_level_1024 = 1024ビット標準セキュリティ - 既定のPGPキーレングスです。
+lang_pgp_settings_encryption_publickey_desc = あなたのパブリックキーが暗号化メッセージに使用されました。
+lang_pgp_settings_encryption_publickey = PGPパブリックキー
+lang_xhtml_settings_buttonsave = 保存
+lang_xhtml_sent_msgsent = メッセージが送信されました。
+lang_xp_compose_add_abook = アドレス帳からEメールの追加
+lang_xhtml_settings_settingsintro = あなたのWAP Eメールの設定を変更します。- メールのレイアウト、スタイル、フォーマットの設定等が変更できます。
+lang_xhtml_readmsg_date = 日付:
+lang_calendar_newpost_days = 日前
+lang_xhtml_compose_messagetext = メッセージ本文:
+lang_xhtml_addbook_save = 保存
+lang_pgp_settings_encryption_disable = 使用しない
+lang_xhtml_loginpop_developedby = 開発者：
+lang_xhtml_readmsg_mainmenu = メインメニュー
+lang_xhtml_mainmenu_addressbook = アドレス帳
+lang_xhtml_abook_emailoptions = Eメールオプション:
+lang_xhtml_mainmenu_help = ヘルプ
+lang_xhtml_compose_composetitle = 作成
+lang_pgp_compose_encrypt_message = 暗号化メッセージ
+lang_xhtml_help_composehead = メッセージの作成:
+lang_xhtml_addbook_addedinfo = 追加情報:
+lang_xhtml_login_orlogin = かあなたのローカルにログインします。
+lang_xhtml_abook_compose = 作成
+lang_simple_readmail_header_draft = Eメールの下書きを読んでいます
+lang_xhtml_abook_title = アドレス帳
+lang_xhtml_compose_messagesend = 送信
+lang_blue_pane_composehtml_titles = 件名
+lang_xhtml_mainmenu_titlemain = メインメニュー
+lang_blue_pane_settings_new_window_desc = Eメールを自動的に新しいウィンドウに表示します
+lang_xhtml_abook_headerdesc = あなたのアドレス帳に携帯端末からアクセスします。
+lang_xhtml_loginpop_enteraccountdetails = あなたの外部メールアカウントに携帯電話からアクセスします。あなたのアカウント情報を入力してください。
+lang_xhtml_help_addresshelp = アドレス帳の情報を保存します。今後送信メールに素早くアドレスを追加することができます。
+lang_simple_readmail_header = メールを読んでいます
+lang_xhtml_mainmenu_settings = 設定
+lang_xhtml_help_showallhelp = 受信箱内のすべてのメールを表示します。設定パネルからメールの表示順、レイアウトを変更できます。
+lang_xhtml_login_account = アカウント:
+lang_calendar_newpost_weeks = 週間前
+lang_global_next_msg = 次のメッセージ
+lang_xhtml_readmsg_movemsg = メッセージの移動
+lang_pgp_settings_encryption_key = パブリックキー
+lang_xhtml_abook_deleteselected = 選択したメッセージを削除:
+lang_xhtml_signup_email = Eメール:
+lang_blue_pane_heading_templates = メッセージテンプレート - 編集して送信メールに使用できます。
+lang_Global_Sent = 送信済
+lang_xhtml_signup_titlesignup = サインアップ
+lang_xhtml_readmsg_from = 差出人:
+lang_auth_maxaccounts_msg = あなたのIPアドレスでのアカウント作成は最大数に達しました。このIPアドレスではこれ以上のアカウントを追加することはできません。
+lang_xhtml_addbook_addedinfoenter = 入力
+lang_xp_sms_filter_emailall_desc = 全ての受信メールを携帯電話に転送
+lang_xp_pgp_decrypt_button = 解読
+lang_xhtml_redirect_desc = メールを転送
+lang_xhtml_readmsg_next = 次のメッセージ
+lang_xhtml_signup_signupintrotext = サインアップしてWAPからあなたのモバイル機器でEメールを受け取ってみてください。あなたのEメールにオフィスの外から、車の中から、海外からでもインターネットに接続されたPCがなくてもアクセスできるようになります。
+lang_xhtml_abook_addcc = CCの追加:
+lang_xhtml_settings_cardtitle = 設定
+lang_pgp_settings_encryption_sign_desc = 送信メールに自動的にあなたのパブリックキーで署名します。
+lang_xhtml_login_titlelogin = ログイン
+lang_xhtml_showmsgs_titleinbox = 受信箱
+lang_xp_sms_filter_emailall = すべて転送
+lang_calendar_newpost_notifyhead = すべてのイベントをSMSでモバイル機器で受信
+lang_pgp_compose_encrypt_attach_pgp = 自分のパブリックキーを追加
+lang_xhtml_abook_mainmenu = メインメニュー
+lang_xhtml_mainmenu_readallemail = すべてのEメールを読む
+lang_xp_pgp_decrypt_email = Eメールの解読のためにPGPパスワードを入力してください。
+lang_xhtml_signup_signupintrotitle = あなたのモバイル機器用Eメールアカウントを取得しましょう。
+lang_auth_maxaccounts_error = 最大アカウント数に達しました。
+lang_xp_sms_description2 = より詳しい情報は、<a href="javascript:ChangeTab('2')">SMSフィルター</a>を参照してください。SMSの使用方法については、<a href="javascript:helpwin('sms.html')">オンラインドキュメント</a>を参照してください。
+lang_xhtml_login_loginexternal = 外部メールボックスへログイン
+lang_Global_Trash = ゴミ箱
+lang_xhtml_abook_back = 戻る
+lang_myfolders_messagetemplate = メッセージテンプレート
+lang_xhtml_loginpop_password = パスワード:
+lang_pgp_settings_encryption_pgp_password_confirm = PGPパスワードの確認
+lang_xhtml_loginpop_logincardtitle = Eメールにログイン
+lang_xhtml_readmsg_prev = 前へ
+lang_calendar_newpost_minutes = 分前
+lang_xhtml_loginpop_protocol = プロトコル:
+lang_xhtml_error_messagefollows = メッセージは続きます:
+lang_blue_pane_sms_description2 = SMSの使用方法については、<a href="javascript:helpwin('sms.html')">オンラインドキュメント</a>を参照してください。
+lang_xhtml_sent_success = Eメールは正常に送信されました。
+lang_xhtml_abook_options = オプション:
+lang_pgp_settings_encryption_desc = $pref['brandname']は暗号化メールの送受信に対応しています。この機能を有効にするためには、安全なパスワードをもつ固有のPGPキーを生成してください。この機能についての詳細は、オンラインドキュメントを参照してください。
+lang_xhtml_loginpop_username = ユーザー:
+lang_Global_Inbox = 受信箱
+lang_xhtml_readmsg_subject = 件名:
+lang_xhtml_loginpop_mailtype = メールの種類
+lang_xhtml_error_loginagain = もう一度ログイン
+lang_xhtml_mainmenu_writeemail = Eメールの作成
+lang_pgp_settings_encryption_key_desc = 送信メールに自動的にあなたのパブリックキーを追加します。
+lang_xhtml_mainmenu_readnewemail = 新着メールを読む
+lang_msg_decrypt_msg = メッセージの解読
+lang_pgp_settings_encryption_level_512 = 512ビットセキュリティ - 高速にメッセージを暗号化/解読ができます。低い安全レベルです。
+lang_msg_compose_specifyto = 受取人を指定してください。
+lang_calendar_newpost_mobilecountry = モバイル機器の使用国
+lang_pgp_settings_encryption_level_4096 = 4069ビットセキュリティ - メッセージの暗号化/解読に時間がかかります。高い安全レベルです。
+lang_xhtml_error_title = エラー
+lang_xhtml_help_intro = あなたの携帯電話で外部Eメールが使用できます。$pref['brandname']WAPでは以下の5つの機能がご利用になれます。
+lang_xhtml_signup_password = パスワード:
+lang_pgp_settings_encryption_enable = 暗号化オン
+lang_xhtml_signup_cardtitlesignup = サインアップ
+#lang_Global_content_type = <meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+lang_xhtml_help_showunreadhelp = この機能はメールボックス内の未読メールのみを表示します。簡単に素早く最新のメールを確認できます。
+lang_xhtml_addbook_email = Eメール:
+lang_xhtml_settings_titlesettings = 設定
+lang_xhtml_loginpop_loginpoptitle = 外部へのログイン
+lang_xhtml_error_pressbackandcorrect = 戻るボタンを押してエラーを訂正してください。
+lang_blue_pane_settings_mailsecurity = メールセキュリティ
+lang_xhtml_addbook_userinformation = ユーザー情報:
+lang_xhtml_signup_exstingemailaccount = 既存のEメールアカウント:
+lang_xhtml_login_intro = 携帯電話であなたのEメールアカウントにアクセス
+lang_xhtml_compose_composeintro = 携帯電話でEメールを作成
+lang_pgp_compose_sign_message = メッセージに署名
+lang_global_prev_msg = 前のメッセージへ
+lang_xhtml_compose_enter = 入力:
+lang_xhtml_help_addresshead = アドレス帳:
+lang_xhtml_help_showallhead = すべて表示:
+lang_xhtml_abook_addto = 受取人を追加:
+lang_xhtml_help_optionshelp = アカウントのオプションの設定。メールのフォーマット、スタイル、インターフェースの設定等が変更できます。
+lang_xhtml_error_errorcard = エラーです
+lang_blue_pane_settings_new_window = 新規ウィンドウポップアップ
+lang_Global_Drafts = 下書き
+lang_calendar_newpost_smsremind = SMS通知
+lang_xhtml_abook_new = アドレス帳にユーザーを追加
+lang_xhtml_readmsg_first = 最初に
+lang_xhtml_settings_replyaddress = 返信先:
+lang_xhtml_loginpop_domain = ドメイン:
+lang_xhtml_settings_fullname = 氏名:
+lang_pgp_settings_encryption_pgp_password_desc = PGPキーのパスワードを設定してください。安全のため、アカウントへログインするパスワードとは違うものを強くおすすめします。
+lang_blue_pane_abook_pgp = PGPパブリックキー
+lang_xhtml_loginpop_usernametitle = ユーザー名:
+lang_Global_Spam = 迷惑メール
+lang_pgp_settings_enable_encryption = メールの暗号化をオン
+lang_pgp_settings_encryption_level = 暗号化レベル
+
+lang_xhtml_compose_msgtext = 本文:
+lang_xhtml_signup_accountrego = アカウント登録:
+lang_xhtml_error_back = 戻る
+lang_calendar_newpost_hours = 時間前
+lang_xp_pgp_encrypt_makekey = PGPキーの生成中です。１～３分の間、お待ちください。
+lang_xhtml_error_anerroroccured = アクセス中にエラーが発生しました。
+lang_xhtml_signup_domain = ドメイン:
+lang_msg_encrypt_msg = 暗号化メッセージ
+lang_xhtml_help_optionshead = オプション:
+lang_xhtml_signup_again = もう一度:
+lang_xp_pgp_encrypt_email = あなたのPGPパスワードを入力してください。
+lang_xhtml_addbook_titleaddentry = 追加
+lang_xhtml_addbook_name = 名前:
+lang_xhtml_help_composehelp = 携帯電話でEメールを作成; 送信はすべてのインターネットメールアドレスに対して行えます。
+lang_xhtml_compose_selectabook = アドレス帳からEメールの選択
+lang_xhtml_showmsgs_writeemail = Eメールの作成
+lang_calendar_newpost_notifyemail = Eメールの通知
+lang_pgp_settings_encryption_sign = 署名されたメッセージ
+lang_pgp_compose_encrypt_sign_message = 暗号化と署名
+lang_xhtml_help_showunreadhead = 未読メール表示:
+lang_calendar_newpost_notifysms = Eメール/SMSの通知受信者
+lang_xhtml_signup_personalinformation = 個人情報:
+lang_xhtml_readmsg_last = 最新
+lang_xhtml_signup_firstname = 名前:
+lang_pgp_settings_encryption_pgp_password = PGPパスワード
+lang_xhtml_sent_title = 送信済メッセージ
+lang_pgp_settings_encryption_level_1024 = 1024ビット標準セキュリティ - 既定のPGPキーレングスです。
+lang_pgp_settings_encryption_publickey_desc = あなたのパブリックキーが暗号化メッセージに使用されました。
+lang_pgp_settings_encryption_publickey = PGPパブリックキー
+lang_xhtml_settings_buttonsave = 保存
+lang_xhtml_sent_msgsent = メッセージが送信されました。
+lang_xp_compose_add_abook = アドレス帳からメールを追加
+lang_xhtml_settings_settingsintro = あなたのWAP Eメールの設定を変更します。- メールのレイアウト、スタイル、フォーマットの設定等が変更できます。
+lang_xhtml_readmsg_date = 日付:
+lang_calendar_newpost_days = 日前
+lang_xhtml_compose_messagetext = 本文:
+lang_xhtml_addbook_save = 保存
+lang_pgp_settings_encryption_disable = 暗号化オフ
+lang_xhtml_loginpop_developedby = 開発者
+lang_xhtml_readmsg_mainmenu = メインメニュー
+lang_xhtml_mainmenu_addressbook = アドレス帳
+lang_xhtml_abook_emailoptions = Eメール オプション:
+lang_xhtml_mainmenu_help = ヘルプ
+lang_xhtml_compose_composetitle = 作成
+lang_pgp_compose_encrypt_message = 暗号化メッセージ
+lang_xhtml_help_composehead = メッセージの作成:
+lang_xhtml_addbook_addedinfo = 追加情報:
+lang_xhtml_login_orlogin = かあなたのローカルにログインします。
+lang_xhtml_abook_compose = 作成
+lang_simple_readmail_header_draft = Eメールの下書きを読んでいます
+lang_xhtml_abook_title = アドレス帳
+lang_xhtml_compose_messagesend = 送信
+lang_blue_pane_composehtml_titles = タイトル
+lang_xhtml_mainmenu_titlemain = メインメニュー
+lang_blue_pane_settings_new_window_desc = Eメールを自動的に新しいウィンドウに表示します
+lang_xhtml_abook_headerdesc = あなたのアドレス帳に携帯端末からアクセスします。
+lang_xhtml_loginpop_enteraccountdetails = あなたの外部メールアカウントに携帯電話からアクセスします。あなたのアカウント情報を入力してください。
+lang_xhtml_help_addresshelp = アドレス帳の情報を保存します。今後送信メールに素早くアドレスを追加することができます。
+lang_simple_readmail_header = メールを読んでいます
+lang_xhtml_mainmenu_settings = 設定
+lang_xhtml_help_showallhelp = 受信箱内のすべてのメールを表示します。設定パネルからメールの表示順、レイアウトを変更できます。
+lang_xhtml_login_account = アカウント:
+lang_calendar_newpost_weeks = 週間前
+lang_global_next_msg = 次のメッセージ
+lang_xhtml_readmsg_movemsg = メッセージの移動
+lang_pgp_settings_encryption_key = パブリックキー
+lang_xhtml_abook_deleteselected = 選択したメッセージを削除:
+lang_xhtml_signup_email = Eメール:
+lang_blue_pane_heading_templates = メッセージテンプレート - 編集して送信メールに使用できます。
+lang_Global_Sent = 送信済
+lang_xhtml_signup_titlesignup = サインアップ
+lang_xhtml_readmsg_from = 差出人:
+lang_auth_maxaccounts_msg = あなたのIPアドレスでのアカウント作成は最大数に達しました。このIPアドレスではこれ以上のアカウントを追加することはできません。
+lang_xhtml_addbook_addedinfoenter = 入力
+lang_xp_sms_filter_emailall_desc = 全ての受信メールを携帯電話に転送
+lang_xp_pgp_decrypt_button = 解読
+lang_xhtml_redirect_desc = メールを転送
+lang_xhtml_readmsg_next = 次へ
+lang_xhtml_signup_signupintrotext = サインアップしてWAPからあなたのモバイル機器でEメールを受け取ってみてください。あなたのEメールにオフィスの外から、車の中から、海外からでもインターネットに接続されたPCが無くてもアクセスできるようになります。
+lang_xhtml_abook_addcc = CCの追加:
+lang_xhtml_settings_cardtitle = 設定
+lang_pgp_settings_encryption_sign_desc = 送信メールに自動的にあなたのパブリックキーで署名します。
+lang_xhtml_login_titlelogin = ログイン
+lang_xhtml_showmsgs_titleinbox = 受信箱
+lang_xp_sms_filter_emailall = すべて転送
+lang_calendar_newpost_notifyhead = すべてのイベントをSMSでモバイル機器で受信
+lang_pgp_compose_encrypt_attach_pgp = 自分のパブリックキーを追加
+lang_xhtml_abook_mainmenu = メインメニュー
+lang_xhtml_mainmenu_readallemail = すべてのEメールを読む
+lang_xp_pgp_decrypt_email = Eメールの解読のためにPGPパスワードを入力してください。
+lang_xhtml_signup_signupintrotitle = あなたのモバイル機器用Eメールアカウントを取得しましょう。
+lang_auth_maxaccounts_error = 最大アカウント数に達しました。
+lang_xp_sms_description2 = より詳しい情報は、<a href="javascript:ChangeTab('2')">SMSフィルター</a>を参照してください。SMSの使用方法については、<a href="javascript:helpwin('sms.html')">オンラインドキュメント</a>を参照してください。
+lang_xhtml_login_loginexternal = 外部メールボックスへログイン
+lang_Global_Trash = ゴミ箱
+lang_xhtml_abook_back = 戻る
+lang_myfolders_messagetemplate = メッセージテンプレート
+lang_xhtml_loginpop_password = パスワード:
+lang_pgp_settings_encryption_pgp_password_confirm = PGPパスワードの確認
+lang_xhtml_loginpop_logincardtitle = Eメールにログイン
+lang_xhtml_readmsg_prev = 前へ
+lang_calendar_newpost_minutes = 分前
+lang_xhtml_loginpop_protocol = プロトコル:
+lang_xhtml_error_messagefollows = メッセージは続きます:
+lang_blue_pane_sms_description2 = SMSの使用方法については、<a href="javascript:helpwin('sms.html')">オンラインドキュメント</a>を参照してください。
+lang_xhtml_sent_success = Eメールは正常に送信されました。
+lang_xhtml_abook_options = オプション:
+lang_pgp_settings_encryption_desc = $pref['brandname']は暗号化メールの送受信に対応しています。この機能を有効にするためには、安全なパスワードをもつ固有のPGPキーを生成してください。この機能についての詳細は、オンラインドキュメントを参照してください。
+lang_xhtml_loginpop_username = ユーザー:
+lang_Global_Inbox = 受信箱
+lang_xhtml_readmsg_subject = 件名:
+lang_xhtml_loginpop_mailtype = メールの種類
+lang_xhtml_error_loginagain = もう一度ログイン
+lang_xhtml_mainmenu_writeemail = Eメールの作成
+lang_pgp_settings_encryption_key_desc = 送信メールに自動的にあなたのパブリックキーを追加します。
+lang_xhtml_mainmenu_readnewemail = 新着メールを読む
+lang_msg_decrypt_msg = メッセージの解読
+lang_pgp_settings_encryption_level_512 = 512ビットセキュリティ - 高速にメッセージを暗号化/解読ができます。低い安全レベルです。
+lang_msg_compose_specifyto = 受取人を指定してください。
+lang_calendar_newpost_mobilecountry = モバイル機器の使用国
+lang_pgp_settings_encryption_level_4096 = 4069ビットセキュリティ - メッセージの暗号化/解読に時間がかかります。高い安全レベルです。
+lang_xhtml_error_title = エラー
+lang_xhtml_help_intro = あなたの携帯電話で外部Eメールが使用できます。$pref['brandname']WAPでは以下の5つの機能がご利用になれます。
+lang_xhtml_signup_password = パスワード:
+lang_pgp_settings_encryption_enable = 暗号化オン
+lang_xhtml_signup_cardtitlesignup = サインアップ
+#lang_Global_content_type = <meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+lang_xhtml_help_showunreadhelp = この機能はメールボックス内の未読メールのみを表示します。簡単に素早く最新のメールを確認できます。
+lang_xhtml_addbook_email = Eメール:
+lang_xhtml_settings_titlesettings = 設定
+lang_xhtml_loginpop_loginpoptitle = 外部へのログイン
+lang_xhtml_error_pressbackandcorrect = 戻るボタンを押してエラーを訂正してください。
+lang_blue_pane_settings_mailsecurity = メールセキュリティ
+lang_xhtml_addbook_userinformation = ユーザー情報:
+lang_xhtml_signup_exstingemailaccount = 既存のEメールアカウント:
+lang_xhtml_login_intro = 携帯電話であなたのEメールアカウントにアクセス
+lang_xhtml_compose_composeintro = 携帯電話でEメールを作成
+lang_pgp_compose_sign_message = メッセージに署名
+lang_global_prev_msg = 前のメッセージへ
+lang_xhtml_compose_enter = 入力:
+lang_xhtml_help_addresshead = アドレス帳:
+lang_xhtml_help_showallhead = すべて表示:
+lang_xhtml_abook_addto = 受取人を追加:
+lang_xhtml_help_optionshelp = アカウントのオプションの設定。メールのフォーマット、スタイル、インターフェースの設定等が変更できます。
+lang_xhtml_error_errorcard = エラーです
+lang_blue_pane_settings_new_window = 新規ウィンドウポップアップ
+lang_Global_Drafts = 下書き
+lang_calendar_newpost_smsremind = SMS通知
+lang_xhtml_abook_new = アドレス帳にユーザーを追加
+lang_xhtml_readmsg_first = 最初に
+lang_xhtml_settings_replyaddress = 返信先:
+lang_xhtml_loginpop_domain = ドメイン:
+lang_xhtml_settings_fullname = 氏名:
+lang_pgp_settings_encryption_pgp_password_desc = PGPキーのパスワードを設定してください。安全のため、アカウントへログインするパスワードとは異なるパスワードのご使用をお勧めします。
+lang_blue_pane_abook_pgp = PGPパブリックキー
+lang_xhtml_loginpop_usernametitle = ユーザー名:
+lang_Global_Spam = 迷惑メール
+lang_pgp_settings_enable_encryption = メールの暗号化をオン
+lang_pgp_settings_encryption_level = 暗号化レベル
+lang_templatestep4_optionaldetailsformessage = オプションで、メールテンプレートに表示する連絡先を指定することができます。
+lang_blue_pane_spellcheck_changeword = テキスト変更
+lang_templatestep4_specifyworktelephone = 勤務先の電話番号を指定
+lang_blue_pane_ldap_passworddesc = オプションで、LDAPサーバーのパスワードが指定できます。
+lang_templatestep4_homephone = 自宅電話番号
+lang_attachmentmodal_return = メールに戻る
+lang_addressbook_summarybelow = 下記は、選択されたユーザーのアドレス帳サマリーです。編集する際は、トップメニューバーにある「編集」ボタンをクリックしてください。
+lang_mailtemplate_choosename = テンプレート名を選択：新しいメッセージを作成する際に選択することができます。
+lang_templatestep3_imagesignaturedescription = 送信メールに表示するイメージ署名を選択します。
+lang_addressbook_viewingentry = アドレス帳の入力内容を表示
+lang_spamsettings_methodmark = 迷惑メールとしてフラグを立てる（デフォルト）
+lang_spamsettings_allowdenysubjects = 件名の許可/拒否
+lang_Address_optiondescpicture = オプションで、アドレス帳のプロファイル用のユーザーの写真を指定することができます。ユーザーが所属するグループを表示し、メモフィールドに追加情報を記入してください。
+lang_Address_notesprofile = メモ/プロファイル
+lang_templatestep4_specifymobile = 所有している携帯電話数をお書きください。
+lang_javascript_validate_email = アドレス帳にEメールアドレスを入力してください。
+lang_templatestep3_tablebordertitle = 送信メールの表の境界線の色
+lang_Address_middlename = ミドルネーム
+lang_composebook_find = 検索
+lang_attachmentmodallist_attach = 「アップロード］をクリックして選択したファイルをEメールに添付します。
+lang_spamsettings_selectoptionscanviruses = メール受信の際自動ウィルススキャンオプションを選択
+lang_addgroup_groupdetails = グループ情報
+lang_Address_grouppermission = グループアドレス情報の閲覧/書き込みパーミッションを持つユーザーを選択してください。オプションとして、個人用のアドレス帳にグループアドレスを作成するよう空欄にしておくことも可能です。
+lang_templatestep4_jobtitle = オプションで、あなたの役職名をメールテンプレートに入れることもできます。
+lang_templatestep3_companylogoimage = 会社ロゴ画像
+lang_Address_userselection = 宛先、CCおよびBCCに入れるユーザーを選択します。下記のユーザーをアドレス帳から選択してください。
+lang_javascript_validate_permissions = 1ユーザーもしくは1グループに必ずアドレス帳情報の閲覧/書き込み権限を与える必要があります。
+lang_addgroup_lastname = 姓
+lang_spamsettings_deny = 拒否
+lang_addressbook_addresstype = アドレスタイプ
+lang_Address_readonlyaccess = 読み取り専用アクセス
+lang_addressbook_dateadded = 追加された日付
+lang_spamsettings_trustedusers = アドレス帳のユーザーは登録されたEメールソースです。アドレス帳のユーザーに大しては迷惑メールフィルターを無視する
+lang_mailtemplate_createnew = 新規メールテンプレートの作成
+lang_templatestep2_simpletemplate = シンプルテンプレート
+lang_composesms_countryaltert = SMS通知を送信する国を指定してください。
+lang_blue_pane_spellcheck_addword = 辞書に単語を追加
+lang_addgroup_email = Eメール
+lang_Address_setdefaultbutton = デフォルトを設定
+lang_blue_pane_abook_email = クリックしてEメールを送信
+lang_xp_menubar_view = 表示
+lang_spamsettings_passthrough_header = パススルーコード
+lang_Address_readwriteaccess = 閲覧/書き込みアクセス
+lang_blue_pane_ldap_basedn_desc = 検索ルートパラメーターを入力
+lang_spamsettings_passthrough_desc = 必要に応じ、メールの宛名フィールドに入れるパススルーコードを指定することができます。送信されてきたメールに指定文字列が含まれる場合、そのメールアドレスは自動的に承認され、あなたのアカウントにメールが配信されます。
+lang_Address_submitbutton = 送信
+lang_javascript_validatefilters = 言語表現を入力してください。
+lang_Address_postalzipcode = 郵便番号
+lang_composebook_windowclosed = 元のEメールウィンドウが閉じられているため受取人を追加することができません。
+lang_Address_pgpencryptionkey = PGP暗号化キー
+lang_templatestep2_selectstyledesciption = 次に、メッセージテンプレートのスタイルを選択してください。メッセージテンプレートは、会社のロゴ、写真、連絡先情報などを選んでカスタマイズすることができます。
+lang_templatestep3_photopixels = 幅200ピクセル/高さ100ピクセルを推奨
+lang_Address_department = 部門
+lang_Address_description = アドレス帳に新規ユーザーを追加します。ユーザーの連絡先詳細と電話番号を記入してください。名前とEメールアドレスのみでも記入できます。
+lang_templatestep3_photodescription = 送信メールに表示する写真
+lang_Address_home = 自宅
+lang_blue_pane_abook_exportbutton = エクスポート
+lang_templatestep2_retrotemplate = レトロテンプレート
+lang_attachmentmodallist_click = 「参照」ボタンをクリックしてファイルを選択
+lang_spamsettings_selectspammethod = 迷惑メールの処理方法を選択
+lang_Address_stateprovince = 都道府県
+lang_addgroup_addgroup = グループ追加
+lang_Address_selectgroupsusers = グループとユーザーを選択
+lang_ldap_searchshared = 共有アドレス帳を検索
+lang_spamsettings_expressionemail = Eメールアドレス
+lang_spamsettings_allow = 許可
+lang_javascript_validate_validemail = 正しいEメールアドレスを入力してください。
+lang_templatestep3_imagesignaturetitle = 画像署名
+lang_templatestep3_bordercolortitle = ボーダー色
+lang_xhtml_readmsg_movemsg  =メールを移動
+lang_spamsettings_methodtrash = 迷惑メールフォルダーに移動する
+lang_templatestep2_defaulttemplate = デフォルトテンプレート
+lang_templatestep4_specifyhomephone = 自宅の連絡先電話番号を記入
+lang_templatestep3_selectcolortitle = 色を選択
+lang_templatestep3_specifyparagraph = オプションで、メールテンプレートに表示する写真、会社ロゴおよび自筆の署名を記入することが可能です。ご自分のコンピューターから画像を選択し、「次へ」ボタンをクリックして画像をアップロードしてください。フォーマットを正しく行うために、下記にある推奨画像サイズを確認してください。
+lang_templatestep3_tabletitle = イメージ画像とボーダー色を指定してください。
+
+lang_mailtemplate_nametitle = テンプレート名
+lang_Address_permissions = パーミッション
+lang_templatestep2_hightechtemplate = ハイテクテンプレート
+lang_templatestep3_imagepicturetitle = イメージ画像
+lang_templatestep4_worktelephone = 勤務先電話番号
+lang_Address_groupmembership = グループメンバーシップ
+lang_myfolders_spamsettings = 迷惑メールの設定
+lang_attachmentmodal_upload = ファイルをサーバーにアップロード
+lang_xp_menubar_viewglobal_contact = グローバル表示
+lang_spamsettings_score = スコア
+lang_templatestep5_generatedtemplate = 下記は、入力された情報を元に生成されたテンプレートです。テンプレートの作成に成功しました。新しいメールの作成の際には、自動的にテンプレートが使用されます。テンプレートのHTMLソースを変更する場合には、&lt;a href=&quot;util.php?func=settings&quot;&gt;settings-panel&lt;/a&gt;のEメール署名フィールド内のテンプレートに変更を加えてください。
+lang_Address_optiondescription = オプションで、ユーザーのアドレス帳情報にメモやPGPメール暗号化キーを入力することができます。
+lang_blue_pane_folders_create = フォルダ作成
+lang_imapfolders_imapfolders = IMAPフォルダー
+lang_templatestep2_nextstep = 次へ
+lang_newfoldermodal_foldernamealert = \&quot;FolderName\&quot;フィールドには、文字、数字、スペースおよび\&quot;.-_[]()\&quot;のみ入力してください。
+lang_blue_pane_abook_entry_readonly = 読み取り専用
+lang_templatestep3_companylogotitle = 会社ロゴ
+lang_xp_header_hideshowalt =  メールフォルダーを隠す/表示
+lang_spamsettings_allowdenysubjects = 本文の許可/拒否
+lang_middletoggle_nopanes = 現在、開いているアイテムがありません。「表示」メニューからアイテムを開いてください。
+lang_spamsettings_spamtreatment = 迷惑メールの処理
+lang_xp_menubar_viewshared_contact = 共有情報を閲覧
+lang_javascript_validate_maxemail = メールアドレスを最高5つまで指定できます。
+lang_mailtemplate_description = このパネルから送信メッセージ用のテンプレートを作成することができます。これにより、メールをご自分のスタイル、色、画像や写真などを使用してカスタマイズすることが可能です。また、インターフェースから過去に作成したテンプレートを閲覧し、変更を加えることもできます。
+lang_composesms_toolongaltert = メッセージが長すぎます。内容を短縮してください。
+lang_addgroup_createanewgroup = Eメールアドレスを左側のパネルから選択し、ユーザーを右側のパネルに追加して新しいEメールグループを作成します。オプションで、グループ情報とユーザーの閲覧/書き込みパーミッションを入力することができます。
+lang_addgroup_groupemails = グループEメール
+lang_templatestep4_workslogan = スローガン
+lang_spamsettings_viruscanning = ウィルススキャン
+lang_blue_pane_spellcheck_ignoreword = 単語を無視する
+lang_Address_title = 役職
+lang_templatestep4_specifyurl = メールヘッダーに表示されるウェブサイトURLを指定
+lang_composebook_messagerecipients = メールの受取人
+lang_Address_extrainformation = メモ/その他の情報
+lang_spamsettings_trusteduserstitle = 登録ユーザー
+lang_Address_workmobile = 会社用の携帯番号
+lang_Address_userpermission = アドレス帳の閲覧/書き込みパーミッションを持つユーザーを選択します。状況に応じ、空欄にしておいて個人用のアドレス帳で作成することも可能です。
+lang_composesms_recipietaltert = SMSの受取人を指定してください。
+lang_deditor_pastehtml = HTMLを貼り付ける
+lang_newfoldermodal_foldernamelimitalert = フォルダー名を64文字以下で指定してください。
+lang_blue_pane_ldap_basedn = BaseDN
+lang_newfoldermodal_placefolder = フォルダーの場所を選択してください：
+lang_Address_applybutton = 適用
+lang_addressbook_group = グループ
+lang_blue_pane_heading_spamsettings_msg = 迷惑メールの設定－あなたのアカウント用にEメールフィルターをカスタマイズします。
+lang_templatestep4_websiteurl = ウェブサイトのURL
+lang_templatestep4_optionaldetails = オプションの連絡先情報を指定
+lang_javascript_validate_emaildefault = デフォルトのEメールアドレスは1つのみ設定可能です。
+lang_Address_jobtitle = 役職名
+lang_Address_removebutton = 削除
+lang_blue_pane_import_windowstatus = アドレス帳のインポート
+lang_templatestep4_updateprofile = プロファイルの更新
+lang_addressbook_titlerw = アドレス帳情報－閲覧/書き込み権限
+lang_Address_webpage = ウェブページ
+lang_addressbook_titlero = アドレス帳情報－読み取り専用アクセス
+lang_templatestep2_selectstyle = テンプレートのスタイルを選択
+lang_deditor_pastetext = テキストの貼り付け
+lang_ldap_searchpersonal = 個人用のアドレス帳を検索
+lang_templatestep4_faxnumber = Fax番号
+lang_templatestep4_specifyslogan = あなたの名前の下に表示されるオプションのスローガン
+lang_addgroup_optionally = オプションで、連絡先の詳細情報やその他のメモを含む追加情報を入力できます。
+lang_blue_pane_ldap_alert = 検索キーワードを指定してください。
+lang_templatestep4_zip = 郵便番号
+lang_spamsettings_expression = 言語表現/メール文字列
+lang_blue_pane_ldap_passworddesc = オプションで、LDAPサーバーのユーザー名が指定できます。
+lang_xp_menubar_newcontact = 新規の連絡先
+lang_spamsettings_methodbounce = 配信不能メール
+lang_spamsettings_allowdenysubjects = 件名の許可/拒否
+lang_templatestep4_specifyfaxnumber = FAX番号を入力してください
+lang_blue_pane_abook_shared = 共有の連絡先
+lang_blue_pane_abook_personal_desc = 個人用の連絡先
+lang_templatestep4_loadcontactdata = 連絡先のデータを$pref['brandname'] のユーザープロファイルに読み込む
+lang_xp_menubar_viewpersonal_contact = 個人情報を表示
+lang_spamsettings_ruletype = 制約タイプ
+lang_Address_office = 勤務先
+lang_spamsettings_allowdenybody = 本文の許可/拒否
+lang_xp_menubar_encoding = エンコード
+lang_blue_pane_ldap_binddn_desc = 検索精度を上げるためLDAPのユーザー名を入力してください（オプション）
+lang_spamsettings_allowdenysenders = 送信者の許可/拒否
+lang_Address_type = アドレスの種類
+lang_blue_pane_folders_entermailboxname = フォルダ名を入力
+lang_javascript_validate_alpha_characters = 半角英数文字、ドット、コンマ、および - _ [] {} or () のみ入力してください。
+lang_header_refresh = 再読込
+lang_header_refresh_mailbox = メールボックス再読込
+lang_header_toggle_view = 表示の切り替え
+lang_header_close_mail_pane = メールボックス画面を閉じる
+lang_header_close_contact_pane = 連絡先画面を閉じる
+
+lang_help_description = 使いかた
+lang_help_troubleshooting = トラブルシューティング
+
+lang_javascript_openmail_waitalert = ページが完全に読み込まれてからメッセージを開いてください。
+lang_blue_pane_folders_xp = フォルダの名前を変更したりサブフォルダを作成するには、左側のフレーム内にあるメニューバーツリーで該当フォルダ上を右クリックしてください。
+lang_help_mngmsg_text4 = @Mailメールでは、最初のページに割り当てられたスペースの使用状況が表示されます。使用率が90％を超えている場合は、不要なメールを削除するか追加スペースを購入されることをお勧めします。
+lang_blue_pane_abook_deleteselected = 選択されたアイテムを削除
+lang_help_mailsend_head4 = 送信可能な最大メッセージサイズは何ですか？
+lang_javascript_menu_ShowContacts = 連絡先表示
+lang_help_mngmsg_head9 = フォルダはどうやって削除すればいいですか？
+lang_spamsettings_denysenders = 送信者ブラックリスト
+lang_help_settings_autoreplymsg = 自動応答メッセージ
+lang_help_settings_autodeltrsh = ゴミ箱の自動削除
+lang_help_mailsend_head5 = どのような場合に"送信に失敗しました"というメッセージが送られてくるのでしょうか？
+lang_help_mailsend_text11 = 通常、間違ったメールアドレスまたは無効なメールアドレスが入力された場合に"送信に失敗しました"というメッセージが通知されます。この通知メールは"Mail Delivery Subsystem"もしくは"MAILER-DAEMON"から送付される"failure notice"または類似の件名のメールです。これは、あなたのメールアドレスから送信されたメッセージが送信先に届かず返送されてきたことを意味します。この通知メールは自動生成メールで、通常簡単な送信に失敗した理由を含みます。
+lang_help_recvmail_text6 = 最大10MBまでのEメールの送受信を行うことができます。このため、送信するメールの合計エンコードサイズは10MB以内でなければなりません。
+lang_help_recvmail_title = メールの受信中
+lang_xp_jscript_alert_delcaltask = 記入項目を削除してもよろしいですか？
+lang_help_recvmail_text5 = そのアドレスがフィルタされるアドレスのリストに追加されます。上記と同じような方法で特定の件名のEメールをフィルタすることも可能です。
+lang_help_mngmsg_text3 = <i>注意:</i> 一度ゴミ箱を空にするとメッセージは完全に削除され、回復することはできません。
+lang_help_recvmail_text3 = メールアドレスを"Eメールアドレス"フィールドに入力してしてください。
+lang_help_settings_head1 = ウェブメールプレファレンス
+lang_help_settings_forwardto = 転送先メールアドレス
+lang_help_mailerrors_text20 = あなたのサーバー上のデータベースが破損している可能性があります。その場合、担当のウェブ管理者に連絡してデータベースを修復するよう依頼してください。
+lang_help_settings_inboxrefreshdesc = 何分毎に受信ボックスの再読込を行うか選択してください。新規メールを受信すると通知されます。
+lang_help_mngmsg_text10 = フォルダ名を入力してください。
+lang_help_settings_inboxrefresh = 受信箱の再読込率
+lang_help_mngmsg_text19 = "移動"ボタンをクリック
+lang_help_mailsend_head2 = メッセージ内のスペルチェックはどのようにして行いますか？
+lang_help_mailsend_text7 = 作成を継続したいメッセージ上をクリック
+lang_help_acctconfig_text6 = 署名はどのようにして作成できますか？
+lang_help_rcvattach_head3 = ウィルススキャンはどのようにして行いますか？
+lang_help_mngmsg_head1 = ＠Mailウェブメールで受信および格納できるメール容量はどのくらいですか？
+lang_javascript_menu_HideCalendar = カレンダー非表示
+lang_help_settings_head3 = メールセキュリティ
+lang_help_settings_layouttypedesc = 提供されているインターフェースの選択肢の中からご使用になりたいレイアウトを選んでください。
+lang_help_mailerrors_text10 = ご自分のアカウントを選択してから"サーバー"タブを選択します。
+lang_help_acctconfig_text1 = "差出人名"とは、あなたのアカウントから送信される全てのメール上に差出人名として表示される名前です。"差出人名"を変更するには：
+lang_help_mailerrors_text7 = Ontlookを開きます。
+lang_help_settings_timeformat = 時間の設定
+lang_help_mngmsg_title = メッセージの管理
+lang_help_acctconfig_text8 = メインメニューから"設定"を選択します。
+lang_javascript_openmail_waitalert = ページが完全に読み込まれてからメッセージを開いてください。
+lang_help_mailerrors_text3 = ログインページが表示されますので、メールサーバーホストの<b>フルアドレス情報</b>を入力してください。例　mail.yourdomain.com、pop3.yourdomain.com、mail.ispserver.com等　正しいメールサーバーアドレスは、ご使用のデスクトップクライアント設定を確認するか、ご利用のISPにご連絡ください。
+lang_help_rcvattach_head2 = ウィルスとはなんですか?
+lang_help_mailsend_head3 = 作成途中のメールを送信しないで下書きとして保存することはできますか？
+lang_help_mngmsg_text5 = ゴミ箱を完全に空にするには、受信箱のメールリストパネルの最後に表示されている"ゴミ箱を空にする"アイコンをクリックします。確認メッセージが表示され、削除の続行を確認するメッセージが表示されます。削除するには"OK"、前のページに戻るには"キャンセル"をクリックしてください。
+lang_help_acctconfig_text2 = メインメニューの"設定"をクリックします。
+lang_help_recvmail_text4 = "メール追加"をクリックします。
+lang_help_mngmsg_text20 = メッセージが移動されます。
+lang_help_sndattach_text2 = まず、メール作成画面で添付ボタンをクリックします。
+lang_help_rcvattach_text3 = ウィルスとは、気付かないうちに使用しているコンピュータシステムに侵入するプログラムの一種です。悪質なものですと、複数のコンピュータにウィルスを広めるものがあります。Eメールを介するのが最も一般的なウィルスの感染経路です。
+lang_help_settings_head4 = メールの設定
+lang_help_mailerrors_text1 = 間違ったメールサーバー情報による問題です。この問題を回避するには下記に従ってください：
+lang_help_mngmsg_text14 = リターンキーをクリックして変更内容を送信
+lang_help_mngmsg_text23 = フォルダを削除するには、まずフォルダ内のメッセージを全て削除する必要があります（空フォルダのみ削除可能）。フォルダを削除するには：
+lang_help_settings_deltrshlogoutdesc = 選択すると、ログアウト時に自動的にゴミ箱が空にされます。
+lang_help_mailsend_title = メールの送信中
+lang_help_settings_autodeltrshdesc = ゴミ箱に移動したメッセージを自動的に削除するにはこれを選択してください。
+lang_help_mngmsg_head5 = 新規フォルダはどのようにして作成しますか？
+lang_help_mngmsg_head4 = ゴミ箱を空にするにはどのようにしたら良いですか？
+lang_help_mngmsg_text11 = "新しいフォルダ"ボタンをクリックします。
+lang_help_recvmail_head1 = 特定の差出人からのメールをブロックするにはどうしたら良いですか？
+lang_help_mailerrors_text5 = "ログイン"をクリック
+lang_help_mailsend_text8 = 下書きフォルダにあるメッセージは削除されるまで保存されます。
+lang_help_sndattach_text6 = <i>注意：</i> メールにファイルを添付する際、ファイルをエンコードする必要があり、その場合ファイルサイズが増大します。添付されるファイルは、他のメーラーが読み取れる形式に変換されなればなりません。このような変換を行うと、元のファイルサイズより33％程大きくなります。このため、元のファイルサイズが2MBの場合エンコード後は2.66MBになります。
+lang_help_rcvattach_text4 = ウィルスは自己複製し感染を広めるため、甚大な被害を与える可能性があります。
+lang_help_mngmsg_text2 = はい。ゴミ箱にあるメッセージも使用スペースに含まれます。ゴミ箱を完全に空にするには受信箱のメールリストパネルの最後にある"ゴミ箱を空にする"アイコンをクリックしてください。次に削除の続行を確認するメッセージが表示されます。削除するには"OK"を、前のページに戻るには"キャンセル"をクリックしてください。
+lang_help_acctconfig_text4 = 設定を保存をクリック
+lang_help_settings_enablecrypt = メールの暗号化を有効にする
+lang_blue_pane_folders_text2 =
+lang_help_sndattach_text4 =  適切なファイルを選択し"OK"をクリックします。
+lang_help_settings_encryptlevel = 暗号化のレベル
+lang_help_settings_dateformatdesc = 日付の表示形式を選択
+lang_help_settings_emailsig = メールの署名
+lang_help_mngmsg_text27 = <i>注意：</i> アカウントに常設されているフォルダを削除することはできません。常設のフォルダとは受信フォルダ、送信済フォルダ、下書きフォルダおよびゴミ箱を意味します。
+lang_help_mailerrors_text8 = <b>ツール > アカウント</b>
+lang_spamsettings_allowsenders = 安全な差出人
+lang_help_settings_msgpopup = ポップアップメッセージ
+lang_help_mailerrors_text16 = <i>"サーバー認証必要"</i>のボックスをチェックします。次に"設定"をクリックし、"受信メールサーバーと同じ設定を使用"という最初のボタンがクリックされていることを確認してください。
+lang_help_mngmsg_head3 = メールボックスの使用率が限界に近づいていることを確認する方法はありますか？
+lang_help_settings_autoreplymsgdesc = 必要に応じ、メールアカウントに自動応答メッセージを設定することができます。
+lang_help_rcvattach_head1 = なぜ添付ファイルを見ることができないのですか？
+lang_help_settings_pgppassdesc = PGPキーにパスワードを指定します。安全性確保のため、ログインパスワードと異なったパスワードを設定することを強くお勧めします。
+lang_help_mngmsg_text21 = (<i>注意</i>:  メッセージを受信ボックスや外部POP3フォルダに転送することはできません。メッセージをゴミ箱に転送する必要はありません；該当ボックスを選択して右クリックし"削除"ボタンをクリックするだけで構いません。）
+lang_blue_pane_settings_mail_settings = メール設定
+lang_help_mailerrors_text11 = サーバーの詳細は下記の通り：
+lang_help_acctconfig_text10 = 設定を保存をクリック
+lang_help_mailerrors_head2 = Outlookを介してアクセスすると、下記のエラーが発生します－<i>リレーは許可されていません</i>
+lang_help_mailerrors_text17 = 今度は"上級"タブをクリックします。
+lang_help_sndattach_title = 添付ファイルを送信中
+lang_help_rcvattach_text2 = 受信する添付ファイルは、ドキュメントの場合は".doc"、イメージファイルの場合は".jpg"等それぞれ特定の形式で受信されるため、そのファイル形式に対応していないブラウザの場合閲覧することができない場合があります。その場合、ブラウザをアップグレードして対応する方法があります。
+lang_help_mngmsg_head6 = フォルダの名前はどのようにして変更できますか？
+lang_help_mailsend_text6 = 左側のナビゲーションメニュー上の"下書き"リンクをクリックします。
+lang_help_mailsend_text10 = 注意：メールにファイルを添付する際、ファイルをエンコードする必要があり、その場合ファイルサイズが増大します。添付されるファイルは、他のメーラーが読み取れる形式に変換されなればなりません。このような変換を行うと、元のファイルサイズより33％程大きくなります。このため、元のファイルサイズが2MBの場合エンコード後は2.66MBになります。
+lang_spamsettings_allowrecipient = 受信者に許可する
+lang_help_settings_newindowpop = 新規ポップアップウィンドウ
+lang_help_sndattach_text1 = メッセージにファイルを添付する手順は下記の通り：
+lang_help_mailsend_text5 = はい。作成中のメールを送信せずに保存する場合は、メールの作成ウィンドウの上の方にある"メッセージを保存"ボタンをクリックします。保存した後は次のようにしていつでも再度メッセージを開くことができます：
+lang_help_mailerrors_text6 = 解決するには以下を行ってください：
+lang_help_acctconfig_text9 = 署名を"署名"フィールドに入力してください。
+lang_help_mngmsg_text16 = 移動したいメッセージを含むフォルダを開いてください。
+lang_help_mngmsg_text18 = 移動先のフォルダを選択してください。
+lang_help_acctconfig_head1 = 送信メール名はどのように変更すれば良いですか？
+lang_help_mngmsg_text17 = 移動したいメッセージがある場合、左側のボックスにチェックを入れてください。一度に複数のメッセージを選択することが可能です。
+lang_calendar_titlerw = カレンダーエントリー－読み取り/書き込みアクセス
+lang_help_settings_deltrshlogout = ログアウト時にゴミ箱を空にする
+lang_help_mailerrors_text9 = "メール"タブをクリック
+lang_help_sndattach_text3 = 添付ファイルを追加するための新しいポップアップウィンドウが表示されます："参照"ボタンをクリックしてご自分のハードドライブからファイルを選択してください。
+lang_javascript_menu_HideMailboxes = メールボックス非表示
+lang_help_settings_enablecryptdesc = メール暗号化サポートの有効化/無効化を選択
+lang_help_settings_layouttype = レイアウトタイプ
+lang_help_rcvattach_text1 = 第一に、現在のロケーションで添付ファイルが参照できない場合は添付ファイルをハードドライブに保存してから参照してみてください。それでも参照できない場合は下記に従ってください。
+lang_help_acctconfig_title = アカウント構成
+lang_help_sndattach_head1 = メッセージに添付ファイルを添付するにはどうしたら良いですか？
+lang_help_sndattach_text5 = ファイルのアップロードが終了したら、添付ファイルのサイズを確認もしくはファイルを削除してください。
+lang_help_mngmsg_text12 = フォルダウィンドウ上で選択したメールボックスの上を右クリックしてください：
+lang_help_mailsend_text3 = テキストのスペルチェックをするには、メール作成画面の"To"ボックスの上にある"スペルチェック"をクリックしてください。
+lang_help_mailerrors_text4 = ユーザー名とパスワードを入力
+lang_calendar_titlero = カレンダーエントリー－読み取り専用アクセス
+lang_help_mailerrors_text18 = ここで、"送信メール"ポートが2025に設定されていることを確認してください
+lang_help_settings_timeformatdesc = ウェブメールおよびカレンダーのインターフェース内での時間表示形式を選択してください。
+lang_help_settings_forwardtodesc = メールの転送先アカウントを指定してください。
+lang_help_mailsend_head1 = 同じメッセージを複数の人に送信することはできますか？
+lang_help_rcvattach_title = 添付ファイルの受信中
+lang_help_mailsend_text9 = ＠Mailでは、最大10MBまでのEメールの受信を行うことができます。送信メッセージも最大10MBまで送信することができます。このため、送信するメールの合計エンコードサイズは10MB以内でなければなりません。
+lang_javascript_menu_HideContacts = 連絡先非表示
+lang_help_settings_pgppass = PGPパスワード
+lang_help_settings_newindowpopdesc = メッセージを自動的に新しいウィンドウで開く
+lang_help_mngmsg_text15 = ご自分のフォルダのひとつにメッセージを移動するには：
+lang_help_settings_emailsigdesc = 署名を指定してください。全ての送信メールに署名が添付されます。
+lang_help_mailerrors_text15 = パスワード：ご使用のメールボックスのパスワード
+lang_help_mailerrors_text14 = アカウント名：ここにメールアドレスをドメインも含め入力してください。
+lang_help_mailerrors_text12 = 受信：pop.mydomain.com
+lang_help_mailsend_text4 = スペルチェックで単語が認識されない場合、ボックス内にその単語が表示されます。候補の単語がある場合は訂正案ボックスに表示されます。訂正案の中からそれぞれの単語に対して適切な単語を選び、"変更"ボタンをクリックしてください。これ以外に、表示されている単語を上書きして訂正する方法があります。訂正終了後"OK"をクリックすると訂正内容が保存されます。変更内容をキャンセルするには、"戻る"をクリックしてメール作成ウィンドウに戻ってください。
+lang_help_mailerrors_text2 = ログインページの"上級ログイン"ボタンをクリック
+lang_javascript_menu_ShowCalendar = カレンダー表示
+lang_help_settings_dateformat = 日付形式
+lang_help_mngmsg_text1 = ご使用のアカウントの容量を確認するにはウェブメールのスタートページを開いてEメール要約情報を参照してください。
+lang_help_recvmail_text2 = フォルダページの"Eメールフィルタ"セクションに行ってください。
+lang_help_mailerrors_head1 = 下記のエラー通知を受信しました－メールサーバーへの接続に失敗しました－ドメインの状況と接続状態はどうなっているのでしょうか？
+lang_help_mailsend_text1= 同時に最高100人まで同じメッセージを送信することが可能です。
+lang_help_mngmsg_text13 = ここで新しいフォルダ名を入力できます；
+lang_help_mngmsg_text24 = メインメニューの"フォルダマネージャ"をクリックしてください。
+lang_help_mngmsg_head2 = ゴミ箱内のメールも使用容量に加算されますか？
+lang_help_mailerrors_head3 = ログインの際に似たようなエラーが発生します－"ファイルを開くことができません：'sometable.MYD'"
+lang_help_settings_msgpopupdesc = フォルダ内のメッセージを表示する際にポップアップで表示する
+lang_help_settings_head2 = レイアウト/カラー
+lang_help_rcvattach_text5 = サービスに加入している場合は、GVサーバー側で全ての自動スキャンを行いますので何もする必要はありません。
+lang_help_mngmsg_head7 = メッセージを自分のフォルダの1つに移動するにはどうしたら良いですか？
+lang_help_mailerrors_title = メールエラー
+lang_help_mngmsg_text22 = フォルダ内のコンテンツを表示するには開きたいフォルダ上をクリックしてください。
+lang_help_mailerrors_text19 = "保存"をクリックして変更内容を保存すればメール送信が可能になっているはずです。
+lang_javascript_menu_ShowMailboxes = メールボックス表示
+lang_help_recvmail_head2 = 受信できるメールの最大サイズはなんですか？　
+lang_help_mngmsg_text9 = "フォルダマネージャ"にある"新しいフォルダ"作成セクションに行ってください。
+lang_help_mngmsg_text8 = よりわかりやすく管理するため、フォルダはいくつ作成しても構いません。フォルダを作成するには：
+lang_help_mngmsg_head8 = フォルダのコンテンツはどのようにして参照すれば良いですか？
+lang_help_acctconfig_text7 = 署名とは、送信される各メールの最後に自動的に追加されるメッセージのことを意味します。ご自分の電話番号や住所などの情報をEメールに含めたい場合に便利な機能です。
+lang_help_mailerrors_text13 = SMTP: smtp.mydomain.com
+lang_help_mngmsg_text26 = フォルダは削除されます。
+lang_help_settings_encryptleveldesc = 有効にしたい暗号化のレベルを選択してください。512-Bit - 基本セキュリティ - メッセージをすばやく暗号化/複合化できる下位レベルのセキュリティ； 1024-Bit - デフォルトの変調長さのPGP暗号化で標準レベル； 4096-Bit－軍レベルの暗号化。高セキュリティで、暗号化/複合化に時間を要する
+lang_help_recvmail_text7 = <b>注意：</b> メールにファイルを添付する際、ファイルをエンコードする必要があり、その場合ファイルサイズが増大します。添付されるファイルは、他のメーラーが読み取れる形式に変換されなればなりません。このような変換を行うと、元のファイルサイズより33％程大きくなります。このため、元のファイルサイズが2MBの場合エンコード後は2.66MBになります。
+lang_help_mngmsg_text25 = 削除したいフォルダを選択し、リストの右側にある"削除"リンクをクリックします。
+lang_help_recvmail_text1 = 特定のEメールアドレスを拒否することで、ウェブメール使用の際に送付されてくるその人物からのメールを全て拒否することができます。受信拒否の設定をするには：
+lang_help_mngmsg_text6 = <i>注意：</i> 一度ゴミ箱を空にするとメッセージは完全に削除され、回復することはできません。<br>
+lang_help_acctconfig_text3 = 送信メールに表示したい名前を"差出人名"フィールドに入力してください。
+lang_help_mailsend_text2 = 複数の宛先にメッセージを送信したい場合は、各Eメールアドレスをセミコロンで区切って（benlee@isp.net; john@mycompany.com 等）宛先:、Cc:、またはBcc:フィールドに追加してください。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+lang_help_addfaq_text4 = アドレス帳のフィールドを定義
+lang_help_addfaq_text7 = グループの連絡先は下記に従って作成してください：
+lang_help_calfaq_text4 = 新しいウィンドウが表示されますので、予定の詳細を入力してください。
+lang_help_addfaq_head5 = 個人用、共有およびグローバルアドレス帳それぞれの違いはなんですか？
+lang_help_calfaq_title = カレンダーに関するFAQ
+lang_help_ldapfaq_text2 = 検索 > アドレス帳
+lang_help_hints_text1 = ウェブメールに関するヒント
+lang_help_calshared_text5 = 新しいウィンドウが表示されますので、ここで予定の種類や時間、日付を設定してください。このウィンドウで"グループの予定"をクリックしてください。
+lang_help_addfaq_text10= グループのアドレス帳で、ユーザーの読み取り/書き込み権限を指定することができます。
+lang_help_ldapfaq_text6 = どのようにして外部LDAPサーバーを指定することができますか?
+lang_help_loginhelp_title = ログインアシスタント
+lang_help_sync_title = ユーティリティをOutlookに同期化
+lang_help_sync_text10 = ボタンをクリックすれば、Outlookがウェブメールアカウントに自動的に同期化されます。
+lang_help_ldapfaq_text1 = 以下に従ってSDAPサーバーを検索することができます：
+lang_help_apop3faq_head2 = 使用しているPOP3アカウントが動作しません。
+lang_help_sync_text8 = 全ての変更を保存してアカウントオプションウィンドウを閉じます。
+lang_help_ldapfaq_text4 = SDAPサーバーの詳細を下記に入力してください
+lang_help_sync_head1 = $pref['brandname']の同期ユーティリティは何ですか？
+lang_help_calfaq_text2 = 右側に表示されているカレンダーパネル上の日付をクリックして、仕事や予定をスケジュールしたい日付を選択します。
+lang_help_acctconfig_head2 = 署名はどのようにして作成しますか？
+lang_help_calfaq_head2 = 新しい仕事はどうやって追加したら良いですか？
+lang_help_calfaq_text5 = カレンダーウィンドウの右下にある"仕事を追加"をクリックして新しい仕事を追加します。新しいウィンドウが立ち上がりますので、必要な情報を入力してください。
+lang_help_wapfaq_text3 = XHTML互換機器かどうか確認する
+lang_calendar_readtask_grouptask = グループの仕事
+lang_help_smsfaq_title = SMSに関するFAQ
+lang_help_calshared_text7 = "エントリを追加"をクリック
+lang_help_hints_text5 = メッセージをドラッグ＆ドロップして簡単にご希望のフォルダに移動することが可能です。
+lang_help_import_text12 = 3: 次にCSVファイルをご自分のコンピュータに保存することができるようになります。保存場所を選択してファイルに名前を付けて保存してください。
+lang_help_calfaq_text6 = カレンダーの表示方法を変更するにはどうしたら良いですか？
+lang_help_sync_text9 = メールの同期化を有効にすると（上記参照）、ツールバー上に"ウェブメールの同期化"というマクロボタンが表示されます：
+lang_help_wapfaq_title = ワイヤレスEメールに関するFAQ
+lang_help_smsfaq_head1 = ウェブメールを介してSMSメッセージを送信することができないのはなぜですか？
+lang_help_import_text3 = インポートオプションを選択
+lang_help_addfaq_head1 = 既存のアドレス帳をインポートするにはどうしたら良いですか？
+lang_help_acctconfig_text5 = 署名とは、送信される各メールの最後に自動的に追加されるメッセージのことを意味します。ご自分の電話番号や住所などの情報をEメールに含めたい場合に便利な機能です。
+lang_help_addfaq_text2 = 他のメールソフト（OutlookやExpress）からCSVテキストファイルとしてアドレス帳をインポート
+lang_help_ldapfaq_text3 = "検索タイプ"というドロップダウンボックスで"SDAPサーバー"を選択
+lang_help_import_text19 = ウェブメールでは、より正確な検索結果を見つけるようにしますが、内容が合っていない場合は各フィールドのドロップダウンメニューから変更することができます。
+lang_help_apop3faq_text3 = まず、ドロップダウンメニューであなたの外部アカウントを指定してください。
+lang_calendar_newpost_delegate = カレンダーのエントリを委託するユーザーを選択します。オプションで、ユーザーの読み取り/書き込みアクセス権限を指定できます。
+lang_help_hints_text6 = 同期化ユーティリティを使用して、ウェブメールアカウントとご使用のOutlookを簡単に同期化することができます。詳細は<a href = "parse.php?file=html/japanese/help/sync.html">こちら</a>
+lang_help_import_text10 = 2: 次に、エクスポートされたファイルの変換形式を選択することができます。
+lang_help_smsfaq_text4 = 正しい受取人情報です
+lang_help_calfaq_text3 = カレンダーパネルの左側に表示されている時間の中からご希望の時間をクリックします。
+lang_help_apop3faq_text2 = <b>ユーティリティ > マルチアカウント</b>に移動します。
+lang_help_import_text16 = 最初の行ではCSV列について説明しています：</strong>Outlookを介して作成されたファイルを含め、ほとんどのCSVファイルには列の説明が含まれています。ファイルをテキストエディタ等で開いてCSVに見出しが含まれているかどうか確認できます。
+lang_help_addfaq_text1 = アドレス帳をインポートするには下記に従ってください：
+lang_help_search_text2 = ウェブメールのドキュメンテーション内でキーワード検索を行う場合は検索フォームを使用してください。検索したい単語を下に入力し、"検索"ボタンをクリックします。また、検索内容に対し具体的なキーワードを入力してより正確な検索を行うことができます。
+lang_help_import_text7 = Outlook等、他のEメールソフトからアドレス帳をインポートする場合には、このプログラム内からCSVにアドレス帳のデータをエクスポートすることができます。
+lang_help_addfaq_text3 = <b>アドレス帳 > インポート</b>からアドレス帳をウェブメールにインポートします。
+lang_help_smsfaq_head2 = メッセージが目的の受取人に届きませんでした。
+lang_help_wapfaq_head2 = アカウントにログインできません。
+lang_help_import_text18 = 一致するフィールドを選択中</strong></font>&nbsp;[<A HREF="#top">トップ</A>]<br><br> ここでは、あなたのCSVファイルから、ウェブメールのアドレス帳のフィールドと一致するフィールドをそれぞれ選択することができます。
+lang_help_ldapfaq_head1 = LDAPサーバーの検索はどのように行えば良いでしょうか？
+lang_help_import_text5 = アドレス帳をインポートするには、日付をCSVファイル形式にしておく必要があります。CSVでは、値は下記のようにコンマで分けられます：
+lang_help_import_text8 = 例えば、Outlook Expressからアドレス帳をインポートしたい場合、下記のステップで行ってください。
+lang_help_spellfaq_head2= メッセージが通知なしで送られる
+lang_help_calshared_title = 共有カレンダーを使用
+lang_help_wapfaq_text4 = ユーザー名とドメインおよびメールサーバーフィールドを確認してください。
+lang_help_sync_text2 = Outlookとウェブメールアカウントを同期化するには下記を行ってください：
+lang_help_addfaq_text8 = ウェブメールウィンドウでアドレス帳アイコンをクリックしてください；
+lang_help_import_text6 = 名前、姓、Eメールアドレス、住所1、住所2....
+lang_help_import_text1 = ここでは、既存のアドレス帳をあなたのウェブメールアカウントにインポートする手順を説明しています。
+lang_help_spellfaq_head1 = Eメールがスペルチェックされているかどうかどのように確認できますか？
+lang_help_smsfaq_text2 = このような状況が発生したら、以下を確認してください：
+lang_help_acctconfig_head4 = メッセージを新しいウィンドウで開くにはどうしたらいいですか？
+lang_help_smsfaq_text3 = アカウントにSMSクレジットが十分あります
+lang_help_import_text14 = 5: アドレス帳のCSVが完成しました。ウェブメールの画面に戻ってください。
+lang_calendar_newpost_personalappointment = 個人の予定
+lang_help_apop3faq_text5 = POP3/IMAPアカウント情報が正しく入力されているか確認してください。ご使用のコンピュータの設定から正しいユーザー名、ドメイン名およびメールサーバー情報が記入されているか確認できます。メールアカウントについての詳細は、契約しているISPに確認してください。
+lang_help_wapfaq_text2 = ログインページが使用しているマシン/ブラウザで表示されません
+lang_help_import_text15 = アドレス帳セクションに行き、下記のボタンを選択してください&quot;インポート&quot;. 必要な情報を入力します。
+lang_help_calfaq_head1 = カレンダーエントリーはどのように作成しますか？
+lang_help_smsfaq_text5 = これらが正しい場合、SMSゲートウェイでは場合により技術的な問題が生じることがございます。詳細はシステムの管理者までお問い合わせください。
+lang_help_hints_text3 = メッセージ上を右クリックすると、表示されたメニューからメッセージをより簡単に返信、転送または開くことができます。
+lang_help_apop3faq_head1= POP3アカウントはどうやって追加したら良いですか？
+lang_help_search_header = 検索結果：
+lang_help_calfaq_text1 = 新しいカレンダーエントリーの作成は以下の手順で行ってください：
+lang_help_calshared_text3 = ウェブメールカレンダーで共有の予定を作成する手順は以下の通りです：
+lang_help_import_text9 = 1: Outlookでは、ファイル --&gt; エクスポート --&gt; アドレス帳に行ってください。
+lang_help_apop3faq_text1 = 新しく外部POP3.IMAPアカウントを作成するには以下に従ってください：
+lang_help_acctconfig_head3 = メッセージのプレビューを無効化するにはどうしたら良いですか？
+lang_help_sync_text5 = 別ウィンドウが立ち上がりますので、そこで<b>高度なオプション</b>をクリックして、その次に立ち上がるウィンドウ上の"COMアドイン"をクリックしてください。
+lang_help_ldapfaq_text7 = 外部LDAPサーバーを指定するには、検索ウィンドウ内の"LDAPサーバー"というテキストボックスに情報を入力してください。通常の検索と同様、検索ボックスに入力して"データベースを検索"をクリックします。
+lang_help_addfaq_title = アドレス帳に関するFAQ
+lang_help_calshared_text6 = "出席者"タブをクリックして、どのユーザーが読み取り/書き込み、または読み取り専用アクセスを持つかについて定義することができます。
+lang_help_wapfaq_head1 = 自分のワイヤレス装置を使ってウェブメールにアクセスするにはどのようにしたら良いですか？
+lang_help_addfaq_head4 = 個人グループを作成するにはどのようにしたら良いですか？
+lang_help_sync_head3 = ウェブメールアカウントとOutlookを同期化するにはどのようにしたら良いですか？
+lang_help_import_text13 = 4: ここで、ご自分のアドレス帳からどのデータをウェブメールにインポートするか選択することができます。終了したら&quot;完了&quot;をクリックしてください。
+lang_help_import_text11 = &quot;テキストファイル（値はコンマで分割）&quotを選択；
+lang_help_calfaq_text7 = カレンダーの表示形式は、ウェブメールツールバーの右側にあるオプションボックスで選択して変更することができます。スケジュールは、1週間、2週間、四半期または年間表示のいずれかを選択することができます。
+lang_help_sync_text1 = ユーティリティを使用してOutlookとウェブメールアカウントを同期化することができます。これにより、アドレス帳にある全ての情報をウェブメールとOutlookの間で相互に転用することが可能となります。
+lang_help_sync_text7 = 次に、メールの同期化ユーティリティパネルに全ての変更点について定義します。<b>ツール > オプション</b>をクリックしてから"ウェブメールの同期化設定"タブに進んでください。
+lang_help_sync_text3 = 最初にウェブメール同期化アドインファイル<a href = "http://atmail.com/atmailsync.dll">http://atmail.com/atmailsync.dll</a>をダウンロードしてください。
+lang_help_spellfaq_text1 = スペルチェックが完了するとメールウィンドウが更新されます。スペルの間違いが見つからなかった場合はページが自動的に更新されます。
+lang_help_spellfaq_text2 = メッセージは"送信"ボタンをクリックするまで送信されません。問題が発生した場合はウェブの管理者にご連絡ください。
+lang_help_addfaq_text6 = アドレス帳をエクスポートするには、アドレス帳パネルの"エクスポート"ボタンをクリックしてください。アドレス帳はCSVファイルとして抽出されます。
+lang_help_addfaq_head2 = グループのアドレス帳/アドレス帳の連絡先はどのようにして作成すれば良いですか？
+lang_help_addfaq_text9 = アドレス帳の新規連絡先の作成セクションにあるグループアドレスセクションへ行ってください；
+lang_help_hints_text7 = 迷惑メールの設定を利用することで、より効果的に迷惑メールのフィルタを利用することができます。
+lang_help_import_text4 = 一致フィールドを選択
+lang_help_spellfaq_text3 = どの言語でウェブメールにログインしたかによってスペルチェック用の辞書が選択されます。デフォルトは英語に設定されています。
+lang_help_search_title = 検索に関する資料
+lang_help_hints_text4 = 既存フォルダ上を右クリックして簡単にサブフォルダを作成することができます。
+lang_msg_loginerror_mail_head = メールサーバーへの接続に失敗しました
+lang_help_addfaq_text12 = 個人のグループを作成するには、アドレス帳のメニューで"新規グループ"ボタンをクリックしてください。
+lang_help_addfaq_text5 = 既存のアドレス帳をエクスポートするにはどうしたら良いですか？
+lang_help_sync_head2 = Outlookとのメールの同期化を有効にするにはどうしたら良いですか？
+lang_help_calshared_text4 = カレンダーパネルで予定を設定したい日付をクリックしてください。
+lang_help_import_text2 = インポートオプションを選択
+lang_help_smsfaq_text1 = ウェブメールでのSMSメッセージサービスは無料では提供しておりません。メールの送受信を行うには、サービスプロバイダ/管理者からSMSブロックを購入する必要があります。
+lang_help_import_text20 = &quot;選択&quot;というフィールドがある場合は、ウェブメールがそのフィールドのデータを見つけることができなかったことを示しています。理由としては該当するデータがCSVに含まれていなかったことが考えられます。メールアドレスフィールドが正しくリンクされている限り、これによってエクスポートが失敗したり問題が発生することはありません。
+lang_help_calshared_text2 = 共有の予定を作成
+lang_help_spellfaq_title = スペルチェックに関するFAQ
+lang_calendar_newpost_groupappointment = グループの予定
+lang_help_ldapfaq_text5 = 検索フィールドに入力して"データベースを検索"をクリック
+lang_help_hints_title = ヒント集
+lang_help_spellfaq_head3 = スペルチェック機能で単語を別の言語の単語に変更します。
+lang_help_wapfaq_text1 = http://yourserver.com/xhtml.phpから、WAP-2対応モバイル機器およびXHTML対応ブラウザとマシンのワイヤレス画面にアクセスできます。
+You can access your Wireless Interface using http://yourserver.com/xhtml.php　for WAP-2 compatible mobile devices and XHTML compatible browsers and devices.
+lang_help_sync_text6 = 次に追加をクリックし、ご使用のコンピュータ上の<b>atmailsync.dll</b>ファイルにポイントするようにします。
+lang_help_hints_text2 = メールボックスパネルの列のサイズを変更することができます。これは、ウェブメール画面より低い解像度を使用している場合に便利な機能です。列の境界線上をクリックしてドラッグし、ご希望のサイズに変更してください。
+lang_help_calshared_text1 = 共有カレンダーでは、特定の仕事を割り当てたり予定を定義した特定のグループにのみ公開することができます。ここではこの共有カレンダーの使用方法について説明します。
+lang_help_import_title = アドレス帳のヘルプガイドをインポート
+lang_help_apop3faq_title = POP3に関するFAQ
+lang_calendar_readtask_personaltask = 個人の仕事
+lang_help_sync_text4 = Microsoft Outlookウィンドウの<b>ツール > オプション</b>に行ってください。
+lang_help_import_text17 = アドレス帳のインポートの&quot;参照&quot;ボタンをクリックして作成したCSVファイルを選択します。次に&quot;ファイルのインポート&quot;をクリックすればほぼ完了です。
+lang_help_search_text1 = 以下が検索結果です。最も関連性の高いリンクから順に表示されています。より正確な検索結果を得るため、複数キーワードおよび具体的な検索条件を使用してください。
+lang_help_import_text21 = 終了したら&quot;エクスポート&quot;をクリックしてください。
+lang_help_addfaq_head3 = グループのアドレス帳に登録されているユーザーに暗号化されたメッセージを送信するにはどうしたら良いですか？
+lang_msg_loginerror_mail_body = ドメインが存在し、外部からの接続を受け入れていますか？詳細は、<a href='javascript:helpwin("loginhelp.html")'>ヘルプガイド</a>をクリックしてください。
+lang_help_import_text22 = 完了すると、新しく登録された連絡先の数が通知され、更新されたアドレス帳に移動します。
+lang_help_ldapfaq_title = LDAPに関するFAQ
+lang_calendar_newpost_category = カテゴリ
+lang_help_addfaq_text11 = 他のアドレス帳ユーザーに暗号化されたメッセージを送信するには、そのユーザーのPGPキーがプロファイルに格納されている必要があります；PGPキーは公開鍵で、ASCII形式で格納されます。
+lang_help_apop3faq_text4 = テキストボックスでホスト名とユーザー名を指定してください。
+lang_help_search_text3 = 検索条件
+lang_help_addfaq_text13 = 個人のアドレス帳は、作成したユーザーのみ閲覧可能になっています。共有のアドレス帳は、特定のユーザーにのみ公開され、一定のグループのユーザーのみ編集を行うことができます。グローバルアドレス帳は、制約なく誰でも閲覧することができます。
+
+lang_help_hints_text9 = EメールでHTMLコードを送信したい場合は、メッセージ作成ウィンドウで"プレーン"エディタから"HTML"エディタに切り替えて簡単に行うことができます。
+lang_menu_clickhereext = <a href="javascript:switchtype()">ここをクリック</a>して外部POP3/IMAPアカウントにアクセスしてください。ウェブメールを既存メールボックスとしてご使用ください。
+lang_help_hints_text14 = Eメールをタブ表示で閲覧したくない場合は表示方法を変更することも可能です。<b>ユーティリティ > Eメール設定 > ウェブメールのプレファレンス</b>ウィンドウ内で"メッセージポップアップ"というチェックボックスにチェックを入れて有効にしてください。
+lang_help_loginhelp_text4 = <b>メールサーバー</b>: このフィールドは外部POP3/IMAPメールサーバーのみに対して使用します。アカウントのメールサーバーアドレスを指定してください。例えば、あなたのアカウントがjim@isp.comの場合、メールサーバーアドレスは'mail.isp.com'になります。
+lang_menu_mailserver = メールサーバー：
+lang_help_hints_text8 = 受取人のEメールを忘れてしまった場合も問題ありません。アドレス帳から直接"受取人追加"ボタンで受取人を追加することが可能です。個人用とグローバルアドレス帳を繰り返し表示することもできます。
+lang_help_loginhelp_text7 = <i>IMAPアカウントでは</i>、セッションはIMAPサーバーにミラーされています。作成したフォルダや移動したメッセージに関してもリモートマシンに反映されますので、別のメールクライアントでも同じデータを得ることができます。
+lang_help_loginhelp_text15 = 正しいパスワードが入力されているかどうか確認してください。パスワードを忘れてしまったり変更したい場合はパスワードユーティリティで確認や変更を行えます。
+lang_help_loginhelp_text2  =<b>ユーザー名</b>：メールサーバーにおける一般的な識別要素です。Jimというユーザーがいた場合、Jimのisp.comでのメールアドレスは：jim@isp.com
+lang_help_loginhelp_text3 = <b>パスワード</b>：特定のEメールアカウントにログインする際に許可されたユーザーであるかどうかを認識するための秘密の鍵です。パスワードを忘れてしまったり変更したい場合は、ログインページの"パスワードの変更"ボタンをクリックしてください。
+lang_help_loginhelp_text11 = アカウントをお持ちでない場合は、管理者がウェブ経由で新規アカウントを作成することができます。ログインページの"新規アカウント"リンクをクリックしてアカウントサインアップに進んでください。
+lang_menu_interface = インターフェース：
+lang_menu_clickherelocal = ローカルのメールボックスにアクセスしたい場合は、<a href="javascript:switchtype()">ここをクリック</a>してローカルシステムアカウントのログインページにアクセスしてください。
+lang_help_loginhelp_text9 = <b>言語</b>：ウェブメールインターフェースの表示言語を選択することができます。
+lang_help_loginhelp_text8 = <b>インターフェース</b>: ウェブメールセッションのインターフェースを選択することができます。$pref['brand_name']では複数のインターフェースをご用意していますので、ご使用のブラウザやプレファレンスにより選択していただけます。
+lang_help_loginhelp_text10 = サインアップする
+lang_help_loginhelp_text1 = ウェブメールアカウントにログインしたり、ウェブメールを使って外部のアカウントにアクセスする際は、ユーザー名とパスワードを入力し、インターフェースタイプと表示言語を選択する必要があります。ウェブメールを使用して外部からアクセスする場合にはメールサーバー名も求められます。
+lang_help_hints_text12 = ウェブメールから他のPOP3/IMAPアカウントにアクセスすることも可能です。<b>ユーティリティ > マルチアカウント</b>ウィンドウでアクセスしたいホスト名、メールボックスおよびメールサーバーを定義してください。
+lang_help_loginhelp_text16 = 複数のドメインを持つウェブメールシステムの場合、フィールド内のドメインが正しく入力されているか確認してください：
+lang_menu_password = Password:
+lang_help_loginhelp_text12 = ほとんどのフィールドへの回答はオプションですが、新しいEメール名（ユーザー名）、パスワード（およびパスワードの確認）、姓と名前およびパスワードのヒントは必須となります。入力が正しく行われると自動的に新しいアカウントにログインされます。
+lang_help_loginhelp_text5 = <b>Account Type</b>:  このフィールドは外部メールサーバーに対してのみ使用します。アカウントタイプがPOP3かIMAPのどちらか指定してください。
+lang_help_loginhelp_head1 = アカウントへのログインアシスタント：
+lang_menu_newaccount = 新規アカウントサインアップ
+lang_help_loginhelp_text13 = トラブルシューティング－アカウントにログインできません：
+lang_menu_haventgot = アカウントをお持ちでない場合は、<a href="index.php?func=signup">サインアップ</a>から無料Eメールアドレスにサインアップすれば数分で新しいアカウントを設定し、アクセスすることができます。
+lang_help_loginhelp_text14 = 外部アカウントにログインする際は、メールサーバーアカウントが正しいかどうか確認してから行ってください。
+lang_help_hints_text11 = 他のLDAPサーバー上のアドレスも問題なく使用できます。<b>人物検索</b>ウィンドウで検索したいLDAPサーバーと検索範囲のパラメータを指定して検索してください。
+lang_help_hints_text13 = メッセージをドラッグ＆ドロップでひとつのフォルダから別フォルダへ移動できることを知っていましたか？ご希望のフォルダにメッセージを移動するとても便利な方法です。
+lang_help_loginhelp_text6 = <i>POP3アカウントでは</i>、外部POP3メールサーバーからメッセージを転送したりコピーしたりすることができます。
+lang_menu_language = 言語：
+lang_menu_provide = メールアカウントアクセス用のログイン名とパスワード情報を入力してください
+lang_help_hints_text10 = カレンダー内で、ユーザーのアクセスレベルを読み取り専用か読み取り/書き込みレベルか設定することで、特定のユーザーにのみ予定の日付や詳細の変更を行う許可を与えることができます。
+
+lang_javascript_validate_domain = \"Domain\"フィールドに情報を入力してください。
+lang_msg_loginservererror_mail_body = ログインに失敗しました。（エラーメッセージは英語のみ） : $var['loginstatus']
+lang_login_copyright = (C) $pref['brandname'] 1998 - 2004
+lang_help_title_login = ヘルプガイド
+lang_signup_emailprefsmsg = ウェブメールのインターフェイスと、利用する言語を選択してください。インターフェイスは使用しているウェブブラウザにあわせて選択してください。
+lang_help_faq = FAQ
+lang_help_about = 会社情報
+
+
+lang_msg_attach_too_large = 添付ファイルの容量が大きすぎます。
+
+lang_msg_loginservererror_auth_body = パスワードが正しくないか、セッションIDが他のユーザに利用されています。ログイン情報を確認して再度ログインしてください。
+
+lang_address_popup_emailcontact = メール送信
+lang_address_popup_editcontact = 連絡先編集
+lang_address_popup_deletecontact = 連絡先削除
+lang_address_popup_viewhisotry = メール履歴を表示
+
+lang_blue_pane_abook_new_sender = 差出人をアドレス帳に追加
+lang_Global_Today = 今日
+lang_javascript_validate_jscript_chars = フォルダ名に以下の文字は使用できません : <, >, [, ], ?, *,シングルコート,ダブルコート
+
+lang_javascript_alert_perm = 選択されたメールを削除すると復元できません。削除しますか？
+
+
+
+lang_spamsettings_spamdetect_head = Spam Detection Level
+lang_Global_sync = Sync
+lang_spamsettings_bayesian_body = Automatically learn between Spam and valid messages and train the message filters using Bayesian techniques.
+lang_calendar_menubarcal_simple_calender = Calendar
+lang_spamsettings_spamtag_head = Spam Tag
+lang_help_hints_text15 = Increase the performance of the WebMail interface by configuring your browser to cache the HTML/images. Visit the Internet-Options -> Temporary Internet Files -> Settings -> Check for newer versions of stored pages = "Automatically" .
+lang_spamsettings_bayesian_head = Bayesian Filtering : Auto-Learn
+lang_simple_compose_menu_addbcc = Add BCC
+lang_spamsettings_spamreport = Include Spam Report
+lang_spamsettings_spamtag_body = Optionally specify a tag to append to a message subject if marked as Spam
+lang_spamsettings_trusted = Specify a list of trusted email-addresses you wish to receive email from. Any email-address specfied here will bypass the spam-filter of $pref['brandname']
+lang_spamsettings_whitelist = Specify a list of trusted receipeint email-addresses. If a message contains the receipeint address in the To/Cc/Bcc header the message will be automatically trusted.
+lang_global_extreme = Extreme
+lang_spamsettings_spamreport_body = If an incoming message is marked as Spam, the message can be re-written to include a report on why the message was filtered ( e.g which keywords and message headers caused the Spam detection )
+lang_spamsettings_title = Use the Spam filter of $pref['brandname'] to block unwanted messages from your Inbox. You can define which users are trusted to send email-messages and optionally define message subject/body keywords to detect if a message is Spam orientated.
+lang_spamsettings_spamdetect_body = Specify the level to mark a message as Spam, a value of 10 will mark only the most obvious messages as spam, where a value of 1 will use a more agressive filter to determine if a message is of Spam origin.
+lang_blue_pane_startpage_syncbody = Synchronize your Address-book, Calendar and Task information with Outlook. For more information consult the online help guide for installation details
+lang_xp_menubar_markspam = Mark as Spam
+lang_blue_pane_startpage_synchead = Account Synchronization
+lang_spamsettings_blacklist = Specify a list of black-listed email-addresses you wish deny receiving email from. Any email-address specfied here will force a message to be maked as spam.
+
+lang_login_xp_popup_error1 = A popup-blocker is enabled on your browser.<br>To correctly view the WebMail application, you must allow popup windows from the URL of the site.
+lang_auth_invalidchars_username = Choose another username with different characters.
+lang_auth_invalidchars_error = Username $var['user'] contains invalid characters
+lang_javascript_popup_blocked = Automatic Popup windows are disabled for your browser. You must allow popup windows for the Webmail URL to continue
+lang_login_xp_popup_error3 = <b>Note:</b> Allowing popup windows will not effect your security settings.<br>It will only permit popup windows to be displayed for the selected site.
+lang_xp_menubar_unmarkspam = UnMark as Spam
+lang_login_xp_popup_error2 = Click the top header in the browser and enable 'Always Allow Pop-ups from This Site' .<br>Use the image below as a guide on how to enable popup windows.
+lang_auth_invalidchars_msg = The account you are accessing contains invalid characters. A-Z-0-9, . - and _ characters are permitted. Click <a href="javascript:history.back('-1')">the back button</a> and try again.
+lang_auth_invalidchars_title = Access Denied
+
+lang_blue_pane_settings_dateformatYDM = YY/DD/MM
+lang_blue_pane_settings_dateformatDMY = DD/MM/YY
+lang_addgroup_alreadyexists = The selected group name already exists - Please specify a new group
+lang_blue_pane_settings_dateformatYMD = YY/MM/DD
+lang_blue_pane_settings_timeformat24 = 24 Hour
+lang_Calendar_closebutton = Close
+lang_addgroup_grouptype_shared = Shared Group
+lang_javascript_validate_move_folder = Please select the destination folder to move the email-messages
+lang_msg_chpasswddup_text = The new password must be different from the previous ten passwords. Try again.
+lang_blue_pane_settings_saved = Settings saved successfully
+lang_addgroup_grouptype_personal = Personal Group
+lang_help_hints_head = Tip of the Day
+lang_Calendar_addbutton = Add Entry
+lang_help_settings_autoreplymsgdesc2 = Using the Mail-settings tab you can optionally specify an auto-reply message for incoming emails. Alternatively, you can forward your mail to another account using the mail-forwarding utility.
+lang_xp_menubar_about = About
+#lang_login_moreinfotext = For more information on the WebMail service, please contact $this->admin_email</a> - $pref['brandname'] $pref['version'] (C) 2004
+lang_blue_pane_settings_autocompletedesc = Enable email auto-completion when typing addreses in the email compose window
+lang_blue_pane_settings_autocomplete = Address Autocomplete
+lang_blue_pane_startpage_quota_desc = Below is the mailbox usage of your account. Use the folder-manager to remove unwanted messages and folders to reduce the mailbox quota
+lang_addgroup_grouptype = Select Type
+lang_blue_pane_settings_timeformat12 = 12 Hour
+lang_spamsettings_filterlist_checkbox = Expression
+lang_global_page = Page
+lang_xp_exportwindow_heading = Exporting addressbook ...
+lang_blue_pane_settings_dateformatMDY = MM/DD/YY
+lang_javascript_validate_move_nomsgs = Please select which email-messages to move
+lang_xp_exportwindow_body = If the download does not start automatically, check the browser security settings or <a href="abook.php?func=export&abookview=$var['abookview']"><u>click here</u></a> to manually download the addressbook CSV file
+lang_Global_viewheaders = View Headers
+lang_Calendar_invalid_date = Invalid date - End date is before the start date for the event.
+
+lang_help_mailmonitor_title = Mail Monitor Utility
+lang_help_mailmonitor_text7 = 3. When you recieve a new email, the Mail Monitor Utility will automatically notify you via a pop-up on the lower-right corner of your screen. It contains the heading, date, and a summary of the contents of the interface.
+lang_help_xulhelp_text9 = To move messages, highlight the subject line of the message(s) you want to move, and click on the &quot;Move&quot; button in the top pane.
+lang_help_mailmonitor_text1 = The Mail-Monitor Utility is a small program that checks for new emails on your mailbox periodically, depending on the timespan that you explicitly specify. It runs silently in your system tray, and notifies you automatically, if you have new emails.
+lang_help_xulhelp_text3 = To access the XUL interface of @Mail, select the option labeled &quot;Advanced (Mozilla 1.0+)&quot; from the login page of Webmail - This interface requires a more recent version of Firefox, version 1.0+ recommended. The interface is cross platform and will run under Windows, Linux and Mac OSX using the Firefox browser.
+lang_xp_menubar_interfacetips = Interface Tips
+lang_help_xulhelp_title3 = How do I use the XUL interface?
+lang_help_mailmonitor_head2 = Where can I get the Mail Monitor Utility?
+lang_help_xulhelp_title2 = How do I enable the XUL interface?
+lang_help_mailmonitor_text4 = 1. Access the Mail Monitor properties screen. This can be done by right clicking on the Mail Monitor icon, and choosing &quot;Properties&quot;.
+lang_help_mailmonitor_text6 = <p>Where: <p>&quot;http://yourdomain.com/&quot; is the location of your Webmail login page, <p>&quot;yourdomain.com&quot; is your account domain name (e.g., myisp.co.uk, isp.com), <p>&quot;john@yourdomain.com&quot; is your account-name
+lang_help_mailmonitor_head1 = What is the Mail Monitor Utility for?
+lang_help_xulhelp_text10 =Columns for viewing email-messages and the addressbook can be automatically resized. Click the icon in the right-hand corner to choose which columns to display on the page.
+lang_blue_pane_startpage_mailmonitorbody = Download a desktop utility which automatically checks new messages on the server, and alerts you of new messages via a popup display.
+lang_help_xulhelp_title = What is the XUL Interface?
+lang_help_xulhelp_text2 = The XUL interface is created via XUL - a markup language similar to HTML and based on XML. XUL is used to define what buttons, scrollbars, text boxes, and other user-interface items will appear, in addition with CSS the design/color/theme is defined.
+lang_help_xulhelp_text1 = The XUL WebMail interface allows you to access a &quot;clone&quot; of the "Advanced" IE interface in Mozilla browsers. This interface has all, if not most, features that the Advanced interface has - and it runs native to your browser, which adds increased speed and browser/OS compatability.
+lang_help_hints_text16 = Download the <a href="javascript:top.helpwin(\'mailmonitor.html\')">Mail Monitor</a> desktop utility to automatically check your account for new messages. You will be notified of new messages via a popup display.
+lang_blue_pane_startpage_mailmonitorhead = Mail Monitor Utility
+lang_help_mailmonitor_text2 = The Mail Monitor Utility can be downloaded from:
+lang_help_mailmonitor_head3 = How do I setup the Mail Monitor?
+lang_help_xulhelp_text4 = When using the XUL interface, you have access to the following functionalities:
+lang_help_mailmonitor_text5 = 2. Fill in the fields in the properties screen, as depicted in the image below:
+lang_help_xulhelp_text6 = You can hit the 'delete' key as a keyboard shortcut while highlighting a message subject in the email pane to remove the message.
+lang_help_mailmonitor_text8 = Clicking on the link will bring you to the @Mail interface, directly to the email.
+lang_help_xul_title = XUL Interface
+lang_help_xulhelp_text5 = You can press shift-click in the email pane to highlight a number of messages at the same time. Ctrl+click works as well.
+lang_help_xulhelp_text7 = Right-clicking on the messages or address-book entry will bring up a pop-up menu containing additional options.
+lang_help_xulhelp_text8 = Pressing the up and down buttons will scroll through the messages in the currently selected mailbox.
+lang_help_mailmonitor_text3 = Download the file, and go through the installation instructions - the utility should then be automatically installed in your System Tray.
+
+
+lang_xhtml_signup_existingemailaccount = Existing email account:
+lang_xp_sms_filter_priority = Priority
+
+
+
+lang_blue_pane_settings_encodingdesc = When sending outgoing emails specify the default encoding for the message content
+lang_blue_pane_settings_encoding = Specify default mail-encoding
+lang_blue_pane_composehtml_readreceipt = Enable Read Receipt
+lang_login_type_simple = Basic (Any browser)
+lang_login_type_adv_xul = Advanced (Mozilla 1.0+)
+lang_blue_pane_reademail_abookadd_alert = Alert:
+lang_blue_pane_reademail_abookadd = The users email-address has been added to the addressbook
+lang_login_type_adv = Advanced (IE/FF)
+lang_spamsettings_acceptwhitelist_body = Optionally deny all email-messages unless the recipient address is contained in the <font onclick="ChangeTab('1');" style="cursor: hand;"><u>trusted-senders</u></font>. Use this to receive messages from only "trusted" users. Any other messages will be automatically rejected from the system.
+lang_blue_pane_reademail_displayimages_optiondisplay = Display Images in message
+lang_blue_pane_settings_displayimages_option3 = Block all
+lang_blue_pane_settings_displayimages_head = Block images in email messages
+lang_blue_pane_reademail_displayimages_optionadd = Always display images from this user
+lang_blue_pane_reademail_displayimages_head = $var['BlockImages'] images have been blocked.
+lang_blue_pane_settings_displayimages_body = Optionally select to block URL referenced images in messages. This is a common technique used by spammers to identify your email account.
+lang_blue_pane_settings_displayimages_option2 = Display for trusted users in Addressbook
+lang_login_xp_popup_ff_error = Click the top header in the browser and enable 'Allow popups for domain.com' .<br>Use the image below as a guide on how to enable popup windows.
+lang_xp_jscript_alert_selectmsgs = Please select emails to delete by clicking the checkbox on the message row
+lang_spamsettings_acceptwhitelist_head = Accept Whitelist Mail Only
+lang_blue_pane_settings_displayimages_option1 = Display for any message
+lang_login_xp_popup_reload = Once enabled you must click the Reload button on your browser or <a href="javascript:location.reload()"><b>click here</b></a> to refresh the page.
+lang_calendar_newpost_alldayevent = All Day Event
+lang_help_ajaxhelp_text7 = Use the top mail-headers to sort emails within the browser, without having to request the messages from the mail-server again.
+lang_Global_in = In
+lang_javascript_doubleclick = Double Click to Open
+lang_help_ajaxhelp_text1 = The AJAX interface allows you to access a version of the Simple Interface, created in Javascript, that asynchronously loads data from the server - which  adds increased speed and browser/OS compatibility. It has most of the features of an in-house client-side interface, thus, adding to the useability of your webmail interface.
+lang_help_ajaxhelp_text4 = When using the AJAX interface, you have access to the following functionalities to manage email messages:
+lang_javascript_cachestatus = Message Cache Status
+lang_help_ajaxhelp_text8 = Messages read within a folder are cached in the browser, so if requesting the same message again no reloading of the page is required. The first column of the email-row indicates if a message is cached within the browser.
+lang_help_ajaxhelp_title = What is the AJAX interface?
+lang_Global_more = More
+lang_Global_of = of
+lang_help_ajaxhelp_text3 = The AJAX interface is automatically enabled when you login with that interface specified. To use the interface IE5.5+ or Firefox/Mozilla 1.X is required, please note this interface is not supported on older browsers.
+lang_help_ajaxhelp_text13 = Columns for viewing email-messages and the addressbook can be automatically resized. Click the icon in the right-hand corner to choose which columns to display on the page.
+lang_blue_pane_abook_delmultiple = Are you sure you want to delete the ' + deltotal + ' selected addressbook items?
+lang_help_ajaxhelp_text5 = You can press shift-click in the email pane to highlight a number of messages at the same time. Ctrl+click works as well.
+lang_help_ajaxhelp_text6 = You can hit the 'delete' key as a keyboard shortcut while highlighting a message subject in the email pane to remove the message.
+lang_help_ajaxhelp_title2 = How do I enable the AJAXinterface?
+lang_help_ajaxhelp_text11 = Pressing the up and down buttons will scroll through the messages in the currently selected mailbox.
+lang_help_ajaxhelp_text9 = When replying to a message the compose panel automatically pops up, and does not require a reload of the page.
+lang_login_type_ajax = Simple (Ajax browser)
+lang_help_ajaxhelp_text10 = Right-clicking on the messages will bring up a pop-up menu containing additional options.
+lang_help_simpleajax_title = Simple Ajax Interface
+lang_help_ajaxhelp_text2 = One of the major advantages of the Simple Ajax interface is a message cache function within the browser, which avoids the use of reloading the page.
+lang_javascript_resumeediting = Resume Editing
+lang_help_ajaxhelp_title3 = How do I use the AJAX interface?
+lang_javascript_backto = Back to
+lang_help_ajaxhelp_text12 = To move messages, highlight the subject line of the message(s) you want to move, and drag it to your desired folder
+lang_Global_connecting = Connecting
+lang_javascript_moveerror_reason3 = The message no longer exists on the mail-server
+lang_javascript_moveerror_reason2 = The message has been moved from another application via POP3/IMAP. Please reload your mailbox folder for an updated listing
+lang_javascript_moveerror_head2 = The unique message identifier does not match the selected message for move/deletion. This error can occur if:
+lang_javascript_blocksender_added = The user has been added to your Spam blacklist
+lang_javascript_itemstomove = Items to move
+lang_javascript_moveerror_head1 = Message cannot be moved
+lang_javascript_moveerror_reason1 = You have refreshed the WebMail window after moving a message. The previous message cannot be moved twice
+lang_Global_exportemail = Export Email
+lang_global_scheduling = Scheduling
+lang_javascript_int_warining_head3 = .\nAre you sure you want to continue logging in?
+lang_global_participants = Participants
+lang_javascript_int_warining_head2 = You need
+lang_javascript_int_warining_head1 = Version
+lang_javascript_int_warining_head = Your Browser does not match the recommended requirements for this Interface.\nYou are using
+lang_global_busy = Busy
+lang_global_taskdetails = Task Details
+lang_global_available = Available
+lang_javascript_int_ff_10_later = Firefox Version 1.0 or later
+lang_javascript_int_ie_60_later = Internet Explorer Version 6 or later
+lang_javascript_int_ff_15_later = Firefox Version 1.5 or later
+lang_smime_settings_encryption_privatekey_desc = Your private key, used to encrypt and verify messages
+lang_smime_compose_encrypt_sign_message = Encrypt and Sign
+lang_auth_serverswitch_msg5 = Login to the new remote-mailserver with the existing password used in $pref['brandname']
+lang_smime_compose_sign_message = Sign Message
+lang_smime_settings_encryption_encrypt = Encrypt Messages by Default
+lang_smime_settings_encryption_level = Encryption Level
+lang_smime_settings_encryption_privatekey = S/MIME Private Key
+lang_smime_settings_encryption_publiccert = S/MIME Public Certificate
+lang_smime_settings_encryption_level_1024 = 1024-Bit - Normal security. The default key-length for S/MIME encryption
+lang_xp_menubar_markread = Mark as Read
+lang_auth_serverswitch_header = Security Error
+lang_smime_settings_encryption_smime_password_desc = Specify the passphrase for your S/MIME private key. Highly recommended the passphrase is different from your account login for added security.
+lang_xp_smime_encrypt_email = Please enter your S/MIME private key passphrase
+lang_auth_serverswitch_error = The account you are trying to login as has triggered a security warning.
+lang_smime_settings_encryption_sign = Sign Messages by Default
+lang_xp_smime_decrypt_email = Enter S/MIME private key passphrase to decrypt email
+lang_auth_serverswitch_msg4 = To resolve the access error
+lang_smime_settings_encryption_encrypt_desc = Automatically encrypt outgoing email messages with the recipient's public key (if you have their public key stored).
+lang_smime_settings_encryption_smime_password_confirm = Confirm the S/MIME passphrase
+lang_smime_settings_encryption_level_4096 = 4096-Bit - Military grade encryption. Strong level of security, slower to decrypt/encrypt messages.
+lang_auth_serverswitch_msg6 = Contact the administrator $this->admin_email to assosciate your account with the new mail-server address
+lang_smime_settings_encryption_level_512 = 512-Bit - Basic security. Fast to encrypt/decrypt messages, lower level of security.
+lang_smime_settings_encryption_sign_desc = Automatically sign outgoing messages with your private key.
+lang_auth_serverswitch_msg2 = Access is locked since the assosiated mail-server address is no longer used
+lang_xp_menubar_markunread = Mark as Unread
+lang_auth_serverswitch_msg3 = This is used as a security precaution to disallow access from unauthorized hostnames
+lang_smime_compose_encrypt_message = Encrypt Message
+lang_xp_smime_encrypt_makekey = Generating S/MIME keypair. Please wait 1-3 minutes for the encryption keypair and certificate to be generated.
+lang_auth_serverswitch_msg1 = The account in the database is assosiated with the mail-server <b>$var['origserver']</b> , while you are trying to access the remote account with the mail-server <b>$var['server']</b>
+lang_smime_settings_encryption_smime_password = S/MIME Private Key Passphrase
+lang_smime_settings_encryption_publiccert_desc = Your public certificate, used to decrypt and sign messages
+lang_javascript_validate_folders_minfolder = Please specify at least one character for the folder-name
+lang_javascript_month_jul = July
+lang_javascript_calendar_alldayevents = All Day Events
+lang_javascript_day_mon = Monday
+lang_javascript_month_sep = September
+lang_javascript_day_thu = Thursday
+lang_javascript_month_jan = January
+lang_javascript_month_nov = November
+lang_javascript_day_sun = Sunday
+lang_javascript_calendar_shared = Shared
+lang_javascript_day_tue = Tuesday
+lang_javascript_month_aug = August
+lang_javascript_calendar_alldayadd = Double Click to Add an All Day Appointment
+lang_javascript_month_may = May
+lang_javascript_calendar_dayadd = Click & Drag or Double Click to Add an Appointment
+lang_javascript_month_dec = December
+lang_Address_smimeencryptionkey = S/MIME Encryption Key
+lang_javascript_day_wed = Wednesday
+lang_javascript_month_jun = June
+lang_javascript_month_mar = March
+lang_javascript_day_fri = Friday
+lang_javascript_month_feb = February
+lang_javascript_month_apr = April
+lang_javascript_month_oct = October
+lang_javascript_day_sat = Saturday
+lang_blue_pane_composehtml_videomail3 = People receiving your Video will see the content embedded in the email, or via a link which is streamed via the server.
+lang_Global_VideoMail = Video Mail
+lang_blue_pane_composehtml_videomail2 = Video Messages are quick and easy to create, all you need is a webcam, and you can record Video-mail within the browser.
+lang_blue_pane_composehtml_videomail1 = Using a webcam and $pref['brandname'] to create Video-mail is a great way to communicate online.
+lang_help_video_text6 = If you cannot see any Video, use the settings panel below and Click the Webcam icon. From the drop down list select your Webcam that is installed on your computer.
+lang_help_video_head3 = How will recipients see my Video Mail?
+lang_help_video_text7 = The Video Mail message is embedded in the email as a link, and users can simply click the Video-mail link to view the message in a browser. The remote server streams the video playback via Flash, and supports all modern browsers.
+lang_help_video_text5 = Check your OS audio settings and increase the microphone sensitivity if recording audio is still choppy.
+lang_help_video_text4 = Right click on the Flash video-mail screen , select Settings, then click the microphone tab. Verify you have selected the microphone that is connected to your computer and increase the microphone sensitivity to insure audio is recorded.
+lang_help_video_text8 = Optionally if the message is sent to another account using the same Webmail interface, the video is automatically displayed in the email message
+lang_help_videomail = Help Guide for Recording Video messages
+lang_help_video_head2 = I cannot see any Video or hear Audio while recording?
+lang_help_video_text2 = A browser with Flash is required, with Video mail supporting IE, Firefox and Safari
+lang_help_video_head1 = How can I send a Video Mail message?
+lang_help_video_text3 = Broadband access is recommended in order to record video mail message across the network without loss of quality
+lang_help_video_text1 = You require a Webcam connected to your computer, with either an inbuilt microphone or an external headset to record audio.
+lang_blue_pane_account_newpersonality = Create new Personality
+lang_blue_pane_account_personality = Personality
+#lang_help_calendar_taskexample = 'Call Mr. Herrod' is an example of a Task, A task is independent of time, You can not set a Calendar Task on a specific date.
+lang_blue_pane_folders_text2 = Optionally specify message routing rules to divert specific emails to another folder automatically.
+lang_Calendar_BackToEmail = Back to Email
+lang_Calendar_Sleep = Remind in 30 minutes
+lang_Calendar_OverDue = Overdue Appointments
+lang_Calendar_ViewWeek = View 5 day Week
+lang_Calendar_ViewMonth = View Month
+lang_blue_pane_folders_rename_submit = Rename
+lang_alerts_csv_import_bad_filetype = Incorrect filetype - please import only .csv or .txt (plain text files)
+lang_alerts_csv_import_file_oversize = The import file is too large - try importing in stages
+lang_alerts_csv_import_file_empty = The import file was empty
+lang_alerts_csv_import_failed = The import failed
+lang_Global_sendmail = Send Mail
+lang_blue_pane_folders_rename_choose = Select folder to rename
+lang_blue_pane_folders_rename = Rename Personal Folder
+lang_xp_jscript_alert_fwdmulti = Would you like to forward the multiple selected emails?
+lang_blue_pane_folders_newname = New Name
+lang_blue_pane_composehtml_disable_readreceipt = Disable Read Receipt
+lang_blue_pane_composehtml_attachments = Attachments
+lang_blue_pane_folders_purgefolderconfirm = The Folder ' + FolderName +' contains ' + FolderNum + ' Message(s). Are you sure you want to delete all messages from this folder?
+lang_calendar_repeat_occurrences = occurrences
+lang_global_repeat_event = Repeat Event
+lang_calendar_repeat_of_every = of every
+lang_calendar_repeat_The = The
+lang_calendar_repeat_daily = Repeat Daily
+lang_calendar_repeat_of = of
+lang_calendar_repeat_day = day
+lang_calendar_repeat_no_end = No End Date
+lang_calendar_repeat_end_by = End By
+lang_calendar_repeat_adv = Define Advanced Pattern
+lang_calendar_repeat_first = first
+lang_calendar_repeat_yearly = Repeat Yearly
+lang_calendar_repeat_none = Repeat None
+lang_calendar_repeat_every = Every
+lang_calendar_repeat_Every_weekday = Every weekday
+lang_calendar_repeat_third = third
+lang_calendar_repeat_weekly = Repeat Weekly
+lang_calendar_repeat_days = day(s)
+lang_calendar_repeat_forth = forth
+lang_calendar_repeat_end_after = End After
+lang_calendar_repeat_weeks_on = week(s) on
+lang_calendar_repeat_last = last
+lang_calendar_repeat_months = month(s)
+lang_calendar_repeat_recur_every = Recur every
+lang_calendar_repeat_weekday = weekday
+lang_calendar_repeat_Day = Day
+lang_calendar_repeat_weekend_day = weekend day
+lang_calendar_repeat_second = second
+lang_calendar_repeat_monthly = Repeat Monthly
+lang_blue_pane_foldertr_purgefolderalt = Purge $var['FolderName']
+lang_global_outofoffice = Out of Office
+icalendar_email_participants = Participants
+lang_calendar_remind_60mins = 60 Minutes
+lang_Calendar_ExportToIcal = Export to iCal
+lang_calendar_remind_1day = 1 Day
+lang_global_tentative = Tentative
+lang_calendar_availability = Availability
+icalendar_email_title = Title
+icalendar_opt_out_text = Click here to remove yourself from this event
+icalendar_email_enddate = Ends
+icalendar_email_author = Author
+icalendar_calendar_actions = Calendar Actions
+icalendar_request_failed = The request failed, try again later
+icalendar_email_heading = Calendar Event Invitation
+lang_calendar_remind_30mins = 30 Minutes
+icalendar_email_text = You have been included in a calendar event. The details follow:
+lang_Calendar_ViewWeek7 = View 7 day Week
+lang_calendar_remind_2days = 2 Days
+lang_calendar_remind_15mins = 15 Minutes
+icalendar_email_startdate = Starts
+icalendar_ajax_not_supported = Your browser does not support AJAX - you cannot be removed using this method
+icalendar_attachment_info = You can also click on the attachment link to download the icalendar file (.ics) and add the event to a desktop calendering application that supports the icalendar format
+icalendar_removed_from_event = You were successfully removed from the calendar event
+lang_calendar_remind_me = Remind me
+icalendar_removed_text = You have removed yourself from this event
+icalendar_link_text = Click here to add this event to your calendar
+lang_calendar_remind_2hours = 2 Hours
+icalendar_email_description = Description
+icalendar_removed_from_event_error = Error: you could not be removed from the event
+lang_calendar_remind_1week = 1 Week
+support_form_title = Mail Support
+support_form_name = Your Name
+support_form_main_text = For support on the WebMail application, please complete the form below. One of the technical team will respond to your request via email. For more information on the Email system consult the online documentation.
+lang_cal_require_ics_ext = The icalendar file you import must have a .ics extension
+support_email_header = Support Question
+lang_blue_pane_account_imaps = IMAP Secure
+support_email_account = Account
+support_form_sub_heading = Information on Support
+support_email_question = Question
+support_form_question = Question
+support_email_name = Received From
+support_form_email = Your Email Address
+lang_blue_pane_account_pop3s = POP3 Secure
+support_email_email = Email
+lang_cal_import_label = Import Calendar in iCal (ics) format:
+lang_cal_import_title = Import from iCal
+lang_help_iphonehelphow_text7 = After saving your settings, your Apple iPhone &reg; will attempt to synchronize emails and contacts. 
+lang_help_iphonehelp_text1 = The Push Email feature allows AtMail to provide an "always-on" capability - where new emails are instantly and actively transferred (<i>pushed</i>) as they arrive. This feature assures that you are continually updated addressbook entries and emails as soon as they are created or modified.</p><p>Push support in Atmail is available for iPhone, Windows Mobile, and Activesync compatible mobile phones ( Ericsson, Nokia business models )
+lang_help_iphonehelphow_text4 = Select Microsoft Exchange as an account type. 
+lang_help_iphonehelptroub_title = Troubleshooting
+lang_help_iphonehelphow_text1 = The push email capability is not difficult to set up for an Apple iPhone &reg;. Just go through the following steps:
+lang_help_iphonehelphow_text3 = Go to Mail > Add Account.
+lang_help_iphonehelp_title = Push E-mails
+lang_login_rememberme = Remember Me
+lang_help_iphonehelphow_text2 = Open the Settings window for the Apple iPhone &reg;.
+lang_help_iphonehelp_wireless_desc = <a href="javascript:helpwin('iphonehelphow.html')">View information</a> on how to configure your iPhone, Windows mobile, or Activesync device
+lang_help_iphonehelptroub_text2 = This is only a warning, and should not affect the functionality of the Push Email feature. Select "Accept". 
+lang_help_iphonehelp_wireless_title = Wireless Push Support
+lang_help_iphonehelphow_title = Push E-mails for Apple iPhone &reg;
+lang_help_iphonehelphow_text6 = You can then enable the synchronization of emails and contacts. Support for calendars will be available in thefuture, but we recommend having it turned off for now. 
+lang_help_iphonehelphow_text5 = Set the details corresponding with your account. Make sure that the username setting also contains the domain. For example, the username setting for an account called 'ben@domain.com' will be 'ben@domain.com'. 
+lang_help_iphonehelptroub_text1 = <b>Error: Unable to Verify Certificate</b>
+
+Lang_confirm_cal_delete = Are you sure you wish to delete this calendar and all associated appointments?lang_menu_help_about = About $pref['brandname']
+lang_about_version = Version
+lang_xp_pgp_encrypt_button = Encrypt
+lang_blue_pane_profile_text1_chpass = To change your password click 'Change Password' button below.
+lang_about_build_date = Build Date
+lang_blue_pane_abook_new_default_email = Default Email
+lang_Global_addrecipient = Add Recipients
+lang_cal_import_submit = import
+lang_global_close_window = Close Window
+lang_about_operating_system = Operating System
+lang_Calendar_calendars = Calendars
+could_not_move_message = A message could not be moved, possibly due to message size restrictions in the destination folder
+lang_about_admin_email = Admin Email
+lang_save_sent_error = Your email was sent, however it could not be saved to your Sent folder due to size restrictions
+lang_cal_import_close = close
+lang_blue_pane_account_modify = Edit Account

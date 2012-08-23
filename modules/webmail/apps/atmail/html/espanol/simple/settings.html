@@ -1,0 +1,1533 @@
+<!-- if($var['extratitle'] = "- {Mail Settings}") { -->
+<!-- } -->
+
+<!--Include="html/espanol/simple/header.html"-->
+<!-- here is our custom sidebar -->
+
+
+
+			<table width="163" cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="5" border="0"></td>
+					<td width="125"><img src="imgs/simple/shim.gif" width="125" height="5" border="0"></td>
+				</tr>
+
+				<tr>
+					<td width="38" bgcolor="#DEEBF6" class="optionselectedimg"><img onclick="document.settings.submit()" style="cursor: pointer; cursor: hand;" src="imgs/simple/sidebar_save_on.gif" width="38" height="31" border="0"></td>
+					<td width="125" class="optionselected" onclick="javascript:document.settings.submit()"><small class="menuoption">&nbsp;&nbsp;Guardar Opciones</small></td>
+				</tr>
+				<tr>
+					<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="5" border="0"></td>
+					<td width="125"><img src="imgs/simple/shim.gif" width="125" height="5" border="0"></td>
+				</tr>
+
+<!-- if($pref['allow_Layout'])	{ -->
+<tr>
+		<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="5" border="0"></td>
+		<td width="125"><img src="imgs/simple/shim.gif" width="125" height="12" border="0"></td>
+</tr>
+
+<tr>
+		<td width="38" onclick="toggle_interface()" style="cursor: pointer; cursor: hand;"><img src="imgs/simple/sidebar_interface_off.gif" width="38" height="31" border="0"></td>
+<td width="125" >
+<table width='125' cellpadding='0' cellspacing=0 border=0 height="31">
+<tr>
+<td width="100" onmouseover="this.className='optionroll'" onclick="toggle_interface()" style="cursor: pointer; cursor: hand;" onmouseout="this.className='optionover'" class='optionover'><font class="menuoption">&nbsp;&nbsp;Interface Style</small></td>
+</tr>
+</table>
+
+</tr>
+<!-- } -->
+
+<!-- if($pref['allow_SpamSettings'] && $domains[$this->pop3host]) { -->
+<tr>
+		<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="5" border="0"></td>
+		<td width="125"><img src="imgs/simple/shim.gif" width="125" height="12" border="0"></td>
+</tr>
+
+<tr>
+		<td width="38" onclick="location.href='util.php?func=spamsettings'" style="cursor: pointer; cursor: hand;"><img src="imgs/simple/sidebar_block.gif" width="38" height="31" border="0"></td>
+<td width="125" >
+<table width='125' cellpadding='0' cellspacing=0 border=0 height="31">
+<tr>
+<td width="100" onmouseover="this.className='optionroll'" onclick="location.href='util.php?func=spamsettings'" style="cursor: pointer; cursor: hand;" onmouseout="this.className='optionover'" class='optionover'><font class="menuoption">&nbsp;&nbsp;Spam Settings</small></td>
+</tr>
+</table>
+
+</tr>
+<!-- } -->
+
+<!-- if($pref['allow_Profile']) { -->
+<tr>
+		<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="5" border="0"></td>
+		<td width="125"><img src="imgs/simple/shim.gif" width="125" height="12" border="0"></td>
+</tr>
+
+<tr>
+		<td width="38" onclick="location.href='util.php?func=profile'" style="cursor: pointer; cursor: hand;"><img src="imgs/simple/sidebar_replyall.gif" width="38" height="31" border="0"></td>
+<td width="125" >
+<table width='125' cellpadding='0' cellspacing=0 border=0 height="31">
+<tr>
+<td width="100" onmouseover="this.className='optionroll'" onclick="location.href='util.php?func=profile'" style="cursor: pointer; cursor: hand;" onmouseout="this.className='optionover'" class='optionover'><font class="menuoption">&nbsp;&nbsp;Perfil del Usuario</small></td>
+</tr>
+</table>
+
+</tr>
+<!-- } -->
+
+
+				<tr>
+					<td width="38"><img src="imgs/simple/sidebar_bottom_tile.gif" width="38" height="95" border="0"></td>
+					<td width="125"><img src="imgs/simple/shim.gif" width="125" height="95" border="0"></td>
+				</tr>
+			</table>
+		 </td>
+
+<!--Include="html/espanol/simple/headerbar.html"-->
+$var['atmailstyle']
+$var['refresh']
+
+<SCRIPT LANGUAGE="JavaScript">
+window.focus();
+
+<!--  Begin
+var MSIE=navigator.userAgent.indexOf("MSIE");
+var NETS=navigator.userAgent.indexOf("Netscape");
+var OPER=navigator.userAgent.indexOf("Opera");
+if((MSIE>-1) || (OPER>-1)) {
+document.write("<style>.stdbtn { background-color: #F4F4F4; font: 8pt Tahoma; width: 75px;}");
+document.write(".stdbtnlong { background-color: #F4F4F4; font: 8pt Tahoma; width: 95px;}</style>");
+} else {
+document.write("<!--Netscape Style Sheet-->");
+}
+
+function toggle_interface()	{
+
+	if(document.getElementById('interface').style.display=='none')	{
+	document.getElementById('interface').style.display='';
+	document.getElementById('settingspanel').style.display='none';
+	} else	{
+	document.getElementById('interface').style.display='none';
+	document.getElementById('settingspanel').style.display='';
+	}
+
+}
+
+// End -->
+</SCRIPT>
+
+
+<SCRIPT LANGUAGE="JavaScript1.2" src="javascript/settings.js"></SCRIPT>
+
+
+<font class="sw">A traves del panel de opciones, podrá modificar la configuración de su Cuenta de email. Puedes especificar detalles de tu Cuenta de email, añadir buzones POP3 adicionales para comprobar el email, cambiar el diseño y el aspecto de tu email, elegir en que idioma quieres leer tu email, y cambiar los colores a tu gusto. Puedes cambiar todas las opciones de configuracion según tus necesidades.</font><br><br>
+
+
+
+<table border='0' cellspacing='0' cellpadding='1' class='maintable'>
+<form method="POST" name="settings">
+<input type="hidden" name="func" value="settings">
+<input type="hidden" name="save" value="1">
+
+
+
+	<tr id="interface" style="display:none">
+
+<td bgcolor="#ffffff">
+
+<TABLE border='0' width='100%' cellpadding='4' cellspacing='0' class="table_control">
+
+<TR><TH class="topleft"><font class='mheader'>&nbsp;Estilo de Acceso</font></TH>
+<TH class="middle"></TH>
+<TH class="topright"></TH></TR>
+
+
+
+</TABLE>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5" class="borderstyle">
+    <tr>
+		<td bgcolor="$this->SecondaryColor">
+
+  <table width="100%" border="0" cellspacing="0" cellpadding="5">
+    <tr>
+<td bgcolor="$this->SecondaryColor">
+		<select class=select name="LoginType" onChange="swapImageStyle(this.options[this.selectedIndex].value)">
+
+<!-- if(preg_match('/MSIE/', $_SERVER['HTTP_USER_AGENT'])) { -->
+		  <option value="xp">Advanced (IE/FF)</option>
+<!-- } -->
+
+<!-- if(!preg_match('/MSIE/', $_SERVER['HTTP_USER_AGENT'])) { -->
+		<option value="xul">Advanced (IE/FF)</option>
+<!-- } -->
+
+<!-- if($this->Ajax) { -->
+          <option value="ajax" selected>Simple (Ajax browser)</option>
+          <option value="simple">Basic (Any browser)</option>
+<!-- } -->
+
+<!-- if(!$this->Ajax) { -->
+          <option value="ajax">Simple (Ajax browser)</option>
+          <option value="simple" selected>Basic (Any browser)</option>
+<!-- } -->
+
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td height="104" bgcolor="$this->SecondaryColor" align="center">
+<img name="startpage">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+
+</td>
+</tr>
+
+
+	<tr id="settingspanel">
+
+		<td bgcolor="#ffffff">
+
+
+
+		<TABLE border='0' width='100%' cellpadding='4' cellspacing='0' class="table_control">
+
+<TR><TH class="topleft"><font class='mheader'>&nbsp;Opciones de email</font></TH><TH class="middle"></TH><TH class="topright"></TH></TR>
+
+<!-- if($var['saved']) { -->
+<font id="saved" class="mheader"><img src="imgs/tick.gif">&nbsp;Settings saved successfully - </font>
+<!-- } -->
+
+
+
+</TABLE>
+
+
+
+
+
+
+
+<table width="100%" cellspacing="0" cellpadding="5" class="borderstyle">
+    <tr>
+		<td bgcolor="$this->SecondaryColor">
+
+  <table width="100%" border="0" cellspacing="0" cellpadding="5">
+    <tr>
+      <td width="59%" bgcolor="$this->SecondaryColor" height="26"> <font class="swbold">
+        <b>Cuenta</font><br><font class="sw">
+        El nombre de acceso a tu Cuenta de email</font></td>
+      <td width="41%" bgcolor="$this->SecondaryColor" height="26"> <font class="swbold">$this->username@$this->pop3host</b>
+<!-- if($this->MailType == 'imap' || $this->MailType == 'pop3') { -->
+($this->MailType)
+<!-- } -->
+	</font></td>
+    </tr>
+    <tr bgcolor="$this->SecondaryColor">
+      <td height="12" width="59%" bgcolor="$this->SecondaryColor"> <font class="swbold">Nombre mostrado</font><br><font class="sw">
+        Introduce el nombre que aparecera en los emails enviados</font></td>
+      <td height="12" width="41%" bgcolor="$this->SecondaryColor">
+<!-- if($pref['allow_FullName'])	{ -->
+		<input class="inputfield" type="text" name="RealName" size="30" value="$this->RealName">
+<!-- } -->
+<!-- if(!$pref['allow_FullName'])	{ -->
+		<input class="inputfield" type="text" name="RealName_dummy" size="30" value="$this->RealName" disabled>
+        <input type="hidden" name="RealName" size="30" value="$this->RealName">
+<!-- } -->
+	  </td>
+    </tr>
+    <tr bgcolor="$this->SecondaryColor">
+      <td height="12" width="59%" bgcolor="$this->SecondaryColor"> <font class="swbold">Responder</font><br><font class="sw">
+        Especificar un nombre al que responder diferente al nombre de acceso a la Cuenta de email</font></td>
+      <td height="12" width="41%" bgcolor="$this->SecondaryColor">
+<!-- if($pref['allow_ReplyTo'])	{ -->
+        <input class="inputfield" type="text" name="ReplyTo" size="30" value="$this->ReplyTo">
+<!-- } -->
+<!-- if(!$pref['allow_ReplyTo'])	{ -->
+        <input class="inputfield" type="text" name="ReplyTo_Dummy" size="30" value="$this->ReplyTo" Disabled>
+        <input type="hidden" name="ReplyTo" size="30" value="$this->ReplyTo">
+<!-- } -->
+      </td>
+    </tr>
+
+    <tr bgcolor="$this->SecondaryColor">
+      <td height="12" width="59%"> <font class="swbold">Ordenar email por</font><br><font class="sw">
+        Los emails que salen por pantalla pueden ser ordenados por</font></td>
+      <td height="12" width="41%">
+<!-- if($pref['allow_MboxOrder'])   { -->
+        <select class="inputfieldselect" name="MboxOrder">
+          <option value="id">Recibido</option>
+          <option value="EmailSubject">Asunto</option>
+          <option value="EmailFrom">De</option>
+          <option value="EmailDate">Fecha</option>
+        </select>
+<!-- } -->
+<!-- if(!$pref['allow_MboxOrder'])	{ -->
+        <select class="inputfieldselect" name="MboxOrder_dummy" Disabled>
+          <option value="id">Recibido</option>
+          <option value="EmailSubject">Asunto</option>
+          <option value="EmailFrom">De</option>
+          <option value="EmailDate">Fecha</option>
+        </select>
+		<input type="hidden" name="MboxOrder" value="$this->MboxOrder">
+<!-- } -->
+      </td>
+    </tr>
+	<!-- EmailHeaders Hidden Field -->
+    <input type="hidden" name="EmailHeaders" value="Standard">
+    <tr bgcolor="$this->SecondaryColor">
+      <td height="12" width="59%"> <font class="swbold">Tipo de fuente por defecto</font><br><font class="sw">
+        Selecciona que fuente prefieres por defecto en el interfaz</font></td>
+      <td height="12" width="41%">
+<!-- if($pref['allow_FontStyle'])	{ -->
+        <select class="inputfieldselect" name="FontStyle">
+          <option value="Verdana">Verdana</option>
+          <option value="Arial">Arial</option>
+          <option value="Courier">Courier New</option>
+          <option value="Georgia">Georgia</option>
+          <option value="Times">Times New Roman</option>
+        </select>
+<!-- } -->
+
+<!-- if(!$pref['allow_FontStyle'])	{ -->
+        <select class="inputfieldselect" name="FontStyle_dummy" disabled>
+          <option value="Verdana">Verdana</option>
+          <option value="Arial">Arial</option>
+          <option value="Courier">Courier New</option>
+          <option value="Georgia">Georgia</option>
+          <option value="Times">Times New Roman</option>
+        </select>
+		<input type="hidden" name="FontStyle" value="$this->FontStyle">
+<!-- } -->
+      </td>
+    </tr>
+
+<!-- if($pref['allow_Language']) { -->
+	<tr bgcolor="$this->SecondaryColor">
+      <td height="12" width="59%"> <font class="swbold">Idioma</font><br><font class="sw">
+        Selecciona el Idioma a usar con el servicio email</font></td>
+      <td height="12" width="41%"> <select class="inputfieldselect" name="Language" > $var['languagebox'] </select> </td>
+    </tr>
+<!-- } -->
+
+<!-- if(!$pref['allow_Language']) { -->
+    <tr bgcolor="$this->SecondaryColor">
+      <td height="12" width="59%"> <font class="swbold">Idioma</font><br><font class="sw">
+        Selecciona el Idioma a usar con el servicio email</font></td>
+      <td height="12" width="41%"> <select class="inputfieldselect" name="Language_dummy" disabled> $var['languagebox'] </select> </td>
+	<input type='hidden' name='Language' value='$this->Language'>
+	</tr>
+<!-- } -->
+
+<!-- if(false && $pref['allow_LeaveMsgs'] && !$domains[$this->pop3host] && $this->MailType == "pop3" && !$this->LeaveMsgs)	{ -->
+    <tr bgcolor="$this->SecondaryColor">
+      <td width="59%"> <font class="swbold">Dejar mensajes en el servidor</font><br><font class="sw">
+        Solo para Cuentas POP3 externas. Util para dejar una copia de los mensajes en el servidor.</font></td>
+      <td width="41%">
+        <select class="inputfieldselect" name="LeaveMsgs"
+onchange="javascript:alert('Seleccionando \'No\' se bajará todos los mensajes del servidor y almacenarlos localmente\nLos mensajes seran borrados del servidor remoto.\nSelecciona \'Si\' si quieres que los mensajes queden guardados en el servidor remoto.')">
+          <option value="1">Si</option>
+          <option value="0" selected>No</option>
+        </select>
+       </td>
+    </tr>
+<!-- } -->
+
+<!-- if(false && $pref['allow_LeaveMsgs'] && !$domains[$this->pop3host] && $this->MailType == "pop3" && $this->LeaveMsgs)	{ -->
+    <tr bgcolor="$this->SecondaryColor">
+      <td width="59%"> <font class="swbold">Dejar mensajes en el servidor</font><br><font class="sw">
+        Solo para Cuentas POP3 externas. Util para dejar una copia de los mensajes en el servidor.</font></td>
+      <td width="41%">
+        <select class="inputfieldselect" name="LeaveMsgs"
+onchange="javascript:alert('Seleccionando \'No\' se bajará todos los mensajes del servidor y almacenarlos localmente\nLos mensajes seran borrados del servidor remoto.\nSelecciona \'Si\' si quieres que los mensajes queden guardados en el servidor remoto.')">
+          <option value="1" selected>Si</option>
+          <option value="0">No</option>
+        </select>
+       </td>
+    </tr>
+<!-- } -->
+
+<!-- Leave messages on server forced to 'on' for 5.1 -->
+<!-- if($pref['allow_LeaveMsgs'] && !$domains[$this->pop3host] && $this->MailType == "pop3")	{ -->
+    <tr bgcolor="$this->SecondaryColor">
+      <td width="59%"> <font class="swbold">Dejar mensajes en el servidor</font><br><font class="sw">
+        Solo para Cuentas POP3 externas. Util para dejar una copia de los mensajes en el servidor.</font></td>
+      <td width="41%">
+        <select class="inputfieldselect" name="LeaveMsgs"
+onchange="javascript:alert('Seleccionando \'No\' se bajará todos los mensajes del servidor y almacenarlos localmente\nLos mensajes seran borrados del servidor remoto.\nSelecciona \'Si\' si quieres que los mensajes queden guardados en el servidor remoto.')" disabled>
+          <option value="1" selected>Si</option>
+          <option value="0">No</option>
+        </select>
+        <input type="hidden" name="LeaveMsgs" value="1">
+       </td>
+    </tr>
+
+<!-- if($pref['allow_Refresh'] )	{ -->
+    <tr bgcolor="$this->SecondaryColor">
+      <td width="59%"> <font class="swbold">Tiempo de refresco de la Bandeja de Entrada</font><br><font class="sw">
+        Selecciona cada cuantos minutos debe refrescarse el buzón de email. Te avisaremos de que hay nuevo email con un sonido.</font></td>
+      <td width="41%">
+	  <select class="inputfieldselect" name="Refresh">
+          <option name='Refresh' value="0">Deshabilitar</option>
+          <option name='Refresh' value="60">1 minuto</option>
+		  <option name='Refresh' value="300">5 Minutos</option>
+          <option name='Refresh' value="600">10 Minutos</option>
+          <option name='Refresh' value="1200">20 Minutos</option>
+          <option name='Refresh' value="2400">30 Minutos</option>
+          <option name='Refresh' value="4800">1 hora</option>
+        </select>
+		</td>
+    </tr>
+<!-- } -->
+
+<!-- if(!$pref['allow_Refresh'])	{ -->
+    <tr bgcolor="$this->SecondaryColor">
+      <td width="59%"> <font class="swbold">Tiempo de refresco de la Bandeja de Entrada</font><br><font class="sw">
+        Selecciona cada cuantos minutos debe refrescarse el buzón de email. Te avisaremos de que hay nuevo email con un sonido.</font></td>
+      <td width="41%">
+	  <select class="inputfieldselect" name="Refresh_dummy" disabled>
+          <option value="0">Deshabilitar</option>
+          <option value="300">5 Minutos</option>
+          <option value="600">10 Minutos</option>
+          <option value="1200">20 Minutos</option>
+          <option value="2400">30 Minutos</option>
+          <option value="4800">1 hora</option>
+        </select>
+		<input type="hidden" name="Refresh" value="0">
+		</td>
+    </tr>
+<!-- } -->
+
+<!-- if(!$pref['allow_LeaveMsgs'] && !$domains[$this->pop3host] || $this->MailType == "imap")	{ -->
+<!--    <tr bgcolor="$this->SecondaryColor">
+      <td width="59%"> <font class="swbold">Dejar mensajes en el servidor</font><br><font class="sw">
+        Solo para Cuentas POP3 externas. Util para dejar una copia de los mensajes en el servidor.</font></td>
+      <td width="41%">
+	  <select class="inputfieldselect" name="LeaveMsgs" disabled>
+          <option value="1">Si</option>
+          <option value="0">No</option>
+        </select>
+		<input type="hidden" name="LeaveMsgs" value="$this->LeaveMsgs">
+		</td>
+    </tr>
+-->
+<input type="hidden" name="LeaveMsgs" value="$this->LeaveMsgs">
+<!-- } -->
+
+
+    <tr bgcolor="$this->SecondaryColor">
+      <td width="59%"> <font class="swbold">Número de mensajes a visualizar</font><br><font class="sw">
+        Selecciona el número de mensajes a visualizar por pantalla</font></td>
+      <td width="41%">
+<!-- if($pref['allow_MsgNum'])	{ -->
+        <select class="inputfieldselect" name="MsgNum">
+          <option value="10">10</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+          <option value="200">200</option>
+        </select>
+<!-- } -->
+
+<!-- if(!$pref['allow_MsgNum'])	{ -->
+        <select class="inputfieldselect" name="MsgNum_dummy" disabled>
+          <option value="10">10</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+          <option value="200">200</option>
+        </select>
+		<input type="hidden" name="MsgNum" value="$this->MsgNum">
+<!-- } -->
+      </td>
+    </tr>
+    <tr bgcolor="$this->SecondaryColor">
+      <td width="59%"> <font class="swbold">Selecciona la zona horaria</font><br><font class="sw">
+        Selecciona en que zona horaria estás, la fecha del email será cambiada en función del huso horario</font>
+      </td>
+      <td width="41%">
+<!-- if($pref['allow_TimeZone'])	{ -->
+<select class="inputfieldselect" name="TimeZone">
+<option value="">-- Selecciona</option>
+<option value="Africa/Abidjan">+0000: Africa/Abidjan</option>
+ <option value="Africa/Accra">+0000: Africa/Accra</option>
+ <option value="Africa/Addis_Ababa">+0300: Africa/Addis_Ababa</option>
+ <option value="Africa/Algiers">+0100: Africa/Algiers</option>
+ <option value="Africa/Asmera">+0300: Africa/Asmera</option>
+ <option value="Africa/Bamako">+0000: Africa/Bamako</option>
+ <option value="Africa/Bangui">+0100: Africa/Bangui</option>
+ <option value="Africa/Banjul">+0000: Africa/Banjul</option>
+ <option value="Africa/Bissau">+0000: Africa/Bissau</option>
+ <option value="Africa/Blantyre">+0200: Africa/Blantyre</option>
+ <option value="Africa/Brazzaville">+0100: Africa/Brazzaville</option>
+ <option value="Africa/Bujumbura">+0200: Africa/Bujumbura</option>
+ <option value="Africa/Cairo">+0200: Africa/Cairo</option>
+ <option value="Africa/Casablanca">+0000: Africa/Casablanca</option>
+ <option value="Africa/Ceuta">+0200: Africa/Ceuta</option>
+ <option value="Africa/Conakry">+0000: Africa/Conakry</option>
+ <option value="Africa/Dakar">+0000: Africa/Dakar</option>
+ <option value="Africa/Dar_es_Salaam">+0300: Africa/Dar_es_Salaam</option>
+ <option value="Africa/Djibouti">+0300: Africa/Djibouti</option>
+ <option value="Africa/Douala">+0100: Africa/Douala</option>
+ <option value="Africa/El_Aaiun">+0000: Africa/El_Aaiun</option>
+ <option value="Africa/Freetown">+0000: Africa/Freetown</option>
+ <option value="Africa/Gaborone">+0200: Africa/Gaborone</option>
+ <option value="Africa/Harare">+0200: Africa/Harare</option>
+ <option value="Africa/Johannesburg">+0200: Africa/Johannesburg</option>
+ <option value="Africa/Kampala">+0300: Africa/Kampala</option>
+ <option value="Africa/Khartoum">+0300: Africa/Khartoum</option>
+ <option value="Africa/Kigali">+0200: Africa/Kigali</option>
+ <option value="Africa/Kinshasa">+0100: Africa/Kinshasa</option>
+ <option value="Africa/Lagos">+0100: Africa/Lagos</option>
+ <option value="Africa/Libreville">+0100: Africa/Libreville</option>
+ <option value="Africa/Lome">+0000: Africa/Lome</option>
+ <option value="Africa/Luanda">+0100: Africa/Luanda</option>
+ <option value="Africa/Lubumbashi">+0200: Africa/Lubumbashi</option>
+ <option value="Africa/Lusaka">+0200: Africa/Lusaka</option>
+ <option value="Africa/Malabo">+0100: Africa/Malabo</option>
+ <option value="Africa/Maputo">+0200: Africa/Maputo</option>
+ <option value="Africa/Maseru">+0200: Africa/Maseru</option>
+ <option value="Africa/Mbabane">+0200: Africa/Mbabane</option>
+ <option value="Africa/Mogadishu">+0300: Africa/Mogadishu</option>
+ <option value="Africa/Monrovia">+0000: Africa/Monrovia</option>
+ <option value="Africa/Nairobi">+0300: Africa/Nairobi</option>
+ <option value="Africa/Ndjamena">+0100: Africa/Ndjamena</option>
+ <option value="Africa/Niamey">+0100: Africa/Niamey</option>
+ <option value="Africa/Nouakchott">+0000: Africa/Nouakchott</option>
+ <option value="Africa/Ouagadougou">+0000: Africa/Ouagadougou</option>
+ <option value="Africa/Porto-Novo">+0100: Africa/Porto-Novo</option>
+ <option value="Africa/Sao_Tome">+0000: Africa/Sao_Tome</option>
+ <option value="Africa/Timbuktu">+0000: Africa/Timbuktu</option>
+ <option value="Africa/Tripoli">+0200: Africa/Tripoli</option>
+ <option value="Africa/Tunis">+0100: Africa/Tunis</option>
+ <option value="Africa/Windhoek">+0200: Africa/Windhoek</option>
+ <option value="America/Adak">-0900: America/Adak</option>
+ <option value="America/Anchorage">-0800: America/Anchorage</option>
+ <option value="America/Anguilla">-0400: America/Anguilla</option>
+ <option value="America/Antigua">-0400: America/Antigua</option>
+ <option value="America/Araguaina">-0300: America/Araguaina</option>
+ <option value="America/Argentina/Buenos_Aires">-0300: America/Argentina/Buenos_Aires</option>
+ <option value="America/Argentina/Catamarca">-0300: America/Argentina/Catamarca</option>
+ <option value="America/Argentina/ComodRivadavia">-0300: America/Argentina/ComodRiva</option>
+ <option value="America/Argentina/Cordoba">-0300: America/Argentina/Cordoba</option>
+ <option value="America/Argentina/Jujuy">-0300: America/Argentina/Jujuy</option>
+ <option value="America/Argentina/La_Rioja">-0300: America/Argentina/La_Rioja</option>
+ <option value="America/Argentina/Mendoza">-0300: America/Argentina/Mendoza</option>
+ <option value="America/Argentina/Rio_Gallegos">-0300: America/Argentina/Rio_Gallegos</option>
+ <option value="America/Argentina/San_Juan">-0300: America/Argentina/San_Juan</option>
+ <option value="America/Argentina/Tucuman">-0300: America/Argentina/Tucuman</option>
+ <option value="America/Argentina/Ushuaia">-0300: America/Argentina/Ushuaia</option>
+ <option value="America/Aruba">-0400: America/Aruba</option>
+ <option value="America/Asuncion">-0400: America/Asuncion</option>
+ <option value="America/Bahia">-0300: America/Bahia</option>
+ <option value="America/Barbados">-0400: America/Barbados</option>
+ <option value="America/Belem">-0300: America/Belem</option>
+ <option value="America/Belize">-0600: America/Belize</option>
+ <option value="America/Boa_Vista">-0400: America/Boa_Vista</option>
+ <option value="America/Bogota">-0500: America/Bogota</option>
+ <option value="America/Boise">-0600: America/Boise</option>
+ <option value="America/Cambridge_Bay">-0600: America/Cambridge_Bay</option>
+ <option value="America/Campo_Grande">-0400: America/Campo_Grande</option>
+ <option value="America/Cancun">-0500: America/Cancun</option>
+ <option value="America/Caracas">-0400: America/Caracas</option>
+ <option value="America/Cayenne">-0300: America/Cayenne</option>
+ <option value="America/Cayman">-0500: America/Cayman</option>
+ <option value="America/Chicago">-0500: America/Chicago</option>
+ <option value="America/Chihuahua">-0600: America/Chihuahua</option>
+ <option value="America/Costa_Rica">-0600: America/Costa_Rica</option>
+ <option value="America/Cuiaba">-0400: America/Cuiaba</option>
+ <option value="America/Curacao">-0400: America/Curacao</option>
+ <option value="America/Danmarkshavn">+0000: America/Danmarkshavn</option>
+ <option value="America/Dawson">-0700: America/Dawson</option>
+ <option value="America/Dawson_Creek">-0700: America/Dawson_Creek</option>
+ <option value="America/Denver">-0600: America/Denver</option>
+ <option value="America/Detroit">-0400: America/Detroit</option>
+ <option value="America/Dominica">-0400: America/Dominica</option>
+ <option value="America/Edmonton">-0600: America/Edmonton</option>
+ <option value="America/Eirunepe">-0500: America/Eirunepe</option>
+ <option value="America/El_Salvador">-0600: America/El_Salvador</option>
+ <option value="America/Fortaleza">-0300: America/Fortaleza</option>
+ <option value="America/Glace_Bay">-0300: America/Glace_Bay</option>
+ <option value="America/Godthab">-0200: America/Godthab</option>
+ <option value="America/Goose_Bay">-0300: America/Goose_Bay</option>
+ <option value="America/Grand_Turk">-0400: America/Grand_Turk</option>
+ <option value="America/Grenada">-0400: America/Grenada</option>
+ <option value="America/Guadeloupe">-0400: America/Guadeloupe</option>
+ <option value="America/Guatemala">-0600: America/Guatemala</option>
+ <option value="America/Guayaquil">-0500: America/Guayaquil</option>
+ <option value="America/Guyana">-0400: America/Guyana</option>
+ <option value="America/Halifax">-0300: America/Halifax</option>
+ <option value="America/Havana">-0400: America/Havana</option>
+ <option value="America/Hermosillo">-0700: America/Hermosillo</option>
+ <option value="America/Indiana/Knox">-0500: America/Indiana/Knox</option>
+ <option value="America/Indiana/Marengo">-0500: America/Indiana/Marengo</option>
+ <option value="America/Indiana/Vevay">-0500: America/Indiana/Vevay</option>
+ <option value="America/Indianapolis">-0500: America/Indianapolis</option>
+ <option value="America/Inuvik">-0600: America/Inuvik</option>
+ <option value="America/Iqaluit">-0400: America/Iqaluit</option>
+ <option value="America/Jamaica">-0500: America/Jamaica</option>
+ <option value="America/Juneau">-0800: America/Juneau</option>
+ <option value="America/Kentucky/Monticello">-0400: America/Kentucky/Monticello</option>
+ <option value="America/La_Paz">-0400: America/La_Paz</option>
+ <option value="America/Lima">-0500: America/Lima</option>
+ <option value="America/Los_Angeles">-0700: America/Los_Angeles</option>
+ <option value="America/Louisville">-0400: America/Louisville</option>
+ <option value="America/Maceio">-0300: America/Maceio</option>
+ <option value="America/Managua">-0600: America/Managua</option>
+ <option value="America/Manaus">-0400: America/Manaus</option>
+ <option value="America/Martinique">-0400: America/Martinique</option>
+ <option value="America/Mazatlan">-0600: America/Mazatlan</option>
+ <option value="America/Menominee">-0500: America/Menominee</option>
+ <option value="America/Merida">-0500: America/Merida</option>
+ <option value="America/Mexico_City">-0500: America/Mexico_City</option>
+ <option value="America/Miquelon">-0200: America/Miquelon</option>
+ <option value="America/Monterrey">-0500: America/Monterrey</option>
+ <option value="America/Montevideo">-0300: America/Montevideo</option>
+ <option value="America/Montreal">-0400: America/Montreal</option>
+ <option value="America/Montserrat">-0400: America/Montserrat</option>
+ <option value="America/Nassau">-0400: America/Nassau</option>
+ <option value="America/New_York">-0400: America/New_York</option>
+ <option value="America/Nipigon">-0400: America/Nipigon</option>
+ <option value="America/Nome">-0800: America/Nome</option>
+ <option value="America/Noronha">-0200: America/Noronha</option>
+ <option value="America/North_Dakota/Center">-0500: America/North_Dakota/Center</option>
+ <option value="America/Panama">-0500: America/Panama</option>
+ <option value="America/Pangnirtung">-0400: America/Pangnirtung</option>
+ <option value="America/Paramaribo">-0300: America/Paramaribo</option>
+ <option value="America/Phoenix">-0700: America/Phoenix</option>
+ <option value="America/Port-au-Prince">-0400: America/Port-au-Prince</option>
+ <option value="America/Port_of_Spain">-0400: America/Port_of_Spain</option>
+ <option value="America/Porto_Velho">-0400: America/Porto_Velho</option>
+ <option value="America/Puerto_Rico">-0400: America/Puerto_Rico</option>
+ <option value="America/Rainy_River">-0500: America/Rainy_River</option>
+ <option value="America/Rankin_Inlet">-0500: America/Rankin_Inlet</option>
+ <option value="America/Recife">-0300: America/Recife</option>
+ <option value="America/Regina">-0600: America/Regina</option>
+ <option value="America/Rio_Branco">-0500: America/Rio_Branco</option>
+ <option value="America/Santiago">-0300: America/Santiago</option>
+ <option value="America/Santo_Domingo">-0400: America/Santo_Domingo</option>
+ <option value="America/Sao_Paulo">-0300: America/Sao_Paulo</option>
+ <option value="America/Scoresbysund">+0000: America/Scoresbysund</option>
+ <option value="America/St_Johns">-0230: America/St_Johns</option>
+ <option value="America/St_Kitts">-0400: America/St_Kitts</option>
+ <option value="America/St_Lucia">-0400: America/St_Lucia</option>
+ <option value="America/St_Thomas">-0400: America/St_Thomas</option>
+ <option value="America/St_Vincent">-0400: America/St_Vincent</option>
+ <option value="America/Swift_Current">-0600: America/Swift_Current</option>
+ <option value="America/Tegucigalpa">-0600: America/Tegucigalpa</option>
+ <option value="America/Thule">-0300: America/Thule</option>
+ <option value="America/Thunder_Bay">-0400: America/Thunder_Bay</option>
+ <option value="America/Tijuana">-0700: America/Tijuana</option>
+ <option value="America/Toronto">-0400: America/Toronto</option>
+ <option value="America/Tortola">-0400: America/Tortola</option>
+ <option value="America/Vancouver">-0700: America/Vancouver</option>
+ <option value="America/Whitehorse">-0700: America/Whitehorse</option>
+ <option value="America/Winnipeg">-0500: America/Winnipeg</option>
+ <option value="America/Yakutat">-0800: America/Yakutat</option>
+ <option value="America/Yellowknife">-0600: America/Yellowknife</option>
+ <option value="Antarctica/Casey">+0800: Antarctica/Casey</option>
+ <option value="Antarctica/Davis">+0700: Antarctica/Davis</option>
+ <option value="Antarctica/DumontDUrville">+1000: Antarctica/DumontDUrville</option>
+ <option value="Antarctica/Mawson">+0600: Antarctica/Mawson</option>
+ <option value="Antarctica/McMurdo">+1300: Antarctica/McMurdo</option>
+ <option value="Antarctica/Palmer">-0300: Antarctica/Palmer</option>
+ <option value="Antarctica/Rothera">-0300: Antarctica/Rothera</option>
+ <option value="Antarctica/Syowa">+0300: Antarctica/Syowa</option>
+ <option value="Antarctica/Vostok">+0600: Antarctica/Vostok</option>
+ <option value="Asia/Aden">+0300: Asia/Aden</option>
+ <option value="Asia/Almaty">+0600: Asia/Almaty</option>
+ <option value="Asia/Amman">+0200: Asia/Amman</option>
+ <option value="Asia/Anadyr">+1300: Asia/Anadyr</option>
+ <option value="Asia/Aqtau">+0400: Asia/Aqtau</option>
+ <option value="Asia/Aqtobe">+0500: Asia/Aqtobe</option>
+ <option value="Asia/Ashgabat">+0500: Asia/Ashgabat</option>
+ <option value="Asia/Baghdad">+0300: Asia/Baghdad</option>
+ <option value="Asia/Bahrain">+0300: Asia/Bahrain</option>
+ <option value="Asia/Baku">+0500: Asia/Baku</option>
+ <option value="Asia/Bangkok">+0700: Asia/Bangkok</option>
+ <option value="Asia/Beirut">+0300: Asia/Beirut</option>
+ <option value="Asia/Bishkek">+0600: Asia/Bishkek</option>
+ <option value="Asia/Brunei">+0800: Asia/Brunei</option>
+ <option value="Asia/Calcutta">+0530: Asia/Calcutta</option>
+ <option value="Asia/Choibalsan">+0900: Asia/Choibalsan</option>
+ <option value="Asia/Chongqing">+0800: Asia/Chongqing</option>
+ <option value="Asia/Colombo">+0600: Asia/Colombo</option>
+ <option value="Asia/Damascus">+0200: Asia/Damascus</option>
+ <option value="Asia/Dhaka">+0600: Asia/Dhaka</option>
+ <option value="Asia/Dili">+0900: Asia/Dili</option>
+ <option value="Asia/Dubai">+0400: Asia/Dubai</option>
+ <option value="Asia/Dushanbe">+0500: Asia/Dushanbe</option>
+ <option value="Asia/Gaza">+0300: Asia/Gaza</option>
+ <option value="Asia/Harbin">+0800: Asia/Harbin</option>
+ <option value="Asia/Hong_Kong">+0800: Asia/Hong_Kong</option>
+ <option value="Asia/Hovd">+0700: Asia/Hovd</option>
+ <option value="Asia/Irkutsk">+0900: Asia/Irkutsk</option>
+ <option value="Asia/Jakarta">+0700: Asia/Jakarta</option>
+ <option value="Asia/Jayapura">+0900: Asia/Jayapura</option>
+ <option value="Asia/Jerusalem">+0200: Asia/Jerusalem</option>
+ <option value="Asia/Kabul">+0430: Asia/Kabul</option>
+ <option value="Asia/Kamchatka">+1300: Asia/Kamchatka</option>
+ <option value="Asia/Karachi">+0500: Asia/Karachi</option>
+ <option value="Asia/Kashgar">+0800: Asia/Kashgar</option>
+ <option value="Asia/Katmandu">+0545: Asia/Katmandu</option>
+ <option value="Asia/Krasnoyarsk">+0800: Asia/Krasnoyarsk</option>
+ <option value="Asia/Kuala_Lumpur">+0800: Asia/Kuala_Lumpur</option>
+ <option value="Asia/Kuching">+0800: Asia/Kuching</option>
+ <option value="Asia/Kuwait">+0300: Asia/Kuwait</option>
+ <option value="Asia/Macau">+0800: Asia/Macau</option>
+ <option value="Asia/Magadan">+1200: Asia/Magadan</option>
+ <option value="Asia/Makassar">+0800: Asia/Makassar</option>
+ <option value="Asia/Manila">+0800: Asia/Manila</option>
+ <option value="Asia/Muscat">+0400: Asia/Muscat</option>
+ <option value="Asia/Nicosia">+0300: Asia/Nicosia</option>
+ <option value="Asia/Novosibirsk">+0700: Asia/Novosibirsk</option>
+ <option value="Asia/Omsk">+0700: Asia/Omsk</option>
+ <option value="Asia/Oral">+0400: Asia/Oral</option>
+ <option value="Asia/Phnom_Penh">+0700: Asia/Phnom_Penh</option>
+ <option value="Asia/Pontianak">+0700: Asia/Pontianak</option>
+ <option value="Asia/Pyongyang">+0900: Asia/Pyongyang</option>
+ <option value="Asia/Qatar">+0300: Asia/Qatar</option>
+ <option value="Asia/Qyzylorda">+0600: Asia/Qyzylorda</option>
+ <option value="Asia/Rangoon">+0630: Asia/Rangoon</option>
+ <option value="Asia/Riyadh">+0300: Asia/Riyadh</option>
+ <option value="Asia/Saigon">+0700: Asia/Saigon</option>
+ <option value="Asia/Sakhalin">+1100: Asia/Sakhalin</option>
+ <option value="Asia/Samarkand">+0500: Asia/Samarkand</option>
+ <option value="Asia/Seoul">+0900: Asia/Seoul</option>
+ <option value="Asia/Shanghai">+0800: Asia/Shanghai</option>
+ <option value="Asia/Singapore">+0800: Asia/Singapore</option>
+ <option value="Asia/Taipei">+0800: Asia/Taipei</option>
+ <option value="Asia/Tashkent">+0500: Asia/Tashkent</option>
+ <option value="Asia/Tbilisi">+0400: Asia/Tbilisi</option>
+ <option value="Asia/Tehran">+0330: Asia/Tehran</option>
+ <option value="Asia/Thimphu">+0600: Asia/Thimphu</option>
+ <option value="Asia/Tokyo">+0900: Asia/Tokyo</option>
+ <option value="Asia/Ulaanbaatar">+0800: Asia/Ulaanbaatar</option>
+ <option value="Asia/Urumqi">+0800: Asia/Urumqi</option>
+ <option value="Asia/Vientiane">+0700: Asia/Vientiane</option>
+ <option value="Asia/Vladivostok">+1100: Asia/Vladivostok</option>
+ <option value="Asia/Yakutsk">+1000: Asia/Yakutsk</option>
+ <option value="Asia/Yekaterinburg">+0600: Asia/Yekaterinburg</option>
+ <option value="Asia/Yerevan">+0500: Asia/Yerevan</option>
+ <option value="Atlantic/Azores">+0000: Atlantic/Azores</option>
+ <option value="Atlantic/Bermuda">-0300: Atlantic/Bermuda</option>
+ <option value="Atlantic/Canary">+0100: Atlantic/Canary</option>
+ <option value="Atlantic/Cape_Verde">-0100: Atlantic/Cape_Verde</option>
+ <option value="Atlantic/Faeroe">+0100: Atlantic/Faeroe</option>
+ <option value="Atlantic/Madeira">+0100: Atlantic/Madeira</option>
+ <option value="Atlantic/Reykjavik">+0000: Atlantic/Reykjavik</option>
+ <option value="Atlantic/South_Georgia">-0200: Atlantic/South_Georgia</option>
+ <option value="Atlantic/St_Helena">+0000: Atlantic/St_Helena</option>
+ <option value="Atlantic/Stanley">-0300: Atlantic/Stanley</option>
+ <option value="Australia/Adelaide">+0930: Australia/Adelaide</option>
+ <option value="Australia/Brisbane">+1000: Australia/Brisbane</option>
+ <option value="Australia/Broken_Hill">+0930: Australia/Broken_Hill</option>
+ <option value="Australia/Darwin">+0930: Australia/Darwin</option>
+ <option value="Australia/Hobart">+1100: Australia/Hobart</option>
+ <option value="Australia/Lindeman">+1000: Australia/Lindeman</option>
+ <option value="Australia/Lord_Howe">+1030: Australia/Lord_Howe</option>
+ <option value="Australia/Melbourne">+1000: Australia/Melbourne</option>
+ <option value="Australia/Perth">+0800: Australia/Perth</option>
+ <option value="Australia/Sydney">+1000: Australia/Sydney</option>
+ <option value="Europe/Amsterdam">+0200: Europe/Amsterdam</option>
+ <option value="Europe/Andorra">+0200: Europe/Andorra</option>
+ <option value="Europe/Athens">+0300: Europe/Athens</option>
+ <option value="Europe/Belfast">+0100: Europe/Belfast</option>
+ <option value="Europe/Belgrade">+0200: Europe/Belgrade</option>
+ <option value="Europe/Berlin">+0200: Europe/Berlin</option>
+ <option value="Europe/Brussels">+0200: Europe/Brussels</option>
+ <option value="Europe/Bucharest">+0300: Europe/Bucharest</option>
+ <option value="Europe/Budapest">+0200: Europe/Budapest</option>
+ <option value="Europe/Chisinau">+0300: Europe/Chisinau</option>
+ <option value="Europe/Copenhagen">+0200: Europe/Copenhagen</option>
+ <option value="Europe/Dublin">+0100: Europe/Dublin</option>
+ <option value="Europe/Gibraltar">+0200: Europe/Gibraltar</option>
+ <option value="Europe/Helsinki">+0300: Europe/Helsinki</option>
+ <option value="Europe/Istanbul">+0300: Europe/Istanbul</option>
+ <option value="Europe/Kaliningrad">+0300: Europe/Kaliningrad</option>
+ <option value="Europe/Kiev">+0300: Europe/Kiev</option>
+ <option value="Europe/Lisbon">+0100: Europe/Lisbon</option>
+ <option value="Europe/London">+0100: Europe/London</option>
+ <option value="Europe/Luxembourg">+0200: Europe/Luxembourg</option>
+ <option value="Europe/Madrid">+0200: Europe/Madrid</option>
+ <option value="Europe/Malta">+0200: Europe/Malta</option>
+ <option value="Europe/Minsk">+0300: Europe/Minsk</option>
+ <option value="Europe/Monaco">+0200: Europe/Monaco</option>
+ <option value="Europe/Moscow">+0400: Europe/Moscow</option>
+ <option value="Europe/Oslo">+0200: Europe/Oslo</option>
+ <option value="Europe/Paris">+0200: Europe/Paris</option>
+ <option value="Europe/Prague">+0200: Europe/Prague</option>
+ <option value="Europe/Riga">+0300: Europe/Riga</option>
+ <option value="Europe/Rome">+0200: Europe/Rome</option>
+ <option value="Europe/Samara">+0500: Europe/Samara</option>
+ <option value="Europe/Simferopol">+0300: Europe/Simferopol</option>
+ <option value="Europe/Sofia">+0300: Europe/Sofia</option>
+ <option value="Europe/Stockholm">+0200: Europe/Stockholm</option>
+ <option value="Europe/Tallinn">+0300: Europe/Tallinn</option>
+ <option value="Europe/Tirane">+0200: Europe/Tirane</option>
+ <option value="Europe/Uzhgorod">+0300: Europe/Uzhgorod</option>
+ <option value="Europe/Vaduz">+0200: Europe/Vaduz</option>
+ <option value="Europe/Vienna">+0200: Europe/Vienna</option>
+ <option value="Europe/Vilnius">+0300: Europe/Vilnius</option>
+ <option value="Europe/Warsaw">+0200: Europe/Warsaw</option>
+ <option value="Europe/Zaporozhye">+0300: Europe/Zaporozhye</option>
+ <option value="Europe/Zurich">+0200: Europe/Zurich</option>
+ <option value="Indian/Antananarivo">+0300: Indian/Antananarivo</option>
+ <option value="Indian/Chagos">+0600: Indian/Chagos</option>
+ <option value="Indian/Christmas">+0700: Indian/Christmas</option>
+ <option value="Indian/Cocos">+0630: Indian/Cocos</option>
+ <option value="Indian/Comoro">+0300: Indian/Comoro</option>
+ <option value="Indian/Kerguelen">+0500: Indian/Kerguelen</option>
+ <option value="Indian/Mahe">+0400: Indian/Mahe</option>
+ <option value="Indian/Maldives">+0500: Indian/Maldives</option>
+ <option value="Indian/Mauritius">+0400: Indian/Mauritius</option>
+ <option value="Indian/Mayotte">+0300: Indian/Mayotte</option>
+ <option value="Indian/Reunion">+0400: Indian/Reunion</option>
+ <option value="Pacific/Apia">-1100: Pacific/Apia</option>
+ <option value="Pacific/Auckland">+1300: Pacific/Auckland</option>
+ <option value="Pacific/Chatham">+1345: Pacific/Chatham</option>
+ <option value="Pacific/Easter">-0500: Pacific/Easter</option>
+ <option value="Pacific/Efate">+1100: Pacific/Efate</option>
+ <option value="Pacific/Enderbury">+1300: Pacific/Enderbury</option>
+ <option value="Pacific/Fakaofo">-1000: Pacific/Fakaofo</option>
+ <option value="Pacific/Fiji">+1200: Pacific/Fiji</option>
+ <option value="Pacific/Funafuti">+1200: Pacific/Funafuti</option>
+ <option value="Pacific/Galapagos">-0600: Pacific/Galapagos</option>
+ <option value="Pacific/Gambier">-0900: Pacific/Gambier</option>
+ <option value="Pacific/Guadalcanal">+1100: Pacific/Guadalcanal</option>
+ <option value="Pacific/Guam">+1000: Pacific/Guam</option>
+ <option value="Pacific/Honolulu">-1000: Pacific/Honolulu</option>
+ <option value="Pacific/Johnston">-1000: Pacific/Johnston</option>
+ <option value="Pacific/Kiritimati">+1400: Pacific/Kiritimati</option>
+ <option value="Pacific/Kosrae">+1100: Pacific/Kosrae</option>
+ <option value="Pacific/Kwajalein">+1200: Pacific/Kwajalein</option>
+ <option value="Pacific/Majuro">+1200: Pacific/Majuro</option>
+ <option value="Pacific/Marquesas">-0930: Pacific/Marquesas</option>
+ <option value="Pacific/Midway">-1100: Pacific/Midway</option>
+ <option value="Pacific/Nauru">+1200: Pacific/Nauru</option>
+ <option value="Pacific/Niue">-1100: Pacific/Niue</option>
+ <option value="Pacific/Norfolk">+1130: Pacific/Norfolk</option>
+ <option value="Pacific/Noumea">+1100: Pacific/Noumea</option>
+ <option value="Pacific/Pago_Pago">-1100: Pacific/Pago_Pago</option>
+ <option value="Pacific/Palau">+0900: Pacific/Palau</option>
+ <option value="Pacific/Pitcairn">-0800: Pacific/Pitcairn</option>
+ <option value="Pacific/Ponape">+1100: Pacific/Ponape</option>
+ <option value="Pacific/Port_Moresby">+1000: Pacific/Port_Moresby</option>
+ <option value="Pacific/Rarotonga">-1000: Pacific/Rarotonga</option>
+ <option value="Pacific/Saipan">+1000: Pacific/Saipan</option>
+ <option value="Pacific/Tahiti">-1000: Pacific/Tahiti</option>
+ <option value="Pacific/Tarawa">+1200: Pacific/Tarawa</option>
+ <option value="Pacific/Tongatapu">+1300: Pacific/Tongatapu</option>
+ <option value="Pacific/Truk">+1000: Pacific/Truk</option>
+ <option value="Pacific/Wake">+1200: Pacific/Wake</option>
+ <option value="Pacific/Wallis">+1200: Pacific/Wallis</option>
+ <option value="Pacific/Yap">+1000: Pacific/Yap</option>
+</select>
+<!-- } -->
+
+<!-- if(!$pref['allow_TimeZone'])	{ -->
+<select class="inputfieldselect" name="TimeZone_dummy" disabled>
+<option value="">-- Selecciona</option>
+<option value="Africa/Abidjan">+0000: Africa/Abidjan</option>
+ <option value="Africa/Accra">+0000: Africa/Accra</option>
+ <option value="Africa/Addis_Ababa">+0300: Africa/Addis_Ababa</option>
+ <option value="Africa/Algiers">+0100: Africa/Algiers</option>
+ <option value="Africa/Asmera">+0300: Africa/Asmera</option>
+ <option value="Africa/Bamako">+0000: Africa/Bamako</option>
+ <option value="Africa/Bangui">+0100: Africa/Bangui</option>
+ <option value="Africa/Banjul">+0000: Africa/Banjul</option>
+ <option value="Africa/Bissau">+0000: Africa/Bissau</option>
+ <option value="Africa/Blantyre">+0200: Africa/Blantyre</option>
+ <option value="Africa/Brazzaville">+0100: Africa/Brazzaville</option>
+ <option value="Africa/Bujumbura">+0200: Africa/Bujumbura</option>
+ <option value="Africa/Cairo">+0200: Africa/Cairo</option>
+ <option value="Africa/Casablanca">+0000: Africa/Casablanca</option>
+ <option value="Africa/Ceuta">+0200: Africa/Ceuta</option>
+ <option value="Africa/Conakry">+0000: Africa/Conakry</option>
+ <option value="Africa/Dakar">+0000: Africa/Dakar</option>
+ <option value="Africa/Dar_es_Salaam">+0300: Africa/Dar_es_Salaam</option>
+ <option value="Africa/Djibouti">+0300: Africa/Djibouti</option>
+ <option value="Africa/Douala">+0100: Africa/Douala</option>
+ <option value="Africa/El_Aaiun">+0000: Africa/El_Aaiun</option>
+ <option value="Africa/Freetown">+0000: Africa/Freetown</option>
+ <option value="Africa/Gaborone">+0200: Africa/Gaborone</option>
+ <option value="Africa/Harare">+0200: Africa/Harare</option>
+ <option value="Africa/Johannesburg">+0200: Africa/Johannesburg</option>
+ <option value="Africa/Kampala">+0300: Africa/Kampala</option>
+ <option value="Africa/Khartoum">+0300: Africa/Khartoum</option>
+ <option value="Africa/Kigali">+0200: Africa/Kigali</option>
+ <option value="Africa/Kinshasa">+0100: Africa/Kinshasa</option>
+ <option value="Africa/Lagos">+0100: Africa/Lagos</option>
+ <option value="Africa/Libreville">+0100: Africa/Libreville</option>
+ <option value="Africa/Lome">+0000: Africa/Lome</option>
+ <option value="Africa/Luanda">+0100: Africa/Luanda</option>
+ <option value="Africa/Lubumbashi">+0200: Africa/Lubumbashi</option>
+ <option value="Africa/Lusaka">+0200: Africa/Lusaka</option>
+ <option value="Africa/Malabo">+0100: Africa/Malabo</option>
+ <option value="Africa/Maputo">+0200: Africa/Maputo</option>
+ <option value="Africa/Maseru">+0200: Africa/Maseru</option>
+ <option value="Africa/Mbabane">+0200: Africa/Mbabane</option>
+ <option value="Africa/Mogadishu">+0300: Africa/Mogadishu</option>
+ <option value="Africa/Monrovia">+0000: Africa/Monrovia</option>
+ <option value="Africa/Nairobi">+0300: Africa/Nairobi</option>
+ <option value="Africa/Ndjamena">+0100: Africa/Ndjamena</option>
+ <option value="Africa/Niamey">+0100: Africa/Niamey</option>
+ <option value="Africa/Nouakchott">+0000: Africa/Nouakchott</option>
+ <option value="Africa/Ouagadougou">+0000: Africa/Ouagadougou</option>
+ <option value="Africa/Porto-Novo">+0100: Africa/Porto-Novo</option>
+ <option value="Africa/Sao_Tome">+0000: Africa/Sao_Tome</option>
+ <option value="Africa/Timbuktu">+0000: Africa/Timbuktu</option>
+ <option value="Africa/Tripoli">+0200: Africa/Tripoli</option>
+ <option value="Africa/Tunis">+0100: Africa/Tunis</option>
+ <option value="Africa/Windhoek">+0200: Africa/Windhoek</option>
+ <option value="America/Adak">-0900: America/Adak</option>
+ <option value="America/Anchorage">-0800: America/Anchorage</option>
+ <option value="America/Anguilla">-0400: America/Anguilla</option>
+ <option value="America/Antigua">-0400: America/Antigua</option>
+ <option value="America/Araguaina">-0300: America/Araguaina</option>
+ <option value="America/Argentina/Buenos_Aires">-0300: America/Argentina/Buenos_Aires</option>
+ <option value="America/Argentina/Catamarca">-0300: America/Argentina/Catamarca</option>
+ <option value="America/Argentina/ComodRivadavia">-0300: America/Argentina/ComodRiva</option>
+ <option value="America/Argentina/Cordoba">-0300: America/Argentina/Cordoba</option>
+ <option value="America/Argentina/Jujuy">-0300: America/Argentina/Jujuy</option>
+ <option value="America/Argentina/La_Rioja">-0300: America/Argentina/La_Rioja</option>
+ <option value="America/Argentina/Mendoza">-0300: America/Argentina/Mendoza</option>
+ <option value="America/Argentina/Rio_Gallegos">-0300: America/Argentina/Rio_Gallegos</option>
+ <option value="America/Argentina/San_Juan">-0300: America/Argentina/San_Juan</option>
+ <option value="America/Argentina/Tucuman">-0300: America/Argentina/Tucuman</option>
+ <option value="America/Argentina/Ushuaia">-0300: America/Argentina/Ushuaia</option>
+ <option value="America/Aruba">-0400: America/Aruba</option>
+ <option value="America/Asuncion">-0400: America/Asuncion</option>
+ <option value="America/Bahia">-0300: America/Bahia</option>
+ <option value="America/Barbados">-0400: America/Barbados</option>
+ <option value="America/Belem">-0300: America/Belem</option>
+ <option value="America/Belize">-0600: America/Belize</option>
+ <option value="America/Boa_Vista">-0400: America/Boa_Vista</option>
+ <option value="America/Bogota">-0500: America/Bogota</option>
+ <option value="America/Boise">-0600: America/Boise</option>
+ <option value="America/Cambridge_Bay">-0600: America/Cambridge_Bay</option>
+ <option value="America/Campo_Grande">-0400: America/Campo_Grande</option>
+ <option value="America/Cancun">-0500: America/Cancun</option>
+ <option value="America/Caracas">-0400: America/Caracas</option>
+ <option value="America/Cayenne">-0300: America/Cayenne</option>
+ <option value="America/Cayman">-0500: America/Cayman</option>
+ <option value="America/Chicago">-0500: America/Chicago</option>
+ <option value="America/Chihuahua">-0600: America/Chihuahua</option>
+ <option value="America/Costa_Rica">-0600: America/Costa_Rica</option>
+ <option value="America/Cuiaba">-0400: America/Cuiaba</option>
+ <option value="America/Curacao">-0400: America/Curacao</option>
+ <option value="America/Danmarkshavn">+0000: America/Danmarkshavn</option>
+ <option value="America/Dawson">-0700: America/Dawson</option>
+ <option value="America/Dawson_Creek">-0700: America/Dawson_Creek</option>
+ <option value="America/Denver">-0600: America/Denver</option>
+ <option value="America/Detroit">-0400: America/Detroit</option>
+ <option value="America/Dominica">-0400: America/Dominica</option>
+ <option value="America/Edmonton">-0600: America/Edmonton</option>
+ <option value="America/Eirunepe">-0500: America/Eirunepe</option>
+ <option value="America/El_Salvador">-0600: America/El_Salvador</option>
+ <option value="America/Fortaleza">-0300: America/Fortaleza</option>
+ <option value="America/Glace_Bay">-0300: America/Glace_Bay</option>
+ <option value="America/Godthab">-0200: America/Godthab</option>
+ <option value="America/Goose_Bay">-0300: America/Goose_Bay</option>
+ <option value="America/Grand_Turk">-0400: America/Grand_Turk</option>
+ <option value="America/Grenada">-0400: America/Grenada</option>
+ <option value="America/Guadeloupe">-0400: America/Guadeloupe</option>
+ <option value="America/Guatemala">-0600: America/Guatemala</option>
+ <option value="America/Guayaquil">-0500: America/Guayaquil</option>
+ <option value="America/Guyana">-0400: America/Guyana</option>
+ <option value="America/Halifax">-0300: America/Halifax</option>
+ <option value="America/Havana">-0400: America/Havana</option>
+ <option value="America/Hermosillo">-0700: America/Hermosillo</option>
+ <option value="America/Indiana/Knox">-0500: America/Indiana/Knox</option>
+ <option value="America/Indiana/Marengo">-0500: America/Indiana/Marengo</option>
+ <option value="America/Indiana/Vevay">-0500: America/Indiana/Vevay</option>
+ <option value="America/Indianapolis">-0500: America/Indianapolis</option>
+ <option value="America/Inuvik">-0600: America/Inuvik</option>
+ <option value="America/Iqaluit">-0400: America/Iqaluit</option>
+ <option value="America/Jamaica">-0500: America/Jamaica</option>
+ <option value="America/Juneau">-0800: America/Juneau</option>
+ <option value="America/Kentucky/Monticello">-0400: America/Kentucky/Monticello</option>
+ <option value="America/La_Paz">-0400: America/La_Paz</option>
+ <option value="America/Lima">-0500: America/Lima</option>
+ <option value="America/Los_Angeles">-0700: America/Los_Angeles</option>
+ <option value="America/Louisville">-0400: America/Louisville</option>
+ <option value="America/Maceio">-0300: America/Maceio</option>
+ <option value="America/Managua">-0600: America/Managua</option>
+ <option value="America/Manaus">-0400: America/Manaus</option>
+ <option value="America/Martinique">-0400: America/Martinique</option>
+ <option value="America/Mazatlan">-0600: America/Mazatlan</option>
+ <option value="America/Menominee">-0500: America/Menominee</option>
+ <option value="America/Merida">-0500: America/Merida</option>
+ <option value="America/Mexico_City">-0500: America/Mexico_City</option>
+ <option value="America/Miquelon">-0200: America/Miquelon</option>
+ <option value="America/Monterrey">-0500: America/Monterrey</option>
+ <option value="America/Montevideo">-0300: America/Montevideo</option>
+ <option value="America/Montreal">-0400: America/Montreal</option>
+ <option value="America/Montserrat">-0400: America/Montserrat</option>
+ <option value="America/Nassau">-0400: America/Nassau</option>
+ <option value="America/New_York">-0400: America/New_York</option>
+ <option value="America/Nipigon">-0400: America/Nipigon</option>
+ <option value="America/Nome">-0800: America/Nome</option>
+ <option value="America/Noronha">-0200: America/Noronha</option>
+ <option value="America/North_Dakota/Center">-0500: America/North_Dakota/Center</option>
+ <option value="America/Panama">-0500: America/Panama</option>
+ <option value="America/Pangnirtung">-0400: America/Pangnirtung</option>
+ <option value="America/Paramaribo">-0300: America/Paramaribo</option>
+ <option value="America/Phoenix">-0700: America/Phoenix</option>
+ <option value="America/Port-au-Prince">-0400: America/Port-au-Prince</option>
+ <option value="America/Port_of_Spain">-0400: America/Port_of_Spain</option>
+ <option value="America/Porto_Velho">-0400: America/Porto_Velho</option>
+ <option value="America/Puerto_Rico">-0400: America/Puerto_Rico</option>
+ <option value="America/Rainy_River">-0500: America/Rainy_River</option>
+ <option value="America/Rankin_Inlet">-0500: America/Rankin_Inlet</option>
+ <option value="America/Recife">-0300: America/Recife</option>
+ <option value="America/Regina">-0600: America/Regina</option>
+ <option value="America/Rio_Branco">-0500: America/Rio_Branco</option>
+ <option value="America/Santiago">-0300: America/Santiago</option>
+ <option value="America/Santo_Domingo">-0400: America/Santo_Domingo</option>
+ <option value="America/Sao_Paulo">-0300: America/Sao_Paulo</option>
+ <option value="America/Scoresbysund">+0000: America/Scoresbysund</option>
+ <option value="America/St_Johns">-0230: America/St_Johns</option>
+ <option value="America/St_Kitts">-0400: America/St_Kitts</option>
+ <option value="America/St_Lucia">-0400: America/St_Lucia</option>
+ <option value="America/St_Thomas">-0400: America/St_Thomas</option>
+ <option value="America/St_Vincent">-0400: America/St_Vincent</option>
+ <option value="America/Swift_Current">-0600: America/Swift_Current</option>
+ <option value="America/Tegucigalpa">-0600: America/Tegucigalpa</option>
+ <option value="America/Thule">-0300: America/Thule</option>
+ <option value="America/Thunder_Bay">-0400: America/Thunder_Bay</option>
+ <option value="America/Tijuana">-0700: America/Tijuana</option>
+ <option value="America/Toronto">-0400: America/Toronto</option>
+ <option value="America/Tortola">-0400: America/Tortola</option>
+ <option value="America/Vancouver">-0700: America/Vancouver</option>
+ <option value="America/Whitehorse">-0700: America/Whitehorse</option>
+ <option value="America/Winnipeg">-0500: America/Winnipeg</option>
+ <option value="America/Yakutat">-0800: America/Yakutat</option>
+ <option value="America/Yellowknife">-0600: America/Yellowknife</option>
+ <option value="Antarctica/Casey">+0800: Antarctica/Casey</option>
+ <option value="Antarctica/Davis">+0700: Antarctica/Davis</option>
+ <option value="Antarctica/DumontDUrville">+1000: Antarctica/DumontDUrville</option>
+ <option value="Antarctica/Mawson">+0600: Antarctica/Mawson</option>
+ <option value="Antarctica/McMurdo">+1300: Antarctica/McMurdo</option>
+ <option value="Antarctica/Palmer">-0300: Antarctica/Palmer</option>
+ <option value="Antarctica/Rothera">-0300: Antarctica/Rothera</option>
+ <option value="Antarctica/Syowa">+0300: Antarctica/Syowa</option>
+ <option value="Antarctica/Vostok">+0600: Antarctica/Vostok</option>
+ <option value="Asia/Aden">+0300: Asia/Aden</option>
+ <option value="Asia/Almaty">+0600: Asia/Almaty</option>
+ <option value="Asia/Amman">+0200: Asia/Amman</option>
+ <option value="Asia/Anadyr">+1300: Asia/Anadyr</option>
+ <option value="Asia/Aqtau">+0400: Asia/Aqtau</option>
+ <option value="Asia/Aqtobe">+0500: Asia/Aqtobe</option>
+ <option value="Asia/Ashgabat">+0500: Asia/Ashgabat</option>
+ <option value="Asia/Baghdad">+0300: Asia/Baghdad</option>
+ <option value="Asia/Bahrain">+0300: Asia/Bahrain</option>
+ <option value="Asia/Baku">+0500: Asia/Baku</option>
+ <option value="Asia/Bangkok">+0700: Asia/Bangkok</option>
+ <option value="Asia/Beirut">+0300: Asia/Beirut</option>
+ <option value="Asia/Bishkek">+0600: Asia/Bishkek</option>
+ <option value="Asia/Brunei">+0800: Asia/Brunei</option>
+ <option value="Asia/Calcutta">+0530: Asia/Calcutta</option>
+ <option value="Asia/Choibalsan">+0900: Asia/Choibalsan</option>
+ <option value="Asia/Chongqing">+0800: Asia/Chongqing</option>
+ <option value="Asia/Colombo">+0600: Asia/Colombo</option>
+ <option value="Asia/Damascus">+0200: Asia/Damascus</option>
+ <option value="Asia/Dhaka">+0600: Asia/Dhaka</option>
+ <option value="Asia/Dili">+0900: Asia/Dili</option>
+ <option value="Asia/Dubai">+0400: Asia/Dubai</option>
+ <option value="Asia/Dushanbe">+0500: Asia/Dushanbe</option>
+ <option value="Asia/Gaza">+0300: Asia/Gaza</option>
+ <option value="Asia/Harbin">+0800: Asia/Harbin</option>
+ <option value="Asia/Hong_Kong">+0800: Asia/Hong_Kong</option>
+ <option value="Asia/Hovd">+0700: Asia/Hovd</option>
+ <option value="Asia/Irkutsk">+0900: Asia/Irkutsk</option>
+ <option value="Asia/Jakarta">+0700: Asia/Jakarta</option>
+ <option value="Asia/Jayapura">+0900: Asia/Jayapura</option>
+ <option value="Asia/Jerusalem">+0200: Asia/Jerusalem</option>
+ <option value="Asia/Kabul">+0430: Asia/Kabul</option>
+ <option value="Asia/Kamchatka">+1300: Asia/Kamchatka</option>
+ <option value="Asia/Karachi">+0500: Asia/Karachi</option>
+ <option value="Asia/Kashgar">+0800: Asia/Kashgar</option>
+ <option value="Asia/Katmandu">+0545: Asia/Katmandu</option>
+ <option value="Asia/Krasnoyarsk">+0800: Asia/Krasnoyarsk</option>
+ <option value="Asia/Kuala_Lumpur">+0800: Asia/Kuala_Lumpur</option>
+ <option value="Asia/Kuching">+0800: Asia/Kuching</option>
+ <option value="Asia/Kuwait">+0300: Asia/Kuwait</option>
+ <option value="Asia/Macau">+0800: Asia/Macau</option>
+ <option value="Asia/Magadan">+1200: Asia/Magadan</option>
+ <option value="Asia/Makassar">+0800: Asia/Makassar</option>
+ <option value="Asia/Manila">+0800: Asia/Manila</option>
+ <option value="Asia/Muscat">+0400: Asia/Muscat</option>
+ <option value="Asia/Nicosia">+0300: Asia/Nicosia</option>
+ <option value="Asia/Novosibirsk">+0700: Asia/Novosibirsk</option>
+ <option value="Asia/Omsk">+0700: Asia/Omsk</option>
+ <option value="Asia/Oral">+0400: Asia/Oral</option>
+ <option value="Asia/Phnom_Penh">+0700: Asia/Phnom_Penh</option>
+ <option value="Asia/Pontianak">+0700: Asia/Pontianak</option>
+ <option value="Asia/Pyongyang">+0900: Asia/Pyongyang</option>
+ <option value="Asia/Qatar">+0300: Asia/Qatar</option>
+ <option value="Asia/Qyzylorda">+0600: Asia/Qyzylorda</option>
+ <option value="Asia/Rangoon">+0630: Asia/Rangoon</option>
+ <option value="Asia/Riyadh">+0300: Asia/Riyadh</option>
+ <option value="Asia/Saigon">+0700: Asia/Saigon</option>
+ <option value="Asia/Sakhalin">+1100: Asia/Sakhalin</option>
+ <option value="Asia/Samarkand">+0500: Asia/Samarkand</option>
+ <option value="Asia/Seoul">+0900: Asia/Seoul</option>
+ <option value="Asia/Shanghai">+0800: Asia/Shanghai</option>
+ <option value="Asia/Singapore">+0800: Asia/Singapore</option>
+ <option value="Asia/Taipei">+0800: Asia/Taipei</option>
+ <option value="Asia/Tashkent">+0500: Asia/Tashkent</option>
+ <option value="Asia/Tbilisi">+0400: Asia/Tbilisi</option>
+ <option value="Asia/Tehran">+0330: Asia/Tehran</option>
+ <option value="Asia/Thimphu">+0600: Asia/Thimphu</option>
+ <option value="Asia/Tokyo">+0900: Asia/Tokyo</option>
+ <option value="Asia/Ulaanbaatar">+0800: Asia/Ulaanbaatar</option>
+ <option value="Asia/Urumqi">+0800: Asia/Urumqi</option>
+ <option value="Asia/Vientiane">+0700: Asia/Vientiane</option>
+ <option value="Asia/Vladivostok">+1100: Asia/Vladivostok</option>
+ <option value="Asia/Yakutsk">+1000: Asia/Yakutsk</option>
+ <option value="Asia/Yekaterinburg">+0600: Asia/Yekaterinburg</option>
+ <option value="Asia/Yerevan">+0500: Asia/Yerevan</option>
+ <option value="Atlantic/Azores">+0000: Atlantic/Azores</option>
+ <option value="Atlantic/Bermuda">-0300: Atlantic/Bermuda</option>
+ <option value="Atlantic/Canary">+0100: Atlantic/Canary</option>
+ <option value="Atlantic/Cape_Verde">-0100: Atlantic/Cape_Verde</option>
+ <option value="Atlantic/Faeroe">+0100: Atlantic/Faeroe</option>
+ <option value="Atlantic/Madeira">+0100: Atlantic/Madeira</option>
+ <option value="Atlantic/Reykjavik">+0000: Atlantic/Reykjavik</option>
+ <option value="Atlantic/South_Georgia">-0200: Atlantic/South_Georgia</option>
+ <option value="Atlantic/St_Helena">+0000: Atlantic/St_Helena</option>
+ <option value="Atlantic/Stanley">-0300: Atlantic/Stanley</option>
+ <option value="Australia/Adelaide">+0930: Australia/Adelaide</option>
+ <option value="Australia/Brisbane">+1000: Australia/Brisbane</option>
+ <option value="Australia/Broken_Hill">+0930: Australia/Broken_Hill</option>
+ <option value="Australia/Darwin">+0930: Australia/Darwin</option>
+ <option value="Australia/Hobart">+1100: Australia/Hobart</option>
+ <option value="Australia/Lindeman">+1000: Australia/Lindeman</option>
+ <option value="Australia/Lord_Howe">+1030: Australia/Lord_Howe</option>
+ <option value="Australia/Melbourne">+1000: Australia/Melbourne</option>
+ <option value="Australia/Perth">+0800: Australia/Perth</option>
+ <option value="Australia/Sydney">+1000: Australia/Sydney</option>
+ <option value="Europe/Amsterdam">+0200: Europe/Amsterdam</option>
+ <option value="Europe/Andorra">+0200: Europe/Andorra</option>
+ <option value="Europe/Athens">+0300: Europe/Athens</option>
+ <option value="Europe/Belfast">+0100: Europe/Belfast</option>
+ <option value="Europe/Belgrade">+0200: Europe/Belgrade</option>
+ <option value="Europe/Berlin">+0200: Europe/Berlin</option>
+ <option value="Europe/Brussels">+0200: Europe/Brussels</option>
+ <option value="Europe/Bucharest">+0300: Europe/Bucharest</option>
+ <option value="Europe/Budapest">+0200: Europe/Budapest</option>
+ <option value="Europe/Chisinau">+0300: Europe/Chisinau</option>
+ <option value="Europe/Copenhagen">+0200: Europe/Copenhagen</option>
+ <option value="Europe/Dublin">+0100: Europe/Dublin</option>
+ <option value="Europe/Gibraltar">+0200: Europe/Gibraltar</option>
+ <option value="Europe/Helsinki">+0300: Europe/Helsinki</option>
+ <option value="Europe/Istanbul">+0300: Europe/Istanbul</option>
+ <option value="Europe/Kaliningrad">+0300: Europe/Kaliningrad</option>
+ <option value="Europe/Kiev">+0300: Europe/Kiev</option>
+ <option value="Europe/Lisbon">+0100: Europe/Lisbon</option>
+ <option value="Europe/London">+0100: Europe/London</option>
+ <option value="Europe/Luxembourg">+0200: Europe/Luxembourg</option>
+ <option value="Europe/Madrid">+0200: Europe/Madrid</option>
+ <option value="Europe/Malta">+0200: Europe/Malta</option>
+ <option value="Europe/Minsk">+0300: Europe/Minsk</option>
+ <option value="Europe/Monaco">+0200: Europe/Monaco</option>
+ <option value="Europe/Moscow">+0400: Europe/Moscow</option>
+ <option value="Europe/Oslo">+0200: Europe/Oslo</option>
+ <option value="Europe/Paris">+0200: Europe/Paris</option>
+ <option value="Europe/Prague">+0200: Europe/Prague</option>
+ <option value="Europe/Riga">+0300: Europe/Riga</option>
+ <option value="Europe/Rome">+0200: Europe/Rome</option>
+ <option value="Europe/Samara">+0500: Europe/Samara</option>
+ <option value="Europe/Simferopol">+0300: Europe/Simferopol</option>
+ <option value="Europe/Sofia">+0300: Europe/Sofia</option>
+ <option value="Europe/Stockholm">+0200: Europe/Stockholm</option>
+ <option value="Europe/Tallinn">+0300: Europe/Tallinn</option>
+ <option value="Europe/Tirane">+0200: Europe/Tirane</option>
+ <option value="Europe/Uzhgorod">+0300: Europe/Uzhgorod</option>
+ <option value="Europe/Vaduz">+0200: Europe/Vaduz</option>
+ <option value="Europe/Vienna">+0200: Europe/Vienna</option>
+ <option value="Europe/Vilnius">+0300: Europe/Vilnius</option>
+ <option value="Europe/Warsaw">+0200: Europe/Warsaw</option>
+ <option value="Europe/Zaporozhye">+0300: Europe/Zaporozhye</option>
+ <option value="Europe/Zurich">+0200: Europe/Zurich</option>
+ <option value="Indian/Antananarivo">+0300: Indian/Antananarivo</option>
+ <option value="Indian/Chagos">+0600: Indian/Chagos</option>
+ <option value="Indian/Christmas">+0700: Indian/Christmas</option>
+ <option value="Indian/Cocos">+0630: Indian/Cocos</option>
+ <option value="Indian/Comoro">+0300: Indian/Comoro</option>
+ <option value="Indian/Kerguelen">+0500: Indian/Kerguelen</option>
+ <option value="Indian/Mahe">+0400: Indian/Mahe</option>
+ <option value="Indian/Maldives">+0500: Indian/Maldives</option>
+ <option value="Indian/Mauritius">+0400: Indian/Mauritius</option>
+ <option value="Indian/Mayotte">+0300: Indian/Mayotte</option>
+ <option value="Indian/Reunion">+0400: Indian/Reunion</option>
+ <option value="Pacific/Apia">-1100: Pacific/Apia</option>
+ <option value="Pacific/Auckland">+1300: Pacific/Auckland</option>
+ <option value="Pacific/Chatham">+1345: Pacific/Chatham</option>
+ <option value="Pacific/Easter">-0500: Pacific/Easter</option>
+ <option value="Pacific/Efate">+1100: Pacific/Efate</option>
+ <option value="Pacific/Enderbury">+1300: Pacific/Enderbury</option>
+ <option value="Pacific/Fakaofo">-1000: Pacific/Fakaofo</option>
+ <option value="Pacific/Fiji">+1200: Pacific/Fiji</option>
+ <option value="Pacific/Funafuti">+1200: Pacific/Funafuti</option>
+ <option value="Pacific/Galapagos">-0600: Pacific/Galapagos</option>
+ <option value="Pacific/Gambier">-0900: Pacific/Gambier</option>
+ <option value="Pacific/Guadalcanal">+1100: Pacific/Guadalcanal</option>
+ <option value="Pacific/Guam">+1000: Pacific/Guam</option>
+ <option value="Pacific/Honolulu">-1000: Pacific/Honolulu</option>
+ <option value="Pacific/Johnston">-1000: Pacific/Johnston</option>
+ <option value="Pacific/Kiritimati">+1400: Pacific/Kiritimati</option>
+ <option value="Pacific/Kosrae">+1100: Pacific/Kosrae</option>
+ <option value="Pacific/Kwajalein">+1200: Pacific/Kwajalein</option>
+ <option value="Pacific/Majuro">+1200: Pacific/Majuro</option>
+ <option value="Pacific/Marquesas">-0930: Pacific/Marquesas</option>
+ <option value="Pacific/Midway">-1100: Pacific/Midway</option>
+ <option value="Pacific/Nauru">+1200: Pacific/Nauru</option>
+ <option value="Pacific/Niue">-1100: Pacific/Niue</option>
+ <option value="Pacific/Norfolk">+1130: Pacific/Norfolk</option>
+ <option value="Pacific/Noumea">+1100: Pacific/Noumea</option>
+ <option value="Pacific/Pago_Pago">-1100: Pacific/Pago_Pago</option>
+ <option value="Pacific/Palau">+0900: Pacific/Palau</option>
+ <option value="Pacific/Pitcairn">-0800: Pacific/Pitcairn</option>
+ <option value="Pacific/Ponape">+1100: Pacific/Ponape</option>
+ <option value="Pacific/Port_Moresby">+1000: Pacific/Port_Moresby</option>
+ <option value="Pacific/Rarotonga">-1000: Pacific/Rarotonga</option>
+ <option value="Pacific/Saipan">+1000: Pacific/Saipan</option>
+ <option value="Pacific/Tahiti">-1000: Pacific/Tahiti</option>
+ <option value="Pacific/Tarawa">+1200: Pacific/Tarawa</option>
+ <option value="Pacific/Tongatapu">+1300: Pacific/Tongatapu</option>
+ <option value="Pacific/Truk">+1000: Pacific/Truk</option>
+ <option value="Pacific/Wake">+1200: Pacific/Wake</option>
+ <option value="Pacific/Wallis">+1200: Pacific/Wallis</option>
+ <option value="Pacific/Yap">+1000: Pacific/Yap</option>
+</select>
+<input type="hidden" name="TimeZone" value="$this->TimeZone">
+<!-- } -->
+      </td>
+    </tr>
+
+<tr bgcolor="$this->SecondaryColor">
+<td width="59%"> <font class="swbold">Specify default mail-encoding</font><br><font class="sw">
+When sending outgoing emails specify the default encoding for the message content</font>
+</td>
+<td width="41%">
+
+<!-- if($pref['allow_Encoding'])	{ -->
+<select class="inputfieldselect" name="EmailEncoding">
+<option value="iso-8859-1">Western European - ISO-8859-1</option>
+<option value="iso-8859-15">ISO Latin 9 - ISO-8859-15</option>
+<option value="windows-1256">Arabic - Windows</option>
+<option value="iso-8859-6">Arabic - ISO 8859-6</option>
+<option value="gb2312">Chinese - Simplified</option>
+<option value="big5">Chinese - Traditional</option>
+<option value="windows-125">Hebrew - Windowsl</option>
+<option value="iso-8859-8">Hebrew - ISO 8859-8</option>
+<option value="iso-2022-jp">Japanese - ISO-2022-JP</option>
+<option value="shift_jis">Japanese - ShiftJIS</option>
+<option value="euc-jp">Japanese - euc-JP</option>
+<option value="euc-kr">Korean - euc-KR</option>
+<option value="windows-1257">Lithuanian - Windows</option>
+<option value="koi8-r">Russian - koi8-r</option>
+<option value="tis-620">Thai - tis-620</option>
+<option value="iso-8859-9">Turkish - iso-8859-9</option>
+<option value="koi8-u">Ukrainian - koi8-u</option>
+<option value="UTF-8">UTF-8</option>
+</select>
+<!-- } -->
+
+<!-- if(!$pref['allow_Encoding'])	{ -->
+<select class="inputfieldselect" name="EmailEncoding_dummy" disabled>
+<option value="iso-8859-1">Western European - ISO-8859-1</option>
+<option value="iso-8859-2">Eastern European - ISO-8859-2</option>
+<option value="windows-1256">Arabic - Windows</option>
+<option value="iso-8859-6">Arabic - ISO 8859-6</option>
+<option value="gb2312">Chinese - Simplified</option>
+<option value="big5">Chinese - Traditional</option>
+<option value="windows-125">Hebrew - Windowsl</option>
+<option value="iso-8859-8">Hebrew - ISO 8859-8</option>
+<option value="iso-2022-jp">Japanese - ISO-2022-JP</option>
+<option value="shift_jis">Japanese - ShiftJIS</option>
+<option value="euc-jp">Japanese - euc-JP</option>
+<option value="euc-kr">Korean - euc-KR</option>
+<option value="windows-1257">Lithuanian - Windows</option>
+<option value="koi8-r">Russian - koi8-r</option>
+<option value="tis-620">Thai - tis-620</option>
+<option value="iso-8859-9">Turkish - iso-8859-9</option>
+<option value="koi8-u">Ukrainian - koi8-u</option>
+<option value="UTF-8">UTF-8</option>
+</select>
+<input type="hidden" name="EmailEncoding" value="$this->EmailEncoding">
+<!-- } -->
+
+</td>
+</tr>
+
+<tr>
+  <td width="59%"> <font class="swbold">Block images in email messages</font><br><font class="sw">
+	Optionally select to block URL referenced images in messages. This is a common technique used by spammers to identify your email account.
+	</font>
+  </td>
+  <td width="41%">
+
+<!-- if($pref['allow_DisplayImages'])	{ -->
+<select class="inputfieldselect" name="DisplayImages">
+<option name='DisplayImages' value="1">Display for any message</option>
+<option name='DisplayImages' value="2">Display for trusted users in Addressbook</option>
+<option name='DisplayImages' value="0">Block all</option>
+</select>
+<!-- } -->
+
+<!-- if(!$pref['allow_DisplayImages'])	{ -->
+<select class="inputfieldselect" name="DisplayImages_dummy" disabled>
+<option name='DisplayImages' value="1">Display for any message</option>
+<option name='DisplayImages' value="2">Display for trusted users in Addressbook</option>
+<option name='DisplayImages' value="0">Block all</option>
+</select>
+<input type="hidden" name="DisplayImages" value="$this->DisplayImages">
+<!-- } -->
+
+
+</td>
+</tr>
+
+	<tr bgcolor="$this->SecondaryColor">
+      <td height="12" width="59%"> <font class="swbold">Address Autocomplete</font><br><font class="sw">
+        Enable email auto-completion when typing addreses in the email compose window</font></td>
+      <td height="12" width="41%">
+<!-- if($pref['allow_AutoComplete'])	{ -->
+        <input class="inputfieldcheckbox" type="checkbox" name="AutoComplete" value="1">
+<!-- } -->
+
+<!-- if(!$pref['allow_AutoComplete'])	{ -->
+        <input class="inputfieldcheckbox" type="checkbox" myname="AutoComplete" name="dummy" value="1" disabled>
+		<input type="hidden" name="AutoComplete" value="$this->AutoComplete">
+<!-- } -->
+      </td>
+    </tr>
+
+   <tr bgcolor="$this->SecondaryColor">
+      <td height="12" width="59%"> <font class="swbold">Auto borrado de la papelera</font><br><font class="sw">
+        Borrado automatico de los mensajes almacenados en la papelera.
+</font></td>
+      <td height="12" width="41%">
+<!-- if($pref['allow_AutoTrash'])	{ -->
+        <input class="inputfieldcheckbox" type="checkbox" name="AutoTrash" value="1">
+<!-- } -->
+
+<!-- if(!$pref['allow_AutoTrash'])	{ -->
+        <input class="inputfieldcheckbox" type="checkbox" myname="AutoTrash" name="dummy" value="1" disabled>
+		<input type="hidden" name="AutoTrash" value="$this->AutoTrash">
+<!-- } -->
+      </td>
+    </tr>
+
+    <tr bgcolor="$this->SecondaryColor">
+      <td width="59%"> <font class="swbold">¿Borrar mensajes al salir?</font><br><font class="sw">
+        Si está seleccionada esta opción, la papelera se vaciará al cerrar la sesión.
+        </font></td>
+      <td width="41%"> <font class="sw">
+<!-- if($pref['allow_EmptyTrash'])	{ -->
+        <input class="inputfieldcheckbox" type="checkbox" name="EmptyTrash" value="1">
+<!-- } -->
+
+<!-- if(!$pref['allow_EmptyTrash'])	{ -->
+        <input class="inputfieldcheckbox" type="checkbox" myname="EmptyTrash" name="dummy" value="1" disabled>
+		<input type="hidden" name="EmptyTrash" value="$this->EmptyTrash">
+<!-- } -->
+        </font></td>
+    </tr>
+
+    <tr bgcolor="$this->SecondaryColor">
+      <td height="12" width="59%">
+        <p><font class="swbold">Editor de emails HTML?</b></font><font class="sw"><br>Si está seleccionada esta opción, los mensajes serán redactados directamente con el editor HTML, en lugar de editarlos en texto plano (txt).</font> </p>
+      </td>
+      <td height="12" width="41%"><font class="sw">
+
+<!-- if($pref['allow_HtmlEditor'])	{ -->
+        <input class="inputfieldcheckbox" type="checkbox" name="HtmlEditor" value="1">
+<!-- } -->
+
+<!-- if(!$pref['allow_HtmlEditor'])	{ -->
+        <input class="inputfieldcheckbox" type="checkbox" myname="HtmlEditor" name="dummy" value="1" disabled>
+		<input type="hidden" name="HtmlEditor" value="$this->HtmlEditor">
+<!-- } -->
+
+        </font></td>
+    </tr>
+
+    <tr bgcolor="$this->SecondaryColor">
+      <td width="59%"> <font class="swbold">Time Format</font><br><font class="sw">
+        Select the preference to view the time within the Webmail and Calendar interface</font></td>
+      <td width="41%">
+
+<!-- if($pref['allow_TimeFormat'])	{ -->
+        <select class="inputfieldselect" name="TimeFormat">
+          <option value="%l:%M %p">12 Hour</option>
+          <option value="%R">24 Hour</option>
+        </select>
+<!-- } -->
+
+<!-- if(!$pref['allow_TimeFormat'])	{ -->
+        <select class="inputfieldselect" name="TimeFormat_dummy" disabled>
+          <option value="%l:%M %p">12 Hour</option>
+          <option value="%R">24 Hour</option>
+        </select>
+		<input type="hidden" name="TimeFormat" value="$this->TimeFormat">
+<!-- } -->
+      </td>
+    </tr>
+
+
+    <tr bgcolor="$this->SecondaryColor">
+	      <td width="59%"> <font class="swbold">Date Format</font><br><font class="sw">
+        Select which format to display the date</font></td>
+      <td width="41%">
+<!-- if($pref['allow_DateFormat'])        { -->
+        <select class="inputfieldselect" name="DateFormat">
+          <option value="%d/%m/%y">DD/MM/YY</option>
+          <option value="%m/%d/%y">MM/DD/YY</option>
+          <option value="%y/%m/%d">YY/MM/DD</option>
+          <option value="%y/%d/%m">YY/DD/MM</option>
+        </select>
+<!-- } -->
+
+<!-- if(!$pref['allow_DateFormat'])       { -->
+        <select class="inputfieldselect" name="DateFormat_dummy" disabled>
+          <option value="%d/%m/%y">DD/MM/YY</option>
+          <option value="%m/%d/%y">MM/DD/YY</option>
+          <option value="%y/%m/%d">YY/MM/DD</option>
+          <option value="%y/%d/%m">YY/DD/MM</option>
+        </select>
+                <input type="hidden" name="DateFormat" value="$this->DateFormat">
+<!-- } -->
+      </td>
+    </tr>
+
+    <tr bgcolor="$this->SecondaryColor">
+      <td height="12" width="59%"> <font class="swbold">Firma de email</font><br><font class="sw">
+        Especifica una firma. Esa firma sera isertada al final de todos los mensajes redactados</font></td>
+      <td height="12" width="41%">
+
+<!-- if($pref['allow_Signature'])	{ -->
+        <textarea class="inputfieldtextarea" name="Signature" cols="30" rows="8">$this->Signature</textarea>
+<!-- } -->
+
+<!-- if(!$pref['allow_Signature'])	{ -->
+        <textarea class="inputfieldtextarea" name="Signature_dummy" cols="30" rows="8" disabled>$this->Signature</textarea>
+		<input type="hidden" name="Signature" value="$this->Signature">
+<!-- } -->
+      </td>
+    </tr>
+
+  </table>
+ 		</td>
+	</tr>
+</table>
+</td></tr></table>
+
+<!-- if($pref['allow_Forward'] && ($domains[$this->pop3host] || $pref['ldap_adv'] || $this->pluginHandler->isHandled('onSetAutoReply')))	{ -->
+<br>
+<TABLE border='0' width='100%' cellpadding='4' cellspacing='0' class="table_control">
+<TR><TH class="topleft"><font class='mheader'>&nbsp;Desvios email - Envia emails a otra Cuenta.</font></TH>
+<TH class="middle"></TH>
+<TH class="topright"></TH></TR>
+</TABLE>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5" class="borderstyle">
+<tr>
+<td bgcolor="$this->SecondaryColor">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5">
+<tr>
+<td width="59%" bgcolor="$this->SecondaryColor" height="26"> <font class="swbold">
+<b>Cuenta</font></td>
+<td width="41%" bgcolor="$this->SecondaryColor" height="26"> <font class="swbold">$this->username@$this->pop3host</b></font></td>
+</tr>
+
+<tr>
+<td width="59%" bgcolor="$this->SecondaryColor" height="26"> <font class="swbold">
+<b>Reenviar a</font></td>
+<td width="41%" bgcolor="$this->SecondaryColor" height="26">
+<input class="inputfield" type="text" name="Forward" size="30" value="$this->Forward">
+</td>
+</tr>
+
+
+</table>
+</td>
+</tr>
+</table>
+
+<!-- } -->
+
+<!-- if($domains[$this->pop3host] || $this->pluginHandler->isHandled('onSetAutoReply'))	{ -->
+<br>
+<TABLE border='0' width='100%' cellpadding='4' cellspacing='0' class="table_control">
+
+<TR><TH class="topleft"><font class='mheader'>&nbsp;Auto-Reply Message</font></TH>
+<TH class="middle"></TH>
+<TH class="topright"></TH></TR>
+</TABLE>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5" class="borderstyle">
+<tr>
+<td bgcolor="$this->SecondaryColor">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5">
+<tr>
+<td width="59%" bgcolor="$this->SecondaryColor" height="26"> <font class="sw">
+La opcion <b> Añadir Auto-respuesta</b>, si esta activada, envia un email automaticamente a todo email que es recibido.</font></td>
+<td width="41%" bgcolor="$this->SecondaryColor" height="26">
+<textarea class="inputfieldtextarea" name="AutoReply" cols="30" rows="8">$this->AutoReply</textarea>
+</td>
+</tr>
+
+<tr>
+<td width="59%" bgcolor="$this->SecondaryColor" height="26">&nbsp;</font></td>
+<td width="41%" bgcolor="$this->SecondaryColor" height="26">
+<input type="button" class="stdbtnlong" name="deletereply" onclick="document.settings.AutoReply.value=''" style="width:95px" value="Borrar mensaje de auto-respuesta">
+</td>
+</tr>
+
+</table>
+</td>
+</tr>
+</table>
+
+<!-- } -->
+
+<!-- if(!$pref['allow_Layout'] && $this->Ajax)	{ -->
+<input type="hidden" name="LoginType" value="ajax">
+<!-- } -->
+
+<!-- if(!$pref['allow_Layout'] && !$this->Ajax) { -->
+<input type="hidden" name="LoginType" value="$this->LoginType">
+<!-- } -->
+
+<input type="hidden" name="PrimaryColor" value="$this->PrimaryColor">
+<input type="hidden" name="SecondaryColor" value="$this->SecondaryColor">
+<input type="hidden" name="ThirdColor" value="$this->ThirdColor">
+<input type="hidden" name="HeaderColor" value="$this->HeaderColor">
+<input type="hidden" name="HeadColor" value="$this->HeadColor">
+<input type="hidden" name="BgColor" value="$this->BgColor">
+<input type="hidden" name="TextColor" value="$this->TextColor">
+<input type="hidden" name="TextHeadColor" value="$this->TextHeadColor">
+<input type="hidden" name="LinkColor" value="$this->LinkColor">
+<input type="hidden" name="VlinkColor" value="$this->VlinkColor">
+<input type="hidden" name="OnColor" value="$this->OnColor">
+<input type="hidden" name="OffColor" value="$this->OffColor">
+<input type="hidden" name="SelectColor" value="$this->SelectColor">
+<input type="hidden" name="TopBg" value="$this->TopBg">
+
+<br>
+</form>
+<script language="Javascript" src="html/$this->Language/javascript/schemesxp.js"></script>
+
+<!--Include="html/espanol/simple/footer.html"-->

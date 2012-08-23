@@ -1,0 +1,112 @@
+/*****************************************************************
+ * Release Notes: SquirrelMail 1.4.19                            *
+ * The "Backticking Timebomb" Release                            *
+ * 21 May 2009                                                   *
+ *****************************************************************/
+
+In this edition of SquirrelMail Release Notes:
+   * All about this Release!
+   * Locales / Translations / Charsets
+   * Security issues
+   * Major updates
+   * Reporting your favorite SquirrelMail bug
+
+
+All about this release
+======================
+
+This release was made to address an incomplete fix to a security
+issue, and regressions in the filters plugin introduced in the
+previous release, plus some small other fixes.
+
+For a complete list of changes, please see the file "ChangeLog"
+in the doc/ directory.
+
+Security issues
+===============
+
+An issue was fixed that allowed arbitrary server-side code execution
+when SquirrelMail was configured to use the example "map_yp_alias"
+username mapping functionality.  This was originally repaired in 
+1.4.18 but the fix turned out to be incomplete. Thanks go to Michal
+Hlavinka for spotting this. The issue was originally tracked as
+CVE-2009-1579, the fix being incomplete is named CVE-2009-1381.
+
+Locales / Translations / Charsets
+=================================
+
+Since the release of SquirrelMail 1.4.4, translations are no longer
+a part of the main package.  They are now downloaded separately; you
+can obtain all languages in one package or get an individual language.
+You can find these packages on our web site. They also contain
+installation instructions.
+
+The release of SquirrelMail 1.4.4 also introduced a backport of the
+new Character set decoding functions from our development code branch,
+vastly increasing the decoding performance and the number of supported
+character sets.
+
+
+Major updates in 1.4
+====================
+
+The 1.4.x series (as a result of 1.3 developent series) brings:
+
+* A complete rewrite of the way we send mail (Deliver class),
+  and of the way we parse mail (MIME bodystructure parsing).
+  This makes SquirrelMail more reliable and more efficient
+  at the same time!
+* Support for IMAP UID which makes SquirrelMail more reliable.
+* Optimizations to code and the number of IMAP calls; SquirrelMail
+  is now a very scalable webmail solution.
+* Support for a wider range of authentication mechanisms.
+* Lots of bugfixes, some new features and a couple of UI-tweaks.
+
+
+Reporting your favorite SquirrelMail bug
+========================================
+
+We constantly aim to make SquirrelMail even better. So we need you to
+submit any bug you come across! However, before you do so, please have
+a look at our various support resources to make sure the issue isn't
+already known or solved:
+
+   http://squirrelmail.org/docs/admin/admin-10.html
+   http://squirrelmail.org/docs/admin/admin-12.html
+   http://squirrelmail.org/wiki/KnownBugs
+   http://squirrelmail.org/wiki/SolvingProblems
+
+You should also search existing tracker items for your issue (remember
+to check for CLOSED and PENDING items as well as OPEN ones) - if you
+find such an (open) item, please do add any more details you have to
+it to help us fix and close the bug report.
+
+When reporting a new bug, please mention what SquirrelMail release(s)
+it pertains to, and list as many details about your system as possible,
+including your IMAP server and web server details.
+
+   http://squirrelmail.org/bugs
+
+Thanks for your cooperation! This helps us to make sure nothing slips
+through the cracks. 
+
+Any questions about installing or using SquirrelMail can be directed
+to our user support list:
+
+   squirrelmail-users@lists.sourceforge.net
+
+When posting support requests there, please carefully follow our posting
+guidelines:
+
+   http://squirrelmail.org/postingguidelines
+
+If you want to join us in coding SquirrelMail, or have other things to
+share with the developers, join the development mailinglist:
+
+   squirrelmail-devel@lists.sourceforge.net
+
+
+                  Happy SquirrelMailing!
+
+                    - The SquirrelMail Project Team
+

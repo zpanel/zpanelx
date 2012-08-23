@@ -1,0 +1,44 @@
+<title>WebMail Hilfe</title>
+
+<html lang="de"><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<LINK href="javascript/stylehelp.css" rel=stylesheet type=text/css>
+
+<font face="Verdana, Arial" size="+1">WebMail Hilfe</font>
+
+<hr noshade>
+<p><font face="Arial, Helvetica, Condensed" size="2">Mit dieser Hilfedatei lernen Sie mehr über WebMail kennen. Bitte wählen Sie das Thema aus welches Sie interessiert.</font></p>
+<ul>
+  <li><a href="parse.php?file=html/$this->Language/help/compose.html">Verfassen/Senden einer E-Mail</a></li>
+  <li><a href="parse.php?file=html/$this->Language/help/reademail.html">Email lesen</a></li>
+
+<!-- if($pref['allow_Calendar']) { -->
+ <li><a href="parse.php?file=html/$this->Language/help/calendar.html">Kalender</a></li>
+<!-- } -->
+
+<!-- if(file_exists("{$pref['install_dir']}/xhtml.php") && $pref['allow_Mobile']) { -->
+<li><a href="parse.php?file=html/$this->Language/help/wap.html">Wap E-Mail</a></li>
+<!-- } -->
+
+<li><a href="parse.php?file=html/$this->Language/help/settings.html">Einstellungen ändern</a></li>
+  <li><a href="parse.php?file=html/$this->Language/help/addressbook.html">Adressbuch</a></li>
+
+<!-- if($pref['allow_MultiAccounts']) { -->
+  <li><a href="parse.php?file=html/$this->Language/help/addpop3.html">Multi Accounts</a></li>
+<!-- } -->
+
+<!-- if($pref['allow_LDAP'] && extension_loaded('ldap')) { -->
+<li><a href="parse.php?file=html/$this->Language/help/ldap.html">LDAP Suchmaschine</a></li>
+<!-- } -->
+
+<li><a href="parse.php?file=html/$this->Language/help/newmbox.html">Postfach Optionen</a></li>
+
+<!-- if(file_exists($pref['aspell_dir']) || extension_loaded('pspell')) { -->
+<li><a href="parse.php?file=html/$this->Language/help/spell.html">Rechtschreibprüfung</a></li>
+<!-- } -->
+
+<!-- if($pref['allow_SMS'] && file_exists('sms.php')) { -->
+<li><a href="parse.php?file=html/$this->Language/help/sms.html">SMS Hilfe</a></li>
+<!-- } -->
+</ul>
+
+Mit dieser Hilfedatei lernen Sie mehr über WebMail kennen. Bitte wählen Sie das Thema aus welches Sie interessiert.

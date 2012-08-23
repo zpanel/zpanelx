@@ -1,0 +1,50 @@
+  <tr> 
+
+    <td width="20" class="$var['class']" nowrap>
+<input type="checkbox" name="del[]" value="$var['id']" onclick='TRS(this)' title="Delete Selected">
+</td>
+
+
+	<td width="20" class="$var['class']" height="18">
+<input type="checkbox" name="To" value="$var['Email']" onclick='TRS(this)'>
+</td>
+
+    <td class="$var['class']" width="20">
+<input type="checkbox" name="Cc" value="$var['Email']" onclick='TRS(this)'>
+</td>
+
+    <td class="$var['class']" width="20">
+<input type="checkbox" name="Bcc" value="$var['Email']" onclick='TRS(this)'>
+</td>
+
+    <td class="$var['class']" width="29%">&nbsp;<font class="sw">
+<a href="javascript:opencompose('$var['Email']','','','1')">$var['ViewEmail']</a></font> 
+    </td>
+
+<td class="$var['class']" width="20%" nowrap>&nbsp;<font class="sw">
+$var['FullName']
+</font></td>
+
+    <td class="$var['class']" width="17%" nowrap>&nbsp;<font class="sw">
+$var['WorkPhone']
+</font></td>
+
+    <td class="$var['class']" width="17%" nowrap>&nbsp;<font class="sw">
+$var['HomePhone']
+</font></td>
+
+    <td class="$var['class']" width="8%" nowrap align="right">
+    <!-- if ($var['ldap'] == '1') { -->
+	<!-- nothing goes here because it's come from the ldap server -->
+	<!-- } -->
+	<!-- if (!$var['ldap']) { -->
+<a href="abook.php?func=view&email=$var['id']"><img alt="Edit User" border=0 src="imgs/xp/modifyuser.gif" width="22" height="18"></a>
+<a class="cursor: pointer; cursor: hand;" onClick="javascript:DelContact('user','$var['Email']', '$var['id']')"><img alt="Delete User" border=0 height="18" src="imgs/xp/trash.gif" width="22"></a>
+<!-- } -->
+    </td>
+  </tr>
+
+<tr>
+<td height="1" bgcolor='$this->PrimaryColor' colspan="9">
+</td>
+</tr>

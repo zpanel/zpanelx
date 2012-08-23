@@ -1,0 +1,55 @@
+<?php
+/********************************************************
+	lang/eng/compose.inc
+	(C)2001-2002 Ryo Chijiiwa <Ryo@IlohaMail.org>
+
+	This file is part of IlohaMail, and released under GPL.
+	See COPYING, or http://www.fsf.org/copyleft/gpl.html
+
+********************************************************/
+
+//TRANSLATORS:  Uncomment next line for all non-English languages!!
+include("../lang/eng/compose.inc");
+
+$composeHStrings[0] = "Tema";
+$composeHStrings[1] = "Nuo";
+$composeHStrings[2] = "Kam";
+$composeHStrings[3] = "Kam kopijà";
+$composeHStrings[4] = "Kam nematoma kopijà";
+$composeHStrings[5] = "Data";
+
+
+$composeStrings[0] = "Raðyti laiðkà";
+$composeStrings[1] = "Siøsti laiðkà";
+$composeStrings[2] = "Patalpinti";
+$composeStrings[3] = "Prisegti paraðà";
+$composeStrings[4] = "Prisegti";
+$composeStrings[5] = "Kontaktai";
+$composeStrings[6] = "Slëpti kontaktus";
+$composeStrings[7] = "Laiðko turinys";
+$composeStrings[8] = "Pridëti";
+$composeStrings[9] = " %d, %s raðyta:\n";
+$composeStrings[10] = "--- Laiðko originalas ---\n";
+$composeStrings[11] = "Uþdaryti langà";
+
+$composeStrings[12] = "Tikrinti raðybà";
+$composeStrings[13] = "Taisyti raðybà";
+$composeStrings[14] = "Be pakeitimø";
+$composeStrings[15] = "Galimos raðybos klaidos";
+$composeStrings[16] = "Raðybos keitimas";
+$composeStrings[17] = "ignoruoti";
+$composeStrings[18] = "iðtrinti";
+
+$composeStrings["title"] = "Raðyti laiðkà";
+
+$composeErrors[0] = "Temos laukas yra tuðèias. Praðome áraðyti temà arba paspausti \"".$composeStrings[1]."\" vël, kad iðsiøstumët.";
+$composeErrors[1] = " \"Nuo\" laukas yra tuðèias.  Praðome áraðyti savo el. paðto adresà.";
+$composeErrors[2] = " \"Kam\" laukas yra tuðèias.  Praðome nurodyti gavëjo adresà.";
+$composeErrors[3] = "Nusiuntimas nepavyko";
+$composeErrors[4] = "Bylø negauta.";
+$composeErrors[5] = "Dël ðiûkðlinimo prevencijos, jûs galite iðsiøsti tik %1 þmonëms (%2 ið viso per vienà sesijà) kas %3 sekundes.";
+
+$composeErrors[6] = "Raðybos klaidø nerasta.";
+$composeErrors[7] = "Ðiai kalbai raðybos klaidø taisymas negalimas.";
+$composeErrors[8] = "(%s naudojamas þodynas)";
+?>

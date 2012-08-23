@@ -1,0 +1,81 @@
+delete_move_next -- Version 3.0
+By Ben Brillat <brillat-sqplugin@mainsheet.org>
+
+This is a modified version of Delete Move Next by Bryan Stalcup <bryan@stalcup.net>
+
+If you read the mail in your inbox starting with the most recent, this
+plugin is meant for you. It adds a set of mail management links across 
+the bottom or top of the email. 
+
+Features
+========
+* Saves you the need to scroll up to go to the previous or next email
+* Allows you to delete the current email and view the next or previous
+  message in step
+* Allows you to move the current email to any mailbox and view the next
+
+
+Description
+===========
+This plugin adds links to the message view for each message.
+The links include "Previous", "Next", "Delete & Previous", and "Delete & 
+Next", which deletes the current email and displays the next email. 
+Also included is a menu to move the current email to any folder and 
+then display the next email. It helps me keep up with my constantly 
+overflowing inbox.
+
+Future Work
+===========
+* You tell me...
+
+
+Limitations (Known bugs)
+========================
+-If you delete or move an email, then use the "Message List" link at the
+ top left of the header, the message list is pulled from cache, and does
+ not reflect the deleted/moved email(s). To view the current list, click
+ the mailbox link in the left-hand navigation bar.
+-"Delete & Prev" or "Delete & Next" can result in strange behavior when
+ deleting the last or next to last message in a mailbox when using any
+ sort order other than 0.  It won't kill anything, you just might arrive
+ at a message other than the one you were expecting to see.
+ If anyone has any suggestions on this one, please let me know.
+
+
+Installation
+============
+See the "INSTALL" file.
+
+Changes
+=======
+See the "CHANGELOG" file.
+New versions are available at:
+http://www.brillat.net/~ben/files/projects/squirrelmail/
+
+Copyright
+=========
+Copyright (C) 2001 Benjamin Brillat
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program ("gpl.txt"); if not, write to the Free Software
+Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301, USA
+
+Contact
+=======
+
+Let me know what you think:
+Ben Brillat <brillat-sqplugin@mainsheet.org>
+74 Punch Bowl Trail
+W. Kingston, RI 02892 USA
+
+

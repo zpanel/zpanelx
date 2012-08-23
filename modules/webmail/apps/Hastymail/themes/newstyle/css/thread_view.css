@@ -1,0 +1,283 @@
+#mbx_outer{
+}
+#mbx_inner{
+    width: 100%;
+    overflow: auto;
+}
+#mailbox_title {
+    color: #666;
+    font-size: 120%;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-left: 15px;
+    margin-top: 10px;
+    float: left;
+    clear: both;
+}
+#mailbox_meta{
+    font-weight: normal;
+    padding-left: 20px;
+}
+.mailbox_header_left {
+    border-left: solid 1px #ccc;
+    border-right: solid 1px #ccc;
+    padding-left: 10px;
+    background: url('themes/newstyle/images/gb.png') top left repeat-x;
+}
+#sort_form{
+    color: #555;
+    margin-right: 10px;
+    font-weight: normal;
+    font-size: 90%;
+    max-width: 50%;
+    float: left;
+}
+#toggle_all_button{padding: 0px; margin-right: 5px; float: left; font-size: 8pt; margin-left: 11px;}
+#sort_form option {
+    padding-top: 1px;
+    color: #555;
+    padding-top: 1px;
+    background-color: transparent;
+    border: none;
+}
+#sort_form select{
+    padding-top: 1px;
+    background-color: transparent;
+    border: none;
+    border-bottom: solid 1px #ccc;
+    color: #555;
+}
+.message_controls2, .message_controls{
+    clear: both;
+    background-color: #feffff;
+    font-size: 80%;
+    padding-bottom: 5px;
+    border-left: solid 1px #ccc;
+    border-right: solid 1px #ccc;
+    font-weight: bold;
+    text-align: left;
+    padding-top: 5px;
+}
+.message_controls2{
+    margin-top: 0px !important;
+    vertical-align: middle;
+    min-height: 20px;
+    background-color: #f3f7fd;
+    border: solid 1px #ccc;
+    padding-top: 10px !important;
+    border-top: none;
+}
+.message_controls2 select, .message_controls2 input, .message_controls select, .message_controls input{
+    background-color: transparent;
+    border: none;
+    border-right: solid 1px #444;
+    color: #555;
+    padding: 0px;
+    padding-left: 2px;
+    margin-right: 3px;
+    padding-right: 2px;
+}
+.mc_inner{
+    padding: 5px !important;
+}
+#empty_mailbox{
+    clear: both;
+    font-size: 120%;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    text-align: center;
+    font-style: italic;
+}
+#mbx_table{
+    border: solid 1px #ccc;
+    border-bottom: none;
+    clear: both;
+}
+#mbx_table tr, #mbx_table td:hover{
+    background-color: #f8f8f8 !important;
+}
+#mbx_table td{
+    border-bottom: solid 1px #eee;
+    color: #444;
+    background-color: #feffff;
+    padding-top: 6px;
+    padding-bottom: 2px;
+    padding-right: 5px;
+    vertical-align: top;
+}
+#mbx_top th, #mbx_table th{
+    text-align: left;
+    padding: 8px;
+    font-size: 90%;
+}
+.indicators{ font-style: italic; }
+.mbx_size, .mbx_unseen_size{ color: #999 !important; text-align: right;}
+.mbx_subject a { text-decoration: none; color: #444; }
+.mbx_unseen_from, .mbx_unseen_subject a{ text-decoration: none; color: #444; font-weight: bold; }
+.mbx_unseen_indicators, .mbx_unseen_subject, .mbx_unseen_from, .mbx_unseen_date, .mbx_unseen_size{ color: #444; }
+.mbx_unseen_indicators, .mbx_indicators, .mbx_unseen_size, .mbx_size{ white-space: nowrap; }
+.mbx_unseen_from, .mbx_unseen_date, .mbx_unseen_size, .mbx_size, .mbx_date, .mbx_from{
+    white-space: nowrap;
+    font-size: 90%;
+}
+.mbx_date, .mbx_unseen_date{ color: #999 !important; }
+.deleted_message a {
+    color: #888;
+    text-decoration: line-through;
+}
+.multi_ind{
+    background: url('themes/newstyle/images/multi.png') top left no-repeat;
+    padding-left: 15px;
+}
+.mbx_image_cell, .mbx_unseen_image_cell {
+    padding: 0px !important;
+    padding-top: 7px !important;
+    padding-right: 6px !important;
+    width: 45px;
+    white-space: nowrap;
+    font-size: 0px;
+}
+.mbx_image_cell div{
+    background: url('themes/newstyle/images/unread_msg.png') 0px 0px no-repeat;
+    width: 14px !important;
+    height: 13px !important;
+    margin-right: 8px !important;
+    float: left;
+}
+.mbx_unseen_image_cell div{
+    background: #fff url('themes/newstyle/images/read_msg.png') 0px 0px no-repeat;
+    width: 14px !important;
+    height: 13px !important;
+    margin-right: 8px !important;
+    float: left;
+}
+.mbx_from, .mbx_unseen_from{
+    padding-left: 3px;
+}
+.mbx_unseen_checkbox input, .mbx_checkbox input{
+    margin-top: 2px;
+}
+.mbx_unseen_checkbox, .mbx_checkbox{
+    width: 1%;
+    white-space: nowrap;
+    padding-left: 5px;
+}
+.mbx_unseen_indicators, .mbx_indicators{
+    color: transparent !important;
+    white-space: nowrap;
+    padding-left: 0px;
+    padding-right: 6px !important;
+    max-width: 30px !important;
+    width: 30px !important;
+    min-width: 30px !important;
+}
+#mailbox_search_form span{
+    font-weight: normal;
+    padding-left: 10px;
+    vertical-align: -20%;
+}
+#mailbox_search_form select, #mailbox_search_form option{
+    color: #555;
+    border: none;
+    background-color: transparent;
+    letter-spacing: 0px !important;
+}
+
+#mailbox_search_form select{
+    border-bottom: solid 1px #ccc;
+}
+#mailbox_search_words{
+    border: solid 1px #ccc;
+    height: 18px;
+    line-height: 18px;
+    background-color: #feffff;
+}
+#search_button{
+    border: solid 1px #ccc;
+    padding: 2px;
+    margin-left: 5px;
+}
+#mailbox_search_form{
+    color: #555;
+    font-size: 90%;
+    white-space: nowrap;
+    float: right;
+    padding-right: 10px;
+    font-weight: normal;
+    margin-left: 5px;
+    clear: none;
+    vertical-align: middle;
+}
+#page_links b{
+    padding: 3px;
+    padding-right: 7px;
+}
+#page_links{
+    text-align: center;
+    float: right;
+}
+#page_links a{
+    font-weight: normal;
+    padding-right: 3px;
+}
+.top_page_links{
+    margin-top: 0px !important;
+}
+.tplinks{
+    background-color: #fff !important;
+    border-left: solid 1px #ccc;
+    border-right: solid 1px #ccc;
+    padding: 0px !important;
+}
+.search_res {
+    font-style: italic;
+}
+.last_read_hidden{
+    visibility: hidden;
+    padding-right: 3px;
+}
+.last_read{
+    font-size: 90%;
+    vertical-align: 20%;
+    padding-right: 3px;
+}
+.reply_count{
+    font-size: 80%;
+    color: #444;
+    font-style: italic;
+    padding-left: 5px;
+}
+.flagged {
+    background: #fff;
+    color: #666 !important;
+}
+#mbx_table .last_row {
+    border-bottom: none;
+}
+#frozen{
+    font-weight: bold;
+    padding-right: 10px;
+}
+.current_page_link{
+    font-weight: bold;
+}
+#track_folder a{
+    font-weight: normal;
+}
+#track_folder{
+    display: inline;
+}
+.folder_unread{
+    padding-left: 5px;
+}
+.show_all{
+    padding-left: 20px;
+}
+form{display: inline;}
+.btm_row{
+    padding: 5px !important;
+    padding-bottom: 50px !important;
+    background: url('themes/newstyle/images/gb2.png') bottom left repeat-x;
+    border-left: solid 1px #ccc;
+    border-right: solid 1px #ccc;
+}

@@ -1,0 +1,65 @@
+SquirrelMail
+http://squirrelmail.org
+
+Introduction:
+-------------
+SquirrelMail is a standards-based webmail package written in PHP. It
+includes built-in pure PHP support for the IMAP and SMTP protocols, and all
+pages render in pure HTML 4.0 (with no Javascript) for maximum compatibility
+across browsers. It has very few requirements and is very easy to configure
+and install. SquirrelMail has all the functionality you would want from an
+email client, including strong MIME support, address books, and folder
+manipulation.  
+
+Why did you guys create SquirrelMail?  The need arose in our organization
+for the access of email and address books from anywhere in the world.
+Obviously a web interface is ideal for this, given that the user has access
+to the Internet.  After reviewing several open source projects, we realized
+that we were going to need to do some fairly major customizations to get
+things to be a nice fit for our needs.  So the decision was made to create
+our own for some of these reasons, and for fun (we really like PHP).  We
+decided to open source the project to contribute to the community that has
+contributed so much to us.  Since then, it has grown much bigger than we
+ever imagined, and we have an awesome development team who are actively
+working on the project.
+
+We would love to hear from you!  The nature of open source projects make it
+hard to know who all is using your product.  It is always nice when we get
+emails from people just telling us that they're using SquirrelMail.  If you
+have a few minutes, please send us an email to let us know!  You can send it
+to our mailing list:  squirrelmail-users@lists.sourceforge.net
+
+Contact:
+--------
+It is pretty easy to get in contact with the developers if you need help or
+if you find bugs that need to be reported.  The best way to contact us would
+be through our mailing list which is actively monitored.
+   
+   squirrelmail-users@lists.sourceforge.net
+
+NOTE: you need to be subscribed to this mailinglist to be able to post to it!
+Please visit our web page (http://squirrelmail.org) and go to the section
+titled "Mailing Lists".
+
+Installation:
+-------------
+For detailed instructions on how to install SquirrelMail on your server,
+please refer to the INSTALL document in the same directory as this document.
+
+Licensing: 
+----------
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program (in the file COPYING); if not, write to the
+Free Software Foundation, Inc.,
+51 Franklin St, Fifth Floor, Boston, MA  02110-1301, USA
+

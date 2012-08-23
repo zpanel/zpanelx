@@ -1,0 +1,276 @@
+<HTML><HEAD><TITLE>$Lang['lang_passutil_title'] - $pref['brandname']</TITLE>
+$lang['lang_Global_content_type']      
+
+<link rel="stylesheet" href="html/login.css" type="text/css">
+
+<script language="Javascript">
+// Reload to the master frame if we are inside a frameset
+if (parent.frames[1]) top.window.location=self.location;
+
+function help()	{
+helpwin();
+}
+
+</script>
+
+<script language="JavaScript" src="javascript/help.js"></script>
+
+
+<script language="javascript">
+	function validate_form(theForm)
+	{
+
+		if (theForm.username.value == "")
+		{
+		alert("$lang['lang_javascript_validate_username']");
+		theForm.username.focus();
+		return (false);
+		}
+
+		if (theForm.pop3host.value == "")
+		{
+		alert("$lang['lang_javascript_validate_domain']");
+		theForm.pop3host.focus();
+		return (false);
+		}
+
+	  if (theForm.newpass.value.length < 5)
+	  {
+		alert("$lang['lang_passutil_minchars']");
+		theForm.newpass.focus();
+		return (false);
+	  }
+
+	  if (theForm.newpass.value != theForm.newpass2.value)
+	  {
+		alert("$lang['lang_passutil_mismatch']");
+		theForm.newpass.focus();
+		return (false);
+		}
+	  return (true);
+	}
+
+	function validate_passquestion(theForm)
+	{
+
+		if (theForm.username.value == "")
+		{
+		alert("$lang['lang_javascript_validate_username']");
+		theForm.username.focus();
+		return (false);
+		}
+
+		if (theForm.pop3host.value == "")
+		{
+		alert("$lang['lang_javascript_validate_domain']");
+		theForm.pop3host.focus();
+		return (false);
+		}
+
+}
+</script>
+
+<script language="Javascript" src="html/$this->Language/javascript/xp.js"></script>
+</head>
+
+
+<!-- if($var['status']) { -->
+<body bgcolor="#E5E5E5" link="#6699CC" vlink="#6699CC" alink="#336699" onload='alert("$var['status']")'>
+<!-- } -->
+
+<!-- if(!$var['status']) { -->
+<body bgcolor="#E5E5E5" link="#6699CC" vlink="#6699CC" alink="#336699">
+<!-- } -->
+
+<table width="600" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+
+
+<!-- if($pref['logo_big_img'] == "imgs/about.gif") { -->
+	<td bgcolor="#E5E5E5"><table width="540" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr> 
+		  <td width="16" bgcolor="#FFFFFF"><p><img src="imgs/sidehead.gif" width="16" height="83"></p></td>
+		  <td bgcolor="#FFFFFF"><img src="imgs/topheader.gif" width="524" height="83"></td>
+		</tr>
+	  </table>
+<!-- } -->
+
+<!-- if($pref['logo_big_img'] != "imgs/about.gif") { -->
+	<td bgcolor="#E5E5E5"><table width="540" border="0" align="center" cellpadding="0" cellspacing="0" style="border-right: 1px solid #D8D2BD;">
+		<tr> 
+		  <td width="15" bgcolor="#E5E5E5"  style="border-right: 1px solid #D8D2BD;"><p><img src="imgs/trans.gif" width="15" height="83"></p></td>
+		  <td bgcolor="#FFFFFF" style="border-top: 1px solid #D8D2BD;">&nbsp;<img src="$pref['logo_big_img']"></td>
+		</tr>
+	  </table>
+<!-- } -->
+
+
+
+
+	  <table width="540" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr> 
+		  <td width="15" nowrap bgcolor="#E5E5E5"><img src="imgs/trans.gif" height='8' width='15'></td>
+		  <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="6">
+			  <tr>
+				<td style="border-left: 1px solid #D8D2BD; border-right: 1px solid #D8D2BD;">
+<table width="100%" border="0" cellspacing="0" cellpadding="2" >
+					<tr >
+					  <td ><font class="loginhead"><b>$lang['lang_passutil_passwd']</b></font></td>
+					</tr>
+					<tr>
+					  <td><img src="imgs/loginline.gif" width="500" height="1"></td>
+					</tr>
+					<tr>
+					  <td><font class="logintext"><img src="imgs/trans.gif" width='4'> 
+						$lang['lang_passutil_msg1']</font></td>
+					</tr>
+				  </table>
+				  <table width="100%" border="0" cellpadding="2" cellspacing="0" style="background-repeat: no-repeat; background-image: url(imgs/securebackground.gif)">
+<form action="index.php" method="post" name="pass" target="_parent" onsubmit="return validate_form(this)"><br>
+<input type="hidden" name="func" value="passutil">
+					  <tr > 
+						<td width="50" >&nbsp;</td>
+						<td width="151" align="right" valign="top" nowrap > <input name="username" type=text class="logininput" id="username" value=""> 
+						</td>
+						<td width="20" ><img src="imgs/atsymbol.gif" width="18" height="17"></td>
+						<td width="135" align="left" valign="top" >						  
+							<input name="pop3host" type=text class="logininput" value="">
+						  </td>
+						<td width="135" >&nbsp;</td>
+					  </tr>
+					  <tr> 
+						<td colspan="5" height='6'><img src="imgs/trans.gif" height='8'></td>
+					  </tr>
+					  <tr> 
+						<td >&nbsp;</td>
+						<td colspan="2" align="right" ><font class="inputtext">$lang['lang_passutil_oldpass']:</font></td>
+						<td align="left" ><input name="oldpass" type="password" class="logininput" id="MailServer" value=""></td>
+						<td >&nbsp;</td>
+					  </tr>
+					  <tr> 
+						<td colspan="5" height='6'><img src="imgs/trans.gif" height='8'></td>
+					  </tr>
+					  <tr > 
+						<td >&nbsp;</td>
+						<td colspan="2" align="right" ><font class="inputtext">$lang['lang_passutil_newpass']:</font></td>
+						<td align="left" ><input name="newpass" type=password class="logininput" id="password" value=""></td>
+						<td >&nbsp;</td>
+					  </tr>
+					  <tr > 
+						<td colspan="5" height='6'><img src="imgs/trans.gif" height='8'></td>
+					  </tr>
+					  <tr > 
+						<td >&nbsp;</td>
+						<td colspan="2" align="right" ><font class="inputtext">$lang['lang_passutil_verify']:</font></td>
+						<td align="left" ><input name="newpass2" type=password class="logininput" id="password" value=""></td>
+						<td >&nbsp;</td>
+					  </tr>
+					  <tr > 
+						<td colspan="5" height='6'><img src="imgs/trans.gif" height='8'></td>
+					  </tr>
+					  <tr > 
+						<td >&nbsp;</td>
+						<td colspan="2" align="right" ><font class="inputtext">$lang['lang_passutil_question']:</font></td>
+						<td align="left" ><input name="PasswordQuestion" type=text class="logininput" id="password" value=""></td>
+						<td width="135" >&nbsp;</td>
+					  </tr>
+					  <tr > 
+						<td colspan="5" height='6'><img src="imgs/trans.gif" height='8'></td>
+					  </tr>
+					  <tr > 
+						<td >&nbsp;</td>
+						<td align="right" >&nbsp;</td>
+						<td width="20" >&nbsp;</td>
+						<td align="right" ><input type="submit" name="Update" value="$lang['lang_passutil_update']" class="loginsubmitlong"></td>
+						<td width="135" >&nbsp;</td>
+					  </tr>
+					</form>
+				  </table>
+
+				  <table width="50%" border="0" cellspacing="1" cellpadding="2" >
+					<tr > 
+					  <td ><font class="loginhead"><b>$lang['lang_passutil_passutil']</b></font></td>
+					</tr>
+					<td><img src="imgs/loginline.gif" width="500" height="1"></td>
+					</tr>
+					<tr> 
+					  <td><p><font class="logintext">$lang['lang_passutil_msg2']</font></p>
+						</td>
+					</tr>
+				  </table>
+
+				  <table width="100%" border="0" cellpadding="2" cellspacing="0">
+				<FORM action="index.php" method="post" name="form" target="_parent" onsubmit="return validate_passquestion(this)"><br>
+				<input type="hidden" name="func" value="passutil">	
+					<tr> 
+						<td width="54" >&nbsp;</td>
+						<td width="144" align="right" valign="top" nowrap > <input name="username" type=text class="logininput" id="username" value=""> 
+						</td>
+						<td width="18" ><img src="imgs/atsymbol.gif" width="18" height="17"></td>
+						<td width="135" align="left" valign="top" > 
+							<input name="pop3host" type=text class="logininput" value="">
+						</td>
+						<td width="140" >&nbsp;</td>
+					  </tr>
+					  <tr > 
+						<td >&nbsp;</td>
+						<td align="right" >&nbsp;</td>
+						<td width="18" >&nbsp;</td>
+						<td align="right" ><input type="submit" name="Hint" value="$lang['lang_passutil_hint']" class="loginsubmitlong"></td>
+						<td width="140" >&nbsp;</td>
+					  </tr>
+					</form>
+				  </table>
+<br>
+				  <img src="imgs/loginline.gif" width="500" height="1">
+				  </td>
+			  </tr>
+			</table></td>
+		</tr>
+	  </table>
+	  <table width="554" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr> 
+		  <td width="15" nowrap bgcolor="#E5E5E5"><img src="imgs/trans.gif" height='8' width='30'></td>
+		  <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+			  <tr> 
+				<td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+					<tr> 
+					  <td valign="top" style="border-left: 1px solid #D8D2BD;">
+<table width="100%" border="0" cellspacing="1" cellpadding="2" >
+						  <tr > 
+							<td ><div align="right"><font class="loginhead"><b> 
+
+<!-- if($pref['allow_Passutil'] && $pref['install_type'] != "server") { -->
+<a href="javascript:helpwin()">$lang['lang_help_title_login']</a> | 
+<!-- } -->
+
+<a href="index.php">$lang['lang_login_title']</a> |
+
+<a href="javascript:helpwin('loginhelp.html')">$lang['lang_help_faq']</a> | <a href="$pref['company_url']">$lang['lang_login_about']</a> 
+
+<!-- if(file_exists("{$pref['install_dir']}/xhtml.php")) { -->
+| <a href="javascript:helpwin('wap.html')">$lang['lang_help_wap_title']</a> 
+<!-- } -->
+
+</b></font></div></td>
+						  </tr>
+						  <tr> 
+							<td><div align="right"><font class="logintext">$lang['lang_login_moreinfotext']</font></div></td>
+						  </tr>
+						</table></td>
+					  <td bgcolor="#E5E5E5"><img src="imgs/rightedge.gif" width="76" height="63"></td>
+					</tr>
+					<tr>
+					  <td bgcolor="#E5E5E5"><img src="imgs/bottomline.gif" width="449" height="19"></td>
+					  <td bgcolor="#E5E5E5"><img src="imgs/trans.gif" width="90" height="19"></td>
+					</tr>
+					</table></td>
+			  </tr>
+			</table></td>
+		</tr>
+	  </table> </td>
+  </tr></table>
+
+
+</body>
+</html>

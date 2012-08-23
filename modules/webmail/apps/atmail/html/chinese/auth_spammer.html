@@ -1,0 +1,38 @@
+<!-- if($this->Ajax) { -->
+<Error>
+	<ErrorStatus>1</ErrorStatus>
+	<Status>1</Status>
+	<ErrorMessage><![CDATA[$var['error']]]></ErrorMessage>
+	<StatusMessage><![CDATA[拒絕信息 - 你的IP地址每天發出的郵件最大數量為.為了減少垃圾郵件的可能性， 你即將發出的信息已被封鎖.  ]]></StatusMessage>
+</Error>
+<!-- } -->
+
+<!-- if(!$this->Ajax) { -->
+<html>
+<head>
+<title>垃圾郵件檢測</title></head><body bgcolor="$this->BgColor" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+
+
+
+<style>
+
+.sw {font-family:Verdana;font-size:13px;color:#000000;}
+.swr {font-family:Verdana;font-size:13px;color:#FF0000;}
+</style>
+
+
+
+<LINK href="javascript/style$this->browser.css" rel="stylesheet" type="text/css">
+<img src="$pref['logo_big_img']"><br>
+<h1>拒絕信息</h1>
+
+<font class="swr">你的IP地址每天發出的郵件最大數量為.為了減少垃圾郵件的可能性， 你即將發出的信息已被封鎖. </font> <font class="sw"> 
+<ul>
+<li>聯繫電子郵件管理員($this->admin_email)援助.</li>
+</ul>
+</font>
+</body>
+</html>
+
+<!-- } -->

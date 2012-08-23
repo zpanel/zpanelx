@@ -1,0 +1,15 @@
+From version v0.2 to version v0.3
+----------------------------------
+
+The user dictionaries will be converted to v0.3 format. Once they are
+converted, you can't downgrade back to v0.2. If this scares you, backup all
+*.words files in your $data_dir somewhere safe.
+
+Files are renamed around. config.php is now sqspell_config.php. 
+
+When you are setting up SQSPELL_DEFAULT_APP in the sqspell_config, keep in 
+mind that this has to reflect whichever dictionary you used in version 0.2.
+Say, if you used "ispell -d german", you will need to specify German as 
+your SQSPELL_DEFAULT_APP so user dictionaries can be upgraded successfully.
+Otherwise wrong words will end up in a wrong dictionary.
+

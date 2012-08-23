@@ -1,0 +1,104 @@
+// Language strings for Ajax interface
+
+Lang_AllFolders = "Alle mappen";
+Lang_Page = "Page";
+Lang_First = "Eerste";
+Lang_Last = "Laatste";
+Lang_NextMsg = "Volgende berichten";
+Lang_PrevMsg = "Vorige berichten";
+Lang_Viewing = "Weergave";
+Lang_Messages = "Berichten";
+Lang_To = "Aan";
+Lang_Of = "of";
+Lang_From = "Van";
+Lang_Subject = "Onderwerp";
+Lang_Date = "Datum";
+Lang_Size = "Grootte";
+Lang_DragDrop = "Naar map slepen";
+Lang_DoubleClick = "Double Click to Open";
+Lang_CacheStatus = "Message Cache Status";
+Lang_Type = "Type";
+Lang_Priority = "Prioriteit";
+Lang_Normal = "Normaal";
+Lang_High = "Hoog";
+Lang_Low = "Laag";
+Lang_Reply = "Antwoorden";
+Lang_ReplyAll = "Allen antwoorden";
+Lang_Forward = "Doorsturen";
+Lang_Delete = "Verwijderen";
+Lang_Abook = "Adresboek";
+Lang_Print = "Printen";
+Lang_BlockSender = "Afzender blokkeren";
+Lang_ViewHeaders = "View Headers";
+Lang_Next = "Volgende";
+Lang_Prev = "Vorig";
+Lang_Back = "Terug";
+Lang_Send = "Send Mail";
+Lang_AddRecpt = "Ontvangers toevoegen";
+Lang_AddBCC = "BCC toevoegen";
+Lang_SpellCheck = "Spellingscontrole";
+Lang_Attachments = "Bijlagen";
+Lang_SaveMsg = "Bericht bewaren";
+Lang_Resume = "Resume Editing";
+Lang_BackTo = "Back to";
+Lang_Text = "Tekst";
+Lang_Open = "Open";
+Lang_Editor = "Bewerker";
+Lang_Bcc = "Bcc";
+Lang_Cc = "Cc";
+Lang_ItemsToMove = "Items to move";
+Lang_BlackListAdded = "The user has been added to your Spam blacklist";
+Lang_AbookAdded = "The users email-address has been added to the addressbook";
+Lang_MoveHead = "Message cannot be moved";
+Lang_MoveHead2 = "The unique message identifier does not match the selected message for move/deletion. This error can occur if:";
+Lang_MoveReason1 = "You have refreshed the WebMail window after moving a message. The previous message cannot be moved twice";
+Lang_MoveReason2 = "The message has been moved from another application via POP3/IMAP. Please reload your mailbox folder for an updated listing";
+Lang_MoveReason3 = "The message no longer exists on the mail-server";
+Lang_Headers = "Kopteksten";
+Lang_AddSender = "Afzender aan adresboek toevoegen";
+Lang_Sent = "Verstuurd";
+Lang_AddWord = "Woord aan woordenboek toevoegen";
+Lang_Edit = "Bewerken";
+Lang_BlockedAlert = "Alert:";
+Lang_Blocked = "$var['BlockImages'] images have been blocked.";
+Lang_Display = "Display Images in message";
+Lang_DisplayAdd = "Always display images from this user";
+Lang_AlertPerm = "Weet u zeker dat u de geselecteerde berichten definitief wilt verwijderen?";
+Lang_MarkAsRead = "Mark as Read";
+Lang_MarkAsUnread = "Mark as Unread";
+
+// Calendar Language files
+Lang_Months = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+Lang_Days = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
+Lang_AllDayAdd = "Double Click to Add an All Day Appointment";
+Lang_DayAdd = "Click & Drag or Double Click to Add an Appointment";
+Lang_TaskAdd = "Toevoegen";
+Lang_TaskHeader = "Taken";
+Lang_AllDayEvents = "All Day Events";
+Lang_Done = "Klaar";
+Lang_Personal = "Persoonlijk";
+Lang_Shared = "Shared";
+Lang_VideoMail = "Video Mail";
+Lang_Help = "Help Guide for Recording Video messages";
+
+Lang_Start = "Start datum";
+Lang_End = "Stop datum";
+
+// Used for the overdue.html template in the calendar
+Lang_Complete = "Afgesloten";
+Lang_Sleep = "Remind in 30 minutes";
+Lang_DueDate = "Vervaldatum";
+Lang_OverDue = "Overdue Appointments";
+Lang_ViewDay = "Dag tonen";
+Lang_ViewWeek = "View 5 day Week";
+Lang_ViewWeek7 = "View 7 day Week";
+Lang_ViewMonth = "View Month";
+Lang_BackToEmail = "Back to Email";
+Lang_Sync = "Synchronisatie voorziening voor Outlook";
+Lang_HelpGuide = "Help gids";
+Lang_ExportToIcal = "Export to iCal";
+
+Lang_HasNoMsgs = "Geen berichten in $var['FolderName']";
+
+Lang_CalImportTitle = "Import from iCal";
+Lang_CalImportLabel = "Import Calendar in iCal (ics) format:";

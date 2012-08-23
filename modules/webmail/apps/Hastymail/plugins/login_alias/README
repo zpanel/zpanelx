@@ -1,0 +1,17 @@
+This plugin provides a way to map login usernames to imap account usernames.
+Two methods are provided for login alias storage, file and db. See the settings.php
+file for more information about configuration. 
+
+Sql files to create the login_alias table are included for both mysql and
+postgres. To use the db storage option hastymail must have a working database
+configured in the hastymail2.conf file, and the table name must match the one
+defined in this plugins settings.php file
+
+Example mysql table creation:
+mysql -p -u <username> <db> < hastymail2/plugins/login_alias/login_alias.mysql.sql
+
+Example postgres table creation:
+psql -h <hostname> <db> <username> < hastymail2/plugins/login_alias/login_alias.psql.sql
+
+questions or comments can be sent to jason@hastymail.org
+

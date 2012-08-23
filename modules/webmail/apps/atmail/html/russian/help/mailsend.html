@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Отправка почты</title>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK href="javascript/stylehelp.css" rel=stylesheet type=text/css>
+<font face="Verdana,
+Arial" size="+1">
+Ошибки Почты</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">Индекс справки</a> ]
+
+<hr noshade>
+
+</head>
+
+<body>
+<p><u>Могу ли я отправить почту нескольким получателям?</u> 
+	  <ul>
+		<li>Вы можете отправить почту не более чем 100 получателям одновременно.
+		<li>Для отправки письма больше чем одному получателю добавьте нудных адресатов в поля To:, Cc:, и\или Bcc:</ul>
+	  <p><u>Какого размера сообщения я могу отправлять?</u> 
+	  <ul>
+		<li>Максимальный размер вашего сообщения не должен привышать $pref['max_msg_size'] MB.
+		<li>Messages which have spelling errors will be highlighted in red. Click the work you wish to modify, and a list of suggestions will appear. Select the new word and it will be automatically replaced. Once finished spell-checking, click the Resume button to return to the message composition page.</ul>
+	  <p><u>Can I save unfinished email as draft without sending it?</u> 
+	  <p>Yes. To save an unfinished email composition without sending it, click the "Save Message" button near the top of the Compose Message window. After saving it you can open the message anytime by:
+	  <ol>
+		<li>Clicking the "Drafts" link on the left-hand folder navigation bar.
+		<li>Clicking the message that you want to continue composing.
+	  </ol>
+	  <p>Messages saved in your Drafts folder will remain until you delete them.
+	  <p><u>What is the largest message I can send?</u> 
+	  <p>With an @Mail Mail account, you can receive message up to $pref['max_msg_size'] MB. And send message up to $pref['max_msg_size'] MB. Therefore, the total encoded size of the email message you are sending cannot exceed $pref['max_msg_size'] MB.
+	  <p>NOTE: When attaching files to your email message, they must be encoded and in doing so, will increase in size. The attachments sent with the email have to be translated into a different format so that other email programs can read it. This type of transformation will add about 33% to the original size of the attachment. Therefore, due to the translation a 2MB attachment may turn into a 2.66MB email after encoding.
+	  <p><u>Why do I get a "Failed Delivery" message?</u> 
+	  <p>You will normally get a "Failed Delivery" message when you have entered an incorrect or invalid email address. You will get mail from "Mail Delivery Subsystem" or from "MAILER-DAEMON" with a subject similar to "failure notice". This indicates that the sending of your message could not be completed and so it was bounced back/returned to you. Theses messages are produced automatically and will usually include a brief reason for the failed delivery.<br>
+		<br></td>
+
+</body>
+</html>

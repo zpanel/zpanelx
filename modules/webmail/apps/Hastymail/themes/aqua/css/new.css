@@ -1,0 +1,129 @@
+/* new mail page */
+
+#new_page{
+    overflow: auto;
+    width: 100%;
+    padding-bottom: 20px;
+}
+#new_page_controls{
+}
+.toggle_folder{
+    padding-left: 25px;
+    padding-right: 20px;
+}
+.unread_mailbox_table h4 a{
+    text-decoration: none;
+}
+.unread_mailbox_table h4{
+    border: none;
+    display: inline;
+    padding: 0px;
+    font-size: 115%;
+    
+}
+.unread_mailbox_table td{
+    padding-top: 5px;
+    padding-bottom: 4px;
+    padding-right: 5px;
+    vertical-align: top;
+    border-bottom: solid 1px #c5e0de;
+}
+.mbx_title_cell{
+    border-bottom: solid 5px #c5e0de !important;
+    border-top: solid 5px #c5e0de !important;
+}
+.empty_unread{
+    margin-left: 40px;
+    font-style: italic;
+    font-size: 90%;
+    color: #999;
+}
+.unread_mailbox_table th{
+    text-align: left;
+    background-color: #c5e0de;
+    font-size: 80%;
+    padding-bottom: 2px;
+    padding-top: 3px;
+}
+.unread_mailbox_table th a{ padding-left: 20px; }
+.unread_mailbox_table{ padding-bottom: 20px; }
+.unread_mailbox_table .mbx_unseen_indicators { padding-left: 15px; }
+
+#new_page_inner{
+}
+#mailbox_title2 { padding-left: 20px; margin-bottom: 10px; }
+#new_page_meta{
+    float: right;
+    font-weight: normal;
+    text-align: right;
+    padding-right: 10px;
+    padding-bottom: 5px;
+}
+.mbx_unseen_from, .mbx_unseen_subject a{ }
+.mbx_unseen_plugin_cell, .mbx_unseen_checkbox, .mbx_unseen_indicators, .mbx_unseen_subject, .mbx_unseen_from, .mbx_unseen_date, .mbx_unseen_size{ background-color: #fff}
+.mbx_unseen_checkbox, .mbx_unseen_indicators, .mbx_indicators, .mbx_unseen_size, .mbx_size{ white-space: nowrap; }
+.mbx_unseen_from, .mbx_unseen_date, .mbx_unseen_size, .mbx_size, .mbx_date, .mbx_from{
+    white-space: nowrap;
+    font-size: 90%;
+}
+.last_read_hidden{
+    visibility: hidden;
+}
+.mbx_unseen_indicators, .mbx_indicators{
+    width: 1%;
+    white-space: nowrap;
+    padding-left: 10px;
+}
+.mbx_unseen_checkbox, .mbx_checkbox{
+    width: 1%;
+    padding-left: 10px;
+}
+.unread_mailbox_table .mbx_title_cell{
+    padding-top: 5px;
+    padding-bottom: 3px;
+}
+.mbx_unread_cell, .mbx_title_cell {
+}
+#edit_new_page{
+    float: right;
+    margin-right: 20px;
+    padding-top: 10px;
+    margin-bottom: 10px;
+    font-size: 80%;
+}
+#no_new_mail{
+    text-align: center;
+    border-top: solid 1px #ccc;
+    font-style: italic;
+    font-size: 110%;
+    padding: 20px;
+}
+.frozen{
+    font-weight: bold;
+    padding-left: 10px;
+}
+.deleted_message a {
+    color: #888;
+    text-decoration: line-through;
+}
+.mbx_unseen_image_cell {
+    width: 45px;
+    padding: 0px !important;
+    padding-top: 7px !important;
+    padding-right: 6px !important;
+    background-color: #fff;
+    white-space: nowrap;
+}
+.mbx_unseen_image_cell div{
+    background: #fff url('themes/aqua/images/read_msg.png') 0px 0px no-repeat;
+    width: 14px !important;
+    height: 13px !important;
+    margin-right: 8px !important;
+    float: left;
+}
+.mbx_unseen_subject, .subject_cell_heading{
+    padding-left: 3px;
+}
+.checkbox_cell_heading {
+    padding-left: 15px;
+}

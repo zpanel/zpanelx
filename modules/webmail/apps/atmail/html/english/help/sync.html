@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>Sync Utility for Outlook</title>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<LINK href="javascript/stylehelp.css" rel=stylesheet type=text/css>
+<font face="Verdana,Arial" size="+1">
+Sync Utility for Outlook</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">Help Index</a> ]
+<hr noshade>
+
+<script>
+function expandentry()	 {
+
+<!-- if($var['FirstLoad']) { -->
+if(parent.document.getElementById('calendar').style.display != 'block')
+parent.expand('addressbook', parent.document.getElementById('addressbookimg'));
+<!-- } -->
+
+}
+</script>
+
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" onload="expandentry()">
+
+	<p><u>What is the $pref['brandname'] sync utility?</u>
+	<p>The utility allows you to sync your webmail account with Outlook. With it all contacts, calendar and task information you have with the WebMail account are transferred over to Outlook, and vice-versa.
+
+	<br>
+	
+	<p><u>How do I enable Mail sync with Outlook?</u>
+	 <p> To sync your WebMail account with Outlook, do the following:</ul>
+		<p><ol>
+		<li>First, download the Atmail-sync installation utility for Outlook 2000, 2003 or 2007 at <a href="http://atmail.com/websync/websync-53.exe">http://atmail.com/websync/websync-53.exe</a>
+		<li>After downloading, run the webmail-sync installation utility and install the software on your computer. After installation, restart Outlook and the new plugin will be automatically installed.<br>
+		</ol>
+		<img src = "imgs/help/atmailsync1.gif " border = 1 color = black>
+		
+		<ol><li>Next, define your WebMail account details in the WebMail-sync utility pane. Click on <b>Tools > Options</b> menu, then select the tab labeled "WebMail Sync Configuration"<br>
+		</ol>
+		<img src = "imgs/help/atmailsync5.gif" border = 1 color = black><br><br>
+<ol>		<li>Save all changes, then exit the accounts options window.
+		</ol>
+
+	  <br><p><u>How do I sync my webmail account with Outlook?</u> 
+	  <p>After enabling Mail-syncing (see above), you should see a macro button labeled "WebMail Sync" on your toolbar:<br><br>
+	  <img src = "imgs/help/atmailsync4.gif" border = 1 color = black><br>
+	  <p>Click on the button, and Outlook will sync with your WebMail account automatically.
+
+</body>
+</html>

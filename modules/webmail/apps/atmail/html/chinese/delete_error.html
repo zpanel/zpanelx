@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>拒絕存取</title>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+</head>
+<body bgcolor="#ffffff" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor">
+
+<!--
+<script>
+parent.mailtabs.FindTab('reademail.php?id=$_&folder=$var['folder']&newwin=0');
+</script>
+-->
+
+<style>
+.sw {font-family:Verdana;font-size:13px;color:#000000;}
+.swr {font-family:Verdana;font-size:13px;color:#FF0000;}
+</style>
+
+<LINK href="javascript/style$this->browser.css" rel="stylesheet" type="text/css">
+
+<h1>信息不能移動</h1>
+
+<font class="swr">獨特的信息標識不符合選定的訊息移動/刪除.這個</font>
+<font class="sw"> 
+<ul>
+  <li>你已更新了郵局窗口後，把某條消息移動.以前的郵件不能</li>
+  <li>該郵件已移至另一個應用通過POP3/IMAP .請重新載入你的</li>
+  <li>的信息不再存在於郵件服務器</li>
+</ul>
+</font>
+
+<p><font class="swr">如果你仍然無法成功登入你的帳戶</font></p>
+<font class="sw">
+<ul>
+  <li>聯絡管理員 $this->admin_email 要求協助</li>
+</ul>
+</font>
+
+</body>
+</html>

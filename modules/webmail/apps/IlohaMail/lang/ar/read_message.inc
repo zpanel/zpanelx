@@ -1,0 +1,33 @@
+<?php
+/********************************************************
+	lang/eng/read_message.inc
+	(C)2001-2002 Ryo Chijiiwa <Ryo@IlohaMail.org>
+
+	This file is part of IlohaMail, and released under GPL.
+	See COPYING, or http://www.fsf.org/copyleft/gpl.html
+
+********************************************************/
+
+//TRANSLATORS:  Uncomment next line for all non-English languages!!
+include("../lang/eng/read_message.inc");
+
+
+$rmStrings[0] = "ÝåÑÓ";
+$rmStrings[1] = "ÑÏ";
+$rmStrings[2] = "ãÜÑÑ";
+$rmStrings[3] = "ÃáÛ ÇáãÓÍ";
+$rmStrings[4] = "ÇãÓÍ";
+$rmStrings[5] = "ÃäÞá Çáì";
+$rmStrings[6] = "ÃÌÒÇÁ";
+$rmStrings[7] = "åÐå ÇáÑÓÇáÉ ÈáÛÉ HTML. ";
+$rmStrings[8] = "ÃäÞÑ åäÇ áÞÑÇÁÊåÇ";
+$rmStrings[9] = "ãÑÌÚ";
+$rmStrings[10] = "ÍÌã";
+$rmStrings[11] = "ÛíÑ ãÞÑæÁ";
+$rmStrings[12] = "ãÚáæãÇÊ ÊÞäíÉ";
+$rmStrings[13] = "ÃÈáÛ Úä ÓÈÇã";
+$rmStrings[14] = "ÑÏ Úáì Çáßá";
+$rmStrings[15] = "áÞÏ ÑÏÏÊ Úáì åÐå ÇáÓÇáÉ";
+$rmStrings[16] = "ÇØÈÚ";
+
+?>

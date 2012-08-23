@@ -1,0 +1,321 @@
+Hastymail2 Installation
+
+Contents
+
+    1. Introduction
+
+    2. Requirements
+
+    3. Installation
+        1. Create directories and files
+        2. Edit your hastymail2.conf to suit your site
+        3. Run the cli or web based install script to build the hastymail2.rc file
+        4. Move the rc file to the correct place and login
+
+    3. Resources
+        1. Troubleshooting
+        2. Advanced configuration options
+        3. Source documentation
+
+1. Introduction
+
+    Hastymail is written in PHP, which does not require compilation.
+    because of this you don't need to run "make" or "make install" but
+    there are just a few specific steps to get Hastymail up and running.
+    Some Hastymail specific directories that need to be created with the
+    correct permissions, and you will need to create a hastymail2.conf file
+    from the supplied hastymail2.conf.example file. Then you need to edit
+    the options in this file for your site. Finally you need to run the
+    hastymail installation script that will parse your configuration file
+    into an optimized version that hastymail will use. Any time you change
+    the .conf file you will need to rerun the configuration script to
+    generate a new optimized .rc version.
+
+2. Requirements
+
+    Hastymail requires only a web server with PHP support. Apache is preferred but
+    not required. If PHP5 is available Hastymail will take advantage of the
+    additional features is provides. Hastymail should run fine on versions of
+    PHP4 going back to version 4.3. Character set handling is greatly improved
+    if the PHP build has the mbstring extension. Hastymail will also use the
+    iconv extension to aid in character set translation if it is available.
+
+ 3. Installation
+
+    These instructions assumes that you have full access to the
+    server hastymail is being installed on.
+
+    1. create directories and files
+
+        a.  Start by unpacking the Hastymail code from the gzipped tar file:
+
+            tar zxvf hastymail2.tgz
+
+            This will create a directory called "hastymail2".
+
+        b.  In this directory is a file called hastymail2.conf.example. Move
+            this file out of the hastymail2 directory and rename it
+            hastymail2.conf. On Unix like system a good place to store this file
+            is /etc/hastymail2/. This is the "human readable" version of the
+            Hastymail config file. Example Unix commands:
+
+            mkdir /etc/hastymail2
+            mv hastymail2/hastymail2.conf.example /etc/hastymail2/hastymail2.conf
+
+        b.  Move the hastymail2 directory to your web-server document root. 
+            You can rename the directory to anything you want. Assuming
+            the web-server document root is "/var/www/" the following
+            would be the Unix command to move and rename the directory
+
+            mv /place_you_unpacked_the_tarball/hastymail2 /var/www/webmail
+
+        c.  Create the attachments and settings directories. This must
+            be writable by the user your web-server software runs as. On
+            Unix like systems a good place for these directories is in
+            /var/hastymail/. Assuming the web-server runs as the user "nobody"
+            the following Unix commands will setup the required directories:
+
+            mkdir /var/hastymail2
+            mkdir /var/hastymail2/attachments
+            mkdir /var/hastymail2/user_settings
+            mkdir /var/hastymail2/serializer_cache
+            chown nobody /var/hastymail2/*
+
+            Note that Hastymail supports using a database to store user
+            settings and contacts in which case the user_settings directory
+            is not required. See the hastymail2.conf.example file for more
+            information on using a database with Hastymail.
+
+            Hastymail tries to keep attachments uploaded to the server that
+            never get sent cleaned up but failing to logout can leave unsent
+            attachments on the server. Setting up a periodic job to delete
+            files older than a certain age would be a good idea.  On UNIX
+            like systems a cron job executing the following would be sufficient:
+
+                find /var/hastymail2/attachments/ -cmin +360 -type f -exec rm -rf '{}' \; > /dev/null 2>&1
+
+            The above command will delete any file in the attachments dir that is
+            older than 6 hours.
+
+        That's it for files and directories. You will need to enter the
+        locations of the settings directory, attachments, and hastymail2
+        code into the hastymail2.conf file in the next step.
+
+    2. Edit your hastymail2.conf to suit your site
+
+        Edit the hastymail2.conf file (in the example Unix commands above this
+        file was put in /etc/hastymail2/) to match your site information.
+        Update the correct values for everything in the "General" section
+        as well as the SMTP and IMAP server sections. Hastymail has many
+        options, most are set to reasonable defaults but read through the
+        comments to be sure everything is compatible with your site and
+        behaves the way you expect.
+        
+    3. Run the cli or web based install script to build the hastymail2.rc file
+
+        CLI version:
+
+        Once you have edited the hastymail2.conf file you need to use the
+        install_config.php script to create the optimized version that
+        hastymail will use. Lets assume the hastymail code has bee placed
+        in /var/www/webmail/ and the hastymail2.conf file is in /etc/hastymail2/.
+        Invoking the installation script would then be the following:
+        
+        php /var/www/webmail/install_scripts/install_config.php /etc/hastymail2/hastymail2.conf /etc/hastymail2/hastymail2.rc
+
+        This will create the file hastymail2.rc which is the optimized config
+        file hastymail will use.
+        
+        - the install_config.php file is a command line php program. Your server
+          must have PHP cli support (most do). The file must have executable
+          permissions set to run.
+
+        Web version:
+
+        The web version of the install script is at 
+        hastymail2/install_scripts/web_install_config.php Load this file in
+        your browser and you will be prompted to upload your hastymail2.conf
+        file. When submitted the script will generate a hastymail2.rc file to
+        be used with Hastymail.  There is a version of web install script at
+        hastymail.org you can use to build the rc file available here:
+
+        http://www.hastymail.org/web_install_config.php
+
+        Once installation is complete you should remove the install_scripts
+        directory from the hastymail2 source.
+
+        
+    4. Move the hastymail2.rc file to the right place and test
+
+        IMPORTANT: The expected location of the hastymail2.rc file is:
+
+        /etc/hastymail2/hastymail2.rc
+
+        if you want the file to be somewhere else then edit the index.php file
+        in the top level directory of the hastymail source. After the initial
+        comments you will see these lines:
+
+        /* configuration file */
+        $hm2_config = '/etc/hastymail2/hastymail2.rc';
+
+        Try to login. If you experience problems at this point please see the
+        troubleshooting section 3 Resources in this document.
+
+4. Resources
+
+    1. Troubleshooting
+
+        Server configurations vary greatly and troubleshooting a webmail
+        application can get complicated fast. The best way to troubleshoot
+        complex systems is to start with simple procedures that narrow
+        down the source of the problem. Here are some tips for getting
+        through some common problems getting webmail software up and
+        running. 
+
+        - PHP. Is PHP installed and functional? A good way to find out is
+          to create an "info.php" file with the following single line of
+          code:
+            
+            <?php phpinfo(); ?>
+
+          Place this file in your web-server document root then load it
+          into your browser. If you DON'T get a nicely formatted page
+          with a ton of information about your PHP installation chances
+          are something in your PHP/Web server setup is broken
+
+        - Filesystem permissions. Web server software needs to be able
+          to write to certain directories, and on UNIX like systems may
+          NOT be able to write to newly created directories by default.
+          If you are having problems with attachment uploading or saving
+          user settings this is a common cause.
+
+        - Mail server log files. If you have access to your mail server
+          log files it is a very handy source of clues regarding what
+          can be going wrong. If you believe Hastymail is configured
+          correctly but you can't login with a valid username and
+          password check the IMAP server log files to see if an attempt
+          was made. You may have to adjust your IMAP server debug
+          or log settings to get useful information. When problems occur
+          sending mail check the SMTP server log files for possible
+          reasons.
+
+        - Do other clients work? Hastymail is basically an email client
+          with web pages as an interface. The fact that it runs on a web
+          server does not make it any less a client. A practical way
+          to determine if your system is setup correctly is to attempt
+          to login to a valid IMAP account with another Email client,
+          any respectable (or popular but NOT respectable) client
+          will do. If you can't login with another client then fixing
+          your mail server software needs to be addressed before
+          trying to get Hastymail to run.
+
+        - Try the Hastymail debug options. Hastymail has several debug
+          options that address specific situations. These are conf file
+          settings that default to false but when enabled will output
+          debug information below the hastymail interface.
+            
+            - show_imap_debug
+                This setting makes Hastymail output all the IMAP
+                commands and server responses.
+
+            - show_full_debug
+                This requires that show_imap_debug is enabled. When
+                set to true Hastymail will show additional debug info
+                regarding the imap server and include the complete IMAP
+                server response to every command. Use with caution because
+                this can output a lot of data.
+
+            - show_cache_usage
+                While not so useful for general purpose troubleshooting this
+                option shows the approximate amount of IMAP account information
+                being cached by Hastymail in the PHP session.
+
+            - db_debug
+                If you have Hastymail configured to use a database and are
+                experiencing problems set this to true to output db related
+                debug information.
+
+        - Double check your .conf file. Keep in mind that changing the
+          hastymail2.conf file DOES NOT MAKE THOSE CHANGES LIVE. You MUST
+          re-run one of the configuration scripts to create the hastymail2.rc
+          file for your changes to be used in Hastymail. Because we cache
+          certain data for performance reasons it is also recommended that you
+          logout and then back into the interface after you have changed the
+          hastymail2.rc file.
+
+        - It was discovered the some hardened PHP installations will add additional
+          limits to POST forms, not just the total size of the form, but additionally
+          how many elements it can contain. The folder management page of hastymail has
+          a form that can get very large, depending on how many folders you have, and
+          it could trigger a problem with these restrictions. It was specifically noted
+          that the default suhosin PHP hardening patch values for suhosin.post.max_vars
+          and suhosin.request.max_vars could become an issue with accounts that have more
+          than 50 folders.
+
+        - It is possible in PHP to overload the str* functions with multibyte string
+          functions by setting the mbstring.func_overload php.ini setting. This may
+          seem like a good idea but the default behavior of the mbstring functions differs
+          and can cause Hastymail to output a bunch of warnings. Disabling this in the php.ini
+          or with an .htaccess file solves this issue.
+
+        - Help us expand this document with your feedback! There are a ton
+          of ways to get in touch with us and we value all feedback and do
+          our best to help with problems as quickly as we can. The best ways
+          to get a hold of us in order of the most likely to be responded to
+          promptly are:
+
+          Join us at our IRC channel #hastymail at freenode.net
+          Send an Email to the mailing list at hastymail-devel@lists.sourceforge.net
+          File a bug report at http://www.hastymail.org/mantis/
+          Post at the forums at http://www.hastymail.org/forums/
+          Send a message with the contact form at http://www.hastymail.org/contact_us/
+          
+    2. Advanced configuration options
+
+        Hastymail has a lot of options in the configuration file, many of which
+        are for specific special circumstances and in general don't need to be
+        changed. Be sure to check out all options and descriptions in that file
+        to see if what you want to tweak is already available.
+
+        If you don't find what you are looking for the next stop is the
+        index.php file in the top level directory of the Hastymail source code.
+        All requests in Hastymail go through this file, and it primarily
+        contains array and variable definitions for the different options and
+        defaults in Hastymail that are not a part of the configuration file
+        system. Keep in mind this file is a PHP code file so a single
+        misplaced character can cause the entire application to fail. Be sure
+        you know what you are doing if you alter it.
+
+        Hastymail supports a powerful theme and template system that can allow
+        a site to make custom modifications without having to worry about breaking
+        core code. PHP based templates and comprehensive use of CSS make it
+        easy to add custom modifications and designs to the interface.
+
+        Lastly Hastymail supports an evolving plugin API that allows add-on
+        code to interact with Hastymail internal data and alter or add to the
+        UI. Using this system it is possible to add custom features while still
+        maintaining easy upgrades to the core code when new versions are released.
+
+
+    3. Source documentation
+
+        The following is a list of all the documentation files that are shipped
+        with the Hastymail source code:
+        
+            /INSTALL                    You are reading it
+            /COPYING                    GNU GPL stuff
+            /CHANGES                    Changelog file
+            /hastymail2.conf.example    Template for the "human readable"
+                                        config file
+            /README                     Licensing and general information
+            /docs/plugin_ajax.txt       AJAX plugin API information
+            /docs/plugin_basics.txt     The basics of plugins
+            /docs/plugin_display_hooks.txt
+                                        All the "display hooks" the plugin
+                                        system supports
+            /docs/plugin_pages.txt      How to make your own pages inside
+                                        Hastymail using the plugin API
+            /docs/plugin_tools.txt      The plugin API tools methods explained
+            /docs/plugin_work_hooks.txt All the "work hooks" the plugin
+                                        system supports.
+                                        

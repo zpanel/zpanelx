@@ -1,0 +1,44 @@
+<title>Guia de Ajuda do WebMail</title>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<LINK href="javascript/stylehelp.css" rel=stylesheet type=text/css>
+
+<font face="Verdana, Arial" size="+1">Guia de Ajuda do WebMail</font>
+
+<hr noshade>
+<p><font face="Arial, Helvetica, Condensed" size="2">Com esses arquivos de ajuda você pode aprender mais sobre o WebMail. Selecione atravéz da lista o tópico para saber mais informações sobre ele.</font></p>
+<ul>
+  <li><a href="parse.php?file=html/$this->Language/help/compose.html">Redigir/Enviar Email</a></li>
+  <li><a href="parse.php?file=html/$this->Language/help/reademail.html">Ler Email</a></li>
+
+<!-- if($pref['allow_Calendar']) { -->
+ <li><a href="parse.php?file=html/$this->Language/help/calendar.html">O Calendário</a></li>
+<!-- } -->
+
+<!-- if(file_exists("{$pref['install_dir']}/xhtml.php") && $pref['allow_Mobile']) { -->
+<li><a href="parse.php?file=html/$this->Language/help/wap.html">Email Wireless</a></li>
+<!-- } -->
+
+<li><a href="parse.php?file=html/$this->Language/help/settings.html">Modificando as Opções</a></li>
+  <li><a href="parse.php?file=html/$this->Language/help/addressbook.html">Livro de Endereços</a></li>
+
+<!-- if($pref['allow_MultiAccounts']) { -->
+  <li><a href="parse.php?file=html/$this->Language/help/addpop3.html">Multiplas Contas POP3</a></li>
+<!-- } -->
+
+<!-- if($pref['allow_LDAP'] && extension_loaded('ldap')) { -->
+<li><a href="parse.php?file=html/$this->Language/help/ldap.html">Sistema de Busca LDAP</a></li>
+<!-- } -->
+
+<li><a href="parse.php?file=html/$this->Language/help/newmbox.html">Opções da Conta de Email</a></li>
+
+<!-- if(file_exists($pref['aspell_dir']) || extension_loaded('pspell')) { -->
+<li><a href="parse.php?file=html/$this->Language/help/spell.html">Função de Verificação Ortográfica</a></li>
+<!-- } -->
+
+<!-- if($pref['allow_SMS'] && file_exists('sms.php')) { -->
+<li><a href="parse.php?file=html/$this->Language/help/sms.html">Ajuda SMS</a></li>
+<!-- } -->
+</ul>
+
+Com esses arquivos de ajuda você pode aprender mais sobre o WebMail. Selecione atravéz da lista o tópico para saber mais informações sobre ele.

@@ -1,0 +1,33 @@
+#filters{
+    margin-left: 25px;
+}
+b{
+    font-size: 110%;
+}
+#options, #form, #existing{
+    padding: 10px;
+    min-width: 700px;
+    max-width: 1280px;
+    padding-bottom: 30px;
+}
+#options{
+    min-width: 300px;
+    width: 300px;
+}
+#options td, #form td, #existing td{
+    padding: 5px;
+    padding-left: 10px;
+}
+#existing th{
+    border-bottom: solid 1px #888;
+    padding-left: 10px;
+    text-align: left;
+    font-size: 90%;
+    font-weight: normal;
+}
+.filters_link{
+    color: #ccc;
+}
+.source_dropdown{
+    margin-left: 25px;
+}

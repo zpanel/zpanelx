@@ -1,0 +1,14 @@
+PRIVACY CONCERNS WHEN USING SQUIRRELSPELL:
+-------------------------------------------
+
+Beginning with version v0.2 SquirrelSpell saves personal dictionary on the
+server. This has a potential of a serious privacy issue, therefore you
+should configure your system to disallow web access to the directory where
+your user dictionaries are stored. By default they are stored in your
+$data_dir which you provided in your SquirrelMail config. This is the best
+option, but you should read the SquirrelMail FAQ's and Readme's on how to
+secure that directory.
+
+Also, see the CRYPTO file for instructions on how to enable encryption
+of user dictionaries. This is done in order to further enhance the
+privacy of your users.

@@ -1,0 +1,32 @@
+#fetch_page{
+    margin-left: 25px;
+}
+.existing_accounts{
+    width: 800px;
+    padding-top: 10px;
+    padding-bottom: 30px;
+    margin-left: 10px;
+}
+.existing_accounts td{
+    padding-top: 5px;
+}
+.existing_accounts th{
+    font-weight: normal;
+    text-align: left;
+    border-bottom: solid 1px #888;
+}
+.opt_leftcol{
+    padding-right: 10px;
+    width: 150px;
+    white-space: nowrap;
+}
+.fetch_form{
+    min-width: 400px;
+    padding-top: 10px;
+    padding-bottom: 30px;
+    margin-left: 10px;
+}
+#fetch_page{
+    padding-bottom: 20px;
+    padding-left: 10px;
+}

@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>網頁郵件幫助指南</title> 
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">       
+
+<script>
+function expandentry()	 {
+
+<!-- if($var['FirstLoad']) { -->
+if(parent.document.getElementById('calendar').style.display != 'block')
+parent.expand('reademail', parent.document.getElementById('readmsgimg') );
+<!-- } -->
+
+}
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" onload="expandentry()">
+
+<LINK href="javascript/stylehelp.css" rel="stylesheet" type="text/css">
+
+<font face="Verdana, Arial" size="+1">閱讀電子郵件</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">幫助索引</a> ]</font>
+
+<hr noshade>
+
+
+<p>你的電子郵件帳戶的郵件窗口內載列了收到的郵件﹐通過移動鼠標指定郵件，彈出菜單會將顯示前160個字元的訊息.選擇閱讀電子郵件，點擊郵件主題和越過信息.</p>
+<p>通過控制面板，你可以排序﹐主旨，收到日期，發件人和身份選擇以閱讀你的電子郵件.每封郵件的郵箱中可以明顯轉移到一個外部郵箱;你可以選擇將郵件移至垃圾桶文件夾或選擇移至候補郵箱遠離主要的收件箱.</p>
+<p>通過電子郵件窗口，你可以直接跳到選項的帳戶，或者遷移到文件夾信息窗口，以查看設置你的郵箱.</p>
+
+</font>
+</body>
+</html>

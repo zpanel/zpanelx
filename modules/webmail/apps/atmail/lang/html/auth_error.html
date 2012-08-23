@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>$lang['lang_auth_error_title']</title>
+$lang['lang_Global_content_type']
+</head>
+<body bgcolor="#ffffff" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor">
+
+<style>
+
+.sw {font-family:Verdana;font-size:13px;color:#000000;}
+.swr {font-family:Verdana;font-size:13px;color:#FF0000;}
+</style>
+
+<LINK href="javascript/style$this->browser.css" rel="stylesheet" type="text/css">
+
+<img src="$pref['logo_big_img']"><br>
+<h1>$lang['lang_auth_error_header']</h1>
+
+<font class="swr">$lang['lang_auth_error_nosessionid']</font>
+<font class="sw"> 
+<ul>
+  <li>$lang['lang_auth_error_userpass']</li>
+  <li>$lang['lang_auth_error_cookies']</li>
+  <li>$lang['lang_auth_error_session']</li>
+</ul>
+</font>
+
+<p><font class="swr">$lang['lang_auth_error_still']</font></p>
+<font class="sw">
+<ul>
+  <li>$lang['lang_auth_error_passret']</li>
+  <li>$lang['lang_auth_error_contact']</li>
+  <!--  if($pref['allow_Signup']) { -->
+  <li>$lang['lang_auth_error_newaccount']</li>
+  <!-- } -->
+</ul>
+</font>
+</body>
+</html>
+
+

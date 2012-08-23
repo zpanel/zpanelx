@@ -1,0 +1,44 @@
+<title>Справка Почты</title>
+
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK href="javascript/stylehelp.css" rel=stylesheet type=text/css>
+
+<font face="Verdana, Arial" size="+1">Справка Почты</font>
+
+<hr noshade>
+<p><font face="Arial, Helvetica, Condensed" size="2">С этим руководством Вы узнаете больше как пользоваться Веб Почтой. Выбирайте тему из списка чтобы получить информацию.</font></p>
+<ul>
+  <li><a href="parse.php?file=html/$this->Language/help/compose.html">Написать/Отправить почту</a></li>
+  <li><a href="parse.php?file=html/$this->Language/help/reademail.html">Читать почту</a></li>
+
+<!-- if($pref['allow_Calendar']) { -->
+ <li><a href="parse.php?file=html/$this->Language/help/calendar.html">Календарь</a></li>
+<!-- } -->
+
+<!-- if(file_exists("{$pref['install_dir']}/xhtml.php") && $pref['allow_Mobile']) { -->
+<li><a href="parse.php?file=html/$this->Language/help/wap.html">Wap Почта</a></li>
+<!-- } -->
+
+<li><a href="parse.php?file=html/$this->Language/help/settings.html">Изменение Параметров настройки</a></li>
+  <li><a href="parse.php?file=html/$this->Language/help/addressbook.html">Адресная книга</a></li>
+
+<!-- if($pref['allow_MultiAccounts']) { -->
+  <li><a href="parse.php?file=html/$this->Language/help/addpop3.html">Внешние Учетные записи POP3</a></li>
+<!-- } -->
+
+<!-- if($pref['allow_LDAP'] && extension_loaded('ldap')) { -->
+<li><a href="parse.php?file=html/$this->Language/help/ldap.html">Поисковый сервер LDAP</a></li>
+<!-- } -->
+
+<li><a href="parse.php?file=html/$this->Language/help/newmbox.html">Опции почты</a></li>
+
+<!-- if(file_exists($pref['aspell_dir']) || extension_loaded('pspell')) { -->
+<li><a href="parse.php?file=html/$this->Language/help/spell.html">Проверка орфографии</a></li>
+<!-- } -->
+
+<!-- if($pref['allow_SMS'] && file_exists('sms.php')) { -->
+<li><a href="parse.php?file=html/$this->Language/help/sms.html">SMS Help</a></li>
+<!-- } -->
+</ul>
+
+С этим руководством Вы узнаете больше как пользоваться Веб Почтой. Выбирайте тему из списка чтобы получить информацию.

@@ -1,0 +1,12 @@
+This plugin adds a "reply-to" box on the compose page so the reply-to field of
+outgoing messages can be altered on the fly. To enable this plugin add or uncomment
+the following in your hastymail2.conf file
+
+plugin = custom_reply_to
+
+Then rebuild your hastymail2.rc file, and logout of hastymail then back in for the
+plugin to be enabled. Once logged in the reply-to field can be enabled on a per user
+basis in the compose section of the options page.
+
+This plugin is a part of Hastymail so questions and comments can be directed to
+our forums, mailing lists, or directly to me at jason@hastymail.org.

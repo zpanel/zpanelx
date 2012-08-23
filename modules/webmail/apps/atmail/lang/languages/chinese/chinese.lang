@@ -1,0 +1,3222 @@
+﻿#
+# @Mail Language File
+#
+
+# English Language File by Ben Duncan (ben@calacode.com) and Corey Bissaillon for
+# @Mail version 4.52
+
+# Javascript messages are mostly prepended with a
+# js
+#
+# After the javascript messages a newline is placed and normal
+# html messages are there again.
+#
+# Javascript Messages cannot contain single or double quotes.
+# If you must use these characters consider using a backslash
+# before these characters like \'quoted text\', \"double quoted text\"
+#
+# variable names can ONLY contain alphanumeric characters and the
+# underscore.
+#
+# Many of the variables include other variables from other parts of @Mail
+# like $pref['etc'], $this->etc and $var['etc']. Please consider keeping
+# these. Some vars also contain HTML source code like <a etc></a> <b></b>
+# please keep the formatting
+#
+
+# TABLE OF CONTENTS
+#
+# 1.0 G l o b a l   V a r i a b l e s
+#
+# 1.1 /html/*
+# 1.2 /html/blue_pane/*
+# 1.3 /html/blue_pane/heading/*
+#
+# 2.0 G l o b a l    C a l e n d a r   V a r i a b l e s
+#
+# 2.1 /html/calendar/*
+#
+# 3.0 G l o b a l    H e l p    V a r i a b l e s
+#
+# 3.1 /html/help/*
+#
+# 4.0 /html/javascript/*
+#
+# 5.0 /html/msg/*
+
+
+# 1.0 G l o b a l   V a r i a b l e s
+
+# THIS MUST be set to the correct encoding, depending on the translation language
+lang_Global_content_type = <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+
+# Noframes Message
+lang_Global_noframes = 你的瀏覽器不支援分頁, 請升級你的瀏覽器.
+
+# Compose/Abook/Reademail/Search vars
+lang_Global_from = 寄件者
+lang_Global_date = 日期
+lang_Global_to = 收件者
+lang_Global_cc = 副本
+lang_Global_bcc = 密件副本
+lang_Global_priority = 重要性
+lang_Global_normal = 正常
+lang_Global_low = 低
+lang_Global_high = 高
+lang_Global_subject = 主旨
+lang_Global_send = 寄出
+lang_Global_type = 類型
+lang_Global_reply = 回覆
+lang_Global_replyall = 全部回覆
+lang_Global_forward = 轉寄
+lang_Global_print = 列印
+lang_Global_headers = 標頭
+lang_Global_abookbutton = 新增通訊錄
+lang_Global_message = 信件
+lang_Global_status = 狀態
+lang_Global_received = 收到
+lang_Global_yes = 是
+lang_Global_no = 否
+lang_Global_options = 選項
+lang_Global_size = 大小
+lang_Global_message = 信件
+lang_Global_sent = 寄出
+lang_Global_default = 預設
+
+# Address Related Fields
+lang_Address_email = 電郵地址
+lang_Address_email2 = 第二電郵地址
+lang_Address_fullname = 顯示
+lang_Address_firstname = 名字
+lang_Address_surname = 姓氏
+lang_Address_birthdate = 出生日期
+lang_Address_telhome = 家居電話
+lang_Address_telwork = 工作電話
+lang_Address_faxhome = 家居傳真
+lang_Address_faxwork = 工作傳真
+lang_Address_telmobile = 流動電話號碼
+lang_Address_telpager = 傳呼機號碼
+lang_Address_address = 住址
+lang_Address_city = 城市
+lang_Address_state = 縣市
+lang_Address_postcode = 郵遞區號
+lang_Address_country = 國家
+lang_Address_companyname = 公司名稱
+lang_Address_url = 網址
+lang_Address_userinfo = 其他資訊
+
+
+# !!!!! BirthMonth Abbreviations... please keep them 3 characters each, thank you.
+lang_BirthMonth_jan = 一月
+lang_BirthMonth_feb = 二月
+lang_BirthMonth_mar = 三月
+lang_BirthMonth_apr = 四月
+lang_BirthMonth_may = 五月
+lang_BirthMonth_jun = 六月
+lang_BirthMonth_jul = 七月
+lang_BirthMonth_aug = 八月
+lang_BirthMonth_sep = 九月
+lang_BirthMonth_oct = 十月
+lang_BirthMonth_nov = 十一月
+lang_BirthMonth_dec = 十二月
+
+# How do you say year?
+lang_BirthYear_year = 年
+
+# Industry.
+lang_Industry_industry = 行業
+lang_Industry_select = -- 選擇
+lang_Industry_bfr = 銀行/金融/地產
+lang_Industry_cre = 電腦相關 (資訊系統, 信息管理, 數據處理, 互聯網)
+lang_Industry_crh = 電腦相關 (硬體)
+lang_Industry_crs = 電腦相關 (軟體)
+lang_Industry_edu = 教育, 研究
+lang_Industry_eng = 工程/建築
+lang_Industry_man = 製造業/分發
+lang_Industry_bus = 商業服務
+lang_Industry_med = 醫藥/健康 服務
+lang_Industry_ent = 娛樂事業/傳媒/出版
+lang_Industry_hos = 接待 (旅遊/住宿)
+lang_Industry_ret = 零售/批發
+lang_Industry_npr = 非營利/會員 組織
+lang_Industry_gov = 政府
+lang_Industry_leg = 法律服務
+lang_Industry_oth = 其他
+
+# Occupation
+lang_Occupation_occupation = 職業
+lang_Occupation_select = -- 選擇
+lang_Occupation_exe = 行政/管理
+lang_Occupation_pro = 專業人仕 (醫生/律師/等.)
+lang_Occupation_aca = 學術/教育界
+lang_Occupation_tec = 電腦技術/工程
+lang_Occupation_ote = 其他技術/工程
+lang_Occupation_scs = 服務/顧客 支援
+lang_Occupation_cle = 文職/管理
+lang_Occupation_sal = 銷售/市場策略
+lang_Occupation_tra = 零售商/工匠
+lang_Occupation_col = 大專學生
+lang_Occupation_k12 = 大專以下學生
+lang_Occupation_hom = 家庭主婦
+lang_Occupation_sel = 自僱/僱主
+lang_Occupation_une = 未就業, 尋找工作中
+lang_Occupation_ret = 已退休
+lang_Occupation_oth = 其他
+
+# Gender Vars
+lang_Gender_gender = 性別
+lang_Gender_select = -- 選擇
+lang_Gender_male = 男性
+lang_Gender_female = 女性
+
+# END OF GLOBAL VARS
+# 1.1 /html/*
+
+#/html/auth_accounts.html
+
+lang_accounts_alt = 登入至外部帳戶
+
+#/html/addgroup.html
+
+lang_addgroup_title = 新增群組通訊錄
+lang_addgroup_groupname = 群組名稱:
+lang_addgroup_addallemail = --- 新增所有電郵地址
+lang_addgroup_addbutton = 新增
+lang_addgroup_deletebutton = 刪除
+lang_addgroup_savebutton = 儲存
+lang_addgroup_cancelbutton = 取消
+
+#/html/auth_disabled.html
+
+lang_auth_disabled_title = 拒絕存取
+lang_auth_disabled_ld = 登入被關閉
+lang_auth_disabled_cd = 你正在登入的帳戶已被關閉.
+lang_auth_disabled_contact = 請聯絡你的電郵管理員 ($this->admin_email) 重新啟動你的帳戶.
+
+#/html/auth_error.html
+
+lang_auth_error_title = 拒絕存取
+lang_auth_error_header = 登入錯誤
+lang_auth_error_nosessionid = 拒絕存取 - 你的 SessionID 不能在資料庫內核實
+lang_auth_error_userpass = 檢查使用者名稱及密碼.
+lang_auth_error_cookies = 檢查你的瀏覽器是否支援Cookies及已啟動.
+lang_auth_error_session = 檢查了你的兩個工作時段未啟用 - 只容許每一個使用者同時登入一次
+lang_auth_error_still = 如果你仍然無法成功登入你的帳戶
+lang_auth_error_passret = 使用 <a href="index.php?func=passutil">密碼恢復工具</a> 去取回已失去的密碼
+lang_auth_error_contact = 聯絡管理員 $this->admin_email 要求協助
+lang_auth_error_newaccount = <a href="index.php?func=signup">建立新帳戶</a>
+
+#/html/auth_license.html
+
+lang_auth_license_title = 拒絕存取
+lang_auth_license_exceeded = 超越了授權證限制
+lang_auth_license_msg = 你已超越了授權證的限制. $var['error']
+lang_auth_license_domains = 檢查網域及使用者數目, 數目列出在 $pref['brandname'].
+lang_auth_license_webadmin = 使用 <a href="webadmin/">WebAdmin</a> 去刪除使用者帳戶及網域寄存在 $pref['brandname'].
+lang_auth_license_calacode = 更新你的 $pref['brandname'] 授權證, 可電郵至 <a href="mailto:$pref['admin_email']">$pref['admin_email']</a>
+lang_auth_license_upgradeinfo = 瀏覽主網站 $pref['brandname'] 於 <a href="$pref['company_url']">$pref['company_url']</a> 以取得升級資訊.
+
+#/html/auth_misc.html
+
+lang_auth_misc_title = 拒絕存取
+lang_auth_misc_error = 郵箱錯誤
+lang_auth_misc_msg = 伺服器回應 - $var['status']
+lang_auth_misc_refresh = 重新整理然後再嘗試
+lang_auth_misc_title = 重新整理然後再嘗試
+lang_auth_misc_check = 檢查了你不是正在存取你的郵箱於兩個或以上的視窗.檔案鎖正在啟動, 使到工作時段可以存取你的郵箱.
+lang_auth_misc_session = 檢查了你的兩個工作時段未啟用 - 只容許每一個使用者同時登入一次
+lang_auth_misc_tryagain = 請於幾分鐘後再嘗試
+lang_auth_misc_still = 如果你仍然無法成功登入你的帳戶
+lang_auth_misc_contact = 聯絡管理員 $this->admin_email 要求協助
+
+#/html/auth_nouser.html
+
+lang_auth_nouser_title = 拒絕存取
+lang_auth_nouser_error = 找不到使用者
+lang_auth_nouser_msg = 你正在存取的帳戶並不存在於資料庫中.
+lang_auth_nouser_userpass = 檢查使用者名稱及密碼.
+lang_auth_nouser_cookies = 檢查你的瀏覽器是否支援Cookies及已啟動.
+lang_auth_nouser_still = 如果你仍然無法成功登入你的帳戶
+lang_auth_nouser_passret = 使用 <a href="index.php?func=passutil">密碼恢復工具</a> 去取回已失去的密碼
+lang_auth_nouser_contact = 聯絡管理員 $this->admin_email 要求協助
+lang_auth_nouser_newaccount = <a href="index.php?func=signup">建立新帳戶</a>
+
+
+#/html/auth_reserved.html
+
+lang_auth_reserved_title = 拒絕存取
+lang_auth_reserved_error = 使用者名稱 $var['user'] 被保留
+lang_auth_reserved_msg = 你正在存取的帳戶於資料庫中被保留.按 <a href="javascript:history.back('-1')">返回</a> 然後再嘗試.
+lang_auth_reserved_username = 用不同的字符, 選擇其他使用者名稱.
+lang_auth_reserved_admin = 要求管理員在WebAdmin中刪除被保留的使用者名稱.
+
+
+#/html/auth_timeout.html
+
+lang_auth_timeout_title = 工作時段逾時
+lang_auth_timeout_error = 作業愈時
+lang_auth_timeout_msg = 工作時段愈時 - 你的登入時段已愈時.
+lang_auth_timeout_inactive = 你的帳戶長時間沒有活動.
+lang_auth_timeout_seconds = $pref['session_timeout'] 秒的容許時限已過
+lang_auth_timeout_relogin = <a href="index.php" target="_top">再登入你的帳戶</a>
+lang_auth_timeout_still = 如果你仍然無法成功登入你的帳戶
+lang_auth_timeout_contact = 聯絡管理員 $this->admin_email 要求協助
+#/html/userexists.html
+
+lang_auth_userexists_title = 帳戶正在使用中
+lang_auth_userexists_error = 使用者已經存在
+lang_auth_userexists_msg = 你正在建立的帳戶已經存在於資料庫中.
+lang_auth_userexists_name = 按回然後選擇其他名稱.
+lang_auth_userexists_unique = 選擇獨特的名稱, 一般名稱通常已被使用.
+lang_auth_userexists_alphanum = 使用者名稱可以使用字母與數字.
+lang_auth_userexists_still = 如果你仍然無法成功登入你的帳戶
+lang_auth_userexists_contact = 聯絡管理員 $this->admin_email 要求協助
+
+#/html/composebook.html
+
+lang_composebook_title = 從通訊錄中新增電郵地址
+lang_composebook_viewing = 瀏覽通訊錄 : <b>新增收件者到你的電郵</b>
+lang_composebook_addallemail = --- 新增所有電郵地址
+lang_composebook_addbutton = 新增電郵地址
+
+#/html/deditor.html
+
+lang_deditor_title = 編寫郵件
+lang_deditor_paragraph = 段落
+lang_deditor_normal = 正常
+lang_deditor_h1 = 標題 1
+lang_deditor_h2 = 標題 2
+lang_deditor_h3 = 標題 3
+lang_deditor_h4 = 標題 4
+lang_deditor_h5 = 標題 5
+lang_deditor_h6 = 標題 6
+lang_deditor_addr = 地址
+lang_deditor_pre = 已有樣式
+lang_deditor_rf = 移除樣式
+lang_deditor_font = 字體
+lang_deditor_arial = Arial
+lang_deditor_arialb = Arial Black
+lang_deditor_arialn = Arial Narrow
+lang_deditor_comic = Comic Sans MS
+lang_deditor_courier = Courier New
+lang_deditor_system = System
+lang_deditor_times = Times New Roman
+lang_deditor_georgia = Georgia
+lang_deditor_verdana = Verdana
+lang_deditor_wingdings = Wingdings
+lang_deditor_size = 大小
+lang_deditor_b = 粗體
+lang_deditor_i = 斜體
+lang_deditor_udl = 底線
+lang_deditor_cut = 剪下
+lang_deditor_copy = 複製
+lang_deditor_paste = 貼上
+lang_deditor_fgc = 前景顏色
+lang_deditor_bgc = 背景顏色
+lang_deditor_al = 靠左對齊
+lang_deditor_ac = 置中
+lang_deditor_ar = 靠右對齊
+lang_deditor_ol = 編號清單
+lang_deditor_ul = 功能表清單
+
+#/html/editgroup.html
+
+lang_editgroup_title = 編輯群組地址內容
+lang_editgroup_groupname = 群組名稱:
+lang_editgroup_addallemail = --- 新增所有電郵地址
+lang_editgroup_addbutton = 新增
+lang_editgroup_deletebutton = 刪除
+lang_editgroup_savebutton = 儲存
+lang_editgroup_cancelbutton = 取消
+lang_editgroup_editbutton = 編輯群組內容
+
+
+#/html/login.html
+
+lang_login_title = 登入到 $pref['brandname']
+lang_login_desc = 專業網頁電郵系統
+lang_login_logindetails = 登入內容
+lang_login_loginpass = 請提供登入及密碼資料
+lang_login_about = 關於
+lang_login_faq = 使用問與答
+lang_login_passret = 密碼工具
+lang_login_help = 求助
+lang_login_username = 電郵名稱
+lang_login_password = 密碼
+lang_login_interface = 介面
+lang_login_language = 語言
+lang_login_loginbutton = 登入
+lang_login_signup = 註冊新帳戶
+lang_login_signuptext = 尚未擁有有帳戶? 沒有問題 - <a href="index.php?func=signup">註冊一個新電郵地址</a>, 可於幾分鐘內登入.
+lang_login_moreinfo = 更多資訊
+lang_login_moreinfotext = 要取得更多網頁電郵服務的資訊, 請聯絡 $pref['admin_email']</a> - $pref['brandname'] $pref['version']
+lang_login_copyright = 網頁電郵服務 (C) $pref['brandname'] 1998 - 2005
+lang_login_external = 外部帳戶
+lang_login_externaltext = 需要存取外部的 POP3/IMAP 郵箱? <a href="index.php?func=ext&advanced=1">按此</a> 去到登入頁面.
+lang_login_local = 本機帳戶
+lang_login_localtext = 需要存取本機的郵箱? <a href="index.php">按此</a> 去到登入頁面
+lang_login_helpinfo = 求助資訊
+lang_login_helpinfotext = 需要學習更多關於 $pref['brandname'] 及其功能? 查閱<a href="javascript:help()">線上文件</a> 以取得協助
+lang_login_msg1 = 登入 $pref['brandname'] 以收發你的電郵. 可使用任何瀏覽器, 方便的檢查電郵 - 在旅程途中使用網頁電郵介面, 和同事、朋友溝通，作為你的第二電郵帳戶，或在網上閱讀你現有的電郵帳戶。
+lang_login_msg2 = 使用<a href="javascript:help('wap')">你的流動電話</a>取存你的郵箱. 登入去存取排程及待辨事項以組織你的工作天.
+lang_login_passrettext = 使用 <a href="index.php?func=passutil">密碼工具</a>去變更或取得你失去的密碼.
+lang_login_demo = 在註冊一個新帳戶之前, 若想測試一下系統功能, 請登入到<a href="/">示範帳戶</a>-
+lang_login_webadmin = <a href="webadmin/">網站管理</a>
+lang_login_docs = <a href="docs/index.html">文件</a>
+lang_login_more_options = 更多選項
+
+#/html/passutil.html
+
+lang_passutil_title = 密碼取回工具
+lang_passutil_desc = 專業網頁電郵系統
+lang_passutil_passutil = 密碼工具
+lang_passutil_login = 登入帳戶
+lang_passutil_about = 關於
+lang_passutil_faq = 常見問題
+lang_passutil_help = 求助
+lang_passutil_username = 電郵名稱
+lang_passutil_hint = 取得密碼提示
+lang_passutil_passwd = 更改你的密碼
+lang_passutil_oldpass = 舊密碼
+lang_passutil_newpass = 新密碼
+lang_passutil_verify = 確認密碼
+lang_passutil_question = 密碼問題
+lang_passutil_update = 更新密碼
+lang_passutil_msg1 = 使用這個工具，你可以更改你的電郵帳戶密碼.變更會在你下一次重置頁面、和<a href="index.php">重新登入帳戶</a>時生效.
+lang_passutil_msg2 = 遺忘你的密碼？你可以使用這個工具來取回密碼.當你登記帳戶時，你指定了一個「秘密問題」，用作提醒你的登入密碼.如果你還未能記起你的密碼，請用電郵聯絡 $pref['admin_email']，並註明你的登入名稱、出生日期、及所在城市，我們的團隊成員，會手動確認你的詳細資料.
+lang_passutil_msg3 = 使用表單來改變你的密碼.當選擇一個新密碼時，請記得使用獨一無二的密碼；你可使用包含數字和字母的密碼，來加強安全性.設置一條「密碼問題」，當你遺忘密碼時作提示之用.
+
+#/html/signup.html
+
+lang_signup_title = $pref['brandname'] 登記
+lang_signup_desc = 專業網頁電郵系統
+lang_signup_details = 電郵詳細資料
+lang_signup_userpass = 請選擇一個用戶名稱及指定一個網域，用戶開設你的新電郵帳戶.當開設一個帳戶時，請使用一個最少五個字母的密碼，以優化系統安全.
+lang_signup_username = 電郵名稱
+lang_signup_usernamemsg = (這亦會是你的電郵用戶名稱)
+lang_signup_password = 密碼
+lang_signup_password2 = 確認密碼
+lang_signup_passwordq = 密碼提示
+lang_signup_passwordqmsg = (用作提醒你所設定的密碼)
+lang_signup_altemail = 備用電郵地址
+lang_signup_altemailmsg = (可聯絡你的備用電郵地址 - 可選擇性輸入)
+lang_signup_pdetails = 個人資料
+lang_signup_pdetailsmsg = 可選擇性輸入你的聯絡資料，幫助我們維護你的帳戶.你所提供的全名，會用於所有外寄電郵.
+lang_signup_emailprefs = 電郵設定
+lang_signup_emailprefsmsg = 選擇你的網頁電郵介面及語言設定.視乎你的瀏覽器功能 / 版本，你可以選擇一個合乎你要求的介面.
+lang_signup_gender = 在此提供的資料，將用作個人化你的帳戶
+lang_signup_loginstyle = 登入式樣
+lang_signup_language = 優先語言
+lang_signup_submit = 遞交登記
+lang_signup_disclaimer =  登記帳戶前，你需要先同意 <a href="javascript:disclaimer()">免責聲明</a>
+lang_signup_submitbutton = 開設帳戶
+
+#/html/startbutton.html
+
+lang_startbutton_submitbutton = 完成
+
+#/html/startmboxempty.html
+
+lang_startmboxempty_msg = 你的郵箱中並沒有信件
+
+#/html/startnocal.html
+
+lang_startnocal_calendar = 日曆空置
+lang_startnocal_newentry = 按此加入新任務
+
+#/html/startnotask.html
+
+lang_startnotask_notask = 任務空置
+lang_startnotask_newtask = 加入新任務
+
+#/html/usage.html
+
+lang_usage_desc = 專業電子郵件系統
+lang_usage_faq = 常見問題
+lang_usage_start = $pref['brandname'] 新用戶指引
+lang_usage_login = 登入帳戶
+lang_usage_about = 關於
+lang_usage_password = 密碼工具
+lang_usage_help = 求助
+lang_usage_whatis = 甚麼是 $pref['brandname']?
+lang_usage_description = $pref['brandname'] 是一個基於網頁瀏覽器上的電郵用戶 / 伺服器.你可以使用現有的 POP 帳戶、或新設帳戶來即時存取電郵.使用 $pref['brandname'] 你可以在網上收發來自任何電郵地址的電子郵件.
+lang_usage_signup = 如何登記 $pref['brandname']?
+lang_usage_signupmsg =  要登記一個 $pref['brandname'] 的電郵帳戶，只需要 <a href="index.php?func=signup">按此</a>. 你可以即時取存電子通訊的郵件！
+lang_usage_access = 如何取存我的電郵？
+lang_usage_accessmsg = 如果你已有電郵地址，請按登入頁上的「外置帳戶」，經 Internet 取存任何 POP 電郵地址.
+lang_usage_loginhow = 如何登入？
+lang_usage_loginmsg = 輸入你的用戶名稱及密碼，選擇電郵伺服器、式樣，並按「登入」.<br>例如：你的電郵地址為 johnsmith@atmail.nl，你會輸入 johnsmith 作為你的用戶名稱、atmail.nl 作網域名稱.<br><br>如果你想登入的帳名，並不列於「@」符號後的目錄清單，按「外置帳戶」選項，並填入你的網域名稱.請留意：你的網域名稱，並不一定是你的電郵伺服器.例如：網域名稱可能為 domain.com，而電郵伺服器則為 mail.domain.com.請聯絡你的電郵伺服器方，以取得更多資料.
+lang_usage_loginwhere = 我可於何處登入？
+lang_usage_loginwheremsg = 使用 $pref['brandname']，你可以使用任何兼容「Frame」的網頁瀏覽器，經 Internet 登入.
+lang_usage_password = 如果我遺忘了密碼，可以怎樣做？
+lang_usage_passwordmsg = 請使用我們的 <a href="index.php?func=passutil">密碼工具</a>，以協助你記起密碼.
+lang_usage_styles = 甚麼是不同的「式樣」？
+lang_usage_stylesmsg = $pref['brandname'] 提示不同的「外觀」、不同的介面，供你根據你的瀏覽器作選擇.
+lang_usage_pop3 = 甚麼是 POP3 帳戶？
+lang_usage_pop3msg = 這是一般由你的伺服器或者網絡服務供應商 (ISP) 提供的電郵帳戶.如果你不確定，請聯絡你的服務供應商.
+lang_usage_logout = 當我登出時，POP3 郵件會發生甚麼事？
+lang_usage_logoutmsg = 你在 $pref['brandname'] 中閱讀過的郵件，並不會在你登出時刪除.如果你在 $pref['brandname'] 中刪除一封郵件，它亦會在伺服器上刪除.
+lang_usage_email = 我如何阻止其他人存取我的電郵帳戶？
+lang_usage_emailmsg =  你必須選擇一個好的密碼，並謹記要登出.當你登出之時，$pref['brandname'] 會刪除你的 cookie，並停止存取你的帳戶，直至你再次登入.$pref['brandname'] 只容許一人同時登入同一個帳戶.
+lang_usage_help = 如果我需要更多協助？
+lang_usage_helpmsg = 閱讀 <a href="javascript:help()">$pref['brandname'] 求助指南</a> 以獲得如何使用此軟件的更多資料.
+lang_usage_copyright = - 版權所有 <a href="$pref['company_url']">$pref['brandname']</a>
+
+# 1.2 /html/blue_pane/*
+
+#/html/blue_pane/abook.html
+
+lang_blue_pane_abook_title = 通訊簿
+lang_blue_pane_abook_composebutton = 撰寫訊息
+lang_blue_pane_abook_personal = 個人
+lang_blue_pane_abook_global = 全域
+
+#/html/blue_pane/abook_blank.html
+
+lang_blue_pane_abook_blank_empty = 空的通訊簿
+
+#/html/blue_pane/abook_entry.html
+
+lang_blue_pane_abook_entry_edituseralt = 編輯用戶
+lang_blue_pane_abook_entry_deluseralt = 刪除用戶
+
+
+#/html/blue_pane/abook_entry_blank.html
+
+lang_blue_pane_abook_entry_blank_msg = 空的通訊簿. 添加新的聯繫人供點擊「新建聯繫人」按鈕 
+
+#/html/blue_pane/abook_globalentry.html
+
+lang_blue_pane_abook_globalentry_viewuseralt = 查看用戶
+
+#/html/blue_pane/abook_globalview.html
+
+lang_blue_pane_abook_globalview_text = 查看 $var['UserEmail'] 全域通訊簿檔案, 點擊選定用戶以下的地址發信.
+lang_blue_pane_abook_globalview_msg = 查看全域用戶
+lang_blue_pane_abook_globalview_backbutton = 返回
+
+#/html/blue_pane/abook_groupentry.html
+
+lang_blue_pane_abook_groupentry_editgrpalt = 编輯组
+lang_blue_pane_abook_groupentry_delgrpalt = 刪除組
+
+#/html/blue_pane/abook_new.html
+
+lang_blue_pane_abook_new_text = 在你的通訊錄建立新的使用者. 你可以指定用户详细聯繫方式和電话號码，或只是记录他们的姓名和電子郵件地址
+lang_blue_pane_abook_new_msg = 新增用户到通讯簿
+lang_blue_pane_abook_new_addbutton = 新增任務
+
+#/html/blue_pane/abook_view.html
+
+lang_blue_pane_abook_view_text = 查看 $var['UserEmail'] 通訊錄檔案.你可以修改用戶的編輯細節.點擊提交按鈕將保存更改你的通訊錄
+lang_blue_pane_abook_view_msg = 查看/修改通訊簿
+lang_blue_pane_abook_view_updatebutton = 更新任務
+
+#/html/blue_pane/account.html
+
+lang_blue_pane_account_enterpass = 輸入帳戶密碼:
+lang_blue_pane_account_text = Via the Account Panel you can create additional Email accounts. Allowing you to read Email for multiple accounts, all via the  one interface. Use the utility to read your existing POP3 account from any number  of external hosts. Add or delete an account using the form below. You can also add Personalities, which then display in a select box in the From field when composing an email thereby allowing you to choose which email address you appear to be sending from.通過小組的帳戶，你可以創造更多的電子郵件帳戶. 讓你通過一個界面閱讀多個電子郵件帳戶, 使用實用工具從任何數目的外部主機閱讀你現有的POP3帳戶.使用下面的表格添加或刪除帳戶.你還可以添加個性，然後顯示在一個選擇框時，從外地撰寫的電子郵件從而使你選擇哪一個電子郵件地址發出
+lang_blue_pane_account_msg = 外部電子郵件帳戶
+lang_blue_pane_account_accountname = 帳戶名稱
+lang_blue_pane_account_nrmsg = 郵件數量
+lang_blue_pane_account_delete = 刪除
+lang_blue_pane_account_newaccount = 創建新的外部帳戶
+lang_blue_pane_account_newpersonality = 創造新的個性Create new Personality
+lang_blue_pane_account_username = 用戶名稱
+lang_blue_pane_account_hostname = 主機名
+lang_blue_pane_account_type = 類型
+lang_blue_pane_account_pop3 = POP3
+lang_blue_pane_account_imap = IMAP
+lang_blue_pane_account_pop3s = POP3 安全
+lang_blue_pane_account_imaps = IMAP 安全
+lang_blue_pane_account_addbutton = 增加帳戶
+lang_blue_pane_account_personality = 個性Personality
+
+
+#/html/blue_pane/attachment.html
+
+lang_blue_pane_attachment_title = 增加附件
+lang_blue_pane_attachment_addatt = 增加附件
+lang_blue_pane_attachment_step1 = 步驟1 
+lang_blue_pane_attachment_step2 = 步驟2
+lang_blue_pane_attachment_step3 = 步驟3
+lang_blue_pane_attachment_step1msg = 點擊瀏覽并且選擇文件
+lang_blue_pane_attachment_step2msg = 點擊附件
+lang_blue_pane_attachment_step2msg2 = 重複第1步和第2步附有更多文件.
+lang_blue_pane_attachment_step3msg = 完成的點擊，当你完成的时候.
+lang_blue_pane_attachment_filename = 文件名稱
+lang_blue_pane_attachment_size = 大小
+lang_blue_pane_attachment_delete = 刪除
+lang_blue_pane_attachment_attachbutton = 附件
+lang_blue_pane_attachment_donebutton = 完成
+
+#/html/blue_pane/blue_pane.html
+
+lang_blue_pane_blue_pane_title = 歡迎 $this->username@$this->pop3host - Powered by $pref['brandname']
+
+
+#/html/blue_pane/composehtml.html
+# &
+#/html/blue_pane/composetext.html (uses same lang vars)
+
+lang_blue_pane_composehtml_title = 撰寫電子郵件
+lang_blue_pane_composehtml_plain = 簡單的編輯
+lang_blue_pane_composehtml_html = HTML編輯
+lang_blue_pane_composehtml_editor = 編輯
+lang_blue_pane_composehtml_abookalt = 從通訊錄增加地址
+
+
+lang_blue_pane_composehtml_addrecbutton = 增加接收者
+lang_blue_pane_composehtml_sendbutton = 傳送
+lang_blue_pane_composehtml_clearbutton = 確定
+lang_blue_pane_composehtml_savemsgbutton = 儲存訊息
+lang_blue_pane_composehtml_spellbutton = 拼写检查
+lang_blue_pane_composehtml_attachbutton = 附件
+
+
+
+#/html/blue_pane/emailentry_blank.html
+lang_blue_pane_emailentry_blank_msg = $var['FolderName'] 沒有訊息
+
+#/html/blue_pane/folders.html
+lang_blue_pane_folders_title = 文件夾設置
+
+lang_blue_pane_folders_text1 = 通過信箱小組你可以監控郵件文件夾.選項包括增加一個新的信箱，閱讀其內容，並刪除信箱.
+lang_blue_pane_folders_mailbox = 信箱名稱
+lang_blue_pane_folders_totalmsg = 全部郵件
+lang_blue_pane_folders_filesize = 文件大小(KB)
+lang_blue_pane_folders_delete = 刪除
+lang_blue_pane_folders_newmailbox = 創建1個新信箱
+lang_blue_pane_folders_block = 阻隔郵件地址/垃圾電郵 
+lang_blue_pane_folders_addblock = 輸入郵件地址以阻隔
+lang_blue_pane_folders_enterbox = 輸入郵件地
+lang_blue_pane_folders_addbutton = 新增電子郵件
+lang_blue_pane_folders_spamdb = 目前的垃圾郵件數據庫
+lang_blue_pane_folders_delbutton = 刪除任務
+lang_blue_pane_folders_autoreply = 以你的電子郵件帳戶指定一個自動回复郵件 Optionally specify an autoreply message for your email account
+lang_blue_pane_folders_composeauto = 自動回复郵件
+lang_blue_pane_folders_compseautotext = 當發送電子郵件後用戶將收到此消息﹐倘離開這個空間將不會自動回覆.Users will receive this message in response to a sent Email. Leaving this space blank will not generate an autoreply.
+lang_blue_pane_folders_addautobutton = 新增自動回覆
+lang_blue_pane_folders_delautobutton = 刪除自動回覆
+lang_blue_pane_folders_sorting = 郵件文件夾類型 Email to Folder Sorting
+lang_blue_pane_folders_sortaddress = 郵件地址
+lang_blue_pane_folders_sortsubject = <i>或</i> 郵件主旨
+lang_blue_pane_folders_sortto = 移動郵件到
+lang_blue_pane_folders_sortaddbutton = 新增郵件類型
+lang_blue_pane_folders_emailsorting = 郵件類型
+lang_blue_pane_folders_subjectsorting = 主旨類型
+lang_blue_pane_folders_sortdelbutton = 刪除任務
+lang_blue_pane_folders_rename = 個人文件夾重新命名
+lang_blue_pane_folders_rename_choose = 選擇文件夾重新命名
+lang_blue_pane_folders_newname = 新名稱
+lang_blue_pane_folders_rename_submit = 重新命名
+
+#/html/blue_pane/foldertr.html
+
+
+lang_blue_pane_foldertr_messages = 郵件
+lang_blue_pane_foldertr_delfolderalt = 刪除 $var['FolderName']
+lang_blue_pane_foldertr_purgefolderalt = 清除 $var['FolderName']
+
+#/html/blue_pane/head_abook.html
+
+lang_blue_pane_head_abook_title = 查閱文件
+lang_blue_pane_head_abook_msg = 郵箱
+
+#/html/blue_pane/head_search.html
+
+lang_blue_pane_head_search_title = 查閱文件
+lang_blue_pane_head_search_msg = Search - 查找信息
+
+#/html/blue_pane/head_settings.html
+
+lang_blue_pane_head_settings_title = 閱讀文件
+lang_blue_pane_head_settings_msg = 帳戶設置-設定你的電子郵件帳戶
+
+#/html/blue_pane/ldap.html
+
+lang_blue_pane_ldap_search_tab_search = 搜尋
+lang_blue_pane_ldap_search_tab_extended = 擴大範圍
+lang_blue_pane_ldap_search_tab_LDAPoptions = LDAP 選項
+lang_blue_pane_ldap_text1 = 使用搜索引擎查找聯絡資料.查詢全球的LDAP聯繫人數據庫尋找朋友和家人聯絡資料.查找用戶的電話，郵寄地址和電子郵件詳情.Use the search engine to locate peoples contact details. Query the global LDAP contact database to locate friends and families contact details. Find users telephone, mailing address and E-mail details.
+lang_blue_pane_ldap_text2 = 使用'搜索類型'選擇其中的數據庫查詢.要搜索本地數據庫的用戶可以選擇'系統數據庫'Use the 'Search Type' select box to choose which database to query. To search the local database of users choose 'System Database'.
+lang_blue_pane_ldap_msg = 搜索人
+lang_blue_pane_ldap_firstnamedesc = 用戶姓
+lang_blue_pane_ldap_surnamedesc = 用戶名
+lang_blue_pane_ldap_emaildesc = 選擇.電子郵件主機的名稱以供深入搜索 Optional. Supply an E-mail host-name to refine the search
+lang_blue_pane_ldap_searchtype = 搜索類型
+lang_blue_pane_ldap_searchtypedesc = 選擇搜索類型並執行 Select the type of search you wish to perform
+lang_blue_pane_ldap_searchtypeserver = 搜索 LDAP 服務器
+lang_blue_pane_ldap_searchtypesystem = 搜索 $pref['brandname'] 系統數據庫
+lang_blue_pane_ldap_server = LDAP 服務器
+lang_blue_pane_ldap_serverdesc = 選擇LDAP服務器查詢
+lang_blue_pane_ldap_querybutton = 查詢數據庫
+
+#/html/blue_pane/ldap_bad_hostname.html
+
+lang_blue_pane_ldap_bad_hostname_msg = 嘗試連接到LDAP服務器發生錯誤 An error occurred while trying to connect to the LDAP Server. 服務器"<b>$var['error']</b>" 無法找到. 請嘗試使用其他服務器
+
+#/html/blue_pane/ldap_entry.html
+
+lang_blue_pane_ldap_entry_add = Add
+
+
+#/html/blue_pane/ldap_entry_blank.html
+
+lang_blue_pane_ldap_entry_blank_msg = 搜索包含0 的結果.請改進你的搜索和使用規定的格式再試一次. <a href="ldap.php">try again using the form provided</a>
+
+#/html/blue_pane/ldap_error.html
+
+lang_blue_pane_ldap_error_msg = 当連接LDAP服務器时發生錯誤 An error occurred while communicating to the LDAP Server ($var['error']) . 請稍後數分鐘再試一次.
+
+#/html/blue_pane/ldap_search.html
+
+lang_blue_pane_ldap_search_newsearch = 新搜索
+
+#/html/blue_pane/menubar-blue.html
+
+lang_blue_pane_menubar_blue_readmailalt = 閱讀郵件
+lang_blue_pane_menubar_blue_composealt = 撰寫
+lang_blue_pane_menubar_blue_searchalt = 搜索郵件
+lang_blue_pane_menubar_blue_calendaralt = 日曆
+lang_blue_pane_menubar_blue_ldapalt = 查找聯絡人
+lang_blue_pane_menubar_blue_abookalt = 地址
+lang_blue_pane_menubar_blue_settingsalt = 設定
+lang_blue_pane_menubar_blue_helpalt = 幫助
+lang_blue_pane_menubar_blue_logoffalt = 註銷
+
+#/html/blue_pane/password.html
+
+lang_blue_pane_password_text = 用下面的表格你可以更改帳戶密碼.在創建你的新密碼時，請具體提供現有的帳戶密碼.
+lang_blue_pane_password_msg = 更改帳戶密碼
+lang_blue_pane_password_curpass = 原有密碼
+lang_blue_pane_password_curpassdesc = 輸入你目前使用的密碼訪問你的電子郵件Enter the Password you currently use to access your email
+lang_blue_pane_password_newpass = 新密碼
+lang_blue_pane_password_newpassdesc = 輸入新的密碼
+lang_blue_pane_password_confirm = 確認新的密碼
+lang_blue_pane_password_confirmdesc = 證實你想要使用的新密碼 Confirm the New Password you want to use
+lang_blue_pane_password_question = 新密碼問題
+lang_blue_pane_password_questiondesc = 輸入密碼提示，以恢復你丟失密碼
+lang_blue_pane_password_backbutton = 返回首頁 
+lang_blue_pane_password_submitbutton = 更改密碼
+
+#/html/blue_pane/profile.html
+
+lang_blue_pane_profile_text1 = 使用此工具你可以修改用戶的個人資料. 你帳戶的指定聯繫人和詳細地址.若要變更你的密碼請點擊'更改密碼'按鈕.
+lang_blue_pane_profile_text2 = 你可以將全球地址簿信息儲存在這裡 The information you store here will be available in the Global Address book
+lang_blue_pane_profile_msg = 用戶資料 $var['status']
+
+lang_blue_pane_profile_personal = 個人細節
+lang_blue_pane_profile_account = 帳戶
+lang_blue_pane_profile_accountdesc = 郵件帳戶登入名稱
+lang_blue_pane_profile_moddate = 修改日期
+lang_blue_pane_profile_moddatedesc = 迄今為止你的帳戶的最後修改
+lang_blue_pane_profile_firstnamedesc = 輸入你的姓
+lang_blue_pane_profile_surnamedesc = 輸入你的名
+lang_blue_pane_profile_birthdatedesc = 你的生日
+lang_blue_pane_profile_genderdesc = 選擇你的性別
+
+lang_blue_pane_profile_contact = 聯繫方式
+lang_blue_pane_profile_telhomedesc = 輸入你的家居電話號碼
+lang_blue_pane_profile_faxhomedesc = 輸入你的家居傳真號碼
+lang_blue_pane_profile_telworkdesc = 輸入你的辦公室電話號碼
+lang_blue_pane_profile_faxworkdesc = 輸入你的辦公室傳真號碼
+lang_blue_pane_profile_telmobiledesc = 輸入你的移動/蜂窩電話號碼
+lang_blue_pane_profile_telpagerdesc = 輸入你的尋呼機號碼
+
+lang_blue_pane_profile_address = 郵寄地址詳情
+lang_blue_pane_profile_addressdesc = 輸入你的街道號碼和姓名
+lang_blue_pane_profile_citydesc = 輸入你的城市或市郊名稱
+lang_blue_pane_profile_postcodedesc = 輸入你的郵區編號
+lang_blue_pane_profile_statedesc = 輸入你的州份（郵寄地址）
+lang_blue_pane_profile_countrydesc = 輸入你的國家（郵寄地址）
+
+lang_blue_pane_profile_additional = 附加
+lang_blue_pane_profile_email2desc = 輸入你的替代電郵地址
+lang_blue_pane_profile_question = 密碼問題
+lang_blue_pane_profile_questiondesc = 輸入你的密碼問題
+lang_blue_pane_profile_industrydesc = 選擇你是最活跃的產業Select The Industry in which you are most active
+lang_blue_pane_profile_occupationdesc = 選擇你當前職業 Select your current Occupation
+lang_blue_pane_profile_savebutton = 保存設定
+lang_blue_pane_profile_passwdbutton = 更改密碼
+
+#/html/blue_pane/readmail.html
+
+lang_blue_pane_reademail_title = $var['EmailSubject'] - $pref['brandname'] - Msg $var['msgnum']
+lang_blue_pane_reademail_replyalt = 回覆發件人
+lang_blue_pane_reademail_replyallalt = 回覆發件人和所有收件人
+lang_blue_pane_reademail_forwardalt = 轉發信件
+lang_blue_pane_reademail_printalt =   打印郵件 
+lang_blue_pane_reademail_headersalt = 查看郵件標題
+
+#/html/blue_pane/reademail_drafts.html
+
+lang_blue_pane_reademail_drafts_title = $var['EmailSubject'] - $pref['brandname'] - Msg $var['msgnum']
+lang_blue_pane_reademail_drafts_openmsg = 開啟郵件
+lang_blue_pane_reademail_drafts_openmsgalt = 開啟郵件
+
+
+#/html/blue_pane/reademail-frame.html
+
+lang_blue_pane_reademail_frame_title = $var['EmailSubject'] - $pref['brandname'] - Msg $var['msgnum']
+
+#/html/blue_pane/reademail-frame_drafts.html
+
+lang_blue_pane_reademail_frame_drafts_title = $var['EmailSubject'] - $pref['brandname'] - Msg $var['msgnum']
+
+#/html/blue_pane/search.html
+
+lang_blue_pane_search_lookin = 登入
+lang_blue_pane_search_allfolders = 包括所有文件夾
+lang_blue_pane_search_attach = 郵件附件
+lang_blue_pane_search_flagged = 訊息標幟
+lang_blue_pane_search_before = 之前收到
+lang_blue_pane_search_after = 之後收到
+lang_blue_pane_search_newbutton = 新搜索
+
+#/html/blue_pane/searchframe.html
+
+lang_blue_pane_searchframe_title = 搜索電子郵件
+
+
+#/html/blue_pane/searchmove.html
+
+lang_blue_pane_searchmove_msg = 移動 $var['move'] 郵件到 $var['newfolder']文件夾.
+
+
+#/html/blue_pane/searchresults.html
+
+lang_blue_pane_searchresults_movebutton = 移動
+
+#/html/blue_pane/sendmsg.html
+
+lang_blue_pane_sendmsg_compose = 撰寫新郵件
+lang_blue_pane_sendmsg_close = 關閉窗口
+
+#/html/blue_pane/settings.html
+
+lang_blue_pane_settings_text = 利用預置頁面，根據需要修改設置你的帳戶, 並可選擇地使用郵件加密和轉發.
+lang_blue_pane_settings_emailprefs = 網頁郵件設置 
+lang_blue_pane_settings_account = 帳戶
+lang_blue_pane_settings_accountdesc = 你的郵件帳戶登入名稱
+lang_blue_pane_settings_dname = 顯示名稱
+lang_blue_pane_settings_dnamedesc = 輸入的名稱將出現在即將發出的電子郵件
+lang_blue_pane_settings_replyto = 回覆
+lang_blue_pane_settings_replytodesc = 不同的登錄名指定1個回覆地址 
+lang_blue_pane_settings_sortby = 郵件排序以
+lang_blue_pane_settings_sortbydesc = 郵件顯示在郵件窗口可以按
+lang_blue_pane_settings_font = 默認字體樣式
+lang_blue_pane_settings_fontdesc = 選擇你的首選字體界面
+lang_blue_pane_settings_lang = 使用語言
+lang_blue_pane_settings_langdesc = 選擇你的語言
+lang_blue_pane_settings_leavemsg = 將郵件留在服務器
+lang_blue_pane_settings_leavemsgdesc = 如果選擇在服務器上保留郵件,只適合外部POP3帳戶. For external POP3 accounts only. Choose if you want to leave messages on the server.
+lang_blue_pane_settings_nrmsg = 顯示通讯数量
+lang_blue_pane_settings_nrmsgdesc = 選擇郵件顯示的数量
+lang_blue_pane_settings_timezone = 選擇时区
+lang_blue_pane_settings_timezonedesc = 指定你的时区在格林威治時間格式﹐所有郵件日期在選擇的时区將被格式化.
+lang_blue_pane_settings_timeformat = 時間格式
+lang_blue_pane_settings_timeformatdesc = 選擇時間格式
+lang_blue_pane_settings_timeformat12 = 12 小時
+lang_blue_pane_settings_timeformat24 = 24 小時
+lang_blue_pane_settings_dateformat = 日期格式
+lang_blue_pane_settings_dateformatdesc = 請選擇你喜歡的日期格式
+lang_blue_pane_settings_dateformatDMY = DD/MM/YY
+lang_blue_pane_settings_dateformatMDY = MM/DD/YY
+lang_blue_pane_settings_dateformatYMD = YY/MM/DD
+lang_blue_pane_settings_dateformatYDM = YY/DD/MM
+
+lang_blue_pane_settings_popup = 信息彈出
+lang_blue_pane_settings_popupdesc = 在一個文件夾中, 選擇使用信息彈出式視窗瀏覽電子郵件. Select to use the message pop-ups when viewing emails in a folder
+lang_blue_pane_settings_autotrash = 自動刪除垃圾郵件
+lang_blue_pane_settings_autotrashdesc = 自動刪除發送到垃圾箱文件夾.
+lang_blue_pane_settings_deltrash = 登出時刪除垃圾郵件 
+lang_blue_pane_settings_deltrashdesc = 如果選中，當你登出時所有郵件中的垃圾文件夾將自動被刪除.
+lang_blue_pane_settings_editor = HTML郵件編輯器
+lang_blue_pane_settings_editordesc = 如果選擇 $pref['brandname'] 將自動讓你撰寫郵件中的HTML編輯器而不是純文本.If selected $pref['brandname'] will automatically let you compose messages in the HTML editor instead of Plain Text.
+lang_blue_pane_settings_sig = 郵件簽名
+lang_blue_pane_settings_sigdesc = 創建你的簽字﹐這將附在所有外發郵件上.
+lang_blue_pane_settings_diversion = 郵件轉送 - 發送電子郵件到另一個帳戶 Email Diversion - Send your Email to another account.
+lang_blue_pane_settings_forward = 轉發到地址Forward to Address
+lang_blue_pane_settings_layout = 界面/顏色偏好-選擇界面和自定顏色設定
+lang_blue_pane_settings_layout_short = 界面/顏色
+lang_blue_pane_settings_layouttype = 界面類型:
+lang_blue_pane_settings_scheme = 計劃
+lang_blue_pane_settings_primary =基本
+lang_blue_pane_settings_secondary = 二等
+lang_blue_pane_settings_tertiary = 三等
+lang_blue_pane_settings_border = 邊界
+lang_blue_pane_settings_popupcolor = 彈出
+lang_blue_pane_settings_bgcolor = 背景顏色
+lang_blue_pane_settings_textcolor = 文字顏色
+lang_blue_pane_settings_textheader = 文字標題
+lang_blue_pane_settings_link = 鏈接
+lang_blue_pane_settings_vlink = 閱讀鏈接
+lang_blue_pane_settings_oncolor = 工作時顏色
+lang_blue_pane_settings_offcolor = 離開時顏色
+lang_blue_pane_settings_selectcolor = 搜索時顏色
+lang_blue_pane_settings_topbarimg = 頂端橫額圖片TopBar Img
+lang_blue_pane_settings_quota = 郵箱配額[ [磁盤空間使用 $var['usedquota']  Kb 於 $var['totalquota'] Kb] 
+lang_blue_pane_settings_savebutton = 儲存設定
+
+#/html/blue_pane/showmail_plain.html
+
+lang_blue_pane_showmail_plain_movebutton = 移動
+lang_blue_pane_showmail_plain_searchalt = 搜尋信箱
+lang_blue_pane_showmail_plain_settingsalt = 郵件設定
+lang_blue_pane_showmail_plain_foldersalt = 郵件文件夾
+lang_blue_pane_showmail_plain_deltrashalt = 清空垃圾桶
+lang_blue_pane_showmail_plain_checkalt = 檢查所有郵件
+lang_blue_pane_showmail_plain_uncheckalt =  取消檢查所有郵件
+lang_blue_pane_showmail_plain_tag = 標籤
+#/html/blue_pane/showmail_popup.html
+# shares vars from /html/blue_pane/showmail_plain.html
+
+
+#/html/blue_pane/spellcheck.html
+
+lang_blue_pane_spellcheck_title = 郵件拼音檢查
+
+
+lang_blue_pane_spellcheck_msg = 拼音檢查:
+lang_blue_pane_spellcheck_current = 全文Context:
+lang_blue_pane_spellcheck_new = 新拼法:
+lang_blue_pane_spellcheck_suggestions = 建議
+lang_blue_pane_spellcheck_options = 選擇
+lang_blue_pane_spellcheck_ignorebutton = 忽略
+lang_blue_pane_spellcheck_changebutton = 更改
+lang_blue_pane_spellcheck_personalbutton = 新增個人
+lang_blue_pane_spellcheck_returnbutton = 返回到訊息
+
+
+#/html/blue_pane/startpage.html
+
+lang_blue_pane_startpage_text = 這個以你為名稱的個性化首頁. 在此你可查看將進行的事件/任務日曆/收件箱新的郵件數量和帳戶統計, 並可使用導航欄上面不同的功能$pref['brandname']. RealName to your personalized start-page. Here you can view a summary of upcoming Calendar events, tasks that are pending, number of new emails in your Inbox and general statistics about your account. Use the navigation bar above to use the different functions in $pref['brandname'].
+lang_blue_pane_startpage_calendar = 日曆
+lang_blue_pane_startpage_caddnew = 增加新的
+lang_blue_pane_startpage_emailsum = 郵件概述
+lang_blue_pane_startpage_emailsumdesc = 查閱收件箱 ($var['total'] msgs)
+lang_blue_pane_startpage_quota = 郵箱配額
+lang_blue_pane_startpage_quotaused = $var['usedquota']  Kb 於 $var['totalquota'] Kb] 
+lang_blue_pane_startpage_quota_desc = 下面是你帳戶信箱的使用配額.使用文件夾管理，清除垃圾郵件和文件夾以減少你的信箱空間佔用
+lang_blue_pane_startpage_tasks = 任務
+lang_blue_pane_startpage_taddnew = 增加新的
+lang_blue_pane_startpage_messages = 信息
+lang_blue_pane_startpage_history = 登錄歷史
+lang_blue_pane_startpage_historynr = $var['totallogin']  所有登入
+lang_blue_pane_startpage_autoinbox = 當$pref [' brandname'] 開始，直接去我的<u>I</u>郵件信箱
+
+# 1.3 /html/blue_pane/heading/*
+
+lang_blue_pane_heading_abook_globalview_msg = 通訊錄 - 全球使用
+lang_blue_pane_heading_abook_new_msg = 地址簿 - 添加新用戶
+lang_blue_pane_heading_abook_view_msg = 地址簿 - 查看/修改用戶
+lang_blue_pane_heading_accounts_msg = 外部POP3帳戶
+lang_blue_pane_heading_contacts_msg = 聯絡人
+lang_blue_pane_heading_ldap_location = 位置
+lang_blue_pane_heading_ldap_abook = 1本書 Abook
+lang_blue_pane_heading_ldaphead_msg = LDAP 搜索引驚
+lang_blue_pane_heading_mail_orderalt = 指令來自附件 Order by Attachments
+lang_blue_pane_heading_mboxfolder_msg = 文件夾管理-查看/創建郵件文件夾
+lang_blue_pane_heading_mboxhead_msg = 郵箱
+
+lang_blue_pane_heading_password_msg = 用戶資料-更改密碼
+lang_blue_pane_heading_profile_msg = 用戶資料-自訂你的簡介
+lang_blue_pane_heading_search_msg = 搜索-查找訊息
+lang_blue_pane_heading_settings_msg = 帳戶設置-自定你的郵件帳戶
+lang_blue_pane_heading_startpage_msg = 歡迎你到首頁
+# END OF /html/blue_pane/heading/
+# END OF /html/blue_pane/
+
+# 2.0 G l o b a l    C a l e n d a r   V a r i a b l e s
+
+lang_Calendar_startdate = 開始日期
+lang_Calendar_enddate = 結束日期
+lang_Calendar_endtime = 結束時間
+lang_Calendar_duedate = 截止日期
+lang_Calendar_datedue = 截止時間
+lang_Calendar_selectdate = 選擇日期
+lang_Calendar_adddate = 添加日期
+lang_Calendar_close = 關閉
+lang_Calendar_updatebutton = 更新
+lang_Calendar_deletebutton = 刪除
+lang_Calendar_closebutton = 關閉
+lang_Calendar_addbutton = 新增任務
+# 2.1 /html/calendar/*
+
+#/html/calendar/calbook.html
+
+lang_calendar_calbook_title = 由地址簿新增郵件 
+lang_calendar_calbook_viewaddress = 查看地址簿:
+lang_calendar_calbook_add = 添加收件人到你的地址簿
+lang_calendar_calbook_addall = --- 新增所有郵件
+lang_calendar_calbook_addbutton = 新增郵件
+
+#/html/calendar/index.html
+
+lang_calendar_index_title = $pref['名稱'] - 網上調度 Online Scheduler
+
+#/html/calendar/index-simple.html
+
+lang_calendar_index_simple_title = $pref['名稱'] - 網上調度Online Scheduler
+
+#/html/calendar/menubarcal.html
+
+lang_calendar_menubarcal_week = 一星期
+lang_calendar_menubarcal_fortnight = 雙週
+lang_calendar_menubarcal_quarter = 季度
+lang_calendar_menubarcal_2quarter = 雙季度
+lang_calendar_menubarcal_year = 一年
+
+lang_calendar_menubarcal_read = 閱讀郵件
+lang_calendar_menubarcal_overview = 概覽
+lang_calendar_menubarcal_calendar = 行事曆
+lang_calendar_menubarcal_tasks = 任務
+lang_calendar_menubarcal_addresses = 地址
+lang_calendar_menubarcal_help = 幫助
+lang_calendar_menubarcal_logoff = 註銷
+lang_calendar_menubarcal_view = 選擇查看
+
+#/html/calendar/menubarcal-simple.html
+
+lang_calendar_menubarcal_simple_title = $pref['名稱'] 網頁電郵系統
+lang_calendar_menubarcal_simple_brandname = $pref['名稱'] - 專業的網頁郵件軟件
+lang_calendar_menubarcal_simple_read = 閱讀郵件
+lang_calendar_menubarcal_simple_overview = 概覽
+lang_calendar_menubarcal_simple_calender = 行事曆
+lang_calendar_menubarcal_simple_tasks = 任務
+lang_calendar_menubarcal_simple_contacts = 聯繫人
+lang_calendar_menubarcal_simple_signout = 登出
+
+#/html/calendar/newpost.html
+
+lang_calendar_newpost_title = 添加一個新任務
+lang_calendar_newpost_insertnew = 插入新行事曆
+lang_calendar_newpost_edit = 允許收件人編輯
+lang_calendar_newpost_editalt = 允許收件人編輯郵件 Allow Recipients to edit the post
+lang_calendar_newpost_notify = 郵件通知收件人
+lang_calendar_newpost_notifyalt = 郵件通知收件人收郵件Email Notify Recipients of the post
+
+
+#/html/calendar/newtask.html
+
+lang_calendar_newtask_title = 添加新的任務
+lang_calendar_newtask_msg = 插入新工作
+
+lang_calendar_newtask_edit = 允許收件人編輯
+lang_calendar_newtask_editalt = 允許收件人編輯的任務
+lang_calendar_newtask_notify = 郵件通知收件人
+lang_calendar_newtask_notifyalt = 郵件通知收件人的任務Email Notify Recipients of the task
+
+#/html/calendar/notify-add.html
+
+lang_calendar_notify_add_title = 創建新任務
+lang_calendar_notify_add_new = 建立新的行事曆 -
+
+#/html/calendar/notify-cal-body.html
+
+lang_calendar_notify_cal_body_summary = 一個新的行事曆已被指派.摘要如下:A new Calendar has been assigned. A summary follows:
+lang_calendar_notify_cal_body_title = 標題
+lang_calendar_notify_cal_body_assign = 分配到
+lang_calendar_notify_cal_body_description = 說明
+
+#/html/calendar/notify-cal-subject.html
+
+lang_calendar_notify_cal_subject_new = 新行事曆
+
+#/html/calendar/notify-delete.html
+
+lang_calendar_notify_delete_delentry = 刪除任務
+lang_calendar_notify_delete_delcalentry = 刪除行事曆任務 -
+
+#/html/calendar/notify-modify.html
+
+lang_calendar_notify_modify_update = 更新任務
+lang_calendar_notify_modify_entry = 更新行事曆 -
+
+#/html/calendar/notify-taskadd.html
+
+lang_calendar_notify_taskadd_new = 建立新任務
+lang_calendar_notify_taskadd_newtask = 創造了新的工作任務 -
+
+#/html/calendar/notify-task-body.html
+
+lang_calendar_notify_task_body_summary = 一項新的任務已分配.摘要如下
+lang_calendar_notify_task_body_title = 標題
+lang_calendar_notify_task_body_assign = 分配給
+lang_calendar_notify_task_body_description = 說明
+
+#/html/calendar/notify-taskdelete.html
+
+lang_calendar_notify_taskdelete_entrydelete = 刪除任務
+lang_calendar_notify_taskdelete_deletetask = 刪除任務 -
+
+#/html/calendar/notify-taskmodify.html
+lang_calendar_notify_taskmodify_update = 更新任務
+lang_calendar_notify_taskmodify_updatetask = 更新任務
+
+#/html/calendar/notify-task-subject.html
+
+lang_calendar_notify_task_subject_new = 新工作
+
+#/html/calendar/readpost.html
+
+lang_calendar_readpost_title = 閱讀日曆$var['id']
+lang_calendar_readpost_reading = 閱讀日曆條目
+lang_calendar_repeat_none = 非重複 
+lang_calendar_repeat_daily = 每日重複
+lang_calendar_repeat_weekly = 每星期重複
+lang_calendar_repeat_monthly = 每月重複
+lang_calendar_repeat_yearly = 每年重複
+lang_calendar_repeat_adv = 進階模式設定 Define Advanced Pattern
+lang_calendar_repeat_no_end = 沒有結束日期
+lang_calendar_repeat_end_after = 結束後
+lang_calendar_repeat_end_by = 結束
+lang_calendar_repeat_occurrences = 事件
+lang_calendar_repeat_every = 每個的
+lang_calendar_repeat_days = 每日
+lang_calendar_repeat_recur_every = 每次重覆
+lang_calendar_repeat_weeks_on = 本週的
+lang_calendar_repeat_Day = 每日
+lang_calendar_repeat_day = 每日
+lang_calendar_repeat_of_every = 每個的
+lang_calendar_repeat_months = 月份
+lang_calendar_repeat_The = 这些
+lang_calendar_repeat_first = 首先
+lang_calendar_repeat_second = 其次
+lang_calendar_repeat_third = 第三的
+lang_calendar_repeat_forth = 之後
+lang_calendar_repeat_last = 最後的
+lang_calendar_repeat_weekday = 工作日
+lang_calendar_repeat_weekend_day = 週末休假日
+lang_calendar_repeat_of = 屬於
+lang_calendar_repeat_Every_weekday = 每個工作日
+
+#/html/calendar/readtask.html
+
+lang_calendar_readtask_title = 閱讀任務$var['id']
+
+#/html/calendar/summary.html
+
+lang_calendar_summary_welcome =歡迎$這個->到你的個性化的啟動頁面.在此你可查看將進行的事件/任務日曆/收件箱新的郵件數量和帳戶統計, 並可使用導航欄上面不同的功能$pref['功能名稱']. ，Welcome $this->RealName to your personalized start-page. Here you can view a summary of upcoming Calendar events, tasks that are pending, number of new emails in your Inbox and general statistics about your account. Use the navigation bar above to use the different functions in $pref['brandname'].
+lang_calendar_summary_calendar = 日曆
+lang_calendar_summary_addnew = 新增
+lang_calendar_summary_tasks = 任務
+
+#/html/calendar/summaryhead.html
+
+lang_calendar_summaryhead_overview = 任務和日曆概述
+
+#/html/calendar/task-empty.html
+
+lang_calendar_task_empty_empty = 清空的工作表
+
+#/html/calendar/task-move.html
+
+lang_calendar_task_move_move = 移動所選
+
+#/html/calendar/today.html
+
+lang_calendar_today_today = 今天的日曆
+
+#/html/calendar/todo.html
+
+lang_calendar_todo_view = 查看文件
+lang_calendar_todo_taskname = 任務名稱-
+lang_calendar_todo_tasknamealt = 創建一個新的任務
+lang_calendar_todo_addnew = 新增
+lang_calendar_todo_empty = 清空的工作表.
+lang_calendar_todo_newtask = 新增一個新任務
+
+#/html/calendar/type-select.html
+
+lang_calendar_type_select_general = 一般General
+lang_calendar_type_select_pending = 等候Pending
+lang_calendar_type_select_open = 開啟
+lang_calendar_type_select_complete = 完成
+lang_calendar_type_select_urgent = 緊急
+lang_calendar_type_select_appointment = 任命
+lang_calendar_type_select_birthday = 生日
+lang_calendar_type_select_friend = 朋友
+lang_calendar_type_select_family = 家庭
+lang_calendar_type_select_colleague = 同事
+lang_calendar_type_select_other = 其他
+lang_calendar_type_select_business = 商業
+lang_calendar_type_select_conference = 會談
+lang_calendar_type_select_deadline = 最後限期
+lang_calendar_type_select_interview = 面試
+lang_calendar_type_select_lunch = 午餐
+lang_calendar_type_select_meeting = 會議
+lang_calendar_type_select_phonecall = 電話呼叫
+lang_calendar_type_select_travel = 旅行
+lang_calendar_type_select_entertainment = 娛樂
+lang_calendar_type_select_concert = 音樂會
+lang_calendar_type_select_movie = 電影
+lang_calendar_type_select_performance = 表演
+lang_calendar_type_select_sports = 體育
+lang_calendar_type_select_television = 電視
+lang_calendar_type_select_friends = 朋友與家人
+lang_calendar_type_select_breakfast = 早餐
+lang_calendar_type_select_brunch = 早午餐
+lang_calendar_type_select_dinner = 晚餐
+lang_calendar_type_select_gettogether = 聚會
+lang_calendar_type_select_lunch = 午餐
+lang_calendar_type_select_movie = 電影
+lang_calendar_type_select_party= 派對
+lang_calendar_type_select_picnic = 野餐
+lang_calendar_type_select_school = 學校
+lang_calendar_type_select_sports = 體育
+lang_calendar_type_select_personal = 個人
+lang_calendar_type_select_doctor = 醫生
+lang_calendar_type_select_fitness = 健身
+lang_calendar_type_select_haircut = 理髮
+lang_calendar_type_select_paybills = 支付賬單
+lang_calendar_type_select_shopping = 購物
+lang_calendar_type_select_task =工作
+lang_calendar_type_select_vacation = 假期
+lang_calendar_type_select_event = 特別活動
+lang_calendar_type_select_anniversary = 週年
+lang_calendar_type_select_gathering =聚會
+lang_calendar_type_select_graduation =畢業
+lang_calendar_type_select_holiday = 假日
+lang_calendar_type_select_reunion = 聚舊
+lang_calendar_type_select_wedding = 婚禮
+
+#/html/calendar/weekhead.html
+
+lang_calendar_weekhead_viewing = 觀察Viewing
+lang_calendar_weekhead_days = 每天
+
+# END OF /html/calendar/
+
+
+# 3.0 G l o b a l    H e l p    V a r i a b l e s
+
+lang_help_title = 網頁郵件幫助指南
+lang_help_title_login = 幫助指南
+lang_help_index = 幫助索引
+lang_help_okbutton = 確定
+lang_help_top = 頂端
+lang_help_faq = 常見問題
+
+# 3.1 /html/help/*
+
+#/html/help/addpop3.html
+
+lang_help_addpop3_title = 多功能 POP3 帳戶
+lang_help_addpop3_text1 = 這個<b>添加外部POP3帳戶< / b >選項可讓你從其他POP3帳戶接收郵件到你的郵箱.這是一個外部帳戶清單，你已選擇.The <b>Add External POP3 Account</b> option allows you to receive email from other POP3 accounts to your WebMail Inbox. This is a list of the External accounts that you have selected to incorporate.
+lang_help_addpop3_text2 = 這個<b>帳戶用戶名/密碼信息</b>可以讓你添加必要的細節，以收到你的外部郵件The <b> Account Username/Password Details</b> section allows you to add the details required to receive your External Email.
+lang_help_addpop3_text3 = 這個<b>信息偏好</b>區段可讓你設置電子郵件偏好，如果你有一個不同的回复地址或轉寄地址你應該將它們添加在這裡 The <b>Message Preferences</b> section allows you to set the mail preferences, if you have a different reply-to address or forwarding address you should add them here.
+lang_help_addpop3_text4 = 這個<b>編碼</b>區段可以讓你設定編碼偏好帳戶The <b>Encoding</b> section enables you to set the Encoding Preferences for Accounts.
+lang_help_addpop3_text5 = 這個<b>創建帳戶</b>是最後添加的確認，按一下這個新增的帳戶到你的郵箱 The <b>Create Account</b> is the final add confirmation, click this to Add the Account to your Mailbox
+
+#/html/help/addressbook.html
+
+lang_help_addressbook_title = 通訊錄
+lang_help_addressbook_text1 = 使用通訊錄儲存你的朋友，聯絡人或重要的地址.可以供你以後參考地址簿撰寫郵件.
+lang_help_addressbook_text2 = 點擊'添加記錄'創建一個新帳戶進入通訊錄.輸入用戶詳細資料，並選擇提交寫進通訊錄.你可以在地址簿中修改/刪除條目/選擇圖標.
+lang_help_addressbook_text3 = 如果啟用郵件服務, 你可以使用全球通訊錄看到全球所有用戶.設置地址簿類型從'個人'為'全球'進入全球地址簿. 
+#/html/help/calendar.html
+
+lang_help_calendar_title = 日曆
+lang_help_calendar_text1 = 在這裡你可以安排你的工作，新增任務和任命的具體時間和日期. 
+lang_help_calendar_text2 = 要添加一個任命，或者雙擊在適當的時候建立一個小時的任命或按一下啟動時間並拖動到適當的時間.現在，你可以進入這一細節任命. 
+lang_help_calendar_timelinetext =當你創建一個任命﹐可設定為任何時間在(15)分鐘內.如任命創建﹐你可以點擊進入拖曳'n'停止到另一個時間來重新安排.lang_help_calendar_timelinetext = When you Create an Appointment it can be set for any time in fifteen (15) minute intervals. Once an appointment is created you can click the entry to drag'n'drop to another time to reschedule.
+lang_help_calendar_appointment =任命
+lang_help_calendar_appointmenttext =鳴鐘顯示任命.任命可以設定適當的時候，每一次半小時.The Bell shows an Appointment. Appointments can be created by clicking on the appropriate time, set per half hour.
+lang_help_calendar_mselect =每月選擇
+lang_help_calendar_mselecttext1 = 要查看其他幾個月中，選擇 &quot;&lt;&quot; 為前一個月, 及&quot;&gt;&quot; 為下一個月. 要跳轉到前一年選擇 &quot;|&lt;&quot;,跳到下一年選擇&quot;&gt;|&quot;. 每月一次顯示,你可以添加/修改/刪除任命.
+To View other months, select &quot;&lt;&quot; for previous month, and &quot;&gt;&quot; for next month. To jump to to previous year select &quot;|&lt;&quot;, to jump to next year select &quot;&gt;|&quot;. Once a month is shown you can add / modify / delete Appointments.
+lang_help_calendar_mselecttext2 = 這顯示你一個月的工作.選定的一天暗紅色背景.你可以到另一天按一下日期.任何日期在目前每月可用粗體顯示.This also shows your working month. The selected day has a dark-red background. You can go to another day by clicking on the Date. Any dates in the current month that have appointments are shown in bold.
+lang_help_calendar_addtask = 新增的任務
+lang_help_calendar_addtasktext = 要添加一個任務點擊“添加”按鈕在任務欄中.該工作將展示如下.點擊任務進行編輯. 
+lang_help_calendar_deltask =刪除任務
+lang_help_calendar_deltasktext =要刪除工作，按一下任務旁邊的按鈕' X '.這項任務將被永久刪除.
+#lang_help_calendar_taskexample = '呼叫Herrod先生'是一個例子，一個任務是獨立的時間，你不能設置日曆任務的具體日期.'Call Mr. Herrod' is an example of a Task, A task is independent of time, You can not set a Calendar Task on a specific date.
+
+#/html/help/compose.html
+
+lang_help_compose_title = 撰寫/發送電子郵件
+lang_help_compose_sending = 發送郵件
+lang_help_compose_outfeat = 外寄郵件特徵
+lang_help_compose_sendhtml = HTML郵件作者
+lang_help_compose_attachments = 附件
+lang_help_compose_signatures = 簽字
+lang_help_compose_sendingtext = 通過你的郵件帳戶，你可以經互聯網發送電子郵件至任何積極的郵箱帳戶.隨著強大的HTML編輯功能(只包括IE4/IE5)你可以發送強大的HTML電子郵件，或相容（純文字訊息）使用普通的編輯發送電子郵件.</p>                  Via your WebMail email account, you can send email to any active mailbox account on the Internet. With the powerful HTML-Editor feature (IE4/IE5 only) you can send stunning HTML emails, or, for compatibility (plain text message) use the plain-editor to send standard emails.</p>
+lang_help_compose_howtosend =如何發送電子郵件通過網頁郵件
+lang_help_compose_li1 = 登錄到你的帳戶. 
+lang_help_compose_li2 = 點擊撰寫郵件的導航欄
+lang_help_compose_li3 = 填寫標題信息： 
+lang_help_compose_li4 = <b>到:</b>輸入收件人的電子郵件地址，或選擇一個電子郵件地址簿.如多個收件人請在地址之間使用逗號(﹐).
+lang_help_compose_li5 = <b>主題:</b>主題訊息. 
+lang_help_compose_li6 = <b>抄送:</b>輸入任何其他收件人的郵件地址.一份郵件將被發送給他們.
+lang_help_compose_li7 = <b>BCC:</b> 輸入郵件地址的任何接受者，郵件的所有收件人均看不見郵件抄送欄位中的收件人.
+lang_help_compose_li8 = 撰寫你的郵件在大面積提供的信息.Compose your message in the large message area provided 
+lang_help_compose_li9 = 如果需要，請按一下按鈕上傳文件為即將發出的郵件附件. 
+lang_help_compose_li10 = 在屏幕頂部或底部點擊發送郵件按鈕 
+lang_help_compose_features = 特徵發送郵件 Features of Sending Mail
+lang_help_compose_sendhtmldesc = 如果你使用的是IE5 +或Firefox 1.5+ 你可以使用功能強大的HTML電子郵件撰寫功能.這可以讓你添加特色在你的外發郵件使用HTML標記，以改變郵件的字體，顏色，大小和信息格式.使用HTML標籤，你可以從HTML表格圖像和超文本鏈接嵌入任何電子郵件，自定你的HTML標記, 選擇<b> HTML源代碼</b>按鈕，嘗試從另一個應用程序複製並粘貼標記.
+If you are using IE5+ or Firefox 1.5+ you can use the powerful HTML email-compose function. This allows you to add spice &amp; depth to your outgoing emails by using HTML tags to change the mail's font, color, size and message formatting. Using HTML tags you can embed anything you wish into your outgoing email, from HTML tables to images and hyperlinks. Define your own HTML tags by selecting the <b>HTML Source</b> button, try copy and pasting HTML tags from another application!
+lang_help_compose_sendhtmldesc2 = 請注意，此功能僅適用於最新的網絡瀏覽器
+lang_help_compose_attachmentsdesc = 附加檔案到你的電子郵件，一次點擊附加按鈕的撰寫屏幕.一個新的窗口將彈出添加附件;單擊“瀏覽”按鈕從你的硬盤驅動器選擇一個文件.當你選擇了適當的文件附件點擊“確定”.一旦上載檔案，你就可以檢查附件大小並選擇刪除該文件.多附件的支持; 由於安全和服務器空間的附件可以是一個最大的“ 2 - 10MB的大小﹐要知道確切的大小限制與管理員聯繫.
+To attach files to your email messages, first click the Attach button in the compose screen. A new window will popup to add attachments; click the "Browse" button to select a file from your hard drive. Click "OK" when you have selected the appropriate file attachment. Once files are uploaded, you can check the size of the attachment and choose to delete the file. Multiple attachments are supported; due to security and server-space attachments can be a maximum of&lt;2-10MB in size. For exact size limits contact your administrator.
+lang_help_compose_signaturesdesc = 當你發送電子郵件，你可以定義一個<b>簽署</b>要重視底部的電子郵件訊息.請參考首頁更多信息.
+When sending your email message, you can define a <b>signature</b> to be attached to thebottom of the email message. See the preferences panel for more info.
+#/html/help/file.html
+lang_help_file_text1 = 閱讀幫助文件的每個特定功能的郵箱
+lang_help_file_text2 = 以此幫助文件，你可以了解更多有關網頁郵件.選擇從上述清單了解更多有關主題.
+
+#/html/help/ldap.html
+
+lang_help_ldap_title = LDAP搜索引擎
+lang_help_ldap_text1 = 使用LDAP搜索引擎來尋找用戶發送電子郵件，地址和電話號碼.LDAP是一個公共數據庫﹐用戶的詳細資料來自全球各地.如果要開始尋找你必須指定完整名稱的用戶搜索，及可選的電子郵件地址.
+lang_help_ldap_text2 = 當查看搜索結果時，你可以選擇添加用戶地址簿，撰寫電子郵件，或按一下以獲得更多信息的用戶.
+lang_help_ldap_text3 = 如果啟用了電子郵件服務，你可以通過設置'搜索類型'至'搜索系統數據庫﹐搜索你的域名或網站的用戶.
+
+#/html/html/newmbox.html
+
+lang_help_newmbox_title = 郵箱選項
+lang_help_newmbox_text1 = 此文件夾可讓你為你的郵箱 / 文件夾自訂的選項. This folder allows you to customize the Options for Your Mailbox and it's folders.
+lang_help_newmbox_text2 = <b>活動郵箱</b>所有的郵箱文件夾清單上，郵件數量大小和文件夾的選項刪除此文件夾中.
+The <b>Active Mailbox's</b> section has a list of all your Mailbox folders, the number of messages in it, the size of the folders and the Option to Delete this folder.
+lang_help_newmbox_text3 = <b>創建一個新的郵箱</b>可以讓你添加一個新的郵箱文件夾.
+lang_help_newmbox_text4 = 在<b>電子郵件地址/垃圾郵件</b>可讓你停止通過所有的電子郵件，電子郵件地址.只需添加你不想接收電子郵件地址，然後按一下<b>新增電子郵件</b>.
+lang_help_newmbox_text5 = 自動回复選項會自動發出郵件回复每封電子郵件.你可以選擇指定的郵件發送自動回复郵件.
+lang_help_newmbox_text6 = <b>電子郵件到文件夾排序</b>選項可讓你收到的郵件從你的收件箱中的文件夾自動移動.
+#/html/html/reademail.html
+
+lang_help_reademail_title = 閱讀電子郵件
+lang_help_reademail_text1 = 你的電子郵件帳戶的郵件窗口內載列了收到的郵件﹐通過移動鼠標指定郵件，彈出菜單會將顯示前160個字元的訊息.選擇閱讀電子郵件，點擊郵件主題和越過信息.
+lang_help_reademail_text2 = 通過控制面板，你可以排序﹐主旨，收到日期，發件人和身份選擇以閱讀你的電子郵件.每封郵件的郵箱中可以明顯轉移到一個外部郵箱;你可以選擇將郵件移至垃圾桶文件夾或選擇移至候補郵箱遠離主要的收件箱.
+lang_help_reademail_text3 = 通過電子郵件窗口，你可以直接跳到選項的帳戶，或者遷移到文件夾信息窗口，以查看設置你的郵箱.
+Via the email window pane you can jump directly to the Options for the account, or move to the Folder information window to view settings for your mailboxes.
+
+#/html/html/settings.html
+
+lang_help_settings_title = 修改設置
+lang_help_settings_text =使用設置面板修改你的電子郵件帳戶偏好.定制的電子郵件服務的需求喜好： 
+lang_help_settings_head1 = 網頁郵件偏好
+lang_help_settings_fullname = 顯示名稱
+lang_help_settings_fullnamedesc = 這是用來撰寫電子郵件時，你的全名會顯示在所有外發郵件. 
+lang_help_settings_replyto = 引為
+lang_help_settings_replytodesc = 如果不同的登錄名﹐輸入你的回復電子郵件地址. 
+lang_help_settings_sortby = 排序的電子郵件
+lang_help_settings_sortbydesc = 在你的郵箱選擇命令進行排序你的電子郵件. 
+lang_help_settings_layout = 默認字體樣式
+lang_help_settings_layoutdesc = 選擇你喜歡的風格界面字體
+lang_help_settings_language = 服務語言
+lang_help_settings_languagedesc = 選擇使用的語言. 
+lang_help_settings_nrmsg = 信息顯示
+lang_help_settings_nrmsgdesc = 選擇在收件箱顯示一些電子郵件.利用返回/前進的圖標，你可以瀏覽之間的電子郵件.
+lang_help_settings_timezone = 選擇時區
+lang_help_settings_timezonedesc =輸入的時區你目前英寸這是參照發送電子郵件時，你的時間/日期將被用於. 
+lang_help_settings_signature =電子郵件簽名
+lang_help_settings_signaturedesc =請輸入你的電子郵件簽名.這是附在所有即將發出的電子郵件. 
+lang_help_settings_deltrash = 在登出時刪除垃圾 
+lang_help_settings_deltrashdesc = 如果你想切換登出時刪除你的垃圾桶上按鍵. Toggle if you wish to delete your Trash on logout
+lang_help_settings_editor = HTML編輯器
+lang_help_settings_editordesc = 選擇如果你要使用的HTML編輯器. 
+lang_help_settings_diversion = 電子郵件導流
+lang_help_settings_diversiondesc = 選擇如果你想轉發你的電子郵件地址到另一個帳戶. 
+lang_help_settings_scheme = 配色方案
+lang_help_settings_schemedesc = 選擇你想要哪個顏色使用在電子郵件頁面上. 
+lang_help_settings_inboxrefresh = 收件箱刷新頻率
+lang_help_settings_inboxrefreshdesc = 選擇的分鐘數的收件箱刷新.你會被提醒收到新郵件.
+lang_help_settings_timeformat =時間格式
+lang_help_settings_timeformatdesc =選擇的偏好，以查看時間內郵箱和日曆界面
+lang_help_settings_dateformat =日期格式
+lang_help_settings_dateformatdesc =選擇哪種格式來顯示日期
+lang_help_settings_msgpopup =留言彈出
+lang_help_settings_msgpopupdesc =選擇使用信息彈出式視窗瀏覽電子郵件時，在一個文件夾中
+lang_help_settings_autodeltrsh =自動刪除垃圾桶
+lang_help_settings_autodeltrshdesc =選擇，允許自動刪除發送到垃圾箱文件夾. 
+lang_help_settings_deltrshlogout =刪除關於註銷垃圾桶
+lang_help_settings_deltrshlogoutdesc =如果選中，你的垃圾文件夾會自動刪除，當你登出. 
+lang_help_settings_newindowpop =新窗口彈出
+lang_help_settings_newindowpopdesc =自動打開郵件中一個新的窗口
+lang_help_settings_emailsig =電子郵件簽名
+lang_help_settings_emailsigdesc =指定你的簽字.這將附在所有外發郵件
+lang_help_settings_head2 =佈局/彩色
+lang_help_settings_layouttype =佈局類型
+lang_help_settings_layouttypedesc =選擇你的首選佈局從名單上現有的接口
+lang_help_settings_head3 =郵件安全
+lang_help_settings_enablecrypt =啟用郵件加密
+lang_help_settings_enablecryptdesc =選擇啟用/停用電子郵件加密支持
+lang_help_settings_encryptlevel =加密級別
+lang_help_settings_encryptleveldesc =選擇的加密級別你希望啟用. 512位-基本安全-快速向
+加密/解密的郵件，較低水平的安全; 1024位-正常安全的默認密鑰長度的P GP加密功能; 4 096位軍事級加密.強大的安全水平，慢解密/加密郵件. 
+lang_help_settings_pgppass = PGP的密碼
+lang_help_settings_pgppassdesc =指定的密碼，你的PGP密鑰.強烈建議密碼是不同的你的帳戶中登錄增加安全性. 
+lang_help_settings_head4 =郵件設置
+lang_help_settings_forwardto =著地址
+lang_help_settings_forwardtodesc = 你希望你的電子郵件轉發到指定的帳戶，. 
+lang_help_settings_autoreplymsg =自動回复消息
+lang_help_settings_autoreplymsgdesc =或者指定一個自動回复郵件的電子郵件帳戶
+lang_help_settings_autoreplymsgdesc2 =利用郵件設置標籤，你可以隨意指定一個自動回覆訊息傳入的電子郵件.另外，你也可以使用郵件轉發工具提出你的郵件到另一個帳戶使用的.  
+  
+#/html/help/spell.html
+
+lang_help_spell_title = 拼寫檢查功能
+lang_help_spell_text1 =用拼字檢查，你可以查看你的信息拼寫錯誤.如果拼寫錯誤, 詞彙數據庫將顯示一個清單網頁,提供正確的拼寫建議. 
+lang_help_spell_text2 = 如果一個字是正確的闡述，並在頁面拋出一個拼寫錯誤，請點擊'Add Personal'添加到你的個人字典. 
+lang_help_spell_text3 = 當你已經完成拼寫檢查恢復按一下按鈕返回到編輯電子郵件.
+#/html/help/wap.html
+lang_help_wap_title =無線電子郵件 
+lang_help_wap_desc =訪問你的電子郵件通過任何的WAP /的XHTML功能的移動電話或PDA 
+lang_help_wap_text1 =你的電子郵件帳戶通過無線設備的支援行動，讓你通過移動電話或PDA發送和接收電子郵件. 登錄進入你的電子郵件帳戶，並享受所有的選項，如同在你的網頁郵件帳戶一樣.
+lang_help_wap_text2 =該服務易於使用.根據菜單'services'在你的移動設備或PDA ，請訪問你的電子郵件帳戶:<b>http://yourdomain.com/xhtml.php </b> （更改主機域名）然後，只需登錄進入你的用戶名和密碼.通過你的手機你就可以使用無線電子郵件的資源.無線模式包括5個主要職能： 
+lang_help_wap_unread =查看未讀 
+lang_help_wap_unreaddesc =此功能開啟你的信箱，並顯示未讀郵件只.有用的快速瀏覽收件箱中的最新訊息. 
+lang_help_wap_showall =顯示所有 
+lang_help_wap_showalldesc =接收的所有郵件在你的收件箱.通過設置面板，你可以指定的順序和佈局郵件顯示出來. 
+lang_help_wap_compose =撰寫訊息 
+lang_help_wap_composedesc =撰寫了一封電子郵件從鍵盤的手機，並傳送到任何電子郵件地址的互聯網. 
+lang_help_wap_options =選項 
+lang_help_wap_optionsdesc =指定的帳戶選項.包括郵件格式，風格和界面的偏好. 
+lang_help_wap_abooke =通訊錄 
+lang_help_wap_abookdesc =通訊地址簿信息以供日後存取.使用你的地址簿存儲用戶的電子郵件帳戶，並迅速添加用戶電子郵件外寄郵件. 
+lang_help_wap_text3 = 訪問你發送電子郵件，任何地點，任何時間.欲了解更多信息，或服務的困難，請聯繫你的電子郵件服務提供商.
+
+# END OF /html/help/*
+
+# 4.0 /html/javascript/
+
+# The entries in this chapter are all Javascript.
+# Javascript Messages cannot contain single or double quotes.
+# If you must use these characters consider escaping them like
+#  \'quoted text\', \"double quoted text\"
+# thanks
+
+lang_myfolders_menuroot = $pref['brandname']
+lang_myfolders_folders =文件夾
+lang_myfolders_personal =個人
+lang_myfolders_utilities =共用
+lang_myfolders_startpage =初始頁
+lang_myfolders_settings =電子郵件設置
+lang_myfolders_profile =用戶配置文件
+lang_myfolders_folderman =文件夾管理器
+lang_myfolders_filters =電子郵件過濾器
+lang_myfolders_wap =移動接入
+lang_myfolders_multiaccounts =多帳戶
+
+lang_passutil_minchars =請輸入至少8個字符的\“New Password\”. 
+lang_passutil_mismatch=密碼錯配. 
+
+lang_schemes_select = -選擇
+lang_schemes_blue =藍（默認） 
+lang_schemes_forest =森林
+lang_schemes_gray =灰色
+lang_schemes_lemon =檸檬
+lang_schemes_red =紅
+lang_blue_pane_composehtml_recipientcheck =請指定收件人的電子郵件
+lang_blue_pane_startpage_overquota =你的帳戶已超過配額.請刪除郵件
+lang_javascript_compose_uncheck =請取消\“View HTML source\”複選框，使用工具欄
+lang_javascript_compose_linkprompt =輸入鏈接的位置（例如 http://www.adomain.com )： 
+lang_javascript_composewin_change = 你確定要改變編輯和失去所有的變化？切換編輯器會恢復到一個空白的訊息. 
+lang_javascript_menubar_big_logoff = 你確定要登入嗎？ 
+lang_javascript_schemes_chscheme =配色方案和頂端橫額圖像已被更改.為了保留目前的設定，按保存按鈕.
+
+lang_javascript_validate_username =請輸入值為\“Username\”領域. 
+lang_javascript_validate_domain =請輸入值為\“Domain\”字段. 
+lang_javascript_validate_firstname =請輸入值為\“First Name\”字段. 
+lang_javascript_validate_lastname =請輸入值為\“\Last Name”字段. 
+lang_javascript_validate_question =請輸入值為\“Password Question\”字段. 
+lang_javascript_validate_minusername =請輸入至少3個字符的\“username\”字段. 
+lang_javascript_validate_minpasswd =請輸入至少8個字符的\“password\”領域. 
+lang_javascript_validate_passwords =密碼不符. 
+lang_javascript_validate_characters =請只輸入文字，數字和\“.- _\”字符的\“username\”字段. 
+lang_javascript_validate_disclaimer =你在申請前必須同意我們的免責條例.
+
+lang_javascript_validate_folders_maxfolder =郵箱名稱不能超過64個字符.請指定其他名稱. 
+lang_javascript_validate_folders_characters =請只輸入英數字元，點，逗號，- _ [] {} or ()的郵箱名稱字段. 
+
+lang_javascript_validate_group_nogroup =請輸入值為\“GroupName\”領域. 
+lang_javascript_validate_group_maxgroup =請限制你的\“GroupName\”，以32個字元. 
+lang_javascript_validate_group_characters =請只輸入文字，數字和\“.- _ \”字符的\“UserGroup\”領域. 
+
+lang_javascript_validate_password_minpasswd =請輸入至少8個字符的\'New Password\'領域. 
+lang_javascript_validate_password_maxpasswd =請輸入最多64個字符的\'New Password\'領域. 
+lang_javascript_validate_password_passwords =密碼不符. 
+lang_javascript_validate_password_question =請輸入某種\'Password Question\'﹐ 以幫助你忘記時記住你的密碼. 
+
+lang_javascript_menu_DeleteConfirm =你是否確實要刪除的文件夾 
+lang_javascript_menu_FolderMaxLength =請指定少於64個字符的文件夾名稱 
+lang_javascript_menu_OpenFolder =打開文件夾 
+lang_javascript_menu_NewFolder =新建文件夾 
+lang_javascript_menu_NewSubFolder =新子文件夾 
+lang_javascript_menu_RenameFolder =重命名文件夾 
+lang_javascript_menu_DeleteFolder =刪除文件夾 
+lang_javascript_menu_SearchFolder =搜索文件夾 
+lang_javascript_menu_RightClickMoreOptions =右鍵點擊為更多的選擇 
+
+lang_javascript_menu_ShowCalendar =顯示日曆 
+lang_javascript_menu_ShowMailboxes =查看信箱 
+lang_javascript_menu_ShowContacts =查看聯繫人 
+lang_javascript_menu_HideCalendar =隱藏日曆 
+lang_javascript_menu_HideMailboxes =隱藏郵箱 
+lang_javascript_menu_HideContacts =隱藏聯繫人
+
+lang_javascript_openmail_waitalert = 請等待頁面已完全開放之前加載一封電子郵件Please wait until the page has completely loaded before opening an email message
+
+# Alerts
+lang_blue_pane_settings_leavemsgalert = 選擇\'No\'將郵件下載並儲存在當地, 遠程服務器的郵件將刪除. 選擇 \'Yes\'如果你想將郵件存儲在遠程郵件服務器.
+# Confirms
+lang_blue_pane_abook_delgroupconfirm =你確定要從你的通訊錄刪除用戶組\''+email+'\' ？ 
+lang_blue_pane_abook_deluserconfirm =你確定要從你的通訊錄刪除用戶\''+email+'\'？ 
+lang_blue_pane_folders_delfolderconfirm =該文件夾'+FolderName+'包含'+FolderNum +'信息. 你是否確實你想刪除此文件夾？ 
+lang_blue_pane_folders_purgefolderconfirm =該文件夾'+FolderName+ '包含'+ FolderNum +'信息.你是否確實從這個文件夾刪除所有郵件?folder?
+lang_blue_pane_showmail_plain_deltrashconfirm =你是否確實要刪除所有郵件文件夾中的\'Trash\' ？
+
+# WindowStatus
+lang_msg_totalmsgs_windowstatus = $var['folder']文件夾-所有留言：$var['total'] 
+lang_blue_pane_abook_windowstatus = $var['status']查看通訊錄-$var['xize']進入  entries
+lang_blue_pane_abook_new_windowstatus =添加新用戶通訊簿
+lang_blue_pane_abook_view_windowstatus =查看/修改用戶通訊簿
+lang_blue_pane_ldap_windowstatus =通過的LDAP 搜索
+lang_blue_pane_ldap_search_windowstatus =看LDAP搜索結果
+移動lang_blue_pane_searchmove_windowstatus = 移動$var['move']留言到$var['newfolder']
+lang_blue_pane_searchresults_windowstatus = $var['status']
+
+# END OF /html/javascript/*
+
+# 5.0 /html/msg/*
+
+lang_msg_calentries_text= $ 更改['count']日曆項目  
+lang_msg_caltoday_alt =新增條目
+lang_msg_chpasswderror_text =現有的密碼不符.再試一次.
+	# IT-One March 31,2005
+lang_msg_chpasswddup_text = 新的密碼必須不同於前10個密碼.再試一次.
+lang_msg_chpasswdok_text = 密碼更新.請記住你的新密碼.
+lang_msg_emptycal_text = <i><font color='gray'>空的</font></i>
+lang_msg_onetask_text = $var['taskcount'] 任務
+lang_msg_moretasks_text = $var['taskcount'] 任務
+lang_msg_movedmsgs_text = 移動 $var['nrmsg'] 留言到 $var['newfolder'] : $var['status']
+lang_msg_msgqueue_text =留言設置為隊列
+lang_msg_nextmsg_text =下一個郵件
+lang_msg_prevmsg_text =前郵件
+lang_msg_notitle_text =無標題
+lang_msg_popdlmsg_text = <font class='sw'>下載 $var['num'] 郵件 . 全部 $var['count'] .</font>
+lang_msg_popmsgnum_text = <font class='sw'> 郵件 $var['msgnum'] ($var['msize'] bytes) . &nbsp;</font>
+lang_msg_poprelogin_text = 再次登錄 ($var['msize'] bytes).
+lang_msg_printcal_title_text = 今天項目 Entries for this day
+lang_msg_safedraft_text = 信息保存到草稿文件夾
+lang_msg_searchnr_text = $var['nrrecords'] 符合你查詢的記錄 records match your query
+lang_msg_sentmsg_text =成功發送訊息
+lang_msg_sentmsga_text =成功發送訊息|電子郵件包含附件
+lang_msg_sortmsgs_text = 移動到 $var['folder']:
+lang_msg_spamtrash_text =垃圾郵件轉移到垃圾箱
+lang_msg_spell_nomatch_text =數據庫中找不到匹配的字$var['word']
+lang_msg_spell_suggested_text = 建議的拼字為$var['word']
+lang_msg_updated_text = &nbsp;- <font color=#ff0000>Updated Successfully</font>
+
+lang_msg_viewday_alt = 查閱日
+lang_msg_viewingday_text = 查閱星期
+
+lang_msg_wap_abookempty_text = <option value=\"$email\">$email</option>\n
+lang_msg_wap_allmsgs_text =顯示所有留言
+lang_msg_wap_display_text =顯示新的留言
+lang_msg_wap_nomsg_text =郵箱已經沒有新郵件
+
+# END OF /html/msgs/*
+# END OF /html/
+# END OF FILE
+
+# New ones
+lang_Global_refresh =刷新
+lang_abook_globalview_status =查看全球用戶通訊簿
+
+# XP menubar
+lang_xp_menubar_question =提問
+lang_xp_menubar_about = 關於
+lang_xp_menubar_file =檔案
+lang_xp_menubar_edit =編輯
+lang_xp_menubar_tools =工具
+lang_xp_menubar_message =訊息
+lang_xp_menubar_preferences =偏好
+lang_xp_menubar_help =幫助
+lang_xp_menubar_signout =登出
+lang_xp_menubar_signout_alt =登出
+lang_xp_menubar_newmessage =新訊息
+lang_xp_menubar_newcalendar =新任命
+lang_xp_menubar_newtask =新任務
+lang_xp_menubar_printmessage =打印留言
+lang_xp_menubar_copy =複製
+lang_xp_menubar_selectall =選擇所有
+lang_xp_menubar_deselect =取消
+lang_xp_menubar_searchmessages =搜索郵件
+lang_xp_menubar_movetotrash =移到垃圾桶
+lang_xp_menubar_refreshinbox =刷新收件箱
+lang_xp_menubar_accountpreferences =帳戶偏好設定
+lang_xp_menubar_layouttype =佈局類型
+lang_xp_menubar_accountprofile =帳戶的個人資料
+lang_xp_menubar_changepassword =更改密碼
+lang_xp_menubar_checkinbox =檢查收件箱
+lang_xp_menubar_deletetrash =刪除垃圾桶
+lang_xp_menubar_foldermanager =文件夾管理器
+lang_xp_menubar_emailrules =電子郵件規則
+lang_xp_menubar_addressbook =通訊錄
+lang_xp_menubar_findpeople =查找人民
+lang_xp_menubar_multiaccounts =多帳戶
+lang_xp_menubar_reply =引
+lang_xp_menubar_replyall =全部回复
+lang_xp_menubar_forwardmessage =轉發郵件
+lang_xp_menubar_blocksender =座寄件者
+lang_xp_menubar_flagmessage =國旗消息
+lang_xp_menubar_unflagmessage =取消國旗消息
+lang_xp_menubar_helpindex =幫助索引
+lang_xp_menubar_mailhelp =郵件幫助
+lang_xp_menubar_settingshelp =設置幫助
+lang_xp_menubar_calendarhelp =日曆說明
+lang_xp_menubar_searchaddressbook =搜索地址簿
+#
+lang_xp_menubar_alt_writemessage =收件訊息
+lang_xp_menubar_alt_sendreceive =發送/接收
+lang_xp_menubar_alt_find =查找
+lang_xp_menubar_alt_returntomail =返回到郵件
+lang_xp_menubar_alt_overview =概覽
+
+
+
+#Xp Calendar Menubar
+
+lang_xp_menubarcal_returntomail =返回到郵件
+lang_xp_menubarcal_overview =概覽
+
+#Xp javascript messages
+lang_xp_jscript_alert_reply =請打開郵件回复
+lang_xp_jscript_alert_block =請打開郵件阻擋
+lang_xp_jscript_alert_blockconfirm =你確定要阻止的電子郵件： 
+lang_xp_jscript_alert_flag =請選擇一個訊息國旗
+lang_xp_jscript_alert_delete =請打開一個郵件刪除
+lang_xp_jscript_alert_deletemsg =刪除該郵件你在讀？ 
+lang_xp_jscript_alert_print =請打開郵件打印
+
+lang_xp_jscript_nextmsg_text =下一封郵件
+lang_xp_jscript_prevmsg_text =上一封郵件
+lang_xp_jscript_firstmsg_text =首先致詞
+lang_xp_jscript_lastmsg_text =最後消息
+
+lang_login_mailserver =郵件服務器
+
+lang_login_simple =簡單登錄 
+ 
+lang_login_simpletext =要使用簡單的登錄屏幕進入一個偏遠的帳戶 <a href="index.php?func=ext&advanced=1">click here</a>
+lang_login_advanced =高級登錄
+lang_login_advancedtext =若要指定額外的郵件服務器設置為你的帳戶<a href="index.php?func=ext&advanced=1">click here</a>登錄表單
+To specify additional mail-server settings for your account <a href="index.php?func=ext&advanced=1">click here</a> for the advanced login form 
+lang_login_xp_window1 =你已在另一窗口登錄到你的帳戶. 
+lang_login_xp_window2 =要結束你$pref['brandname']﹐ 請點擊'Logout'電子郵件中的窗口.
+# New Ones
+lang_xp_compose_menu_savetodrafts =保存郵件草稿
+lang_xp_compose_menu_addbcc =新增BCC收件人
+
+lang_xp_readmail_opennewwindow =打開郵件在新窗口
+lang_xp_global_showhide =隱藏/顯示留言
+lang_xp_jscript_alert_printmsg =請打開郵件打印
+#/html/auth_spammer.html
+
+lang_auth_spammer_title =垃圾郵件檢測
+lang_auth_spammer_ld =拒絕信息
+lang_auth_spammer_cd =你的IP地址每天發出的郵件最大數量為.為了減少垃圾郵件的可能性， 你即將發出的信息已被封鎖. 
+lang_auth_spammer_contact =聯繫電子郵件管理員($this->admin_email)援助.
+
+#/html/auth_permission.html
+lang_auth_permission_title =許可被拒絕
+lang_auth_permission_ld =允許失誤$pref['brandname']用戶目錄
+lang_auth_permission_cd =變更許可$pref['brandname']用戶目錄，網頁服務器的用戶.当寫用戶文件时審批被否定：$var['error']
+Change the permission of the $pref['brandname'] user directory to the Webserver user. Permission denied while writing user-file : $var['error']
+lang_auth_permission_contact =欲了解更多有關設置$pref['brandname']請登陸查詢<a href="http://support.atmail.com/">@Mali Online Documentation</a>
+
+#/html/deditor.html
+lang_deditor_emotions =插入情感： 
+lang_deditor_emotions_title =顯示/隱藏彈出情感
+
+#html/settings.html
+lang_settings_refresh_header =收件箱刷新頻率
+lang_settings_refresh_desc =選擇的分鐘數的收件箱刷新.聲響會提醒有新郵件. 
+lang_settings_refresh_disabled =殘缺的
+lang_settings_refresh_1mins = 1分鐘
+lang_settings_refresh_5mins = 5分鐘
+lang_settings_refresh_10mins = 10分鐘
+lang_settings_refresh_20mins = 20分鐘
+lang_settings_refresh_30mins = 30分鐘
+lang_settings_refresh_60mins = 1小時
+
+Lang_alert_import = $var['count']新的聯繫
+
+lang_login_xp_window3 =如果新的彈出窗口不會自動打開的<a href="javascript:loadwin()">點擊這裡</a>
+
+lang_login_xp_popupalert =自動彈出窗口禁用你的瀏覽器.你必須配置允許彈出窗口的網頁郵件瀏覽器.
+
+# Changed values
+lang_blue_pane_abook_addcontactbutton =新建聯繫人
+lang_blue_pane_abook_addgrpbutton =新集團
+lang_blue_pane_abook_searchbutton =搜索
+lang_blue_pane_abook_abooktype =類型：
+
+# New import function
+lang_blue_pane_abook_importbutton = 入口
+
+lang_abook_import_desc = &nbsp; 導入一個現有的地址簿到你的帳戶
+lang_abook_import_step2 =第2步：選擇該領域的進口文件配合地址簿欄.你可以選哪些領域導入到你的地址簿內$pref['brand_name']
+lang_abook_import_match =匹配字段名稱
+lang_abook_import_entries =進口條目
+lang_abook_import_step1 =第1步：選擇地址簿導入類型.最常見的電子郵件客戶端出現了地址簿一個CSV文件，使你能夠將數據導入到你的$pref['brandname']帳戶.指定的檔案類型，標題信息和要上傳的文件的位置. 
+lang_abook_import_import =選擇導入選項
+lang_abook_import_type =進口類型
+lang_abook_import_importtype = CSV文件（逗號分隔） 
+lang_abook_import_column =第一列包含的CSV欄描述
+lang_abook_import_fileselect =選擇文件導入
+lang_abook_import_submitfile =導入文件
+lang_xp_sendmsg_addbutton =添加收件人地址簿
+
+### SMS utility
+
+lang_xp_sms_tab1 = &nbsp;My&nbsp;SMS&nbsp;Credit 短信用
+lang_xp_sms_tab2 = &nbsp;SMS&nbsp;Filter 短信過濾器
+lang_xp_sms_tab3 = &nbsp;SMS&nbsp;Log    短信日誌
+lang_xp_sms_description =購買信用額來發送短消息通過via $pref['brandname']-發送郵件到其他移動電話提醒或指定的電子郵件. 
+lang_xp_sms_description2 =參閱<a href="javascript:ChangeTab('2')">短信過濾器</a>以獲取更多信息.了解如何使用短信模塊諮詢
+<a href="javascript:helpwin('sms.html')">線上文件</a>.
+
+lang_blue_pane_sms_description2 =了解如何使用SMS模塊的諮詢 <a href="javascript:help('sms.html')">線上文件</a>.
+
+lang_xp_sms_credits =分數剩餘：$var['SMSCredit']
+lang_xp_sms_purchase_credits =購買新的SMS分數
+lang_xp_sms_purchase_desc =購買額外的訊息塊添加到你的SMS分數. 
+lang_xp_sms_purchase_price =短信購買價格
+lang_xp_sms_purchase_price_10 = $ 2 - 10 Messages (20c each)
+lang_xp_sms_purchase_price_20 = $ 3 - 20 Messages (15c each)
+lang_xp_sms_purchase_price_50 = $ 6 - 50 Messages  (12c each)
+lang_xp_sms_purchase_price_100 = $ 8 - 100 Messages  (8c each)
+lang_xp_sms_purchase_card_type = 信用卡類型
+lang_xp_sms_purchase_visa = VISA
+lang_xp_sms_purchase_mastercard = MasterCard
+lang_xp_sms_purchase_amex = AMEX
+lang_xp_sms_purchase_cardname =持卡人姓名
+lang_xp_sms_purchase_cardnumber =卡號
+lang_xp_sms_purchase_card_expire =到期日
+lang_xp_sms_purchase_card_expire_01 = 01
+lang_xp_sms_purchase_card_expire_02 = 02
+lang_xp_sms_purchase_card_expire_03 = 03
+lang_xp_sms_purchase_card_expire_04 = 04
+lang_xp_sms_purchase_card_expire_05 = 05
+lang_xp_sms_purchase_card_expire_06 = 06
+lang_xp_sms_purchase_card_expire_07 = 07
+lang_xp_sms_purchase_card_expire_08 = 08
+lang_xp_sms_purchase_card_expire_09 = 09
+lang_xp_sms_purchase_card_expire_10 = 10
+lang_xp_sms_purchase_card_expire_11 = 11
+lang_xp_sms_purchase_card_expire_12 = 12
+lang_xp_sms_purchase_card_expire_2003 = 2003
+lang_xp_sms_purchase_card_expire_2004 = 2004
+lang_xp_sms_purchase_card_expire_2005 = 2005
+lang_xp_sms_purchase_card_expire_2006 = 2006
+lang_xp_sms_filter =短信過濾器-定義過濾器，通過短信提醒 
+lang_xp_sms_filter_desc =定義的電子郵件過濾器，以提醒你的郵件通過短信.使用實用工具來指定郵件將通過短信提醒. 
+lang_xp_sms_filter_active =主動推薦給短信過濾器 
+lang_xp_sms_filter_subject =主體 
+lang_xp_sms_filter_priority =優先權 
+lang_xp_sms_filter_date_created =創建日期 
+lang_xp_sms_filter_mobile_num =手機號碼 
+lang_xp_sms_filter_matches =匹配 
+lang_xp_sms_filter_define =定義電子郵件過濾器-指定一個過濾器，發送短信提醒移動電話 
+lang_xp_sms_filter_high_priority =高級優先 
+lang_xp_sms_filter_high_priority_desc=發送警戒，如果一封電子郵件有一個高優先級的設置在標題 
+lang_xp_sms_filter_email_subject =郵箱主體 
+lang_xp_sms_filter_email_subject_desc =發送短信提醒，如果電子郵件主旨匹配指定的關鍵字. 
+lang_xp_sms_filter_email_equal =平等 
+lang_xp_sms_filter_email_islike =相像 
+lang_xp_sms_filter_email_email_from =電子郵件 
+lang_xp_sms_filter_email_email_from_desc =發送短信提醒，如果電子郵件發件人符合下列關鍵字 
+lang_xp_sms_filter_mobile =移動電話 
+lang_xp_sms_filter_mobile_desc =指定的手機號碼發送警報.你必須指定的全部國家代碼移動電話和帶走任何0位於該地區的代碼.見文件充分解釋的數目格式. 
+lang_xp_sms_log_total =總發送短信： 
+lang_xp_sms_log_total_desc =以下是短信發送郵件通過@ .你可以看到狀態信息，如果成功發送確定. 
+lang_xp_sms_log_date =日期 
+lang_xp_sms_log_to =要 
+lang_xp_sms_log_message =訊息 
+lang_xp_sms_log_status =狀態 
+
+lang_myfolders_sms =公用短信
+
+### SMS Compose Screen
+
+lang_xp_sms_compose =撰寫短信
+lang_xp_sms_number =數目
+lang_xp_sms_normal =正常短信
+lang_xp_sms_flash =閃光短信
+lang_xp_sms_new =新短信
+lang_xp_sms_send_sms =發送短信
+
+#SMS Delivery Status
+
+lang_xp_sms_delivery =短信投放狀態
+lang_xp_sms_high_priority =高優先級
+lang_xp_sms_normal_priority =優先權
+lang_xp_sms_low_priority =低優先級
+
+lang_xp_sms_status_ok =成功發送訊息
+lang_xp_sms_status_fail =訊息失敗
+
+# No SMS Credit
+
+lang_xp_sms_nocredit =對不起，你沒有短信信用分數可用.請購買額度通過短信公用事業屏幕. 
+lang_xp_sms_lowcredit =你只剩不到5短信可用信用分數.購買更多的貸款通過短信公用事業屏幕. 
+
+lang_xp_compose_menu_togglesrc =切換HTML源代碼
+
+#html/virusmessage.html
+lang_virus_warning = Message contains a virus ($var['VirusName']) and cannot be opened . It is recommended that you delete the email message from your mailbox and use caution when opening mail from $var['EmailFrom']
+
+#SMS status
+lang_msg_sms_ok = 完成
+lang_msg_sms_fail = 失敗
+
+lang_Address_notes =債券
+lang_deditor_tahoma = Tahoma 
+lang_deditor_di =減少縮進
+lang_deditor_ii =增加縮進
+lang_deditor_a =創建鏈接
+lang_deditor_editmode =編輯模式
+lang_deditor_ae =高級編輯
+
+lang_deditor_s1 = Size 1
+lang_deditor_s2 = Size 2
+lang_deditor_s3 = Size 3
+lang_deditor_s4 = Size 4
+lang_deditor_s5 = Size 5
+lang_deditor_s6 = Size 6
+lang_deditor_s7 = Size 7
+lang_deditor_style =風格
+lang_deditor_font_name =字體名稱
+lang_deditor_text =文字
+lang_deditor_undo =撤消
+lang_deditor_redo =重做
+lang_deditor_sscript =上標
+lang_deditor_subscript =標
+lang_deditor_symbol =符號
+lang_deditor_jleft =左對齊
+lang_deditor_jright=解釋權     Justify Right
+lang_deditor_jcenter =對齊中心
+lang_deditor_jfull =對齊全
+lang_deditor_numbering =編碼
+lang_deditor_image =圖像
+lang_deditor_table =表格
+lang_deditor_absolute =絕對
+lang_deditor_clean =清潔
+lang_deditor_asset =資產
+lang_deditor_line =線
+lang_deditor_pageproperties =頁面屬性
+lang_deditor_pasteword =貼上從Word 
+lang_deditor_self =自我
+lang_deditor_blank =空白
+lang_deditor_parent =家長
+lang_deditor_0 = 0 
+lang_deditor_1 = 1 
+lang_deditor_2 = 2 
+lang_deditor_3 = 3 
+lang_deditor_4 = 4 
+lang_deditor_5 = 5 
+lang_deditor_name =名稱
+lang_deditor_insert =插入
+lang_deditor_update =更新
+lang_deditor_st =刪除線
+
+#
+
+lang_blue_pane_composehtml_createtable =創建表 
+lang_blue_pane_composehtml_edittable =編輯表 
+lang_blue_pane_composehtml_editcell =編輯細胞 
+lang_blue_pane_composehtml_rows =行 
+lang_blue_pane_composehtml_columns =專欄 
+lang_blue_pane_composehtml_width =寬度 
+lang_blue_pane_composehtml_pixels =像素 
+lang_blue_pane_composehtml_percent =百分比 
+lang_blue_pane_composehtml_height =高度 
+lang_blue_pane_composehtml_backgroundcolor =背景顏色 
+lang_blue_pane_composehtml_backgroundimage =背景圖片網址 
+lang_blue_pane_composehtml_bordersize =邊界大小 
+lang_blue_pane_composehtml_aligmnent =對齊 
+lang_blue_pane_composehtml_left =左 
+lang_blue_pane_composehtml_right =權 
+lang_blue_pane_composehtml_center =中心 
+lang_blue_pane_composehtml_bordercolor =邊框顏色 
+lang_blue_pane_composehtml_cellpadding =細胞填充 
+lang_blue_pane_composehtml_cellspacing =細胞間距 
+lang_blue_pane_composehtml_cellbackgroundcolor =細胞背景顏色 
+lang_blue_pane_composehtml_cellbackgroundimage =細胞的背景圖片網址 
+lang_blue_pane_composehtml_cellwidth =細胞寬度 
+lang_blue_pane_composehtml_cellheight =細胞高度 
+lang_blue_pane_composehtml_valign =垂直對齊 
+lang_blue_pane_composehtml_top =頂部 
+lang_blue_pane_composehtml_middle =中東 
+lang_blue_pane_composehtml_bottom =底 
+lang_blue_pane_composehtml_wraptext =總結文字 
+lang_blue_pane_composehtml_insertrow =插入行 
+lang_blue_pane_composehtml_insertcol =插入中校 
+lang_blue_pane_composehtml_delete =刪除 
+lang_blue_pane_composehtml_span =跨度 
+lang_blue_pane_composehtml_symbol =符號 
+lang_blue_pane_composehtml_x = X 
+lang_blue_pane_composehtml_pageproperties =頁面屬性 
+lang_blue_pane_composehtml_titles =標題 
+lang_blue_pane_composehtml_leftmargin =左邊距 
+lang_blue_pane_composehtml_rightmargin =權保證金 
+lang_blue_pane_composehtml_topmargin =頂緣 
+lang_blue_pane_composehtml_bottommargin =底緣 
+lang_blue_pane_composehtml_backgroundimage 
+lang_blue_pane_composehtml_default_font_name =預設字型名稱 
+lang_blue_pane_composehtml_default_font_size =默認字體大小 
+lang_blue_pane_composehtml_default_font_color =默認字體顏色 
+
+lang_blue_pane_settings_diversion_short =電子郵件導流 
+
+lang_xp_menubar_newsms =新短信 
+lang_xp_statusbar_loading =加載收件箱... 
+lang_logoff =註銷帳戶
+
+# html/help/sms.html
+
+lang_help_sms_title =短信幫助 
+lang_help_sms_titlehead =短信預警幫助指南 
+lang_help_sms_header =信息發現這裡將幫助你使用SMS報警功能.選擇主題清單下文以獲取更多信息. 
+lang_help_sms_sendmsg =發送短信 
+lang_help_sms_notif =電子郵件通知通過短信 
+lang_help_sms_purchase =採購學分 
+lang_help_sms_sendheader =發送短信 
+lang_help_sms_sendintro =通過你的電子郵件帳戶，你可以發送SMS（短消息服務）文本信息到世界各地的手機.
+lang_help_sms_sendhow =如何發送SMS通過你的電子郵件帳戶： 
+lang_help_sms_sendaccess =要訪問的服務選擇“工具”文件夾從你身邊然後信箱酒吧 點擊“短信工具” . 
+lang_help_sms_sendcompose =在主框架將有一個選項，點擊“撰寫短信” 鏈接.這將打開一個窗口你可以在此輸入短信的細節 
+lang_help_sms_sendfields =填寫必填字段： 
+lang_help_sms_sendphone = <b>發件人：</b>這個欄位是為了顯示你的<strong></strong>移動電話號碼.請輸入你的電話號碼如下： 
+lang_help_sms_sendformat = [國家代碼] [區號零下開始0 ] [餘下的數目] 
+lang_help_sms_sendexample1 =例如，美國移動電話號碼0208 7044627將成為1 208 7044627 
+lang_help_sms_sendset =要設置你的電話號碼在這裡永久或更改你的手機號碼，請參閱"用戶簡介"中的公用資料夾，並指定一個”蜂窩號碼. 
+lang_help_sms_sendcountry = <b>國家：</b>選擇縣的收件人.例如，如果你要發送消息人在悉尼，請選擇國家澳大利亞. 
+lang_help_sms_sendnumber = <b>號碼：</b> 移動電話號碼的收件人.例如澳大利亞的移動電話號碼0414 731 307將輸入為﹕414731307 .你不必輸入國家代碼在這一領域. 
+lang_help_sms_sendexample =輸入範例： 
+lang_help_sms_sendtype =在方塊輸入你的短信﹐上方右側將顯示你有多少剩餘字符. 
+lang_help_sms_sendcomplete =一旦短信已經完成輸入，點擊“發送”﹐那個消息然後將出現在“短信記錄”可以從SMS綜合頁面查看.
+lang_help_sms_note =電子郵件通過短信通知
+lang_help_sms_noteintro =   該短信服務可以讓你收到短信通知你收到新電子郵件.利用過濾器實用工具，你可以設定其中發電子郵件給你短信通知. 
+lang_help_sms_notehow =如何設置短信過濾器： 
+lang_help_sms_noteaccess =要訪問的服務選擇“工具”文件夾從你身邊然後點擊“短信工具”和“短信過濾”<br>
+lang_help_sms_notepriority =要提醒所有的電子郵件標記為高優先級“中的郵件標題，選擇複選框，並保存過濾器
+lang_help_sms_notecriteria =填寫領域要設置.注意：你不必進入這兩個標準領域. 
+lang_help_sms_notesubject =電郵題目﹕</b>指定關鍵詞的主題."平等"會通知你只主題行的完全匹配的關鍵字，而“像”將匹配所有的主題這一關鍵. 
+lang_help_sms_noteexp =例如：如果你設定“美國廣播公司新聞”的電子郵件主題為“等於”, 你只會收到通知與“美國廣播公司新聞”為主題的. 
+lang_help_sms_noteexample =如果設置了“美國廣播公司新聞”的電子郵件主題為“類似”你將收到通知主題行，如“回复：美國廣播公司新聞”或“美國廣播公司新聞更新”為主題行
+lang_help_sms_notefrom = <b>電子郵件是﹕</>指定發件人的電子郵件. “等於”會通知你只發送與完全匹配的關鍵字，而“像”將匹配所有發件人的這一關鍵字. 
+lang_help_sms_noterover =例如：如果你設置“ rover@hotmail.com ”作為電子郵件主題為“等於”你將只收到通知rover@hotmail.com 
+lang_help_sms_notemissrover =如果你設定“的Hotmail ”作為發件人與“像”你將收到通知所有的電子郵件地址的同字的Hotmail '的（例如jim@myhotmail.com.au﹐missrover@hotmail.com ） 
+lang_help_sms_notemobile =手機： “ / b ”輸入手機號碼你想擁有短信發送通知至.你將需要輸入電話號碼的國家代碼.例如，美國移動電話號碼0208將7044627 輸入﹕1 208 7044627 . 
+lang_help_sms_notefilter =過濾範例： 
+lang_help_sms_notesave =選擇“保存設置”﹐ 這將增加過濾器在上述名單.如果你想刪除過濾器選中相應的框然後“刪除所選” . 
+lang_help_sms_buy =採購學分 
+lang_help_sms_buyintro =之前你可以發送短信你需要購買額度.你可以通過購買你的電子郵件帳戶使用有效的信用卡. 
+lang_help_sms_buyhow =如何購買額度：
+lang_help_sms_buyfind =要訪問的服務選擇“工具”文件夾從你身邊的信箱然後按一下吧關於“短信工具”和“我的短信信用” <br> 
+lang_help_sms_buyfields =填寫必填字段： 
+lang_help_sms_buyprice = <b>購買價格﹕</b>在這裡，你可以選擇一些信用你想購買.一個
+
+信用，等於一短信.更短信你購買，價格成為短信. 
+lang_help_sms_buycard = <b>信用卡類型:</b>選擇的類型的信用卡你使用的是購買. 
+lang_help_sms_buyname =信用卡持有人姓名:</b>輸入完整的名稱出現在信用卡.如果信用卡不
+
+你的姓名，你需要的許可，持卡人在進入細節. 
+lang_help_sms_buynumber = <b>信用卡號碼：</b>全信用卡號碼
+lang_help_sms_buyexp =的<b>有效期限：</b>一個月然後一年. 
+lang_help_sms_buybuy =一旦你點擊“購買”, 你的訂單將被處理.如果卡是不成功的你會收到彈出信息.否則貸款將被添加到你的總所示.
+
+lang_xp_drag_and_drop =拖放到文件夾
+lang_imapfolders_adddesc =在這裡你可以選擇文件夾從遠程IMAP服務器顯示在你的信箱.你可以選擇開啟一個文件夾/關閉查看.欲了解更多有關這一功能請參考聯機文檔. 
+lang_imapfolders_hidedesc =下面是清單的積極夾訂閱你的帳戶.你可以選擇隱藏選定文件夾中使用下面的核取方塊. 
+lang_imapfolders_allfolders =所有文件夾
+lang_imapfolders_visible =看得見的文件夾
+lang_imapfolders_show =顯示文件夾中包含的名稱： 
+lang_imapfolders_add =添加文件夾
+lang_imapfolders_selectall =選擇所有
+lang_imapfolders_deselect =取消
+lang_imapfolders_hidefolders =隱藏文件夾
+lang_imapfolders_header = IMAP文件夾-訂閱消息文件夾
+
+lang_myfolders_imapfolders = IMAP文件夾
+lang_showmail_mailloadalert =請稍候完成載入開放之前的郵件信箱 
+
+lang_xp_sms_filter_emailall =將所有 
+lang_xp_sms_filter_emailall_desc =發送的所有郵件收到我的手機 
+
+lang_calendar_newpost_notifysms =電子郵件/短信通知收件人 
+lang_calendar_newpost_notifyhead =通知通過短信事件對你的手機 
+lang_calendar_newpost_notifyemail =電子郵件通知 
+lang_calendar_newpost_smsremind =短信提醒我 
+lang_calendar_newpost_minutes =分鐘（星期日）前 
+lang_calendar_newpost_hours =小時（星期日）前 
+lang_calendar_newpost_days =日（星期日）前 
+lang_calendar_newpost_weeks =週（星期日）前 
+lang_calendar_newpost_mobilecountry =移動國家 
+
+lang_blue_pane_abook_pgp =的PGP公鑰 
+lang_blue_pane_abook_pgp =的S / MIME公共證書 
+lang_msg_encrypt_msg =加密郵件 
+lang_msg_decrypt_msg =解密消息 
+lang_xp_pgp_decrypt_button =解密 
+lang_xp_pgp_decrypt_email =輸入密碼的PGP解密電子郵件 
+lang_xp_pgp_encrypt_email =請輸入你的PGP密碼 
+lang_xp_smime_decrypt_email =輸入的S / MIME私鑰傳遞詞組解密電子郵件 
+lang_xp_smime_encrypt_email =請輸入你的S / MIME私鑰傳遞詞組 
+lang_blue_pane_settings_mailsecurity =郵件安全 
+lang_xp_pgp_encrypt_makekey =生成PGP密鑰.請稍候1-3分鐘為加密密鑰來產生. 
+lang_xp_smime_encrypt_makekey =生成的S / MIME成對鑰匙.請稍候1-3分鐘的加密密鑰對和證書產生.
+
+lang_pgp_settings_enable_encryption =啟用郵件加密 
+lang_pgp_settings_encryption_desc = $縣[ '牌子' ]支持電子郵件加密的撥出/接收的郵件.為了使 
+
+功能，你需要產生一個獨特的PGP或的S / MIME鑰匙與安全的密碼.若要了解更多關於電子郵件加密 
+
+功能的在線諮詢文件 
+lang_pgp_settings_encryption_enable =啟用 
+lang_pgp_settings_encryption_disable =禁用 
+lang_pgp_settings_encryption_publickey =的PGP公鑰 
+lang_pgp_settings_encryption_publickey_desc =你的公開密鑰用於加密郵件 
+lang_pgp_settings_encryption_key =公共密鑰 
+lang_pgp_settings_encryption_key_desc =自動追加公共密鑰的外寄郵件 
+lang_pgp_settings_encryption_sign =簽名留言 
+lang_pgp_settings_encryption_sign_desc =自動登錄即將離任的電子郵件與你的公共密鑰. 
+lang_pgp_settings_encryption_level =加密級別 
+lang_pgp_settings_encryption_level_512 = 512位-基本安全.快速加密/解密的郵件，較低水平的保障. 
+lang_pgp_settings_encryption_level_1024 = 1024比特-正常安全.默認的鑰匙長度為PGP加密功能 
+lang_pgp_settings_encryption_level_4096 = 4096比特-軍事級加密.強大的安全水平，慢解密/加密郵件. 
+lang_pgp_settings_encryption_pgp_password = PGP的密碼 
+lang_pgp_settings_encryption_pgp_password_desc =指定的密碼，你的PGP密鑰.強烈建議密碼不同的從你的帳戶中登錄增加安全性. 
+lang_pgp_settings_encryption_pgp_password_confirm =確認的PGP密碼 
+
+lang_pgp_compose_encrypt_message =加密郵件 
+lang_pgp_compose_sign_message =註冊信息 
+lang_pgp_compose_encrypt_sign_message =加密和簽名 
+lang_pgp_compose_encrypt_attach_pgp =附上我的公鑰
+
+lang_smime_settings_encryption_publiccert =的S / MIME公共證書 
+lang_smime_settings_encryption_publiccert_desc =你的市民證書，用來解密，並簽署郵件 
+lang_smime_settings_encryption_privatekey =的S / MIME私鑰 
+lang_smime_settings_encryption_privatekey_desc =你的私人密鑰，用來加密和驗證的郵件 
+lang_smime_settings_encryption_sign =登錄郵件的默認 
+lang_smime_settings_encryption_sign_desc =自動簽署的外寄郵件與你的私人密鑰. 
+lang_smime_settings_encryption_encrypt =加密郵件的默認 
+lang_smime_settings_encryption_encrypt_desc =即將離任的自動加密電子郵件的收件人的公共密鑰（如果你有他們的公共密鑰存儲） . 
+lang_smime_settings_encryption_level =加密級別 
+lang_smime_settings_encryption_level_512 = 512位-基本安全.快速加密/解密的郵件，較低水平的安全. 
+lang_smime_settings_encryption_level_1024 = 1024比特-正常安全.默認的鑰匙長度的S / MIME加密 
+lang_smime_settings_encryption_level_4096 = 4096比特-軍事級加密.強大的安全水平，慢解密/加密郵件. 
+lang_smime_settings_encryption_smime_password =的S / MIME私鑰過手語 
+lang_smime_settings_encryption_smime_password_desc =指定傳遞詞組為你的S / MIME的私人鑰匙.強烈建議在傳遞不同的詞組是從你的帳戶中登錄增加安全性. 
+lang_smime_settings_encryption_smime_password_confirm =確認的S / MIME傳遞詞組 
+
+lang_smime_compose_encrypt_message =加密郵件 
+lang_smime_compose_sign_message =註冊信息 
+lang_smime_compose_encrypt_sign_message =加密和簽名 
+
+lang_blue_pane_settings_new_window =新窗口彈出 
+lang_blue_pane_settings_new_window_desc =自動打開郵件中一個新的窗口 
+
+lang_simple_readmail_header =讀郵件 
+lang_simple_readmail_header_draft =讀郵件草案 
+
+lang_xp_compose_add_abook =新增電子郵件從AddressBook 
+lang_global_next_msg =下一步訊息
+lang_global_prev_msg =前 
+
+lang_Global_Inbox =收件匣 
+lang_Global_Sent =寄件 
+lang_Global_Drafts =草稿 
+lang_Global_Trash =垃圾桶 
+lang_Global_Spam =垃圾郵件 
+
+lang_xhtml_abook_headerdesc =訪問你的通訊錄通過你的無線裝置 
+lang_xhtml_abook_title =通訊錄 
+lang_xhtml_abook_back =回 
+lang_xhtml_abook_options =選項： 
+lang_xhtml_abook_new =添加新 
+lang_xhtml_abook_deleteselected =刪除所選： 
+lang_xhtml_abook_emailoptions =電子郵件選項： 
+lang_xhtml_abook_addto =添加到： 
+lang_xhtml_abook_addcc =購買抄送： 
+lang_xhtml_abook_compose =撰寫 
+lang_xhtml_abook_mainmenu =主菜單 
+
+lang_xhtml_error_title =錯誤 
+lang_xhtml_error_errorcard =錯誤警報！ 
+lang_xhtml_error_back =回 
+lang_xhtml_error_anerroroccured =時發生錯誤訪問 
+lang_xhtml_error_messagefollows =的信息如下： 
+lang_xhtml_error_pressbackandcorrect =請按返回並糾正錯誤！ 
+lang_xhtml_error_loginagain =或登錄 
+
+lang_xhtml_loginpop_loginpoptitle =外部登錄 
+lang_xhtml_loginpop_logincardtitle =登錄到郵箱！ 
+lang_xhtml_loginpop_enteraccountdetails =訪問你的外部電子郵件帳戶上的無線移動電話.輸入你的帳戶的詳細資料進行. 
+lang_xhtml_loginpop_usernametitle =用戶名： 
+lang_xhtml_loginpop_username =用戶： 
+lang_xhtml_loginpop_password =密碼： 
+lang_xhtml_loginpop_domain =域： 
+lang_xhtml_loginpop_protocol =協議： 
+lang_xhtml_loginpop_mailtype = 郵件類型
+lang_xhtml_loginpop_developedby =開發 
+
+lang_xhtml_readmsg_subject =主題： 
+lang_xhtml_readmsg_from =發件人： 
+lang_xhtml_readmsg_date =日期： 
+lang_xhtml_readmsg_movemsg =移動訊息 
+lang_xhtml_readmsg_mainmenu =主菜單
+
+lang_xhtml_addbook_titleaddentry =新增條目 
+lang_xhtml_addbook_userinformation =用戶信息： 
+lang_xhtml_addbook_email =電子郵件： 
+lang_xhtml_addbook_name =名稱： 
+lang_xhtml_addbook_addedinfo =由信息： 
+lang_xhtml_addbook_addedinfoenter =輸入 
+lang_xhtml_addbook_save =保存 
+
+lang_xhtml_error_back =回 
+lang_xhtml_help_intro =通過手機你就可以使用無線電子郵件的資源. $縣[ '牌子' ]的WAP包括5個主要職能，概況如下： 
+lang_xhtml_help_showunreadhead =查看未讀： 
+lang_xhtml_help_showunreadhelp =此功能開啟你的信箱，並顯示未讀郵件只.有用迅速瀏覽你的收件箱中的最新訊息 
+lang_xhtml_help_showallhead =顯示所有： 
+lang_xhtml_help_showallhelp =接收的所有郵件在你的收件箱.通過設置面板，你可以指定的順序和佈局信息顯示 
+lang_xhtml_help_composehead =撰寫訊息： 
+lang_xhtml_help_composehelp =撰寫了一封電子郵件從鍵盤的手機;傳送到任何電子郵件地址的互聯網 
+lang_xhtml_help_optionshead =選項： 
+lang_xhtml_help_optionshelp =指定的帳戶選項.包括郵件格式，風格和界面使用偏好 
+lang_xhtml_help_addresshead =通訊錄： 
+lang_xhtml_help_addresshelp =店鋪地址簿信息以供日後存取.使用你的地址簿存儲用戶的電子郵件帳戶，並迅速添加用戶電子郵件外寄郵件 
+
+lang_xhtml_sent_title =已寄出的郵件 
+lang_xhtml_sent_msgsent =訊息已發送！ 
+lang_xhtml_sent_success =電子郵件訊息成功交付 
+lang_xhtml_showmsgs_titleinbox =收件匣 
+lang_xhtml_showmsgs_writeemail =收件電子郵件
+
+lang_xhtml_compose_composetitle =撰寫 
+lang_xhtml_compose_composeintro =撰寫的電子郵件從鍵盤在你的手機上. 
+lang_xhtml_compose_enter =輸入： 
+lang_xhtml_compose_messagetext =訊息文字： 
+lang_xhtml_compose_messagesend =發送 
+lang_xhtml_compose_selectabook =選擇的電子郵件地址簿 
+lang_xhtml_compose_msgtext =訊息文字： 
+lang_msg_compose_specifyto =請指定一個受援國在為外地 
+
+
+lang_xhtml_login_titlelogin =登錄 
+lang_xhtml_login_intro =訪問你的電子郵件使用移動電話. 
+lang_xhtml_login_loginexternal =登錄到外部信箱 
+lang_xhtml_login_orlogin =或登錄到你的地方 
+lang_xhtml_login_account =帳戶： 
+
+lang_xhtml_settings_titlesettings =設置 
+lang_xhtml_settings_cardtitle =設置 
+lang_xhtml_settings_settingsintro =自訂你的WAP電子郵件設置-選擇電子郵件的佈局，風格和信息格式. 
+lang_xhtml_settings_fullname = Fullname ： 
+lang_xhtml_settings_replyaddress =回复地址： 
+lang_xhtml_settings_buttonsave =保存 
+
+lang_xhtml_signup_titlesignup =註冊 
+lang_xhtml_signup_cardtitlesignup =註冊 
+lang_xhtml_signup_signupintrotitle =獲取你自己的無線電子郵件帳戶！ 
+lang_xhtml_signup_signupintrotext =今天登記即可直接使用手機通過WAP﹐當你遠離辦公室電腦，在你的汽車/出國時連接到互聯網訪問你的電子郵件
+lang_xhtml_signup_accountrego =帳號註冊： 
+lang_xhtml_signup_email =電子郵件： 
+lang_xhtml_signup_password =密碼： 
+lang_xhtml_signup_again =再次： 
+lang_xhtml_signup_domain =域名： 
+lang_xhtml_signup_personalinformation =個人信息： 
+lang_xhtml_signup_firstname =第一名稱： 
+lang_xhtml_signup_existingemailaccount =現有的電子郵件帳戶：
+lang_xhtml_mainmenu_titlemain =主菜單 
+lang_xhtml_mainmenu_readnewemail =閱讀新的電子郵件 
+lang_xhtml_mainmenu_readallemail =閱讀所有電子郵件 
+lang_xhtml_mainmenu_writeemail =收件的電子郵件 
+lang_xhtml_mainmenu_addressbook =通訊錄 
+lang_xhtml_mainmenu_settings =設置 
+lang_xhtml_mainmenu_help =幫助 
+
+lang_xhtml_redirect_desc =重定向郵件 
+
+lang_xhtml_readmsg_next =下一頁 
+lang_xhtml_readmsg_prev =昨日 
+lang_xhtml_readmsg_last =上次 
+lang_xhtml_readmsg_first =第一 
+
+lang_myfolders_messagetemplate =郵件模板 
+lang_myfolders_spamsettings =垃圾郵件設置 
+lang_blue_pane_heading_templates =訊息模板-自定義即將離任的電子郵件 
+
+lang_auth_maxaccounts_error =最大帳務已達 
+lang_auth_maxaccounts_msg =的最大數額的賬戶已經建立使用的IP地址.你不能添加任何 
+
+其他帳戶使用的IP地址. 
+
+lang_blue_pane_ldap_alert =請指定一個搜索查詢 
+
+lang_blue_pane_heading_spamsettings_msg =垃圾郵件設置-自定義郵件過濾為你的帳戶 
+
+lang_javascript_validate_email =請輸入電子郵件地址的通訊錄條目. 
+
+lang_blue_pane_abook_exportbutton =出口 
+lang_xp_menubar_newcontact =新建聯繫人 
+lang_xp_menubar_viewpersonal_contact =檢視個人 
+lang_xp_menubar_viewshared_contact =查看共享 
+lang_xp_menubar_viewglobal_contact =察看全球 
+
+lang_blue_pane_abook_shared =共享聯繫人 
+
+lang_blue_pane_abook_entry_readonly =只讀 
+
+lang_javascript_validate_permissions =至少有一個用戶或組必須具有讀/寫訪問的地址簿條目 
+
+lang_Address_home =首頁 
+lang_Address_notesprofile =說明/簡介 
+lang_Address_permissions =權限 
+
+lang_Address_description =建立新的使用者在你的通訊錄.你可以指定用戶詳細聯繫方式和電話 
+
+號碼，或只是記錄他們的姓名和電子郵件地址. 
+lang_Address_middlename =中間名稱 
+lang_Address_title =標題 
+lang_Address_submitbutton =提交 
+lang_Address_setdefaultbutton =設置默認 
+lang_Address_applybutton =套用 
+lang_Address_stateprovince =州/省
+lang_Address_postalzipcode =郵政/郵編
+lang_Address_webpage = Web頁
+lang_Address_jobtitle =職稱
+lang_Address_department =部
+lang_Address_office =辦公室
+lang_Address_workmobile =工作電話移動電話
+
+lang_Address_optiondescription =或者指定額外的說明，指定的PGP或的S / MIME郵件加密密鑰，或查看工作組成員的用戶. 
+
+lang_Address_groupmembership =組成員
+lang_Address_extrainformation =筆記/額外信息
+lang_Address_pgpencryptionkey = PGP的加密密鑰
+lang_Address_smimeencryptionkey =的S / MIME加密密鑰
+
+lang_Address_userselection =選擇哪些用戶附加到要，抄送和密送領域.選擇用戶個人，共享或全球地址簿下面
+lang_Address_userpermission =選擇哪些用戶有讀/寫權限來存取通訊錄條目.可選離開該領域的空白條目建立在你的個人通訊錄. 
+lang_Address_grouppermission =選擇哪些用戶有讀/寫訪問權限組地址條目.可選離開該領域的空白集團要建立在你的個人通訊錄. 
+
+lang_Address_selectgroupsusers =選擇組和用戶
+lang_Address_readwriteaccess =讀/寫訪問
+lang_Address_readonlyaccess =只讀訪問
+lang_Address_removebutton =刪除
+
+lang_Address_optiondescpicture =或者指定用戶的圖片為addressbook形象.查看該用戶群體的成員，並指定額外信息領域的說明. 
+
+lang_composebook_messagerecipients =郵件收件人 
+lang_composebook_find =查找 
+
+lang_spamsettings_allowrecipient =允許收件人 
+lang_spamsettings_allowsenders =信任的發件人 
+lang_spamsettings_denysenders =黑名單發件人 
+lang_spamsettings_viruscanning =病毒掃描 
+lang_spamsettings_selectoptionscanviruses =選擇的選項，自動掃描傳入郵件病毒 
+lang_spamsettings_spamtreatment =垃圾郵件處理 
+lang_spamsettings_selectspammethod =選擇的治療方法垃圾郵件 
+lang_spamsettings_methodmark =標記為垃圾郵件（默認） 
+lang_spamsettings_methodtrash =移動到垃圾郵件文件夾 
+lang_spamsettings_methodbounce =清除信息
+lang_spamsettings_trusteduserstitle =信任使用者 
+lang_spamsettings_trustedusers = Addressbook用戶信賴的電子郵件來源.繞過垃圾郵件過濾器的addressbook用戶. 
+lang_spamsettings_expression =表達/訊息字串 
+lang_spamsettings_expressionemail =電子郵件地址 
+lang_spamsettings_ruletype =規則型 
+lang_spamsettings_deny =拒絕 
+lang_spamsettings_allow =允許 
+lang_spamsettings_score =分數 
+lang_spamsettings_passthrough_header =過手代碼 
+lang_spamsettings_passthrough_desc =選擇，指定一個傳遞代碼的電子郵件主題行.如果郵件比賽指定的字符串，用戶的電子郵件地址將自動值得信賴的向你發送郵件.
+lang_mailtemplate_description =使用此面板，你可以創建模板，即將離任的消息.這可以讓你定制你的郵件與你自己的風格，顏色，圖像和個人照片.該接口還可以讓你瀏覽以前創建模板和修改的內容. 
+
+lang_mailtemplate_nametitle =模板名稱
+lang_mailtemplate_createnew =創建一個新的郵件模板
+lang_mailtemplate_choosename =選擇的名稱模板-這可以選擇時，撰寫新郵件
+
+lang_newfoldermodal_foldernamealert =請只輸入文字，數字，空格和\ ".-_[]() \ “中的字符\ “文件夾\ ”領域. 
+
+lang_newfoldermodal_foldernamelimitalert =請指定下64個字符的文件夾名稱
+
+lang_newfoldermodal_placefolder =選擇放置的文件夾中： 
+
+lang_templatestep2_selectstyledesciption =下一步，選擇的樣式訊息的範本.你將可以選擇你公司徽標，個人照片和地址信息個性化的信息模板. 
+
+lang_templatestep2_selectstyle =選擇的樣式模板
+lang_templatestep2_defaulttemplate =默認模板
+lang_templatestep2_hightechtemplate =高新技術模板
+lang_templatestep2_retrotemplate =復古模板
+lang_templatestep2_simpletemplate =簡單模板
+lang_templatestep2_nextstep =下一步
+
+lang_templatestep3_specifyparagraph =或者你可以指定一個個人照片，公司標誌和手寫 
+
+簽名顯示郵件的範本.選擇一個圖像從你的計算機，並點擊'下一步'按鈕，上傳 
+
+圖片.正確的格式驗證圖片的高度和寬度匹配的建議值如下. 
+
+lang_templatestep3_imagepicturetitle =圖片圖片 
+lang_templatestep3_photodescription =照片上顯示的外寄郵件 
+lang_templatestep3_photopixels = 200像素寬/高100像素的建議 
+lang_templatestep3_companylogotitle =公司標誌 
+lang_templatestep3_companylogoimage =的形象你的公司徽標 
+lang_templatestep3_imagesignaturetitle =圖像簽名 
+lang_templatestep3_imagesignaturedescription =選擇一個圖片簽名顯示在的外寄郵件 
+lang_templatestep3_tablebordertitle =表格邊框顏色外寄郵件 
+lang_templatestep3_selectcolortitle =選擇顏色 
+
+lang_templatestep4_optionaldetails =指定可選的詳細聯繫方式 
+lang_templatestep4_websiteurl =網站網址 
+lang_templatestep4_specifyurl =指定你網站的網址出現在郵件標題 
+lang_templatestep4_jobtitle =選擇你的工作所有權可以附加到郵件模板 
+lang_templatestep4_workslogan =工作標語 
+lang_templatestep4_specifyslogan =可選的口號出現在你的名字 
+lang_templatestep4_worktelephone =工作電話號碼 
+lang_templatestep4_specifyworktelephone =指定你的工作電話號碼 
+lang_templatestep4_faxnumber =傳真號碼 
+lang_templatestep4_specifyfaxnumber =指定你的傳真號碼 
+lang_templatestep4_homephone =住宅電話 
+lang_templatestep4_specifymobile =指定的數量的移動電話 
+lang_templatestep4_specifyhomephone =指定的聯絡電話號碼你的家 
+lang_templatestep4_zip =郵編 
+lang_templatestep4_updateprofile =更新個人資料 
+lang_templatestep4_loadcontactdata =負載的聯繫數據到你的$pref['brandname']用戶的個人資料 
+
+lang_templatestep5_generatedtemplate =以下是生成的模板根據你的具體信息.該模板已創建成功後，當新郵件是由模板將自動使用.為了改變HTML源代碼模板訪問<a href="util.php?func=settings">設置面板</>和修改模板內的電子郵件簽字領域. 
+
+lang_blue_pane_abook_email =點擊電子郵件 
+
+lang_blue_pane_ldap_basedn =基本DN 
+lang_blue_pane_ldap_basedn_desc =輸入一個搜索參數根 
+lang_blue_pane_ldap_passworddesc =或者指定密碼的LDAP服務器 
+lang_blue_pane_ldap_binddn_desc =或者指定用戶名的LDAP服務器 
+
+lang_blue_pane_import_windowstatus =進口addressbook 
+
+
+
+lang_javascript_validate_emaildefault =只有一個電子郵件地址可以設置為默認 
+lang_javascript_validate_validemail =請指定一個有效的電子郵件地址 
+lang_javascript_validate_maxemail =最大的5電子郵件地址可以指定 
+
+lang_blue_pane_abook_personal_desc =個人聯繫 
+
+lang_addressbook_titlerw =地址簿條目-讀/寫訪問 
+lang_addressbook_titlero =地址簿條目-只讀訪問 
+lang_addressbook_addresstype =地址類型 
+lang_addressbook_group =組別 
+lang_addressbook_summarybelow =以下是地址簿摘要，供用戶選擇.要修改的記錄點擊'編輯' 按鈕的頂部菜單 
+lang_addgroup_grouptype =選擇類型 
+lang_addgroup_grouptype_personal =個人組別 
+lang_addgroup_grouptype_shared =共享組別 
+lang_addgroup_groupemails =組電子郵件 
+lang_addgroup_groupdetails =組詳細資料 
+lang_addgroup_addgroup =添加組別 
+lang_addgroup_createanewgroup =創建一個新的電子郵件組中選擇電子郵件地址的左側面板，並在右邊的窗格中增加用戶.或者指定組的細節和使用者的權限讀/寫的任務. 
+lang_addgroup_email =電子郵件 
+lang_addgroup_lastname =姓氏 
+lang_addgroup_optionally =或者指定額外的資料組，包括詳細地址，聯繫信息和雜項說明.
+
+lang_attachmentmodal_upload =上傳文件到服務器
+lang_attachmentmodal_return =返回消息
+
+lang_attachmentmodallist_click =點擊瀏覽並選擇一個文件你的願望
+lang_attachmentmodallist_attach =附加到電子郵件然後點擊上傳
+
+lang_composebook_windowclosed =原來的電子郵件窗口已經關閉，不能添加收件人
+
+lang_composesms_toolongaltert =信息太長的請縮短訊息長度
+lang_composesms_recipietaltert =請指定收件人的短信
+lang_composesms_countryaltert =請指定該國發送短信
+
+lang_blue_pane_folders_create =創建郵箱
+
+lang_imapfolders_imapfolders = IMAP文件夾
+
+
+lang_ldap_searchpersonal =搜索個人通訊錄
+
+
+lang_ldap_searchshared =搜索共享地址簿
+
+lang_middletoggle_nopanes =目前沒有開放的項目窗格，窗格中打開的意見菜單. 
+
+
+lang_addressbook_viewingentry =看地址條目
+lang_addressbook_dateadded =日期由
+
+lang_blue_pane_spellcheck_changeword =變化的Word 
+lang_blue_pane_spellcheck_ignoreword =忽略詞
+lang_blue_pane_spellcheck_addword =購買Word來辭典
+
+lang_xp_menubar_view =檢視
+lang_templatestep4_optionaldetailsformessage =或者指定你的詳細聯繫方式顯示的信息模板. 
+
+
+lang_xp_header_hideshowalt =隱藏/顯示郵件文件夾
+
+
+lang_deditor_pastetext =粘貼文字
+lang_deditor_pastehtml = HTML粘貼
+
+lang_javascript_validatefilters =請輸入一個表達增加. 
+
+lang_xp_menubar_encoding =編碼
+
+lang_Address_type =接觸式
+
+lang_blue_pane_folders_entermailboxname =輸入郵箱名稱
+
+lang_javascript_validate_alpha_characters =請只輸入字母數字字符，點，逗號， -_ [ ] （ ）或（ ）的名稱. 
+lang_header_refresh =刷新
+lang_header_refresh_mailbox =刷新郵箱
+lang_header_toggle_view =切換檢視
+lang_header_close_mail_pane =關閉郵件窗格
+lang_header_close_contact_pane =親密接觸窗格
+
+lang_help_description =描述
+lang_help_troubleshooting =疑難解答
+
+
+### Additional help information
+
+lang_help_acctconfig_title =帳戶配置
+lang_help_acctconfig_head1 =如何更改我的外發電子郵件的名字嗎？ 
+lang_help_acctconfig_text1 =你的顯示名稱“的名稱出現在每一個進出的電子郵件訊息，接收
+
+會看到作為發件人.要改變“顯示名稱”你必須： 
+lang_help_acctconfig_text2 =按一下“設置”從主菜單. 
+lang_help_acctconfig_text3 =輸入你想要的名稱為“顯示名稱”字段. 
+lang_help_acctconfig_text4 =點擊保存設置
+
+lang_help_acctconfig_text6 =如何創建簽名？ 
+lang_help_acctconfig_text7 =簽字是一個信息，即會自動添加到下方的每封電子郵件發送它. 
+
+它可以是一個方便的方法把你的電話號碼和地址的電子郵件. 
+lang_help_acctconfig_text8 =按一下“設置”從主菜單. 
+lang_help_acctconfig_text9 =輸入你的簽字，使之成為“電子郵件簽名”欄位. 
+lang_help_acctconfig_text10 =點擊保存設置. 
+
+
+lang_help_mailerrors_title =郵件錯誤
+lang_help_mailerrors_head1 =我收到下面的錯誤-錯誤連接到郵件服務器-域是否存在接受傳入連接？ 
+lang_help_mailerrors_text1 =這是不正確造成的郵件服務器的信息.要變通解決此，請執行如下：
+ang_help_mailerrors_text2 =點擊鏈接“外部登錄”在登錄頁 
+lang_help_mailerrors_text3 =登入頁面上會出現，輸入的<b>充分的詳細地址</b>的郵件服務器的主辦你的電子郵件.例如mail.yourdomain.com ， pop3.yourdomain.com ， mail.ispserver.com ，等找到正確的 
+
+郵件服務器地址檢查你的桌面客戶端設置主機名或與你的ISP聯繫的進一步細節. 
+lang_help_mailerrors_text4 =請輸入你的用戶名和密碼 
+lang_help_mailerrors_text5 =點擊“登錄” 
+lang_help_mailerrors_head2 =我收到下面的錯誤時，通過Outlook訪問-<i>Relaying not permitted.</i>
+lang_help_mailerrors_text6 =為了解決這個，請執行下列步驟： 
+lang_help_mailerrors_text7 =打開Outlook 
+lang_help_mailerrors_text8 =點擊<b>工具“ >帳戶”/b> 
+lang_help_mailerrors_text9 =點擊“郵件”標籤. 
+lang_help_mailerrors_text10 =選擇你的帳戶，然後選擇“服務器”標籤 
+lang_help_mailerrors_text11 =這裡的服務器信息應如下： 
+lang_help_mailerrors_text12 =傳入： pop.mydomain.com 
+lang_help_mailerrors_text13 =的SMTP ： smtp.mydomain.com 
+lang_help_mailerrors_text14 =帳戶名稱：你必須輸入完整的電子郵件地址在這裡，包括域名 
+lang_help_mailerrors_text16 =現在檢查框，<i>"My server requires authentication".</i> ，然後點擊“設置”在這裡確認第一個單選按鈕稱<i> “使用相同的設置接收郵件服務器” </i>檢查. Now check the box that says <i>"My server requires authentication".</i> And then click on "Settings" here verify that first radio button that says <i>"Use same settings as my incoming mail server"</i> is checked.
+
+lang_help_mailerrors_text17 =現在點擊“高級”標籤 
+lang_help_mailerrors_text18 =在這裡確保“發送郵件”端口設置為： 25 
+lang_help_mailerrors_text19 =按一下“應用”保存更改，你應該能夠發送電子郵件. 
+lang_help_mailerrors_head3 =當我登錄，我收到了類似的錯誤-“無法打開文件： ' s ometable.MYD” 
+lang_help_mailerrors_text20 =有可能是數據庫服務器的損壞.如果發生這種情況，請聯繫你的網絡管理員，並要求該數據庫進行修復.
+
+lang_help_mailsend_title =郵件發送 
+lang_help_mailsend_head1 =我可以傳送同樣的信息不止一人？ 
+lang_help_mailsend_text1 =你可以發送相同的郵件至縣[ ' max_recipients_per_msg ' ]人在同一時間. 
+lang_help_mailsend_text2 =發送郵件，以一人以上，新增額外的電子郵件地址的收件人： ，抄送： ， 
+
+和/或密件副本：領域分離分號（例如， benlee@isp.net ; john@mycompany.com ，等等） . 
+lang_help_mailsend_head2 =如何檢查拼寫的郵件？ 
+lang_help_mailsend_text3 =要檢查拼寫的文字，單擊“拼寫檢查”按鈕，設在信息窗口. 
+lang_help_mailsend_text4 =郵件有拼寫錯誤會以紅色突出顯示.按一下工作要修改，和了一份建議清單將會出現.選擇新詞，它會自動更換.一旦完成拼寫檢查，然後點擊恢復按鈕返回到郵件的組成網頁. 
+lang_help_mailsend_head3 =我可以儲存未完成的電子郵件發送草案沒有嗎？ 
+lang_help_mailsend_text5 =是的.為了挽救一個未完成的電子郵件發送的組成沒有它，點擊“保存信息”按鈕上方附近的撰寫訊息窗口.保存後，你可以打開郵件隨時隨地通過： 
+lang_help_mailsend_text6 =點擊“草稿”鏈接左邊導航欄. Clicking the "Drafts" link on the left-hand folder navigation bar.
+lang_help_mailsend_text7 =點擊郵件要繼續撰寫. 
+lang_help_mailsend_text8 =郵件保存在你的草稿文件夾將繼續，直到你刪除. 
+lang_help_mailsend_head4 =什麼是最大的郵件我可以傳送嗎？ 
+lang_help_mailsend_text9 =隨著@郵件的郵件帳戶，你就可以收到郵件$pref['max_msg_size'] MB.並傳送訊息達府$pre['max_msg_size'] MB.因此，要發送總編碼大小的郵件不能超過$pref['max_msg_size'] MB. 
+ With an @Mail Mail account, you can receive message up to $pref['max_msg_size'] MB. And send message up to $pref['max_msg_size'] MB. Therefore, the total encoded size of the email message you are sending cannot exceed $pref['max_msg_size'] MB.
+
+lang_help_mailsend_text10 =注意：當附加檔案到你的電子郵件，就必須進行編碼，並在這樣做時，將擴大規模.附件發送的電子郵件都必須翻譯成不同的格式，以便其他的電子郵件程序可以閱讀.這種類型的轉變，將增加大約33 ％的原始大小的附件.因此，由於翻譯一2MB的附件可能會變成一個2.66MB的電子郵件後，編碼. 
+lang_help_mailsend_head5 =為什麼我得到一個“傳遞失敗”的訊息嗎？ 
+lang_help_mailsend_text11 =你通常會收到“傳遞失敗”的訊息當你輸入了不正確或無效電子郵件地址.你將獲得郵件“郵件傳遞子系統”或“郵件，虛擬”的主題類似“失敗的通知”這表明發送的郵件無法完成，所以反彈/退還給你. 這些郵件自動產生，並通常會包括一個簡短的未能交付解釋..
+## EOF
+
+lang_help_mngmsg_title =管理郵件 
+lang_help_mngmsg_head1 =多少郵件我可以/商店@郵件郵局？ 
+lang_help_mngmsg_text1 =要找到存儲限制你的帳戶，點擊開始上的郵箱界面的 
+
+配額總結你的帳戶 
+lang_help_mngmsg_head2 =是否在我的郵件文件夾伯爵垃圾桶對我的儲存限制？ 
+lang_help_mngmsg_text2 =是的.郵件在你的垃圾文件夾計入你的儲存空間限制.要永久刪除 
+
+內容從垃圾文件夾，點擊“清空垃圾桶”圖標位於底部的郵件列表窗格“閱讀 
+
+消息“網頁.然後你會詢問你是否確信如果你想刪除所有的郵件.點擊“是”刪除或“否”返回前一頁. 
+lang_help_mngmsg_text3 = <i>注意：</i>一旦消息掏空的垃圾文件夾中，他們將被永久刪除，並不能收回. 
+lang_help_mngmsg_head3 =我怎麼知道當我達到我的電子郵件儲存空間配額？ 
+lang_help_mngmsg_text4 = @郵件郵箱將顯示你的配額使用的起始網頁.當你有90 ％以上的存儲空間能力的使用，你應該考慮取消一些電子郵件或獲取更多的存儲空間 
+lang_help_mngmsg_head4 =我如何清空我的垃圾桶？ 
+lang_help_mngmsg_text5 =要永久刪除的內容從垃圾文件夾，點擊“清空垃圾桶”圖標位於 
+
+底部的郵件列表窗格中的“閱讀郵件”頁面.然後，你會詢問你是否確信如果你想刪除所有 
+
+該郵件.點擊“是”刪除或“否”返回到前一頁. 
+lang_help_mngmsg_text6 = <i>注意：</i>一旦消息掏空的垃圾文件夾中，他們將被永久刪除，並不能收回.<br> 
+lang_help_mngmsg_head5 =我如何創建一個新文件夾？ 
+lang_help_mngmsg_text8 =為了幫助組織可以創建許多文件夾作為你喜歡.為了創建一個文件夾，你可以到： 
+lang_help_mngmsg_text9 =轉到“創建一個新文件夾”一節中的“文件夾管理器”頁面. 
+lang_help_mngmsg_text10 =輸入文件夾名稱. 
+lang_help_mngmsg_text11 =點擊“創建文件夾”按鈕. 
+lang_help_mngmsg_head6 =如何重新命名文件夾？ 
+lang_help_mngmsg_text12 =右鍵單擊選定的郵箱文件夾窗口： 
+lang_help_mngmsg_text13 =然後，你可以鍵入一個新的文件夾名稱在這裡; 
+lang_help_mngmsg_text14 =命中關鍵的返回提交的變化 
+lang_help_mngmsg_head7 =我要如何轉移郵件到我的一個文件夾？ 
+lang_help_mngmsg_text15 =要轉讓的信息，你的一個文件夾中你必須： 
+lang_help_mngmsg_text16 =打開文件夾中包含的信息被轉移. 
+lang_help_mngmsg_text17 =如訊息要轉移，勾選框左邊的訊息.不止一個郵件可以選擇的時間.
+lang_help_mngmsg_text18 =選擇目標文件夾. 
+lang_help_mngmsg_text19 =點擊“移動”按鈕. 
+lang_help_mngmsg_text20 =訊息（星期日）將被轉移. 
+lang_help_mngmsg_text21 = （<i>注意</i> ：郵件不能轉移到你的收件箱和所有外部POP3帳戶文件夾.你不必轉移郵件到你的垃圾文件夾;你就可以選擇左邊的方塊的訊息並點擊“刪除”按鈕. ） 
+lang_help_mngmsg_head8 =如何查看該文件夾的內容？ 
+lang_help_mngmsg_text22 =要查看該文件夾的內容，點擊文件夾，你要打開. 
+lang_help_mngmsg_head9 =我如何刪除文件夾？ 
+lang_help_mngmsg_text23 =為了刪除文件夾你首先必須刪除所有郵件內（只空的文件夾
+
+可以刪除） .要刪除的文件夾你必須： 
+lang_help_mngmsg_text24 =點擊“文件夾管理器”的主菜單. 
+lang_help_mngmsg_text25 =選擇的文件夾，你要刪除，並點擊“刪除”鏈接位於權
+
+右手邊的物品. 
+lang_help_mngmsg_text26 =該文件夾將被刪除. 
+lang_help_mngmsg_text27 = <i>注意： </i> ，你不能刪除的文件夾常任理事國在你的帳戶中.永久文件夾的收件箱，發送，草稿和垃圾桶文件夾.
+
+
+lang_help_rcvattach_title =接收附件 
+lang_help_rcvattach_head1 =為什麼我不能查看附件？ 
+lang_help_rcvattach_text1 =首先，如果你不能查看附件從目前的位置，你應該首先嘗試拯救該附件，你的硬盤驅動器，然後嘗試查看它從那裡.如果此方法不起作用，見下文. 
+lang_help_rcvattach_text2 =由於每個附件你會收到是一種特定類型的文件，例如文件. “文件”和圖像可以“圖片”文件你可以查看有問題的文件，如果你的瀏覽器沒有配置為支持該類型的檔案.其中一個方法是升級你的瀏覽器. 
+Since every attachment you receive is a specific type of file, for example documents are ".doc" and images can be ".jpg" files you may have problems viewing the file if your browser is not configured to support that type of file. One way to deal with this problem is to upgrade your browser.
+
+lang_help_rcvattach_head2 =什麼是病毒？ 
+lang_help_rcvattach_text3 = A的病毒是一種程序，複製自身，感染你的計算機就像生物生物體的名稱相同.惡意攻擊者可以利用病毒對一些邪惡的目的.最常見的方法散佈病毒是通過電子郵件. 
+lang_help_rcvattach_text4 =病毒可以傳播自己一旦啟動，其後果往往是破壞性和破壞性的. 
+lang_help_rcvattach_head3 =怎麼能辦到的病毒掃描？ 
+lang_help_rcvattach_text5 =你不需要採取任何行動，如果你有訂閱的服務，因為@郵件反病毒掃描病毒自動攔截在服務器端. 
+
+
+lang_help_recvmail_title =接收郵件 
+lang_help_recvmail_head1 =如何攔截郵件來自特定寄件者的？ 
+lang_help_recvmail_text1 =通過封鎖某人的電子郵件地址，你將防止任何發送的郵件從他或她就可以 
+
+當你使用@郵件網頁郵件.要阻止你的地址有： 
+lang_help_recvmail_text2 =轉到“電子郵件地址/垃圾郵件”一節坐落在“文件夾”頁面. 
+lang_help_recvmail_text3 =輸入地址在“輸入電子郵件地址，以阻止”領域. Enter the address in the "Enter email address to block" field.
+lang_help_recvmail_text4 =點擊“添加郵箱” . 
+lang_help_recvmail_text5 =地址就會出現在名單上的封鎖地址.你也可以阻止任何電子郵件特定的主題，步驟類似上述的. 
+lang_help_recvmail_head2 =什麼是最大的郵件我可以接收？ 
+lang_help_recvmail_text6 =隨著@郵件的電子郵件帳戶，你就可以接收和發送郵件至$pref['max_msg_size'] MB.因此，總編碼大小的郵件要發送不能超過$pref['max_msg_size'] MB. 
+lang_help_recvmail_text7 = <b>注意：</b>當附加檔案到你的電子郵件，就必須進行編碼，並在這樣做時，將擴大規模.該附件的電子郵件發送，必須翻譯成不同的格式，以便其他的電子郵件程序可以閱讀.這種類型的轉變，將增加大約33 ％的原始大小的附件.因此，由於 
+翻譯一2MB的附件可能會變成一個2.66MB的電子郵件後，編碼.
+
+
+lang_help_sndattach_title =發送附件 
+lang_help_sndattach_head1 =我該如何加入附件的郵件？ 
+lang_help_sndattach_text1 =如果要附加檔案到你的電子郵件，做到以下幾點： 
+lang_help_sndattach_text2 =首先按一下按鈕，附加在撰寫畫面. 
+lang_help_sndattach_text3 =一個新的窗口將彈出添加附件;單擊“瀏覽”按鈕選擇一個文件從你的硬盤驅動器 
+lang_help_sndattach_text4 =點擊“確定”當你選擇了適當的文件附件. 
+lang_help_sndattach_text5 =一旦上載檔案，你就可以檢查的規模，查封或選擇刪除該文件. 
+lang_help_sndattach_text6 = <i>注意：</b>當附加檔案到你的電子郵件，就必須進行編碼，並在這樣做時，將擴大規模.該附件的電子郵件發送，必須翻譯成不同的格式，以便其他的電子郵件程序可以閱讀.這種類型的轉變，將增加大約33 ％的原始大小的附件.因此，由於 
+翻譯一2MB的附件可能會變成一個2.66MB的電子郵件後，編碼. 
+
+lang_help_addfaq_title =通訊簿中的常見問題 
+lang_help_addfaq_head1 =我該如何進口我國現有addressbook ？ 
+lang_help_addfaq_text1 =要輸入地址簿，做到以下幾點： 
+lang_help_addfaq_text2 =匯出地址簿從另一個客戶端（Outlook，直達）作為一種文字檔案 Export the addressbook from another client (Outlook, Express) as a text CSV file
+lang_help_addfaq_text3 = addressbook導入到@郵件到<b> 地址簿 >“輸入”</b> 
+lang_help_addfaq_text4 =界定領域的addressbook 
+lang_help_addfaq_text5 =怎麼我現有的出口addressbook ？ 
+lang_help_addfaq_text6 =若要匯出addressbook ，只需點擊“導出”的Addressbook窗格.該addressbook將 
+
+提取為CSV文件. 
+lang_help_addfaq_head2 =我該如何創建一個組地址簿/ addressbook接觸？ 
+lang_help_addfaq_text7 =要創建一個新組聯繫，做到以下幾點： 
+lang_help_addfaq_text8 =點擊圖標Addressbook在你的郵局窗口; 
+lang_help_addfaq_text9 =轉到新地址條目，然後組地址; 
+lang_help_addfaq_text10 =組addressbook ，指定哪些用戶可以讀/寫訪問. 
+lang_help_addfaq_head3 =如何發送加密的信息，用戶組addressbook ？ 
+lang_help_addfaq_text11 =要發送加密的郵件到另一個addressbook用戶，他/她的PGP密鑰必須儲存在 
+
+剖面;的PGP密鑰的公共密鑰，存儲在ASCII格式. 
+lang_help_addfaq_head4 =我如何建立自己的個人組嗎？ 
+lang_help_addfaq_text12 =要創建你自己的個人組，只需點擊“新建組”按鈕addressbook菜單. 
+lang_help_addfaq_head5 =之間的區別是什麼個人，共享和全球地址簿？ 
+lang_help_addfaq_text13 =個人地址簿只看見誰的用戶創造它.共享地址簿是一個地址簿看見一個具體的人，可編輯的用戶選擇在這一特定群體.全球通訊錄類似的所有-接觸可以讀取沒有任何限制.Personal addressbook are only visible to the user who created it. A shared address book is an addressbook visible to a specific number of people, and can be edited by users chosen in that particular group. The Global address book is similar to all - contacts can be read without restrictions.
+
+lang_help_apop3faq_title = POP 3的常見問題 
+lang_help_apop3faq_head1 =我要如何新增另一個POP3帳戶？ 
+lang_help_apop3faq_text1 =要創建一個新的外部POP3.IMAP帳戶，做到以下幾點： 
+lang_help_apop3faq_text2 =移至<b>實用程序“ >多帳戶”</b> 
+lang_help_apop3faq_text3 =指定你的第一次對外帳戶，在下拉框中 
+lang_help_apop3faq_text4 =指定你的主機名和用戶名的文本框. 
+lang_help_apop3faq_head2 =我的POP3帳戶不起作用. 
+lang_help_apop3faq_text5 =請檢查你的POP3/IMAP帳戶的詳細資料是正確的.你可以參考你的桌面客戶端設置正確的用戶名，域名和郵件服務器的信息.諮詢你的ISP提供更多的細節你的郵件帳戶 
+
+lang_help_acctconfig_title =帳戶配置 
+lang_help_acctconfig_head1 =如何更改我的外發電子郵件的名字嗎？ 
+lang_help_acctconfig_text1 =你的顯示名稱“的名稱出現在每一個進出的電子郵件訊息，接收看到作為發件人.要改變“顯示名稱”你必須： 
+lang_help_acctconfig_text2 =按一下“設置”從主菜單. 
+lang_help_acctconfig_text3 =輸入你想要的名稱為“顯示名稱”字段. 
+lang_help_acctconfig_text4 =點擊保存設置 
+lang_help_acctconfig_head2 =如何創建簽名？ 
+lang_help_acctconfig_text5 =簽字是一個信息，即會自動添加到下方的每封電子郵件發送它.它可以是一個方便的方法把你的電話號碼和地址的電子郵件. 
+lang_help_acctconfig_text6 =按一下“設置”從主菜單. 
+lang_help_acctconfig_text7 =輸入你的簽字，使之成為“電子郵件簽名”欄位. 
+lang_help_acctconfig_text8 =點擊保存設置. 
+lang_help_acctconfig_head3 =如何停用消息彈出？ 
+lang_help_acctconfig_text9 =切換彈出（複選框） 
+lang_help_acctconfig_head4 =教我如何打開郵件在一個新窗口？ 
+lang_help_acctconfig_text10 =切換新窗口彈出（複選框）
+
+
+lang_help_calshared_title =用共享的日曆 
+lang_help_calshared_text1 =共享日曆可以讓你指定特定用戶的任務，並成立任用的可見，以某一特定群體你定義.信息在這裡將引導你使用共享的日曆. 
+lang_help_calshared_text2 =創建一個共享的任命 
+lang_help_calshared_text3 =要創建一個共同的任命在郵局日曆，只要做到以下幾點： 
+lang_help_calshared_text4 =在你的日曆窗格中，單擊日期，其中要設置任命英寸 
+lang_help_calshared_text5 =你將會看到一個彈出窗口.在這裡，你可以設定時間，日期和類別的任命.在這個窗口中，點擊選擇所謂的“集團任命” . 
+lang_help_calshared_text6 =點擊標籤所謂的“參與者” .在這裡，你可以明確界定哪些用戶讀/寫或只讀訪問權限任命. 
+lang_help_calshared_text7 =點擊“添加條目” 
+
+
+lang_help_hints_title =提示和竅門 
+lang_help_hints_head =今日提示 
+lang_help_hints_text1 =郵局提示與技巧 
+lang_help_hints_text2 =你可以調整列在你的郵箱窗格，如果使用先進的界面.這是專門有用如果你使用的是較小的決議，以查看網頁郵件界面.只要按一下並拖曳欄的邊界，你可以調整到理想水平. 
+lang_help_hints_text3 =你可以打開一個上下文菜單中右鍵點擊郵件.這是一個更容易的方式回复，轉發，或打開郵件.
+lang_help_hints_text4 =你可以輕鬆地子右擊對原有的文件夾. 
+lang_help_hints_text5 =你是否知道，你可以加密你的電子郵件？只要到<b>公用事業> “電子郵件設置” > 郵件安全</b>的選項，如何使加密的電子郵件. 
+lang_help_hints_text6 =你的郵局帳戶可以很容易地與Outlook同步的同步工具.一個專門該節專題可以找到的<a href = "parse.php?file=html/english/help/sync.html">這裡“ / 1 ” 
+lang_help_hints_text7 =你可以親自指派你的黑名單/白名單中的垃圾郵件Settings文件夾.這樣做可以使你的垃圾郵件過濾器更有效的和有效的. 
+lang_help_hints_text8 =不記得收件人的電子郵件嗎？容易-你可以添加收件人直接從地址簿的“添加收件人”按鈕.如果能夠在服務器上，你還可以查看共享和全球地址的書籍系統. 
+lang_help_hints_text9 =要發送自定義HTML代碼通過電子郵件？為此，你可以輕鬆切換之間的“Plain”和“的HTML”編輯在你撰寫郵件窗口 
+lang_help_hints_text10 =在你的日曆，你可以指定哪些用戶有只讀和讀寫訪問任命.這樣，你就可以允許指定的人來改變日期和細節. 
+lang_help_hints_text11 =要使用的地址其他LDAP服務器？沒問題-你可以做到這一點的< b>查找人民</b> 窗口，在這裡你可以指定LDAP服務器查詢，隨著參數你希望你的搜索是有限的. 
+Want to use addresses on other LDAP servers? No problem - you can do this in the <b>Find People</b> window, where you can specify the LDAP server you want to query, along with the parameters you want your search to be limited to.
+
+lang_help_hints_text12 =你的其他POP3/IMAP帳戶也可通過郵局客戶端.為此，你可以在你的的<b>實用程序“ >多帳戶</b>窗口，在這裡你可以定義的主機，郵箱，以及郵件服務器你要訪問. 
+lang_help_hints_text13 =你是否知道你可以按一下並拖曳郵件從一個文件夾到另一個？只要將一個電子郵件訊息到目標文件夾，如果使用AJAX界面.對於先進的IE瀏覽器接口，你可以點擊郵件圖標 並拖動到文件夾樹在左邊-這是一個更容易的方式將你的訊息. 
+lang_help_hints_text14 =如果你不想查看郵件標籤使用先進的界面，你可以輕鬆地改變這一點-在<b>Utilities > Email Settings > WebMail Preferences</b> 窗口中，只看的複選框“消息彈出”, 並啟用它. 
+lang_help_hints_text15 =增加的業績郵箱界面的配置你的瀏覽器緩存的HTML/圖像.訪問互聯網選項->Internet-臨時文件 >設置->檢查新版本的存儲網頁= “自動” .Increase the performance of the WebMail interface by configuring your browser to cache the 
+HTML/images. Visit the Internet-Options -> Temporary Internet Files -> Settings -> Check for newer versions of stored pages = 
+"Automatically" .
+
+
+lang_help_import_title =進口Addressbook幫助指南
+lang_help_import_text1 =信息發現這裡將幫助你在進口現有的地址簿到你的郵箱
+
+帳戶. 
+lang_help_import_text2 =選擇導入選項
+lang_help_import_text3 =選擇導入選項
+lang_help_import_text4 =選擇相應的領域
+lang_help_import_text5 =要導入地址簿，你需要的日期將在CSV文件格式.主張的CSV逗號分隔值，並且將類似於： 
+lang_help_import_text6 =名字，姓氏，姓名， 電郵地址，街道，城市,.... 
+lang_help_import_text7 =如果你輸入你的地址簿從另一個電子郵件用戶端，如Outlook ，你可以匯出你的地址數據為CSV此計劃內. 
+lang_help_import_text8 =例如，如果你想導入地址簿從Outlook Express ，你將採取下列步驟. 
+lang_help_import_text9 = 1 ：在Outlook中，訪問文件->“導出”通訊錄. In Outlook, visit File --&gt; Export --&gt; Address Book.
+lang_help_import_text10 = 2 ：你將可選擇轉換出口的格式.will then have the option to select what sort of format you would like the export to convert to.
+lang_help_import_text11 =選擇“文本文件（逗號分隔值） ” 
+lang_help_import_text12 = 3 ：然後，你可以選擇儲存的檔案在你的電腦某個.選擇瀏覽器按鈕，找到一個合適的地點和名稱的文件. 
+lang_help_import_text13 = 4 ：現在，你可以選擇其中的數據地址簿你想導入到你的郵箱. 點擊“完成”當你的工作要做. 
+lang_help_import_text14 = 5 ：你的地址簿的CSV現在應該順利完成.現在返回到郵局界面. 
+lang_help_import_text15 =訪問地址簿功能，並選擇下面的按鈕“輸入入” .填寫必要的資料. 
+lang_help_import_text16 =第一列包含的CSV欄描述： </strong>大多數CSV文件，其中包括新創建的文件通過 Outlook中包含欄說明.如果你不知道，你就可以檢查開放在記事本文件的CSV標題 First row contains CSV column description: </strong>Most CSV files, including files created via Outlook, contain the column descriptions. If your not sure, you can check if your CSV contains the headings by opening the file in Notepad.
+
+lang_help_import_text17 =點擊“瀏覽”按鈕，從地址匯入書，並選擇你的檔案創建.然後點擊“導入文件”和你幾乎沒有！ 
+lang_help_import_text18 =選擇相應的領域</strong></font>&nbsp;[<A HREF="#top">top</A>]<br><br>以下你可以選擇哪些領域，從你的CSV比賽的郵箱地址簿領域.Selecting corresponding fields</strong></font>&nbsp;[<A HREF="#top">top</A>]<br><br> Here you can select which fields from your CSV match with the WebMail address book fields.
+lang_help_import_text19 =郵局將試圖找到最佳的比賽，但如果它不正確，你可以改變它通過每個領域的下拉菜單. 
+lang_help_import_text20 =如果有外地的“選擇”這意味著，郵局無法找到數據區域.這可能是因為它不包括在你的CSV .它不會影響出口或造成任何問題，只要電子郵件地址字段是正確連接起來. 
+lang_help_import_text21 =一旦你這樣做，單擊“導出” . 
+lang_help_import_text22 =如果成功的話，你將會收到通知的一些新的接觸，然後向你的新最新的地址簿.
+
+lang_help_ldapfaq_title =的LDAP常見問題 
+lang_help_ldapfaq_head1 =我如何查詢LDAP服務器？ 
+lang_help_ldapfaq_text1 =要查詢LDAP服務器，做到以下幾點： 
+lang_help_ldapfaq_text2 =轉到搜索地址簿
+lang_help_ldapfaq_text3 =在下拉式淹死方塊標示為“搜索類型” ，選擇“ LDAP服務器” 
+lang_help_ldapfaq_text4 =指定你的LDAP服務器，下面詳細說明 
+lang_help_ldapfaq_text5 =填入搜索字段，然後點擊“查詢數據庫” 
+lang_help_ldapfaq_text6 =我如何指定一個外部LDAP服務器？ 
+lang_help_ldapfaq_text7 =要指定一個外部LDAP服務器，填寫的文字欄位在你的查詢窗口所謂“的LDAP服務器“ .填入搜索字段你會與一個正常的查詢，然後點擊”查詢數據庫“ 
+
+
+lang_help_smsfaq_title =短信常見問題 
+lang_help_smsfaq_head1 =為什麼我不能發送短消息通過@郵件？ 
+lang_help_smsfaq_text1 =請記住，通過短信@ Mail是不是免費的-為了能夠接收/發送郵件，你將需要購買短信塊從你的服務供應商/管理員. 
+lang_help_smsfaq_head2 =郵件不會到達收件人. 
+lang_help_smsfaq_text2 =如果這種情況發生，請檢查以下內容： 
+lang_help_smsfaq_text3 =你有足夠的學分短信為你的帳戶 
+lang_help_smsfaq_text4 =詳細的收件人是正確的 
+lang_help_smsfaq_text5 =如果這些是正確的，請注意，在時間，短信網關可以經驗技術困難.如需進一步信息，請聯繫系統管理員.
+
+
+
+lang_help_spellfaq_title =拼寫檢查常見問題 
+lang_help_spellfaq_head1 =我怎麼知道我的電子郵件是拼寫檢查？ 
+lang_help_spellfaq_text1 =當拼寫檢查已完成的瀏覽器將刷新電子郵件窗口的新拼寫. 
+
+如果沒有拼寫錯誤被發現網頁自動刷新 
+lang_help_spellfaq_head2 =我的郵件發送未經通知 
+lang_help_spellfaq_text2 =請注意，該郵件將無法發送，直到你點擊“發送”按鈕.如果你 
+
+遇到這個問題，但是，請聯繫你的網絡管理員. 
+lang_help_spellfaq_head3 =該拼寫檢查改變的話是一門外語. 
+lang_help_spellfaq_text3 =根據這些語言你登錄到郵箱界面，拼寫檢查字典 
+
+將默認使用當地語言.默認字典的拼寫檢查設置為英文. 
+
+
+lang_help_sync_title =同步實用的Outlook 
+lang_help_sync_head1 =什麼是美元的縣[ '牌子' ]同步工具？ 
+lang_help_sync_text1 =該實用工具可以讓你同步你的Webmail帳戶與Outlook .有了它所有的聯繫人，日曆和 
+
+任務信息你的郵局帳戶被轉移到Outlook中，反之亦然. 
+lang_help_sync_head2 =如何啟用郵件用Outlook的同步傳輸？ 
+lang_help_sync_text2 =要同步你的郵局帳戶與Outlook ，做到以下幾點： 
+lang_help_sync_text3 =首先，下載@郵件同步安裝實用的Outlook 2000年， 2003年或2007年在 
+lang_help_sync_text4 =下載後，運行郵件同步安裝工具並安裝該軟件在你的 
+
+計算機.安裝後，重新啟動Outlook和新的插件將被自動安裝. 
+lang_help_sync_text7 =下一步，定義你的郵箱帳戶的詳細資料在郵局同步工具窗格.點擊<b>工具“ > 
+
+選項“中< / b ”菜單，然後選擇標籤標示為“郵局同步配置” 
+lang_help_sync_text8 =保存所有更改，然後退出帳戶選項窗口. 
+lang_help_sync_head3 =我如何同步我的Webmail帳戶與Outlook ？ 
+lang_help_sync_text9 =在啟用郵件同步(見上文)﹐你會看到一個宏觀按鈕標示為“郵箱同步”
+
+工具欄： 
+lang_help_sync_text10 =按一下按鈕， Outlook將同步與你的郵箱帳戶自動運行.
+
+
+lang_help_wapfaq_title =無線電子郵件的常見問題 
+lang_help_wapfaq_head1 =我如何獲得@郵件使用我的無線設備？ 
+lang_help_wapfaq_text1 =你可以訪問你的無線接口使用http://yourserver.com/xhtml.php對WAP - 2兼容 
+
+移動設備和XHTML兼容的瀏覽器和設備. 
+lang_help_wapfaq_text2 =登錄頁不工作，我的筆記本電腦或瀏覽器 
+lang_help_wapfaq_text3 =檢查你有一個開頭，兼容的設備 
+lang_help_wapfaq_head2 =我無法登錄到我的帳戶 
+lang_help_wapfaq_text4 =你可能需要審核你的用戶名/域名和郵件服務器領域 
+
+lang_help_calfaq_title =日曆常見問題 
+lang_help_calfaq_head1 =如何創建日曆條目？ 
+lang_help_calfaq_text1 =要創建一個新日曆項，只是做到以下幾點： 
+lang_help_calfaq_text2 =點擊一個日期的日曆窗格的權利，選擇什麼日期你想要的任務/任命 
+
+將定於. 
+lang_help_calfaq_text3 =按一下你想要的時間在左邊的日曆窗格. 
+lang_help_calfaq_text4 = A的彈出窗口將會出現-提供的細節在這裡你的任命. A pop-up window will appear - provide the details of your appointment here.
+
+lang_help_calfaq_head2 =我要如何新增一個新任務？ 
+lang_help_calfaq_text5 =要添加新的任務，點擊“添加新任務”的右下角你的日曆窗口.字母a 彈出窗口會出現-填入必要的領域.
+To add a new task, click on "Add a New Task" on the lower-right corner of your Calendar window. A pop-up window will appear - fill in the necessary fields.
+ 
+lang_help_calfaq_text6 =如何更改我的看法日曆？ 
+lang_help_calfaq_text7 =你可以改變的看法，你的日曆中選擇的選項框的右邊郵件工具欄.你可以選擇它作為安排每週，每雙週，每季度或每年. 
+
+lang_help_search_title =搜索文件 
+lang_help_search_header =搜索結果： 
+lang_help_search_text1 =你的搜索查詢是列在了下面.最相關的鏈接列在最前面.為了改善搜索，使用多個關鍵字和具體的搜索查詢. 
+lang_help_search_text2 =使用搜尋表單找到關鍵字@郵件文件.輸入你的搜索字詞下方點擊'搜索'按鈕.優化搜索指定額外的關鍵字，一個具體的搜索查詢 
+lang_help_search_text3 =搜索字詞
+lang_help_loginhelp_title =登錄幫助 
+lang_help_loginhelp_head1 =帳戶登入援助： 
+lang_help_loginhelp_text1 =要登錄到你的@ Mail帳戶，或者獲得外部帳戶使用@郵件客戶端，你會需要提供一個用戶名和密碼，然後選擇接口類型和你的語言偏好.可選的外部使用權@ Mail客戶端，你可能需要提供郵件服務器的名稱. 
+lang_help_loginhelp_text2 = <b>用戶名</b> ：這是常見的個人識別碼與你的郵件服務器，例如用戶吉姆有一個電子郵件帳戶isp.com ，他的電子郵件地址是： jim@isp.com 
+lang_help_loginhelp_text3 = <b>密碼</b> ：一個密鑰，確定你登錄授權使用的電子郵件帳戶. 如果你忘記了密碼，或者想改變它點擊'更改密碼'鏈接登錄頁 
+lang_help_loginhelp_text4的<b>郵件服務器= </b> ：這個欄位是用於外部POP3/IMAP mailservers只.指定的郵件服務器地址用於你的帳戶，例如： jim@isp.com ，將利用郵件服務器' mail.isp.com ' 
+lang_help_loginhelp_text5 = <b>帳戶類型</b> ：這個字段只用於外部mailservers ，你將需要指定什麼類型的帳戶，或者POP3或IMAP . 
+lang_help_loginhelp_text6 = <i>隨著POP3帳戶</i> ，你可以選擇你的郵件移動或複製郵件外部的POP3郵件服務器. 
+lang_help_loginhelp_text7 = <i>隨著IMAP帳戶</i” ，你的會議是鏡像的IMAP服務器.任何你創建的文件夾，或發送的郵件移至將反映在遠端IMAP服務器.所有郵件都存儲在保留在遠程機器，讓你存取相同的數據在另一個郵件客戶端. 
+lang_help_loginhelp_text8的<b>接口= </b> ：你可以選擇你的郵箱會議界面.$pref['brand_name'] 配備更多的一個接口，你可以選擇，這取決於能力，你的瀏覽器和偏好. 
+lang_help_loginhelp_text9 = <b>語言</b>  ：你可以選擇的語言使用郵箱的界面. 
+lang_help_loginhelp_text10 =註冊一個帳戶 
+lang_help_loginhelp_text11 =如果你沒有一個帳戶管理員可以有選擇地使新帳戶創建 
+
+通過網絡.點擊新賬戶'連結登入頁面上的帳戶註冊表格 
+lang_help_loginhelp_text12 =大多數字段是可選的，但你需要提供一個新的電子郵件名稱(用戶)﹐密碼（確認） ，一個名字，一個姓和一個密碼問題.填寫必要的欄位，並提交形式，和你的第一個帳戶登錄將立即開始. Most fields are optional, although you will need to provide a new Email Name ( Username ), Password ( and confirmation ), a First Name, a Surname and a Password Question. Fill in the required fields and submit the form, and your first account login will commence immediately.
+
+lang_help_loginhelp_text13 =疑難解答-我不能登錄到我的帳戶： 
+lang_help_loginhelp_text14 =檢查郵件服務器的地址是正確的當你正試圖登錄到外部帳戶. 
+lang_help_loginhelp_text15 =檢查你輸入的密碼正確，請檢查密碼實用如果你忘記或想更改密碼. 
+對於lang_help_loginhelp_text16 = @郵件系統，多個網域，請檢查網域領域是正確的.
+
+
+lang_help_loginhelp_title =登錄幫助 
+lang_help_loginhelp_head1 =帳戶登入援助： 
+lang_help_loginhelp_text1 =要登錄到你的@ Mail帳戶，或者獲得外部帳戶使用@郵件客戶端，你會需要提供一個用戶名和密碼，然後選擇接口類型和你的語言偏好.可選的外部使用權@ Mail客戶端，你可能需要提供郵件服務器的名稱. 
+lang_help_loginhelp_text2 = <b>用戶名</b>  ：這是常見的個人識別碼與你的郵件服務器，例如用戶，吉姆有一個電子郵件帳戶isp.com ，他的電子郵件地址是： jim@isp.com 
+lang_help_loginhelp_text3 = <b>密碼</b> ：一個密鑰，確定你登錄授權使用的電子郵件帳戶.如果你忘記了密碼，或者想改變它點擊'更改密碼'鏈接登錄頁 
+lang_help_loginhelp_text4的<b>郵件服務器= </b>  ：這個欄位是用於外部POP3/IMAP mailservers只.指定的郵件 
+
+服務器地址用於你的帳戶，例如： jim@isp.com ，將利用郵件服務器' mail.isp.com ' 
+lang_help_loginhelp_text5 = <b>帳戶類型</b>  ：這個字段只用於外部網頁服務器 ，你將需要指定 
+
+lang_calendar_titlerw =日曆條目-讀/寫訪問 
+lang_calendar_titlero =日曆條目-只讀訪問 
+
+lang_blue_pane_abook_deleteselected =刪除所選 
+lang_xp_jscript_alert_delcaltask =你是否確實要刪除的條目？ 
+
+lang_blue_pane_settings_mail_settings =郵件設置 
+
+lang_blue_pane_folders_text2 =或者指定郵件路由規則，以具體的電子郵件自動轉移到另一個文件夾. 
+lang_blue_pane_folders_xp =要重命名的文件夾或創建一個子文件夾，右鍵點擊所需文件夾的菜單樹左邊框架. 
+
+
+lang_calendar_newpost_personalappointment =個人任命 
+lang_calendar_newpost_groupappointment =集團任命 
+lang_calendar_newpost_category =類別 
+lang_calendar_newpost_delegate =選擇哪些用戶委託的日曆條目.選擇指定用戶讀/寫訪問 
+
+lang_calendar_readtask_personaltask =個人工作 
+lang_calendar_readtask_grouptask =組工作 
+
+lang_msg_loginerror_mail_head =錯誤連接到郵件服務器 
+lang_msg_loginerror_mail_body =域名是否存在，並接受傳入連接？按一下<ahref='javascript:helpwin ("loginhelp.html")'>help-guide</a> 取得更多信息 Does the domain exist and accept incoming connections? Click the <ahref='javascript:helpwin ("loginhelp.html")'>help-guide</a> for more information
+
+
+lang_help_loginhelp_title =登錄援助
+lang_menu_haventgot =沒有得到一個帳戶嗎？沒問題-h ref="index.php?func=signup">註冊的< a“ / 1 ”的免費電子郵件 
+
+地址和獲取新的帳戶分鐘. 
+lang_menu_newaccount =新帳戶註冊 
+lang_menu_clickhereext =的<a href="javascript:switchtype()">點擊這裡“ / 1 ”訪問任何外部POP3/IMAP帳戶.使用@郵件 
+
+作為一個郵箱客戶端為你現有的郵箱. 
+lang_menu_clickherelocal =要訪問本地的郵箱？的<a href="javascript:switchtype()">點擊這裡“ / 1 ”來存取 
+
+登入網頁本地系統帳戶 
+lang_menu_provide =請提供登錄名和密碼信息訪問你的電子郵件帳戶 
+lang_menu_mailserver =郵件服務器： 
+lang_menu_password =密碼： 
+lang_menu_interface =接口： 
+lang_menu_language =語言： 
+
+lang_msg_loginservererror_mail_body =服務器回答： $var['loginstatus']
+lang_msg_attach_too_large =附件過大 
+lang_msg_loginservererror_auth_body =密碼不正確或會話ID的使用.驗證用戶名/密碼，並再次登入. 
+
+lang_address_popup_emailcontact =電子郵件聯繫 
+lang_address_popup_editcontact =編輯聯繫 
+lang_address_popup_deletecontact =刪除聯繫 
+lang_address_popup_viewhisotry =查看電子郵件歷史 
+
+lang_blue_pane_abook_new_sender =將發件人添加到地址簿 
+lang_Global_Today =今天 
+lang_javascript_validate_jscript_chars =無效的文件夾的名稱.在不允許使用下列字符：“ ﹐ ” ， [﹐] ，﹖ ，* ，單引號和雙引號 
+lang_javascript_alert_perm =你確定要永久刪除選定的郵件？ 
+lang_blue_pane_startpage_synchead =帳戶同步 
+lang_blue_pane_startpage_syncbody =同步你的地址簿，日曆和任務信息與Outlook .如需詳細信息諮詢在線幫助，指導安裝細節 
+lang_xp_menubar_markspam =標記為垃圾郵件 
+lang_xp_menubar_unmarkspam =標記為垃圾郵件 
+
+lang_simple_compose_menu_addbcc =新增BCC郵件帳戶
+lang_Global_sync =同步
+
+lang_spamsettings_title =使用垃圾郵件過濾器為$pref['brandname']，以阻止不受歡迎的郵件從你的收件箱.你可以確定哪些用戶是值得信賴的發送電子郵件，信息和選擇確定的主旨/機構的關鍵字來檢測，如果信息是垃圾郵件導向. 
+lang_spamsettings_spamdetect_head =垃圾郵件檢測水平 
+lang_spamsettings_spamdetect_body =指定的水平標誌著一個郵件為垃圾郵件，值10將標誌著只有最明顯的郵件當作垃圾郵件，其中值為1將使用一種更積極的篩選，以確定如果郵件是垃圾郵件來源. 
+lang_global_extreme =至尊 
+lang_spamsettings_spamtag_head =垃圾標籤 
+lang_spamsettings_spamtag_body =或者指定一個標記附加到郵件主題，如果標示為垃圾郵件 
+lang_spamsettings_spamreport =包含垃圾郵件報告 
+lang_spamsettings_spamreport_body =如果傳入郵件標記為垃圾郵件，郵件可以重新寫入到包括報告為什麼郵件過濾（例如哪些關鍵字和郵件標題，造成了垃圾郵件的檢測） 
+lang_spamsettings_bayesian_head =貝葉斯過濾：自動學習 
+lang_spamsettings_bayesian_body =之間的自動學習垃圾郵件和有效的信息和培訓信息過濾器使用 貝葉斯技術. 
+lang_spamsettings_trusted =指定一個值得信賴的名單電子郵件地址你希望接收電子郵件的.任何電子郵件地址這裡將指定繞過垃圾郵件的過濾器為縣[ '牌子' ] 
+lang_spamsettings_blacklist =指定名單的黑人上市電子郵件地址你想拒絕接收電子郵件的.任何電子郵件在這裡指定地址將迫使郵件被標記為垃圾郵件. 
+lang_spamsettings_whitelist =指定一個值得信賴的名單收件人電子郵件地址.如果郵件包含收件人地址為/抄送/密送郵件的標題會自動信任. 
+lang_spamsettings_filterlist_checkbox =表達
+
+# Invalid newuser chars
+lang_auth_invalidchars_title =拒絕訪問 
+lang_auth_invalidchars_error =用戶名$var['user']包含無效字符 
+lang_auth_invalidchars_msg =該帳戶，你正在訪問包含無效字符.字母- 0 - 9 . -和_字符不允許的.按一下<ahref="javascript:history.back('-1')">後面“按鈕</a> ，然後再試一次. 
+lang_auth_invalidchars_username =選擇另一個用戶名的不同字符. 
+
+lang_javascript_popup_blocked =自動彈出窗口禁用你的瀏覽器.你必須允許彈出式窗口的郵箱網址繼續 
+lang_login_xp_popup_error1 =有一個彈出阻滯劑上啟用你的瀏覽器. <br>要正確看待郵局申請，你必須允許彈出窗口的網站的網址. 
+lang_login_xp_popup_error2 =點擊頂端的標題在瀏覽器中，使'總是允許彈出窗口的網站. <br>使用以下圖片為指導如何使彈出窗口. 
+lang_login_xp_popup_error3 = <b>注意： </b>允許彈出式窗口不會影響你的安全設置. <br>它只會允許彈出式窗口顯示選定的網站. 
+
+lang_xp_exportwindow_heading =出口地址簿... 
+lang_xp_exportwindow_body =如果沒有自動開始下載，請檢查瀏覽器安全設置或
+<a href="abook.php?func=export&abookview=$var['abookview']"><u>click here</u></a> ”來手動下載地址簿 CSV文件 
+If the download does not start automatically, check the browser security settings or <a 
+href="abook.php?func=export&abookview=$var['abookview']"><u>click here</u></a> to manually download the addressbook CSV file
+
+
+lang_javascript_validate_move_folder =請選擇目標文件夾移動電子郵件訊息 
+lang_javascript_validate_move_nomsgs =請選擇電子郵件的郵件移動 
+lang_blue_pane_settings_saved =設定儲存成功 
+lang_addgroup_alreadyexists =選定的組名稱已存在-請指定一個新的小組 
+lang_global_page =頁 
+lang_Calendar_invalid_date =無效的日期-結束日期早於開始日期的事件. 
+lang_blue_pane_settings_autocomplete =地址自動完成 
+lang_blue_pane_settings_autocompletedesc =啟用電子郵件自動完成輸入地址時，電子郵件中撰寫窗口 
+lang_Global_viewheaders =查看標題
+
+lang_help_mailmonitor_title =郵件監視器實用工具 
+lang_help_mailmonitor_head1 =什麼是郵件監視器實用呢？ 
+lang_help_mailmonitor_text1 =郵件監控工具是一個小程序，定期檢查是否有新郵件，你可以指定間隔.它運行靜靜地在系統中，如果你有新郵件將自動通知你，. 
+lang_help_mailmonitor_head2 =我在哪裡可以買到該郵件監視器實用？ 
+lang_help_mailmonitor_text2 =郵件監控工具可以下載： 
+lang_help_mailmonitor_text3 =下載此文件，並通過安裝指示-公用事業然後應自動安裝在你的系統托盤. 
+lang_help_mailmonitor_head3 =如何設置郵件監控？ 
+lang_help_mailmonitor_text4 = 1 .訪問性質的郵件監視器屏幕上.這可以通過右擊郵件監視器圖標，並選擇“屬性” . 
+lang_help_mailmonitor_text5 = 2 .填寫的欄位屬性屏幕，所描繪的形象如下： 
+lang_help_mailmonitor_text6 = <p>地點： <p> “ http://yourdomain.com/ ”是的位置郵局登錄頁面，<p> “ yourdomain.com ”是你的帳戶網域名稱（例如， myisp.co.uk ， isp.com ） ， <p> “ john@yourdomain.com ”是你的帳戶名稱 
+lang_help_mailmonitor_text7 = 3 .當你收到新的電子郵件，郵件監控工具會自動通知你通過彈出的右下角的屏幕上.它包含的標題，日期和摘要的內容接口. 
+lang_help_mailmonitor_text8 =點擊鏈接將你的@郵件界面，直接向電子郵件. 
+lang_blue_pane_startpage_mailmonitorhead =郵件監視器實用工具 
+lang_blue_pane_startpage_mailmonitorbody =下載一個桌面應用程序，可自動檢查新郵件在服務器上，並提醒你的新郵件通過一個彈出顯示. 
+lang_help_hints_text16 =下載<a href="javascript:top.helpwin(\'mailmonitor.html\')">郵件監視器</a>桌面應用程序自動檢查你的帳戶有新郵件.你將會收到通知的新郵件通過一個彈出顯示. 
+
+lang_xp_menubar_interfacetips =接口技巧
+lang_help_xul_title = XUL界面 
+lang_help_xulhelp_text9 =將郵件，突出主題行的郵件（星期日）要移動，並點擊 
+
+“移動”按鈕，在頂部窗格. 
+lang_help_xulhelp_text3 =要使用XUL界面@郵件，選擇標有“高級（ Mozilla的1.0 + ） ” 
+
+從登錄頁的Webmail -這個接口需要一個較新版本的F irefox， 1 .0版本+建議.那個 
+
+接口是跨平台，能夠運行在Windows ， Linux和Mac使用Firefox瀏覽器. 
+lang_help_xulhelp_title3 =如何使用XUL界面？ 
+lang_help_xulhelp_title2 =我如何使XUL界面？ 
+lang_help_xulhelp_text10 =專欄瀏覽電子郵件，信息和addressbook可以自動調整大小.點擊圖標 
+
+在右上角選擇哪一個欄，以顯示在網頁上. 
+lang_help_xulhelp_title =什麼是XUL界面？ 
+lang_help_xulhelp_text2 = XUL界面的創建通過XUL -一種標記語言，類似的H TML和基於X ML. XUL是 
+
+用來確定哪些按鈕，滾動，酒吧，文本框，和其他用戶界面的項目將會出現，除了利用CSS的 
+
+設計/彩色/主題的定義. 
+lang_help_xulhelp_text1 =郵局的XUL界面可以讓你獲得“克隆”的“高級” IE瀏覽器接口 
+
+在Mozilla瀏覽器.該接口的所有，即使不是大多數，功能先進界面-它運行本地 
+
+你的瀏覽器，這增加了提高速度和瀏覽器/操作系統的兼容性. 
+lang_help_xulhelp_text4 =當使用XUL界面，你有機會獲得以下功能： 
+lang_help_xulhelp_text6 =你可以按'刪除'鍵，鍵盤快捷鍵同時強調郵件主題電子郵件窗格中刪除該郵件. 
+lang_help_xulhelp_text5 =你可以按Shift點擊電子郵件中的窗格中，突出了一些郵件在同一時間. 以及按Ctrl+ 點擊工作. 
+lang_help_xulhelp_text7 =右鍵點擊郵件或地址簿條目會出現一個彈出式菜單中含有更多的選擇. 
+lang_help_xulhelp_text8 =壓的向上和向下滾動按鈕，將通過郵件在目前選定郵箱. 
+
+lang_blue_pane_settings_encoding =指定默認的郵件編碼 
+lang_blue_pane_settings_encodingdesc =當向外發送的電子郵件指定默認編碼的郵件內容 
+
+lang_blue_pane_composehtml_readreceipt =啟用閱讀收條 
+lang_blue_pane_reademail_abookadd =用戶電子郵件地址已新增至addressbook 
+lang_blue_pane_reademail_abookadd_alert =快訊： 
+
+lang_login_type_ajax =簡單（阿賈克斯瀏覽器） 
+lang_login_type_simple =基本法（任何瀏覽器） 
+lang_login_type_adv =高級（ IE瀏覽器/法郎） 
+lang_login_type_adv_xul =高級（ Mozilla的）
+lang_spamsettings_acceptwhitelist_head =接受郵件，只有白名單 
+lang_spamsettings_acceptwhitelist_body =或者否定所有的電子郵件，郵件，除非收件人地址載於 <font onclick="ChangeTab('1');" style="cursor: hand;">成效給予評值得信賴的，發送“</U> </font> .使用這個接收郵件只“受信任”的用戶.任何其他信息將被自動拒絕從該系統. Optionally deny all email-messages unless the recipient address is contained in the <font onclick="ChangeTab('1');" style="cursor: hand;"><u>trusted-senders</u></font>. Use this to receive messages from only "trusted" users. Any other messages will be automatically rejected from the system.
+
+lang_blue_pane_settings_displayimages_head =塊圖像的電子郵件 
+lang_blue_pane_settings_displayimages_body =或者選擇阻止網址引用圖像信息.這是一個共同的 
+
+技術使用的垃圾郵件發送者識別你的電子郵件帳戶. 
+lang_blue_pane_settings_displayimages_option1 =顯示的任何信息 
+lang_blue_pane_settings_displayimages_option2 =顯示為值得信賴的用戶Addressbook 
+lang_blue_pane_settings_displayimages_option3 =阻止所有 
+
+lang_blue_pane_reademail_displayimages_head = $變種[ ' BlockImages ' ]圖像已被封鎖. 
+lang_blue_pane_reademail_displayimages_optiondisplay =顯示圖像信息 
+lang_blue_pane_reademail_displayimages_optionadd =總是顯示圖像從這個用戶 
+
+
+lang_xp_jscript_alert_selectmsgs =請選擇要刪除的電子郵件，點擊複選框就行的訊息 
+lang_login_xp_popup_ff_error =點擊頂端的標題在瀏覽器中，使'允許彈出設為domain.com ' .<br>使用以下圖片為指導如何使彈出窗口. 
+
+lang_login_xp_popup_reload =一旦啟用你必須按一下刷新按鈕，你的瀏覽器或“一 href = “javascript ：location.reload ()"><b>點擊這裡</b></a>刷新頁面. 
+
+lang_menu_interface =在新窗口中打開 
+lang_calendar_newpost_alldayevent =全日活動 
+lang_blue_pane_abook_delmultiple =你是否確實要刪除' + deltotal + '選定地址簿項目？ 
+lang_help_simpleajax_title =簡單阿賈克斯接口 
+
+lang_help_ajaxhelp_title =什麼是AJAX的界面？ 
+lang_help_ajaxhelp_text1 =AJAX 介面可讓你存取版本的簡單的界面，創造的Javascript , 該異步加載數據從服務器-增加了提高速度和瀏覽器/操作系統的兼容性.它的大部分特徵的內部客戶端的界面，從而增加了可用性的網絡郵件界面. 
+lang_help_ajaxhelp_text2 =的一個主要優點簡單阿賈克斯接口是一個信息高速緩存職能 瀏覽器，避免使用重新加載頁面. 
+
+lang_help_ajaxhelp_title2 =我如何使AJAX的界面？ 
+lang_help_ajaxhelp_text3 = AJAX界面是自動啟用當你登錄指定的接口.若要使用需要界面效果:IE 5.5以上或Firefox / Mozilla的1.X 需要，請注意這個接口不支持舊版本的瀏覽器.
+
+lang_help_ajaxhelp_title3 =如何使用AJAX的界面？ 
+lang_help_ajaxhelp_text4 =當使用AJAX界面，你有機會獲得以下功能來管理電子郵件訊息： 
+lang_help_ajaxhelp_text5 =你可以按Shift點擊電子郵件中的窗格中，突出了一些郵件在同一時間. 按Ctrl +點擊工程，以及. 
+lang_help_ajaxhelp_text6 =你可以按'刪除'鍵，鍵盤快捷鍵同時強調郵件主題電子郵件窗格中刪除該郵件. 
+lang_help_ajaxhelp_text7 =使用頂端郵件標題排序電子郵件的瀏覽器，無需請求郵件從郵件服務器了. 
+lang_help_ajaxhelp_text8 =郵件閱讀一個文件夾內緩存在瀏覽器中，因此，如果要求同樣的訊息沒有重新載入網頁是必要的.第一欄的電子郵件行表示如果郵件是緩存在瀏覽器內. 
+lang_help_ajaxhelp_text9 =當回答了信息撰寫面板自動彈出，並且不需要重新載入網頁. 
+lang_help_ajaxhelp_text10 =右鍵點擊郵件會出現一個彈出式菜單中含有更多的選擇. 
+lang_help_ajaxhelp_text11 =壓的向上和向下滾動按鈕，將通過郵件在目前選定郵箱. 
+lang_help_ajaxhelp_text12 =將郵件，突出主題行的郵件（星期日）要移動，並且將它拖曳到你想要的資料夾 
+lang_help_ajaxhelp_text13 =專欄瀏覽電子郵件，信息和addressbook可以自動調整大小.點擊圖標在右上角選擇哪一個欄，以顯示在網頁上. 
+
+lang_Global_of =的 
+=在lang_Global_in 
+lang_Global_more =更多 
+lang_Global_connecting =連接 
+lang_javascript_doubleclick =雙擊打開 
+lang_javascript_cachestatus =信息高速緩衝狀態 
+lang_javascript_resumeediting =簡歷編輯 
+lang_javascript_backto =回 
+lang_javascript_itemstomove =物品移動 
+lang_Global_exportemail =出口電子郵件 
+lang_javascript_blocksender_added =該用戶已添加到你的垃圾郵件黑名單
+
+lang_javascript_moveerror_head1 =信息不能移動 
+lang_javascript_moveerror_head2 =獨特的信息標識不符合選定的訊息移動/刪除.這個 
+
+錯誤，就會發生： 
+lang_javascript_moveerror_reason1 =你已更新了郵局窗口後，把某條消息移動.以前的郵件不能 
+
+兩次動議 
+lang_javascript_moveerror_reason2 =該郵件已移至另一個應用通過POP3/IMAP .請重新載入你的 
+
+郵箱文件夾的更新列表 
+lang_javascript_moveerror_reason3 =的信息不再存在於郵件服務器 
+
+lang_javascript_int_ff_15_later = Firefox版本1.5或更高 
+lang_javascript_int_ff_10_later = Firefox版本1.0或更高版本 
+lang_javascript_int_ie_60_later = Internet Explorer版本6或更高版本 
+lang_javascript_int_warining_head =你的瀏覽器不匹配的要求，建議本接口. \ n你的 
+
+使用 
+lang_javascript_int_warining_head1 =版本 
+lang_javascript_int_warining_head2 =你需要 
+lang_javascript_int_warining_head3 = 你確定要繼續登錄？ 
+
+lang_global_taskdetails =工作細節 
+lang_global_participants =與會者 
+lang_global_scheduling =調度 
+lang_global_repeat_event =重複事件 
+lang_global_busy =忙碌 
+lang_global_available =可用 
+
+lang_javascript_validate_folders_minfolder =請至少指定一個字符的文件夾名稱 
+
+lang_auth_serverswitch_header =安全錯誤 
+lang_auth_serverswitch_error =該帳戶，你正試圖登錄引發了安全警告. 
+lang_auth_serverswitch_msg1 =該帳戶中的數據庫與郵件服務器的<b>$var['origserver']</b> ， 
+
+而你要訪問的遠程帳戶的郵件服務器的<b> $變種[ '服務器' ] “ / b ” 
+lang_auth_serverswitch_msg2 =訪問已被鎖定，因為相關的郵件服務器地址是不再使用 
+lang_auth_serverswitch_msg3 =這是作為一項安全防範措施，以禁止未經授權的訪問主機 
+lang_auth_serverswitch_msg4 =要解決錯誤的機會 
+lang_auth_serverswitch_msg5 =登錄到新的遠程郵件服務器與現有的密碼，用來$pref['brandname']
+Login to the new remote-mailserver with the existing password used in $pref['brandname']lang_auth_serverswitch_msg6 = Contact the administrator $this->admin_email to associate your account with the new mail-server address
+lang_auth_serverswitch_msg6 = 聯繫管理人$this->admin_email贊同你的帳戶與新的郵件服務器地址 
+Contact the administrator $this->admin_email to associate your account with the new mail-server address
+
+lang_xp_menubar_markunread =標記為未讀 
+lang_xp_menubar_markread =標記為已讀 
+
+lang_javascript_calendar_alldayadd =雙擊添加全日任命 
+lang_javascript_calendar_dayadd =點擊與拖放或雙擊添加任命 
+lang_javascript_calendar_alldayevents =全日活動 
+lang_javascript_calendar_shared =共享 
+
+lang_javascript_month_jan =月1日 
+lang_javascript_month_feb = 2月 
+3月lang_javascript_month_mar = 
+lang_javascript_month_apr = 4月 
+lang_javascript_month_may = 5月 
+6月lang_javascript_month_jun = 
+7月lang_javascript_month_jul = 
+8月lang_javascript_month_aug = 
+9月lang_javascript_month_sep = 
+lang_javascript_month_oct = 10月 
+lang_javascript_month_nov = 11月 
+lang_javascript_month_dec =月12日 
+
+lang_javascript_day_mon =星期一 
+lang_javascript_day_tue =星期二 
+lang_javascript_day_wed =星期三 
+lang_javascript_day_thu =星期四 
+lang_javascript_day_fri =星期五 
+lang_javascript_day_sat =星期六 
+lang_javascript_day_sun =星期日 
+
+lang_Global_VideoMail =視頻郵件 
+lang_blue_pane_composehtml_videomail1 =用攝像頭和$pref['brandname']創建視頻電子郵件是在線交流一個偉大的方式. 
+lang_blue_pane_composehtml_videomail2 =視頻信息的快速和容易地創建，所有你需要的是一個攝像頭，你可以記錄視頻電子郵件的瀏覽器. 
+lang_blue_pane_composehtml_videomail3 =人民接受你的視頻將看到的內容嵌入在電子郵件，或通過鏈接這是流通過服務器. 
+
+lang_help_video_head1 =我如何發送視頻郵件訊息？ 
+lang_help_video_text1 =你需要一個攝像頭連接到電腦，無論是內置麥克風或外部耳機的音頻記錄. 
+lang_help_video_text2 =瀏覽器與Flash需要，視頻電子郵件支持IE瀏覽器， Firefox和Safari 
+lang_help_video_text3 =寬帶接入建議，以創紀錄的視頻郵件整個網絡的無損失質量 
+
+lang_help_video_head2 =我看不到任何視頻或音頻，同時聽取錄音？ 
+lang_help_video_text4 =右鍵點擊Flash視頻電子郵件屏幕上，選擇設置，然後單擊麥克風標籤.驗證你已選取了麥克風連接到你的計算機，並增加了麥克風靈敏度，以確保音頻被記錄下來. 
+lang_help_video_text5 =檢查你的操作系統音頻設置和提高靈敏度的麥克風錄製的音頻，如果仍是震盪. 
+lang_help_video_text6 =如果你不能看到任何視頻，使用設置面板，並點擊下方的攝像頭圖標.從下拉下拉列表選擇你的攝像頭是安裝在電腦上. 
+
+lang_help_video_head3 =將如何接收者看到我的視頻郵件？ 
+lang_help_video_text7 =視頻郵件是嵌入在電子郵件中作為一個鏈接，用戶只需點擊視頻電子郵件鏈接來查看郵件在瀏覽器中.遠程服務器流視頻播放通過閃存，並支持所有現代瀏覽器. 
+lang_help_video_text8 =或者如果郵件發送到另一個帳戶使用相同的網絡郵件界面，視頻自動顯示在郵件 
+
+lang_help_videomail =幫助指南錄製視頻郵件 
+lang_Calendar_OverDue =逾期未任命 
+lang_Calendar_Sleep =提醒在30分鐘內 
+lang_Calendar_ViewMonth =觀月 
+lang_Calendar_BackToEmail =回電子郵件 
+lang_Calendar_ViewWeek =查看五天工作週 
+lang_xp_jscript_alert_fwdmulti =你想提出的多種選擇的電子郵件？ 
+
+# javascript alerts (for html/javascript/alerts.js)
+lang_alerts_csv_import_bad_filetype =不正確的檔案-請只匯入.csv或.文本（純文字文件） 
+ Incorrect filetype - please import only .csv or .txt (plain text files)
+lang_alerts_csv_import_file_oversize =進口文件太大-嘗試在進口階段 
+lang_alerts_csv_import_failed =進口失敗 
+lang_alerts_csv_import_file_empty =進口文件是空的 
+
+lang_Global_sendmail =發送郵件
+lang_blue_pane_composehtml_disable_readreceipt =禁用閱讀收條 
+lang_blue_pane_composehtml_attachments =附件 
+
+lang_global_outofoffice =離開辦公室 
+lang_global_tentative =暫定 
+
+lang_calendar_remind_15mins = 15分鐘 
+lang_calendar_remind_30mins = 30分鐘 
+lang_calendar_remind_60mins = 60分鐘 
+lang_calendar_remind_2hours = 2小時 
+lang_calendar_remind_1day = 1日 
+lang_calendar_remind_2days = 2天 
+lang_calendar_remind_1week = 1週 
+
+lang_calendar_remind_me =提醒我 
+lang_calendar_availability =狀況 
+lang_Calendar_ViewWeek7 =查看1週 
+lang_Calendar_ExportToIcal =出口的iCal 
+
+icalendar_email_heading =日曆活動邀請 
+icalendar_email_text =你已被列入日曆事件.詳情如下： 
+icalendar_email_title =標題 
+icalendar_email_description =描述 
+icalendar_email_author =作者 
+icalendar_email_startdate =啟動 
+icalendar_email_enddate =完 
+icalendar_email_participants =與會者 
+icalendar_link_text =點擊此處添加此事件對你的日曆 
+icalendar_attachment_info =你還可以點擊附件鏈接，下載的iCalendar文件（海運局）和新增事件一個台式機壓延應用，支持iCalendar格式
+You can also click on the attachment link to download the icalendar file (.ics) and add the event to a desktop calendering application that supports the icalendar format 
+icalendar_opt_out_text =點擊這裡刪除自己從這一事件 
+icalendar_calendar_actions =日曆行動 
+icalendar_ajax_not_supported =你的瀏覽器不支持AJAX的-你不能刪除使用此方法 
+icalendar_removed_from_event =你已成功從日曆事件 
+icalendar_removed_from_event_error =錯誤：你不能從事件 
+icalendar_request_failed =該請求失敗，請稍後再試 
+icalendar_removed_text =你已經刪除了自己從這一事件 
+
+support_form_title =郵件支持 
+support_form_sub_heading =信息支持 
+support_form_main_text =對於支持郵箱申請，請填寫下面的表格.一個技術小組將通過電子郵件響應你的請求.欲了解更多信息的電子郵件系統諮詢聯機文檔. 
+support_form_name =你的姓名 
+support_form_email =你的電子郵件地址 
+support_form_question =問題 
+
+support_email_header =支持問題 
+support_email_name =收到 
+support_email_account =帳戶 
+support_email_email =電子郵件 
+support_email_question =問題 
+
+lang_cal_require_ics_ext =該iCalendar檔案你匯入必須有一個.集成電路延伸  The icalendar file you import must have a .ics extension
+lang_cal_import_label =導入日曆在iCal （ ICS ）的格式： 
+lang_cal_import_title =進口從iCal
+
+lang_menu_help_about = About $pref['brandname']
+lang_help_iphonehelphow_text7 = After saving your settings, your Apple iPhone &reg; will attempt to synchronize emails and contacts. 
+lang_blue_pane_composehtml_cellbackgroundimage  = Cell Background Image URL
+lang_about_version = Version
+lang_blue_pane_searchmove_windowstatus = Moved $var['move'] msgs to $var['newfolder']
+lang_help_iphonehelp_text1 = The Push Email feature allows AtMail to provide an "always-on" capability - where new emails are instantly and actively transferred (<i>pushed</i>) as they arrive. This feature assures that you are continually updated addressbook entries and emails as soon as they are created or modified.</p><p>Push support in Atmail is available for iPhone, Windows Mobile, and Activesync compatible mobile phones ( Ericsson, Nokia business models )
+lang_javascript_month_jul = July
+lang_help_loginhelp_text4 = <b>Mailserver</b>: This field is used for external POP3/IMAP mailservers only. Specify the mail-server address used for your account, for example:  jim@isp.com, would use the Mailserver 'mail.isp.com'
+lang_Global_in = In
+lang_help_loginhelp_text2  =<b>Username</b>: This is commonly a personal identifier with your mail server, for example the user, Jim has an email account with isp.com, his email address is:  jim@isp.com
+lang_xp_pgp_encrypt_button = Encrypt
+lang_help_iphonehelphow_text4 = Select Microsoft Exchange as an account type. 
+lang_help_iphonehelptroub_title = Troubleshooting
+lang_help_iphonehelphow_text1 = The push email capability is not difficult to set up for an Apple iPhone &reg;. Just go through the following steps:
+lang_javascript_month_sep = September
+lang_blue_pane_profile_text1_chpass = To change your password click 'Change Password' button below.
+lang_help_iphonehelphow_text3 = Go to Mail > Add Account.
+lang_about_build_date = Build Date
+lang_blue_pane_abook_new_default_email = Default Email
+lang_help_iphonehelp_title = Push E-mails
+lang_msg_calentries_text = $var['count'] calendar entries
+lang_help_loginhelp_text16 = For $pref['brandname'] systems with multiple domains, check that the domain in the field is correct.
+lang_Global_addrecipient = Add Recipients
+lang_cal_import_submit = import
+lang_global_close_window = Close Window
+lang_help_calendar_timeline = Time Line
+lang_login_rememberme = Remember Me
+lang_help_iphonehelphow_text2 = Open the Settings window for the Apple iPhone &reg;.
+lang_javascript_month_aug = August
+lang_help_iphonehelp_wireless_desc = <a href="javascript:helpwin('iphonehelphow.html')">View information</a> on how to configure your iPhone, Windows mobile, or Activesync device
+lang_about_operating_system = Operating System
+lang_deditor_jright = Justify Right
+lang_Calendar_calendars = Calendars
+lang_help_addfaq_text10= In the group addressbook, specify which users have read/write access.
+lang_help_iphonehelptroub_text2 = This is only a warning, and should not affect the functionality of the Push Email feature. Select "Accept". 
+lang_help_iphonehelp_wireless_title = Wireless Push Support
+could_not_move_message = A message could not be moved, possibly due to message size restrictions in the destination folder
+lang_help_iphonehelphow_title = Push E-mails for Apple iPhone &reg;
+lang_help_iphonehelphow_text6 = You can then enable the synchronization of emails and contacts. Support for calendars will be available in thefuture, but we recommend having it turned off for now. 
+lang_about_admin_email = Admin Email
+lang_xp_sms_filter_high_priority_desc = Send an alert if an email message has a high-priority set in the header
+lang_javascript_month_jun = June
+Lang_confirm_cal_delete = Are you sure you wish to delete this calendar and all associated appointments?
+lang_help_loginhelp_text8 = <b>Interface</b>: You can select your interface for the WebMail session. $pref['brand_name'] comes with more that one Interface which you can select, depending on the capabilities of your browser and preference.
+lang_javascript_month_mar = March
+lang_alert_import = Imported $var['count'] new contacts
+lang_xhtml_readmsg_movemsg  =Move Msg
+lang_help_spellfaq_head2= My message sends without notification
+lang_passutil_mismatch = Password Mismatch.
+lang_save_sent_error = Your email was sent, however it could not be saved to your Sent folder due to size restrictions
+lang_help_apop3faq_head1= How do I add another POP3 account?
+lang_help_mailerrors_text2 = Click on the link "External Login" in the login page
+lang_help_mailsend_text1= You can send the same mail message to $pref['max_recipients_per_msg'] people at one time.
+lang_cal_import_close = close
+lang_help_iphonehelphow_text5 = Set the details corresponding with your account. Make sure that the username setting also contains the domain. For example, the username setting for an account called 'ben@domain.com' will be 'ben@domain.com'. 
+lang_help_iphonehelptroub_text1 = <b>Error: Unable to Verify Certificate</b>
+lang_blue_pane_account_modify = Edit Account

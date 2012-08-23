@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>Ajax Interface Hints & Tips</title>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<LINK href="javascript/stylehelp.css" rel=stylesheet type=text/css>
+<font face="Verdana,Arial" size="+1">AJAX Interface</font> [ <a href="parse.php?file=html/$this->Language/help/file.html">Help 
+Index</a> ] 
+<hr noshade>
+
+<script>
+function expandentry()	 {
+
+<!-- if($var['FirstLoad']) { -->
+if(parent.document.getElementById('troubleshooting').style.display != 'block')
+parent.expand('troubleshooting', parent.document.getElementById('mainimg'));
+<!-- } -->
+
+}
+</script>
+
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" onload="expandentry()">
+
+	
+<p><u>Was ist die AJAX Oberfläche?</u> 
+<p>Bei der AJAX Oberfläche handelt es sich um eine auf Javascript basierende Version der einfachen Oberfläche. Durch asynchrone Verarbeitung ist Sie deutlich schneller und performanter als die herkömlicheOHTML-Oberflächen. 
+  
+<p>Einer der vielen Vorteile der AJAX Oberfläche ist die Zwischenspeicherung im Browser. Dadurch entfällt das Neuladen der Seite.</p>
+
+<p><u>Wie nutze ich die AJAX Oberfläche?</u> 
+<p>Die AJAX Oberfläche wird automatisch aktiviert wenn Sie die entsprechende Option bei der Anmeldung auswählen.
+
+<p><u>Wie nutze ich die AJAX Oberfläche?</u> 
+<p>Ueber die AJAX Oberfläche stehen Ihnen die folgenden Funktionen zur Verfügung: 
+<ul>
+  <li>Mittels Shift+Klicken oder Strg+Klicken/Ctrl+Klicken können mehrere Nachrichten gleichzeitig selektiert werden.</li>
+  <p><img src="imgs/help/ajaxshift.gif" width="279" height="114"> 
+  <br><br>
+  <li>Drücken Sie die 'Entf'/'Delete' Taste um selektierte Nachrichten zu löschen.</li>
+
+  <li>Use the top mail-headers to sort emails within the browser, without having to request the messages from the mail-server again.</li>
+
+  <li>Alle bereits gelesenen Nachrichten werden im Browser zwischengespeichert. Dadurch entfällt das Neuladen der Seite wenn Sie dieselbe Nachricht erneut ansehen möchten.</li>
+
+  <li>Beim Antworten auf eine Nachricht öffnet sich automatisch ein Ppopup-Fenster. Dadurch entfällt das Neuladen der Seite.</li>
+
+
+  <br>
+  <li>Weitere Optionen erhalten Sie, wenn Sie auf selektierten Nachrichten Rechtsklicken.</li>
+  <p><img src="imgs/help/ajaxrclick.gif"></p>
+  <li>Mit den Tasten 'Auf' und 'Ab' können Sie zwischen den Nachrichten hin- und herschalten.</li>
+  <br>
+  <li>Um Nachrichten zu verschieben, selektieren Sie diese und ziehen Sie die Nachrichten in den gewünschten Ordner.<br>
+  <p><img src="imgs/help/ajaxtrash.gif">&nbsp;</p>
+  </li>
+  <li>Die Anzeigespalten innerhalb des Postfachs und des Adressbuchs können automatisch angepasst werden. Klicken Sie dazu auf das Symbol in der rechten Ecke um die Anzeigeoptionen anzupassen.</li>
+</ul>
+
+</body>
+</html>

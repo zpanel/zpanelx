@@ -1,0 +1,180 @@
+/*****************************************************************
+ * Release Notes: SquirrelMail 1.2.2                             *
+ * The "International" Release                                   *
+ * 1 January 2002                                                *
+ *****************************************************************/
+
+  Note: Please see the ChangeLog for 1.2.0 and 1.2.1 bugs that have
+        been fixed in this 1.2.2 release.
+
+After a long wait, SquirrelMail is finally making a new major stable
+series release. The past year has been ANYTHING but uneventful for
+the SquirrelMail Project. This year has seen two leadership changes,
+the release of the 1.0 series, the 1.1 development series, and now
+finally the much awaited 1.2 release.
+
+In this edition of SquirrelMail Release Notes:
+   * All about this Release!!!
+   * Reporting my favorite SquirrelMail 1.2 bug
+   * Important Note about PHP 4.1.0
+   * Where are we going from here?
+   * About our Release Aliases
+
+All about this Release!!!
+=========================
+
+Being one of the most popular webmail clients, the developers of
+SquirrelMail feel a huge desire and responsibility to continue push
+the envelope and make SquirrelMail the best it can possibly be. You
+will not be disappointed with this release, as it is by far the most
+feature rich, and yet it is still the same sleek and unbloated and
+cuddly webmail application that we have all grown to love. Here is
+an incomplete list of new features and enhancements since the last
+stable release.
+
+  * Collapsible Folders - The folder list can be collapsed at any
+          parent folder. This makes folder lists with large
+          hierarchical structures much easier to manage and navigate.
+  * The Paginator! - This enables quick access to any page in the
+          message list by simply choosing the page number to view
+          rather than tediously clicking "next" 50 times.
+  * Hundreds of UI tweaks - The user interface has been given a
+          face-lift. The HTML has been largely overhauled, and while
+          it still has the same general feel, it has been made more
+          intuitive.
+  * Drafts - It is now possible to compose a message and save it to
+          be sent at a later date with the drafts option.
+  * New Options Page - The options page has been completely
+          rewritten for several reasons, the main of which was to
+          allow seamless integration of plugin options and to
+          provide uniformity throughout the entire section.
+  * Multiple Identities - It is now possible to create different
+          identities (home, work, school) that can be chosen upon
+          sending. Each identity can have its own email address,
+          full name, and signature.
+  * Reply Citations - Different types of citations are now possible
+          when replying to messages.
+  * Better Attachment Handling - The plugin, attachment_common, has
+          been fully integrated into the core of SquirrelMail.  This
+          allows inline viewing of several different types of
+          attachments.
+  * Integration of Several Plugins - The following plugins have been
+          put directly into the core. As a result, be sure not to
+          install these as plugins, as the result may be (at best)
+          unpredictable: attachment_common, paginator, priority,
+          printer_friendly, sqclock, xmailer.
+  * Improved support for newer versions of PHP. Note that you may
+          have trouble if you are running PHP version 4.0.100
+          (commonly distributed with Debian 3.0).
+  * Ability to mark messages as read and unread from the message listing.
+  * Alternating Colors - The message list now alternates row colors
+          by default.  This presents a much cleaner and easier to
+          read interface to the user.
+
+Aside from these obvious front end features, there are hundreds of
+bugs that have been fixed, and much of the code has been optimized
+and/or rewritten.  This stable release is far superior in all
+aspects to all previous versions of SquirrelMail.
+
+   Home Page:    http://www.squirrelmail.org/
+   Download:     http://www.squirrelmail.org/download.php
+   ScreenShots:  http://www.squirrelmail.org/screenshots.php
+
+
+Reporting my favorite SquirrelMail 1.2 bug
+==========================================
+
+Of course, in the words of Linus Torvalds, this release is officially
+certified to be Bug-Free (tm).
+
+However, if for some reason some bugs manage to find their way to the
+surface, please report them at once (after all, they ARE uncertified
+bugs!!!) The PROPER place to report these bugs is the SquirrelMail Bug
+Tracker.
+
+   http://www.squirrelmail.org/bugs
+
+Thank you for your cooperation in that issue. That helps us to make
+sure that nothing slips through the cracks. Also, it would help if
+people would check existing tracker items for a bug before reporting
+it again. This would help to eliminate duplicate reports, and
+increase the time we can spend CODING by DECREASING the time we
+spend sorting through bug reports. And remember, check not only OPEN
+bug reports, but also closed ones as a bug that you report MAY have
+been fixed in CVS already.
+
+
+Important Note about PHP 4.1.0
+==============================
+
+First of all, let me say that you all HAVE been warned: the
+SquirrelMail Project Team is not supporting PHP 4.1.0 for the 1.2.0
+release. Basically, SquirrelMail was in the final death throws of
+this development series when the witty PHP folks decided to make the
+release of 4.1.0. Of course, we greatly appreciate their hard work! :)
+
+However, we were too close to the end of this whole thing to be able
+to spend the week or two EXTRA that it will take to get SquirrelMail
+1.2 PHP 4.1.0 ready. This will, on the bright side, be a major
+priority amongst the team in the immediate future. At first look, it
+seems that 4.1.0 support should just require a collection of
+relatively minor tweaks. You can expect 4.1.0 support within 2-3
+weeks, as a part of a later 1.2.X release.
+
+
+Where are we going from here?
+=============================
+
+After things cool down a bit and the smoke clears from 1.2,
+progress will begin on the Great SquirrelMail Rewrite, also known as
+the 1.3 development branch. This branch will eventually become the
+long talked about SquirrelMail 2.0. The major developmental emphasis
+for SquirrelMail 2.0 will be in making SquirrelMail more flexible
+and modular so that it might do a better job meeting the needs of
+our system administrators and end-users. We are greatly anticipating
+working in this area.
+
+At the same time, we will kick start the SquirrelMail Teams. For
+some time now, we have been planning a reorganization of the project
+into a variety of sub-teams. Each sub-team will focus on a different
+aspect of SquirrelMail Project work. These teams will hopefully help
+keep the SquirrelMail project more on track and to provide some
+semblance of order. This project has grown so large in the past two
+years that an orderly structure is necessary if anything is to get
+done effectively. The teams (as planned) are as follows:
+
+   Stable Series Team:      Maintains the stable series
+   Development Series Team: Works on the development series
+   i18n Team:               Handles i18n (internationalization) work
+   Plugin Team:             Manages the mass of plugins
+   User Support Team:       Helps users with their problems
+   Documentation Team:      Manages the documentation
+   Evangelism Team:         Spreads the good news of SquirrelMail
+
+Teams will be led by one or two SquirrelMail team members. And team
+members can participate in as many teams as he or she desires.
+
+For the next few weeks, the developers will be working on bug-fixing
+and making the 1.2 series rock solid. After that, about mid January,
+focus will shift toward getting the teams in gear and starting work
+on the SquirrelMail 1.3 development series.
+
+
+About our Release Aliases - by Paul Joseph Thompson
+=========================
+
+I just really appreciated how Wouter took charge and got this wonderful
+1.2.1 release ready for prime time. It was not very long after I made
+the 1.2.0 release when someone had already discovered the bug that made
+the folders page screwed up for Netscape 4.x users. After the long hours
+I put in getting 1.2.1 out, Wouter's quick help was a lifesaver.
+
+I also want to thank Dave Huang for supplying the patch to Wouter via
+the development list that fixed this icky bug. Thanks, Dave. Much
+appreciation!
+
+See http://www.squirrelmail.org/wiki/SquirrelRelease for more details.
+
+                  Have a Merry Christmas!
+                  Happy SquirrelMailing!
+                    - The SquirrelMail Project Team

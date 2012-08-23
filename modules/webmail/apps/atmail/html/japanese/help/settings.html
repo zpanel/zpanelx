@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>設定変更</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">       
+
+<script>
+function expandentry()	 {
+
+<!-- if($var['FirstLoad']) { -->
+if(parent.document.getElementById('calendar').style.display != 'block')
+parent.expand('settings', parent.document.getElementById('settingsimg') );
+<!-- } -->
+
+}
+</script>
+</head>
+
+<LINK href="javascript/stylehelp.css" rel="stylesheet" type="text/css">
+
+<body bgcolor="#FFFFFF" text="#000000" onload="expandentry()">
+<font face="Verdana, Arial" size="+1">
+設定変更</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">ヘルプインデックス</a> ]</font>
+
+<hr noshade>
+<p>
+
+Eメール設定を使ってEメールアカウントの設定を変更できます。以下の設定を自由に変更することが可能です。<BR><BR>
+<u>ウェブメールプレファレンス</u>
+
+<ul>
+<li><B>名前</B><BR>
+ここでは送信するメールに表示される、あなたの名前を設定できます。</li>
+
+<li><B>返信先</B><BR>
+既定のアドレス以外に返信先を設定したい場合は、こちらで設定できます。</li>
+
+<li><B>リスト表示</B><BR>        
+メールボックス内でのメールの表示順を設定します。</li>
+
+<li><B>レイアウト</B><BR>        
+ウェブメールが提供するインターフェースからお好きな物を選択できます。初めはシンプルな物からお使いになることをお勧めします。メールボックスでのメールポップアップ機能をオフにすることもできます。</li>
+
+<li><B>言語</B><BR>                       
+インターフェースで使用する言語を選択します。</li>
+
+<li><B>表示メール数</B><BR>             
+受信箱で一度に表示するメール数を設定します。進む/戻るボタンで前後のメールを表示できます。</li>
+
+<li><B>受信箱の再読込率</B><BR>             
+何分毎に受信ボックスの再読込を行うか選択してください。新規メールを受信すると通知されます。</li>
+
+<li><B>時間の設定</B><BR>             
+ウェブメールおよびカレンダーのインターフェース内での時間表示形式を選択してください。</li>
+
+<li><B>日付形式</B><BR>             
+日付の表示形式を選択</li>
+
+<li><B>時間帯</b><BR>
+お住まいの地域の時間帯を設定します。メールを送信する際にこれに基づいた日時が使用されます。</li>
+
+<li><B>署名</B><BR>             
+使用する署名を設定します。送信するメールの最後に追加されます。</li>     
+
+<li><B>ログアウト時にゴミ箱を空にしますか？</B><BR>                     
+ログアウト時に自動的にゴミ箱を空にしたいとき設定します。</li>         
+
+<li><B>HTMLエディター</B><BR>                
+HTMLエディターを使用したい時に選択します。</li>                                                              
+
+<li><B>メールの署名</B><BR>          
+署名を指定してください。全ての送信メールに署名が添付されます。</li></ul>
+
+</ul>
+
+</font></p>
+</body>
+</html>

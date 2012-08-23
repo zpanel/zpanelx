@@ -1,0 +1,40 @@
+<?php
+/********************************************************
+	lang/eng/edit_contact.inc
+	(C)2001-2002 Ryo Chijiiwa <Ryo@IlohaMail.org>
+
+	This file is part of IlohaMail, and released under GPL.
+	See COPYING, or http://www.fsf.org/copyleft/gpl.html
+
+********************************************************/
+
+//TRANSLATORS:  Uncomment next line for all non-English languages!!
+//include("../lang/eng/edit_contact.inc");
+
+$ecStrings[0] = "æíÑÇíÔ";
+$ecStrings[1] = "ÇÖÇÝå";
+$ecStrings[2] = " ÊãÇÓ";
+$ecStrings[3] = "äÇã";
+$ecStrings[4] = "ÓÊ ÇáßÊÑæäíßí";
+$ecStrings[5] = "ÂÏÑÓ ÇíäÊÑäÊí";
+$ecStrings[6] = "Ñæå";
+$ecStrings[7] = "ÊæÖíÍÇÊ";
+$ecStrings[8] = "ÊáÝä ÎÇäå";
+$ecStrings[9] = "ÊáÝä ßÇÑ";
+$ecStrings[10] = "ÊáÝä åãÑÇå";
+$ecStrings[11] = "ÏÓÊÑÓí";
+$ecStrings[12] = "ÓÊ ÇáßÊÑæäíßí ÏíÑ";
+$ecStrings[13] = "Çß";
+$ecStrings[14] = "ÏíÑ";
+
+
+$errors[0] = "ÊãÇÓ ÑÇ äãíÊæÇä ÇÖÇÝå ßÑÏ. ÎØÇí ÈÇäß ÇØáÇÚÇÊí";
+$errors[1] = "íß ÊãÇÓ ÈÇ ÂÏÑÓ ÐßÑ ÔÏå æÌæÏ ÇÓÊ";
+$errors[2] = "ßáíß ";
+$errors[3] = "ÇíäÌÇ";
+$errors[4] = "ÈÑÇí æíÑÇíÔ Âä ÊãÇÓ Èå ÌÇí Âä";
+$errors[5] = "ÊãÇÓ íÇÝÊ äÔÏ. ÏÓÊÑÓí  ÑÏ ÔÏ.";
+$errors[6] = "ÂíÇ ÔãÇ ãØãÆäíÏ ßå ãíÎæÇåíÏ Çíä ÊãÇÓ ÑÇ Çß ßäíÏ\"";
+$errors[7] = "\"¿";
+
+?>

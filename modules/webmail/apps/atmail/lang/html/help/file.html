@@ -1,0 +1,44 @@
+<title>$lang['lang_help_title']</title>
+
+$lang['lang_Global_content_type']
+<LINK href="javascript/stylehelp.css" rel=stylesheet type=text/css>
+
+<font face="Verdana, Arial" size="+1">$lang['lang_help_title']</font>
+
+<hr noshade>
+<p><font face="Arial, Helvetica, Condensed" size="2">$lang['lang_help_file_text2']</font></p>
+<ul>
+  <li><a href="parse.php?file=html/$this->Language/help/compose.html">$lang['lang_help_compose_title']</a></li>
+  <li><a href="parse.php?file=html/$this->Language/help/reademail.html">$lang['lang_help_reademail_title']</a></li>
+
+<!-- if($pref['allow_Calendar']) { -->
+ <li><a href="parse.php?file=html/$this->Language/help/calendar.html">$lang['lang_help_calendar_title']</a></li>
+<!-- } -->
+
+<!-- if(file_exists("{$pref['install_dir']}/xhtml.php") && $pref['allow_Mobile']) { -->
+<li><a href="parse.php?file=html/$this->Language/help/wap.html">$lang['lang_help_wap_title']</a></li>
+<!-- } -->
+
+<li><a href="parse.php?file=html/$this->Language/help/settings.html">$lang['lang_help_settings_title']</a></li>
+  <li><a href="parse.php?file=html/$this->Language/help/addressbook.html">$lang['lang_help_addressbook_title']</a></li>
+
+<!-- if($pref['allow_MultiAccounts']) { -->
+  <li><a href="parse.php?file=html/$this->Language/help/addpop3.html">$lang['lang_help_addpop3_title']</a></li>
+<!-- } -->
+
+<!-- if($pref['allow_LDAP'] && extension_loaded('ldap')) { -->
+<li><a href="parse.php?file=html/$this->Language/help/ldap.html">$lang['lang_help_ldap_title']</a></li>
+<!-- } -->
+
+<li><a href="parse.php?file=html/$this->Language/help/newmbox.html">$lang['lang_help_newmbox_title']</a></li>
+
+<!-- if(file_exists($pref['aspell_dir']) || extension_loaded('pspell')) { -->
+<li><a href="parse.php?file=html/$this->Language/help/spell.html">$lang['lang_help_spell_title']</a></li>
+<!-- } -->
+
+<!-- if($pref['allow_SMS'] && file_exists('sms.php')) { -->
+<li><a href="parse.php?file=html/$this->Language/help/sms.html">$lang['lang_help_sms_title']</a></li>
+<!-- } -->
+</ul>
+
+$lang['lang_help_file_text2']

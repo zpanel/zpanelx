@@ -1,0 +1,42 @@
+THE SQUIRRELMAIL TEAM
+=====================
+
+The SquirrelMail Project thanks each and every one that have made SquirrelMail
+what it is today. This includes, but isn't limited to, bug reporters, patch
+submitters, testers, plugin authors, community members, and many, many other.
+
+The list below contains some of persons that have helped the project, with the
+aim to give credit where it is due. If you feel that your name has wrongfully
+been left out, please contact the SquirrelMail Project.
+
+Main developers:
+----------------
+Alex Lemaresquier    <alex@brainstorm.fr>
+Alexandros Vellis    <avel+sqm@noc.uoa.gr>          http://users.uoa.gr/~avel
+Chris Hilts          <tassium@squirrelmail.org>     http://www.birdbrained.org
+Fredrik Jervfors     <jervfors@squirrelmail.org>    http://fredrik.jervfors.se
+Jonathan Angliss     <jon@squirrelmail.org>
+Paul Lesniewski      <paul@squirrelmail.org>
+Steve Brown          <sbrown25@gmail.com>
+Thijs Kinkhorst      <kink@squirrelmail.org>        http://thijs.kinkhorst.nl
+
+Past developers, now retired:
+-----------------------------
+Brent Bice, Bron Gondwana, Bryan Stalcup, Erin Schnabel, Gerrit Padgham, Gustav
+Foseid, Jason Munro, Jimmy Conner, Konstantin Riabitsev, Lewis Bergman, Luke
+Ehresman, Marc Groot Koerkamp, Matt Phillips, Nathan Ehresman, Paul Thompson,
+Peter Hutnick, Philippe Mingo, Pål Løberg, Rick Castello, Seth E. Randall,
+Shane Wilson, Simon Dick, Steve Falla, Steve Gare, Tomas Kuliavas, Tyler Akins,
+and Wouter Teepe.
+
+Significant contributions:
+--------------------------
+Alex Bleeker, Charles Scheidecker, Cor Bosman, Damien Sandras, David
+Whittington, Jan-Pieter Cornet, John Williams, Libor Kopecky, Martin Jespersen,
+Michael Long, Ondrej Sury, Pontus Ullgren, Rob Siemborski, Sergiusz Pawlowicz,
+Stefan Meier, Stefan Sels, and many others.
+
+Translations:
+-------------
+The translators are credited in the file "TRANSLATORS", which is part of the
+locales package.

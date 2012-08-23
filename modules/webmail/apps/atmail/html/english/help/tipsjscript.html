@@ -1,0 +1,36 @@
+
+tiparray.push('You can resize the columns in your Mailbox Panes if using the Advanced interface. This is specially useful if you are using smaller resolutions to view the Webmail interface. Just click and drag on the column borders, and you can resize it to your desired level.');
+tiparray.push('You can open up a context menu by right-clicking on a message. It is a much easier way to Reply, Forward, or Open a message.');
+tiparray.push('You can make subfolders easily by right clicking on pre-existing folders.');
+tiparray.push('Did you know that you can encrypt your email messages? Just go to <b>Utilities > Email Settings > Mail Security</b> for options on how to enable encryption with your emails.');
+<!-- if($pref['allow_Sync']) { -->
+tiparray.push('Your WebMail account can be easily synchronized with Outlook with the sync utility. A dedicated section for that topic can be found <a href = "parse.php?file=html/english/help/sync.html">here</a>');
+<!-- } -->
+
+<!-- if($pref['allow_SpamSettings']) { -->
+tiparray.push('You can personally assign your Blacklists/Whitelists in your Spam Settings folder. Doing so can make your spam-filtering much more efficient and effective.');
+<!-- } -->
+
+tiparray.push('Cannot remember the recipients for an email? Easy - you can add recipients directly from the address book with the "Add Recipients" button. If enabled on the server, you can also view shared and global address-books on the system.');
+tiparray.push('Want to send custom HTML code via email? You can do this easily by toggling between "Plain" and "HTML" editors in your Compose Message Window');
+<!-- if($pref['allow_Calendar']) { -->
+tiparray.push('In your Calendar, you can specify which users have read-only and read-write access to the appointment. This way, you can allow a specified set of people to alter the dates and details for appointments.');
+<!-- } -->
+
+<!-- if($pref['allow_LDAP']) { -->
+tiparray.push('Want to use addresses on other LDAP servers? No problem - you can do this in the <b>Find People</b> window, where you can specify the LDAP server you want to query, along with the parameters you want your search to be limited to.');
+<!-- } -->
+
+<!-- if($pref['allow_MultiAccounts']) { -->
+tiparray.push('Your other POP3/IMAP accounts can also be accessed via the WebMail client. You can do this in your <b>Utilities > Multi Accounts</b> window, where you can define the hostname, mailbox, and mailserver you want to access.');
+<!-- } -->
+
+tiparray.push('Did you know that you can click and drag messages from one folder to another? Just drag an email message to the destination folder if using the Ajax interface. For the Advanced IE interface you can click the message icon and drag to the folder tree on the left - this is a much easier way of moving your messages.');
+tiparray.push('Should you prefer not to view messages within tabs using the Advanced interface, you can easily change this - in the <b>Utilities > Email Settings > WebMail Preferences</b> window, just look for the checkbox labeled "Message Popup" and enable it.');
+// Double up the change of showing this tip, its very useful
+tiparray.push('Increase the performance of the WebMail interface by configuring your browser to cache the HTML/images. Visit the Internet-Options -> Temporary Internet Files -> Settings -> Check for newer versions of stored pages = "Automatically" .');
+tiparray.push('Increase the performance of the WebMail interface by configuring your browser to cache the HTML/images. Visit the Internet-Options -> Temporary Internet Files -> Settings -> Check for newer versions of stored pages = "Automatically" .');
+
+<!-- if($pref['allow_MailMonitor'] && $domains[$this->pop3host]) { -->
+tiparray.push('Download the <a href="javascript:top.helpwin(\'mailmonitor.html\')">Mail Monitor</a> desktop utility to automatically check your account for new messages. You will be notified of new messages via a popup display.');
+<!-- } -->

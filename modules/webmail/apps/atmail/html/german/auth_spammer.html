@@ -1,0 +1,38 @@
+<!-- if($this->Ajax) { -->
+<Error>
+	<ErrorStatus>1</ErrorStatus>
+	<Status>1</Status>
+	<ErrorMessage><![CDATA[$var['error']]]></ErrorMessage>
+	<StatusMessage><![CDATA[Nachricht verweigert - Ihre IP Adresse hat das Maximum der Nachrichten pro Tag verschickt. Um die SPAM Wahrscheinlichkeit zu verhindern, wurde Ihre ausgehende Nachricht geblockt.  ]]></StatusMessage>
+</Error>
+<!-- } -->
+
+<!-- if(!$this->Ajax) { -->
+<html>
+<head>
+<title>Spam erkannt</title></head><body bgcolor="$this->BgColor" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor">
+<html lang="de"><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+
+<style>
+
+.sw {font-family:Verdana;font-size:13px;color:#000000;}
+.swr {font-family:Verdana;font-size:13px;color:#FF0000;}
+</style>
+
+
+
+<LINK href="javascript/style$this->browser.css" rel="stylesheet" type="text/css">
+<img src="$pref['logo_big_img']"><br>
+<h1>Nachricht verweigert</h1>
+
+<font class="swr">Ihre IP Adresse hat das Maximum der Nachrichten pro Tag verschickt. Um die SPAM Wahrscheinlichkeit zu verhindern, wurde Ihre ausgehende Nachricht geblockt. </font> <font class="sw"> 
+<ul>
+<li>Bitte unsereren Support ($this->admin_email) kontaktieren.</li>
+</ul>
+</font>
+</body>
+</html>
+
+<!-- } -->

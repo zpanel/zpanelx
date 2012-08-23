@@ -1,0 +1,144 @@
+/*****************************************************************
+ * Release Notes: SquirrelMail 1.3.0                             *
+ * The "Pasta" Release                                           *
+ * 17 august 2002                                                *
+ *****************************************************************/
+
+In this edition of SquirrelMail Release Notes:
+   * All about this Release!!!
+   * Reporting my favorite SquirrelMail 1.3 bug
+   * Important Note about PHP 4.2.2
+   * About our Release Aliases
+
+All about this Release!!!
+=========================
+
+This is the first release on our way to a new stable series.
+On our way to, that is, this is a development release, which is not
+intended for production servers. We feel that releasing development
+versions will help us making the to-be stable release more stable, and
+restricting the ability to test no longer to people who use CVS.
+
+So download it! Install it, and try to break it! We are hungry for any
+bug report you send. If stumbling over a bug is a true non-option,
+this release is not for you. In that case, download the stable version
+and enjoy that one.
+
+In general, we are planning to regularly release a 1.3.x version until
+it is stable enough to call her 1.4 or 2.0. While I'm at it, one
+comment on version numbers. Our version numbers take the form of A.B.C
+ A increases with time, but only very seldomly.
+ B if it is even (0, 2, 4 etc), it is a stable release
+   if it is odd (1, 3, 5 etc), it is a development release
+ C indicates small changes.
+Which is to say our version numbering system is the same as that of
+the linux kernel. So 1.2.7 is a stable version, and 1.3.0 (this one)
+is a development release.
+
+We are excited to bring you the first fruits of a very good
+development series. Major rewrites of the back-end and the user
+interface have been happening since the 1.2 series. These rewrites
+have inspired me for the release alias (see down this document).
+
+
+A note on plugins
+=================
+
+There have been very severe architecture improvements. Lots of plugins
+have not yet been adapted to this. Plugins which are distributed with
+this release (eg. in the same .tar.gz file) may work. Plugins not
+distributed with this plugin most probably WILL NOT WORK.
+
+So if you have ANY problem at all, first try turning off all plugins.
+
+
+A note on PHP 4.2.2
+===================
+
+There are certain issues with PHP 4.2.2 and session handling that have
+not yet been addresses in this release. So this release MAY NOT WORK
+when you use PHP 4.2.2. These issues will be addressed to in
+forthcoming 1.3.x releases.
+
+
+A note on your configuration
+============================
+
+For a whole bunch of reasons, it is MANDATORY that you run conf.pl
+(and then save your configuration) from the config/ directory before
+using this release.
+
+If you have problems with UID support, please do these 2 things:
+
+1) For our comfort and the prosper of SquirrelMail:
+   send a bugreport with this information
+     * IMAP server type + version
+     * Whether you use server-side sorting
+     * Whether you use thread sorting
+     * The value of "sort" (as in conf.pl)
+   bugs can be submitted at: http://www.squirrelmail.org/bugs
+2) For your own pleasure and comfort:
+   turn of UID support in conf.pl, so you can continue to use 1.3.0
+
+
+A note on MIME
+==============
+
+In case you stumble over a message of which something goes wrong with
+MIME (it does not display some of its parts all right, etc. etc.),
+please forward the message AS AN ATTACHMENT to
+squirrelmail-devel@lists.sourceforge.net. However, AVOID
+forwarding emails over 20k of size. Please not as well that messages
+which are NOT forwarded AS AN ATTACHMENT are COMPLETEY USELESS for our
+testing purposes.
+
+
+Reporting my favorite SquirrelMail 1.3 bug
+==========================================
+
+It is not unlikely you will experience some bugs while using this
+development version. Please submit these bugs. Also, please mention
+that the bug is in this 1.3.0 release.
+
+   http://www.squirrelmail.org/bugs
+
+Thank you for your cooperation in that issue. That helps us to make
+sure that nothing slips through the cracks. Also, it would help if
+people would check existing tracker items for a bug before reporting
+it again. This would help to eliminate duplicate reports, and
+increase the time we can spend CODING by DECREASING the time we
+spend sorting through bug reports. And remember, check not only OPEN
+bug reports, but also closed ones as a bug that you report MAY have
+been fixed in CVS already.
+
+In case you want to join us on coding SquirrelMail, or have other
+things to share with the developers, join the development mailinglist:
+
+   squirrelmail-devel@lists.sourceforge.net
+
+
+About our Release Aliases - By Wouter Teepe
+=========================
+
+Pasta is, as we all know, a group of Italian dishes. As most of us
+know, several types of pasta exist, two of which are:
+
+* Spaghetti: Tastes good, but is very hard to untangle. Its structure
+  is unneccecarily complex, but it is relatively easy to cook.
+* Lasagne: Tastes excellent, and its structure is very elegant: it is
+  layered. Cooking it takes quite a bit more patience and design.
+
+I will not bore you with Italian cooking more except for this: The
+difference between spaghetti and lasagne applies to SquirrelMail as
+well. Where 1.2 is good, its inside is unneccecarily complex. Opposed
+to this, 1.3 is quite well structured from the inside. Its potential
+is true excellence. Its flavor is already excellent. Expect 1.4/2.0 to
+be, well...
+
+With the slicing up the internals of SquirrelMail, whole new
+possibilities will emerge. Listen on the development mailinglist to
+hear which!
+
+
+                  Happy SquirrelMailing!
+                    - The SquirrelMail Project Team

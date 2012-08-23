@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="iso-8859-15" ?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+
+<window id="abwnd" title="$pref['brandname']" orient="horizontal" persist="x y width height"
+xmlns:html="http://www.w3.org/1999/xhtml" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" onclose="closeSession();">
+
+
+			<iframe persist="height" popup="messagepopupmenu" flex="10" style="margin:1px;" name="messagewindow" id="messagewindow" type="content-primary" src="parse.php?file=$var['URL']" />
+
+</window>
