@@ -1,3 +1,0 @@
-RewriteEngine on
-RewriteRule ^api/([^/\.]+)/?$ bin/api.php?m=$1 [L]
-RewriteRule ^apps/([^/\.]+)/?$ etc/apps/$1 [L]
