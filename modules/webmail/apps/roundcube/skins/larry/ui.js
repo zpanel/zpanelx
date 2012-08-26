@@ -110,7 +110,7 @@ function rcube_mail_ui()
         $('#mailthreadmode').addClass(rcmail.env.threading ? 'selected' : '').click(function(e){ switch_view_mode('thread'); return false });
 
         mailviewsplit = new rcube_splitter({ id:'mailviewsplitter', p1:'#mailview-top', p2:'#mailview-bottom',
-          orientation:'h', relative:true, start:310, min:150, size:0, offset:-22 });
+          orientation:'h', relative:true, start:310, min:150, size:12, offset:4 });
         if (previewframe)
           mailviewsplit.init();
 
@@ -172,23 +172,32 @@ function rcube_mail_ui()
         return;
       }
 
-      var title = $('option', this).first().text();
+      var select = $(this),
+        height = Math.max(select.height(), 26) - 2,
+        width = select.width() - 22,
+        title = $('option', this).first().text();
+
       if ($('option:selected', this).val() != '')
         title = $('option:selected', this).text();
 
-      var select = $(this)
-        .change(function(){
+      var overlay = $('<a class="menuselector"><span class="handle">' + title + '</span></a>')
+        .css('position', 'absolute')
+        .offset(select.position())
+        .insertAfter(select);
+
+      overlay.children().width(width).height(height).css('line-height', (height - 1) + 'px');
+
+      select.change(function() {
           var val = $('option:selected', this).text();
           $(this).next().children().html(val);
         });
 
-      $('<a class="menuselector dropdownselector"><span class="handle">' + title + '</span></a>')
-        .css('position', 'absolute')
-        .offset(select.position())
-        .insertAfter(select)
-        .children().width(select.outerWidth() - 40);
+      var parent = select.parent();
+      if (parent.css('position') != 'absolute')
+        parent.css('position', 'relative');
 
-      select.parent().css('position', 'relative');
+      // re-set original select width to fix click action and options width in some browsers
+      select.width(overlay.width());
     });
 
     $(document.body)
@@ -209,12 +218,9 @@ function rcube_mail_ui()
     })
     .contents().mouseup(body_mouseup);
 
-    $(window).resize(function(e) {
-      // check target due to bugs in jquery
-      // http://bugs.jqueryui.com/ticket/7514
-      // http://bugs.jquery.com/ticket/9841
-      if (e.target == window) resize();
-    });
+    // don't use $(window).resize() due to some unwanted side-effects
+    window.onresize = resize;
+    resize();
   }
 
   /**
@@ -224,6 +230,8 @@ function rcube_mail_ui()
   function body_mouseup(e)
   {
     var config, obj, target = e.target;
+    if (target.className == 'inner')
+        target = e.target.parentNode;
     for (var id in popups) {
       obj = popups[id];
       config = popupconfig[id];
@@ -250,6 +258,20 @@ function rcube_mail_ui()
     if (rcmail.env.task == 'mail' && rcmail.env.action == 'compose') {
       layout_composeview();
     }
+
+    // make iframe footer buttons float if scrolling is active
+    $('body.iframe .footerleft').each(function(){
+      var footer = $(this),
+        body = $(document.body),
+        floating = footer.hasClass('floating'),
+        overflow = body.outerHeight(true) > $(window).height();
+      if (overflow != floating) {
+        var action = overflow ? 'addClass' : 'removeClass';
+        footer[action]('floating');
+        body[action]('floatingbuttons');
+      }
+    })
+
   }
 
   /**
@@ -258,12 +280,13 @@ function rcube_mail_ui()
   function message_displayed(p)
   {
     // show a popup dialog on errors
-    if (p.type == 'error') {
+    if (p.type == 'error' && rcmail.env.task != 'login') {
       if (!me.messagedialog) {
         me.messagedialog = $('<div>').addClass('popupdialog');
       }
 
       var pos = $(p.object).offset();
+      pos.top -= (rcmail.env.task == 'login' ? 20 : 160);
       me.messagedialog.dialog('close');
       me.messagedialog.html(p.message)
         .dialog({
@@ -274,7 +297,7 @@ function rcube_mail_ui()
           close: function() {
             me.messagedialog.dialog('destroy').hide();
           },
-          position: ['center', pos.top - 160],
+          position: ['center', pos.top],
           hide: { effect:'drop', direction:'down' },
           width: 420,
           minHeight: 90
@@ -308,8 +331,7 @@ function rcube_mail_ui()
 
   function resize_leftcol(splitter)
   {
-    if (splitter)
-      $('#quicksearchbar input').css('width', (splitter.pos - 70) + 'px');
+    // STUB
   }
 
 
@@ -337,7 +359,13 @@ function rcube_mail_ui()
 
   function update_quota(p)
   {
-    var y = p.total ? Math.ceil(p.percent / 100 * 20) * 24 : 0;
+    var step = 24, step_count = 20,
+      y = p.total ? Math.ceil(p.percent / 100 * step_count) * step : 0;
+
+    // never show full-circle if quota is close to 100% but below.
+    if (p.total && y == step * step_count && p.percent < 100)
+      y -= step;
+
     $('#quotadisplay').css('background-position', '0 -'+y+'px');
   }
 
@@ -438,7 +466,7 @@ function rcube_mail_ui()
     button.removeClass().addClass(visible ? 'enabled' : 'closed');
 
     if (visible) {
-      $('#mailview-top').css({ bottom:'auto' });
+      $('#mailview-top').removeClass('fullheight').css({ bottom:'auto' });
       $('#mailview-bottom').css({ height:'auto' });
 
       rcmail.env.contentframe = 'messagecontframe';
@@ -457,7 +485,7 @@ function rcube_mail_ui()
       rcmail.env.contentframe = null;
       rcmail.show_contentframe(false);
 
-      $('#mailview-top').css({ height:'auto', bottom:'28px' });
+      $('#mailview-top').addClass('fullheight').css({ height:'auto', bottom:'28px' });
       $('#mailview-bottom').css({ top:'auto', height:'26px' });
 
       if (mailviewsplit.handle)
@@ -590,18 +618,10 @@ function rcube_mail_ui()
     $('input[name="view"][value="thread"]').prop('checked', rcmail.env.threading ? true : false);
     $('input[name="view"][value="list"]').prop('checked', rcmail.env.threading ? false : true);
 
-    // list columns
-    var found, cols = $('input[name="list_col[]"]');
-    for (var i=0; i < cols.length; i++) {
-      if (cols[i].value != 'from') {
-        found = $.inArray(cols[i].value, rcmail.env.coltypes) != -1;
-      }
-      else {
-        found = ($.inArray('from', rcmail.env.coltypes) != -1
-          || $.inArray('to', rcmail.env.coltypes) != -1);
-      }
-      $(cols[i]).prop('checked', found);
-    }
+    // set checkboxes
+    $('input[name="list_col[]"]').each(function() {
+      $(this).prop('checked', $.inArray(this.value, rcmail.env.coltypes) != -1);
+    });
 
     $dialog.dialog({
       modal: true,

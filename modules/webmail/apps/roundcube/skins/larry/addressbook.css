@@ -18,6 +18,7 @@
 	left: 0;
 	width: 220px;
 	bottom: 0;
+	z-index: 2;
 }
 
 #addressview-right {
@@ -26,15 +27,17 @@
 	left: 232px;
 	right: 0;
 	bottom: 0;
+	z-index: 3;
 }
 
 #addressbooktoolbar {
 	position: absolute;
 	top: -6px;
 	left: 0;
-	right: 0;
+	right: 260px;
 	height: 40px;
 	white-space: nowrap;
+	z-index: 10;
 }
 
 #directorylistbox {
@@ -67,7 +70,9 @@
 
 #directorylist li a,
 #contacts-table .contact td.name {
-	background: url(images/listicons.png) -100px 0 no-repeat;
+	background-image: url(images/listicons.png);
+	background-position: -100px 0;
+	background-repeat: no-repeat;
 	overflow: hidden;
 	padding-left: 36px;
 	text-overflow: ellipsis;
@@ -184,9 +189,7 @@ form #contacthead {
 }
 
 #contacthead span.nickname:before,
-#contacthead span.nickname:after,
-#contacthead input.ff_nickname:before,
-#contacthead input.ff_nickname:after {
+#contacthead span.nickname:after {
 	content: '"';
 }
 
@@ -291,6 +294,6 @@ a.deletebutton {
 	width: 24px;
 	height: 18px;
 	text-decoration: none;
-	text-indent: -1000px;
+	text-indent: -5000px;
 	background: url(images/buttons.png) -7px -377px no-repeat;
 }

@@ -2,7 +2,7 @@
 
 $pref = array (
   'debug_sql' => 0,
-  'aspell_path' => '',
+  'aspell_path' => NULL,
   'addressbook_ldap_entries' => '0',
   'autocomplete_ldap_entries' => '0',
   'imap_sort_extension' => '1',
@@ -33,7 +33,7 @@ You will be unable to receive or send any messages once you have exhausted your 
   'filter_awl_purge_medium' => '14',
   'filter_awl_purge_low' => '7',
   'filter_uridns_support' => '1',
-  'openssl_path' => '/usr/bin/openssl',
+  'openssl_path' => '',
   'filter_spf_support' => '1',
   'smtpauth_password' => '',
   'smtpauth_username' => '',
@@ -95,7 +95,7 @@ USER IS OVER THE QUOTA - The users email quota has exceeded. The message could n
   'smtp_throttle' => '1',
   'ldap_chserver' => '1',
   'pallow_Country' => '1',
-  'install_type' => 'server',
+  'install_type' => 'standalone',
   'sql_host' => 'localhost',
   'allow_EmailEncoding' => 1,
   'version' => '1.05',
@@ -112,7 +112,7 @@ USER IS OVER THE QUOTA - The users email quota has exceeded. The message could n
   'imap_max' => '40',
   'logo_small_img' => 'imgs/logo_simple_head.png',
   'windows' => '1',
-  'sql_pass' => '',
+  'sql_pass' => '30019295',
   'allow_AskQuestion' => '1',
   'brandname' => 'Atmail Open',
   'allow_AutoComplete' => '1',
@@ -127,7 +127,7 @@ USER IS OVER THE QUOTA - The users email quota has exceeded. The message could n
   'filter_required_hits_reject' => '10',
   'filter_report_safe_enable' => '1',
   'ispell_catalan' => '',
-  'sql_table' => 'atmail',
+  'sql_table' => 'zpanel_atmail',
   'filter_bayes_min_ham_num' => '200',
   'smtp_type' => NULL,
   'allow_Mobile' => '1',
@@ -142,11 +142,11 @@ USER IS OVER THE QUOTA - The users email quota has exceeded. The message could n
   'smtp_max_connections_perip' => '5',
   'max_recipients_per_msg' => '100',
   'ispell_greek' => '',
-  'admin_email' => '',
+  'admin_email' => 'webmaster@hebergemant-web-gratuit.fr',
   'max_msg_size' => '18',
   'virus_enable' => '1',
   'smtp_enforce_sync' => '1',
-  'logout_url' => 'index.php?func=logout',
+  'logout_url' => 'logout.php',
   'imap_folders' => '1',
   'allow_AbookImportExport' => '1',
   'pallow_TelPager' => '1',
@@ -164,7 +164,7 @@ Message Too Big - The Message sent was too big and could not be delivered. Reduc
 
 The $pref[brandname] email system has blocked an email message for $this->EmailTo from the recipient $this->EmailFrom.
 
-The email message contained the attachment filename \"$filename\" which is blocked by the email-system.
+The email message contained the attachment filename \\"$filename\\" which is blocked by the email-system.
 
 Please resend the message without the attachment for the email to be successfully delivered.
 
@@ -178,7 +178,7 @@ For additional information about the email service contact the Administrator $pr
   'IMAP' => '1',
   'pallow_City' => '1',
   'mailserver' => '',
-  'user_dir' => '/var/www/html/atmailopen',
+  'user_dir' => 'C:\\zpanel\\panel\\modules\\webmail\\apps\\atmail',
   'GlobalAbook' => '0',
   'allow_DateFormat' => '1',
   'pallow_State' => '1',
@@ -194,7 +194,7 @@ For additional information about the email service contact the Administrator $pr
   'allow_DisplayImages' => '1',
   'allow_EmailForwarding' => '1',
   'timezone' => 'east',
-  'allow_Signup' => '1',
+  'allow_Signup' => '0',
   'install_size' => 'normal',
   'allow_TimeZone' => '1',
   'ispell_french' => '',
@@ -218,7 +218,7 @@ For additional information about the email service contact the Administrator $pr
   'allow_Advanced' => 1,
   'sql_type' => 'mysql',
   'smtp_auth' => '1',
-  'install_dir' => '',
+  'install_dir' => 'C:\\zpanel\\panel\\modules\\webmail\\apps\\atmail',
   'filter_attach_check' => '1',
   'ldap_local' => NULL,
   'websync_enable_shared' => '1',
@@ -245,39 +245,39 @@ For additional information about the email service contact the Administrator $pr
   'bind_dn' => '',
   'allow_Forward' => '1',
   'builddate' => 'Dec 5 2008',
-  'installdate' => 'Feb 28 2007',
+  'installdate' => 'Jul 10 2012',
   'ldap_passwd' => '',
   'allow_LoginHistory' => '1',
   'message_cache_time' => '30',
   'pop3_enable' => 'YES',
   'allow_FullName' => '1',
-  'error_message' => '<html><body background=\"imgs/watermark.gif\">
-<table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"2\">
+  'error_message' => '<html><body background=\\"imgs/watermark.gif\\">
+<table width=\\"100%\\" border=\\"0\\" cellspacing=\\"0\\" cellpadding=\\"2\\">
   <tr>
-    <td><font face=\"Verdana, Arial, Helvetica, sans-serif\"><strong>Software Configuration
+    <td><font face=\\"Verdana, Arial, Helvetica, sans-serif\\"><strong>Software Configuration
       Error</strong></font></td>
-    <td align=\"right\"><img src=\"$pref[logo_small_img]\"></td>
+    <td align=\\"right\\"><img src=\\"$pref[logo_small_img]\\"></td>
   </tr>
   <tr>
-    <td colspan=\"2\"> <font face=\"Verdana, Arial\" size=\"-1\">
+    <td colspan=\\"2\\"> <font face=\\"Verdana, Arial\\" size=\\"-1\\">
       <p>The error message follows: <b>$msg</b></p>
       </font> </td>
   </tr>
   <tr>
-    <td colspan=\"2\">
-	<iframe src=\"http://calacode.com/error.pl?prog=atmail&id=$reg[downloadid]&error=$msg&admin=$pref[admin_email]\" width=\"100%\" height=\"140\" scrolling=\"auto\" frameborder=\"0\"></iframe>
+    <td colspan=\\"2\\">
+	<iframe src=\\"http://calacode.com/error.pl?prog=atmail&id=$reg[downloadid]&error=$msg&admin=$pref[admin_email]\\" width=\\"100%\\" height=\\"140\\" scrolling=\\"auto\\" frameborder=\\"0\\"></iframe>
 </tr>
   <tr>
-    <td colspan=\"2\"><form method=\"post\" action=\"http://webbasedemail.net/bug.pl\">
+    <td colspan=\\"2\\"><form method=\\"post\\" action=\\"http://webbasedemail.net/bug.pl\\">
         <p>
-          <input type=\"submit\" name=\"Submit\" value=\"Submit Bug Report\">
-          <input type=\"hidden\" name=\"msg\" value=\"$msg\">
-          <input type=\"hidden\" name=\"server\" value=\"$_SERVER[REMOTE_ADDR]\">
-          <input type=\"hidden\" name=\"referer\" value=\"$_SERVER[HTTP_REFERER]\">
-          <input type=\"hidden\" name=\"admin\" value=\"$pref[admin_email]\">
-          <input type=\"hidden\" name=\"domain\" value=\"\">
+          <input type=\\"submit\\" name=\\"Submit\\" value=\\"Submit Bug Report\\">
+          <input type=\\"hidden\\" name=\\"msg\\" value=\\"$msg\\">
+          <input type=\\"hidden\\" name=\\"server\\" value=\\"$_SERVER[REMOTE_ADDR]\\">
+          <input type=\\"hidden\\" name=\\"referer\\" value=\\"$_SERVER[HTTP_REFERER]\\">
+          <input type=\\"hidden\\" name=\\"admin\\" value=\\"$pref[admin_email]\\">
+          <input type=\\"hidden\\" name=\\"domain\\" value=\\"\\">
         </p>
-        <p><font face=\"Verdana\" size=\"-1\">Submit a bug-report to Technical Support.
+        <p><font face=\\"Verdana\\" size=\\"-1\\">Submit a bug-report to Technical Support.
           A staff member will be alerted of the error and will notify you via
           email for a solution.</font></p>
 </form></td>
@@ -285,7 +285,7 @@ For additional information about the email service contact the Administrator $pr
 </table>
 </body></html>',
   'filter_required_hits' => '4',
-  'smtphost' => 'mail.iinet.net.au',
+  'smtphost' => 'localhost',
   'error_nouser' => 'Email Message Error -
 
 ********** Sorry, the message could not be delivered **********
@@ -302,7 +302,7 @@ For additional information about the email service contact the Administrator $pr
   'ispell_japanese' => '',
   'websync_log_support' => '1',
   'pallow_LastName' => '1',
-  'sql_user' => 'root',
+  'sql_user' => 'andykimpe',
   'allow_LDAP' => '0',
   'allow_LDAPsearch' => '0',
   'pop3_max_perip' => '5',
@@ -329,14 +329,15 @@ For additional information about the email service contact the Administrator $pr
   'aspell_dir' => '',
   'use_php_pspell' => 0,
   'imap_functions' => '',
-  'installed' => 0,
+  'installed' => 1,
   'log_purge_days' => '30',
   'filter_auto_dl_spam' => '1',
   'use_mailparse_ext' => NULL,
   'display_php_errors' => 0,
   'expunge_logout' => 0,
   'DefaultEncoding' => 'iso-8859-1',
-
+  'allow_utf7_folders' => '1',
+  'mail_type_ssl' => 'allow',
 );
 
 $settings = array (
@@ -378,15 +379,14 @@ $settings = array (
   'AutoComplete' => 1,
   'MailType' => 'sql',
   'Mode' => 'sql',
-  'DisplayImages' => '1'
+  'DisplayImages' => '1',
 );
 
 $domains = array (
-
 );
 
 $groups = array (
-  'Default' =>
+  'Default' => 
   array (
     'POP3' => '1',
     'IMAP' => '1',
@@ -399,7 +399,7 @@ $groups = array (
     'allow_SpamSettings' => '1',
     'GlobalAbook' => '0',
     'GlobalAbookRead' => '0',
-  )
+  ),
 );
 
 $reg = array (

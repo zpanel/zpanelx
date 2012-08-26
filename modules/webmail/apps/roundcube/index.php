@@ -2,7 +2,7 @@
 /*
  +-------------------------------------------------------------------------+
  | Roundcube Webmail IMAP Client                                           |
- | Version 0.8-rc                                                         |
+ | Version 0.8.1                                                           |
  |                                                                         |
  | Copyright (C) 2005-2012, The Roundcube Dev Team                         |
  |                                                                         |
@@ -103,12 +103,9 @@ if ($RCMAIL->task == 'login' && $RCMAIL->action == 'login') {
     'valid' => $request_valid,
   ));
 
-  // check if client supports cookies
-  if ($auth['cookiecheck'] && empty($_COOKIE)) {
-    $OUTPUT->show_message("cookiesdisabled", 'warning');
-  }
-  else if ($auth['valid'] && !$auth['abort'] &&
-    $RCMAIL->login($auth['user'], $auth['pass'], $auth['host'])
+  // Login
+  if ($auth['valid'] && !$auth['abort'] &&
+    $RCMAIL->login($auth['user'], $auth['pass'], $auth['host'], $auth['cookiecheck'])
   ) {
     // create new session ID, don't destroy the current session
     // it was destroyed already by $RCMAIL->kill_session() above
@@ -143,9 +140,23 @@ if ($RCMAIL->task == 'login' && $RCMAIL->action == 'login') {
     $OUTPUT->redirect($redir);
   }
   else {
-    $error_code = is_object($RCMAIL->storage) ? $RCMAIL->storage->get_error_code() : 1;
+    if (!$auth['valid']) {
+      $error_code  = RCMAIL::ERROR_INVALID_REQUEST;
+    }
+    else {
+      $error_code = $auth['error'] ? $auth['error'] : $RCMAIL->login_error();
+    }
 
-    $OUTPUT->show_message($error_code < -1 ? 'storageerror' : (!$auth['valid'] ? 'invalidrequest' : 'loginfailed'), 'warning');
+    $error_labels = array(
+      RCMAIL::ERROR_STORAGE          => 'storageerror',
+      RCMAIL::ERROR_COOKIES_DISABLED => 'cookiesdisabled',
+      RCMAIL::ERROR_INVALID_REQUEST  => 'invalidrequest',
+      RCMAIL::ERROR_INVALID_HOST     => 'invalidhost',
+    );
+
+    $error_message = $error_labels[$error_code] ? $error_labels[$error_code] : 'loginfailed';
+
+    $OUTPUT->show_message($error_message, 'warning');
     $RCMAIL->plugins->exec_hook('login_failed', array(
       'code' => $error_code, 'host' => $auth['host'], 'user' => $auth['user']));
     $RCMAIL->kill_session();
@@ -202,33 +213,35 @@ if (empty($RCMAIL->user->ID)) {
   if ($session_error || $_REQUEST['_err'] == 'session')
     $OUTPUT->show_message('sessionerror', 'error', null, true, -1);
 
-  $RCMAIL->set_task('login');
-  $OUTPUT->send('login');
+  $plugin = $RCMAIL->plugins->exec_hook('unauthenticated', array('task' => 'login', 'error' => $session_error));
+
+  $RCMAIL->set_task($plugin['task']);
+  $OUTPUT->send($plugin['task']);
 }
 // CSRF prevention
 else {
-  // don't check for valid request tokens in these actions
-  $request_check_whitelist = array('login'=>1, 'spell'=>1);
+  $request_check_whitelist = array('login'=>1, 'spell'=>1, 'spell_html'=>1);
 
-  // check client X-header to verify request origin
-  if ($OUTPUT->ajax_call) {
-    if (rc_request_header('X-Roundcube-Request') != $RCMAIL->get_request_token() && !$RCMAIL->config->get('devel_mode')) {
-      header('HTTP/1.1 403 Forbidden');
-      die("Invalid Request");
+  if (!$request_check_whitelist[$RCMAIL->action]) {
+    // check client X-header to verify request origin
+    if ($OUTPUT->ajax_call) {
+      if (rc_request_header('X-Roundcube-Request') != $RCMAIL->get_request_token()) {
+        header('HTTP/1.1 403 Forbidden');
+        die("Invalid Request");
+      }
     }
-  }
-  // check request token in POST form submissions
-  else if (!empty($_POST) && !$request_check_whitelist[$RCMAIL->action] && !$RCMAIL->check_request()) {
-    $OUTPUT->show_message('invalidrequest', 'error');
-    $OUTPUT->send($RCMAIL->task);
-  }
+    // check request token in POST form submissions
+    else if (!empty($_POST) && !$RCMAIL->check_request()) {
+      $OUTPUT->show_message('invalidrequest', 'error');
+      $OUTPUT->send($RCMAIL->task);
+    }
 
-  // check referer if configured
-  if (!$request_check_whitelist[$RCMAIL->action] && $RCMAIL->config->get('referer_check') && !rcube_check_referer()) {
-    raise_error(array(
-      'code' => 403,
-      'type' => 'php',
-      'message' => "Referer check failed"), true, true);
+    // check referer if configured
+    if ($RCMAIL->config->get('referer_check') && !rcube_check_referer()) {
+      raise_error(array(
+        'code' => 403, 'type' => 'php',
+        'message' => "Referer check failed"), true, true);
+    }
   }
 }
 

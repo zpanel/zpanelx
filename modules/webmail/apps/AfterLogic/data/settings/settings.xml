@@ -6,7 +6,7 @@
 		<!-- License key is supplied here. -->
 		<LicenseKey />
 		<AdminLogin>mailadmin</AdminLogin>
-		<AdminPassword>a9675dfa5f81426402ad4453bde84df2</AdminPassword>
+		<AdminPassword>d6a9a933c8aafc51e55ac0662b6e4d4a</AdminPassword>
 		<DBType>MySQL</DBType>
 		<DBPrefix>AfterLogic</DBPrefix>
 		<DBHost>localhost</DBHost>

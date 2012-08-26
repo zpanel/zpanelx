@@ -5,26 +5,28 @@
 <roundcube:include file="/includes/links.html" />
 <style type="text/css">
 <roundcube:if condition="config:preview_pane == true" />
-	#mailview-top { height: <roundcube:exp expression="!empty(cookie:mailviewsplitter) ? cookie:mailviewsplitter-38 : 300" />px; }
-	#mailview-bottom { top: <roundcube:exp expression="!empty(cookie:mailviewsplitter) ? cookie:mailviewsplitter+5 : 320" />px; height: auto; }
+	#mailview-top { height: <roundcube:exp expression="!empty(cookie:mailviewsplitter) ? cookie:mailviewsplitter-48 : 276" />px; }
+	#mailview-bottom { top: <roundcube:exp expression="!empty(cookie:mailviewsplitter) ? cookie:mailviewsplitter+6 : 330" />px; height: auto; }
 	#mailpreviewframe { display: block; }
 <roundcube:endif />
 </style>
 </head>
-<body class="noscroll">
+<body>
 
+<div class="minwidth">
 <roundcube:include file="/includes/header.html" />
 
 <div id="mainscreen">
 
-<div id="mailview-left">
-
-<!-- search box -->
-<div id="quicksearchbar">
-<roundcube:object name="searchform" id="quicksearchbox" />
-<roundcube:button name="searchmenulink" id="searchmenulink" class="iconbutton searchoptions" onclick="UI.show_popup('searchmenu');return false" title="searchmod" content=" " />
-<roundcube:button command="reset-search" id="searchreset" class="iconbutton reset" title="resetsearch" content=" " />
+<!-- toolbar -->
+<div id="messagetoolbar" class="toolbar">
+	<roundcube:button command="checkmail" type="link" class="button checkmail disabled" classAct="button checkmail" classSel="button checkmail pressed" label="refresh" title="checkmail" />
+	<roundcube:button command="compose" type="link" class="button compose disabled" classAct="button compose" classSel="button compose pressed" label="compose" title="writenewmessage" />
+	<span class="spacer"></span>
+	<roundcube:include file="/includes/mailtoolbar.html" />
 </div>
+
+<div id="mailview-left">
 
 <!-- folders list -->
 <div id="folderlist-header"></div>
@@ -44,20 +46,30 @@
 
 <div id="mailview-right">
 
+<div id="messagesearchtools">
+
 <!-- search filter -->
 <div id="searchfilter">
 	<roundcube:object name="searchfilter" class="searchfilter decorated" />
 </div>
 
-<!-- toolbar -->
-<div id="messagetoolbar">
-<roundcube:include file="/includes/mailtoolbar.html" />
+<!-- search box -->
+<div id="quicksearchbar">
+<roundcube:object name="searchform" id="quicksearchbox" />
+<roundcube:button name="searchmenulink" id="searchmenulink" class="iconbutton searchoptions" onclick="UI.show_popup('searchmenu');return false" title="searchmod" content=" " />
+<roundcube:button command="reset-search" id="searchreset" class="iconbutton reset" title="resetsearch" content=" " />
 </div>
 
-<div id="mailview-top">
+</div>
+
+<roundcube:if condition="config:preview_pane == true" />
+<div id="mailview-top" class="uibox">
+<roundcube:else />
+<div id="mailview-top" class="uibox fullheight">
+<roundcube:endif />
 
 <!-- messagelist -->
-<div id="messagelistcontainer" class="uibox boxlistcontent">
+<div id="messagelistcontainer" class="boxlistcontent">
 <roundcube:object name="messages"
 	id="messagelist"
 	class="records-table sortheader"
@@ -93,6 +105,8 @@
 		</span>
 	</div>
 
+	<roundcube:container name="listcontrols" id="listcontrols" />
+
 	<a href="#preview" id="mailpreviewtoggle" title="<roundcube:label name='previewpane' />"></a>
 </div>
 
@@ -111,6 +125,8 @@
 </div><!-- end mailview-right -->
 
 </div><!-- end mainscreen -->
+
+<div><!-- end minwidth -->
 
 <div id="searchmenu" class="popupmenu">
 	<ul class="toolbarmenu">
@@ -165,7 +181,9 @@
 		<ul class="proplist">
 			<li><label class="disabled"><input type="checkbox" name="list_col[]" value="threads" checked="checked" disabled="disabled" /> <roundcube:label name="threads" /></label></li>
 			<li><label class="disabled"><input type="checkbox" name="list_col[]" value="subject" checked="checked" disabled="disabled" /> <roundcube:label name="subject" /></label></li>
-			<li><label><input type="checkbox" name="list_col[]" value="from" /> <roundcube:label name="fromto" /></label></li>
+			<li><label><input type="checkbox" name="list_col[]" value="fromto" /> <roundcube:label name="fromto" /></label></li>
+			<li><label><input type="checkbox" name="list_col[]" value="from" /> <roundcube:label name="from" /></label></li>
+			<li><label><input type="checkbox" name="list_col[]" value="to" /> <roundcube:label name="to" /></label></li>
 			<li><label><input type="checkbox" name="list_col[]" value="replyto" /> <roundcube:label name="replyto" /></label></li>
 			<li><label><input type="checkbox" name="list_col[]" value="cc" /> <roundcube:label name="cc" /></label></li>
 			<li><label><input type="checkbox" name="list_col[]" value="date" /> <roundcube:label name="date" /></label></li>
@@ -185,7 +203,9 @@
 			<li><label><input type="radio" name="sort_col" value="arrival" /> <roundcube:label name="arrival" /></label></li>
 			<li><label><input type="radio" name="sort_col" value="date" /> <roundcube:label name="sentdate" /></label></li>
 			<li><label><input type="radio" name="sort_col" value="subject" /> <roundcube:label name="subject" /></label></li>
-			<li><label><input type="radio" name="sort_col" value="from" /> <roundcube:label name="fromto" /></label></li>
+			<li><label><input type="radio" name="sort_col" value="fromto" /> <roundcube:label name="fromto" /></label></li>
+			<li><label><input type="radio" name="sort_col" value="from" /> <roundcube:label name="from" /></label></li>
+			<li><label><input type="radio" name="sort_col" value="to" /> <roundcube:label name="to" /></label></li>
 			<li><label><input type="radio" name="sort_col" value="cc" /> <roundcube:label name="cc" /></label></li>
 			<li><label><input type="radio" name="sort_col" value="size" /> <roundcube:label name="size" /></label></li>
 		</ul>

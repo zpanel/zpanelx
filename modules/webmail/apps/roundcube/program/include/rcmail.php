@@ -131,6 +131,11 @@ class rcmail
   private $shutdown_functions = array();
   private $expunge_cache = false;
 
+  const ERROR_STORAGE          = -2;
+  const ERROR_INVALID_REQUEST  = 1;
+  const ERROR_INVALID_HOST     = 2;
+  const ERROR_COOKIES_DISABLED = 3;
+
 
   /**
    * This implements the 'singleton' design pattern
@@ -339,15 +344,20 @@ class rcmail
 
       $this->memcache = new Memcache;
       $this->mc_available = 0;
-      
-      // add alll configured hosts to pool
+
+      // add all configured hosts to pool
       $pconnect = $this->config->get('memcache_pconnect', true);
       foreach ($this->config->get('memcache_hosts', array()) as $host) {
-        list($host, $port) = explode(':', $host);
-        if (!$port) $port = 11211;
+        if (substr($host, 0, 7) != 'unix://') {
+          list($host, $port) = explode(':', $host);
+          if (!$port) $port = 11211;
+        }
+        else {
+          $port = 0;
+        }
         $this->mc_available += intval($this->memcache->addServer($host, $port, $pconnect, 1, 1, 15, false, array($this, 'memcache_failure')));
       }
-      
+
       // test connection and failover (will result in $this->mc_available == 0 on complete failure)
       $this->memcache->increment('__CONNECTIONTEST__', 1);  // NOP if key doesn't exist
 
@@ -357,14 +367,14 @@ class rcmail
 
     return $this->memcache;
   }
-  
+
   /**
    * Callback for memcache failure
    */
   public function memcache_failure($host, $port)
   {
     static $seen = array();
-    
+
     // only report once
     if (!$seen["$host:$port"]++) {
       $this->mc_available--;
@@ -814,12 +824,20 @@ class rcmail
    * @param string Mail storage (IMAP) user name
    * @param string Mail storage (IMAP) password
    * @param string Mail storage (IMAP) host
+   * @param bool   Enables cookie check
    *
    * @return boolean True on success, False on failure
    */
-  function login($username, $pass, $host=NULL)
+  function login($username, $pass, $host = null, $cookiecheck = false)
   {
+    $this->login_error = null;
+
     if (empty($username)) {
+      return false;
+    }
+
+    if ($cookiecheck && empty($_COOKIE)) {
+      $this->login_error = self::ERROR_COOKIES_DISABLED;
       return false;
     }
 
@@ -839,11 +857,18 @@ class rcmail
           break;
         }
       }
-      if (!$allowed)
-        return false;
+      if (!$allowed) {
+        $host = null;
       }
-    else if (!empty($config['default_host']) && $host != rcube_parse_host($config['default_host']))
+    }
+    else if (!empty($config['default_host']) && $host != rcube_parse_host($config['default_host'])) {
+      $host = null;
+    }
+
+    if (!$host) {
+      $this->login_error = self::ERROR_INVALID_HOST;
       return false;
+    }
 
     // parse $host URL
     $a_host = parse_url($host);
@@ -874,7 +899,14 @@ class rcmail
     // Convert username to lowercase. If storage backend
     // is case-insensitive we need to store always the same username (#1487113)
     if ($config['login_lc']) {
-      $username = mb_strtolower($username);
+      if ($config['login_lc'] == 2 || $config['login_lc'] === true) {
+        $username = mb_strtolower($username);
+      }
+      else if (strpos($username, '@')) {
+        // lowercase domain name
+        list($local, $domain) = explode('@', $username);
+        $username = $local . '@' . mb_strtolower($domain);
+      }
     }
 
     // try to resolve email address from virtuser table
@@ -884,17 +916,13 @@ class rcmail
 
     // Here we need IDNA ASCII
     // Only rcube_contacts class is using domain names in Unicode
-    $host = rcube_idn_to_ascii($host);
-    if (strpos($username, '@')) {
-      // lowercase domain name
-      list($local, $domain) = explode('@', $username);
-      $username = $local . '@' . mb_strtolower($domain);
-      $username = rcube_idn_to_ascii($username);
-    }
+    $host     = rcube_idn_to_ascii($host);
+    $username = rcube_idn_to_ascii($username);
 
     // user already registered -> overwrite username
-    if ($user = rcube_user::query($username, $host))
+    if ($user = rcube_user::query($username, $host)) {
       $username = $user->data['username'];
+    }
 
     if (!$this->storage)
       $this->storage_init();
@@ -983,6 +1011,23 @@ class rcmail
   }
 
 
+    /**
+     * Returns error code of last login operation
+     *
+     * @return int Error code
+     */
+    public function login_error()
+    {
+        if ($this->login_error) {
+            return $this->login_error;
+        }
+
+        if ($this->storage && $this->storage->get_error_code() < -1) {
+            return self::ERROR_STORAGE;
+        }
+    }
+
+
   /**
    * Set storage parameters.
    * This must be done AFTER connecting to the server!
@@ -1017,15 +1062,16 @@ class rcmail
 
     if (is_array($default_host)) {
       $post_host = get_input_value('_host', RCUBE_INPUT_POST);
+      $post_user = get_input_value('_user', RCUBE_INPUT_POST);
+
+      list($user, $domain) = explode('@', $post_user);
 
       // direct match in default_host array
-      if ($default_host[$post_host] || in_array($post_host, array_values($default_host))) {
+      if ($default_host[$post_host] || in_array($post_host, $default_host)) {
         $host = $post_host;
       }
-
       // try to select host by mail domain
-      list($user, $domain) = explode('@', get_input_value('_user', RCUBE_INPUT_POST));
-      if (!empty($domain)) {
+      else if (!empty($domain)) {
         foreach ($default_host as $storage_host => $mail_domains) {
           if (is_array($mail_domains) && in_array_nocase($domain, $mail_domains)) {
             $host = $storage_host;

@@ -59,10 +59,67 @@ class rcube_mail_header
     public $mdn_to;
     public $others = array();
     public $flags = array();
+
+    // map header to rcube_mail_header object property
+    private $obj_headers = array(
+        'date'      => 'date',
+        'from'      => 'from',
+        'to'        => 'to',
+        'subject'   => 'subject',
+        'reply-to'  => 'replyto',
+        'cc'        => 'cc',
+        'bcc'       => 'bcc',
+        'content-transfer-encoding' => 'encoding',
+        'in-reply-to'               => 'in_reply_to',
+        'content-type'              => 'ctype',
+        'references'                => 'references',
+        'return-receipt-to'         => 'mdn_to',
+        'disposition-notification-to' => 'mdn_to',
+        'x-confirm-reading-to'      => 'mdn_to',
+        'message-id'                => 'messageID',
+        'x-priority'                => 'priority',
+    );
+
+    /**
+     * Returns header value
+     */
+    public function get($name, $decode = true)
+    {
+        $name = strtolower($name);
+
+        if (isset($this->obj_headers[$name])) {
+            $value = $this->{$this->obj_headers[$name]};
+        }
+        else {
+            $value = $this->others[$name];
+        }
+
+        return $decode ? rcube_mime::decode_header($value, $this->charset) : $value;
+    }
+
+    /**
+     * Sets header value
+     */
+    public function set($name, $value)
+    {
+        $name = strtolower($name);
+
+        if (isset($this->obj_headers[$name])) {
+            $this->{$this->obj_headers[$name]} = $value;
+        }
+        else {
+            $this->others[$name] = $value;
+        }
+    }
 }
 
 // For backward compatibility with cached messages (#1486602)
 class iilBasicHeader extends rcube_mail_header
+{
+}
+
+// Support objects created in git-master (0.9)
+class rcube_message_header extends rcube_mail_header
 {
 }
 
@@ -2398,7 +2455,7 @@ class rcube_imap_generic
         return $this->handlePartBody($mailbox, $id, $is_uid, $part);
     }
 
-    function handlePartBody($mailbox, $id, $is_uid=false, $part='', $encoding=NULL, $print=NULL, $file=NULL)
+    function handlePartBody($mailbox, $id, $is_uid=false, $part='', $encoding=NULL, $print=NULL, $file=NULL, $formatted=true)
     {
         if (!$this->select($mailbox)) {
             return false;
@@ -2515,7 +2572,7 @@ class rcube_imap_generic
                         continue;
                     $line = convert_uudecode($line);
                 // default
-                } else {
+                } else if ($formatted) {
                     $line = rtrim($line, "\t\r\n\0\x0B") . "\n";
                 }
 

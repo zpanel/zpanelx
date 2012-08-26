@@ -184,13 +184,16 @@ function rcmail_user_prefs($current=null)
       $select_timezone = new html_select(array('name' => '_timezone', 'id' => $field_id));
       $select_timezone->add(rcube_label('autodetect'), 'auto');
 
-      $now = new DateTime();
+      $zones = array();
       foreach (DateTimeZone::listIdentifiers() as $i => $tzs) {
-        $tz = new DateTimeZone($tzs);
-        $date = new DateTime('2012-12-21', $tz);
-        $offset = $date->format('Z') + 45000;
-        $sortkey = sprintf('%06d.%s', $offset, $tzs);
-        $zones[$sortkey] = array($tzs, $date->format('P'));
+        try {
+          $tz = new DateTimeZone($tzs);
+          $date = new DateTime('2012-12-21', $tz);
+          $offset = $date->format('Z') + 45000;
+          $sortkey = sprintf('%06d.%s', $offset, $tzs);
+          $zones[$sortkey] = array($tzs, $date->format('P'));
+        }
+        catch (Exception $e) {}
       }
 
       ksort($zones);
@@ -614,6 +617,18 @@ function rcmail_user_prefs($current=null)
       $blocks['sig']['options']['strip_existing_sig'] = array(
         'title' => html::label($field_id, Q(rcube_label('replyremovesignature'))),
         'content' => $input_stripexistingsig->show($config['strip_existing_sig']?1:0),
+      );
+    }
+
+    if (!isset($no_override['forward_attachment'])) {
+      $field_id = 'rcmfd_forward_attachment';
+      $select = new html_select(array('name' => '_forward_attachment', 'id' => $field_id));
+      $select->add(rcube_label('inline'), 0);
+      $select->add(rcube_label('asattachment'), 1);
+
+      $blocks['main']['options']['forward_attachment'] = array(
+        'title' => html::label($field_id, Q(rcube_label('forwardmode'))),
+        'content' => $select->show(intval($config['forward_attachment'])),
       );
     }
 

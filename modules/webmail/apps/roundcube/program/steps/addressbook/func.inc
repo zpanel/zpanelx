@@ -583,8 +583,13 @@ function rcmail_contact_form($form, $record, $attrib = null)
                 if (empty($values) && $colprop['visible'])
                     $values[] = '';
 
+                if (!is_array($values)) {
+                    // $values can be an object, don't use (array)$values syntax
+                    $values = !empty($values) ? array($values) : array();
+                }
+
                 $rows = '';
-                foreach ((array)$values as $i => $val) {
+                foreach ($values as $i => $val) {
                     if ($subtypes[$i])
                         $subtype = $subtypes[$i];
 

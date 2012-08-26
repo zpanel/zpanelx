@@ -77,7 +77,9 @@ class rcube_template extends rcube_html_page
         $this->set_env('x_frame_options', $this->app->config->get('x_frame_options', 'sameorigin'));
 
         // load the correct skin (in case user-defined)
-        $this->set_skin($this->config['skin']);
+        $skin = $this->app->config->get('skin');
+        $this->set_skin($skin);
+        $this->set_env('skin', $skin);
 
         // add common javascripts
         $this->add_script('var '.JS_OBJECT_NAME.' = new rcube_webmail();', 'head_top');
@@ -156,7 +158,7 @@ class rcube_template extends rcube_html_page
             $valid = true;
         }
         else {
-            $skin_path = $this->config['skin_path'] ? $this->config['skin_path'] : 'skins/default';
+            $skin_path = $this->config['skin_path'] ? $this->config['skin_path'] : rcube_config::DEFAULT_SKIN;
             $valid = !$skin;
         }
 
@@ -709,7 +711,15 @@ class rcube_template extends rcube_html_page
                     $vars = $attrib + array('product' => $this->config['product_name']);
                     unset($vars['name'], $vars['command']);
                     $label = rcube_label($attrib + array('vars' => $vars));
-                    return !$attrib['noshow'] ? (get_boolean((string)$attrib['html']) ? $label : Q($label)) : '';
+                    $quoting = !empty($attrib['quoting']) ? strtolower($attrib['quoting']) : (get_boolean((string)$attrib['html']) ? 'no' : '');
+                    switch ($quoting) {
+                        case 'no':
+                        case 'raw': break;
+                        case 'javascript':
+                        case 'js': $label = JQ($label); break;
+                        default:   $label = Q($label); break;
+                    }
+                    return !$attrib['noshow'] ? $label : '';
                 }
                 break;
 
@@ -1126,6 +1136,9 @@ class rcube_template extends rcube_html_page
         $url = get_input_value('_url', RCUBE_INPUT_POST);
         if (empty($url) && !preg_match('/_(task|action)=logout/', $_SERVER['QUERY_STRING']))
             $url = $_SERVER['QUERY_STRING'];
+
+        // Disable autocapitalization on iPad/iPhone (#1488609)
+        $attrib['autocapitalize'] = 'off';
 
         // set atocomplete attribute
         $user_attrib = $autocomplete > 0 ? array() : array('autocomplete' => 'off');

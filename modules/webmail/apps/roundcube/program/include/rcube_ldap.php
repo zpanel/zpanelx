@@ -142,6 +142,11 @@ class rcube_ldap extends rcube_addressbook
                     unset($this->coltypes[$childcol]);  // remove address child col from global coltypes list
                 }
             }
+
+            // at least one address type must be specified
+            if (empty($this->coltypes['address']['subtypes'])) {
+                $this->coltypes['address']['subtypes'] = array('home');
+            }
         }
         else if ($this->coltypes['address']) {
             $this->coltypes['address'] += array('type' => 'textarea', 'childs' => null, 'size' => 40);
@@ -1194,8 +1199,11 @@ class rcube_ldap extends rcube_addressbook
                     else if ($val == '') {
                         // Field supplied is empty, verify that it is not required.
                         if (!in_array($fld, $this->prop['required_fields'])) {
-                            // It is not, safe to clear.
-                            $deletedata[$fld] = $old_data[$fld];
+                            // ...It is not, safe to clear.
+                            // #1488420: Workaround "ldap_mod_del(): Modify: Inappropriate matching in..."
+                            // jpegPhoto attribute require an array() here. It looks to me that it works for other attribs too
+                            $deletedata[$fld] = array();
+                            //$deletedata[$fld] = $old_data[$fld];
                         }
                     }
                     else {

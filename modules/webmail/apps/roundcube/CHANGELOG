@@ -1,6 +1,66 @@
 CHANGELOG Roundcube Webmail
 ===========================
 
+- Fix bug where domain name was converted to lower-case even with login_lc=false (#1488593)
+- Fix lower-casing email address on replies (#1488598)
+- Fix line separator in exported messages (#1488603)
+- Fix XSS issue where plain signatures wasn't secured in HTML mode (#1488613)
+- Fix XSS issue where href="javascript:" wasn't secured (#1488613)
+- Fix impossible to create message with empty plain text part (#1488610)
+- Fix stripped apostrophes when replying in plain text to HTML message (#1488606)
+- Fix inactive Save search option after advanced search (#1488607)
+- Fix Remove from group option is active for contact search result (#1488608)
+- Disable autocapitalization in login form on iPad/iPhone (#1488609)
+- Fix focus on the list when list row is clicked (#1488600)
+- Added separate From and To columns apart from smart From/To column (#1486891)
+- Fix fallback to Larry skin when configured skin isn't available (#1488591)
+- Fix (workaround) delete operations with some versions of memcache (#1488592)
+- Fix (disable) request validation for spell and spell_html actions
+
+RELEASE 0.8.0
+-------------
+- Don't show product version on login screen (can be enabled by config)
+- Renamed old default skin to 'classic'. Larry is the new default skin.
+- Support connections to memcached socket file (#1488577)
+- Enable TinyMCE inlinepopups plugin
+- Update to TinyMCE 3.5.6
+- Correctly escape localized labels in javascript variable (#1488567)
+- Update Net_SMTP/Auth_SASL packages to fix Digest-MD5/Cram-MD5 authentication (#1488571)
+- Don't add attachments content into reply/forward/draft message body (#1488557)
+- Fix 'no connection' errors on page unloads (#1488547)
+- Plugin API: Add 'unauthenticated' hook (#1488138)
+- Show explicit error message when provided hostname is invalid (#1488550)
+- Fix wrong compose screen elements focus in IE9 (#1488541)
+- Fix fatal error when date.timezone isn't set (#1488546)
+- Update to TinyMCE 3.5.4.1
+- Better icons with distinct shapes for priority columns (#1488377)
+- Show dedicated icon for multipart/report messages (#1488524)
+- Properly hide text of icon links/buttons (#1488534)
+- Fix handling of unitless CSS size values in HTML message (#1488535)
+- Fix removing contact photo using LDAP addressbook (#1488420)
+- Fix storing X-ANNIVERSARY date in vCard format (#1488527)
+- Update to Mail_Mime-1.8.5 (#1488521)
+- Fix XSS vulnerability in message subject handling using Larry skin (#1488519)
+- Fix handling of links with various URI schemes e.g. "skype:" (#1488106)
+- Fix handling of links inside PRE elements on html to text conversion
+- Fix indexing of links on html to text conversion
+- Decode header value in rcube_mime::get() by default (#1488511)
+- Fix errors with enabled PHP magic_quotes_sybase option (#1488506)
+- Fix SQL query for contacts listing on MS SQL Server (#1488505)
+- Fix window.resize handler on IE8 and Opera (#1488453)
+- Don't let error message popups cover the login form (#1488500)
+- Don't show errors when moving contacts into groups they are already in (#1488493)
+- Make folders with unread messages in subfolders bold again (#1486793)
+- Abbreviate long attachment file names with ellipsis (#1488499)
+- Fix html2text conversion of strong|b|a|th|h tags when used in upper case
+- Add listcontrols template container in Larry skin (#1488498)
+- Fix host autoselection when default_host is an array (#1488495)
+- Move messages forwarding mode setting into Preferences
+- Fix HTML entities handling in HTML editor (#1488483)
+- Fix listing shared folders on Courier IMAP (#1488466)
+
+RELEASE 0.8-rc
+--------------
 - Added new translations in Belarusian, Interlingua and Malayalam
 - Flipped compose options arrow (#1488474)
 - Fix handling of large uuencode attachments (#1488473)

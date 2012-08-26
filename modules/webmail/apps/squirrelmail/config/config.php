@@ -494,7 +494,7 @@ $noselect_fix_enable = false;
  *
  * @global string $data_dir
  */
-$data_dir = 'C:/zpanel/panel/modules/webmail/apps/squirrelmail/data/';
+$data_dir = '/zpanel/panel/modules/webmail/apps/squirrelmail/data/';
 
 /**
  * Attachments directory
@@ -512,7 +512,7 @@ $data_dir = 'C:/zpanel/panel/modules/webmail/apps/squirrelmail/data/';
  *    + It should probably be another directory than data_dir.
  * @global string $attachment_dir
  */
-$attachment_dir = 'C:/zpanel/panel/modules/webmail/apps/squirrelmail/attach/';
+$attachment_dir = '/zpanel/panel/modules/webmail/apps/squirrelmail/attach/';
 
 /**
  * Hash level used for data directory.

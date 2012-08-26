@@ -82,9 +82,11 @@ function send_future_expire_header($offset=2600000)
 function in_array_nocase($needle, $haystack)
 {
   $needle = mb_strtolower($needle);
-  foreach ($haystack as $value)
-    if ($needle===mb_strtolower($value))
-      return true;
+  foreach ((array)$haystack as $value) {
+    if ($needle === mb_strtolower($value)) {
+       return true;
+    }
+  }
 
   return false;
 }
@@ -464,6 +466,29 @@ function array_keys_recursive($array)
         $keys[] = $val;
     }
   return $keys;
+}
+
+
+/**
+ * Format e-mail address
+ *
+ * @param string $email E-mail address
+ *
+ * @return string Formatted e-mail address
+ */
+function format_email($email)
+{
+    $email = trim($email);
+    $parts = explode('@', $email);
+    $count = count($parts);
+
+    if ($count > 1) {
+        $parts[$count-1] = mb_strtolower($parts[$count-1]);
+
+        $email = implode('@', $parts);
+    }
+
+    return $email;
 }
 
 

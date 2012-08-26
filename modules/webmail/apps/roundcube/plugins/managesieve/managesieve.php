@@ -64,7 +64,7 @@ class managesieve extends rcube_plugin
         "x-beenthere",
     );
 
-    const VERSION = '5.0';
+    const VERSION = '5.2';
     const PROGNAME = 'Roundcube (Managesieve)';
 
 
@@ -145,6 +145,13 @@ class managesieve extends rcube_plugin
      */
     function mail_headers($args)
     {
+        // this hook can be executed many times
+        if ($this->mail_headers_done) {
+            return $args;
+        }
+
+        $this->mail_headers_done = true;
+
         $headers = $args['headers'];
         $ret     = array();
 
@@ -709,9 +716,12 @@ class managesieve extends rcube_plugin
                             if (!count($headers))
                                 $this->errors['tests'][$i]['header'] = $this->gettext('cannotbeempty');
                             else {
-                                foreach ($headers as $hr)
-                                    if (!preg_match('/^[a-z0-9-]+$/i', $hr))
+                                foreach ($headers as $hr) {
+                                    // RFC2822: printable ASCII except colon
+                                    if (!preg_match('/^[\x21-\x39\x41-\x7E]+$/i', $hr)) {
                                         $this->errors['tests'][$i]['header'] = $this->gettext('forbiddenchars');
+                                    }
+                                }
                             }
 
                             if (empty($this->errors['tests'][$i]['header']))
