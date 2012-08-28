@@ -1,0 +1,43 @@
+This file can be used to allow you to jump right to the SquirrelMail compose
+screen to send a message when you click on a "mailto" link on any web page
+in Windows 95, 98, 98se, and probably Windows ME.
+
+Place the contents of this file (make sure to only use the part of this file
+below starting on the line after "Cut here") into a text file on the target 
+computer, named exactly "squirrelmail.mailto.reg" (without the quotes) (make 
+sure the file extension is in fact ".reg", and not ".txt").  Find the text 
+"http://example.org/squirrelmail" and change this to the correct address for 
+your SquirrelMail installation.  When the file has been saved, double-click on
+it and confirm that you want to add the information to the registry.
+
+Once the registry has been updated in this manner, you can now choose 
+SquirrelMail as your system's default mail program by going to the "Internet
+Options" configuration window, which can be found in the Control Panel or in
+Internet Explorer by clicking on Tools-->Internet Options.  Choose the
+"Programs" tab and SquirrelMail will be an option under "E-mail".
+
+
+---- Cut here ----
+REGEDIT4
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\Mail\SquirrelMail]
+@="SquirrelMail"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\Mail\SquirrelMail\Protocols]
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\Mail\SquirrelMail\Protocols\mailto]
+"URL Protocol"=""
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\Mail\SquirrelMail\Protocols\mailto\shell]
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\Mail\SquirrelMail\Protocols\mailto\shell\open]
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\Mail\SquirrelMail\Protocols\mailto\shell\open\command]
+@="rundll32.exe url.dll,FileProtocolHandler http://example.org/squirrelmail/src/mailto.php?emailaddress=%1"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\Mail\SquirrelMail\shell]
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\Mail\SquirrelMail\shell\open]
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\Mail\SquirrelMail\shell\open\command]
+

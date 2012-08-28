@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>$lang['lang_help_wap_title']</title> 
+$lang['lang_Global_content_type']       
+<script>
+function expandentry()	 {
+
+<!-- if($var['FirstLoad']) { -->
+if(parent.document.getElementById('calendar').style.display != 'block')
+parent.expand('wap', parent.document.getElementById('wapimg') );
+<!-- } -->
+
+}
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" onload="expandentry()">
+
+<LINK href="javascript/stylehelp.css" rel="stylesheet" type="text/css">
+
+<font face="Verdana, Arial" size="+1">
+$lang['lang_help_wap_title']</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">$lang['lang_help_index']</a> ]</font>
+
+<hr noshade align="left">
+
+<p><font face="Arial, Helvetica,
+Condensed" size="3"><b>$lang['lang_help_wap_desc']</b></font>
+<img src="imgs/help/1phone.jpg" width="115" height="116" align="right"></p>
+
+<p>$lang['lang_help_wap_text1']</p>
+<p>$lang['lang_help_wap_text2']</p>
+
+<ul>
+  <li><b>$lang['lang_help_wap_unread']</b><br>
+    $lang['lang_help_wap_unreaddesc']
+	
+    </li>
+  <li><b>$lang['lang_help_wap_showall']</b><br>
+    $lang['lang_help_wap_showalldesc']
+	
+    </li>
+  <li><b>$lang['lang_help_wap_compose']</b><br>
+    $lang['lang_help_wap_composedesc']
+	
+    </li>
+  <li><b>$lang['lang_help_wap_options']</b><br>
+    $lang['lang_help_wap_optionsdesc']
+	
+    </li>
+  <li><b>$lang['lang_help_wap_abooke']</b><br>
+    $lang['lang_help_wap_abookdesc']
+	
+    </li>
+</ul>
+
+<p>$lang['lang_help_wap_text3']</p>
+
+</font>
+
+</body>
+</html>

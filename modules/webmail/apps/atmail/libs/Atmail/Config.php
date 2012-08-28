@@ -1,0 +1,534 @@
+<?php
+
+$pref = array (
+  'debug_sql' => 0,
+  'aspell_path' => NULL,
+  'addressbook_ldap_entries' => '0',
+  'autocomplete_ldap_entries' => '0',
+  'imap_sort_extension' => '1',
+  'imap_sort_charset' => 'us-ascii',
+  'quota_bar' => '1',
+  'quota_alert' => '1',
+  'quota_alert_over' => '90',
+  'quota_alert_html' => '<p style="font-weight:bold;text-align:center;font-size:24px;">
+YOUR QUOTA IS NEARLY EXHAUSTED - PLEASE DELETE UNNECESSARY ITEMS
+</p>
+<p style="text-align:center;font-size:18px;"> 
+You will be unable to receive or send any messages once you have exhausted your quota.
+</p>',
+  'plesk' => 0,
+  'opensource' => 1,
+  'decode_tnef' => 0,
+  'tnef_path' => '',
+  'AbookLimitOverride' => 1000,
+  'EmailDefaultDomain' => '',
+  'filter_awl_support' => '1',
+  'crypt' => 0,
+  'allowed_mailservers' => '',
+  'large_domains' => '',
+  'default_domain' => '',
+  'filter_skip_trusted' => '1',
+  'filter_auto_dl_av' => '1',
+  'filter_awl_purge_high' => '30',
+  'filter_awl_purge_medium' => '14',
+  'filter_awl_purge_low' => '7',
+  'filter_uridns_support' => '1',
+  'openssl_path' => '',
+  'filter_spf_support' => '1',
+  'smtpauth_password' => '',
+  'smtpauth_username' => '',
+  'pop3imap_authdaemons' => '5',
+  'login_rememberme' => 1,
+  'allowed_domains' => '',
+  'smtp_popimaprelay_timeout' => '60',
+  'pop3imap_querytype' => 'group',
+  'debug_imap_file_size_limit' => 10000,
+  'atmail_root' => '/mail',
+  'memory_limit' => 128,
+  'error_log' => 'logs/error_log',
+  'smtp_max_rcpt' => '100',
+  'ispell_german' => '',
+  'imap_idle' => '60',
+  'allow_Sync' => '0',
+  'login_preselect' => '1',
+  'session_timeout' => '7200',
+  'allow_Folders' => '1',
+  'imap_ip' => '0',
+  'popimap_debug' => NULL,
+  'popimap_debug_file' => 'logs/popimap_debug',
+  'error_overquota' => 'Email Message Error -
+
+********** Sorry, the message could not be delivered **********
+
+USER IS OVER THE QUOTA - The users email quota has exceeded. The message could not be delivered. Please try again later.
+  ',
+  'filter_bayes_auto_learn_threshold_spam' => '10.0',
+  'smtp_smssupport' => '1',
+  'logo_big_alt' => 'WebMail System',
+  'filter_blocked_attachments' => '.exe,.pif,.bat,.scr,.lnk,.com,',
+  'gpg_path' => '',
+  'pallow_FaxWork' => '1',
+  'queue_run_max' => '20',
+  'welcome_msg' => 'html/welcome_msg.html',
+  'Price' => '',
+  'mail_group_support' => '1',
+  'pop3_ip' => '0',
+  'allow_VideoMail' => '1',
+  'videomail_server' => 'video.atmail.com',
+  'websync_permissions' => 'All Users',
+  'imapfolder_cache' => '0',
+  'allow_FontStyle' => '1',
+  'openssl_CApath' => '/usr/local/atmail/webmail/modules/ca-Atmail.crt',
+  'remote_max_parallel' => '20',
+  'logo_big_img' => 'imgs/about.png',
+  'allow_Language' => '1',
+  'mailserver_auth' => '1',
+  'disclaimer' => 'html/disclaimer.html',
+  'downloadid' => '',
+  'allow_HtmlEditor' => '1',
+  'filter_use_bayes' => '1',
+  'datetime' => '1',
+  'allow_Signature' => '1',
+  'pallow_FirstName' => '1',
+  'imap_subdirectory' => NULL,
+  'ssl_certfile_pop3' => '/usr/local/atmail/mailserver/share/pop3d.pem',
+  'smtp_throttle' => '1',
+  'ldap_chserver' => '1',
+  'pallow_Country' => '1',
+  'install_type' => 'standalone',
+  'sql_host' => 'localhost',
+  'allow_EmailEncoding' => 1,
+  'version' => '1.05',
+  'virus_scanner' => '/usr/local/atmail/av/clamdsocket',
+  'pallow_Address' => '1',
+  'sql_mysqlversion' => 5,
+  'ssl_ip' => '0',
+  'virus_msg' => 'Virus $malware_name detected. Mail delivery avoided.',
+  'pallow_TelHome' => '1',
+  'allow_BlockEmailAddress' => '1',
+  'login_defaultinterface' => NULL,
+  'ispell_portuguese' => '',
+  'pallow_PostCode' => '1',
+  'imap_max' => '40',
+  'logo_small_img' => 'imgs/logo_simple_head.png',
+  'windows' => '1',
+  'sql_pass' => 'zaLV0FNTyxKoV3hEjZibOTp3GYUCDr',
+  'allow_AskQuestion' => '1',
+  'brandname' => 'Atmail Open',
+  'allow_AutoComplete' => '1',
+  'pallow_PasswordQuestion' => '1',
+  'allow_EmptyTrash' => '1',
+  'ssl_cache' => '1',
+  'filter_max_msgs' => '100',
+  'ssl_certfile_imap' => '/usr/local/atmail/mailserver/share/imapd.pem',
+  'UserStatus' => '0',
+  'split_spool_directory' => '1',
+  'smtp_load_queue' => '10',
+  'filter_required_hits_reject' => '10',
+  'filter_report_safe_enable' => '1',
+  'ispell_catalan' => '',
+  'sql_table' => 'zpanel_atmail',
+  'filter_bayes_min_ham_num' => '200',
+  'smtp_type' => NULL,
+  'allow_Mobile' => '1',
+  'sendmode' => 'smtp',
+  'login_newwindow' => '0',
+  'allow_ReplyTo' => '1',
+  'queue_run_in_order' => '1',
+  'allow_Emotion' => 1,
+  'logo_alt' => '',
+  'ispell_arabic' => '',
+  'allow_LeaveMsgs' => '',
+  'smtp_max_connections_perip' => '5',
+  'max_recipients_per_msg' => '100',
+  'ispell_greek' => '',
+  'admin_email' => 'webmaster@hebergement-web-gratuit.fr.nf',
+  'max_msg_size' => '18',
+  'virus_enable' => '1',
+  'smtp_enforce_sync' => '1',
+  'logout_url' => 'logout.php',
+  'imap_folders' => '1',
+  'allow_AbookImportExport' => '1',
+  'pallow_TelPager' => '1',
+  'error_maxsize' => 'Email Message Error -
+
+********** Sorry, the message could not be delivered **********
+
+Message Too Big - The Message sent was too big and could not be delivered. Reduce the message size and try again.
+  ',
+  'message_cache' => '1',
+  'Language' => 'english',
+  'filter_max_bodysize' => '40',
+  'pallow_Industry' => '1',
+  'attachmentdeny_msg' => '---
+
+The $pref[brandname] email system has blocked an email message for $this->EmailTo from the recipient $this->EmailFrom.
+
+The email message contained the attachment filename \\"$filename\\" which is blocked by the email-system.
+
+Please resend the message without the attachment for the email to be successfully delivered.
+
+For additional information about the email service contact the Administrator $pref[admin_email]',
+  'allow_Templates' => 1,
+  'virus_return' => NULL,
+  'imap_enable' => 'YES',
+  'ispell_espanol' => '',
+  'filter_rbl_servers' => 'sbl-xbl.spamhaus.org',
+  'pallow_Gender' => '1',
+  'IMAP' => '1',
+  'pallow_City' => '1',
+  'mailserver' => '',
+  'user_dir' => 'C:\\zpanel\\panel\\modules\\webmail\\apps\\atmail',
+  'GlobalAbook' => '0',
+  'allow_DateFormat' => '1',
+  'pallow_State' => '1',
+  'smtp_popimaprelay' => '1',
+  'logo_small_alt' => 'Atmail Open',
+  'filter_subject_tag' => '{SPAM}',
+  'allow_AbookTrusted' => '1',
+  'allow_EmailToFolderRules' => '1',
+  'max_accounts_per_day' => '25',
+  'allow_AntiVirus' => 1,
+  'Quota' => '',
+  'imap_emptytrash' => '30',
+  'allow_DisplayImages' => '1',
+  'allow_EmailForwarding' => '1',
+  'timezone' => 'east',
+  'allow_Signup' => '0',
+  'install_size' => 'normal',
+  'allow_TimeZone' => '1',
+  'ispell_french' => '',
+  'GlobalAbookRead' => '0',
+  'pallow_FaxHome' => '1',
+  'allow_MailMonitor' => '1',
+  'allow_SpamTreatment' => '1',
+  'POP3' => '1',
+  'iconv' => '1',
+  'allow_MailTemplates' => '0',
+  'filter_rbl_support' => '1',
+  'allow_MboxOrder' => '1',
+  'allow_advanceduser' => 1,
+  'allow_IMAPutility' => '1',
+  'domain' => 'au.mailos.com',
+  'pallow_TelMobile' => '1',
+  'filter_trusted_networks' => '192.168/16, 127/8',
+  'allow_Passutil' => '1',
+  'ispell_russian' => '',
+  'pop3_max' => '40',
+  'allow_Advanced' => 1,
+  'sql_type' => 'mysql',
+  'smtp_auth' => '1',
+  'install_dir' => 'C:\\zpanel\\panel\\modules\\webmail\\apps\\atmail',
+  'filter_attach_check' => '1',
+  'ldap_local' => NULL,
+  'websync_enable_shared' => '1',
+  'allow_Refresh' => 1,
+  'allow_MultiAccounts' => '1',
+  'smtp_load_queue_delivery' => '8',
+  'imap_perip' => '5',
+  'filter_bayes_auto_learn_threshold_nonspam' => '1.0',
+  'allow_AbookGroup' => '1',
+  'smtp_verify_senders' => '1',
+  'virus_args' => NULL,
+  'jpsupport' => 0,
+  'maildir_sql_cache' => '0',
+  'allow_AdvancedPopup' => '1',
+  'ssl_enable' => '0',
+  'smtp_max_connections' => '75',
+  'sendmail' => NULL,
+  'allow_AutoTrash' => '1',
+  'ldap_server' => '',
+  'base_dn' => '',
+  'allow_Encoding' => '1',
+  'mail_type' => 'pop3imap',
+  'filter_spam_treatment' => 'mark',
+  'bind_dn' => '',
+  'allow_Forward' => '1',
+  'builddate' => 'Dec 5 2008',
+  'installdate' => 'Jul 12 2012',
+  'ldap_passwd' => '',
+  'allow_LoginHistory' => '1',
+  'message_cache_time' => '30',
+  'pop3_enable' => 'YES',
+  'allow_FullName' => '1',
+  'error_message' => '<html><body background=\\"imgs/watermark.gif\\">
+<table width=\\"100%\\" border=\\"0\\" cellspacing=\\"0\\" cellpadding=\\"2\\">
+  <tr>
+    <td><font face=\\"Verdana, Arial, Helvetica, sans-serif\\"><strong>Software Configuration
+      Error</strong></font></td>
+    <td align=\\"right\\"><img src=\\"$pref[logo_small_img]\\"></td>
+  </tr>
+  <tr>
+    <td colspan=\\"2\\"> <font face=\\"Verdana, Arial\\" size=\\"-1\\">
+      <p>The error message follows: <b>$msg</b></p>
+      </font> </td>
+  </tr>
+  <tr>
+    <td colspan=\\"2\\">
+	<iframe src=\\"http://calacode.com/error.pl?prog=atmail&id=$reg[downloadid]&error=$msg&admin=$pref[admin_email]\\" width=\\"100%\\" height=\\"140\\" scrolling=\\"auto\\" frameborder=\\"0\\"></iframe>
+</tr>
+  <tr>
+    <td colspan=\\"2\\"><form method=\\"post\\" action=\\"http://webbasedemail.net/bug.pl\\">
+        <p>
+          <input type=\\"submit\\" name=\\"Submit\\" value=\\"Submit Bug Report\\">
+          <input type=\\"hidden\\" name=\\"msg\\" value=\\"$msg\\">
+          <input type=\\"hidden\\" name=\\"server\\" value=\\"$_SERVER[REMOTE_ADDR]\\">
+          <input type=\\"hidden\\" name=\\"referer\\" value=\\"$_SERVER[HTTP_REFERER]\\">
+          <input type=\\"hidden\\" name=\\"admin\\" value=\\"$pref[admin_email]\\">
+          <input type=\\"hidden\\" name=\\"domain\\" value=\\"\\">
+        </p>
+        <p><font face=\\"Verdana\\" size=\\"-1\\">Submit a bug-report to Technical Support.
+          A staff member will be alerted of the error and will notify you via
+          email for a solution.</font></p>
+</form></td>
+</tr>
+</table>
+</body></html>',
+  'filter_required_hits' => '4',
+  'smtphost' => 'localhost',
+  'error_nouser' => 'Email Message Error -
+
+********** Sorry, the message could not be delivered **********
+
+  USER DOES NOT EXIST - Check the spelling of the email address and try again.',
+  'smtp_load_reserve' => '20',
+  'allow_Profile' => '0',
+  'allow_MsgNum' => '1',
+  'pallow_TelWork' => '1',
+  'pallow_Occupation' => '1',
+  'allow_SpamSettings' => '1',
+  'allow_TimeFormat' => '1',
+  'allow_PassThrough' => '1',
+  'ispell_japanese' => '',
+  'websync_log_support' => '1',
+  'pallow_LastName' => '1',
+  'sql_user' => 'webmail',
+  'allow_LDAP' => '0',
+  'allow_LDAPsearch' => '0',
+  'pop3_max_perip' => '5',
+  'logo_img' => 'imgs/logosmall.gif',
+  'company_url' => 'http://atmail.com/',
+  'allow_Layout' => '0',
+  'allow_SMS' => '0',
+  'pallow_DOB' => '1',
+  'pallow_OtherEmail' => '1',
+  'allow_Calendar' => '1',
+  'footer_msg' => '<hr />Message sent via Atmail Open - http://atmail.org/',
+  'allow_AcceptWhiteListOnly' => '1',
+  'Description' => '',
+  'filter_sa_enable' => '1',
+  'aspell_arabic' => '',
+  'aspell_chinese' => '',
+  'aspell_english' => '1',
+  'aspell_espanol' => '',
+  'aspell_french' => '',
+  'aspell_german' => '',
+  'aspell_greek' => '',
+  'aspell_italiano' => '',
+  'aspell_portuguese' => '',
+  'aspell_dir' => '',
+  'use_php_pspell' => 0,
+  'imap_functions' => '',
+  'installed' => 1,
+  'log_purge_days' => '30',
+  'filter_auto_dl_spam' => '1',
+  'use_mailparse_ext' => NULL,
+  'display_php_errors' => 0,
+  'expunge_logout' => 0,
+  'DefaultEncoding' => 'iso-8859-1',
+  'allow_utf7_folders' => '1',
+  'mail_type_ssl' => 'allow',
+);
+
+$settings = array (
+  'NewWindow' => '0',
+  'VlinkColor' => '#000033',
+  'PrimaryColor' => '#EBE9E4',
+  'Language' => 'english',
+  'EmailHeaders' => 'standard',
+  'TextColor' => '#000033',
+  'RealName' => '',
+  'LeaveMsgs' => '1',
+  'SecondaryColor' => '#F8FBFD',
+  'HeaderColor' => '#FBFBFB',
+  'BgColor' => '#FFFFFF',
+  'FontStyle' => 'Verdana',
+  'UserQuota' => '51200',
+  'TimeZone' => '',
+  'LinkColor' => '#000000',
+  'ReplyTo' => '',
+  'Refresh' => '1200',
+  'EmptyTrash' => '0',
+  'Service' => '3',
+  'HeadColor' => '#E2E7FA',
+  'MboxOrder' => 'id',
+  'TextHeadColor' => '#002675',
+  'Advanced' => '1',
+  'MsgNum' => '25',
+  'OffColor' => '#FFFFFF',
+  'ThirdColor' => '#FAFAFA',
+  'AutoTrash' => '0',
+  'LoginType' => NULL,
+  'HtmlEditor' => '1',
+  'TopBg' => 'imgs/bluegrad.gif',
+  'OnColor' => '#F3F3F3',
+  'SelectColor' => '#DFEAF4',
+  'DateFormat' => '%e/%m/%y',
+  'TimeFormat' => '%l:%M %p',
+  'EmailEncoding' => 'UTF-8',
+  'AutoComplete' => 1,
+  'MailType' => 'sql',
+  'Mode' => 'sql',
+  'DisplayImages' => '1',
+);
+
+$domains = array (
+);
+
+$groups = array (
+  'Default' => 
+  array (
+    'POP3' => '1',
+    'IMAP' => '1',
+    'allow_SMS' => '0',
+    'allow_MultiAccounts' => '0',
+    'Price' => '0',
+    'Description' => 'Default group for accounts',
+    'allow_Forward' => '1',
+    'Quota' => '1000000',
+    'allow_SpamSettings' => '1',
+    'GlobalAbook' => '0',
+    'GlobalAbookRead' => '0',
+  ),
+);
+
+$reg = array (
+  'serial' => '',
+  'expiry' => '',
+  'downloadid' => '',
+);
+
+$language = array (
+  'english' => 'English',
+  'espanol' => 'Espanol',
+  'french' => 'French',
+  'german' => 'German',
+  'italiano' => 'Italiano',
+);
+
+$reserved = array (
+  'anonymous' => '1',
+  'nobody' => '1',
+  'mail' => '1',
+  'mailer-daemon' => '1',
+  'admin*' => '1',
+  'daemon' => '1',
+  'root' => '1',
+);
+
+$brand = array (
+);
+
+// start functions -- do not remove this comment, it used to find the start
+// of functions when writeconf() is rewriting this file.
+// Place all functions below here
+
+//look for PEAR files in our bundled lib first
+set_include_path('./libs/PEAR/' . PATH_SEPARATOR . get_include_path());
+
+/**
+ * catches errors and displays a html error page
+ *
+ * @param string error message
+ */
+function catcherror($msg)
+{
+	global $pref, $reg;
+
+	eval("\$error = \"{$pref['error_message']}\";");
+
+    if ( strpos($_SERVER['SCRIPT_NAME'], 'wap.php') !== false)
+	{
+    	print "<wml><card id='sent' title='Error'><p>Configuration Error: $msg</p></card></wml>";
+    }
+    else
+	{
+    	echo $error;
+    }
+	exit();
+}
+
+/**
+ * Write the configuraton file, other scripts can call this function to
+ * save new settings to the Config.php
+ */
+function writeconf($extras=null)
+{
+	global $pref, $settings, $domains, $groups, $reg, $language, $reserved, $brand;
+
+	$configs = array('pref', 'settings', 'domains', 'groups', 'reg', 'language', 'reserved', 'brand');
+
+	if (is_array($extras))
+	{
+		extract($extras);
+		foreach (array_keys($extras) as $name)
+			$configs[] = $name;
+	}
+
+    if (!file_exists("{$pref['install_dir']}/libs/Atmail/Config.php"))
+		die("Can't find myself");
+
+    // Make a backup of Config.php
+	$mod = "{$pref['install_dir']}/libs/Atmail/Config.php";
+    $bak = "{$pref['install_dir']}/libs/Atmail/Config.php.bak";
+
+    copy($mod, $bak) or die("Can't copy file: $mod to $bak");
+	if (!$old = @fopen($bak, "r")) die("Can't open file: $bak");
+	if (!$new = @fopen($mod, "w")) die("Can't create file: $mod");
+
+	fwrite($new, "<?php\n\n");
+
+	foreach($configs as $name)
+	{
+		fwrite($new, "\$$name = ");
+		fwrite($new, var_export($$name, true));
+		fwrite($new, ";\n\n");
+	}
+
+	$write = 0;
+	while (!feof($old))
+	{
+		if (isset($fail) && $fail) break;
+
+		$buff = fgets($old);
+		if (!$write)
+		{
+			if (strpos($buff, '// start functions') !== false)
+			{
+				$write = 1;
+				if(fwrite($new, $buff) === FALSE)
+				{
+				$fail = true;
+				}
+			}
+		}
+		else
+			if (fwrite($new, $buff) === FALSE)
+			{
+			$fail = true;
+			}
+	}
+
+	//if we have had a failure, restore Config.php.bak
+	if (isset($fail) && $fail)
+	{
+		unlink($mod);
+		rename($bak, $mod);
+		print "An error occurred when writing the config file Config.php!  Restoring from Config.php.bak\n";
+	}
+
+    fclose($old);
+    fclose($new);
+}
+
+?>

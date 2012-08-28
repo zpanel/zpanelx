@@ -1,0 +1,38 @@
+List Commands plugin
+
+This plugin gives the user a menu of mailinglist options such as
+(un)subscribe, help and archives when viewing messages from compliant
+mailinglists.
+
+
+Description
+===========
+
+The plugin is an implementation of RFC 2369, "The Use of URLs as Meta-Syntax
+for Core Mail List Commands and their Transport through Message Header Fields",
+to be found at ftp://nis.nsf.net/internet/documents/rfc/rfc2369.txt.
+
+Compliant mailinglistservers add extra headers with each message they send out
+with information about how to (un)subscribe, get help or contact the list
+owner. This can either be a web location or an emailaddress. In the latter
+case, one needs to send an email to that address in order to complete an action
+like subscribing.
+
+The information in these headers is used to generate an extra menuline on
+messages containing one or more of these headers to help users taking advantage
+of the features offered.
+
+
+Installation
+============
+
+Go to the main directory, run configure and add the plugin.
+
+
+Acknowledgements
+================
+The listcommands plugin has been originally created by Thijs Kinkhorst and is
+now under the control of the SquirrelMail Project Team.
+
+I'd like to thank Peter Walker, Wouter Teepe, Jason Edwards and Phillipe Mingo
+for their useful contributions to this plugin.

@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>Aiuto WebMail</title> 
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">       
+
+<script>
+function expandentry()	 {
+
+<!-- if($var['FirstLoad']) { -->
+if(parent.document.getElementById('calendar').style.display != 'block')
+parent.expand('reademail', parent.document.getElementById('readmsgimg') );
+<!-- } -->
+
+}
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" onload="expandentry()">
+
+<LINK href="javascript/stylehelp.css" rel="stylesheet" type="text/css">
+
+<font face="Verdana, Arial" size="+1">Leggi Email</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">Indice Aiuto</a> ]</font>
+
+<hr noshade>
+
+
+<p>La parte (frame) della finestra contiene la lista dei messaggi del tuo account - Muovendo il mouse su uno specifico messaggio, un menu popup apparirà e visualizzerà i primi 160 caratteri del messaggio. Per leggere l'e-mail, clicca sul soggetto del messaggio e salterà fuori il messaggio nella sua interezza.</p>
+<p>Attraverso le impostazioni del pannello di controllo puoi scegliere in che ordine leggere le e-mail. Puoi ordinare la mailbox per oggetto, data di ricezione, mittente e ID. Ciascun messaggio della Mailbox può essere selezionato per essere spostato ad una mailbox esterna; questa funzione ti permette di spostare i messaggi selezionati nel cestino oppure in un'altra mailbox non presente nella tua posta in arrivo.</p>
+<p>Dalla finestra della e-mail puoi saltare direttamente alle Opzioni dell'account o cliccare sul bottone "sposta" specificando in che cartella desideri spostare questo messaggio.</p>
+
+</font>
+</body>
+</html>

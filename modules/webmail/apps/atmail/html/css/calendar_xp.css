@@ -1,0 +1,159 @@
+.CalBorder {
+  border: 1px solid #d8d2bd;
+}
+
+.CalBorderLeft {
+  border-left: 1px solid #d8d2bd;
+}
+
+.CalBorderRight {
+  border-right: 1px solid #d8d2bd;
+}
+
+.CalBorderTop {
+  border-top: 1px solid #d8d2bd;
+}
+
+.CalBorderBottom {
+  border-bottom: 1px solid #d8d2bd;
+}
+
+.CalBGColorLight {
+	filter: progid:DXImageTransform.Microsoft.Gradient(gradientType=1,startColorStr=#ffffff,endColorStr=#f2f1ec);
+}
+
+.CalTasks_MouseOver {
+  border-top: 1px solid #d8d2bd;
+	filter: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#ffffff,endColorStr=#f2f1ec);
+	background-color: #f2f1ec;
+}
+
+.CalMonth_Heading {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: center;
+	filter: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#ffffff,endColorStr=#f2f1ec);
+	background-color: #f2f1ec;
+}
+
+.CalMonth_Heading_Fade_Left {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: center;
+	filter: progid:DXImageTransform.Microsoft.Gradient(gradientType=1,startColorStr=#ffffff,endColorStr=#f2f1ec);
+}
+
+.CalMonth_Heading_Fade_Right {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: center;
+	filter: progid:DXImageTransform.Microsoft.Gradient(gradientType=1,startColorStr=#f2f1ec,endColorStr=#ffffff);
+}
+
+.CalMonth_Heading_Fade {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: center;
+	filter: progid:DXImageTransform.Microsoft.Gradient(gradientType=1,startColorStr=#f2f1ec,endColorStr=#ffffff);
+	background-color: #cbdeef;
+}
+
+.CalMonth_Heading_Label {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.CalMonth_DayWeekend {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: center;
+	color: #778093;
+	border-bottom: 1px solid #bad4ea;
+}
+
+.CalMonth_DayWeek {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: center;
+	border-bottom: 1px solid #d8d2bd;
+	cursor: pointer;
+}
+
+.CalMonth_Day {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.CalMonth_DayHover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: center;
+	border: white solid 1px;
+	background-color: #d8d2bd;
+	cursor: pointer;
+}
+
+.CalMonth_DayDown {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: center;
+	border: white solid 1px;
+	background-color: #fea215;
+	cursor: pointer;
+}
+
+.CalMonth_Weekend {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: center;
+	color: #778093;
+	cursor: pointer;
+}
+
+.CalMonth_WeekendHover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: center;
+	border: white solid 1px;
+	background-color: #cbdeef;
+	cursor: pointer;
+}
+
+.CalMonth_WeekendDown {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: center;
+	border: white solid 1px;
+	background-color: black;
+	cursor: pointer;
+}
+
+.CalMonth_Today {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: center;
+	border: 1px solid #c85252;
+	cursor: hand;
+}
+
+.CalMonth_TodayHover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: center;
+	border: 1px solid #c85252;
+	background-color: #e19b9b;
+	cursor: pointer;
+}
+
+.CalMonth_TodayDown {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: center;
+	border: 1px solid #c85252;
+	background-color: #c85252;
+	cursor: pointer;
+}

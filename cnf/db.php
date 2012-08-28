@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Database configuration file.
  * @package zpanelx
@@ -12,5 +11,5 @@
 $host = "localhost";
 $dbname = "zpanel_core";
 $user = "root";
-$pass = "";
+$pass = "7b05ae60";
 ?>

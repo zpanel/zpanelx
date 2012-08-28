@@ -1,0 +1,276 @@
+<HTML><HEAD><TITLE>$Lang['lang_passutil_title'] - $pref['brandname']</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">      
+
+<link rel="stylesheet" href="html/login.css" type="text/css">
+
+<script language="Javascript">
+// Reload to the master frame if we are inside a frameset
+if (parent.frames[1]) top.window.location=self.location;
+
+function help()	{
+helpwin();
+}
+
+</script>
+
+<script language="JavaScript" src="javascript/help.js"></script>
+
+
+<script language="javascript">
+	function validate_form(theForm)
+	{
+
+		if (theForm.username.value == "")
+		{
+		alert("請輸入值為\“Username\”領域.");
+		theForm.username.focus();
+		return (false);
+		}
+
+		if (theForm.pop3host.value == "")
+		{
+		alert("請輸入值為\“Domain\”字段.");
+		theForm.pop3host.focus();
+		return (false);
+		}
+
+	  if (theForm.newpass.value.length < 5)
+	  {
+		alert("請輸入至少8個字符的\“New Password\”.");
+		theForm.newpass.focus();
+		return (false);
+	  }
+
+	  if (theForm.newpass.value != theForm.newpass2.value)
+	  {
+		alert("Password Mismatch.");
+		theForm.newpass.focus();
+		return (false);
+		}
+	  return (true);
+	}
+
+	function validate_passquestion(theForm)
+	{
+
+		if (theForm.username.value == "")
+		{
+		alert("請輸入值為\“Username\”領域.");
+		theForm.username.focus();
+		return (false);
+		}
+
+		if (theForm.pop3host.value == "")
+		{
+		alert("請輸入值為\“Domain\”字段.");
+		theForm.pop3host.focus();
+		return (false);
+		}
+
+}
+</script>
+
+<script language="Javascript" src="html/$this->Language/javascript/xp.js"></script>
+</head>
+
+
+<!-- if($var['status']) { -->
+<body bgcolor="#E5E5E5" link="#6699CC" vlink="#6699CC" alink="#336699" onload='alert("$var['status']")'>
+<!-- } -->
+
+<!-- if(!$var['status']) { -->
+<body bgcolor="#E5E5E5" link="#6699CC" vlink="#6699CC" alink="#336699">
+<!-- } -->
+
+<table width="600" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+
+
+<!-- if($pref['logo_big_img'] == "imgs/about.gif") { -->
+	<td bgcolor="#E5E5E5"><table width="540" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr> 
+		  <td width="16" bgcolor="#FFFFFF"><p><img src="imgs/sidehead.gif" width="16" height="83"></p></td>
+		  <td bgcolor="#FFFFFF"><img src="imgs/topheader.gif" width="524" height="83"></td>
+		</tr>
+	  </table>
+<!-- } -->
+
+<!-- if($pref['logo_big_img'] != "imgs/about.gif") { -->
+	<td bgcolor="#E5E5E5"><table width="540" border="0" align="center" cellpadding="0" cellspacing="0" style="border-right: 1px solid #D8D2BD;">
+		<tr> 
+		  <td width="15" bgcolor="#E5E5E5"  style="border-right: 1px solid #D8D2BD;"><p><img src="imgs/trans.gif" width="15" height="83"></p></td>
+		  <td bgcolor="#FFFFFF" style="border-top: 1px solid #D8D2BD;">&nbsp;<img src="$pref['logo_big_img']"></td>
+		</tr>
+	  </table>
+<!-- } -->
+
+
+
+
+	  <table width="540" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr> 
+		  <td width="15" nowrap bgcolor="#E5E5E5"><img src="imgs/trans.gif" height='8' width='15'></td>
+		  <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="6">
+			  <tr>
+				<td style="border-left: 1px solid #D8D2BD; border-right: 1px solid #D8D2BD;">
+<table width="100%" border="0" cellspacing="0" cellpadding="2" >
+					<tr >
+					  <td ><font class="loginhead"><b>更改你的密碼</b></font></td>
+					</tr>
+					<tr>
+					  <td><img src="imgs/loginline.gif" width="500" height="1"></td>
+					</tr>
+					<tr>
+					  <td><font class="logintext"><img src="imgs/trans.gif" width='4'> 
+						使用這個工具，你可以更改你的電郵帳戶密碼.變更會在你下一次重置頁面、和<a href="index.php">重新登入帳戶</a>時生效.</font></td>
+					</tr>
+				  </table>
+				  <table width="100%" border="0" cellpadding="2" cellspacing="0" style="background-repeat: no-repeat; background-image: url(imgs/securebackground.gif)">
+<form action="index.php" method="post" name="pass" target="_parent" onsubmit="return validate_form(this)"><br>
+<input type="hidden" name="func" value="passutil">
+					  <tr > 
+						<td width="50" >&nbsp;</td>
+						<td width="151" align="right" valign="top" nowrap > <input name="username" type=text class="logininput" id="username" value=""> 
+						</td>
+						<td width="20" ><img src="imgs/atsymbol.gif" width="18" height="17"></td>
+						<td width="135" align="left" valign="top" >						  
+							<input name="pop3host" type=text class="logininput" value="">
+						  </td>
+						<td width="135" >&nbsp;</td>
+					  </tr>
+					  <tr> 
+						<td colspan="5" height='6'><img src="imgs/trans.gif" height='8'></td>
+					  </tr>
+					  <tr> 
+						<td >&nbsp;</td>
+						<td colspan="2" align="right" ><font class="inputtext">舊密碼:</font></td>
+						<td align="left" ><input name="oldpass" type="password" class="logininput" id="MailServer" value=""></td>
+						<td >&nbsp;</td>
+					  </tr>
+					  <tr> 
+						<td colspan="5" height='6'><img src="imgs/trans.gif" height='8'></td>
+					  </tr>
+					  <tr > 
+						<td >&nbsp;</td>
+						<td colspan="2" align="right" ><font class="inputtext">新密碼:</font></td>
+						<td align="left" ><input name="newpass" type=password class="logininput" id="password" value=""></td>
+						<td >&nbsp;</td>
+					  </tr>
+					  <tr > 
+						<td colspan="5" height='6'><img src="imgs/trans.gif" height='8'></td>
+					  </tr>
+					  <tr > 
+						<td >&nbsp;</td>
+						<td colspan="2" align="right" ><font class="inputtext">確認密碼:</font></td>
+						<td align="left" ><input name="newpass2" type=password class="logininput" id="password" value=""></td>
+						<td >&nbsp;</td>
+					  </tr>
+					  <tr > 
+						<td colspan="5" height='6'><img src="imgs/trans.gif" height='8'></td>
+					  </tr>
+					  <tr > 
+						<td >&nbsp;</td>
+						<td colspan="2" align="right" ><font class="inputtext">密碼問題:</font></td>
+						<td align="left" ><input name="PasswordQuestion" type=text class="logininput" id="password" value=""></td>
+						<td width="135" >&nbsp;</td>
+					  </tr>
+					  <tr > 
+						<td colspan="5" height='6'><img src="imgs/trans.gif" height='8'></td>
+					  </tr>
+					  <tr > 
+						<td >&nbsp;</td>
+						<td align="right" >&nbsp;</td>
+						<td width="20" >&nbsp;</td>
+						<td align="right" ><input type="submit" name="Update" value="更新密碼" class="loginsubmitlong"></td>
+						<td width="135" >&nbsp;</td>
+					  </tr>
+					</form>
+				  </table>
+
+				  <table width="50%" border="0" cellspacing="1" cellpadding="2" >
+					<tr > 
+					  <td ><font class="loginhead"><b>密碼工具</b></font></td>
+					</tr>
+					<td><img src="imgs/loginline.gif" width="500" height="1"></td>
+					</tr>
+					<tr> 
+					  <td><p><font class="logintext">遺忘你的密碼？你可以使用這個工具來取回密碼.當你登記帳戶時，你指定了一個「秘密問題」，用作提醒你的登入密碼.如果你還未能記起你的密碼，請用電郵聯絡 $pref['admin_email']，並註明你的登入名稱、出生日期、及所在城市，我們的團隊成員，會手動確認你的詳細資料.</font></p>
+						</td>
+					</tr>
+				  </table>
+
+				  <table width="100%" border="0" cellpadding="2" cellspacing="0">
+				<FORM action="index.php" method="post" name="form" target="_parent" onsubmit="return validate_passquestion(this)"><br>
+				<input type="hidden" name="func" value="passutil">	
+					<tr> 
+						<td width="54" >&nbsp;</td>
+						<td width="144" align="right" valign="top" nowrap > <input name="username" type=text class="logininput" id="username" value=""> 
+						</td>
+						<td width="18" ><img src="imgs/atsymbol.gif" width="18" height="17"></td>
+						<td width="135" align="left" valign="top" > 
+							<input name="pop3host" type=text class="logininput" value="">
+						</td>
+						<td width="140" >&nbsp;</td>
+					  </tr>
+					  <tr > 
+						<td >&nbsp;</td>
+						<td align="right" >&nbsp;</td>
+						<td width="18" >&nbsp;</td>
+						<td align="right" ><input type="submit" name="Hint" value="取得密碼提示" class="loginsubmitlong"></td>
+						<td width="140" >&nbsp;</td>
+					  </tr>
+					</form>
+				  </table>
+<br>
+				  <img src="imgs/loginline.gif" width="500" height="1">
+				  </td>
+			  </tr>
+			</table></td>
+		</tr>
+	  </table>
+	  <table width="554" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr> 
+		  <td width="15" nowrap bgcolor="#E5E5E5"><img src="imgs/trans.gif" height='8' width='30'></td>
+		  <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+			  <tr> 
+				<td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+					<tr> 
+					  <td valign="top" style="border-left: 1px solid #D8D2BD;">
+<table width="100%" border="0" cellspacing="1" cellpadding="2" >
+						  <tr > 
+							<td ><div align="right"><font class="loginhead"><b> 
+
+<!-- if($pref['allow_Passutil'] && $pref['install_type'] != "server") { -->
+<a href="javascript:helpwin()">幫助指南</a> | 
+<!-- } -->
+
+<a href="index.php">登入到 $pref['brandname']</a> |
+
+<a href="javascript:helpwin('loginhelp.html')">常見問題</a> | <a href="$pref['company_url']">關於</a> 
+
+<!-- if(file_exists("{$pref['install_dir']}/xhtml.php")) { -->
+| <a href="javascript:helpwin('wap.html')">無線電子郵件</a> 
+<!-- } -->
+
+</b></font></div></td>
+						  </tr>
+						  <tr> 
+							<td><div align="right"><font class="logintext">要取得更多網頁電郵服務的資訊, 請聯絡 $pref['admin_email']</a> - $pref['brandname'] $pref['version']</font></div></td>
+						  </tr>
+						</table></td>
+					  <td bgcolor="#E5E5E5"><img src="imgs/rightedge.gif" width="76" height="63"></td>
+					</tr>
+					<tr>
+					  <td bgcolor="#E5E5E5"><img src="imgs/bottomline.gif" width="449" height="19"></td>
+					  <td bgcolor="#E5E5E5"><img src="imgs/trans.gif" width="90" height="19"></td>
+					</tr>
+					</table></td>
+			  </tr>
+			</table></td>
+		</tr>
+	  </table> </td>
+  </tr></table>
+
+
+</body>
+</html>

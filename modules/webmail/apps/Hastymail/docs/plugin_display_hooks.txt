@@ -1,0 +1,334 @@
+DISPLAY HOOKS OVERVIEW
+
+    Display hooks are scattered throught the templates and XHTML output
+    functions. They allow a plugin to insert XHTML into the existing Hastymail
+    pages. Output should be built into a string then returned from the
+    function that is associated with the hook. Some display hooks are on every
+    page, while others are specific, such as only on the options page.
+    Available display hooks are listed in index.php. Removing a hook name from
+    that array will effectively disable any plugins attempt to use it without
+    disabling the entire plugin.  
+
+
+DISPLAY HOOKS DETAIL
+
+    To use display hooks add the hook name to the display_hooks section of the
+    plugin definition array in the config.php file for the plugin. Create a
+    file called display.php if it does not exsist, and add a function called
+    <plugin_name>_<display hook name>. The XHTML returned from this function
+    will be inserted into the page XHTML at the hook point.
+
+
+    MAIN HOOKS
+    ----------
+
+    The following hooks are run on every Hastymail page, the only exception
+    being folder_list_top and folder_list_bottom which run on every page
+    only if the user has the folder list enabled.
+
+    Hook Name           Description
+
+    page_top            This hook is just inside the primary content container,
+                        which is a div with an id of "nonfooter". It is before
+                        any other other page output.
+
+    icon                This hook outputs just before the icon in the top left
+                        corner of the "toolbar"
+
+    clock               This hook outputs just after the clock in the toolbar.
+
+    menu                This hook outputs inside the main menu between "Compose"
+                        and "Logout" and runs on every page.
+
+    folder_list_top     This hook outputs just above the folder list. If the
+                        user does not have the folder list enabled it is skipped
+
+    folder_list_bottom  This hook outputs just below the folder. If the user
+                        does not have the folder list enabled it is skipped.
+
+    notices_top         This hook outputs just above the user notices area which
+                        is at the top of the main page content area below the
+                        toolbar.
+
+    notices_bottom      This hook outputs just below the notices area which
+                        is at the top of the main page content area below the
+                        toolbar.
+    msglist_after_subject
+                        This hook outputs after the subject in any message list
+
+    content_bottom      This hook outputs at the bottom of the main content
+                        area
+
+    footer              This hook outputs to the footer at the bottom of the
+                        page.
+
+
+    MAILBOX PAGE HOOKS
+    ------------------
+
+
+    mailbox_top         This hook outputs before the mailbox table and info,
+                        just below the folder dropdown and toolbar links.
+
+    mailbox_meta        This hook outputs just after the default mailbox meta
+                        information (total + current page)
+
+    mailbox_sort_form   This hook outputs just after the mailbox sort dialog
+                        on the top right of the mailbox display.
+
+    mailbox_controls_1  This hook outputs just before the mailbox controls
+                        (the delete, read, unread etc. buttons)
+
+    mailbox_controls_2  This hook outputs just before the mailbox controls
+                        on the bottom of the display (if the user has this
+                        option enabled).
+
+    mailbox_search      This hook outputs just after the search form on the
+                        bottom of the mailbox display.
+
+    mailbox_bottom      This hook outputs at the bottom of the mailbox display
+                        before the page links.
+   
+ 
+    MESSAGE PAGE HOOKS
+    ------------------
+
+
+    message_top         This hook outputs at the top of the message view page
+                        just under the folder dropdown and toolbar links.
+
+    message_meta        This hook outputs just after the folder name and
+                        message information at the top left of the message page
+
+    message_prev_next_links
+                        This hook outputs just after the previous/up/next links
+                        in the upper right of the message page.
+
+    message_headers_top This hook outputs in the message headers table on the
+                        message page. It must return a table row, which is
+                        expected to have 2 table cells. It is located just
+                        before the first message header row, and visible when
+                        viewing both full or small headers.
+
+    message_links       This hook outputs into the row of message links located
+                        below the headers on the message view page.
+
+    message_headers_bottom
+                        This hook outputs in the messages headers table on the
+                        message page. It must return a table row, which is
+                        expected to have 2 cells. It is located just after
+                        the small or full headers and message links.
+
+    message_part_headers_top
+                        This hook outputs to the top of the message part
+                        headers if they are visible on the message view page.
+                        It is inside a table so should output a table row with
+                        2 table cells. 
+
+    message_part_headers_bottom
+                        This hook outputs to the bottom of the message part
+                        headers if they are visible on the message view page.
+                        It is inside a table so should output a table row with
+                        2 table cells. 
+    message_parts_table
+                        This hook outputs into the message parts table at the bottom
+                        of the message view. It expects an HTML row.
+
+    message_body_top    This hook outputs to the top of the main message display
+                        below the headers section.
+
+    message_body_bottom This hook outputs after the message body, just above the
+                        Message parts.
+
+    message_bottom      This hook outputs below the mailbox page links at the
+                        bottom of the message view page
+
+
+    NEW MAIL PAGE HOOKS
+    -------------------
+
+
+    new_page_top        This hook outputs at the top of the new mail page
+
+    new_page_title_row  This hok outputs after the "Unread Messages" title and
+                        before the add/remove folder controls
+
+    new_page_controls   This hook outputs after the folder dropdown in the
+                        message controls
+
+    new_page_bottom     This hook outputs at the bottom of the new mail page,
+                        below and unread message information. 
+
+    
+    SEARCH PAGE HOOKS
+    -----------------
+
+
+    search_page_top         This hook outputs at the top of the search page
+
+    search_result_meta      This hook outputs after the search results meta
+                            information
+
+    search_result_controls  This hook outputs after the message controls within
+                            the search results
+
+    search_result_bottom    This hook ouputs after the search results before
+                            the search form
+
+    search_form_top         This hook ouputs within the search form before the
+                            target folder section
+
+    search_form_bottom      This hook outputs within the search form after the
+                            search terms section
+
+    search_page_bottom      This hook outputs at the bottom of the search page
+    
+
+    ABOUT PAGE HOOKS    
+    ----------------
+
+   
+    about_page_top          This hook outputs to at the top of the about page
+
+    about_table_bottom      This hook outputs after the about page information,
+                            but above the images
+
+    about_page_bottom       This hook outputs at the bottom of the about page
+ 
+
+    OPTIONS PAGE HOOKS 
+    ------------------
+
+    options_page_top        This hook outputs to the top of the options page
+
+    options_page_title_row  This hook outputs after the "Options" heading
+
+    general_options_table   This hook outputs at the bottom of the general
+                            options section. It is within a table so any output
+                            should be a table row(s).
+
+    folder_options_table    This hook outputs at the bottom of the folder
+                            options section. It is within a table so any output
+                            should be a table row(s).
+
+    message_options_table   This hook outputs at the bottom of the message
+                            options section. It is within a table so any output
+                            should be a table row(s).
+
+    mailbox_options_table   This hoook outputs at the bottom of the mailbox
+                            options section. It is within a table so any output
+                            should be a table row(s).
+                            
+    new_options_table       This hook outputs at the bototm of the new page
+                            options section. It is within a table so any output
+                            should be a table row(s).
+                        
+    compose_options_table   This hook outputs at the bototm of compose page
+                            options section. It is within a table so any output
+                            should be a table row(s).
+                        
+    options_page_bottom     This hook outputs at the bottom of the options page.
+
+
+    CONTACTS PAGE HOOKS
+    -------------------
+
+    contacts_page_top       This hook outputs at the top of the contacts page
+
+    contact_detail_top      This hook outputs at the top of the contact detail
+                            section when visible.
+
+    contact_detail_bottom   This hook outputs at the bottom of the contact detail
+                            section when visible.
+ 
+    contacts_quick_links    This hook ouptuts just after the Import and Add links
+                            in the upper right corner of the page
+
+    existing_contacts_top   This hook outputs above the existing contacts table
+                        
+    existing_contacts_bottom
+                            This hook outputs below the existing contacts table
+
+    import_contact_form     This hook ouputs within the import contact form after
+                            the file and import input elements.
+
+    add_contact_email_table This hook outputs at the bottom of the Email section of the
+                            add contact form. It is inside a table so output
+                            should be a table row(s).
+ 
+    add_contact_name_table  This hook outputs at the bottom of the Name section of the
+                            add contact form. It is inside a table so output
+                            should be a table row(s).
+
+    add_contact_address_table
+                            This hook outputs at the bottom of the Address section
+                            of the add contact form. It is inside a table so output
+                            should be a table row(s).
+
+    add_contact_phone_table This hook outputs at the bottom of the Telephone
+                            section of the add contact form. It is inside a table
+                            so output should be a table row(s).
+
+    add_contact_org_table   This hook outputs at the bottom of the Organization
+                            section of the add contact form. It is inside a
+                            table so ouput should be a table row(s).
+
+    contacts_page_bottom    This hook outputs at the bottom of the contact page
+
+    
+    FOLDERS PAGE HOOKS
+    ------------------
+
+
+    folders_page_top        This hook outputs at the top of the folders page.
+
+    folder_controls_bottom  This hook outputs just after the rename a folder
+                            option.
+
+    folder_options_top      This hook outputs before the folder options list
+                    
+    folder_options_bottom   This hook outputs after the folder options list.
+
+    folders_page_bottom     This hook outputs at the bottom of the folder page
+
+
+    COMPOSE PAGE HOOKS
+    ------------------
+
+    compose_top             This hook outputs at the top of the compose page
+
+    compose_form_top        This hook outputs at the top of the compose page
+                            inside the HTML form
+
+    compose_contacts_top    This hook outputs inside the contacts dialog at
+                            the top
+
+    compose_contacts_bottom This hook outputs at the bottom of the contacts
+                            dialog
+
+    compose_above_from      This hook outputs below the contacts dialog and
+                            before the From: field.  Output should be a table
+                            row with a colspan of 3 
+
+    compose_options         This hook outputs above the "Options" row in the
+                            compose form. Output should be a table row with a
+                            colspan of 3
+
+    compose_after_message   This hook outputs after the message textarea and
+                            before the attachments section. Output should be a
+                            table row with a colspan of 3 
+
+    compose_form_bottom     This hook outputs after the attachments dialog but
+                            inside the primary compose page HTML form tag.
+
+    compose_bottom          This hook outputs at the bottom of the compose page
+    
+    compose_page_cc_row
+                            This hook outputs just after the Cc field on the compose
+                            page. It expects an HTML table row
+    compose_page_to_row
+                            This hook outputs just after the To field on the compose
+                            page. It expects an HTML table row
+    compose_page_cc_row
+                            This hook outputs just after the Bcc field on the compose
+                            page. It expects an HTML table row

@@ -1,0 +1,149 @@
+WORK HOOKS OVERVIEW
+
+    Work hooks are scattered throughout the backend code and allow a plugin
+    to do work such as fetch data, alter the way Hastymail behaves, process
+    forms, save settings, etc. NO OUTPUT is sent from these hooks, they all
+    occur in the code before any XHTML is sent to the browser so an function
+    associated with these hooks in a plugin must not echo or print anything.
+    Some work hooks are page specific (such as only on the message view page),
+    others run on all pages.  Available work hooks are listed in index.php.
+    Removing a work hook from that array effectively disables any plugins
+    use of it (not the entire plugin).
+
+WORK HOOKS DETAIL
+
+    The hooks are executed in the order that they appear here. To use a
+    work hook add the hook name to the work_hooks section of the array defined
+    the in the plugins config.php, create a file called work.php if it does
+    not exist and add a function called <plugin name>_<work hook name>. This
+    function will be executed when the hook point is reached in the main
+    Hastymail code.
+
+
+    Hook Name   Description
+
+    init        Runs before any general GET or POST checks, but after we have
+                determined the correct login status. This hook runs on every
+                page load.
+
+    logged_out_init
+                Similar to the init work hook except it ony runs when the user
+                is not logged in (the init hook only runs on logged in pages)
+
+    first_time_login
+                Runs once when a user logs into Hastymail for the first time.
+                Just after this hook the user settings are saved for the first
+                time. 
+
+    on_login    runs just before the login form is processed. Plugins can alter the
+                form by changing values in $_POST.
+    just_logged_in
+                Runs once when a user logs in after the basic user data is
+                setup and before the first page specific logic is run.
+
+    thread_view_start
+                This hook runs when the thread view page is loaded, after any
+                POST forms are processed but before any GET arguments are
+                looked at.
+
+    about_page_start
+                This hook runs when the about page is loaded
+
+    not_found_start
+                This hook runs when the not found page is loaded
+
+    search_page_start
+                This hook runs when the search page is loaded, after any
+                POST forms are processed but before any GET arguments are
+                looked at.
+
+    folders_page_start
+                This hook runs when the folders page is loaded, after any
+                POST forms are processed but before any GET arguments are
+                looked at.
+
+    logged_out  This hook runs when the log out page is loaded, after any
+                POST forms are processed but before any GET arguments are
+                looked at.
+
+    mailbox_page_start
+                This hook runs when the mailbox view page is loaded, after any
+                POST forms are processed but before any GET arguments are
+                looked at.
+
+    mailbox_page_selected
+                This hook runs after the mailbox_page_start hook and specifically
+                after the IMAP server connection has been established and the
+                current mailbox has been selected
+
+    message_page_start
+                This hook runs when the message view page is loaded, after any
+                POST forms are processed but before any GET arguments are
+                looked at.
+
+    message_page_selected
+                This hook runs after the message_page_start hook and specifically
+                after the IMAP server connection has been established and the
+                current mailbox has been selected
+
+    compose_page_start
+                This hook runs when the compose page is loaded, after any
+                POST forms are processed but before any GET arguments are
+                looked at.
+
+    compose_contact_list
+                This hook runs when the contact list is built for the compose
+                page. Using a special $tools method plugins can add to the contact
+                list. This hook only runs once per login session, the first
+                time the user accesses the compose page.
+
+    options_page_start
+                This hook runs when the options page is loaded, after any
+                POST forms are processed but before any GET arguments are
+                looked at.
+
+    contacts_page_start
+                This hook runs when the contacts page is loaded, after any
+                POST forms are processed but before any GET arguments are
+                looked at.
+
+    profile_page_start
+                This hook runs when the profile page is loaded, after any
+                POST forms are processed but before any GET arguments are
+                looked at.
+
+    new_page_start
+                This hook runs when the new mail page is loaded, after any
+                POST forms are processed but before any GET arguments are
+                looked at.
+
+    update_settings
+                This hook runs when an update button on the options page
+                is clicked. With this hook plugins can save settings added
+                to an options page display hook.
+
+    message_send 
+                This hook runs when the send button is clicked on the compose
+                page. This hook has a special feature that allows plugins to
+                access and change the format of the outgoing message before
+                it is sent.
+
+    register_contacts_source
+                This hook allows plugins to register a contact source that
+                will automatically be used on the compose page. The
+                ldap_addressbook uses this to integrate into the compose page.
+
+    page_end        
+                This hook runs on every page after all the backend processing
+                is complete.
+
+    compose_after_send
+                Like the message_send hook this runs after an outgoing message
+                is sent but this executes after the message is sent.
+
+    message_save
+                This hook executes after a message is sent and before it is
+                saved in the sent folder. Like the message_send hook plugins
+                can use this to alter the format of the message to be saved.
+ 
+

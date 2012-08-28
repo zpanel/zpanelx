@@ -1,0 +1,38 @@
+<!-- if($this->Ajax) { -->
+<Error>
+	<ErrorStatus>1</ErrorStatus>
+	<Status>1</Status>
+	<ErrorMessage><![CDATA[$var['error']]]></ErrorMessage>
+	<StatusMessage><![CDATA[Message refusé - Votre adresse IP a envoyé le maximum de messages par jour. Pour réduire la possibilité de spamming, votre message de sortie a été bloqué.  ]]></StatusMessage>
+</Error>
+<!-- } -->
+
+<!-- if(!$this->Ajax) { -->
+<html>
+<head>
+<title>Détection de Spam</title></head><body bgcolor="$this->BgColor" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+
+<style>
+
+.sw {font-family:Verdana;font-size:13px;color:#000000;}
+.swr {font-family:Verdana;font-size:13px;color:#FF0000;}
+</style>
+
+
+
+<LINK href="javascript/style$this->browser.css" rel="stylesheet" type="text/css">
+<img src="$pref['logo_big_img']"><br>
+<h1>Message refusé</h1>
+
+<font class="swr">Votre adresse IP a envoyé le maximum de messages par jour. Pour réduire la possibilité de spamming, votre message de sortie a été bloqué. </font> <font class="sw"> 
+<ul>
+<li>Contactez votre administrateur ($this->admin_email) pour obtenir de l'aide.</li>
+</ul>
+</font>
+</body>
+</html>
+
+<!-- } -->

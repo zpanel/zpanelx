@@ -1,0 +1,29 @@
+<?php 
+/********************************************************
+	lang/en/login.inc
+	(C)2001-2002 Ryo Chijiiwa <Ryo@IlohaMail.org>
+
+	This file is part of IlohaMail, and released under GPL.
+	See COPYING, or http://www.fsf.org/copyleft/gpl.html
+
+********************************************************/
+
+//translators: leave following include
+include("../lang/eng/login.inc");
+
+$loginStrings[0]="ÅÓã ÇáãÓÊÎÏã";
+$loginStrings[1]="ßáãÉ ÇáÓÑ";
+$loginStrings[2]="ÇáÎÇÏã";
+$loginStrings[3]="ÇáäæÚ";
+$loginStrings[4]="ÇáãáÝ ÇáÌÏÑ";
+$loginStrings[5]="ÇááÛÉ";
+$loginStrings[6]="ÏÎæá";
+
+$loginErrors[0]="áíÓ áß ÇáÍÞ Ýí ÇÓÊÎÏÇã åÐÇ ÇáÎÇÏã";
+$loginErrors[1]="ÎØÃ: ÇáãáÝ \"uploads\" ÛíÑ ãæÌæÏ";
+$loginErrors[2]="ÎØÃ: ÇáãáÝ \"users\" ÛíÑ ãæÌæÏ";
+$loginErrors[3]="ÎØÃ: ÇáãáÝ \"sessions\" ÛíÑ ãæÌæÏ";
+
+
+
+?>

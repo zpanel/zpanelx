@@ -1,0 +1,705 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 7.0.2" />
+<style type="text/css">
+/* Debug borders */
+p, li, dt, dd, div, pre, h1, h2, h3, h4, h5, h6 {
+/*
+  border: 1px solid red;
+*/
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a { color: blue; }
+a:visited { color: fuchsia; }
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
+tt {
+  color: navy;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  font-family: sans-serif;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  border-bottom: 2px solid silver;
+  padding-top: 0.5em;
+}
+
+div.sectionbody {
+  font-family: serif;
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+span#author {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+span#email {
+}
+span#revision {
+  font-family: sans-serif;
+}
+
+div#footer {
+  font-family: sans-serif;
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+div#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+div#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+div#preamble,
+div.tableblock, div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-right: 10%;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock > div.content {
+  padding-left: 2.0em;
+}
+div.quoteblock .attribution {
+  text-align: right;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 2px solid silver;
+}
+
+div.exampleblock > div.content {
+  border-left: 2px solid silver;
+  padding: 0.5em;
+}
+
+div.verseblock div.content {
+  white-space: pre;
+}
+
+div.imageblock div.content { padding-left: 0; }
+div.imageblock img { border: 1px solid silver; }
+span.image img { border-style: none; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: italic;
+}
+dd > *:first-child {
+  margin-top: 0;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.olist2 {
+  list-style-type: lower-alpha;
+}
+
+div.tableblock > table {
+  border-color: #527bbd;
+  border-width: 3px;
+}
+thead {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+tfoot {
+  font-weight: bold;
+}
+
+div.hlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+td.hlist1 {
+  vertical-align: top;
+  font-style: italic;
+  padding-right: 0.8em;
+}
+td.hlist2 {
+  vertical-align: top;
+}
+
+@media print {
+  div#footer-badges { display: none; }
+}
+include::./stylesheets/xhtml11-manpage.css[]
+/* Workarounds for IE6's broken and incomplete CSS2. */
+
+div.sidebar-content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+div.sidebar-title, div.image-title {
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 0.0em;
+  margin-bottom: 0.5em;
+}
+
+div.listingblock div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock-content {
+  padding-left: 2.0em;
+}
+
+div.exampleblock-content {
+  border-left: 2px solid silver;
+  padding-left: 0.5em;
+}
+</style>
+<title>git-blame(1)</title>
+</head>
+<body>
+<div id="header">
+<h1>
+git-blame(1) Manual Page
+</h1>
+<h2>NAME</h2>
+<div class="sectionbody">
+<p>git-blame -
+   Show what revision and author last modified each line of a file
+</p>
+</div>
+</div>
+<h2>SYNOPSIS</h2>
+<div class="sectionbody">
+<div class="verseblock">
+<div class="content"><em>git-blame</em> [-c] [-b] [-l] [--root] [-t] [-f] [-n] [-s] [-p] [-w] [--incremental] [-L n,m]
+            [-S &lt;revs-file&gt;] [-M] [-C] [-C] [--since=&lt;date&gt;]
+            [&lt;rev&gt; | --contents &lt;file&gt;] [--] &lt;file&gt;</div></div>
+</div>
+<h2>DESCRIPTION</h2>
+<div class="sectionbody">
+<p>Annotates each line in the given file with information from the revision which
+last modified the line. Optionally, start annotating from the given revision.</p>
+<p>Also it can limit the range of lines annotated.</p>
+<p>This report doesn't tell you anything about lines which have been deleted or
+replaced; you need to use a tool such as <a href="git-diff.html">git-diff(1)</a> or the "pickaxe"
+interface briefly mentioned in the following paragraph.</p>
+<p>Apart from supporting file annotation, git also supports searching the
+development history for when a code snippet occurred in a change. This makes it
+possible to track when a code snippet was added to a file, moved or copied
+between files, and eventually deleted or replaced. It works by searching for
+a text string in the diff. A small example:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git log --pretty=oneline -S'blame_usage'
+5040f17eba15504bad66b14a645bddd9b015ebb7 blame -S &lt;ancestry-file&gt;
+ea4c7f9bf69e781dd0cd88d2bccb2bf5cc15c9a7 git-blame: Make the output</tt></pre>
+</div></div>
+</div>
+<h2>OPTIONS</h2>
+<div class="sectionbody">
+<dl>
+<dt>
+-b
+</dt>
+<dd>
+<p>
+        Show blank SHA-1 for boundary commits.  This can also
+        be controlled via the <tt>blame.blankboundary</tt> config option.
+</p>
+</dd>
+<dt>
+--root
+</dt>
+<dd>
+<p>
+        Do not treat root commits as boundaries.  This can also be
+        controlled via the <tt>blame.showroot</tt> config option.
+</p>
+</dd>
+<dt>
+--show-stats
+</dt>
+<dd>
+<p>
+        Include additional statistics at the end of blame output.
+</p>
+</dd>
+<dt>
+-L &lt;start&gt;,&lt;end&gt;
+</dt>
+<dd>
+<p>
+        Annotate only the given line range.  &lt;start&gt; and &lt;end&gt; can take
+        one of these forms:
+</p>
+<ul>
+<li>
+<p>
+number
+</p>
+<p>If &lt;start&gt; or &lt;end&gt; is a number, it specifies an
+absolute line number (lines count from 1).</p>
+</li>
+<li>
+<p>
+/regex/
+</p>
+<p>This form will use the first line matching the given
+POSIX regex.  If &lt;end&gt; is a regex, it will search
+starting at the line given by &lt;start&gt;.</p>
+</li>
+<li>
+<p>
++offset or -offset
+</p>
+<p>This is only valid for &lt;end&gt; and will specify a number
+of lines before or after the line given by &lt;start&gt;.</p>
+</li>
+</ul>
+</dd>
+<dt>
+-l
+</dt>
+<dd>
+<p>
+        Show long rev (Default: off).
+</p>
+</dd>
+<dt>
+-t
+</dt>
+<dd>
+<p>
+        Show raw timestamp (Default: off).
+</p>
+</dd>
+<dt>
+-S &lt;revs-file&gt;
+</dt>
+<dd>
+<p>
+        Use revs from revs-file instead of calling <a href="git-rev-list.html">git-rev-list(1)</a>.
+</p>
+</dd>
+<dt>
+-p
+</dt>
+<dt>
+--porcelain
+</dt>
+<dd>
+<p>
+        Show in a format designed for machine consumption.
+</p>
+</dd>
+<dt>
+--incremental
+</dt>
+<dd>
+<p>
+        Show the result incrementally in a format designed for
+        machine consumption.
+</p>
+</dd>
+<dt>
+--contents &lt;file&gt;
+</dt>
+<dd>
+<p>
+        When &lt;rev&gt; is not specified, the command annotates the
+        changes starting backwards from the working tree copy.
+        This flag makes the command pretend as if the working
+        tree copy has the contents of the named file (specify
+        <tt>-</tt> to make the command read from the standard input).
+</p>
+</dd>
+<dt>
+-M|&lt;num&gt;|
+</dt>
+<dd>
+<p>
+        Detect moving lines in the file as well.  When a commit
+        moves a block of lines in a file (e.g. the original file
+        has A and then B, and the commit changes it to B and
+        then A), traditional <em>blame</em> algorithm typically blames
+        the lines that were moved up (i.e. B) to the parent and
+        assigns blame to the lines that were moved down (i.e. A)
+        to the child commit.  With this option, both groups of lines
+        are blamed on the parent.
+</p>
+<p>&lt;num&gt; is optional but it is the lower bound on the number of
+alphanumeric characters that git must detect as moving
+within a file for it to associate those lines with the parent
+commit.</p>
+</dd>
+<dt>
+-C|&lt;num&gt;|
+</dt>
+<dd>
+<p>
+        In addition to <tt>-M</tt>, detect lines copied from other
+        files that were modified in the same commit.  This is
+        useful when you reorganize your program and move code
+        around across files.  When this option is given twice,
+        the command looks for copies from all other files in the
+        parent for the commit that creates the file in addition.
+</p>
+<p>&lt;num&gt; is optional but it is the lower bound on the number of
+alphanumeric characters that git must detect as moving
+between files for it to associate those lines with the parent
+commit.</p>
+</dd>
+<dt>
+-h
+</dt>
+<dt>
+--help
+</dt>
+<dd>
+<p>
+        Show help message.
+</p>
+</dd>
+<dt>
+-c
+</dt>
+<dd>
+<p>
+        Use the same output mode as <a href="git-annotate.html">git-annotate(1)</a> (Default: off).
+</p>
+</dd>
+<dt>
+--score-debug
+</dt>
+<dd>
+<p>
+        Include debugging information related to the movement of
+        lines between files (see <tt>-C</tt>) and lines moved within a
+        file (see <tt>-M</tt>).  The first number listed is the score.
+        This is the number of alphanumeric characters detected
+        to be moved between or within files.  This must be above
+        a certain threshold for git-blame to consider those lines
+        of code to have been moved.
+</p>
+</dd>
+<dt>
+-f
+</dt>
+<dt>
+--show-name
+</dt>
+<dd>
+<p>
+        Show filename in the original commit.  By default
+        filename is shown if there is any line that came from a
+        file with different name, due to rename detection.
+</p>
+</dd>
+<dt>
+-n
+</dt>
+<dt>
+--show-number
+</dt>
+<dd>
+<p>
+        Show line number in the original commit (Default: off).
+</p>
+</dd>
+<dt>
+-s
+</dt>
+<dd>
+<p>
+        Suppress author name and timestamp from the output.
+</p>
+</dd>
+<dt>
+-w
+</dt>
+<dd>
+<p>
+        Ignore whitespace when comparing parent's version and
+        child's to find where the lines came from.
+</p>
+</dd>
+</dl>
+</div>
+<h2>THE PORCELAIN FORMAT</h2>
+<div class="sectionbody">
+<p>In this format, each line is output after a header; the
+header at the minimum has the first line which has:</p>
+<ul>
+<li>
+<p>
+40-byte SHA-1 of the commit the line is attributed to;
+</p>
+</li>
+<li>
+<p>
+the line number of the line in the original file;
+</p>
+</li>
+<li>
+<p>
+the line number of the line in the final file;
+</p>
+</li>
+<li>
+<p>
+on a line that starts a group of line from a different
+  commit than the previous one, the number of lines in this
+  group.  On subsequent lines this field is absent.
+</p>
+</li>
+</ul>
+<p>This header line is followed by the following information
+at least once for each commit:</p>
+<ul>
+<li>
+<p>
+author name ("author"), email ("author-mail"), time
+  ("author-time"), and timezone ("author-tz"); similarly
+  for committer.
+</p>
+</li>
+<li>
+<p>
+filename in the commit the line is attributed to.
+</p>
+</li>
+<li>
+<p>
+the first line of the commit log message ("summary").
+</p>
+</li>
+</ul>
+<p>The contents of the actual line is output after the above
+header, prefixed by a TAB. This is to allow adding more
+header elements later.</p>
+</div>
+<h2>SPECIFYING RANGES</h2>
+<div class="sectionbody">
+<p>Unlike <tt>git-blame</tt> and <tt>git-annotate</tt> in older git, the extent
+of annotation can be limited to both line ranges and revision
+ranges.  When you are interested in finding the origin for
+ll. 40-60 for file <tt>foo</tt>, you can use <tt>-L</tt> option like these
+(they mean the same thing &#8212; both ask for 21 lines starting at
+line 40):</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>git blame -L 40,60 foo
+git blame -L 40,+21 foo</tt></pre>
+</div></div>
+<p>Also you can use regular expression to specify the line range.</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>git blame -L '/^sub hello {/,/^}$/' foo</tt></pre>
+</div></div>
+<p>would limit the annotation to the body of <tt>hello</tt> subroutine.</p>
+<p>When you are not interested in changes older than the version
+v2.6.18, or changes older than 3 weeks, you can use revision
+range specifiers  similar to <tt>git-rev-list</tt>:</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>git blame v2.6.18.. -- foo
+git blame --since=3.weeks -- foo</tt></pre>
+</div></div>
+<p>When revision range specifiers are used to limit the annotation,
+lines that have not changed since the range boundary (either the
+commit v2.6.18 or the most recent commit that is more than 3
+weeks old in the above example) are blamed for that range
+boundary commit.</p>
+<p>A particularly useful way is to see if an added file have lines
+created by copy-and-paste from existing files.  Sometimes this
+indicates that the developer was being sloppy and did not
+refactor the code properly.  You can first find the commit that
+introduced the file with:</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>git log --diff-filter=A --pretty=short -- foo</tt></pre>
+</div></div>
+<p>and then annotate the change between the commit and its
+parents, using <tt>commit&#94;!</tt> notation:</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>git blame -C -C -f $commit^! -- foo</tt></pre>
+</div></div>
+</div>
+<h2>INCREMENTAL OUTPUT</h2>
+<div class="sectionbody">
+<p>When called with <tt>--incremental</tt> option, the command outputs the
+result as it is built.  The output generally will talk about
+lines touched by more recent commits first (i.e. the lines will
+be annotated out of order) and is meant to be used by
+interactive viewers.</p>
+<p>The output format is similar to the Porcelain format, but it
+does not contain the actual lines from the file that is being
+annotated.</p>
+<ol>
+<li>
+<p>
+Each blame entry always starts with a line of:
+</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>&lt;40-byte hex sha1&gt; &lt;sourceline&gt; &lt;resultline&gt; &lt;num_lines&gt;</tt></pre>
+</div></div>
+<p>Line numbers count from 1.</p>
+</li>
+<li>
+<p>
+The first time that commit shows up in the stream, it has various
+  other information about it printed out with a one-word tag at the
+  beginning of each line about that "extended commit info" (author,
+  email, committer, dates, summary etc).
+</p>
+</li>
+<li>
+<p>
+Unlike Porcelain format, the filename information is always
+  given and terminates the entry:
+</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>"filename" &lt;whitespace-quoted-filename-goes-here&gt;</tt></pre>
+</div></div>
+<p>and thus it's really quite easy to parse for some line- and word-oriented
+parser (which should be quite natural for most scripting languages).</p>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">For people who do parsing: to make it more robust, just ignore any
+lines in between the first and last one ("&lt;sha1&gt;" and "filename" lines)
+where you don't recognize the tag-words (or care about that particular
+one) at the beginning of the "extended information" lines. That way, if
+there is ever added information (like the commit encoding or extended
+commit commentary), a blame viewer won't ever care.</td>
+</tr></table>
+</div>
+</li>
+</ol>
+</div>
+<h2>SEE ALSO</h2>
+<div class="sectionbody">
+<p><a href="git-annotate.html">git-annotate(1)</a></p>
+</div>
+<h2>AUTHOR</h2>
+<div class="sectionbody">
+<p>Written by Junio C Hamano &lt;junkio@cox.net&gt;</p>
+</div>
+<h2>GIT</h2>
+<div class="sectionbody">
+<p>Part of the <a href="git.html">git(1)</a> suite</p>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 08-Jun-2008 22:46:19 UTC
+</div>
+</div>
+</body>
+</html>

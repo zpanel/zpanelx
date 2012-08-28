@@ -1,0 +1,62 @@
+<!-- if($this->Ajax) { -->
+<Error>
+	<ErrorStatus>1</ErrorStatus>
+	<ErrorMessage><![CDATA[
+<!-- } -->
+
+<html>
+<head>
+<title>Bitte aktualisieren und nochmals versuchen</title>
+<html lang="de"><meta http-equiv="Content-Type" content="text/html; charset=utf-8">    
+</head>
+<body bgcolor="$this->BgColor" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor">
+
+<style>
+
+.sw {font-family:Verdana;font-size:13px;color:#000000;}
+.swr {font-family:Verdana;font-size:13px;color:#FF0000;}
+</style>
+
+
+<LINK href="javascript/style$this->browser.css" rel="stylesheet" type="text/css">
+<img src="$pref['logo_big_img']"><br>
+<h1>Postfach Fehler</h1>
+
+<font class="swr">Der Server antwortete - $var['status']
+</font>
+
+<font class="sw"> 
+<ul>
+
+<!-- if($this->Ajax) { -->
+  <li><a href="javascript:history.back()">Bitte aktualisieren und erneut probieren</a>
+<!-- } -->
+
+<!-- if(!$this->Ajax) { -->
+  <li><a href="javascript:location.reload()">Bitte aktualisieren und erneut probieren</a>
+<!-- } -->
+
+</li>
+
+  <li>Bitte überprüfen Sie ob Sie Ihre Postfach nicht in mehr als einem Fenster aufgerufen haben. Eine Dateisperre auf eine Anmledung pro Postfach ist aktiv.</li>
+
+  <li>Bitte überprüfen ob nicht 2 Sitzungen gleichzeitig aktiv sind - nur ein Benutzername pro Anmeldung ist erlaubt</li>
+
+  <li>Bitte in wenigen Minuten nochmals versuchen</li>
+
+</ul>
+</font>
+
+<p><font class="swr">Sollten die Probleme beim einloggen weiter bestehen</font></p>
+<font class="sw">
+<ul>
+  <li>Bitte kontaktieren Sie unser Supportteam $this->admin_email um weitere Unterstützung zu erhalten.</li>
+</ul>
+</font>
+</body>
+</html>
+
+<!-- if($this->Ajax) { -->
+	]]></ErrorMessage>
+</Error>
+<!-- } -->

@@ -1,0 +1,1886 @@
+**************************************
+*** SquirrelMail Stable Series 1.4 ***
+**************************************
+
+Version 1.4.22 - 12 July 2011
+-----------------------------
+  - Backported default timezone fix from version 1.5.2; helps mitigate
+    timezone errors in environments where a default has not been set
+    by the administrator.
+  - Fixed system lock-ups caused by a combination of certain rare,
+    malformed message headers and buggy versions of PHP mbstring
+    (#3053349).
+  - Now allow multiple plugins to handle (add links for) a single
+    attachment MIME type.
+  - Now allow administrators to disable all plugins or enable just
+    a select few plugins (overriding the active plugins in the normal
+    configuration) by setting $temporary_plugins as an empty array
+    (all disabled) or an array with one or more plugin directory names
+    in config_local.php.
+  - Backport fix for call_user_func_array not supporting NULL as empty
+    array in PHP 5.3.3
+  - Fixed sqauth_read_password() for plugins on the login_verified hook.
+  - Added SMTP SASL PLAIN authentication option to configuration tool
+    (core support for such is not new).
+  - Gmail doens't support standard search commands; removed sort buttons.
+  - Forced addition of a file suffix to attachments that lack a filename
+    (helps forwarded messages avoid spam filters) (thanks to Petr
+    Kletecka) (#3139004).
+  - Fixed missing security token in listcommands plugin.
+  - Added smtp_auth hook (thanks to Emmanuel Dreyfus).
+  - Made speed enhancements to threaded message display (thanks to Siim
+    Poder) (#3288123).
+  - Allow administrators to configure subfolders of user INBOXes to be
+    treated as special folders by adding $subfolders_of_inbox_are_special
+    to config_local.php.
+  - Fixed incorrect display of INBOX subfolders under some configurations.
+    IMPORTANT: You may need to update your configuration so that
+    $default_sub_of_inbox is TRUE if it was FALSE (e.g., Courier IMAP users)
+    and after updating to this version, your special folders are no longer
+    listed at the top of your folder list.  Also, if this change prevents
+    users from logging in with an error such as "ERROR: Could not complete
+    request.  Query: CREATE "Trash" Reason Given: Invalid mailbox name.",
+    you will need to correct the user preference values for the problem
+    folders.  You can do so with commands such as the following for file-
+    based preferences (adjust the data directory location as needed):
+        find /var/lib/squirrelmail/data/ -name *.pref -exec sed --in-place 's/trash_folder=Trash/trash_folder=INBOX.Trash/g' {} \;
+        find /var/lib/squirrelmail/data/ -name *.pref -exec sed --in-place 's/trash_folder=Drafts/trash_folder=INBOX.Drafts/g' {} \;
+        find /var/lib/squirrelmail/data/ -name *.pref -exec sed --in-place 's/trash_folder=Sent/trash_folder=INBOX.Sent/g' {} \;
+    Or, for database-based preferences:
+        UPDATE userprefs SET prefval = 'INBOX.Trash' WHERE prefkey = 'trash_folder' AND prefval = 'Trash';
+        UPDATE userprefs SET prefval = 'INBOX.Drafts' WHERE prefkey = 'draft_folder' AND prefval = 'Drafts';
+        UPDATE userprefs SET prefval = 'INBOX.Sent' WHERE prefkey = 'sent_folder' AND prefval = 'Sent';
+    MAKE SURE to back up your user preferences first!
+  - Optimized message highlighting rules; faster message list display
+    and faster highlight rules management (thanks to C. Bensend for
+    extensive effort helping diagnose)
+  - New Mail plugin no longer removes normal organization title when
+    putting the number of new messages in the browser title
+  - Added clickjacking protection (thanks to Asbjorn Thorsen and Geir
+    Hansen for bringing this to our attention). [CVE-2010-4554]
+  - Fixed XSS holes in generic options inputs, XSS hole in the SquirrelSpell
+    plugin, XSS hole in the Index Order page, and added anti-CSRF protection
+    to the empty trash feature and the Index Order page (thanks to Nicholas
+    Carlini for finding all these issues). [CVE-2010-4555]
+  - Fixed XSS problem with unsanitized style tags in messages. [CVE-2011-2023]
+
+Version 1.4.21 - 23 Jul 2010
+----------------------------
+  - Now allow more than one plugin to control the compose form submit action.
+  - When sorting by received date, the received date is now shown on the
+    message list.
+  - Explicitly disabled browser caching for left_main and right_main pages
+    (#2983134).
+  - Fixed error with SpamCop reporting plugin not being able to send report
+    as emails (#1795310).
+  - Fixed typo in SpamCop plugin.
+  - Reduced default time security tokens stay valid from 30 days to 2 days
+    (reduces chances of session data growing too large)
+  - Several speed enhancements for recent fixes regarding the display of
+    encoded subjects, including a fix for messages with invalid subject
+    encoding (includes #2987016 amongst several other issues reported via
+    mailing list, etc.) (Many thanks to Zdenek Pytela for the untiring help
+    diagnosing and testing.)
+  - Fixed minor vulnerability in Mail Fetch plugin.
+    [CVE-2010-1637/TEHTRI-SA-2010-009]
+  - Now properly quote personal part of encoded addresses when replying.
+  - Now fill in default subject when forwarding as attachment (#2936541).
+  - Implement header folding that doesn't add extraneous spaces so unfolding
+    is less ambiguous (#1951776).
+  - Fixed issues caused by use of PostgreSQL keyword "user" in SquirrelMail's
+    default preferences database schema (#2943483).
+  - Fixed attachment filename decoding problems (#2994865).
+  - Now default search criteria to the TO header when searching the sent folder.
+  - Fixed literal processing of 8-bit usernames/passwords during login.
+    [CVE-2010-2813]
+
+Version 1.4.20 - 06 Mar 2010
+---------------------------
+  - Fixed issue with search not using literals correctly (#2846511).
+  - Fixed issue with returning to search results due to new security token code.
+  - Fixed issue with multi-part related messages not showing all attachments (#2830140).
+  - Fixed for security token missing in newmail plugin (#2919418).
+  - Fixed sort in Sent folder to sort by "To" field instead of "From" field (#2907412).
+  - Fixed mailto: urls containing + characters.  Thanks to Michael Puls II for the 
+    patch.
+  - Made base URL autodetection more robust; fixes some lighttpd issues
+    (probably #1741469).
+  - Encoded From headers are now properly quoted (#2830141).
+  - Multibyte strings (notably subjects) are now handled correctly (#2824813,
+    #2925731).
+  - X-DNS-Prefetch-Control: off header is now sent to browsers to prevent information
+    leakage when Firefox does DNS prefetching for URLs contained in emails.
+  - Added unread links in message view.
+  - Added the ability to configure Google Mail (Gmail) as the mail server
+    behind SquirrelMail.
+  - Added option in display preferences that allows the signature to be stripped
+    from the original message when replying (#2952876).  Thanks to Sven Strickroth.
+
+Version 1.4.20 RC2 - 17 Aug 2009
+--------------------------------
+  - Protect message deletion with security token system. (Secunia Advisory SA34627)
+
+Version 1.4.20 RC1 - 12 Aug 2009
+--------------------------------
+  - Removed the shut down DSBL blocklists (#2796734).
+  - Fixed broken RFC1918 reference in contrib/.htaccess and doc/.htaccess (#2798839).
+  - Updated INSTALL doc to remove possible bad system admin typos (#2827153).
+  - PHP 5.3 deprecates ereg functions (#2820952).
+  - Filters plugin uses badly formatted literals request (#2805201).
+  - Provide option for complete removal of usernames and user IP addresses
+    from message headers, and remove personal data from Message ID seed.
+    (#880029/847107)
+  - Implemented page referal verification mechanism. (Secunia Advisory SA34627)
+  - Implemented security token system. (Secunia Advisory SA34627)
+
+Version 1.4.19 - 21 May 2009
+----------------------------
+  - Removed use of session_unregister() for compatibility with PHP 5.3.0
+    and PHP 6.
+  - Fixed the Filters plugin to allow commas in filter criteria text and
+    not to error out when spam-scanning only unread mail.
+  - Resend cookie to browser after session ID regeneration so it gets the
+    right cookie parameters.
+  - In SMTP, when we EHLO with an IP, wrap it in brackets (#2793154).
+  - The shell escaping fix in map_yp_alias [CVE-2009-1579] was incomplete.
+    Thanks Michal Hlavinka for noticing this. [CVE-2009-1381]
+
+Version 1.4.18 - 11 May 2009
+----------------------------
+  - Fixed port detection in automatic base URL detection scheme
+    (get_location()). (#2388423)
+  - Added informational type option widget.
+  - Added password type option widget.
+  - Fixed filters plugin to allow spam filters to scan multiple
+    messages, rather than the first message returned. (#1634735)
+  - Removed code from spam filters plugin to stop if falling back
+    to searching all messages when there was no new messages.
+  - Altered filters plugin to issue single move/delete statement
+    for multiple messages.
+  - Updated some core code, and several plugins, to not use code
+    marked as obsolete.
+  - Corrected sqimap_msgs_list_copy to actually copy messages,
+    rather than move.
+  - Created new sqimap_msgs_list_move to move messages.
+  - Migrated some fetch handling code from dev branch in plans to
+    update some core functionality to allow reusability of code.
+  - Make address book file permissions 0600 - same as preference files.
+  - Fix for address book nicknames that contain the : character.
+  - Ensure that hash directory computation is the same on both 32 and
+    64 bit architectures. (#2596879)
+  - Allow multiple addresses in one abook entry (separate with commas),
+    although we HIGHLY DISCOURAGE grouping in this manner - note amongst
+    other issues that can come up, sizing for large groups will be a
+    problem. (#2611967)
+  - Added Tamil translation (Thanks to Kengatharaiyer Sarveswaran).
+  - Added Bengali (Bangladesh) translation (Thanks to Jamil Ahmed).
+  - Moved documentation to doc/ directory and added example .htaccess
+    files in all directories to which browsers don't need direct access.
+  - Date headers in outgoing messages have been brought into RFC 822
+    compliance (removed time zone name). (#1849410)
+  - Default Content-Transfer-Encoding is now RFC-compliant "7bit"
+    instead of "us-ascii". (#1942060)
+  - Outgoing attachments that have lines longer than allowed per RFC
+    are now encoded so they are not corrupted by artificial line folds.
+    Thanks to Kelly Fallon. (#2226470, $1473714)
+  - Converted Italian (it_IT) to UTF-8.
+  - Converted Czech (cs_CZ) to UTF-8.
+  - Converted Hungarian (hu_HU) to UTF-8.
+  - Added Khmer translation (Thanks to Khoem Sokhem).
+  - Remove ability for HTML emails to use CSS positioning to overlay
+    SquirrelMail content (Thanks to Luc Beurton). (#2723196) [CVE-2009-1581]
+  - Fixed improper sanitizing of PHP_SELF and the lack of sanitizing of
+    QUERY_STRING server environment variables (Thanks to Niels Teusink
+    and Christian Balzer). [CVE-2009-1578]
+  - Fixed the lack of sanitizing of contrib/decrypt_headers.php input;
+    also includes general cleanup of that page (Thanks to Niels Teusink).
+    [also CVE-2009-1578]
+  - Fixed unsanitized shell command in example IMAP username mapping
+    function (map_yp_alias) (Thanks to Niels Teusink). [CVE-2009-1579]
+  - Fixed session fixation issues where someone who can modify a user's
+    cookies could gain control of their login session.  The SquirrelMail
+    base URI is now uniformly generated, extraneous cookies are cleaned
+    up and session IDs are regenerated upon every login (Thanks to Tomas
+    Hoger). [CVE-2009-1580]
+
+Version 1.4.17 - 03 December 2008
+---------------------------------
+  - Allow control over white space wrapping of auto-generated
+    SquirrelMail option widgets.
+  - Fix matching of alternate identities when replying.
+  - Fix HTTPS detection under Windows IIS that was incorrectly
+    setting cookies to be transmitted only over a secure
+    connections when none existed (#2318118).
+  - Security: Fix XSS exploit in hyperlinks when rendering
+    messages. Thanks to Secunia Research for reporting this
+    issue and for their patience. [CVE-2008-2379]
+
+Version 1.4.16 - 28 September 2008
+----------------------------------
+  - Added support for Latvian.
+  - Add submit button type option widget
+  - Allow address book lookups by fields other than nickname/alias
+  - Include hooks in databased-based preference backend that have
+    long been in the file-based preference backend
+  - Removed the Address Take (abook_take) plugin; please see the Add
+    Address (third party) plugin.
+  - Allow a different server address for the POP server to be
+    configured when using POP before SMTP.
+  - Update the left_main_after_each_folder hook to work on the trash
+    folder as well as all other folders.
+  - Fix HTML validity issue with IE conditional construct (#1985916).
+  - Backported sqsetcookie() from 1.5.2, so cookies won't be
+    transmitted under non-SSL connections if the session is
+    started under an SSL (https) connection (CVE-2008-3663).
+    Also limits cookies to HTTPOnly, a feature of IE and Firefox
+    to counter cross site scripting attacks.
+
+Version 1.4.15 - 23 May 2008
+----------------------------
+  - Fix saving of Read Receipts to Sent folder.
+  - Converted Romanian (ro_RO) to UTF-8.
+  - Converted Slovak (sk_SK) to UTF-8.
+  - Converted Swedish (sv_SE) to UTF-8.
+
+Version 1.4.15 Release Candidate 1 - 12 May 2008
+------------------------------------------------
+  - Added support for Macedonian.
+  - Don't allow invalid plugin names in conf.pl --install-plugin.
+  - Fix warning in Printer Friendly due to missing include (#1849101).
+  - Let configtest.php use optional PEAR dynamic extension loading,
+    patch by Walter Huijbers (#1833123).
+  - Fix for IMAP servers that were having problems saving sent messages.
+  - Fix broken <style> tag parsing for some HTML messages, thanks
+    Roalt Zijlstra.
+  - Re-added support for Vietnamese.
+  - Fixed broken MDN functionality (send read confirmation).
+  - Converted Norwegian Bokm�l (nb_NO) to UTF-8.
+  - Converted traditional Chinese (zh_TW) to UTF-8.
+  - Avoid deprecation notices on get_magic_quotes_* functions.
+  - Improved Message-ID generation code.
+  - Added edit list, checkbox, radio group, multiple-select folder
+    list and multiple-select string list option widget types,
+    as well as support for the "trailing_text" widget attribute.
+  - Boolean option widgets are henceforth presented as checkboxes.
+  - Tidied up fortune plugin to be inline with specifications for plugins.
+  - Enhanced address book page: added 'Compose to' button, put labels
+    around address entries tied to checkboxes, improved column spacing,
+    added hook for plugins that can filter address book listings.
+    Complements RisuMail team (risumail.jp).
+
+Version 1.4.14 - Skipped; version number abused by spammers.
+
+Version 1.4.13 - 14 December 2007
+---------------------------------
+  - Include compatibility plugin files if available.
+  - Some IMAP servers send nil for an empty email body (See RFC2180,
+    section 4.1.3 on empty strings).
+  - New release to clear up any confusion with respect to
+    compromised 1.4.11 and 1.4.12 packages [CVE-2007-6348].
+
+Version 1.4.12 - 04 December 2007
+---------------------------------
+  - Enabled user selection of address format when adding from address
+    book during message composition.
+  - Fixed issue with adding attachments in PHP 4.x environments (#1805471).
+  - Backport size setting on "newmail" popup window.
+  - Added a "short_open_tag" configuration test.
+  - Undefined notice in error message box when no default folder prefix is set.
+  - Undefined index error when downloading.  Possibly caused by using tabs and
+    opening multiple mailboxes.
+  - PAGE_NAME might not be defined in all plugins, which might cause a 
+    "not defined" error on session timeouts.
+  - Fixed outgoing messages to allow addresses such as "0@..." or "000@...",
+    etc. (#1818398).
+  - Fixed issue with in-reply-to and reference headers not being retained on
+    reply (#1810659).
+  - Revived logout_error hook (#1800015).
+  - Allow custom session handlers to work correctly (and be defined at the
+    application level with SquirrelMail).
+  - Fix off-by-one in bodystructure parsing triggered by servers sending
+    a body location part (e.g. Sun Java System Messaging Server). Thanks
+    John Callahan (#1808382).
+  - Invalid initialization of To: header (#1772893).
+  - Includes cleanup in include/validate.php.
+  - Cleanup in multiple files to remove unneeded includes.
+  - Added sort by size (#812233 and #159997, plus multiple list requests).
+    Patch provided by Christopher E. Brown.
+  - Fix bug in sitewide SMTP settings still using authenticated user, rather
+    than configured settings (#1835942).
+  - Fixed mailto: functionality.
+  - Added mailto: link handling when viewing messages.
+  - Handle PHP's insistence on setting the value to 'deleted' for destroyed sessions
+    (#1829098).
+
+Version 1.4.11 - 29 September 2007
+----------------------------------
+  - Minimum PHP requirement raised from 4.0.6 to 4.1.0.
+    SquirrelMail has been broken for a while with 4.0.x without anyone
+    noticing, this move merely reflects reality.
+  - Fix broken set_url_var function in functions/html.php (#1729814).
+  - Fix config.pl not detecting auth support correctly (#1727033).
+  - Fix display of X-Priority in message view.
+  - Work around mailers sending broken Date headers with no space after the
+    first comma.
+  - Let POP3 class properly cope with lines starting with a '.'.
+  - Some HTML validation cleanups.
+  - Invalid year in sent_subfolders plugin (#1607380).
+  - Always treat Content-Type case-insensitively (#1732092).
+  - Fix typo: html/plain should be text/html.
+  - Fix en/decode header swith in MDN (#1694687).
+  - Fix compatibility with Windows path in administrator plugin (#1740469).
+  - Fix disabling password encryption in mail_fetch (#1738001).
+  - Fix busy loop and notice when two literals in IMAP fetch (#1739433).
+  - Backported code for site wide SMTP authentication (#1531889).
+  - Fixed issue with compose session not being cleaned after message is 
+    saved or sent.
+  - Added ability to detect HTTP_X_FORWARDED_PROTO in get_location(),
+    thanks to Daniel Watts
+  - Fix test for signout.php in the logged in check in is_logged_in() so it
+    cannot be circumvented by manipulating the URL. External plugins might
+    rely on this function guaranteeing that the user is logged in.
+  - Use attachment_dir only at the point where we're actually
+    reading from / writing to the files, do not carry it around
+    in the object. This makes us safer in the event the object
+    is somehow exposed to the outside world.
+  - Better support mailboxes named 'None' (#1598890).
+  - Sort readdir() output in conf.pl (#1755886).
+  - Fix message cache in printer friendly, thanks Tomas Kuliavas.
+  - Made the webmail_top hook work again for plugins that want to change
+    the URI of the "right" frame; plugins have to change the value of the
+    global variable $right_frame_url
+  - Fix issue in darkness theme with extra closing bracket.
+  - No longer store all message composition sessions in the PHP session,
+    since it was not made use of and in rare cases, made sessions too big.
+  - Composition restoration functionality now correctly restores attachments.
+  - Added smtp_auth hook.
+  - Change default Selection List Style to Indented.
+  - Added "preselected" query argument to mailbox list.
+  - Added mailbox_display_buttons hook.
+  - Removed "Include CCs when Forwarding Messages", which had no functionality
+    whatsoever.
+  - Make the Message Details plugin actually show the correct entity when 
+    viewing details of attached messages.
+  - Add PAGE_NAME constant to all src/ pages for use in detecting what page
+    has been requested by the client.
+
+Version 1.4.10a - 10 May 2007
+-----------------------------
+  - Fix regression in compose: when no alternative identities have been
+    defined, the From header would be incorrect. 
+
+Version 1.4.10 - 9 May 2007
+---------------------------
+  - Drop obsolete ORDB RBL from filters plugin (#1629398).
+  - Fix HTML glitches (#1608798, #1628639, #1521389, #1548394, #1704686).
+  - Reduce (largely theoretical) chance of reusing existing attachment
+    filenames.
+  - Fix rare bug in forwarding as attachment from some search results.
+  - Add warning about magic_quotes_* in configtest.
+  - Unify accepted versions for imap_server_type and set_defaults (#1629722).
+  - Fix for wrong $_SERVER['REQUEST_URI'] value causing wrong links
+    in the [more] and [less] links in read_body.php.
+  - Update for switch from CVS to Subversion.
+  - Fix URL to send read receipts from read_body (#1637572).
+  - Fix for high memory usage when forwarding messages with attachments.
+  - Fix for filename extraction from attachments.
+  - Fix reply to all duplicating the address from Reply-To.
+  - Drop redundant call to session_register, which could trigger a segfault
+    in PHP 4.4.5 (#1664155).
+  - Make compose use get_identities() rather than fiddling with identities
+    by itself, resolving a problem in the listcommands plugin (#1663762).
+  - If a date-header cannot be parsed, display the unparsed version as a
+    better-than-nothing alternative.
+  - Fix "Unknown Sender" on message after reading a digest (#1673047).
+  - Fix Priority and Receipt compose options being reset after return from
+    HTML addressbook (#1673056).
+  - Fix sorting of folder list with non-. delimiter (#1593229).
+  - Only display "+" symbol on multipart/mixed messages, e.g. those with
+    real attachments.
+  - Fixes for issues with filters plugin (#1634735).
+  - Session not correctly handled on webmail.php (#1685031).
+  - session_id reporting session id when no active session (#1685031).
+  - sqm_baseuri moved to strings.php (#1685114).
+  - Added sq_change_text_domain() for plugins to use when switching text
+    domains. If plugins use this function, it fixes #1434043.
+  - Added new language: Frisian, thanks to Rinse de Vries.
+  - Security: fixes for the HTML filter to counter further XSS exploits:
+    HTML attachments containing 'data:' URLs, Internet Explorer-specifc
+    charset conversion exploits, and request forgery through included
+    images. Thanks to Mikhail Markin, Tomas Kuliavas and Michael Jordon
+    for reporting these issues. [CVE-2007-1262, CVE-2007-2589]
+
+Version 1.4.9a - 3 December 2006
+--------------------------------
+  - Security: Multiple IE cross site scripting issues related to the
+    widely acceptation of the word expression and url by IE.
+  - Security: Removing @import when sanitizing html mail.
+
+Version 1.4.9 - 2 December 2006
+-------------------------------
+  - Drop obsolete script plugins/make_archive.pl.
+  - Fixed Google translate form in translate plugin. Added new language
+    pairs.
+  - Added XMAGICTRASH extension tests in configtest utility. Removed code
+    that handled 'inbox.trash' as special folder in courier (#1354393).
+  - Allowed moving folders to trash in courier.
+  - Fix misspelled constant PREG_SPLIT_NI_EMPTY in sqimap_get_message
+    (#1543573).
+  - Provide View Unsafe Images link on viewing a text/html attachment.
+  - Fix variable typo in folders_create.php (#1545316).
+  - Added Courier IMAP OUTBOX check to configtest utility.
+  - If mailbox name starts with slash or contains ../, error message is
+    generated. Safety check for insecure default UW IMAP setup (#1557078).
+  - Ignore message copy errors when messages are deleted. Allows to delete
+    messages when quota is exceeded (#614887, #646386, #1446026).
+  - Fixed unintended literal fetching (#1562271).
+  - Added global file based address book listing controls. Added line
+    length configuration option for local_file address book backend
+    (#1181561). Added address book data integrity checks in local_file
+    address book backend. Fixed eregi and object notices in local_file
+    and database address book backends. Added additional address book
+    field support.
+  - Fixed variable corruption in configtest utility.
+  - Checked if configuration file is readable in configuration utility
+    (#1568355).
+  - Special mailboxes marked in special_mailbox hook are no longer listed
+    in folder delete, rename and subscription options.
+  - Translate plugin: prevent PHP notice when viewing empty message.
+  - Add CEST and MEST (non-standard) timezone codes for +0200.
+  - Add <label> to From field in message list.
+  - Add support for parsing SpamAssassin's X-Spam-Status header (#1589520).
+  - Fix in bodystructure parser code related to strings ending with an
+    escape character.
+  - Added "attachment */*" hook
+  - Added third parameter $logout_link to logout_error hook that allows
+    plugin control over login page URI displayed on login error page.
+  - Security: close cross site scripting vulnerability in draft, compose
+    and mailto functionality [CVE-2006-6142].
+  - Security: work around an issue in Internet Explorer that would guess
+    the mime type of a file based on contents, not Content-Type header.
+
+Version 1.4.8 - 11th August 2006
+--------------------------------
+  - Fixed URL for Read Receipts being incorrect in some cases (#1177518).
+  - Fixed endless loop when trying to parse "From: )(" (#1517867).
+  - Using is_file() instead of file_exists() in fortune plugin, which
+    correctly fails if the specified location is a directory (#1499134).
+  - Add manual page for conf.pl under contrib.
+  - Don't allow selecting INBOX as Sent, Draft or Trash folder (#1242346).
+  - Fixed spamcop web based reporting form (#1519673).
+  - Session cookies are turned on, if session.use_cookies is turned off
+    in PHP configuration (#1518885).
+  - Cleaned whitespace in output buffer when plugins are loaded (#1291209).
+  - Removed conf.pl dependency on Perl IO::Socket module. Automatic detection
+    of supported authentication mechanisms is disabled, if IO::Socket is not
+    available.
+  - Make the base for the SquirrelMail URL configurable. Adds a new variable
+    config_base_location to config.php and a new option to conf.pl. This is
+    to prevent problems in installs where our heuristic doesn't work
+    correctly (#1521299, #1460675, #1110064, #1000850, #1113791).
+  - Fixed mailbox and header sanitizing in src/search.php.
+  - Handle IMAP copy errors in filters plugin. Added $handle_errors option
+    and boolean return in sqimap_messages_copy() function (#1520437).
+  - Improved register_globals=on handling code in order to prevent possible
+    variable corruption. This also effectively rules out future attack vectors
+    that require register_globals to be on.
+  - Fixed use of $version in config.php file (#1527870).
+  - Fixed IMAP folder creation in euc-kr, big5 and gb2312 translations
+    (#1005353).
+  - Configuration utility does not allow 8bit symbols in IMAP folder names
+    (#1485501).
+  - Removed HTTP Status header from signout page to work around a bug in
+    fastcgi (#1424748).
+  - Added command execution status check in SendMail delivery class (#1374174).
+  - Added $sendmail_args configuration option (#1365779).
+  - Fixed resuming of compose when session expired while writing.
+  - Security: Make sure that code only sets those variables that are needed in
+    compose and are not already set. Thanks James Bercegay from GulfTech for
+    pointing this out. [CVE-2006-4019]
+  - Fixed subscription of new 'noselect' folders (#1315912).
+  - Moving the developers documentation to the documentation module; it's
+    no longer shipped in the tarballs.
+  - Drop dead code in validate.php once used for some old obscure bug.
+
+Version 1.4.7 - 4th July 2006
+-----------------------------
+  - Security: Possible cookie theft in src/redirect.php if
+    register_globals is enabled, and malicous site is running
+    in same domain.
+  - Fixed that loading the options page always loaded the prefs
+    initial_value on display, instead of the users' value.
+  - Enabled Ukrainian translation after updates by Serhij Dubyk.
+  - Fixed from address in case of MDN receipts (patch from Dimitar Pashev).
+  - Correct variable typo, causing Bogus sequence in FETCH errors (#1460338).
+  - Reduce references header in a smart way to avoid "header too long"
+    errors from SMTP servers in really long threads (#1167754, #1465342).
+  - Undo extra sanitizing in decodeHeader() function (#1460638).
+  - Added workaround for broken OpenBSD 3.8+ setlocale() function (#1427512).
+  - Fixed session lockups on large attachment downloads.
+  - Fixed bug_report plugin connections to mapped and secured IMAP servers.
+  - Fixed possibility to use single quote in provider name (#1475744).
+  - Improved error handling for the help pages.
+  - Added new color themes by Jeremy Landes, Tammi Maggard and Lucas Austin-Howe
+    (#1378332), (#1377567), (#1377529), (#1377528), (#1377527), (#1377526),
+    (#1377525), (#1393188).
+  - Removed invalid $sendmail_path check in configuration utility.
+  - Backported calendar plugin updates from devel branch. Fixed display of
+    multiline events (#1291081) and sanitizing of quotes (#705796). Fixed
+    possible calendar corruption, when events contain special formating
+    characters. Moved html sanitizing from backend functions to display
+    code. Removed direct access to $_GET and $_POST variables and
+    simplified form variable processing.
+  - Fixed some mailbox caching issues, when messages are deleted or moved
+    not in first mailbox page. Fixed use of mailbox cache in right_main.php
+    (#1304408).
+  - Stop URL parsing, if 8bit symbols or HTML entities are detected (#1356798).
+  - Improve recovery when EHLO not supported on legacy SMTP servers
+    (#1031455).
+  - Don't move messages when target mailbox matches source mailbox (#1409453).
+  - Sanitized IMAP folder names in error_message() function and filters plugin.
+  - Take X-Forwarded-Host HTTP header in consideration when constructing
+    base_uri for redirects; reduces problems with transparent proxies
+    (#1488590).
+  - Don't use trailing delimiter when sqimap_mailbox_create() subscribes
+    newly created mailbox.
+  - Undefined variable in src/right_main.php.
+  - Security: Local file inclusion in functions/plugin.php with
+    register_globals enabled, and magic_quotes disabled (reported by Denix
+    Solutions). [CVE-2006-2842]
+  - Add note to conf.pl / config_default.php to warn users that set
+    sensitive passwords in that file to properly secure it.
+  - Prevent modifications in advanced identities, when editing of
+    identities is disabled.
+  - Fix incorrect parsing of From with nested parentheses (#1241506).
+  - Tightened code in search.php for disputed security report. We don't
+    believe this is exploitable, but the code is tightened anyway.
+    [CVE-2006-3174]
+
+
+Version 1.4.6 - 23 February 2006
+--------------------------------
+  - Security: MagicHTML fix for comments in styles (reported
+    by Scott Hughes) and parsing of u\rl (reported by
+    Martijn Brinkers) which allowed for cross site scripting
+    when using Internet Explorer [CVE-2006-0195].
+  - Multi-line encoded headers were being deleted (#1394667).
+  - Security: Prohibit IMAP injection attempts (reported by Vicente
+    Aguilera) [CVE-2006-0377].
+  - Handle unsolicited responses inside SORT responses properly.
+  - Security: Fix possible cross site scripting through the right_main
+    parameter of webmail.php. This now uses a whitelist of acceptable
+    values. [CVE-2006-0188]
+  - Removed invalid STARTTLS check from configtest.php script.
+  - Added Georgian language support.
+
+Version 1.4.6 Release Candidate 1 - 10 December 2005
+----------------------------------------------------
+  - Added Simple Green, Silver Steel, Wood, Bluesome, Simple Green2 and
+    Simple Purple themes. Contributed by Pavel Spatny, Saku Lehtio
+    (#1188209), Vicky Pyne (#1217066 and #1217069).
+  - Fixes for increased error checking in PHP 5.0.5+ array_shift() (#1237160).
+    [PHP5]
+  - Added extra checks in Delivery class for In-Reply-To header. Fixes
+    E_NOTICE level warnings in PHP 5.0.4 and later (#1206474). [PHP5]
+  - Added extra checks in SquirrelMail charset_encode() function in case
+    somebody removes HTML to US-ASCII conversion library (#1239782).
+  - Ported devel fixes for PHP 5.0.4 E_NOTICE warnings in Message class
+    (#1164045). [PHP5]
+  - Auto Refresh Folder List preference now defaults to 10 Minutes, add
+    option for 20 Minutes.
+  - Fixed inline display of attached jpeg/gif/xbm attachments in Mozilla
+    Firefox.
+  - Fixed invalid reference in src/download.php. E_NOTICE level warnings
+    could corrupt attachments in PHP 4.4.0.
+  - Fixed error handling in SquirrelSpell plugin. sprintf and gettext
+    formating errors in check_me.mod. Reported by Edward Chapman.
+  - Allow configure to be ran from any directory, thanks Ceri Davies.
+  - Fixed reloading the cached mailbox-tree after a purge trash action.
+  - Fixed loading of external background-images in style attributes when
+    show_unsafe_images is false.
+  - Fix to stop deletion of mailboxes that do not exist, otherwise an
+    IMAP error is generated.
+  - Add missing break to listcommands plugin so unsubscribe works again.
+  - Removed function references from address book database backend class,
+    list_addr(), lookup() and search() functions. Referenced lookup()
+    function caused E_NOTICE warnings in PHP 4.4.0. Reported by Cor
+    Bosman.
+  - Fixed address book file and database backend error messages broken by
+    CVE-2005-1769 patches.
+  - Fixed compose form redirection in spamcop plugin.
+  - Reenabled Estonian translation. Thanks to Tanel Kindsigo.
+  - "Toggle all" pointless when folder list empty (#1267079).
+  - Readded options_identity_process and options_identity_renumber hooks
+    broken by CVE-2005-2095 fixes.
+  - Removed duplicate generic_header hook call in src/right_main.php (#1269189).
+  - Focus on compose screen no longer shifts automatically if user has manually
+    focused somewhere herself.
+  - Fixed placement of abook_init hook.
+  - Fixed IMAP search command in filters plugin. Command was breaking
+    sqimap_mailbox_exists() check. Reported by Daniel Watts.
+  - Solved function conflict between compatibility and info plugins.
+  - Added PHP register_globals check to configuration test utility.
+  - Added character set conversion to HTML message parts and HTML
+    attachments with character set information (#1258925). Original patch
+    by Peter Draganov (#1195232).
+  - Fixed decoding of quoted-printable text in decodeBody function.
+    Reported by João Carlos Mendes Luís.
+  - Added CR trimming to SquirrelSpell plugin in order to fix problems on
+    Windows systems.
+  - Backported truncateWithEntities function.
+  - Backported user definable truncation widths on subject and sender
+    fields.
+  - Load default value for INTERNALDATE sorting to be ON to match initial
+    preference page if user has not set anything.
+  - E_NOTICE and unlink error message if user hits delete multiple times
+    before compose page has reloaded.
+  - Undefined variable in view_header.
+  - Undefined index offset in read_body when trying to calculate next/prev
+    links for attached messages.
+  - Fixed wrapping (#1043576) and encoding (#1246305) of multibyte
+    charsets. Fix requires PHP with mbstring support. If mbstring support
+    is not present or character set is not supported by mbstring
+    extension, fixes are not applied.
+  - Rebuild URL to sound file in newmail plugin when sound file is played
+    (#1233530).
+  - Removed 'Download this as file' link from printable email version and
+    translate plugin.
+  - Added list of attachments to printable version page (#793020).
+  - Added sorting options to main address book listing (#543788),
+    (#1164435), (#1313707).
+  - Prevent playback of newmail sounds when media file is not selected or
+    set to '(none)'.
+  - If server side sorting was enabled, and the user had a non-default sort
+    enabled, and issued a search, the search would attempt to resort the
+    results and generate an E_NOTICE error.
+  - Undefined variable "size" in imap_messages.
+  - Variables by reference only fix in printer_friendly_bottom.php.
+  - Undefined index in addressbook backends.  This could be caused by
+    import plugins.
+  - Undefined variable in vcard.php.
+  - Added bincimap (#1285099), dovecot and mercury32 presets.
+  - Make test for IE6 in SendDownloadHeaders also match versions higher
+    than 6 (#1339211).
+  - Allow double quote to be used in MOTD (#1276959).
+  - Prevent right_frame to be set to '//www.example.com'.
+  - Make cookies destroy code use epoch instead of 5 seconds into the past.
+  - Added new compose_send_after hook.
+  - Properly clean up temporary attachment files when saving as Draft
+    (#1358407) and fix removal of lingering attachments on signout.
+  - Fixed error message in addressbook.php lookup (#1351825).
+  - Fixed incorrect curly escape in sqimap_append(). Error triggered by PHP 5.1
+    bugfix (#1366982).
+  - Fixed ContentType object check in Rfc822Header class. E_NOTICE error
+    in PHP 5.1.
+  - Login and login error pages use default theme colors (#1366050).
+  - Add doc/security.txt with some hints for a more secure installation.
+  - Suppressed fsockopen() warnings when interface is configured to use TLS on
+    plain SMTP port. Reported by Nicolas Mailhot.
+  - Disabled fuzzy matching of sprintf() formated strings in internal
+    gettext implementation (#1341089).
+  - Moved inclusion of display_messages.php out of backend-dependent location
+  - Moved sqm_baseuri() into more centralized location (strings.php).
+  - Back-ported code change to only filter undeleted emails.
+  - Back-ported filter code change to test for filters before issuing possibly
+    expensive IMAP calls.
+  - Sanitize Draft folder name in compose.php error message.
+
+Version 1.4.5 - 13 July 2005
+----------------------------
+  - Update COPYING with new address of the FSF.
+  - Fixed bad code from patch being pasted instead of
+    executed.
+  - Fixed missing quote character in img tag if blank src is supplied.
+  - Really fix off-by-one error in search.php now (array_pop works
+    differently in different PHP versions).
+  - Javascript relied on rg=1 in the login page to force focus to
+    password box if username was supplied as a url arg (#1222617).
+  - Disabled unmaintained Estonian translation.
+  - Allowed use of wildcards in LDAP address book search expressions. Issue
+    is specific to 1.4.5cvs and not present in older versions.
+  - Security: Rewrite advanced identity handling to remove call to extraction
+    of all POST values. [CVE-2005-2095]
+  - Moved imap_logout call in view_header.php to the end of the script after
+    displayPageheader is called.
+
+Version 1.4.5 Release Candidate 1 - 15 June 2005
+------------------------------------------------
+  - Make SquirrelSpell work with safe_mode enabled, if using PHP >=4.3.0.
+    Patch by Ray Ferguson, backported from devel.
+  - Add support for Mail-Followup-To header, from devel.
+  - Remove is_readable($data_dir) test in configtest, because SquirrelMail
+    functions fine with stricter permissions on that dir.
+  - 24hr clock format should include a leading 0.
+  - Fixed uid based authentication in administrator plugin. Thanks to
+    Gareth Johnston.
+  - Added three Tahoma stylesheets.
+  - Added required code to display error message that might occur when options
+    are saved.
+  - Fixed translations of "On DATE, AUTHOR Wrote" and "AUTHOR Wrote" replies.
+  - Added trailing slash for data directory used by global file based
+    address book (#1105760).
+  - Fixed possible PHP E_ALL warnings in translate plugin with GPLtrans engine
+    (#1100789).
+  - Fixed adding addresses to global address books.
+  - Fix typos in Deliver.class.php which caused an error with PHP 5.
+  - 'Priority' and 'Importance' headers are now also recognised, next to the
+    'X-Priority' header that we've supported since a long time. From devel.
+  - Fix administrator plugin that was too picky about newlines in the
+    "admins" file.
+  - Added blank.png for missing image support.
+  - Fixed cid handling from Outlook Express client when it doesn't create a
+    valid content-id to go with CID tag.  This resolves #855320, and should
+    be considered a workaround.  The real issues needs resolving by MS.
+  - Strip <outbind://> tags out. This is a Microsoft only protocol and
+    references files local to the sending machine.  This causes issues
+    with Internet Explorer.
+  - Replace <img src="outbind://"> links with clean images to stop
+    issues with Internet Explorer not being able to track down the
+    image.
+  - Empty src attribute on img tags causes logouts (IE only), replacing
+    string with blank.png.
+  - Added configurable reply prefix (default: ">") to display options.
+  - Give an error to the user when SquirrelMail is not configured yet
+    (instead of "failed to include config.php").
+  - Fixed display of unsafe images in printer friendly view (#1124764).
+  - Remove NUL characters in text attachment on send (#1032366).
+  - Re-introduced "mailto:"-handling.
+  - Removed INBOX as a mailbox option in filters plugin. Fixes bug #801060.
+  - Disable rewrapping of a forwarded message: this messes up reply-texts
+    and a forwarded message should not be altered unneccessary (#1151047).
+  - Fix wrong path to mailout.php in listcommands plugin.
+  - Fixed edit form checks in address listing (#1124018).
+  - Sanitized searches in ldap address book backend.
+  - Added verbose error messages to addressbook_init() function.
+  - Added $force_decode option to charset_decode() function in order
+    to use this function correctly in charset_convert().
+  - Added wrapper function in order to use more than one locale name in
+    setlocale() calls. Fixes translation issues on some broken glibc
+    systems (#1105168).
+  - Removed unnecessary require_once() calls from abook_take plugin.
+  - Fixed broken saved search display.
+  - Fixed broken signout page (plugins work here again).
+  - Fixed configtest to use correct PostgreSQL connection function (#1166228).
+  - Strip absolute positioning style from HTML-mails.
+  - Fixed administrator's plugin problems related to latest sqGetGlobalVar()
+    changes.
+  - Included local configuration file in config.php generated by
+    administrator's plugin.
+  - Fixed checking for quota when appending to Sent folder (#1172694).
+  - Fixed folder renaming to handle collapse_folder information, be
+    compatible with Cyrus-IMAPD >= 2.0 and correctly handle unsubscribed
+    folders. Thanks Simon Matter for the patch. (#1155791)
+  - Fix incorrect folder hierarchy display (#1009654), thanks
+    Awais Ahmad for the patch (#1082558).
+  - Added title box for From: column to display the address.
+  - Make sure From: is really an object on replies, otherwise an error is
+    generated trying to find reply citation (#1179754).
+  - Add Cancel button to addressbook (#1180565).
+  - RFC 2046: Send mixed messages with multipart/alternative nested boundaries
+    with correct boundary strings.
+  - Ported abook_init and abook_add_class hooks from devel.
+  - Fix wrapping between folder icon and name in advanced folder list
+    (#1187995).
+  - Fix folder indenting in message list didn't use folder_prefix (#726719,
+    #1013888).
+  - mail_fetch plugin should check destination folder before trying to store
+    messages in it. INBOX is used as fallback folder. By default plugin
+    can use only subscribed mail folders that can store messages (#584658).
+  - Added mbstring.func_overload!=0 workaround (#929644, #1061699).
+    src/configtest.php is modified to warn about broken PHP configuration.
+  - Fixed use of squirrelmail_language cookie with PHP register_globals =
+    off.
+  - Interface can default to first language listed in browser's
+    'HTTP_ACCEPT_LANGUAGE' header, if default SquirrelMail language is set
+    to empty string (#764709).
+  - Default charset variable can be used to change charset used by US
+    English translation (#1195728).
+  - Fix for search. On fallback also use UID SEARCH.
+  - Tweak IMAP connection error display (#1203154).
+  - Add robots noindex/nofollow meta tag to SquirrelMail generated pages.
+  - Fix typo in addrbook_search.php.
+  - Gracefully recover from over quota error while sending a mail (#1145144).
+  - Added $encode_header_key and $hide_auth_header options. First option
+    allows to encode user's information with provided encryption key (set in
+    2. Server settings -> B. Update SMTP / Sendmail settings). Second option
+    allows to disable authenticated user part in Received: header, when user
+    can't forge used email address. It is set in 4. General Options ->
+    9. Allow editing of identity (#847107).
+  - Fix get_identities() for the case where the user has not set an email
+    address: use the fallback $username@$domain that's used in compose aswell.
+  - Fix "Include me in CC on Reply All" for the case where email address was
+    not set in the prefs (#781202, #1093363).
+  - Move documentation for SquirrelMail developers to doc/Development.
+  - Correct slightly inconsistent behaviour when reading a message with MDN
+    (#928954).
+  - Fix an off-by-one and a HTML-formatting bug in saved searches.
+  - Remove in-development default-off folder list code from left_main.php.
+  - Fixed broken attachments caused by inconsistency of PHP chunk_split().
+    Thanks to Roalt Zijlstra.
+  - Identites code incorrectly assumes username does not contain domain part
+    and appended domain to username when no user defined email set.
+    (#1219184).
+  - Disallow access to the administrator plugin screens when the plugin is
+    not enabled in the config.
+  - Security: fix several cross site scripting (XSS) attacks. Thanks go to
+    Martijn Brinkers for finding a lot of these. [CVE-2005-1769]
+
+Version 1.4.4 - 21 January 2005
+-------------------------------
+  - Fix listcommands plugin to include src/ in compose links.
+  - Fix listcommands plugin to behave like normal reply/compose
+    links, and return to message page that originally called from.
+  - Max upload file size now correctly handles a '-1' value, meaning
+    unlimited (#1094569).
+  - Send 8-bit username or password as literals (#1081259).
+  - configtest.php now checks whether default language is actually
+    present.
+  - Fix 'plus instead of space in downloaded file name' issue,
+    which was introduced in 1.4.4-RC1 (#1076733).
+  - Disabled unmaintained Thai translation.
+  - Security: Added hook for Preferences Backend to resolve potential
+    insecure file inclusions. [CVE-2005-0075]
+  - Set up language before outputing errors in auth.php and signout.php
+    to make them appear in the correct language.
+  - Security: Fix potential file inclusion issues in src/webmail.php.
+    [CVE-2005-0103]
+  - Fixed minor bug in DMN plugin that caused it to not correctly set
+    lastTargetMailbox.
+  - Security: Fix possible XSS issues in src/webmail.php. [CVE-2005-0104]
+  - Correct undefined variable usage in src/webmail.php.
+
+Version 1.4.4 RC1 - 31 December 2004
+------------------------------------
+  - Get alternating row colors of addressbook in sync with mailbox list.
+  - Fix bug in detecting the delimiter in a folder moved to trash.
+  - Trailing spaces are no longer trimmed from folder names (#818974).
+  - Give proper error when PEAR DB not found.
+  - Remove inappropriate strip_tags() from add-to-addressbook (#968475).
+  - Translations are no longer included by default but instead are
+    packaged separately. See locales/README.locales for details.
+  - Backport Charset Decoding functions from DEVEL branch. This vastly
+    increases the number of supported character sets and the performance
+    of decoding.
+  - Add src/configtest.php script which checks for common errors in the
+    config.
+  - Fixed forward in new window from search page courtesy of Jason Munro.
+  - Prefs caching didn't work properly with register_globals off (#995102).
+  - Various fixes for minor user interface glitches.
+  - Fixed broken POP before SMTP (password wasn't being used).
+  - Custom option page values now repopulate correctly.
+  - Added "no focus" option for compose page in display preferences (setting
+    reply focus to "No focus" also affects composing new messages).
+  - Fix bug when Saving to Draft folder that contains special characters.
+  - Fix RFC822 incompliant use of IP-address in Message-ID.
+  - Uneditable address book entries no longer have checkboxes on addresses page.
+  - Fix that viewing the last page of a mailbox with one message always
+    claimed that the total of messages in that mailbox was 1.
+  - Alignment of title text above folder list fixed.
+  - Added Uighur translation support.
+  - Added status bar to compose window when "Compose In New Window" is used.
+  - Fixed issue with user setting display of messages to 0 per page.  Fixes
+    bug #960447.
+  - Detect, handle, and warn on LOGINDISABLED from IMAP server.
+  - Correctly sort folders including - in the name.  Affects folders beginning
+    with the same names, but second folder has - with additional characters.
+    Patch courtesy of Morten Nilsen <morten[@]nilsen.com>.
+  - Added size limit to signatures saved in file backend. Created error_option_save
+    function, that allows sending error message to options page. Thanks to Martynas
+    Bieliauskas for spotting big signature "option".
+  - $agresive_decoding configuration option changed to $aggressive_decoding.
+    Fixed spelling.
+  - Fixed $custom_css loading in squirrelspell plugin.
+  - Referenced document (presets.txt) missing.  Copied from devel.
+  - Make SMTP Authentication detection in conf.pl more RFC-compliant.
+  - Fixed IMAP errors when using mail_fetch plugin to auto-fetch on login.
+  - Fixed folder list in Create Folders list for Courier (properly skip INBOX).
+  - Corrected poor English in a string (#775978).
+  - Corrected bug in SquirrelSpell that'd put the corrected spelling on the wrong
+    line if quoting inline, or below the original email (#906217).
+  - LC_NUMERIC locale is set to C. Some plugins might use decimal delimiters
+    incorrectly (#1027130).
+  - Turkish translation uses C character case conversion rules. Fixes PHP and
+    squirrelmail functions are assume English conversion rules.
+  - Removed X-Mailer header from SquirrelMail. SpamAssassin 3.0 detects
+    User-Agent + X-Priority headers correctly. Older versions have to fix
+    rules/20_head_tests.cf.
+  - When replying to message with a " in the subject, the " was a replaced with a '.
+  - Added Bengali translation support.
+  - Security: Fixed XSS exploit in decodeHeader function. [CVE-2004-1036]
+  - Fixed error output in SquirrelSpell plugin (patch courtesy David Boone).
+  - Fixed bug in IMAP read routines that treated "0" as false instead of
+    a string (patch courtesy Maurice Makaay).
+  - Fixed PHP notice when header property value is blank.
+  - Fixed decoding function problems when mbstring.func_override has
+    MB_OVERLOAD_REGEX enabled.
+  - Removed command line option unsupported by qmail-inject in
+    class/deliver/Deliver_SendMail.class.php. Thanks to Ken Brush.
+  - Ported charset encoding patches from devel. Closes bug #806698 and
+    patch #550843.
+  - Ported 8bit read receipts fixes from devel. Closes bug #934033.
+  - Added Net-Style theme by Gabriele Maidecchi. Closes patch #1041323.
+  - Disabled use of info plugin, when it is not enabled in config.
+  - Fixed path used by random theme.
+  - Added global address book configuration support and options to select
+    writable address book backend. Removed 'global_file' address book
+    backend. 'global_file' backend functions are provided by 'local_file'
+    backend.
+  - Sanitized nickname and name entries in address listing.
+  - LDAP backend will use internal SquirrelMail charset conversion functions
+    instead of the PHP XML extension. Closes bug #655137.
+  - Fix two time zone calculation bugs, thanks to David White. Fixes #1063879.
+  - Handle a reload of the signout page gracefully: do not present an error
+    about having to be logged in to be able to sign out. Fixes #1070069.
+  - Prevent "&" being eaten in set_url_var, thanks Marcin Orlowski. Fixes
+    #1053725.
+  - Added size attributes to newmail plugin sounds. Fixes #818958.
+  - Updated translation engine options in translate plugin. Added Google
+    translate. Disabled GPLtrans engine, because it is no longer available.
+  - RFC822 header compliance with regards to SM based header containing an
+    extra ; in the Received header. Fixes #1088548.
+  - Add IMAP server type "hmailserver" to make search work with hMailServer.
+    Fixes #1085377.
+  - Reuploaded newmail plugin sounds. Fixes files uploaded to CVS without binary
+    option.
+  - Changing your JavaScript preference required a re-login to work.
+    Fixes #983614.
+  - Miscellaneous documentation updates / improvements.
+  - Compose-in-new didn't always work with JavaScript disabled (#801999).
+
+Version 1.4.3a - 2 June 2004
+----------------------------
+  - Fix typo in compose.php reply/reply to all quoting (#963499).
+
+Version 1.4.3 - 30 May 2004
+---------------------------
+  - Fix form functions default parameter.
+  - Disabled Korean extra functions, because they don't provide all required
+    options and message composition is broken.
+  - Added Basque translation support.
+  - Security: Fixed XSS vulnarability in content-type display in the attachment
+    area of read_body.php discovered by Roman Medina.
+
+Version 1.4.3-RC1 - 10 May 2004
+-------------------------------
+  - Added new preference that determines cursor focus when replying.
+  - HTML Filter bugfixes and further strengthening in response to some
+    findings reported by stardust.
+  - Display total number of new messages in newmail-plugin popup window.
+  - Disabled Vietnamese and Ukrainian translations. They are done in different
+    language.
+  - Ported charset decoding support functions from SM head. Increases
+    number of readable charsets.
+  - Fix SquirrelMail to work with PHP5.
+  - Reintroduce alternating row colors in addressbook, which has
+    accidentally disappeared somewhere in the dark past.
+  - Disabled Quick-email-reporting feature in spamcop plugin. (#809452). Admin
+    can enable it by setting variable in plugins/spamcop/setup.php
+  - Fix again for Internet Explorer's stupidity of decoding characters, then
+    executing it blindly. See http://www.securityfocus.com/archive/1/340118.
+  - Replaced obsolete 2mbit.com RBL with ahbl.org RBL (#829887).
+  - Fixed sorting of sent_subfolders.
+    Sent_subfolder plugin is hooked to special_mailbox hook.
+    Stable 1.4 tracker #699920.
+  - New hook function: boolean_hook_function()  Used for true/false hooks.
+  - Fixed special_mailbox hook to allow more than one hooked plugin (#870365).
+  - Added new reply citation to include date and author.
+  - Security: Fix some XSS issues. [CVE-2004-0519, CVE-2004-0520]
+  - Norwegian Bokmal translation uses nb_NO.
+  - Improve display of some unparsable/absent dates (#891354).
+  - Added non-anonymous LDAP bind and bind protocol patches from devel.
+  - Add comment (Highest,Normal,Lowest) to X-Priority header.
+  - Make writing of preferences, abook, calendars fail better when disk full
+    (#915527).
+  - Fix quoteimap() regex escaping problem (#921291).
+  - Added international date format support (#927264).
+  - Fixed "Resume Draft" to use correct identity (#845290).
+  - Fixed RFC2821 incompliancy by adding a fallback mechanism to HELO if
+    EHLO is not supported.
+  - Fixed RFC2298 incompliancy by setting envelope sender to null.
+  - Allow single quotes to be used in theme name in conf.pl (#805309).
+  - Do not present special folders as renameable/deleteable (#816881).
+  - Fixed on the fly decoding of base64 encoded attachments.
+  - Fixed message rejects by the postfix sendmail wrapper when attachments were
+    involved.
+  - Fixed scenario where just created special folders were not displayed on
+    first login.
+  - Fixed wrong folding of headerlines in composed messages containing long
+    email addresses.
+  - Fixed date display bug for messages of today. Show short format in case
+    of long format. (only occurs in the timeframe around 0:00 AM till
+    timezone).
+  - Use Special Folder Color config option works again (#931956).
+  - In POP3-class, be more liberal regarding RFC-incompliant POP3-servers.
+  - Security: fix SQL injection vulnerability in addressbook.
+    [CVE-2004-0521]
+
+Version 1.4.2 - 1 October 2003
+------------------------------
+  - Fix message highlighting for text containing spaces.
+  - Added feature to allow user to switch on full date display in mailboxes instead
+    of just partial date/time based on time of email and current date.
+  - Fixed bug that would cause e-mails dated in the future to be displayed with only
+    the time.
+  - Custom CSS option now works properly.
+  - Fix SquirrelSpell JS incompatibility with other plugins that use forms like
+    Link Buttons (#774454).
+  - Fix when forwarding messages as attachment from message list, the displayed
+    subject was wrong (appearing to the user that the wrong messages were attached).
+    Closes #772371.
+  - Fix that when user has no theme preference set, Alien Glow would be selected under
+    display preferences instead of Default.
+  - Remove chosen_theme from default_pref because this (wrongly) overrides the default
+    theme defined in config.php.
+  - Define defaults for missing colors in incomplete themes.
+  - Updated 'action' to be 'smaction' so that plugins can modify the submit/action of
+    forms.  This was suggested for the gpg plugin, but might be useful elsewhere.
+  - Fix bug that after sending reply user was returned to the first page of the
+    message list, which should be the last-active page (use startMessage).
+  - Fix forwarded emails as attachment from appended ) to the email.
+  - Prevent username and password from being sent in error message if IMAP
+    drops connection during login.
+  - Workaround for Mozilla bug #200412 in order to show multipart/related HTML mail.
+  - Fix for disappearing '0' from decoded strings (bug #784193).
+  - Add Minimal BW theme: a colorless environment for browsers that don't support colors.
+  - Replace all session_start() calls with sqsession_is_active() to be compatible
+    with upcoming PHP 4.3.3.
+  - Encoding of Russian translation changed to utf-8. Lithuanian translation changed
+    to utf-8. Fix allows to use national letters in folder names correctly.
+  - Reintroduced mailbox-tree caching in order to limit the number of IMAP calls.
+  - Fix for delete_move_next plugin when using server threading.
+  - Calendar plugin: in month view, display events on the same day sorted by time,
+    and include the time of the event in its tooltip.
+  - Fix nbsp instead of space and allow wider character set in filename when
+    downloading attachment.
+  - Fix to prevent mailboxes being deleted in selected state which is against
+    RFC3501.
+  - Fix reply all address string in case the personal name contained a comma
+    (address separator).
+  - Added Malaysian translation.
+  - conf.pl will no longer offer to detect login methods if TLS is being used,
+    as the detection code does not support it.
+  - Fix somewhat uncommon bug in paginator (bug #767289)
+  - Support MS Exchange "DOMAIN/username/mailbox"-style usernames (#745814).
+
+Version 1.4.1 -- 7 July 2003
+----------------------------
+  - Fixes to conf.pl for handling relative dirs outside the SM tree (bug #715119) and
+    the default delete_folder values for Courier-IMAP and UW-IMAP (bug #715550).
+  - Fixed problem with \ in passwords/usernames on login, fixes bug #718116.
+  - Added lowsrc to the list of untrusted attributes in HTML email.
+  - Fixed message highlighting for To, CC and From and
+    for RFC1522 headers (bug #719564).
+  - Fix for Folders being listed in create/remove/rename operations
+    (bugs #725443, #722823, #729225).
+  - Fixed incorrect folding inside message-id's.
+  - Fix for bad attachment view link (bugs #697381, #729295).
+  - Fix comp_in_new in search and addressbook not having right parameters (bug #731768).
+  - Fix max attachment filesize off by factor 10 when ini_var set in bytes
+    (bug #730742).
+  - Fixed language bug in posting on modifying/deleting servers on mail_fetch plugin
+    (#742705).
+  - Fixed infinite loop in parseAddress on invalid mailadress (#742584).
+  - Added Welsh translation.
+  - Fixed error with appending sent mail to sent folder when one wasn't set, or user
+    preferred not to append the sent mail.
+  - Updated plugin documentation.
+  - Added Faroese translation.
+  - Fix for bug #719619 (XHTML-style CSS definitions weren't working).
+  - Fix bug #722933 where resuming a draft message would lose the reference headers.
+  - Fix that sending of read receipts failed when JavaScript on and comp in new off
+    (bug #738130).
+  - New function: sm_print_r() intended for debugging.  See
+    functions/strings.php.
+  - Update config_default to use SM_PATH. (bug #766577)
+  - Minor misc. performance enhancements.
+
+Version 1.4.0 -- 3 April 2003
+-----------------------------
+  - Fixed mail_fetch plugin. Now folder edition defaults to actual value.
+    All settings from other servers are preserved when deleting one.
+  - Added Vietnamese translation.
+  - Fixed the newmail plugin.
+  - Added RECENT response to sqimap_get_status.
+  - Fixed attachment filename resolving.
+  - Added check for X-Confirm-Reading-To to make MDN work for messages sent by Pine.
+  - sqextractGlobalVar removed (use sqgetGlobalVar instead).
+  - Subfolders of Sent and Drafts show To field instead of From
+  - Updates in conf.pl to infamous delete_folder setting, including
+    addition of appropriate default value for courier and UW.
+  - Fix for date/time display in certain timezones.
+  - Fix some features of login.php that are used by some plugins and was broken
+    by register_globals = off.
+  - Added Greek locale. Thanks to George P. Kremmydas
+    <george at kefalonia-ithaki.gr> and Alexandros Vellis <avel at noc.uoa.gr>
+  - Added notes about PHP 4.3.x to documentation.
+  - Fixed \Noselect mailbox detection.
+  - Fixed charset decode of base64 encoded strings.
+  - Fixed encoding of email addresses in our composed messages.
+  - Fixed folder creation for Courier using Autoconfig options.
+  - Fixed encoded string handling inside MDN notifications.
+  - Fixed unfold header routine in imap_messages (for mailbox_display).
+  - Fixed subject_line hook.
+  - Fixed sqgetGlobalVar switching.
+  - Fixed handling of encoding/decoding strings.
+  - Fixed wrong array_slice call for a subset of the headers.
+  - Allow encoded personal names in compose.php.
+  - Improved address parsing of addresses coming from the compose form.
+  - Fixed uninitialized indices when parsing attachments.
+  - Support text/directory MIME-type for vCards (RFC 2425).
+  - Added Arabic locale. Thanks to Asrar Abbasi <asrar at canasoft.net> and
+    Naveed Saqib <naveed.saqib at biznas.com>.
+  - Update required PHP version in documentation to 4.0.6.
+  - Fixed delete_move_next plugin to remember where it moved mail to.
+  - Fixed compose to remember attachments.
+  - Security: Fixed possible XSS in compose when replying to malicious sources.
+  - Add display of the maximum filesize for attachment uploads.
+  - Do not add < and > if an identity doesn't contain a full name.
+  - Fixed bug in parsing Content-Type properties part.
+  - Added move_before_move hook to allow plugins to act upon the different buttons
+  - Fixed bug in Forwarding of Emails (move_messages.php)
+  - Fixed variable spelling error in filters.php
+  - Fixed some operator bugs in compose.php, move_messages.php, and spamcop.php
+
+Version 1.4.0 RC 2a
+-------------------
+  - Fix broken themes box in display options.
+  - Massive overhaul of administrator plugin.
+  - Added new function sqgetGlobalVar to global.php to provide direct access
+    to variables in $_GET, $_POST, $_SESSION, $_COOKIE and $_SERVER.
+  - Patch from O'Shaughnessy Evans <shaug-sqm@wumpus.org> to allow disabled $org_logo
+  - Lots of language/internationalization updates
+  - conf.pl fixes for certain uses of SM_PATH, esp. $signout_page.
+  - SMTP & IMAP auth method "plain" was a misnomer - now corrected to
+    the more accurate name "login" (Plain to be implemented soon).
+  - Fix for compose after search bug.  (Closes #662346)
+  - Improved error reporting when sending mail with SMTP.
+  - Changed SquirrelMail identification to use User-Agent instead of X-Mailer.
+  - Prevent endless loop when timezone config is not found. Thanks Joshua Colson.
+  - Fix IMAP error when returning to message from viewing image attachment.
+  - Do more trimming to indented subjects in threadview so they don't wrap.
+  - Trash folder now displays purge link in all cases. (Closes #655943)
+  - Fix typo in delete_move_next plugin which caused PHP file-handle errors.
+  - Make vCard more liberal in what it accepts (thanks Kurt Pires).
+  - Fix problem with subject encoding when using Japanse.
+  - Move login_form hook to be actually in the login form.
+  - Fix message_details plugin ability to save a raw message.
+  - Try better to get the filename of an attachment.
+  - Deliver_SMTP class now uses HTTP_HOST in SMTP HELO.  Should fix DNS
+    issues some people have reported. (Closes #560524)
+  - Obsolete sqm_topdir(), which caused login trouble with installs that
+    have open_basedir restrictions. Thanks Jimmy Connor.
+  - Fix broken abook_take plugin.
+  - Fix HTML errors that caused display problems in NS4.
+  - Correctly fold encoded header lines.
+  - Fix prefs caching not working correctly in PHP 4.3 caused by a stupid
+    version checking mechanism.
+  - Security: Fix XSS hole that allowed JavaScript execution by sending someone
+    an email with specially crafted headers. Thanks Jason Munro, and
+    Masato Higashiyama.
+
+
+Version 1.4.0 RC 1
+------------------
+  - Change the way highlighting rules are stored to make them more reliable and
+    easier to manage.
+  - Reorganization of conf.pl, menu #2
+  - Added CRAM-MD5 and DIGEST-MD5 authentication support for IMAP and SMTP
+  - Experimental TLS support for IMAP and SMTP (requires PHP 4.3.x)
+  - Override settings with config_local.php
+  - Compose form no longer shows attachment options if PHP file_uploads
+    disabled
+  - Improved bodystructure parsing.
+  - Support for windows-1257 charset.
+  - Optimizations to the number of IMAP calls.
+  - Fix problem with IE6 + iso-8859-13.
+  - Allow Mail Fetch to use a different POP3 server port number.
+  - Force magic_quotes_runtime to be off to avoid problems with this setting.
+  - Introduce check_sm_version function for plugins wanting to know
+    which version of SquirrelMail this is.
+  - Configurable session name to avoid conflicts with other PHP applications.
+  - Miscellaneous fixes for systems with error_reporting set to E_ALL.
+  - Many many other bugfixes and tweaks!
+
+
+*************************************
+*** SquirrelMail Devel Series 1.3 ***
+*************************************
+
+
+Version 1.3.2
+-------------
+  - Rewrite of message delivery related functions.
+  - User interface modifications.
+  - Added Japanese support thanks to Masato HIGASHIYAMA <masato@yamaai-tech.com>
+  - Remove NOOP checks in the POP3 client of mail_fetch to make things more
+    compatible and not break things which don't need to be broken.
+  - Fix src directory being moved on Windows systems, bugs #586518 #605256 #610676.
+  - This release is compatible with installations that have register_globals set to off.
+  - Do not lose user prefs/sigs/abooks when trying to save to a full disk.
+  - Make the SquirrelMail link on the right top configurable so a provider can point
+    to their own FAQ for example.
+  - Enable TZ in safe_mode if safe_mode_allowed_env_vars permits this bug #612148.
+  - Fix some bugs in folder management (create, delete,...) and add enhancements.
+
+Version 1.3.1
+-------------
+  - lots of fixes by Marc, including #596781 and #596930
+
+Version 1.3.0
+-------------
+  - allow_call_time_by_reference=off fixes.
+  - Added forward as attachment in read_body.
+  - Better clean-up of left attachments at login.
+  - Restore compose sessions in case of a expired session.
+  - Added "Display Message" / "Up" links in read_body to navigate in messages with
+    attached messages (message/rfc822).
+  - Don't activate the Send Receipt link when the folder is the Sent folder.
+  - Moved view_header code out of read_body.php and put it in view_header.php.
+  - Open message/rfc822 attachments in read_body what makes it possible to
+    reply to attached messages.
+  - Rewrite of the newMail function in compose.php. This simplifies the
+    interface between read_body.php and compose.php.
+  - Moved compose related code from read_body to compose.
+  - Rewrite of mailbox-display to make it more modular (we use it in search.php).
+  - Added support for displaying multiple entities.
+  - Changed finding display entities.
+  - Extract disposition and xmailer header information in the headerparser
+    instead of request them individualy by an IMAP-call.
+  - Store message objects in the current session. This saves a lot of IMAP-calls.
+  - Added UID support.
+  - Store addresses in an object instead of a string.
+  - Rewrite of the bodystructureparser function. Now the message object contains
+    all described parameters in RFC2060.
+  - Introduction of the mime class where all mime related functions are situated
+  - Fixed removing MDN attachments.
+  - Fixed MDN problems with js confirmbox.
+  - Speedimprovements in case we download mime-entities.
+  - Added possibility to extract message/rfc822 attachments and store them as
+    the original message in a folder.
+  - Right to left languages implementation initiated
+  - Enable people with file_uploads = off to still send mail. Patch from Seth
+    E. Randall.
+  - Moved the generic_header hook back to page_header.php. bug #554278
+  - Make default theme work. Bug #557313, thanks Tyler Bannister.
+
+Version 1.2.7 -- June 21 2002
+-----------------------------
+  - fix for 'compose as new' link. bug #554886
+  - fix charset format in the admin plugin. bug #550725
+  - fix for errant '.' in default_folder_prefix. bug #551310
+  - fix for folder names with '?' and '*'. bug # 559257, #552180
+  - added the ability to search without the charset argument. #552288
+  - Made /noselect node display optional. bug #554988, patch #452178
+  - Improved support for macosx IMAP server thanks Brian Haun
+  - Added macosx friendly search, thanks Brian Haun bug #553038
+  - Fixed word wrap problems when sending mail. bug #552961, #556143
+  - Added possibility to use multiple compose windows without loss
+    of attachements.
+  - Fixed forward message/rfc822 attachments from a search
+  - Fix SpamCop plugin.
+  - Fixed send MDN link.
+  - Fixed dealing with \r\n and \n in smtp.php.
+  - Fixed to, cc, bcc arrays in message->header
+  - Speed optimizements in generating message-lists.
+  - Fixed loss of attachment with HTML addressbook.
+  - Fixed saving drafts with attachments
+
+Version 1.2.6 -- April 29 2002
+------------------------------
+  - Security: A complete MagicHTML rewrite since the existing codebase was
+    causing too many XSS problems. Hopefully now Nick Cleaton will
+    leave us alone. :) Testing credits go to Nick.
+  - Security: Fix for cross-site scripting vulnerability (bug #545933)
+    Reported by Nick Cleaton.
+  - Changing "emtpy" to "purge" for more clarity.
+  - Security: Fix for cross-site scripting vulnerability (bug #544658)
+    Reported by Nick Cleaton.
+  - Fix for incorrect word wrap in Opera (bug #495073)
+  - Workaround for older prefs: some of them contain "None" for
+    left_refresh (bug #540108)
+  - Fix for entities in cc and bcc fields on message display (bug #522493)
+  - Fixes for quoted values in the addressbook by David Rees (bug #538389)
+  - Fixed src/src problem (bug #538803)
+  - Fixed so non-ascii searches no longer fail both when searching
+    and when applying filters (bug #520918)
+  - Added POP3 Before SMTP option (feature request: #498428)
+  - Added a server-side thread sorting option per folder
+  - Added a server-side sorting global option
+  - Compose in new window size can be set in Display prefs.
+  - Logout error system unified.
+  - Security: Fix for a "theme passed as cookie" exploit. [CVE-2002-0516]
+  - PostgreSQL is now supported for database backed use
+  - Added user option to sort messages by internal date
+  - Changed attachment handling now attachments are adressed to
+    unique compose session.
+  - Added forward messages as message/rfc822 attachment
+  - Fixed handling message/rfc822 attachments
+  - Fixed folder list display when special folders have subfolders
+  - Added option to auto-append sig before reply/forward text (523853)
+  - Fixed subfolders being "orphaned" when renaming parents (498167)
+  - Filters can be applied to only new mail.
+  - Filters are updated when renaming/deleting folders (512056)
+  - Filtering now happens on login (filters plugin)
+  - Added option for WIDTH and HEIGHT tags to Org. Logo. (patch #412754)
+  - Fixed resume draft bug #513521, #514639
+  - Newmail plugin: admin can disable the use of audio (patch #517698)
+  - Fixed quoting problem in safe HTML (patch #516542)
+  - SPAM folder no longer special folder (filters plugin)
+  - Filtering now happens on folder list refresh (filters plugin)
+  - Added checking of input of the folders page
+  - Made erronous deleting of folders harder (patch #514208)
+  - Made SquirrelMail display \Noselect nodes in Cyrus also made it
+    impossible to try to delete \Noselect nodes. (patch #452178)
+  - SquirrelSpell version 0.3.8 -- pretty configuration error reporting
+    added by popular demand.
+  - Improved the handling of IMAP [PARSE] messages to reduce retrieval error.
+  - Fixed small bug in handeling timezone (bug #536149).
+  - MDN message now RFC compatible (bug #537662).
+  - Fixed HTML tables in printer_friendly_bottom.php (patch #542367), and
+    make it so that printer friendly uses black-on-white colors in stead
+    of the theme colors.
+  - Fixed return address of MDN receipts when having multiple identities
+    (patch #530139).
+
+Version 1.2.5 -- 22 February 2002
+---------------------------------
+  - Multiple mailbox list calls cached.
+  - Added 'View unsafe images' link to the bottom of pages which contain
+    unsafe images.
+  - Fixed 'too many close table tags' and various other issues
+    which meant SM output didn't always validate as clean HTML.
+  - Added the ability to add special folders through plugins.
+  - Added an Always compose in a pop-up window option.
+  - Search page update with ability to save searches and search
+    all folders at once.
+  - Made searching on multiple criteria possible, with thanks to Jason Munro
+  - Fixed 'list all' in addressbook (#506624, thanks to Kurt Yoder)
+  - Fixed small bugs in db_prefs
+  - Allowed SquirrelMail to work from within a frame, eg. not using _top
+    this is configureable. (thanks to Simon Dick)
+  - Added options to conf.pl to enable automated plugin installation:
+    ./conf.pl --install-plugin <pluginname>. This allows plugins to be
+    distributed in packages. Conf.pl now also reports when saving fails.
+  - Attachment hooks now also allow specification of generic rules like
+    text/* which will be used when no specific rule is available.
+  - conf.pl can now configure database backed address books and
+    preferences.
+  - Version 0.3.7 of SquirrelSpell. Fixes a potential privacy
+    vulnerability (symlink attack), plus introduces formatting fixes
+    and javadoc-style comments.
+  - Bugfix in mailfetch reported by Mateusz Mazur
+  - Administrator plugin. A web based conf.pl replacement.
+  - Removed GLOBALS from conf.pl
+  - HTML messages optimization.
+  - Added support for requesting read receipts (MDN) and delivery receipts.
+  - Added the ability to stop users changing their names and email addresses.
+  - Added signature into multiple identities (Stefan Meier <Stefan.Meier@cimsource.com>)
+  - Updated user help files to reflect UI chanegs and added functionality.
+
+Version 1.2.4 -- 25 January 2002
+--------------------------------
+  - Security: Fixes a nasty remote arbitrary command execution vulnerability
+    in the spellchecker plugin.
+
+Version 1.2.3 -- 21 January 2002
+--------------------------------
+  - Fixed focus system on pages that contain forms.
+  - Fixed IMAP code to send different command identifiers as per
+    section 2.2.1 of RFC 2060.
+  - Fixed 'sticky priority' so that replies are set to the same
+    priority as the original message.
+  - Fixed Printer Friendly to print HTML messages.
+  - Fixed multiple receivers in Sent mailbox (#500910).
+  - Disabled prefs caching under PHP 4.1
+  - Added "Search Memory". Enabling to store up to
+    9 predefined searchs.
+  - Increased security in HTML message.
+  - Added the possibility to specify system-defined CSS in order to
+    allow users to change the font family and size of SM. Making possible to
+    make it bigger or smaller depending on their screen size. Sysops may add
+    or remove these system-defined CSS located in themes/css/
+  - Fixed a bug appearing on some apache virtual hosts
+  - Fixed javascript error (#505255)
+  - Fixed the db_prefs so they work again (#499609, thanks to Simon Dick)
+
+Version 1.2.2 -- 1 January 2002
+-------------------------------
+
+  - Fixed an infinite loop in printer friendly when wrapping option
+    is not in the prefs.
+    Bug reported by Boris Manojlovic <steki@verat.net>
+  - HTML cleanup, with patch from Dave Huang (#496712)
+  - Fixed a problem saving prefs when using PHP 4.1
+  - Russian, Thai, Swedish, Dutch and French update.
+  - Changed configure invocation from bash to sh. (Bug #496752)
+  - Changed conf.pl invocation from '#!/usr/bin/perl' to
+    '#!/usr/bin/env perl' to help people who have perl somewhere
+    else. (Bug #496753)
+  - Fixed sorting of folder list, bug #497181
+  - Fixed wrong behavior of non-javascript select all, bug #496681
+  - Added "Show Pages" link to message list showing all messages
+    (the resultant page of clicking "Show All")
+  - i18n Fix. Because of different configurations in the gettext system,
+    some installations could not manage correctly SM languages other than
+    English. This has been corrected.
+  - Miscellaneous rewrites and improvements.
+  - Moved locale files into the ISO-conformant directories.
+  - Moved help files into the ISO-conformant directories.
+  - Moved compilepo and mergepo files from locale/ into po/
+  - Slight i18n fixes and rewrites to accommodate for moved files.
+  - Fixes for entities in the subject when replying.
+  - Fixes for entities in the To: header. (Bug #489365)
+  - Fix for incorrect javascript prefs handling (Bug #497688)
+  - Added color 15 for themes to separate background and foreground colors.
+  - Added several new themes.
+
+Version 1.2.1 -- 25 December 2001
+---------------------------------
+
+  - Fixed the bug that kept the create, delete, and rename sections
+    from appearing in the folders page (#496604)
+  - Fixed the motd bug not allowing ' (#496616)
+  - Sorting of addressbook_search fixed, thanks to the patch of
+    Cor Bosman (xs4all)
+
+Version 1.2.0 -- 25 December 2001
+---------------------------------
+
+  - Collapsible Folders
+  - The Paginator!!!
+  - Hundreds of UI Tweaks
+  - Message Drafts
+  - Rewrite of much of the options pages
+  - Multiple identities
+  - Reply Citations
+  - Better Attachment Handling
+  - Integration of Several Plugins into Core Code (including xmailer,
+    attachment_common, paginator, priority, printer_friendly, sqclock)
+  - Ability to mark messages as Read/Unread
+  - New themes (including a Christmas theme, and several changing themes)
+  - Rewrite of much of the options pages code
+  - Improved support for newer versions of PHP
+  - Message lists can be shown with alternating colors for easier reading
+  - Can include/exclude yourself when using the "Reply All"
+  - Message highlighting comes with dozens more easily accessable colors.
+  - Option to set the "Priority" of the message(Normal/High/Low)
+  - Now able to show all messages of an inbox at the same time.
+  - Cleanup of the paginator code, improving display style
+  - Cleanup of configuration file code, a bit
+  - Introduction of sent_subfolders plugin as Official Plugin
+  - Bugfixes..and more Bugfixes!
+
+
+***************************************************************
+*** SquirrelMail Development Series 1.1 and 1.1 Pre-Releases ***
+****************************************************************
+
+Version 1.2.0-rc3 -- 2 December 2001
+------------------------------------
+  - Speed improvements and optimizations on much of the code
+  - Comments added, formatting cleaned up for much of the code
+  - Several plugins integrated into the SquirrelMail core
+    (focus change, attachment common, printer friendly, etc)
+  - Several plugins added as "Official Plugins" to the main
+    SquirrelMail distribution
+  - First half of a rewrite of the option pages code
+  - The Paginator!!!
+  - Other stuff that I don't recall (developers, please fill this in!)
+
+Version 1.1.3 -- (never really released)
+----------------------------------------
+  - Added major speed improvements to IMAP functions by our
+    friends at XS4ALL
+  - Fixed MOTD
+  - Fixed multipart/alternative messages
+  - Updated Dutch translation
+  - Added Indonesian translation
+  - Added Portuguese (Portugal) translation
+  - Added language aliasing
+  - Added Turkish translation
+
+Version 1.1.2 -- May 21, 2001
+-----------------------------
+  - Many bugs squashed
+  - Several UI tweaks and improvements
+  - Added option (3 -> 14 in conf.pl) to auto create sent and trash folders.
+  - Updated Czech translation
+  - Support for multiple identities
+  - Support for Russian Apache removed. It is now deemed easier to just
+    turn off Charset Recoding in the Russian Apache config. See the file
+    doc/README.russian_apache
+
+Version 1.1.1 -- April 30, 2001
+-------------------------------
+  - Added built-in support for gettext if compiled support isn't available
+  - Made validate.php include a few more standard things
+  - Corrected a bug when sending an email properly
+
+Version 1.1.0 -- April 21, 2000
+-------------------------------
+  - Added option to have signout page redirect to another page (patch from
+    Scott Bronson) This can be configured in conf.pl (Org Prefs)
+  - Much improved SMTP error handling (patch from Jeff Evans)
+  - Preferences are now cached instead of read in every page load.
+  - Improved URL parser
+  - Added ability to read HTML messages by default instead of plain text
+    (Display Options)
+  - Added authenticated SMTP server support (configure in conf.pl)
+  - Rewrote attachment handling code in compose.php
+  - If aliases are typed in To, Cc, or Bcc, they are automatically looked up
+    in the addressbook and converted to the associated addresses.
+  - Added collapseable folder listing (an option that can be turned on in
+    Folder Options)
+  - Added alternating row colors to improve interface (Display Options)
+
+
+**************************************
+*** SquirrelMail Stable Series 1.0 ***
+**************************************
+
+Version 1.0.6 -- April 19, 2001
+-------------------------------
+  - Reworked validation for each page.  It's now standardized in validate.php
+  - Fixed login bug that resulted from 1.0.5 security updates
+  - Fixed plugin incompatibilities that were introduced in 1.0.5
+  - Added more security checking to preference saving/loading
+  - Updated German translation (thanks to Ronald Bauerschmidt <rb@debian.org>)
+  - Updated Finnish help files
+
+Version 1.0.5 -- April 17, 2001
+-------------------------------
+  - MAJOR security issues addressed.  Please upgrade as soon as possible.
+    [CVE-2001-1159]
+  - Downloading attachments should work better due to a tip by Ray Black III.
+  - Fixed bug with drop-down folder list not containing INBOX
+  - Added Swedish help files Teemu Junnila <teejun@vallcom.com>
+  - Added Italian help files Antonetti Roberto <antonr@piceniaweb.com>
+
+Version 1.0.4 -- April 9, 2001
+------------------------------
+  - Fixed some bugs with folder creation
+  - Security fix for UW IMAP server to disallow folder paths outside of
+    $folder_prefix
+  - Some problems with header encoding/decoding fixed
+  - Made subject column take up whatever width is available
+  - Added bcc to HTML addressbook search
+
+Version 1.0.3 -- March 9, 2001
+------------------------------
+  - Many i18n enhancements/fixes
+  - Fixed bug with default theme path being set incorrectly
+  - Fixed problem when sending/forwarding multiple attachments
+  - Made folder drop-down list consistant in look to the other drop-downs
+  - Fixed problem where some attachment filenames would not be displayed
+  - Added Finnish help files by Teemu Junnila <teejun@vallcom.com>
+  - Updated Norwegian translation
+  - Updated Brazillian Portuguise translation
+
+Version 1.0.2 -- February 8, 2001
+---------------------------------
+  - Added a workaround for RedHat's 4.0.4pl1-3 binary package  (It's also
+    the same workaround for Konqueror and other PHP installations?)
+  - Select All works through the search
+  - Better escaped string handling from POST variables
+  - Many more code cleanups and optimizations
+  - Added Hungarian translation by Teemu Junnila <teejun@vallcom.com>
+  - Added Icelandic translation by Karl Hei�r <karlh@macho.is>
+  - Updated Taiwan translation
+  - Updated Swedish translation
+  - Updated Finnish translation
+
+Version 1.0.1 -- February 1, 2001
+---------------------------------
+  - Improved the way sqimap_read_data() is handled
+  - Sped up "no sorting" even more
+  - Fixed problems with sending messages
+  - Fixed some pass-by-reference calls that caused problems with newer
+    PHP versions
+  - Fixed bug that didn't display last folder subscribed to
+  - Removed requirement of PHP 4.0.1 for array_unique() function
+  - Removed unnecessary echo statements by breaking out of PHP
+  - Changed evaluation method from using " to ' for speed improvements
+  - If no plugin array set in config.php, now handled correctly
+  - If subject is > 55 chars, trims it and puts "..." in message list
+  - Hundreds of minor changes to remove all verbose PHP warning messages
+
+Version 1.0 -- January 30, 2001
+-------------------------------
+  - Updated config_default.php to include attachment_common plugin
+    (now in distribution)
+  - A few minor speed improvements
+  - Fixed problems in sqimap_read_body(), made it more reliable
+  - Added French translation of help files by  gore K <gore_k@ymca-cepiere.org>
+  - Added Finnish translation by Teemu Junnila <teejun@vallcom.com>
+  - Updated Swedish translation
+  - Updated Russian translation
+
+
+********************************************************
+*** SquirrelMail Development Series 1.0 Pre-Releases ***
+********************************************************
+
+Version 1.0pre3 -- January 22, 2001
+-----------------------------------
+  - Fixed some "Select All" bugs
+  - Finally fixed the IE/SSL download problem!!
+  - Added Danish translation by Claus Rasmussen <claus@webclaus.com>
+  - Updated Spanish translation
+  - Updated Polish translation
+  - Updated Taiwan translation
+  - Updated Czech translation
+  - Updated Korean translation
+
+Version 1.0pre2 -- January 15, 2001
+-----------------------------------
+  - A number of security fixes
+  - Replaced error messages with better, formatted, and meaningful messages.
+  - Fixed "reply all" so that it works intelligently now
+  - Made deleted (but not expunged) messages easier to detect (only if
+    $auto_expunge = false)
+  - Fixed bug that didn't display size correctly in search results
+  - Major memory management and speed improvements with downloading of
+    attachments
+  - Made $auto_expunge variable actually do something
+  - Fixed bug that didn't display login failure message
+  - Fixed minor bug in sqimap_mailbox_list
+  - Added sqimap_capability function to check capabilities of server.
+  - Rewrote sqimap_get_delim to use NAMESPACE capability (if available) to
+    get delimiter.
+  - Added Catalan translation of Help documents by Josep Sanz <jsanz@fa.upc.es>
+  - Added Taiwan translation by "ching" <ching@kiwa.com.tw>
+
+Version 1.0pre1 -- December 14, 2000
+------------------------------------
+  - Fixed bug in sending messages with a blank line with a "."
+  - Folder displays have been changed to be more readable in drop-down lists
+  - For security, login verification happens, then we're redirected to
+    webmail.php
+  - Folder sorting now case insensative
+  - added config option to set IMAP folder delimiter rather than always
+    detecting it
+  - Made session cookie parameter use PHP's settings rather than making
+    assumptions
+  - Select/Deselect all implemented using only HTML (not Javascript)
+  - Fixed default charset that is sent with outbound messages (now user's
+    preferred charset)
+  - Sort method saving now transparent to user, and saves between sessions
+  - Now replacing all \n with \r\n before sending the message.
+  - Added sorting option for NO sorting.. 10000 times faster!
+  - Using <pre> tags for viewing message body instead of <tt> and &nbsp;
+  - Added redirection from subdirectories to login page
+  - Attachments are shown in message index (shown as a "+")
+  - Updated attachment plugin support and passing values to hooks (see
+    plugins.txt)
+  - Added file and message size in many locations
+  - Made message index order customizable (from, subject, date) can be (date,
+    from, subject)
+  - Fixed some security problems with uploading attachments
+  - When reading, attachments look better and have a better plugin interface
+  - Some functions now pass values by reference to save on memory
+  - Added Catalan translation from Josep Sanz <jsanz@fa.upc.es>
+  - Added Serbian translation from Boris Manojlovic <steki@verat.net>
+  - Added Polish translation of Help from Krystian Kanabrodzki
+    <krys@voruta.eu.org>
+
+
+*****************************************
+*** SquirrelMail 0.5 and Pre-Releases ***
+*****************************************
+
+Version 0.5 -- September 25, 2000
+---------------------------------
+  - Fixed some problems with downloading attachments in IE
+  - If no date is set in header, we take internal date of the IMAP server
+  - Fixed some lingering bugs in mime parsing
+  - Searching specifies CHARSET option
+  - Security fixes
+  - Fixed hyperlink rendering problems
+
+Version 0.5pre2 -- September 6, 2000
+------------------------------------
+  - Added quite a few new themes
+  - Fixed double folder problem on some servers
+  - Using encryption for passwords
+  - Added a patch from Bill Thousand to allow easier virtual domains
+  - Security updates with attachments
+  - Added more hooks for plugins, updated plugin.txt
+  - Improved HTML address book
+  - Fixed bugs in parsing email addresses in smtp.php
+  - Applied fixes for Courier IMAP server (by Andreas Dahl)
+  - Fixed some buggy IMAP handling
+  - Improved word wrapping
+  - Fixed bugs with adding and not adding backslashes
+  - Made message highlighting case insensative
+  - Added Korean translation from Jong-II Kim <aporie@netian.com>
+  - Added Italian translation from Aldo Moresco <moresco@idcm.it>
+  - Added French translation from Ali Nedjimi <lrdfrx@club-internet.fr>
+
+Version 0.5pre1 -- August 9, 2000
+---------------------------------
+  - Searching folders functionality added
+  - Date display now is similar to Netscape Messenger
+  - Many bugs have been reported to the list, and been squashed
+  - Help system developed
+  - Folder list now shows configurable details about messages
+  - It is now possible to select multiple subscribes/unsubscribes
+  - Removed a bunch of annoying "success" screens, improved navigation
+  - Better IMAP session handling
+  - Redid the options section and split it into different parts
+  - Added "view all headers" option when reading a message
+  - In-Reply-To and References headers are inserted when replying to a message.
+  - Changed how attachments are displayed and handled
+  - Rewrote MIME support from scratch, optomizing it an unbelievable amount
+  - Added support for message highlighting
+  - Moved Address and Send buttons on Compose form for easier access
+  - Added Polish translation from Lukasz Klimek <casa@LO.Pila.PL>
+  - Added Swedish translation from Tobias Ekbom
+  - Added Brazilian Portuguse translation from Henrique Moura
+  - Added Dutch translation from Arjen Halma
+
+
+*****************************************
+*** SquirrelMail 0.4 and Pre-Releases ***
+*****************************************
+
+Version 0.4 -- May 15, 2000
+---------------------------
+  - If subject is blank, displays "(no subject)"
+  - Fixed a few minor bugs and typos reported to list
+  - Changed <? to <?php in a few places
+
+Version 0.4pre2 -- May 5, 2000
+------------------------------
+  - Replying sets the "Answered" flag on the original message
+  - When message is sent, it sends you to the folder you were looking at.
+  - HTML based address book search
+  - Made folder listing look first at subscribed folders, making it
+    faster, even if you don't have $folder_prefix set.
+  - Fixed some bugs with default sent and trash folders
+  - Fixed some bugs with folder manipulating
+
+Version 0.4pre1 -- April 29, 2000
+---------------------------------
+  - For speed's sake, unseen messages are only noted on INBOX in left
+    folder list.  This will change with 0.5.
+  - Optomizations, fewer IMAP calls, more efficient sorting algorithms.
+  - Fixed all bugs listed in BUG
+  - When inside the Sent folder, it displays "To" instead of "From"
+  - Added ability to go to Next and Previous message while reading a message
+  - Caching of the message headers in mailbox (much faster)
+  - Added a preference that allows users to customize how many messages
+    they see when they index a mailbox
+  - Added flag status showing on message list (Answered, Flagged, and Seen)
+  - Now using PHP session management
+  - Parsing the body for URLs and Email addrs
+  - Added option to configure default folder directory. ie: ~/mail
+  - Configuration script added: config/conf.pl
+  - Addressbook with LDAP support
+  - Big speed improvements with folder listing
+  - Added Subscribe/Unsubscribe to folders
+  - Fixed bug in UW that didn't mark unseen messages
+  - Saving sent messages into $sent_folder
+  - It doesn't bail out if PHP wasn't compiled with --with-gettext.
+    It only uses english in this case.
+  - Added support for Cyrillic (thanks to Artem Botchkov for help)
+  - Included information on Russian Apache from Konstantin Riabitsev
+  - Honoring charset parameter for the body.
+  - Changed the way emptying of trash was done to work better
+    across different IMAP servers
+
+
+*****************************************
+*** SquirrelMail 0.3 and Pre-Releases ***
+*****************************************
+
+Version 0.3.1 -- March 13, 2000
+-------------------------------
+  - Fixed a bug that didn't allow downloading of attachments
+
+Version 0.3 (final) -- March 10, 2000
+-------------------------------------
+  - Fixed bug in smtp.php and made sending RFC complient
+  - Fixed a bug that wouldn't let you rename folders with UW server.
+  - Other minor bugfixes
+
+Version 0.3pre2 -- March 5, 2000
+--------------------------------
+  - Rewrote folder deletion.  It works much more flexably now.
+  - Fixed message deletion that didn't always delete the right messages.
+  - Removed font tags
+  - Better character translation, especially for i18n
+  - Added the choice of language as a user preference
+  - Bug fixes, bug fixes, bug fixes
+  - Fixed bugs in message moving and deleting
+  - Rewrote all IMAP functions from scratch
+
+Version 0.3pre1 -- February 17, 2000
+------------------------------------
+  - Added user-specific preferences including:
+      Full Name (for outbound messages)
+      Reply-to address
+      Theme
+      Move messages to trash option (true/false)
+      Wrap incoming text at XX characters
+      Editor window size (in characters)
+      Time between reloads of the left folder list
+      Signature
+  - Rewrote SMTP functions.  It now works and handles error correction.
+  - Only folders that you're subscribed to will be listed
+  - Fixed a bug in outbound messages that translated " into \"
+  - Added themes in distribution (7 total)
+  - Added option to send email via sendmail rather than SMTP
+  - Increased speed of viewing folder by date about 25%, and viewing the
+    folder by Subject or Sender by up to 100%.
+  - Added internationalization
+  - Added sending of attachments
+  - Left folder refreshing at intervals (with META tags)
+
+
+*****************************************
+*** SquirrelMail 0.2 and Pre-Releases ***
+*****************************************
+
+Version 0.2.1 -- January 05, 2000
+---------------------------------
+  - Rewrote how MULTIPART messages were handled and made it recursive
+  - We now take into account the encoding type rather than guessing
+  - Redesigned how attachments are displayed
+  - Fixed the bug that wouldn't let you send messages (I hope)
+  - Added a "download message" option
+  - Added a plain text viewer for text messages
+
+Version 0.2 -- January 02, 2000
+-------------------------------
+  - Attachment support (much better MIME support in general)
+  - Themeable support replaced Custom Colors.  Themes are pluggable.
+
+
+*****************************************
+*** SquirrelMail 0.1 and Pre-Releases ***
+*****************************************
+
+Version 0.1.2  -- December 20, 1999
+-----------------------------------
+  - Date translation to local time
+  - Rewrote folder fetching code universally
+  - Added attachment detection (no downloads yet)
+  - Fixed many minor bugs that were reported
+
+Version 0.1.1  -- December 16, 1999
+-----------------------------------
+  - Reworked all the IMAP functions to make them RFC 2060 compliant
+    (should work with all IMAP servers)
+  - Added color customization
+  - Sorted folder list (on left bar)
+  - Added MUCH better error correction and notification
+
+Version 0.1 -- December 14, 1999
+--------------------------------
+  - Message composing (with to, cc, bcc)
+  - Message viewing, including HTML messages
+  - Basic MIME support, no attachments...yet
+  - Message sorting by Date, Name, or subject
+  - Folder manipulation (deleting, creating, moving, and renaming)
+  - IMAP email (currently only Cyrus IMAP server has been tested)
+  - Many other features that are basic email functionality

@@ -1,0 +1,18 @@
+#
+# The headers that should be ignored by Bayes classifier
+#
+##########################################################
+
+bayes_ignore_header X-Bogosity
+
+bayes_ignore_header X-Spam-\S+
+bayes_ignore_header X-Evolution
+bayes_ignore_header X-Spamscanner
+bayes_ignore_header X-Barracuda-\S+
+bayes_ignore_header X-Keywords
+bayes_ignore_header X-Pyzor
+bayes_ignore_header X-DCC-\S{2,25}-Metrics
+bayes_ignore_header X-MailScanner(?:-SpamCheck)?
+bayes_ignore_header X-Virus-Scanned
+bayes_ignore_header X-Antivirus
+bayes_ignore_header X-Antivirus-Status

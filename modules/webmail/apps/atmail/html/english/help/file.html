@@ -1,0 +1,44 @@
+<title>WebMail Help Guide</title>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<LINK href="javascript/stylehelp.css" rel=stylesheet type=text/css>
+
+<font face="Verdana, Arial" size="+1">WebMail Help Guide</font>
+
+<hr noshade>
+<p><font face="Arial, Helvetica, Condensed" size="2">With this help file you can learn more about WebMail. Select from the topic list above for more information about each topic.</font></p>
+<ul>
+  <li><a href="parse.php?file=html/$this->Language/help/compose.html">Compose/Send Email</a></li>
+  <li><a href="parse.php?file=html/$this->Language/help/reademail.html">Read Email</a></li>
+
+<!-- if($pref['allow_Calendar']) { -->
+ <li><a href="parse.php?file=html/$this->Language/help/calendar.html">The Calendar</a></li>
+<!-- } -->
+
+<!-- if(file_exists("{$pref['install_dir']}/xhtml.php") && $pref['allow_Mobile']) { -->
+<li><a href="parse.php?file=html/$this->Language/help/wap.html">Wireless Email</a></li>
+<!-- } -->
+
+<li><a href="parse.php?file=html/$this->Language/help/settings.html">Modifying Settings</a></li>
+  <li><a href="parse.php?file=html/$this->Language/help/addressbook.html">Address Book</a></li>
+
+<!-- if($pref['allow_MultiAccounts']) { -->
+  <li><a href="parse.php?file=html/$this->Language/help/addpop3.html">Multi POP3 Accounts</a></li>
+<!-- } -->
+
+<!-- if($pref['allow_LDAP'] && extension_loaded('ldap')) { -->
+<li><a href="parse.php?file=html/$this->Language/help/ldap.html">LDAP Search Engine</a></li>
+<!-- } -->
+
+<li><a href="parse.php?file=html/$this->Language/help/newmbox.html">Mailbox Options</a></li>
+
+<!-- if(file_exists($pref['aspell_dir']) || extension_loaded('pspell')) { -->
+<li><a href="parse.php?file=html/$this->Language/help/spell.html">Spell Check Feature</a></li>
+<!-- } -->
+
+<!-- if($pref['allow_SMS'] && file_exists('sms.php')) { -->
+<li><a href="parse.php?file=html/$this->Language/help/sms.html">SMS Help</a></li>
+<!-- } -->
+</ul>
+
+With this help file you can learn more about WebMail. Select from the topic list above for more information about each topic.

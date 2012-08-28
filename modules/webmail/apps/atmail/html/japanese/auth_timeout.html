@@ -1,0 +1,51 @@
+<!-- if($var['Ajax']) { -->
+<Error>
+	<ErrorStatus>1</ErrorStatus>
+	<ErrorMessage><![CDATA[
+<!-- } -->
+
+<html>
+<head>
+<title>セッションがタイムアウトされました。 $this->Ajax</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">       
+<script language="Javascript">
+// Reload to the master frame if we are inside a frameset
+if (parent.frames[1]) top.window.location=self.location;
+</script>
+</head>
+<body bgcolor="$this->BgColor" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor">
+
+<style>
+
+.sw {font-family:Verdana;font-size:13px;color:#000000;}
+.swr {font-family:Verdana;font-size:13px;color:#FF0000;}
+</style>
+
+
+
+<LINK href="javascript/style$this->browser.css" rel="stylesheet" type="text/css">
+<img src="$pref['logo_big_img']"><br>
+<h1>セッションがタイムアウトされました。</h1>
+
+<font class="swr">セッションがタイムアウトされました。 - ログインは取り消されました。</font>
+<font class="sw"> 
+<ul>
+  <li>このアカウントは長時間操作されませんでした。</li>
+  <li>$pref['session_timeout']秒のセッションタイムアウト期限が設定されています。</li>
+  <li><a href="index.php" target="_top">もう一度ログイン</a></li>
+</ul>
+</font>
+
+<p><font class="swr">ご使用のアカウントにアクセスできない場合は、</font></p>
+<font class="sw">
+<ul>
+  <li>管理者に$this->admin_email連絡してください。</li>
+</ul>
+</font>
+</body>
+</html>
+
+<!-- if($var['Ajax']) { -->
+	]]></ErrorMessage>
+</Error>
+<!-- } -->

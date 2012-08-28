@@ -1,0 +1,84 @@
+Using AJAX callbacks from Hastymail plugins.
+
+    Hastymail plugins can use the built in AJAX system to
+    create simple and easy to use AJAX callbacks that lets the plugin
+    do things on the server without reloading the page. The system also
+    provides a mechanism for these AJAX operations to dynamically alter
+    the XHTML after the AJAX callback is complete.
+
+    You should have a basic understanding of how plugins work before
+    adding AJAX support. Please see docs/plugin_basics.txt for an overview
+    on how plugins operate.
+
+    To use an AJAX callback the plugin MUST use the work hook called 'init'.
+    (so 'init' must be in the work hooks defined in the plugins config.php
+    and the function <plugin_name>_init() must exist in a plugin file
+    called work.php. Inside this function in work.php the plugin can register
+    an ajax callback with the tools object.
+
+    $tools->register_ajax_callback('my_function_name', 2, 'clock_div');
+
+    The first argument: 'my_function_name' is the base name used for creating
+    the various js wrappers required to enable the callback (It will also be
+    used for the required function that a plugin must create in ajax.php).
+
+    The second argument: 2 is the number of arguments the callback will send
+    from javascript to the PHP function that handles it. These arguments must
+    be strings or numbers, no arrays.
+
+    The third argument: 'clock_div' defines a container on the page that will
+    be used to display the results of the AJAX operation. This argument is
+    opitonal and if left out or set to false nothing will visibly change in the
+    webpage when the AJAX call is complete. It can be any XHTML element that can
+    be operated on with innerHTML in javascript. The container must have an id
+    attribute that matches this argument or the results of the AJAX operation
+    will be ignored.  If this argument is false or omitted then the plugin can
+    add their own custom callback function that has a single default argument
+    of the result of the AJAX call. The function must be named
+    callback_<plugin_name>_<ajax_function_name>. So for a plugin called test
+    and the AJAX function called my_function_name, the custom callback function
+    would be called callback_test_my_function_name.
+
+    $tools->register_ajax_callback() can be run multiple times from the init hook
+    function if desired. Please remember IT WILL NOT WORK IF RUN FROM ANY OTHER HOOK.
+
+    Once a callback is registered the plugin needs to have a file called ajax.php.
+    Within it there must be a function named ajax_<plugin_name>_<function_name>
+    with the same number of arguments defined in the ajax register method. Lets
+    assume we have a plugin named "hello_world" that registers an AJAX callback
+    in the init hook function in the plugin's work.php like so:
+
+    $tools->register_ajax_callback('test_function', 1, 'clock_div');
+
+    This would then expect a function to exist in the ajax.php file like so:
+
+    function ajax_hello_world_test_function($argument) {
+
+        /* do your stuff here , this is just an example */
+        $result = strtoupper($argument);
+
+        /* return XHTML to update the page with */
+        return $result; 
+    }
+
+    Anything this function outputs will be shown to the user by replacing the contents
+    of an XHTML element with an id of "clock_div" if it exists in the currently loaded page.
+    There is only 1 input argument because thats the amount we defined in the
+    register_ajax_callback() method.
+
+    To use your new callback bind it to an event in javascript from a display hook or the
+    print_ function of a page hook. The javascript function name is the same as the PHP
+    function defined in ajax.php with the "hm_" prefix. So to use the example AJAX callback
+    registered above, we could put a button into a display hook function like so:
+
+    <input type="button" onclick="hm_ajax_hello_world_test_function('hello world'); />
+
+    When clicked the contents of the XHTML element with the id of "clock_div" will be
+    replaced with whatever the PHP function ajax_hello_world_test() in the plugin's
+    ajax.php file returns.
+
+    The hello_world plugin has a very basic ajax callback defined tha replaces the clock on
+    the toolbar with the phrase "hello world" when the link called "ajax test" is clicked.
+    The auto_address plugin has a more advanced example using custom callback functions to
+    display the auto-complete selections.
+    

@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>Утилита Синхронизации с Outlook</title>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK href="javascript/stylehelp.css" rel=stylesheet type=text/css>
+<font face="Verdana,Arial" size="+1">
+Утилита Синхронизации с Outlook</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">Индекс справки</a> ]
+<hr noshade>
+
+<script>
+function expandentry()	 {
+
+<!-- if($var['FirstLoad']) { -->
+if(parent.document.getElementById('calendar').style.display != 'block')
+parent.expand('addressbook', parent.document.getElementById('addressbookimg'));
+<!-- } -->
+
+}
+</script>
+
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" onload="expandentry()">
+
+	<p><u>Что такое утилита синхронизации $pref['brandname']?</u>
+	<p>Утилита позволяет синхронизировать данные адресной книги, календаря вашего аккаунта с Outlook.
+
+	<br>
+	
+	<p><u>Как воспользоваться утилитой?</u>
+	 <p> Сделайте следующие шаги:</ul>
+		<p><ol>
+		<li>Сначала загрузите инсталятор: <a href="http://atmail.com/websync/websync-53.exe">http://atmail.com/websync/websync-53.exe</a>
+		<li>После загрузки запустите скачанный файл и установите на своем компьютере. После окончания инсталяции перезапустите ваш Outlook и новый плугин будет автоматически инсталирован.<br>
+		</ol>
+		<img src = "imgs/help/atmailsync1.gif " border = 1 color = black>
+		
+		<ol><li>Далее укажите данные вашего аккаунта. Выберите <b>Tools > Options</b> - "WebMail Sync Configuration"<br>
+		</ol>
+		<img src = "imgs/help/atmailsync5.gif" border = 1 color = black><br><br>
+<ol>		<li>Сохраните все изменения и закройте окно.
+		</ol>
+
+	  <br><p><u>Как синхронизировать мой аккаунт и Outlook?</u> 
+	  <p>После установки утилиты вы увидите кнопку "WebMail Sync" на вашей панели инструментов:<br><br>
+	  <img src = "imgs/help/atmailsync4.gif" border = 1 color = black><br>
+	  <p>Нажмите на кнопку и синхронизация произойдет автоматически.
+
+</body>
+</html>

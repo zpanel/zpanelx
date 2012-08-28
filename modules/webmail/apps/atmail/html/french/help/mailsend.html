@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Envoi d'email</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<LINK href="javascript/stylehelp.css" rel=stylesheet type=text/css>
+<font face="Verdana,
+Arial" size="+1">
+Erreurs de messagerie</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">Index</a> ]
+
+<hr noshade>
+
+</head>
+
+<body>
+<p><u>Puis-je envoyer le même message à plus qu'une personne ?</u> 
+	  <ul>
+		<li>Vous pouvez envoyer le même message à 100 personnes en même temps.
+		<li>Pour envoyer votre message à plus d'une personne, ajoutez d'autres adresses email dans les champs A:, Cc: et Cci: en les séparant par des points-virgulers (ex: jean@isp.net; claude@societe.fr, etc...)</ul>
+	  <p><u>Comment est-ce que je vérifie l'orthographe d'un message ?</u> 
+	  <ul>
+		<li>Pour vérifier l'orthographe de votre texte, cliquez sur le bouton "Vérification d'orthographe" situé au-dessus de la case "A" sur l'écran de composition du message.
+		<li>Si le vérificateur d'orthographe != reconnait pas un mot dans un message, il apparaîtra dans une boite.  Si le dictionnaire a des suggestions alternatives pour le mot, vous les aurez dans la case. Pour choisir une suggestion, cliquez sur celle que vous voudriez utiliser, et cliquez sur le bouton "Changer" pour chaque mot en cause. Une autre manière de corriger le mot est de taper la correction sur ce qui est affiché. Quand cela est fait, cliquez sur "ok" et les changements seront sauvegardés. Pour annuler tous les changements, cliquez sur "Annuler" et vous retournerez à la fenêtre de composition des messages.</ul>
+	  <p><u>Puis-je sauvegarder les emails non terminés comme brouillons sans les envoyer ?</u> 
+	  <p>Oui. Pour sauvegarder un email non terminé sans l'envoyer, cliquez sur le bouton "Sauvegarder le message" en haut de la fenêtre de composition de message. Après l'avoir sauvegardé, vous pouvez ouvrir le message à n'importe quel moment en:
+	  <ol>
+		<li>Cliquer sur le lien "Brouillons" sur la barre de navigation à gauche
+		<li>Cliquez sur le message que vous souhaitez poursuivre
+	  </ol>
+	  <p>Les messages sauvegardés dans votre dossier Brouillons seront conservés jusqu'à ce que vous les effaciez.
+	  <p><u>Quelle est la taille maximale de message que je puisse envoyer ?</u> 
+	  <p>Avec un compte $pref['brandname'], vous pouvez recevoir jusqu'à $pref['max_msg_size'] Mo and envoyer des messages jusqu'à $pref['max_msg_size'] Mo. Par conséquent, la taille totale encodée de l'email que vous souhaitez envoyer != peut pas excéder $pref['max_msg_size'] Mo.
+	  <p>NOTE: quand vous attachez des fichiers à un message email, ils doivent être encodés et par ce biais, cela va augmenter la taille du message. Les attachements envoyés avec cet email doivent être traduits en un format différent de telle sorte que les autres programmes puissent le lire. Ce type de transformation ajoutera environ 33% à la taille originelle de l'attachement. Par conséquent, suite à cette transformation un fichier de 2 Mo pourra se transformer en un email de 2,66 Mo après encodage.
+	  <p><u>Pourquoi est-ce que j'obtiens un message d'échec de livraison ("Failed Delivery") ?</u> 
+	  <p>Vous obtiendrez en principe un message d'Echec de Livraison ("Failed Delivery") lorsque vous avez entré une adresse email incorrecte ou non valide. Vous recevrez un message de "Mail Delivery Subsystem" ou de "MAILER-DAEMON" avec un sujet du type "notice d'échec" (failure notice). Cela indique que l'envoi du message n'a pas pu s'effectuer et donc, celui-ci vous a été renvoyé. Ces messages sont générés automatiquement et incluent en principe un message décrivant brièvement la raison de l'échec.<br>
+		<br></td>
+
+</body>
+</html>

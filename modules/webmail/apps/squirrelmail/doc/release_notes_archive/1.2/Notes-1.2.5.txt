@@ -1,0 +1,139 @@
+/*****************************************************************
+ * Release Notes: SquirrelMail 1.2.5                             *
+ * The "Welcome to the Teams" Release                            *
+ * 22 February 2002                                              *
+ *****************************************************************/
+
+In this edition of SquirrelMail Release Notes:
+   * All about this Release!!!
+   * Reporting my favorite SquirrelMail 1.2 bug
+   * Important Note about PHP 4.1.0
+   * About our Release Aliases
+
+All about this Release!!!
+=========================
+
+The 1.2 series is continuing to get better and more featured. The
+latest added features are:
+
+  * MDN Support - You can send and request delivery & read receipts.
+  * Enhanced Search functions - search multiple folders at once,
+          search history
+  * And another pileful of fixes and omtimisations
+
+See the Changelog file for details.
+
+Being one of the most popular webmail clients, the developers of
+SquirrelMail feel a huge desire and responsibility to continue push
+the envelope and make SquirrelMail the best it can possibly be. You
+will not be disappointed with this release, as it is by far the most
+feature rich, and yet it is still the same sleek and unbloated and
+cuddly webmail application that we have all grown to love. Here is
+an incomplete list of new features and enhancements since the last
+stable release.
+
+  * Collapsible Folders - The folder list can be collapsed at any
+          parent folder. This makes folder lists with large
+          hierarchical structures much easier to manage and navigate.
+  * The Paginator! - This enables quick access to any page in the
+          message list by simply choosing the page number to view
+          rather than tediously clicking "next" 50 times.
+  * Hundreds of UI tweaks - The user interface has been given a
+          face-lift. The HTML has been largely overhauled, and while
+          it still has the same general feel, it has been made more
+          intuitive.
+  * Drafts - It is now possible to compose a message and save it to
+          be sent at a later date with the drafts option.
+  * New Options Page - The options page has been completely
+          rewritten for several reasons, the main of which was to
+          allow seamless integration of plugin options and to
+          provide uniformity throughout the entire section.
+  * Multiple Identities - It is now possible to create different
+          identities (home, work, school) that can be chosen upon
+          sending. Each identity can have its own email address,
+          full name, and signature.
+  * Reply Citations - Different types of citations are now possible
+          when replying to messages.
+  * Better Attachment Handling - The plugin, attachment_common, has
+          been fully integrated into the core of SquirrelMail.  This
+          allows inline viewing of several different types of
+          attachments.
+  * Integration of Several Plugins - The following plugins have been
+          put directly into the core. As a result, be sure not to
+          install these as plugins, as the result may be (at best)
+          unpredictable: attachment_common, paginator, priority,
+          printer_friendly, sqclock, xmailer.
+  * Improved support for newer versions of PHP. Note that you may
+          have trouble if you are running PHP version 4.0.100
+          (commonly distributed with Debian 3.0).
+  * Ability to mark messages as read and unread from the message listing.
+  * Alternating Colors - The message list now alternates row colors
+          by default.  This presents a much cleaner and easier to
+          read interface to the user.
+
+Aside from these obvious front end features, there are hundreds of
+bugs that have been fixed, and much of the code has been optimized
+and/or rewritten.  This stable release is far superior in all
+aspects to all previous versions of SquirrelMail.
+
+   Home Page:    http://www.squirrelmail.org/
+   Download:     http://www.squirrelmail.org/download.php
+   ScreenShots:  http://www.squirrelmail.org/screenshots.php
+
+
+Reporting my favorite SquirrelMail 1.2 bug
+==========================================
+
+Of course, in the words of Linus Torvalds, this release is officially
+certified to be Bug-Free (tm).
+
+However, if for some reason some bugs manage to find their way to the
+surface, please report them at once (after all, they ARE uncertified
+bugs!!!) The PROPER place to report these bugs is the SquirrelMail Bug
+Tracker.
+
+   http://www.squirrelmail.org/bugs
+
+Thank you for your cooperation in that issue. That helps us to make
+sure that nothing slips through the cracks. Also, it would help if
+people would check existing tracker items for a bug before reporting
+it again. This would help to eliminate duplicate reports, and
+increase the time we can spend CODING by DECREASING the time we
+spend sorting through bug reports. And remember, check not only OPEN
+bug reports, but also closed ones as a bug that you report MAY have
+been fixed in CVS already.
+
+
+Important Note about PHP 4.1.0
+==============================
+
+Finally, we have managed to make *this* SquirrelMail release cooperate
+nicely with the new PHP 4.1 release. As opposed to 1.2.4 and before,
+which was less good friends with PHP 4.1.
+
+So: "Yes! It works"
+
+About our Release Aliases - by Wouter Teepe
+=========================
+
+Back with the release of 1.2.0, back when Christmas was recent, and
+not the Olympics, there was this vision of structurgin the
+SquirrelMail community into "Teams", all doing their own thing.
+
+Finally, the teams have really kicked off. :-)
+
+And, I would like to welcome all our new community members, being both
+YOU, the eventful users of SquirrelMail, as well as Simon Dick, Jason
+Munro, Pete Palmer and Chris Hills who have became team leads, as
+well as Marc Groot Koerkamp and Thijs Kinkhorst (both just by incident
+inhabitants of the same country as me :-)) who have recently joined
+SquirrelMail and have made worthy contributions.
+
+Welcome to the SquirrelMail teams.
+
+(And now...get the Great Rewrite geared up)
+
+See http://www.squirrelmail.org/wiki/SquirrelRelease for more details.
+
+                  Happy SquirrelMailing!
+                    - The SquirrelMail Project Team

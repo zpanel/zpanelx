@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>Zugang verweigert</title>
+<html lang="de"><meta http-equiv="Content-Type" content="text/html; charset=utf-8">       
+</head>
+<body bgcolor="$this->BgColor" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor">
+
+<style>
+
+.sw {font-family:Verdana;font-size:13px;color:#000000;}
+.swr {font-family:Verdana;font-size:13px;color:#FF0000;}
+</style>
+
+
+
+<LINK href="javascript/style$this->browser.css" rel="stylesheet" type="text/css">
+<img src="$pref['logo_big_img']"><br>
+<h1>Benutzername existiert nicht</h1>
+
+<font class="swr">Dieses Postfach existiert nicht in unserer Datenbank.</font>
+<font class="sw"> 
+<ul>
+  <li>Bitte überprüfen Sie den Benutzernamen und das Passwort</li>
+  <li>Ihr Browser muss Cookies akzeptieren</li>
+</ul>
+</font>
+
+<p><font class="swr">Sollten das Problem bei der Anmeldung immer noch bestehen</font></p>
+<font class="sw">
+<ul>
+  <li>benutzen Sie bitte das <a href="index.php?func=passutil">Passwort Tool</a> um vergessene Passwörter zu finden</li>
+  <li>Für weitere Unterstützung kontaktieren Sie bitte unser Supportteam: $this->admin_email</li>
+    <!-- if($pref['allow_Signup']) { -->
+	<li><a href="index.php?func=signup">Neues Postfach erstellen</a></li>
+	<!-- } -->
+</ul>
+</font>
+</body>
+</html>
+
+

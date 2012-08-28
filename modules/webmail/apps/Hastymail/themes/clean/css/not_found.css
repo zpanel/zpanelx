@@ -1,0 +1,37 @@
+#main_table{
+    width: 300px;
+    margin-top: 100px;
+}
+.not_fnd{
+    font-size: 130%;
+    font-weight: bold;
+    padding: 40px;
+    text-align: center;
+}
+#login span{
+    color: #22449b;
+}
+#login{
+    margin-left: 20px;
+    padding-bottom: 50px;
+}
+#content{
+    width: 300px;
+}
+form {
+    font-size: 9pt;
+}
+select, input {
+    margin-bottom: 10px;
+    font-size: 11pt;
+}
+.logintext{
+    width: 260px;
+}
+.login_again{padding: 40px; text-align: center;}
+#top table{width: 300px;}
+#menu{width: 100%;}
+#main_table{margin-top: 60px;}
+.clean_td{background: none !important;}
+.clean_td span{font-size: 16pt;}
+#notices{margin: 15px;}

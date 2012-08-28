@@ -1,0 +1,122 @@
+<chapter>
+   <title>
+      Addresses
+   </title>
+   <summary>
+      Address books can save a lot of time and typing.  You can put the
+      addresses of people you write most often in them, and reuse them
+      over and over.
+   </summary>
+   <description>
+      <p>
+      Address books are a great time saving feature.  Frequently used 
+      addresses may be stored here. LDAP servers (Often used in companies 
+      and universities to make organization-wide addresses easily available) 
+      are supported as well.
+      </p>
+      <p>
+      If your Browser supports Javascript then you might want to enable the 
+      JavaScript based address book under the Options menu item.  It is a really 
+      nifty little pop-up thing.  Pure HTML address lists are supported so 
+      even browsers without Javascript support can use SquirrelMail without 
+      any loss of function.
+      </p>
+   </description>
+</chapter>
+
+<section>
+   <title>
+      Nick Name
+   </title>
+   <description>
+      <p>
+      Put a familiar name here.  Something to help jog your memory.
+      Anything that will give you an accurate idea to whom this email 
+      address belongs.
+      </p>
+   </description>
+</section>
+
+<section>
+   <title>
+      Email Address
+   </title>
+   <description>
+      <p>
+      This must be the person's fully qualified email address.  Guessing here 
+      just won't cut it.  There are three parts to an email address.  First is 
+      the recipients identifier, such as "johnq". Next is the domain name 
+      section, which could take the form "tayloru".  Last comes the top level 
+      domain, which could be one of a ton of things like au, cc, us, com, org, 
+      net or might look like edu.  So if we put all those together it must be 
+      in the form of johnq@tayloru.edu.  If this is not correct you are likely 
+      to get your mail back in the form of a bounced message.
+      </p>
+   </description>
+</section>
+
+<section>
+   <title>
+      Info
+   </title>
+   <description>
+      <p>
+      This is another field where you can put something to remind you about 
+      who this person is.  This is made to be longer than the "Nick Name".
+      For instance, if you meet a business contact, you could put "Met at
+      the Tomatoe Symposium".
+      </p>
+   </description>
+</section>
+
+<section>
+   <title>
+      Edit or Delete
+   </title>
+   <description>
+      <p>
+      These two buttons allow you to select a single address and then change 
+      any of the above fields, or delete the entry entirely.  You are only
+      allowed to select one entry at a time for the edit button.
+      </p>
+   </description>
+</section>
+
+<section>
+   <title>
+      Add to Personal address book
+   </title>
+   <description>
+      <p>
+      Fill in the fields as they are listed.  The first three (Nickname, 
+      E-mail address, and First name) must be filled in.  Both Last name and 
+      Additional info are optional.
+      </p>
+   </description>
+</section>
+
+<section>
+   <title>
+      LDAP
+   </title>
+   <description>
+      <p>
+      LDAP is a protocol for central unified storage and remote access of 
+      information.  For example; a university might use LDAP as the single 
+      place where all students, staff, and faculty email addresses are 
+      stored and made available.  If configured to use the universities 
+      LDAP server, SquirrelMail would then be able to list all campus email 
+      address (along with the other address book fields if available).  
+      SquirrelMail's LDAP use is truly powerful in that it <i>combines</i> 
+      your local address book and the LDAP address server information to 
+      present all of the information as if it was a single address book.
+      </p><p>
+      The LDAP setting may be configured to use any LDAP server, or disabled 
+      as a feature altogether.  You will need to talk to you system
+      administrator about this feature if you have specific questions.
+      </p><p>
+      LDAP settings affect the entire SquirrelMail system; as a result they 
+      must be set up or altered by someone with administrative authority.
+      </p>
+   </description>
+</section>

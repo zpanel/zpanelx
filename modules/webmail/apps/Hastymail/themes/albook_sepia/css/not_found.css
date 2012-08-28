@@ -1,0 +1,22 @@
+#login span{
+    color: #333;
+    font-size: 12pt;
+    font-weight: bold;
+}
+#login img{
+    vertical-align: -20%;
+}
+#login{
+    margin-left: 20px;
+    margin-top: 30px;
+}
+#main_table{
+    min-width: 300px;
+    margin-top: 100px;
+}
+.rtop, .rbottom{
+    min-width: 300px;
+}
+#content{
+    min-width: 300px;
+}

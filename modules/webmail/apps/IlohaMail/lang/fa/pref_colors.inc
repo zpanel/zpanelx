@@ -1,0 +1,38 @@
+<?php
+/********************************************************
+	lang/eng/cp.inc
+	(C)2001-2002 Ryo Chijiiwa <Ryo@IlohaMail.org>
+
+	This file is part of IlohaMail, and released under GPL.
+	See COPYING, or http://www.fsf.org/copyleft/gpl.html
+
+********************************************************/
+
+//TRANSLATORS:  Uncomment next line for all non-English languages!!
+//include("../lang/eng/pref_colors.inc");
+
+$pcStrings["0"] = "ÈÑÇí åÑ ÞÓãÊ ßÏ æÈ æÇÑÏ ßäíÏ..";
+$pcStrings["0.1"] = "ÑÇ ÇÓÊÝÇÏå ßä ";
+$pcStrings["0.2"] = "ÌÏæá ßÏ Ñä";
+$pcStrings["0.3"] = " ÈÑÇí íÇÝÊã ßÏ Ñä ãäÇÓÈ.";
+$pcStrings["0.4"] = "ÊäÙíãÇÊí ßå ÊæÓØ Êã ÇäÌÇã ÑÝÊå ÑÇ äãíÊæÇä ÊÛííÑ ÏÇÏ..";
+$pcStrings["1.0"] = "äæÇÑ ÇÈÒÇÑ";
+$pcStrings["2.0"] = "áíÓÊ æÔååÇ";
+$pcStrings["3.0"] = "ÇÕáí";
+$pcStrings["3.1"] = "Ó Òãíäå ÓÑÕÝÍå: ";
+$pcStrings["3.2"] = "ãÊä ÓÑÕÝÍå: ";
+$pcStrings["3.3"] = "Ó Òãíäå ÊÇÑíß: ";
+$pcStrings["3.4"] = "ãÊä ÑæÔä: ";
+$pcStrings["4.0"] = "æäÇæä";
+$pcStrings["4.1"] = "äÞá Þæá: ";
+$pcStrings["5.0"] = "Þáã";
+$pcStrings["5.1"] = "ÏÓÊå Þáã";
+$pcStrings["5.2"] = "ÇäÏÇÒå Þáã: ";
+$pcStrings["5.3"] = "ÇäÏÇÒå ÞÇã ßæß: ";
+$pcStrings["5.4"] = "áíÓÊ ÇäÏÇÒå Þáã: ";
+$pcStrings["5.5"] = "ÇäÏÇÒå Þáã áíÓÊ æÔååÇ: ";
+
+							
+$pcPortions = array( "íÔ Òãíäå: ", "íæäÏåÇ: ", "äæÔÊååÇ: ", "ãÊä ÑæÔäÊÑ: ");
+
+?>

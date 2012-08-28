@@ -1,0 +1,14 @@
+#contacts_page{ padding-left: 20px; padding-bottom: 20px; }
+#contact_group_page{ clear: both; }
+.contact_groups{ border-left: solid 1px #758269; border-right: solid 1px #758269; border-bottom: solid 1px #758269; margin-right: 20px; width: 99%; }
+.contact_groups td{ text-align: left; padding-left: 10px; padding-top: 5px; padding-bottom: 3px; vertical-align: top; }
+.contact_groups th{ text-align: left; background-color: #dee5d8; border-top: solid 1px #758269; border-bottom: solid 1px #758269; font-size: 90%; padding: 5px; padding-left: 10px; padding-top: 3px; padding-bottom: 3px; }
+.no_groups{ padding: 20px; text-align: center; color: #666; }
+h5, h4{ margin: 0px; color: #4a4e46; margin-top: 15px; padding-bottom: 5px; margin-bottom: 15px; font-weight: bold; border-bottom: solid 1px #758269; clear: both; }
+#contact_links a{ padding-left: 10px; }
+#contact_links{ font-size: 90%; font-weight: normal; float: right; padding-right: 30px; }
+.contact_group_form{ margin-top: 10px; }
+.contact_group_form td{ padding-left: 10px; }
+.grp_btns{ padding-top: 10px; text-align: right; padding-bottom: 10px; }
+.members{ font-size: 85%; }
+.member_table td { padding: 1px; }

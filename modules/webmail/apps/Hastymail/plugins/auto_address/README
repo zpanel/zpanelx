@@ -1,0 +1,34 @@
+This is the first version of an auto-complete address plugin for the compose page.
+It is very much an beta release. This plugin requires javascript. It has only
+been tested with firefox and IE 8 To activate the plugin add or uncomment the following
+line in your hastymail2.conf file:
+
+plugin = auto_address
+
+Don't forget to rebuild the hastymail2.rc file after editing the hastymail2.conf.
+Plugin configs are cached when you login so be sure to logout and back in to
+enable the plugin
+
+This plugin has 4 settings available on the options page in the compose page section:
+
+- Auto-complete addresses on
+
+    The field to auto-complete. Availble options are E-mail address, Name, or E-mail address and Name
+
+- Limit address auto-complete to the local address book
+
+    The default behavior is to merge matches from all available address book sources.
+    This option limits the search to the local addressbook only.
+
+- Start address auto-complete after this many characters
+
+    The number of characters that need to be input before the autocomplete feature
+    kicks in. Available options are 1 - 5. Defaults to 2.
+
+- Limit address auto-complete results to
+
+    Set the limit of results to the auto-complete query to this amount. Options
+    are 5, 10, 15, and 20. Defaults to 10.
+
+This plugin is a part of Hastymail so questions and comments can be directed to
+our forums, mailing lists, or directly to me at jason@hastymail.org.

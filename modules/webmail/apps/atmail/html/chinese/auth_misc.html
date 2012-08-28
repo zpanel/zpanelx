@@ -1,0 +1,62 @@
+<!-- if($this->Ajax) { -->
+<Error>
+	<ErrorStatus>1</ErrorStatus>
+	<ErrorMessage><![CDATA[
+<!-- } -->
+
+<html>
+<head>
+<title>重新整理然後再嘗試</title>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">    
+</head>
+<body bgcolor="$this->BgColor" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor">
+
+<style>
+
+.sw {font-family:Verdana;font-size:13px;color:#000000;}
+.swr {font-family:Verdana;font-size:13px;color:#FF0000;}
+</style>
+
+
+<LINK href="javascript/style$this->browser.css" rel="stylesheet" type="text/css">
+<img src="$pref['logo_big_img']"><br>
+<h1>郵箱錯誤</h1>
+
+<font class="swr">伺服器回應 - $var['status']
+</font>
+
+<font class="sw"> 
+<ul>
+
+<!-- if($this->Ajax) { -->
+  <li><a href="javascript:history.back()">重新整理然後再嘗試</a>
+<!-- } -->
+
+<!-- if(!$this->Ajax) { -->
+  <li><a href="javascript:location.reload()">重新整理然後再嘗試</a>
+<!-- } -->
+
+</li>
+
+  <li>檢查了你不是正在存取你的郵箱於兩個或以上的視窗.檔案鎖正在啟動, 使到工作時段可以存取你的郵箱.</li>
+
+  <li>檢查了你的兩個工作時段未啟用 - 只容許每一個使用者同時登入一次</li>
+
+  <li>請於幾分鐘後再嘗試</li>
+
+</ul>
+</font>
+
+<p><font class="swr">如果你仍然無法成功登入你的帳戶</font></p>
+<font class="sw">
+<ul>
+  <li>聯絡管理員 $this->admin_email 要求協助</li>
+</ul>
+</font>
+</body>
+</html>
+
+<!-- if($this->Ajax) { -->
+	]]></ErrorMessage>
+</Error>
+<!-- } -->

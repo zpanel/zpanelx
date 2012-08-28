@@ -1,0 +1,64 @@
+PLUGIN PAGES OVERVIEW
+
+    Hastymail plugins can easily setup their own pages using this feature.
+    The system requires that a plugin author create a file named page.php in
+    the directory for that plugin and within that file 2 required functions
+    with particular names. The design of this system encourages plugin authors
+    to seperate the application logic of their plugin from the presentation,
+    but it does not force the use of templating. The system automatically
+    includes a corresponding CSS file for plugin pages to use for style.
+    Plugin pages only control the main content area of the application, so the
+    toolbar, folder dropdown, folder list, and footer are all created for a plugin
+    page by the system.
+
+
+PLUGIN PAGE MINI-WALK THROUGH
+
+    step 1: In the plugin config.php file set the page_hook value to true.
+       
+ 
+    step 2: Create a file in the top level of directory of the plugin called
+            page.php.
+
+
+    step 3: Within that file add the two mandatory functions:
+
+        1. url_action_<plugin name>($tools, $get, $post)
+           This function is where any backend processing of information
+           for a plugin page should go. It has one default argument
+           passed to it, that contains the $_GET array. Anything this
+           function returns is handed to the second function which is
+           responsible for printing out the pages XHTML. A simple example:
+
+        
+           function url_action_hello_world($get) {
+               $size = '';
+               if (isset($get['size'])) {
+                   $size = $get['size'];
+               }
+               return $size;
+           }
+
+        2. print_<plugin name>($foo, $tools) {
+           This function recieves the output from the
+           url_action<plugin name> function as it's input. Within it build
+           a string of the pages content then return it.  An example to
+           correspond to the above url_action function:
+
+           function print_hello_world($size, $tools) {
+               $data = '<a href="?page=hello_world&size=20pt">Big</a><br />
+                       <a href="?page=hello_world&size=10pt">Small</a><br />
+                       <span style="font-size:'.$size.';">Hello World!</span>';
+               return $data;
+           }
+          
+           - note that there are several things wrong with the above
+             functions (no error checking for one), they are to
+             illustrate the way the system works :)
+
+        
+    step 4: (optional) Creating a directory called css in the plugins top
+            level directory and placing a file called <plugin name>.css into
+            it will cause that css file to be used for the plugins specific
+            pages.
+ 

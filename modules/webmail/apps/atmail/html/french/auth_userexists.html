@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>Compte utilisateur déjà utilisé</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">       
+</head>
+<body bgcolor="$this->BgColor" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor">
+
+<style>
+
+.sw {font-family:Verdana;font-size:13px;color:#000000;}
+.swr {font-family:Verdana;font-size:13px;color:#FF0000;}
+</style>
+
+
+<LINK href="javascript/style$this->browser.css" rel="stylesheet" type="text/css">	
+
+<img src="$pref['logo_big_img']"><br>
+<h1>utilisateur existant</h1>
+
+<font class="swr">Le compte que vous essayez de créer existe déjà dans la base de données.</font>
+<font class="sw"> 
+<ul>
+  <li>Retournez en arrière pour choisir un autre nom.</li>
+  <li>Choisissez un nom unique, les noms génériques sont d'habitude pris.</li>
+  <li>Les nom  d'utilisateurs peuvent contenir des caractères alphanumériques.</li>
+</ul>
+</font>
+
+<p><font class="swr">Si vous != pouvez toujours pas accéder à votre compte</font></p>
+<font class="sw">
+<ul>
+  <li>Contactez l'administrateur $this->admin_email pour assistance</li>
+</ul>
+</font>
+</body>
+</html>
+
+

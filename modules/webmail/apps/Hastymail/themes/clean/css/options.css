@@ -1,0 +1,55 @@
+/* options page */
+
+#options_page{
+    padding-left: 20px;
+}
+#options_form{
+}
+.options_table {
+    width: 600px;
+    padding-left: 20px;
+    clear: both;
+}
+.options_table td{
+    padding-right: 15px;
+    padding-bottom: 5px;
+    vertical-align: top;
+    padding-top: 2px;
+}
+.opt_leftcol{
+    border: solid 1px transparent;
+    white-space: nowrap;
+    padding-left: 10px;
+    color: #000;
+    width: 220px;
+    padding-right: 15px;
+}
+.small_headers, .small_headers option{
+    font-size: 90%;
+}
+#footnote{
+    margin-left: 40px;
+    padding-bottom: 10px;
+    font-size: 90%;
+}
+.js1{
+    color: #22449b;
+}
+.js2{
+    letter-spacing: 2px;
+    color: #17571d;
+}
+#js_help_div{
+    display: block; max-width: 300px; position: fixed; top: 80px; right: 50px; font-weight: normal;
+    background-color: #f8f8f8; display: none; color: #333; border: solid 1px #ccc; padding: 30px;
+}    
+#mailbox_title2 {
+    color: #111;
+    font-size: 150%;
+    font-weight: normal;
+    margin-bottom: 0px;
+    margin-top: 6px;
+    padding: 0px;
+    padding-bottom: 20px;
+    float: left;
+}

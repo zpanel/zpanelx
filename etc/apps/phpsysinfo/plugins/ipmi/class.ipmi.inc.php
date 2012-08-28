@@ -1,6 +1,5 @@
 <?php
-
-/* * *************************************************************************
+/***************************************************************************
  *   Copyright (C) 2008 by phpSysInfo - A PHP System Information Script    *
  *   http://phpsysinfo.sourceforge.net/                                    *
  *                                                                         *
@@ -18,13 +17,11 @@
  *   along with this program; if not, write to the                         *
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
- * ************************************************************************* */
-
+ ***************************************************************************/
 //
 // $Id: class.ipmi.inc.php 352 2010-01-24 14:22:35Z jacky672 $
 //
 class ipmi extends PSI_Plugin {
-
     private $_lines;
 
     public function __construct($enc) {
@@ -38,8 +35,9 @@ class ipmi extends PSI_Plugin {
      *
      * @return array temperatures in array with label
      */
-    private function temperature() {
-        $result = array();
+    private function temperature()
+    {
+        $result = array ();
         $i = 0;
         foreach ($this->_lines as $line) {
             $buffer = preg_split("/[ ]+\|[ ]+/", $line);
@@ -59,8 +57,9 @@ class ipmi extends PSI_Plugin {
      *
      * @return array fans in array with label
      */
-    private function fans() {
-        $result = array();
+    private function fans()
+    {
+        $result = array ();
         $i = 0;
         foreach ($this->_lines as $line) {
             $buffer = preg_split("/[ ]+\|[ ]+/", $line);
@@ -80,8 +79,9 @@ class ipmi extends PSI_Plugin {
      *
      * @return array voltage in array with label
      */
-    private function voltage() {
-        $result = array();
+    private function voltage()
+    {
+        $result = array ();
         $i = 0;
         foreach ($this->_lines as $line) {
             $buffer = preg_split("/[ ]+\|[ ]+/", $line);
@@ -102,8 +102,9 @@ class ipmi extends PSI_Plugin {
      *
      * @return array misc in array with label
      */
-    private function misc() {
-        $result = array();
+    private function misc()
+    {
+        $result = array ();
         $i = 0;
         foreach ($this->_lines as $line) {
             $buffer = preg_split("/[ ]+\|[ ]+/", $line);
@@ -122,12 +123,12 @@ class ipmi extends PSI_Plugin {
         switch (PSI_PLUGIN_IPMI_ACCESS) {
             case 'command':
                 $lines = "";
-                if ((CommonFunctions::executeProgram('ipmitool', 'sensor', $lines)) && (!empty($lines)))
-                    $this->_lines = preg_split("/\n/", $lines, -1, PREG_SPLIT_NO_EMPTY);
+                if ((CommonFunctions::executeProgram('ipmitool', 'sensor', $lines))&&(!empty($lines)))
+                $this->_lines = preg_split("/\n/", $lines, -1, PREG_SPLIT_NO_EMPTY);
                 break;
             case 'data':
-                if ((CommonFunctions::rfts(APP_ROOT . "/data/ipmi.txt", $lines)) && (!empty($lines)))
-                    $this->_lines = preg_split("/\n/", $lines, -1, PREG_SPLIT_NO_EMPTY);
+                if ((CommonFunctions::rfts(APP_ROOT."/data/ipmi.txt", $lines))&&(!empty($lines)))
+                $this->_lines = preg_split("/\n/", $lines, -1, PREG_SPLIT_NO_EMPTY);
                 break;
             default:
                 $this->error->addConfigError('__construct()', 'PSI_PLUGIN_IPMI_ACCESS');
@@ -135,9 +136,10 @@ class ipmi extends PSI_Plugin {
         }
     }
 
-    public function xml() {
-        if (empty($this->_lines))
-            return $this->xml->getSimpleXmlElement();
+    public function xml()
+    {
+        if ( empty($this->_lines))
+        return $this->xml->getSimpleXmlElement();
 
         $arrBuff = $this->temperature();
         if (sizeof($arrBuff) > 0) {
@@ -187,5 +189,4 @@ class ipmi extends PSI_Plugin {
     }
 
 }
-
 ?>

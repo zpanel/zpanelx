@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>Toegang geweigerd</title>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+</head>
+<body bgcolor="#ffffff" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor">
+
+<style>
+
+.sw {font-family:Verdana;font-size:13px;color:#000000;}
+.swr {font-family:Verdana;font-size:13px;color:#FF0000;}
+</style>
+
+<LINK href="javascript/style$this->browser.css" rel="stylesheet" type="text/css">
+
+<img src="$pref['logo_big_img']"><br>
+<h1>Verificatie foutmelding</h1>
+
+<font class="swr">Toegang geweigerd  Uw sessie-ID werd niet teruggevonden in onze database.</font>
+<font class="sw"> 
+<ul>
+  <li>Controleer uw gebruikersnaam en paswoord.</li>
+  <li>Controleer of uw browser cookies ondersteunt. Indien niet, gelieve dit in uw browserinstellingen te activeren.</li>
+  <li>Zorg ervoor dat er slechts één sessie van uw account actief is  er wordt slechts één gebruiker per login aanvaard.</li>
+</ul>
+</font>
+
+<p><font class="swr">Indien het nog steeds niet lukt om uw account te openen</font></p>
+<font class="sw">
+<ul>
+  <li>Gebruik <a href="index.php?func=passutil">Paswoord Vergeten</a> om uw paswoord opnieuw te ontvangen.</li>
+  <li>Contacteer de beheerder $this->admin_email voor hulp.</li>
+  <!--  if($pref['allow_Signup']) { -->
+  <li><a href="index.php?func=signup">Maak een nieuwe account aan</a>.</li>
+  <!-- } -->
+</ul>
+</font>
+</body>
+</html>
+
+

@@ -1,0 +1,14 @@
+BODY { COLOR: #000000; FONT-FAMILY: Arial; FONT-SIZE: 9pt }
+LI { COLOR: #000000; FONT-FAMILY: Arial; FONT-SIZE: 9pt }
+
+.head { COLOR: #0066FF; FONT-FAMILY: Arial; FONT-SIZE: 15pt} TD { COLOR: #000000; FONT-FAMILY: Arial; 
+FONT-SIZE: 9pt }
+TR { COLOR: #000000; FONT-FAMILY: Arial; FONT-SIZE: 9pt } 
+TABLE { COLOR: #000000; FONT-FAMILY: Arial; FONT-SIZE: 9pt } 
+A { COLOR: #3175bd; FONT-FAMILY: Arial; FONT-SIZE: 9pt; TEXT-DECORATION: none } 
+A:hover { COLOR: #ff3031; FONT-FAMILY: Arial; FONT-SIZE: 9pt; TEXT-DECORATION: none } 
+
+TD.special { 
+BACKGROUND: #ffffff; COLOR: #6190d1; FONT-FAMILY: verdana; FONT-SIZE: 12pt } BODY 
+{ BACKGROUND: #ffffff; } HR { COLOR: #accfff } .stdbtn { background-color: #F4F4F4; 
+font: 8pt Tahoma; width: 75px;}

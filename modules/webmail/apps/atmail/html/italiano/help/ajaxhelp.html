@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>Ajax Interface Hints & Tips</title>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<LINK href="javascript/stylehelp.css" rel=stylesheet type=text/css>
+<font face="Verdana,Arial" size="+1">AJAX Interface</font> [ <a href="parse.php?file=html/$this->Language/help/file.html">Help 
+Index</a> ] 
+<hr noshade>
+
+<script>
+function expandentry()	 {
+
+<!-- if($var['FirstLoad']) { -->
+if(parent.document.getElementById('troubleshooting').style.display != 'block')
+parent.expand('troubleshooting', parent.document.getElementById('mainimg'));
+<!-- } -->
+
+}
+</script>
+
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" onload="expandentry()">
+
+	
+<p><u>Che cos’è l’interfaccia AJAX?</u> 
+<p>L’interfaccia AJAX permette di accedere ad una versione dell’interfaccia semplice creata in Javascript, questo aumenta la velocità e la compatibilità con il tuo browser. Presente la maggior parte delle funzioni dei maggiori client. 
+  
+<p>Uno dei maggiori benefici dell’interfaccia Semplice Ajax è che il messaggio è inserito nelle cache del browser senza ricaricare la pagina.</p>
+
+<p><u>Come abilito l’interfaccia AJAX?</u> 
+<p>L’interfaccia AJAX è automaticamente attivata quando fai il login con questa interfaccia specificata. Per usarla è necessario IE5.5+ o Firefox/Mozilla 1.X, nota che questa interfaccia non è supporta in browser vecchi.
+
+<p><u>Come uso l’interfaccia AJAX?</u> 
+<p>Quando usi l’interfaccia AJAX, hai accesso alle seguenti funzioni per gestire i messaggi: 
+<ul>
+  <li>Puoi premere shift-click nell’elenco dei messaggi per selezionarne più di uno. Puoi anche premere Ctrl+click.</li>
+  <p><img src="imgs/help/ajaxshift.gif" width="279" height="114"> 
+  <br><br>
+  <li>Puoi premere il pulsante 'cancella' della tua tastiera per rimuovere i messaggi selezionati rapidamente.</li>
+
+  <li>Usa il mail-headers per elencare i messaggi nel browser senza richiederli nuovamente dal mail-server.</li>
+
+  <li>I messaggi vengono letti da una cartella all’interno delle cache del browser, in modo che se viene richiesto lo stesso messaggio non è necessario ricaricare la pagina. La prima colonna della lista dei messaggi indica questa cosa.</li>
+
+  <li>Quando rispondi a un messaggio il pannello di composizione appare automaticamente e non richiede un aggiornamento della pagina.</li>
+
+
+  <br>
+  <li>Tasto destro del mouse sui messaggi apparirà un pop-up con più opzioni.</li>
+  <p><img src="imgs/help/ajaxrclick.gif"></p>
+  <li>Premi i pulsanti su e giù per scorrere i messaggi.</li>
+  <br>
+  <li>Per spostare i messaggi selezionarli e trascinarla nella cartella desiderata<br>
+  <p><img src="imgs/help/ajaxtrash.gif">&nbsp;</p>
+  </li>
+  <li>Le colonne per la visualizzazione dei messaggi e della rubrica posso essere automaticamente ridimensionate. Cliccare sull’icona nell’angolo destro per scegliere quali colonne visualizzare.</li>
+</ul>
+
+</body>
+</html>

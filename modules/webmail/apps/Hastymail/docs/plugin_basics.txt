@@ -1,0 +1,188 @@
+Hastymail2 plugin system basics
+
+1. OVERVIEW
+2. NAMING
+3. ACTIVATING
+4. REQUIRED FILES
+5  CONFIGURATION 
+6. DISPLAY HOOKS
+7. WORK HOOKS
+8. PAGE HOOK
+8. TOOLS OBJECT
+9. SYSTEM NOTES
+
+
+1. OVERVIEW
+
+    Hastymail plugins are a simple way to alter and extend the application.
+    There are several steps to follow to create the required parts of a
+    plugin.  These steps vary depending on what you want your plugin to do.
+    The way plugins work is to "hook into" the execution of hastymail at different
+    points. We refer to these points in the code as "hooks". A plugin must
+    define the hooks it wants to use in its configuration filer. Each hook
+    defined by the plugin will trigger the execution of a specially named
+    function within the plugin. There are 2 types of hooks. Display hooks and
+    Work hooks. Work hooks are to do backend processing, such as a form submission.
+    Display hooks let a plugin insert XTHML into existing Hastymail pages.
+    There is one special hook, the "page hook". This hook lets a plugin add its
+    own pages to the application.
+
+    See the hello_world and calendar plugin for examples.
+
+
+2. NAMING
+
+    Plugins must have unique names. To simplify the logic that makes the
+    system work it is required that plugin names be comprised of only letters,
+    numbers, and underscores.  Plugins may NOT be named any of the following:
+
+        'login', 'logout', 'about', 'new', 'inline_image', 'contacts',
+        'options', 'compose', 'folders', 'search', 'thread_view', 'mailbox',
+        'message', 'profile'
+   
+    If one of the above is used for a plugin name it will NOT function
+    properly if at all. So be sure to pick a unique and simple name for
+    your plugin. The naming of required functions in a plugin as well as the
+    directory that holds the plugin code will use this name.
+
+
+3. ACTIVATING
+
+    To activate a plugin, for example called "calendar" add a line to the hastymail2.conf
+    file like this:
+
+    plugin = calendar
+
+    Each activated plugin should have it's own line in the configuration file.
+    Adding or Removing plugins to the hastymail2.conf file requires users to
+    logout and back in before the changes will take effect.
+
+
+4. REQUIRED FILES
+
+    A plugin can have more or less files depending on the functionality
+    required. Here are the files required for a plugin called "foo" that
+    is going to use all the available options of the system:
+
+    /hastymail2/plugins/foo/                The plugins main directory:
+
+    /hastymail2/plugins/foo/config.php      The plugins configuration file.
+                                            This is required for all plugins
+
+    /hastymail2/plugins/foo/page.php        If plugins use the "page hook" this
+                                            file is required
+
+    /hastymail2/plugins/foo/display.php     The display hooks function file.
+                                            This file must be present if
+                                            the plugin uses display hooks.
+
+    /hastymail2/plugins/foo/work.php        The work hooks function file.
+                                            This file must be present if the
+                                            plugin uses work hooks.
+
+    /hastymail2/plugins/foo/css/foo.css     Optional css file used with the
+                                            page hook option
+
+    /hastymail2/plugins/foo/ajax.php        The ajax callback file. Required
+                                            if the plugin uses the AJAX callback
+                                            system. See docs/plugin_ajax.txt for
+                                            more information.
+
+    
+    If a plugin is configured to use a certain hook but does not have
+    the correct file with the correct function name in it the system
+    silently skips over it.
+
+5. CONFIGURATION
+
+    Plugin configuration is done in the plugins config.php file. No other
+    code except the configuration array shold be included in this file.
+    The array for a plugin named foo would be defined as follows:
+
+        $foo_hooks array(
+            'work_hooks'     => array(),
+            'display_hooks'  => array(),
+            'page_hook'      => false;
+        );
+
+    'work_hooks'    An array of work hook names that the plugin will use.
+                    Each hook listed here must have a corresponding function
+                    named <plugin name>_<hook name> in the plugin's work.php
+                    file.
+
+    'display_hooks' An array of display hook names that the plugin will use.
+                    Each hook listed here must have a corresponding function
+                    named <plugin name>_<hook name> in the plugin's
+                    display.php file.
+
+    'page_hook'     A boolean setting. If set to true the plugin has it's
+                    own stand alone pages within Hastymail that use 2
+                    required functions in the plugin's page.php file.
+
+
+6. DISPLAY HOOKS
+    
+    Display hooks are places in the program where a plugin can insert XHTML to
+    be displayed as a part of an existing Hastymail page. More detailed
+    information including a full list of available display hooks is located
+    in docs/plugin_display_hooks.txt.
+
+
+7. WORK HOOKS
+
+    Work hooks are places in the program where a plugin can execute code to do
+    processing and gather data to pass to functions associated with display
+    hooks. Much of the work done in these functions is facilitated by the
+    tools object. Work hooks are explained in more detail including a full
+    list in docs/plugin_work_hooks.txt, and the tools object is outlined in
+    docs/plugins_tools.txt and breifly explained below.
+
+
+8. PAGE HOOK
+
+    The page hook option allows plugins to setup their own pages within
+    Hastymail. It works on a simple URL argument that corresponds to the
+    plugin name. For the plugin named foo a link to its main plugin page
+    would be:
+
+    http://hastymailsite.com?page=foo
+
+    More details and a mini walk-through can be found in docs/plugin_pages.txt.
+    Also the calendar plugin uses this feature and has comments regarding it's
+    use in plugins/calendar/page.php.
+
+
+9. TOOLS OBJECT
+
+    The tools object allows plugin authors to interact with Hastymail. It can
+    be used from within any function in a plugin after adding the following
+    line to the beginning of the function.
+    
+    global $tools;
+    
+    This object contains not only methods to faciliate a plugins interaction
+    with the core Hastymail code, but also methods to make writing plugins
+    easier. See the docs/plugin_tools.txt file for more information about the
+    tools object.
+
+
+10. SYSTEM NOTES
+
+    The overall structure of a plugin is not unlike the overall design of the
+    core Hastymail code (sort of), though the hook system dictates several
+    modifications. I decided to use predetermined names for various files and
+    functions for simplicity, both for my sake and for plugin authors. Failing
+    to properly name files or functions will likely result in silent failure
+    in which that portion of the plugins functionality (or the entire thing)
+    will become invisible to the user. When a user first logs in the activated
+    plugins defined in the hastymail2.conf file are traversed and the
+    config.php file for each plugin is parsed. A $plugins array of all the
+    activiated plugins and the hooks they utilize is saved in the user's
+    session for following page loads. The plugin files page.php, display.php,
+    and work.php are only included by the system when the hook associated with
+    a plugin is executed, keeping extra includes to the bare minimum, and
+    hopefully keeping the include size of each required file to a minimum as well.  
+    In the index.php file is an variable called $force_plugin_reloading that
+    will force the plugin hooks to be re-evaluated on every page load. This can
+    be useful for testing without having to logout then back in for new hook
+    assignments to be activated.

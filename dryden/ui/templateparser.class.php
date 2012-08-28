@@ -45,8 +45,10 @@ class ui_templateparser {
         if ($match) {
             foreach ($match[1] as $classes) {
                 #if (class_exists('' . $classes . '')) {
-                $method_name = "get" . $classes;
-                $output = module_controller::$method_name();
+                ob_start();
+                eval("echo module_controller::get" . $classes . "();");
+                $output = ob_get_contents();
+                ob_end_clean();
                 $raw = str_replace("<@ " . $classes . " @>", $output, $raw);
                 #}
             }
@@ -54,7 +56,10 @@ class ui_templateparser {
         preg_match_all("'<:\s(.*?)\s:>'si", $raw, $match);
         if ($match) {
             foreach ($match[1] as $string) {
-                $output = ui_language::translate($string);
+                ob_start();
+                eval("echo ui_language::translate(\"" . $string . "\");");
+                $output = ob_get_contents();
+                ob_end_clean();
                 $raw = str_replace("<: " . $string . " :>", $output, $raw);
             }
         }

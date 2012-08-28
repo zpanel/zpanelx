@@ -1,0 +1,44 @@
+<title>Ayuda Webmail</title>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<LINK href="javascript/stylehelp.css" rel=stylesheet type=text/css>
+
+<font face="Verdana, Arial" size="+1">Ayuda Webmail</font>
+
+<hr noshade>
+<p><font face="Arial, Helvetica, Condensed" size="2">Utilizando estos archivos de ayuda aprenderás más cosas sobre el Webmail. Selecciona un tema de la lista que te ofrecemos arriba para obtener más información sobre cada tema.</font></p>
+<ul>
+  <li><a href="parse.php?file=html/$this->Language/help/compose.html">Redactar/Enviar email</a></li>
+  <li><a href="parse.php?file=html/$this->Language/help/reademail.html">Leer Correo</a></li>
+
+<!-- if($pref['allow_Calendar']) { -->
+ <li><a href="parse.php?file=html/$this->Language/help/calendar.html">El Calendario</a></li>
+<!-- } -->
+
+<!-- if(file_exists("{$pref['install_dir']}/xhtml.php") && $pref['allow_Mobile']) { -->
+<li><a href="parse.php?file=html/$this->Language/help/wap.html">Correo electrónico mediante servicio Wap</a></li>
+<!-- } -->
+
+<li><a href="parse.php?file=html/$this->Language/help/settings.html">Modificando preferencias</a></li>
+  <li><a href="parse.php?file=html/$this->Language/help/addressbook.html">Libreta de Direcciones</a></li>
+
+<!-- if($pref['allow_MultiAccounts']) { -->
+  <li><a href="parse.php?file=html/$this->Language/help/addpop3.html">Cuentas de email POP3</a></li>
+<!-- } -->
+
+<!-- if($pref['allow_LDAP'] && extension_loaded('ldap')) { -->
+<li><a href="parse.php?file=html/$this->Language/help/ldap.html">Motor de búsqueda LDAP</a></li>
+<!-- } -->
+
+<li><a href="parse.php?file=html/$this->Language/help/newmbox.html">Ayuda LDAP</a></li>
+
+<!-- if(file_exists($pref['aspell_dir']) || extension_loaded('pspell')) { -->
+<li><a href="parse.php?file=html/$this->Language/help/spell.html">Utilidad de Revisión Ortográfica</a></li>
+<!-- } -->
+
+<!-- if($pref['allow_SMS'] && file_exists('sms.php')) { -->
+<li><a href="parse.php?file=html/$this->Language/help/sms.html">Ayuda del servicio SMS</a></li>
+<!-- } -->
+</ul>
+
+Utilizando estos archivos de ayuda aprenderás más cosas sobre el Webmail. Selecciona un tema de la lista que te ofrecemos arriba para obtener más información sobre cada tema.

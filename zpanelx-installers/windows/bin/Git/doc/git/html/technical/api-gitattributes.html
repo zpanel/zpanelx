@@ -1,0 +1,424 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 7.0.2" />
+<style type="text/css">
+/* Debug borders */
+p, li, dt, dd, div, pre, h1, h2, h3, h4, h5, h6 {
+/*
+  border: 1px solid red;
+*/
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a { color: blue; }
+a:visited { color: fuchsia; }
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
+tt {
+  color: navy;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  font-family: sans-serif;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  border-bottom: 2px solid silver;
+  padding-top: 0.5em;
+}
+
+div.sectionbody {
+  font-family: serif;
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+span#author {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+span#email {
+}
+span#revision {
+  font-family: sans-serif;
+}
+
+div#footer {
+  font-family: sans-serif;
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+div#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+div#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+div#preamble,
+div.tableblock, div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-right: 10%;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock > div.content {
+  padding-left: 2.0em;
+}
+div.quoteblock .attribution {
+  text-align: right;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 2px solid silver;
+}
+
+div.exampleblock > div.content {
+  border-left: 2px solid silver;
+  padding: 0.5em;
+}
+
+div.verseblock div.content {
+  white-space: pre;
+}
+
+div.imageblock div.content { padding-left: 0; }
+div.imageblock img { border: 1px solid silver; }
+span.image img { border-style: none; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: italic;
+}
+dd > *:first-child {
+  margin-top: 0;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.olist2 {
+  list-style-type: lower-alpha;
+}
+
+div.tableblock > table {
+  border-color: #527bbd;
+  border-width: 3px;
+}
+thead {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+tfoot {
+  font-weight: bold;
+}
+
+div.hlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+td.hlist1 {
+  vertical-align: top;
+  font-style: italic;
+  padding-right: 0.8em;
+}
+td.hlist2 {
+  vertical-align: top;
+}
+
+@media print {
+  div#footer-badges { display: none; }
+}
+/* Workarounds for IE6's broken and incomplete CSS2. */
+
+div.sidebar-content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+div.sidebar-title, div.image-title {
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 0.0em;
+  margin-bottom: 0.5em;
+}
+
+div.listingblock div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock-content {
+  padding-left: 2.0em;
+}
+
+div.exampleblock-content {
+  border-left: 2px solid silver;
+  padding-left: 0.5em;
+}
+</style>
+<title>gitattributes API</title>
+</head>
+<body>
+<div id="header">
+<h1>gitattributes API</h1>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<p>gitattributes mechanism gives a uniform way to associate various
+attributes to set of paths.</p>
+</div>
+</div>
+<h2>Data Structure</h2>
+<div class="sectionbody">
+<dl>
+<dt>
+<tt>struct git_attr</tt>
+</dt>
+<dd>
+<p>
+        An attribute is an opaque object that is identified by its name.
+        Pass the name and its length to <tt>git_attr()</tt> function to obtain
+        the object of this type.  The internal representation of this
+        structure is of no interest to the calling programs.
+</p>
+</dd>
+<dt>
+<tt>struct git_attr_check</tt>
+</dt>
+<dd>
+<p>
+        This structure represents a set of attributes to check in a call
+        to <tt>git_checkattr()</tt> function, and receives the results.
+</p>
+</dd>
+</dl>
+</div>
+<h2>Calling Sequence</h2>
+<div class="sectionbody">
+<ul>
+<li>
+<p>
+Prepare an array of <tt>struct git_attr_check</tt> to define the list of
+  attributes you would want to check.  To populate this array, you would
+  need to define necessary attributes by calling <tt>git_attr()</tt> function.
+</p>
+</li>
+<li>
+<p>
+Call git_checkattr() to check the attributes for the path.
+</p>
+</li>
+<li>
+<p>
+Inspect <tt>git_attr_check</tt> structure to see how each of the attribute in
+  the array is defined for the path.
+</p>
+</li>
+</ul>
+</div>
+<h2>Attribute Values</h2>
+<div class="sectionbody">
+<p>An attribute for a path can be in one of four states: Set, Unset,
+Unspecified or set to a string, and <tt>.value</tt> member of <tt>struct
+git_attr_check</tt> records it.  There are three macros to check these:</p>
+<dl>
+<dt>
+<tt>ATTR_TRUE()</tt>
+</dt>
+<dd>
+<p>
+        Returns true if the attribute is Set for the path.
+</p>
+</dd>
+<dt>
+<tt>ATTR_FALSE()</tt>
+</dt>
+<dd>
+<p>
+        Returns true if the attribute is Unset for the path.
+</p>
+</dd>
+<dt>
+<tt>ATTR_UNSET()</tt>
+</dt>
+<dd>
+<p>
+        Returns true if the attribute is Unspecified for the path.
+</p>
+</dd>
+</dl>
+<p>If none of the above returns true, <tt>.value</tt> member points at a string
+value of the attribute for the path.</p>
+</div>
+<h2>Example</h2>
+<div class="sectionbody">
+<p>To see how attributes "crlf" and "indent" are set for different paths.</p>
+<ol>
+<li>
+<p>
+Prepare an array of <tt>struct git_attr_check</tt> with two elements (because
+  we are checking two attributes).  Initialize their <tt>attr</tt> member with
+  pointers to <tt>struct git_attr</tt> obtained by calling <tt>git_attr()</tt>:
+</p>
+</li>
+</ol>
+<div class="listingblock">
+<div class="content">
+<pre><tt>static struct git_attr_check check[2];
+static void setup_check(void)
+{
+        if (check[0].attr)
+                return; /* already done */
+        check[0].attr = git_attr("crlf", 4);
+        check[1].attr = git_attr("ident", 5);
+}</tt></pre>
+</div></div>
+<ol>
+<li>
+<p>
+Call <tt>git_checkattr()</tt> with the prepared array of <tt>struct git_attr_check</tt>:
+</p>
+</li>
+</ol>
+<div class="listingblock">
+<div class="content">
+<pre><tt>        const char *path;
+
+        setup_check();
+        git_checkattr(path, ARRAY_SIZE(check), check);</tt></pre>
+</div></div>
+<ol>
+<li>
+<p>
+Act on <tt>.value</tt> member of the result, left in <tt>check[]</tt>:
+</p>
+</li>
+</ol>
+<div class="listingblock">
+<div class="content">
+<pre><tt>        const char *value = check[0].value;
+
+        if (ATTR_TRUE(value)) {
+                The attribute is Set, by listing only the name of the
+                attribute in the gitattributes file for the path.
+        } else if (ATTR_FALSE(value)) {
+                The attribute is Unset, by listing the name of the
+                attribute prefixed with a dash - for the path.
+        } else if (ATTR_UNSET(value)) {
+                The attribute is not set nor unset for the path.
+        } else if (!strcmp(value, "input")) {
+                If none of ATTR_TRUE(), ATTR_FALSE(), or ATTR_UNSET() is
+                true, the value is a string set in the gitattributes
+                file for the path by saying "attr=value".
+        } else if (... other check using value as string ...) {
+                ...
+        }</tt></pre>
+</div></div>
+<p>(JC)</p>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 08-Jun-2008 01:34:40 UTC
+</div>
+</div>
+</body>
+</html>

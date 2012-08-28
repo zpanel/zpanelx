@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>Ajax Interface Hints & Tips</title>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<LINK href="javascript/stylehelp.css" rel=stylesheet type=text/css>
+<font face="Verdana,Arial" size="+1">AJAX Interface</font> [ <a href="parse.php?file=html/$this->Language/help/file.html">Help 
+Index</a> ] 
+<hr noshade>
+
+<script>
+function expandentry()	 {
+
+<!-- if($var['FirstLoad']) { -->
+if(parent.document.getElementById('troubleshooting').style.display != 'block')
+parent.expand('troubleshooting', parent.document.getElementById('mainimg'));
+<!-- } -->
+
+}
+</script>
+
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" onload="expandentry()">
+
+	
+<p><u>What is the AJAX interface?</u> 
+<p>The AJAX interface allows you to access a version of the Simple Interface, created in Javascript, that asynchronously loads data from the server - which  adds increased speed and browser/OS compatibility. It has most of the features of an in-house client-side interface, thus, adding to the useability of your webmail interface. 
+  
+<p>One of the major advantages of the Simple Ajax interface is a message cache function within the browser, which avoids the use of reloading the page.</p>
+
+<p><u>How do I enable the AJAXinterface?</u> 
+<p>The AJAX interface is automatically enabled when you login with that interface specified. To use the interface IE5.5+ or Firefox/Mozilla 1.X is required, please note this interface is not supported on older browsers.
+
+<p><u>How do I use the AJAX interface?</u> 
+<p>When using the AJAX interface, you have access to the following functionalities to manage email messages: 
+<ul>
+  <li>You can press shift-click in the email pane to highlight a number of messages at the same time. Ctrl+click works as well.</li>
+  <p><img src="imgs/help/ajaxshift.gif" width="279" height="114"> 
+  <br><br>
+  <li>You can hit the 'delete' key as a keyboard shortcut while highlighting a message subject in the email pane to remove the message.</li>
+
+  <li>Use the top mail-headers to sort emails within the browser, without having to request the messages from the mail-server again.</li>
+
+  <li>Messages read within a folder are cached in the browser, so if requesting the same message again no reloading of the page is required. The first column of the email-row indicates if a message is cached within the browser.</li>
+
+  <li>When replying to a message the compose panel automatically pops up, and does not require a reload of the page.</li>
+
+
+  <br>
+  <li>Right-clicking on the messages will bring up a pop-up menu containing additional options.</li>
+  <p><img src="imgs/help/ajaxrclick.gif"></p>
+  <li>Pressing the up and down buttons will scroll through the messages in the currently selected mailbox.</li>
+  <br>
+  <li>To move messages, highlight the subject line of the message(s) you want to move, and drag it to your desired folder<br>
+  <p><img src="imgs/help/ajaxtrash.gif">&nbsp;</p>
+  </li>
+  <li>Columns for viewing email-messages and the addressbook can be automatically resized. Click the icon in the right-hand corner to choose which columns to display on the page.</li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,199 @@
+#calendar{
+    text-align: left;
+    padding: 20px;
+    padding-top: 0px;
+    padding-bottom: 20px;
+}
+.cal_mini_month_day {
+    height: 25px;
+    vertical-align: top;
+    padding-top: 0px;
+    padding-left: 2px;
+    width: 20px;
+    margin-top: 5px;
+    border-bottom: dotted 1px #ccc;
+    border-left: dotted 1px #ccc;
+}
+.cal_mini_month_day2 {
+    height: 25px;
+    vertical-align: top;
+    padding-top: 0px;
+    padding-left: 2px;
+    width: 20px;
+    margin-top: 5px;
+    border-bottom: solid 1px #fff;
+    border-left: solid 1px #fff;
+}
+.cal_month{
+    clear: both;
+}
+.cal_week_heading{
+    width: 60px;
+    border-left: solid 1px #ccc;
+    margin-bottom: 10px;
+    padding-left: 5px;
+    text-align: left;
+    border-bottom: solid 1px #ccc;
+}
+.cal_month_heading{
+    width: 70px;
+    border-left: solid 1px #ccc;
+    margin-bottom: 10px;
+    padding-left: 5px;
+    text-align: left;
+    border-bottom: solid 1px #ccc;
+}
+.cal_month_week_day {
+    height: 600px;
+    vertical-align: top;
+    padding-top: 10px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding-left: 10px;
+}
+.cal_links{
+    clear: both;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    font-weight: bold;
+}
+.cal_links a{
+    font-weight: normal;
+    padding: 5px;
+}
+.cal_day{
+    min-height: 80px;
+    vertical-align: top;
+    padding-top: 10px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding-left: 10px;
+    border-bottom: dotted 1px #ccc;
+    border-left: dotted 1px #ccc;
+}
+.cal_time{
+    width: 1%;
+    white-space: nowrap;
+    vertical-align: top;
+}
+.cal_month td{
+    max-width: 130px;
+    width: 130px;
+    min-width: 50px;
+    white-space: nowrap;
+    height: 130px;
+    vertical-align: top;
+    border-bottom: dotted 1px #ccc;
+    border-left: dotted 1px #ccc;
+    overflow: hidden;
+    padding: 5px;
+    font-size: 90%;
+    padding-top: 0px;
+}
+.cal_month th{
+    font-size: 80%;
+    color: #666;
+    padding: 5px;
+}
+.month_week_link{
+    padding-top: 5px;
+}
+.mini_month{
+    padding: 10px;
+}
+.cal_year td{
+    vertical-align: top;
+} 
+.cal_year td div table td{
+    padding: 5px;
+    font-size: 80%;
+    vertical-align: top;
+}
+.cal_link {
+    color: #ccc;
+}
+#event_table{
+    padding-left: 20px;
+    clear: both;
+}
+#event_table td{
+    vertical-align: top;
+    padding-right: 15px;
+}
+.month_event{
+    width: 130px;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 90%;
+    margin-top: 5px;
+}
+.week_event{
+    font-size: 90%;
+    margin-top: 5px 
+}
+.event_form{
+    margin-left: 30px;
+}
+.year_event{
+    margin-top: 3px;
+    display: block;
+    margin-left: 0px;
+    height: 6px;
+    text-decoration: none;
+    background-color: #ccc;
+}
+.day_event_title{
+    margin-bottom: 5px;
+    display: block;
+    font-size: 110%;
+}
+.time{
+    font-weight: bold;
+}
+.cal_links2{
+    float: right;
+    line-height: 150%;
+    text-align: right;
+}
+.cal_links2 a{
+    padding-left: 2px;
+    padding-right: 2px;
+    font-style: italic;
+}
+#cal_not_found{
+    clear: both;
+    margin-left: 50px;
+    padding-top: 50px;
+    font-size: 120%;
+    font-style: italic;
+
+}
+.list_title{
+    margin-bottom: 5px;
+}
+.list_title a{
+    font-size: 130%;
+}
+.list_date{
+    font-style: normal !important;
+    padding-right: 10px;
+    font-size: 110%;
+}
+.list_meta{
+    font-style: italic;
+}
+.list_detail{
+    margin-bottom: 15px;
+    margin-top: 5px;
+}
+.empty_list{
+    text-align: center;
+    font-style: italic;
+    line-height: 150%;
+}
+img{
+    vertical-align: -40%;
+}
+#mailbox_title2{
+    clear: none;
+}

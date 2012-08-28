@@ -1,0 +1,125 @@
+/* compose page */
+
+#compose_page{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.address_fld{
+    width: 100%;
+    margin-right: 15px;
+    max-width: 640px;
+    padding-right: 4px;
+}
+.sright, .sleft{
+}
+.aright, .sleft, .aleft{
+    font-weight: bold;
+    font-size: 95%;
+    width: 1%;
+    white-space: nowrap;
+}
+#compose_form{
+    clear: both;
+}
+#compose_form table{
+    width: 100%;
+    max-width: 800px;
+    margin-left: 10px;
+}
+#compose_form table td{
+    padding-right: 15px;
+    padding-bottom: 10px;
+    vertical-align: bottom;
+}
+.sleft, #mleft, .aleft{
+    text-align: right;
+}
+#compose_form table td select, #compose_form table td input{
+    margin: 0px;
+}
+#compose_form table .mright, #compose_form table #mleft{
+    font-weight: bold;
+    font-size: 95%;
+    padding-top: 10px;
+    vertical-align: top;
+}
+#compose_form table .mright{
+    text-align: left;
+}
+#compose_form textarea{
+    padding: 4px;
+    padding-right: 0px;
+    height: 400px;
+    font-family: monspace;
+}
+#compose_page input {
+    margin-left: 30px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+#compose_form table td select{
+    padding-right: 0px;
+}
+#compose_form table #send_row input{
+    margin: 0px;
+}
+#compose_form table #send_row{
+    padding-right: 10px;
+    font-size: 115%;
+}
+#compose_contacts{
+    max-width: 640px;
+    clear: both;
+}
+#compose_form table td #compose_contacts select{
+    width: 100%;
+    font-size: 95%;
+}
+#compose_form table td #compose_contacts option{
+    font-size: 95%;
+    padding-bottom: 2px;
+}
+#compose_form table #contact_buttons input{
+    font-size: 80%;
+    padding: 0px;
+    padding: 1px;
+    margin-bottom: 5px;
+}
+#compose_form table #contact_buttons{
+    padding-top: 5px;
+    vertical-align: top;
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 20px;
+    width: 1%;
+}
+#contact_search{
+    text-align: left;
+    clear: both;
+}
+#contact_search .contact_search{
+    width: 200px;
+    padding: 1px;
+    font-size: 80%;
+}
+#contact_search input{
+    margin: 0px;
+    font-size: 80%;
+    margin-top: 5px;
+    padding: 0px;
+}
+#compose_form table td .priority{
+    width: 40px;
+    border: solid 1px #ccc;
+    font-size: 90%;
+}
+#compose_form table .compose_opts{
+    font-size: 90%;
+    text-align: left;
+    white-space: nowrap;
+}
+#compose_form table td .attach{
+}
+#contacts_select{
+    margin-left: 40px;
+}

@@ -1,0 +1,34 @@
+Message filters plugin
+
+This plugin provides the ability to move messages to other folders based
+on a set of filter rules. Suggestions and feedback are encouraged.
+
+- A filter management page where users can add/edit/delete filter rules and
+  manage filter options. It can be accessed from the mailbox options
+  section of the options page. A filter requires 3 possibly 4 options:
+
+     - pattern:    The string that if found triggers an action
+     - target:     The part or parts of the message to search for the pattern
+     - action:     One of three things: move; flag; delete;
+     - time frame: The age of the message can be combined with a pattern or
+                   used alone within a filter rule
+     - desination: The destination folder if action is set to "move"
+
+  Filters are executed in the order they are listed on the management page.
+  They can be rearranged with the "up" and "down" links in the list. It is
+  possible to execute both "flag" and "move" or "delete" filters on the same
+  messages by creating two filters and placing the "flag" action filter higher
+  in the list.
+
+- There are 2 additional options a user can set on the management page:
+     - Auto filter the INBOX whenever it is selected
+     - Show a link to the filter management page on the main Hastymail2 menu
+
+- Filters can be applied to any folder using the "Filter" button in the message
+  controls of the mailbox page.
+
+I plan to add support for filtering on a specified header field soon. Other
+suggestions for features are welcome.
+
+Jason Munro
+jason@hastymail.org

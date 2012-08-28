@@ -1,0 +1,12 @@
+This plugin adds enhanced navigation for digest messages. Most mailing lists
+support sending a single digest message daily instead of individual list messages.
+When a digest message is detected a message list of the subject, from address, and
+date are listed above the message body on the message view page. The subject is a
+link to load that particular message part. To enable this plugin uncomment or add
+the following to your hastymail2.conf file:
+
+plugin = message_digest
+
+Then rebuild your hastymail2.rc file and logout then back in to enable the plugin.
+You will need to enable the digest display on the options page in the message view
+section.

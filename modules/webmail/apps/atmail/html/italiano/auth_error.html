@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>Accesso Negato</title>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+</head>
+<body bgcolor="#ffffff" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor">
+
+<style>
+
+.sw {font-family:Verdana;font-size:13px;color:#000000;}
+.swr {font-family:Verdana;font-size:13px;color:#FF0000;}
+</style>
+
+<LINK href="javascript/style$this->browser.css" rel="stylesheet" type="text/css">
+
+<img src="$pref['logo_big_img']"><br>
+<h1>Autenticazione fallita</h1>
+
+<font class="swr">Accesso negato - La tua sessione non è valida</font>
+<font class="sw"> 
+<ul>
+  <li>Verifica che nome utente e password siano corretti.</li>
+  <li>Controlla che sul tuo browser siano abilitati i cookies</li>
+  <li>Verifica di non avere due sessioni attive con il medesimo account - solo una sessione può essere attiva</li>
+</ul>
+</font>
+
+<p><font class="swr">Se non puoi ancora accede al tuo account</font></p>
+<font class="sw">
+<ul>
+  <li>Clicca <a href="index.php?func=passutil">ho dimenticato la password</a> per recuperarla</li>
+  <li>Contatta l'amministratore $this->admin_email per avere assistenza</li>
+  <!--  if($pref['allow_Signup']) { -->
+  <li><a href="index.php?func=passutil">Crea un nuovo account</a></li>
+  <!-- } -->
+</ul>
+</font>
+</body>
+</html>
+
+

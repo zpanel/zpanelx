@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>WebMail help gids</title> 
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">       
+
+<script>
+function expandentry()	 {
+
+<!-- if($var['FirstLoad']) { -->
+if(parent.document.getElementById('calendar').style.display != 'block')
+parent.expand('reademail', parent.document.getElementById('readmsgimg') );
+<!-- } -->
+
+}
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" onload="expandentry()">
+
+<LINK href="javascript/stylehelp.css" rel="stylesheet" type="text/css">
+
+<font face="Verdana, Arial" size="+1">E-mail lezen</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">Help index</a> ]</font>
+
+<hr noshade>
+
+
+<p>Het e-mail venster bevat een lijst met berichten, ontvangen op uw e-mail account. Wanneer u met de muis over een bericht beweegt, zal er een pop-up menu verschijnen dat de eerste 160 karakters van het bericht toont. Om de volledige e-mail te kunnen lezen, dient u op de onderwerpregel te klikken.</p>
+<p>Via het voorkeuren-controlepaneel kunt u kiezen in welke volgorde u uw berichten wenst te lezen. U kunt uw berichten laten sorteren op onderwerp, op datum van ontvangst, op afzender of op ID. Verder kunt u ook berichten markeren om ze naar een externe mailbox te verplaatsen. Met deze functie kunt u o.a. berichten naar de map Verwijderde items verplaatsen of naar een alternatief voor PostvakIN.</p>
+<p>Vanuit het e-mail venster kunt u onmiddellijk naar de account-opties of naar het mappeninformatie-venster gaan om de instellingen van uw mailboxen te bekijken.</p>
+
+</font>
+</body>
+</html>

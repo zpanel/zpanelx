@@ -1,0 +1,634 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<HTML>
+<HEAD>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+    <TITLE>dcc.8</TITLE>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <STYLE type="text/css">
+        BODY {background-color:white; color:black}
+    </STYLE>
+</HEAD>
+<BODY>
+<PRE>
+<!-- Manpage converted by man2html 3.0.1 -->
+<B><A HREF="dcc.html">DCC(8)</A></B>                Distributed Checksum Clearinghouse                <B><A HREF="dcc.html">DCC(8)</A></B>
+
+
+</PRE>
+<H2><A NAME="NAME">NAME</A></H2><PRE>
+     <B>DCC</B> -- Distributed Checksum Clearinghouse
+
+
+</PRE>
+<H2><A NAME="DESCRIPTION">DESCRIPTION</A></H2><PRE>
+     The Distributed Checksum Clearinghouse or <B>DCC</B> is a cooperative, distrib-
+     uted system intended to detect "bulk" mail or mail sent to many people.
+     It allows individuals receiving a single mail message to determine that
+     many other people have received essentially identical copies of the mes-
+     sage and so reject or discard the message.
+
+     Source for the server, client, and utilities is available at Rhyolite
+     Software, LLC, http://www.rhyolite.com/dcc/ It is free for organizations
+     that do not sell spam or virus filtering services.
+
+   <A NAME="How-the-DCC-Is-Used"><B>How the DCC Is Used</B></A>
+     The DCC can be viewed as a tool for end users to enforce their right to
+     "opt-in" to streams of bulk mail by refusing bulk mail except from
+     sources in a "whitelist."  Whitelists are the responsibility of DCC
+     clients, since only they know which bulk mail they solicited.
+
+     The only false positives (mail marked as "bulk" by a DCC server that is
+     not) occur when one of the recipients of a message report it to a DCC
+     server as having been received many times or when the "fuzzy" checksums
+     of differing messages are the same.  The fuzzy checksums ignore aspects
+     of messages in order to compute identical checksums for substantially
+     identical messages.  The fuzzy checksums are designed to ignore only dif-
+     ferences that do not affect meanings.
+
+     It is not reasonable to worry about third parties reporting your incoming
+     or outgoing mail to a DCC server as bulk unless you give them copies.  If
+     you trust yourself and your correspondents to not report your mutual mail
+     as bulk, then false positives are not a concern.
+
+     A DCC server computes a lower bound on the total number of addresses to
+     which a message has been sent by counting checksums reported by DCC
+     clients.  Each client must decide which bulk messages are unsolicited and
+     what degree of "bulkiness" is objectionable.  Client DCC software marks,
+     rejects, or discards mail that is bulk according to local thresholds on
+     target addresses from DCC servers and unsolicited according to local
+     whitelists.  DCC servers are usually configured to receive reports from
+     as many targets as possible, including sources that cannot be trusted to
+     not exaggerate the number of copies of a message they see.  An end user
+     of a DCC client angry about receiving a message could report it with
+     10,000,000 separate DCC packets or with a single report claiming as many
+     targets.  An unprincipled user could subscribe a "spam trap" to mailing
+     lists such as those of the IETF or CERT.  Such abuses of the system area
+     not problems, because much legitimate mail is "bulk."  You cannot reject
+     bulk mail unless you have a whitelist of sources of legitimate bulk mail.
+
+     The DCC can also be used by an Internet service provider to detect bulk
+     mail coming from its own customers.  In such circumstances, the DCC
+     client might be configured to only log bulk mail from unexpected (not
+     white-listed) sources.  See the <B>-N</B> option for <B><A HREF="dccm.html">dccm(8)</A></B> or <B><A HREF="dccifd.html">dccifd(8)</A></B>.
+
+   <A NAME="What-the-DCC-Is"><B>What the DCC Is</B></A>
+     A DCC server accumulates counts of cryptographically secure checksums of
+     messages but not the messages themselves.  It exchanges reports of fre-
+     quently seen checksums with other servers.  DCC clients send reports of
+     checksums related to incoming mail to a nearby DCC server running
+     <B><A HREF="dccd.html">dccd(8)</A></B>.  Each report from a client includes the number of recipients for
+     the message.  A DCC server accumulates the reports and responds to
+     clients the the current total number of recipients for each checksum.
+     The client adds an SMTP header to incoming mail containing the total
+     counts.  It then discards or rejects mail that is not "white-listed" and
+     has counts that exceed local thresholds.
+
+     A special value of the number of addressees is "MANY" and means it is
+     certain that this message was bulk and might be unsolicited, perhaps
+     because it came from a locally blacklisted source or was addressed to an
+     invalid address or "spam trap."  The special value "MANY" is merely the
+     largest value that fits in the fixed sized field containing the count of
+     addressees.  That "infinity" accumulated total can be reached with mil-
+     lions of independent reports as well as with one or two.
+
+     DCC servers share or <I>flood</I> reports of checksums that are seen frequently.
+     Each server has its own threshold for determining "frequently," because a
+     message sent to 50 addressees in a domain with 60 mailboxes is more
+     likely to be unsolicited bulk advertising than a message sent to 100
+     addressees in a domain with 600,000 mailboxes.
+
+     To keep a server's database of checksums from growing without bound,
+     checksums are forgotten when they become old.  Checksums with large
+     totals are kept longer.  See <B><A HREF="dbclean.html">dbclean(8)</A></B>.
+
+     DCC clients pick the nearest working DCC server using a small shared or
+     memory mapped file, <I>/var/dcc/map</I>.  It contains server names, port num-
+     bers, passwords, recent performance measures, and so forth.  This file
+     allows clients to use quick retransmission timeouts and to waste little
+     time on servers that have temporarily stopped working or become unreach-
+     able.  The utility program <B><A HREF="cdcc.html">cdcc(8)</A></B> is used to maintain this file as well
+     as to check the health of servers.
+
+   <A NAME="X-DCC-Headers"><B>X-DCC Headers</B></A>
+     The DCC includes several programs used by clients.  <B><A HREF="dccm.html">Dccm(8)</A></B> uses the
+     sendmail "milter" interface to query a DCC server, add header lines to
+     incoming mail, and reject mail whose total checksum counts are high.
+     Dccm is intended to be run with SMTP servers using sendmail.
+
+     <B><A HREF="dccproc.html">Dccproc(8)</A></B> adds header lines to mail presented by file name or <I>stdin</I>, but
+     relies on other programs such as procmail to deal with mail with large
+     counts.  <B><A HREF="dccsight.html">Dccsight(8)</A></B> is similar but deals with previously computed check-
+     sums.
+
+     <B><A HREF="dccifd.html">Dccifd(8)</A></B> is similar to dccproc but is not run separately for each mail
+     message and so is far more efficient.  It receives mail messages via a
+     socket somewhat like dccm, but with a simpler protocol that can be used
+     by Perl scripts or other programs.
+
+     DCC SMTP header lines are of one of the forms:
+
+       X-DCC-brand-Metrics: client server-ID; bulk cknm1=count cknm2=count ...
+       X-DCC-brand-Metrics: client; whitelist
+     where
+        <I>whitelist</I> appears if the global or per-user <I>whiteclnt</I> file marks the
+                message as goo.
+        <I>brand</I>   is the "brand name" of the DCC server, such as "RHYOLITE".
+        <I>client</I>  is the name or IP address of the DCC client that added the
+                header line to the SMTP message.
+        <I>server-ID</I> is the numeric ID of the DCC server that the DCC client con-
+                tacted.
+        <I>bulk</I>    is present if one or more checksum counts exceeded the DCC
+                client's thresholds to make the message "bulky."
+        <I>bulk</I> <I>rep</I> is present if the DCC reputation of the IP address of the
+                sender is bad.
+        <I>cknm1</I>,<I>cknm2</I>,... are types of checksums:
+                  <I>IP</I>           address of SMTP client
+                  <I>env</I><B>_</B><I>From</I>     SMTP envelope value
+                  <I>From</I>         SMTP header line
+                  <I>Message-ID</I>   SMTP header line
+                  <I>Received</I>     last Received: header line in the SMTP message
+                  <I>substitute</I>   SMTP header line chosen by the DCC client, pre-
+                               fixed with the name of the header
+                  <I>Body</I>         SMTP body ignoring white-space
+                  <I>Fuz1</I>         filtered or "fuzzy" body checksum
+                  <I>Fuz2</I>         another filtered or "fuzzy" body checksum
+                  <I>rep</I>          DCC reputation of the mail sender or the esti-
+                               mated probability that the message is bulk.
+                Counts for <I>IP</I>, <I>env</I><B>_</B><I>From</I>, <I>From</I>, <I>Message-Id</I>, <I>Received</I>, and
+                <I>substitute</I> checksums are omitted by the DCC client if the
+                server says it has no information.  Counts for <I>Fuz1</I> and <I>Fuz2</I>
+                are omitted if the message body is empty or contains too lit-
+                tle of the right kind of information for the checksum to be
+                computed.
+        <I>count</I>   is the total number of recipients of messages with that check-
+                sum reported directly or indirectly to the DCC server.  The
+                special count "MANY" means that DCC client have claimed that
+                the message is directed at millions of recipients.  "MANY"
+                imples the message is definitely bulk, but not necessarily
+                unsolicited.  The special counts "OK" and "OK2" mean the
+                checksum has been marked "good" or "half-good" by DCC servers.
+
+     An example header line is:
+
+       X-DCC-RHYOLITE-Metrics: calcite.rhyolite.com 101; Body=16 Fuz1=16 Fuz2=16
+
+     DCC clients commonly accept any mail regardless of other checksum counts
+     with at least one "OK" or at least two "OK2" counts among IP, env_from,
+     and From checksum counts.  It is common to reject other mail with large
+     (including "MANY") counts among Received, Body, Fuz1, and Fuz2 counts.
+     It is generally unwise to reject mail based on the other counts.  For
+     example, "MAILER-DAEMON" appears to send vast quantities of mail.
+
+   <A NAME="Mailing-lists"><B>Mailing lists</B></A>
+     Legitimate mailing list traffic differs from spam only in being solicited
+     by recipients.  Each client should have a private whitelist.
+
+     DCC whitelists can also mark mail as unsolicited bulk using blacklist
+     entries for commonly forged marks such as "From: user@public.com".
+
+     Systems that send many essentially identical copies of solicited mail
+     such as "auto-responders," should be in the DCC servers whitelists
+     because their messages are often substantially identical and so "bulk."
+
+   <A NAME="White-and-Blacklists"><B>White and Blacklists</B></A>
+     DCC server and client whitelist files share a common format.  Server
+     files are always named <I>whitelist</I> and one is required to be in the DCC
+     home directory with the other server files.  Client whitelist files are
+     named <I>whiteclnt</I> in the DCC home directory or a subdirectory specified
+     with the <B>-U</B> option for <B><A HREF="dccm.html">dccm(8)</A></B>.  They specify mail that should not be
+     reported to a DCC server or that is unsolicited bulk.
+
+     A DCC whitelist file contains blank lines, comments starting with "#",
+     and lines of the forms:
+           <I>include</I> <I>pathname</I>
+           <I>option</I> <I>setting</I>
+           <I>count</I> <I>ip</I> <I>hostname</I>
+           <I>count</I> <I>env</I><B>_</B><I>From</I> <I>821-path</I>
+           <I>count</I> <I>env</I><B>_</B><I>To</I> <I>dest-mailbox</I>
+           <I>count</I> <I>From</I> <I>822-mailbox</I>
+           <I>count</I> <I>substitute</I> <I>header</I> <I>string</I>
+           <I>count</I> <I>Message-ID</I> <I>&lt;string&gt;</I>
+           <I>count</I> <I>Received</I> <I>string</I>
+           <I>count</I> <I>hex</I><B>_</B><I>type</I> <I>hex</I><B>_</B><I>cksum</I>
+     where
+           <I>include</I> can occur only in the main whitelist file.
+           <I>pathname</I> should be absolute or relative to the DCC home directory.
+           <I>option</I> <I>setting</I> can only be in a DCC client whitelist or whiteclnt
+               file and affect only <B><A HREF="dccifd.html">dccifd(8)</A></B> and <B><A HREF="dccm.html">dccm(8)</A></B>.  Settings in per-
+               user whiteclnt files override settings in the global file.
+               <I>Setting</I> can be
+                   <I>log-all</I>  to log all mail messages.
+                   <I>log-normal</I>
+                            to log only messages that meet the logging thresh-
+                            olds.
+                   <I>log-subdirectory-day</I>
+                   <I>log-subdirectory-hour</I>
+                   <I>log-subdirectory-minute</I>
+                            creates log files containing mail messages in sub-
+                            directories of the form <I>JJJ</I>, <I>JJJ/HH</I>, or <I>JJJ/HH/MM</I>
+                            where <I>JJJ</I> is the current julian day, <I>HH</I> is the
+                            current hour, and <I>MM</I> is the current minute.  See
+                            also the <B>-l</B> <I>logdir</I> option for <B><A HREF="dccm.html">dccm(8)</A></B>, <B><A HREF="dccifd.html">dccifd(8)</A></B>,
+                            and <B><A HREF="dccproc.html">dccproc(8)</A></B>.
+                   <I>dcc-on</I>
+                   <I>dcc-off</I>  Control DCC filtering.  See the discussion of <B>-W</B>
+                            for <B><A HREF="dccm.html">dccm(8)</A></B> and <B><A HREF="dccifd.html">dccifd(8)</A></B>.
+                   <I>greylist-on</I>
+                   <I>greylist-off</I>
+                            to control greylisting.  Greylisting for other
+                            recipients in the same SMTP transaction can still
+                            cause greylist temporary rejections.  <I>greylist-off</I>
+                            in the main whiteclnt file.
+                   <I>greylist-log-on</I>
+                   <I>greylist-log-off</I>
+                            to control logging of greylisted mail messages.
+                   <I>DCC-reps-off</I>
+                   <I>DCC-reps-on</I>
+                            to honor or ignore DCC Reputations computed by the
+                            DCC server.
+                   <I>DNSBL-off</I>
+                   <I>DNSBL-on</I>
+                            honor or ignore results of DNS blacklist checks
+                            configured with <B>-B</B> for <B><A HREF="dccm.html">dccm(8)</A></B> and <B><A HREF="dccifd.html">dccifd(8)</A></B>.
+                   <I>MTA-first</I>
+                   <I>MTA-last</I>
+                            consider MTA determinations of (not) spam first so
+                            they can be overridden by <I>whiteclnt</I> files, or last
+                            so that they can override <I>whiteclnt</I> <I>files.</I>
+                   <I>forced-discard-ok</I>
+                   <I>forced-discard-nok</I>
+                            control whether <B><A HREF="dccm.html">dccm(8)</A></B> and <B><A HREF="dccifd.html">dccifd(8)</A></B> are allowed
+                            to can discard a message to one mailbox for which
+                            it is spam when it is not spam and must be deliv-
+                            ered to another mailbox.  This can happen if a
+                            mail message is addressed to two or more mailboxes
+                            with differing whitelists.  Discarding can be
+                            undesirable because false positives are not commu-
+                            nicated to mail senders.  To avoid discarding,
+                            <B><A HREF="dccm.html">dccm(8)</A></B> and <B><A HREF="dccifd.html">dccifd(8)</A></B> temporarily reject SMTP
+                            envelope <I>Rcpt</I> <I>To</I> values that involve differing
+                            files.  Also see the <I>SUBMIT</I> whiteclnt <I>count</I>
+                            described below.
+                   <I>threshold</I> <I>type,rej-thold</I>
+                            has the same effects as <B>-c</B> <I>type,rej-thold</I> for
+                            <B><A HREF="dccproc.html">dccproc(8)</A></B> or <B>-t</B> <I>type,rej-thold</I> for <B><A HREF="dccm.html">dccm(8)</A></B> and
+                            <B><A HREF="dccifd.html">dccifd(8)</A></B>.  It is useful only in per-user white-
+                            clnt files to override the global DCC checksum
+                            thresholds.
+               In the absence of explicit settings, the default in the main
+               whiteclnt file is equivalent to
+                     <I>option</I> <I>log-normal</I>
+                     <I>option</I> <I>dcc-on</I>
+                     <I>option</I> <I>greylist-on</I>
+                     <I>option</I> <I>greylist-log-on</I>
+                     <I>option</I> <I>DCC-reps-off</I>
+                     <I>option</I> <I>DNSBL-off</I>
+                     <I>MTA-last</I>
+                     <I>option</I> <I>forced-discard-nok</I>
+               The defaults for each recipient are controlled by the default
+               and explicitly set values in the main whiteclnt file.
+           <I>count</I> is null and assumed to be the same as on the previous line or
+               one of
+                   <I>MANY</I>  indicating millions of targets have received messages
+                         with that checksum.
+                   <I>OK</I>    if the message is OK.
+                   <I>OK2</I>   if it is "half OK."  Two <I>OK2</I> checksums associated
+                         with a message are equivalent to an <I>OK</I>.
+                   <I>MX</I>
+                   <I>MXDCC</I>
+                         marks an IP address or block of addresses that are
+                         SMTP MX servers for your mail system.  The DCC
+                         clients <B><A HREF="dccm.html">dccm(8)</A></B>, <B><A HREF="dccifd.html">dccifd(8)</A></B>, and <B><A HREF="dccproc.html">dccproc(8)</A></B> skip ini-
+                         tial Received: headers added by listed MX servers to
+                         determine the external sources of mail messages.
+                         Unsolicited bulk mail that has been forwarded through
+                         listed addresses is discarded by <B><A HREF="dccm.html">dccm(8)</A></B> and
+                         <B><A HREF="dccifd.html">dccifd(8)</A></B> as if with <B>-a</B> <I>DISCARD</I> instead of rejected.
+                         <I>MXDCC</I> marks addresses that are MX servers that run
+                         DCC clients.  The checksums for a mail message that
+                         has been forwarded through an address listed as MXDCC
+                         queried as if <B>-Q</B> had been used instead of reported.
+                   <I>SUBMIT</I>
+                         marks an IP address or CIDR block addresses of SMTP
+                         submission clients such as web browsers that cannot
+                         tolerate 4yz temporary rejections but that cannot be
+                         trusted to not send spam.  This does the equivalent
+                         of the whiteclnt <I>option</I> <I>forced-discard-ok</I>.
+           <I>hostname</I> is an
+                   address     IPv4 or IPv6.
+                   CIDR block  of IPv4 or IPv6 addresses in the standard form
+                               xxx.yyy.zzz.www/mm with mm limited for server
+                               whitelists to 16 for IPv4 or 112 for IPv6.
+                               There can be at most 64 CIDR blocks in a client
+                               whitelist.  CIDR blocks in server whitelists
+                               cannot be larger that 65,536 entries (old Class
+                               B).
+                   name        that will be converted to one or more IP
+                               addresses.
+           <I>dest-mailbox</I> is an RFC 821 address or a local user name.
+           <I>821-path</I> is an RFC 821 address.
+           <I>822-mailbox</I> is an RFC 822 address with optional name.
+           <I>header</I> is the name of an SMTP header such as "Sender" or the name
+               of one of two SMTP envlope values, "HELO" or "Mail_Host" for
+               the resolved host name from the <I>821-path</I> in the message.
+           <I>hex</I><B>_</B><I>type</I> is the string <I>hex</I> followed by a blank and one of the pre-
+               ceding checksum types or <I>body</I>, <I>Fuz1</I>, or <I>Fuz2</I>.
+           <I>hex</I><B>_</B><I>cksum</I> is a string of four hexadecimal numbers obtained from a
+               DCC log file.
+
+     A DCC server never shares or <I>floods</I> reports containing checksums marked
+     in its whitelist with OK or OK2 to other servers.  A DCC client does not
+     report or ask its server about messages with a checksum marked OK or OK2
+     in the client whitelist.  This is intended to allow a DCC client to keep
+     private mail so private that even its checksums are not disclosed.
+
+     Checksums of the IP address of the SMTP client sending a mail message are
+     practically unforgeable, because it is impractical for an SMTP client to
+     "spoof" its address or pretend to use some other IP address.  That would
+     make the IP address of the sender useful for white-listing, except that
+     the IP address of the SMTP client is often not available to users of
+     <B><A HREF="dccproc.html">dccproc(8)</A></B>.  In addition, legitimate mail relays make whitelist entries
+     for IP addresses of little use.  For example, the IP address from which a
+     message arrived might be that of a local relay instead of the home
+     address of a white-listed mailing list.
+
+     Envelope and header <I>From</I> values can be forged, so whitelist entries for
+     their checksums are not completely reliable.
+
+     Checksums of <I>env</I><B>_</B><I>To</I> values are never sent to DCC servers.  They are valid
+     in only <I>whiteclnt</I> files and used only by <B><A HREF="dccm.html">dccm(8)</A></B>, <B><A HREF="dccifd.html">dccifd(8)</A></B>, and other
+     DCC clients with access to the envelope <I>Rcpt</I> <I>To</I> value.  They are another
+     mechanism used by DCC clients to protect the privacy of some mail.
+
+   <A NAME="Greylists"><B>Greylists</B></A>
+     The DCC server, <B><A HREF="dccd.html">dccd(8)</A></B>, can be used to maintain a greylist database for
+     some DCC clients including <B><A HREF="dccm.html">dccm(8)</A></B> and <B><A HREF="dccifd.html">dccifd(8)</A></B>.  Greylisting involves
+     temporarily refusing mail from unfamiliar SMTP clients and is unrelated
+     to filtering with a Distributed Checksum Clearinghouse.
+     See http://projects.puremagic.com/greylisting/
+
+   <A NAME="Privacy"><B>Privacy</B></A>
+     Because sending mail is a less private act than receiving it, and because
+     sending bulk mail is usually not private at all and cannot be very pri-
+     vate, the DCC tries first to protect the privacy of mail recipients, and
+     second the privacy of senders of mail that is not bulk.
+
+     DCC clients necessarily disclose some information about mail they have
+     received.  The DCC database contains checksums of mail bodies, header
+     lines, and source addresses.  While it contains significantly less infor-
+     mation than is available by "snooping" on Internet links, it is important
+     that the DCC database be treated as containing sensitive information and
+     to not put the most private information in the DCC database.  Given the
+     contents of a message, one might determine whether that message has been
+     received by a system that subscribes to the DCC.  Guesses about the
+     sender and addressee of a message can also be validated if the checksums
+     of the message have been sent to a DCC server.
+
+     Because the DCC is distributed, organizations can operate their own DCC
+     servers, and configure them to share or "flood" only the checksums of
+     bulk mail that is not in local whitelists.
+
+     DCC clients should not report the checksums of messages known to be pri-
+     vate to a DCC server.  For example, checksums of messages local to a sys-
+     tem or that are otherwise known a priori to not be unsolicited bulk
+     should not be sent to a remote DCC server.  This can accomplished by
+     adding entries for the sender to the client's local whitelist file.
+     Client whitelist files can also include entries for email recipients
+     whose mail should not be reported to a DCC server.
+
+     Additional privacy protections are provided by the thresholds at which
+     DCC servers exchange or <I>flood</I> reports.  These thresholds are primarily
+     intended to reduce the traffic among DCC servers using the observation
+     that the vast majority of messages are sent to a handful of addressees
+     and so are useless to other DCC servers.  A DCC server's peer reporting
+     thresholds also ensure that checksums shared with peer DCC servers are
+     "bulk" and so intrinsically not private.
+
+   <A NAME="Security"><B>Security</B></A>
+     Whenever considering security, one must first consider the risks.  The
+     worst DCC security problems are unauthorized commands to a DCC service,
+     denial of the DCC service, and corruption of DCC data.  The worst that
+     can be done with remote commands to a DCC server is to turn it off or
+     otherwise cause it to stop responding.  The DCC is designed to fail
+     gracefully, so that a denial of service attack would at worst allow
+     delivery of mail that would otherwise be rejected.  Corruption of DCC
+     data might at worst cause mail that is already somewhat "bulk" by virtue
+     of being received by two or more people to appear have higher recipient
+     numbers.  Since all DCC users <I>must</I> "white-list" all sources of legitimate
+     bulk mail, this is also not a concern.  Such security risks should be
+     addressed, but only with defenses that don't cost more than the possible
+     damage from an attack..
+
+     The DCC must contend with senders of unsolicited bulk mail who resort to
+     unlawful actions to express their displeasure at having their advertising
+     blocked.  Because the DCC protocol is based on UDP, an unhappy advertiser
+     could try to flood a clearinghouse server with packets supposedly from
+     subscribers or non-subscribers.  DCC servers defend against that attack
+     by rate-limit requests from non-subscribers.
+
+     Also because of the use of UDP, clients must be protected against forged
+     answers to their queries.  Otherwise an unsolicited bulk mail advertiser
+     could send a stream of "not spam" answers to an SMTP client while simul-
+     taneously sending mail that would otherwise be rejected.  This is not a
+     problem for authenticated clients of the DCC because they share a secret
+     with the DCC.  Unauthenticated DCC clients do not share any secrets with
+     the DCC, except for unique and unpredictable bits in each query or report
+     sent to the DCC.  Therefore, DCC servers cryptographically sign answers
+     to unauthenticated clients with bits from the corresponding queries.
+     This protects against attackers that do not have access to the stream of
+     packets from the DCC client.
+
+     The passwords or shared secrets used in the DCC client and server pro-
+     grams are "cleartext" for several reasons.  In any shared secret authen-
+     tication system, at least one party must know the secret or keep the
+     secret in cleartext.  You could encrypt the secrets in a file, but
+     because they are used by programs, you would need a cleartext copy of the
+     key to decrypt the file somewhere in the system, making such a scheme
+     more expensive but no more secure than a file of cleartext passwords.
+     Asymmetric systems such as that used in UNIX allow one party to not know
+     the secrets, but they must be and are designed to be computationally
+     expensive when used in applications like the DCC that involve thousands
+     or more authentication checks per second.  Moreover, because of "dictio-
+     nary attacks," asymmetric systems are now little more secure than keeping
+     passwords in cleartext.  An adversary can compare the hash values of com-
+     binations of common words with /etc/passwd hash values to look for bad
+     passwords.  Worse, by the nature of a client/server protocol like that
+     used in the DCC or a UNIX shell login, clients must have the cleartext
+     password.  Since it is among the more numerous and much less secure
+     clients that adversaries would seek files of DCC passwords, it would be a
+     waste to complicate the DCC server with an asymmetric system like that
+     used by UNIX.
+
+     The DCC protocol is vulnerable to dictionary attacks to recover pass-
+     words.  An adversary could capture some DCC packets, and then check to
+     see if any of the 100,000 to 1,000,000 passwords in so called "cracker
+     dictionaries" applied to a packet generated the same signature.  This is
+     a concern only if DCC passwords are poorly chosen, such as any combina-
+     tion of words in an English dictionary.  There are ways to prevent this
+     vulnerability regardless of how badly passwords are chosen, but they are
+     computationally expensive and require additional network round trips.
+     Since DCC passwords are created and typed into files once and do not need
+     to be remembered by people, it is cheaper and quite easy to simply choose
+     good passwords that are not in dictionaries.
+
+   <A NAME="Reliability"><B>Reliability</B></A>
+     It is better to fail to filter unsolicited bulk mail than to fail to
+     deliver legitimate mail, so DCC clients fail in the direction of assuming
+     that mail is legitimate or even white-listed.
+
+     A DCC client sends a report or other request and waits for an answer.  If
+     no answer arrives within a reasonable time, the client retransmits.
+     There are many things that might result in the client not receiving an
+     answer, but the most important is packet loss.  If the client's request
+     does not reach the server, it is easy and harmless for the client to
+     retransmit.  If the client's request reached the server but the server's
+     response was lost, a retransmission to the same server would be misunder-
+     stood as a new report of another copy of the same message unless it is
+     detected as a retransmission by the server.  The DCC protocol includes
+     transactions identifiers for this purpose.  If the client retransmitted
+     to a second server, the retransmission would be misunderstood by the sec-
+     ond server as a new report of the same message.
+
+     Each request from a client includes a timestamp to aid the client in mea-
+     suring the round trip time to the server and to let the client pick the
+     closest server.  Clients monitor the speed of all of the servers they
+     know including those they are not currently using, and use the quickest.
+
+   <A NAME="Client-and-Server-IDs"><B>Client and Server-IDs</B></A>
+     Servers and clients use numbers or IDs to identify themselves.  ID 1 is
+     reserved for anonymous, unauthenticated clients.  All other IDs are asso-
+     ciated with a pair of passwords in the <I>ids</I> file, the current and next or
+     previous and current passwords.  Clients included their client IDs in
+     their messages.  When they are not using the anonymous ID, they digitally
+     sign their messages to servers with the first password associated with
+     their client-ID.  Servers treat messages with signatures that match nei-
+     ther of the passwords for the client-ID in their own <I>ids</I> file as if the
+     client had used the anonymous ID.
+
+     Each server has a unique <I>server-ID</I> less than 32768.  Servers use their
+     IDs to identify checksums that they <I>flood</I> to other servers.  Each server
+     expects local clients sending administrative commands to use the server's
+     ID and sign administrative commands with the associated password.
+
+     Server-IDs must be unique among all systems that share reports by "flood-
+     ing."  All servers must be told of the IDs all other servers whose
+     reports can be received in the local <I>/var/dcc/flod</I> file described in
+     <B><A HREF="dccd.html">dccd(8)</A></B>.  However, server-IDs can be mapped during flooding between inde-
+     pendent DCC organizations.
+
+     <I>Passwd-IDs</I> are server-IDs that should not be assigned to servers but used
+     to specify passwords used in the inter-server flooding protocol.  They
+     are used in publicly readable configuration files to specify passwords in
+     private files.
+
+     The client identified by a <I>client-ID</I> might be a single computer with a
+     single IP address, a single but multi-homed computer, or many computers.
+     Client-IDs are not used to identify checksum reports, but the organiza-
+     tion operating the client.  A client-ID need only be unique among clients
+     using a single server.  A single client can use different client-IDs for
+     different servers, each client-ID authenticated with a separate password.
+
+     An obscure but important part of all of this is that the inter-server
+     flooding algorithm depends on server-IDs and timestamps attached to
+     reports of checksums.  The inter-server flooding mechanism requires coop-
+     erating DCC servers to maintain reasonable clocks ticking in UTC.
+     Clients include timestamps in their requests, but as long as their time-
+     stamps are unlikely to be repeated, they need not be very accurate.
+
+   <A NAME="Installation-Considerations"><B>Installation Considerations</B></A>
+     DCC clients on a computer share information about which servers are cur-
+     rently working and their speeds in a shared memory segment.  This segment
+     also contains server host names, IP addresses, and the passwords needed
+     to authenticate known clients to servers.  That generally requires that
+     <B><A HREF="dccm.html">dccm(8)</A></B>, <B><A HREF="dccproc.html">dccproc(8)</A></B>, <B><A HREF="dccifd.html">dccifd(8)</A></B>, and <B><A HREF="cdcc.html">cdcc(8)</A></B> execute with an UID that can
+     write to the DCC home directory and its files.  The sendmail interface,
+     dccm, is a daemon that can be started by an "rc" or other script already
+     running with the correct UID.  The other two, dccproc and cdcc need to be
+     set-UID because they are used by end users.  They relinquish set-UID
+     privileges when not needed.
+
+     Files that contain cleartext passwords including the shared file used by
+     clients must be readable only by "owner."
+
+     The data files required by a DCC can be in a single "home" directory,
+     often <I>/var/dcc</I>.  Distinct DCC servers can run on a single computer, pro-
+     vided they use distinct UDP port numbers and home directories.  It is
+     possible and convenient for the DCC clients using a server on the same
+     computer to use the same home directory as the server.
+
+     The DCC source distribution includes sample control files.  They should
+     be modified appropriately and then copied to the DCC home directory.
+     Files that contain cleartext passwords must not be publicly readable.
+
+     The DCC source includes "feature" m4 files to configure sendmail to use
+     <B><A HREF="dccm.html">dccm(8)</A></B> to check a DCC server about incoming mail.
+
+     See also the INSTALL.txt or <A HREF="INSTALL.html">INSTALL.html</A> file.
+
+   <A NAME="Client-Installation"><B>Client Installation</B></A>
+     Installing a DCC client starts with obtaining or compiling program bina-
+     ries for the client server data control tool, <B><A HREF="cdcc.html">cdcc(8)</A></B>.  Installing the
+     sendmail DCC interface, <B><A HREF="dccm.html">dccm(8)</A></B>, or <B><A HREF="dccproc.html">dccproc(8)</A></B>, the general or
+     <B>procmail(1)</B> interface is the main part of the client installation.  Con-
+     necting the DCC to sendmail with dccm is most powerful, but requires
+     administrative control of the system running sendmail.
+
+     As noted above, cdcc and dccproc should be set-UID to a suitable UID.
+     Root or 0 is thought to be safe for both, because they are careful to
+     release privileges except when they need them to read or write files in
+     the DCC home directory.  A DCC home directory should be created, often in
+     <I>/var/dcc</I>.  It must be owned and writable by the UID to which cdcc is set.
+
+     After the DCC client programs have been obtained, contact the operator(s)
+     of the chosen DCC server(s) to obtain each server's hostname, port num-
+     ber, and a <I>client-ID</I> and corresponding password.  No client-IDs or pass-
+     words are needed touse DCC servers that allow anonymous clients.  Use the
+     <I>load</I> or <I>add</I> commands of cdcc to create a <I>map</I> file in the DCC home direc-
+     tory.  It is usually necessary to create a client whitelist file of the
+     format described above.  To accommodate users sharing a computer but not
+     ideas about what is solicited bulk mail, the client whitelist file can be
+     any valid path name and need not be in the DCC home directory.
+
+     If dccm is chosen, arrange to start it with suitable arguments before
+     sendmail is started.  See the <I>homedir/dcc</I><B>_</B><I>conf</I> file and the <I>misc/rcDCC</I>
+     script in the DCC source.  The procmail DCCM interface, <B><A HREF="dccproc.html">dccproc(8)</A></B>, can
+     be run manually or by a <B>procmailrc(5)</B> rule.
+
+   <A NAME="Server-Installation"><B>Server Installation</B></A>
+     The DCC server, <B><A HREF="dccd.html">dccd(8)</A></B>, also requires that the DCC home directory exist.
+     It does not use the client shared or memory mapped file of server
+     addresses, but it requires other files.  One is the <I>ids</I> file of client-
+     IDs,  server-IDs, and corresponding passwords.  Another is a <I>flod</I> file of
+     peers that send and receive floods of reports of checksums with large
+     counts.  Both files are described in <B><A HREF="dccd.html">dccd(8)</A></B>.
+
+     The server daemon should be started when the system is rebooted, probably
+     before sendmail.  See the <I>misc/rcDCC</I> and <I>misc/start-dccd</I> files in the DCC
+     source.
+
+     The database should be cleaned regularly with <B><A HREF="dbclean.html">dbclean(8)</A></B> such as by run-
+     ning the crontab job that is in the misc directory.
+
+
+</PRE>
+<H2><A NAME="SEE-ALSO">SEE ALSO</A></H2><PRE>
+     <B><A HREF="cdcc.html">cdcc(8)</A></B>, <B><A HREF="dbclean.html">dbclean(8)</A></B>, <B><A HREF="dcc.html">dcc(8)</A></B>, <B><A HREF="dccd.html">dccd(8)</A></B>, <B><A HREF="dccifd.html">dccifd(8)</A></B>, <B><A HREF="dccm.html">dccm(8)</A></B>, <B><A HREF="dccproc.html">dccproc(8)</A></B>,
+     <B><A HREF="dblist.html">dblist(8)</A></B>, <B><A HREF="dccsight.html">dccsight(8)</A></B>, <B>sendmail(8)</B>.
+
+
+</PRE>
+<H2><A NAME="HISTORY">HISTORY</A></H2><PRE>
+     The Distributed Checksum Clearinghouse is based on an idea of Paul Vixie
+     with code designed and written at Rhyolite Software starting in 2000.
+     This document describes DCC version 1.3.61.
+
+                              September 25, 2007
+</PRE>
+<HR>
+<ADDRESS>
+Man(1) output converted with
+<a href="http://www.oac.uci.edu/indiv/ehood/man2html.html">man2html</a>
+modified for the DCC $Date 2001/04/29 03:22:18 $
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>WebMail Help Guide</title> 
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">       
+
+<script>
+function expandentry()	 {
+
+<!-- if($var['FirstLoad']) { -->
+if(parent.document.getElementById('calendar').style.display != 'block')
+parent.expand('reademail', parent.document.getElementById('readmsgimg') );
+<!-- } -->
+
+}
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" onload="expandentry()">
+
+<LINK href="javascript/stylehelp.css" rel="stylesheet" type="text/css">
+
+<font face="Verdana, Arial" size="+1">Read Email</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">Help Index</a> ]</font>
+
+<hr noshade>
+
+
+<p>The email windows frame contains a list of messages received for your email account. Double click to read the message.</p>
+<p>Via the preferences control panel you can choose which order to read your email in. To sort the mailbox by subject, received date, sender and ID. Each message in the mailbox can be marked to be moved to an external mailbox; this function allows you to select messages to be moved to the Trash folder or to select a message to move into an alternate mailbox away from the main Inbox.</p>
+<p>Via the email window pane you can jump directly to the Options for the account, or move to the Folder information window to view settings for your mailboxes.</p>
+
+</font>
+</body>
+</html>

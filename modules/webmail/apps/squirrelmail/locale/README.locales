@@ -1,0 +1,53 @@
+SquirrelMail distributes translations separately from the main package.
+
+If you are using SquirrelMail from CVS, you can download translations with
+the following commands:
+
+cvs -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/squirrelmail login 
+cvs -z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/squirrelmail co locales
+
+If you are using a regular SquirrelMail release, translations should be
+available from the SquirrelMail download page:
+
+http://squirrelmail.org/download.php
+
+Packaged translations are distributed in archives named 
+
+xx_XX-{sm-version}-{release-date}.tar.gz 
+xx_XX-{sm-version}-{release-date}.tar.bz2
+xx_XX-{sm-version}-{release-date}.zip
+
+For example:
+es_ES-1.5.0-20031201.tar.gz should contain the Spanish translation of SquirrelMail
+1.5.0 strings released on December 01, 2003. Translation is packaged with tar and
+gzip.
+
+The all_locales-{sm-version}-{release-date}.{tar.gz|tar.bz2|zip} packages contain
+all available translations.
+
+The locales-{sm-version}-{release-date}-src.{tar.gz|tar.bz2|zip} packages contain
+all available SquirrelMail translations without compiled gettext strings. The
+compilelocales script that is included in package should create all required .mo
+files if you have the msgfmt program (this is useful if you want to create or
+update translation files yourself).
+
+The translation of SquirrelMail consists of:
+1. translated gettext strings (squirrelmail.po)
+2. compiled gettext strings (squirrelmail.mo)
+3.(optional) translated help files (*.hlp)
+4.(optional) translated images (sec_remove_*.png)
+
+Gettext translations should be placed in 
+locale/<language_country>/LC_MESSAGES/ directory.
+Help files are placed in help/<language_country>/ directory.
+
+For example:
+Spanish translated strings should go to locale/es_ES/LC_MESSAGES/squirrelmail.po
+and compiled strings go to locale/es_ES/LC_MESSAGES/squirrelmail.mo
+Spanish help files are stored in help/es_ES/ directory.
+
+Any questions about SquirrelMail translations can be directed to the SquirrelMail
+Internationalization (i18n) Mailinglist: squirrelmail-i18n@lists.sourceforge.net
+
+
+$Id: README.locales 7719 2004-07-01 13:36:26Z kink $

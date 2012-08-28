@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>Sync Utility für Outlook</title>
+<html lang="de"><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<LINK href="javascript/stylehelp.css" rel=stylesheet type=text/css>
+<font face="Verdana,Arial" size="+1">
+Sync Utility für Outlook</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">Hilfe Index</a> ]
+<hr noshade>
+
+<script>
+function expandentry()	 {
+
+<!-- if($var['FirstLoad']) { -->
+if(parent.document.getElementById('calendar').style.display != 'block')
+parent.expand('addressbook', parent.document.getElementById('addressbookimg'));
+<!-- } -->
+
+}
+</script>
+
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" onload="expandentry()">
+
+	<p><u>Was ist das $pref['brandname'] Sync Utility?</u>
+	<p>Dieses Utility erlaubt es komfortabel, Ihr WebMailkonto mit Outlook zu synchronisieren. Es ist möglich alle Adressbucheinträge in Outlook zu kopieren und von Outlook in das WebMail.
+
+	<br>
+	
+	<p><u>Wie synchronisiere ich meine Mails mit Outlook?</u>
+	 <p> Um WebMail mit Outlook zu synchronisieren, gehen Sie wie folgt vor:</ul>
+		<p><ol>
+		<li>Zuerst müssen Sie das @Mail Sync Installation Utility von folgendem Link herunterladen: <a href="http://atmail.com/websync/websync-53.exe">http://atmail.com/websync/websync-53.exe</a>
+		<li>In Microsoft Outlook, klicken Sie auf <b>Tools > Optionen</b><br>
+		</ol>
+		<img src = "imgs/help/atmailsync1.gif " border = 1 color = black>
+		
+		<ol><li>Dann ändern Sie die Konfiguration im Mail Sync Utility Panel. Klicken Sie auf <b>Tools > Optionen</b>, dann wählen Sie den Reiter @Mail Sync Konfiguration"<br>
+		</ol>
+		<img src = "imgs/help/atmailsync5.gif" border = 1 color = black><br><br>
+<ol>		<li>Speichern Sie alle Änderungen und verlassen Sie das Konteneinstellungsfenster.
+		</ol>
+
+	  <br><p><u>Wie synchronisiere ich meinen Webmail Postfach mit Outlook?</u> 
+	  <p>Nachdem Sie die Mailsynchronisation aktiviert haben (siehe oben), sollten Sie einen Button "@Mail synchronisieren" in ihrer Werkzeugleiste sehen:<br><br>
+	  <img src = "imgs/help/atmailsync4.gif" border = 1 color = black><br>
+	  <p>Mit klick auf die Schaltfläche synchronisiert sich Outlook mit Ihrem WebMail Postfach automatisch.
+
+</body>
+</html>

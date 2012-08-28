@@ -1,0 +1,134 @@
+# SpamAssassin basic config file
+#
+# Please don't modify this file as your changes will be overwritten with
+# the next update. Use @@LOCAL_RULES_DIR@@/local.cf instead.
+# See 'perldoc Mail::SpamAssassin::Conf' for details.
+#
+# <@LICENSE>
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to you under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at:
+# 
+#     http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# </@LICENSE>
+#
+###########################################################################
+
+# Default template. Try to keep it under 78 columns (inside the the dots below).
+#      ........................................................................
+clear_report_template
+report Spam detection software, running on the system "_HOSTNAME_", has
+report identified this incoming email as possible spam.  The original message
+report has been attached to this so you can view it (if it isn't spam) or label
+report similar future email.  If you have any questions, see
+report _CONTACTADDRESS_ for details.
+report 
+report Content preview:  _PREVIEW_
+report 
+report Content analysis details:   (_SCORE_ points, _REQD_ required)
+report
+report " pts rule name              description"
+report  ---- ---------------------- --------------------------------------------------
+report _SUMMARY_
+
+#      ........................................................................
+
+# A 'contact address' users should contact for more info. (replaces
+# _CONTACTADDRESS_ above if present)
+report_contact	@@CONTACT_ADDRESS@@
+
+###########################################################################
+
+# Unsafe-for-viewing message report template.
+#
+#             ......................................................................
+clear_unsafe_report_template
+unsafe_report The original message was not completely plain text, and may be unsafe to
+unsafe_report open with some email clients; in particular, it may contain a virus,
+unsafe_report or confirm that your address can receive spam.  If you wish to view
+unsafe_report it, it may be safer to save it to a file and open it with an editor.
+#             ......................................................................
+
+###########################################################################
+# Database configuration options.
+#
+# user_scores_dsn MUST be in the form:
+# DBI:databasetype:databasename:hostname:port
+# ex. DBI:mysql:spamassassin:localhost
+#
+# user_scores_sql_username is the authorized username to connect to DSN
+# user_scores_sql_password is the password for the database username
+
+#user_scores_dsn		DBI:mysql:spamassassin:localhost
+#user_scores_sql_username	spam
+#user_scores_sql_password	spamfilter
+
+##########################################################################
+# Headers to be added to mail (can be overriden by users in
+# ~/.spamassassin/user_prefs)
+# Make sure the header stays entirely on one line here
+
+clear_headers
+
+#X-Spam-Checker-Version: SpamAssassin 2.60-cvs (1.188-2003-05-24-exp)
+add_header all Checker-Version SpamAssassin _VERSION_ (_SUBVERSION_) on _HOSTNAME_
+
+#X-Spam-Flag: YES
+add_header spam Flag _YESNOCAPS_
+
+#X-Spam-Level: *************
+add_header all Level _STARS(*)_
+
+#X-Spam-Status: Yes, score=14.0 required=5.0 tests=BAYES_99,CALL_FREE
+#        DATE_IN_PAST_12_24,DCC_CHECK,DRASTIC_REDUCED,FROM_HAS_MIXED_NUMS
+#        FROM_HAS_MIXED_NUMS3,HOME_EMPLOYMENT,INVALID_DATE,INVALID_MSGID
+#        LINES_OF_YELLING,MSGID_HAS_NO_AT,NO_REAL_NAME,ONCE_IN_LIFETIME
+#        UNDISC_RECIPS autolearn=spam version=2.60-cvs
+add_header all Status "_YESNO_, score=_SCORE_ required=_REQD_ tests=_TESTS_ autolearn=_AUTOLEARN_ version=_VERSION_"
+
+###########################################################################
+# Default prefs values: users can override these in their 
+# ~/.spamassassin/user_prefs files.
+
+# How many points before a mail is considered spam.
+required_score           5
+
+# Mail using locales used in these country codes will not be marked
+# as being possibly spam in a foreign language.
+ok_locales              all
+
+# Mail using languages used in these country codes will not be marked
+# as being possibly spam in a foreign language.  This is an expensive
+# classification, so it is is disabled in init.pre by default.
+ifplugin Mail::SpamAssassin::Plugin::TextCat
+ok_languages            all
+endif # Mail::SpamAssassin::Plugin::TextCat
+
+# Mail which scores outside this range will be fed back into SpamAssassin's
+# learning system automatically, to train the Bayesian scanner.
+ifplugin Mail::SpamAssassin::Plugin::AutoLearnThreshold
+bayes_auto_learn_threshold_nonspam	0.1
+bayes_auto_learn_threshold_spam		12.0
+endif # Mail::SpamAssassin::Plugin::AutoLearnThreshold
+
+# Set this to 0 to turn off auto-learning.
+bayes_auto_learn			1
+
+# report_safe controls the markup of spam. If you set it to 0, the message
+# body of spam messages will not be modified
+report_safe           1
+
+# Some common prefs settings can be set here, to take effect site-wide
+# unless the user override them. See the user_prefs.template file for
+# explanations.
+
+

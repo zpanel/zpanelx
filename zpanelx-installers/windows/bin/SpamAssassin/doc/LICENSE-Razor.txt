@@ -1,0 +1,15 @@
+
+Razor2 Service Policy
+
+V2.0
+March 13, 2006
+
+Razor2 Service Policy
+
+Razor2 agents connect to the Cloudmark Collaborative Security
+Network to report spam and check for fingerprints. Cloudmark
+provides free and open access to the CCSN but reserves the right
+to deny access to anyone.
+
+If you have questions about Razor2 usage, please send them to
+razor2-usage@cloudmark.com.

@@ -1,0 +1,13 @@
+This is a beta version of a pop3 fetch plugin for Hastymail2. This plugin lets
+users setup information for pop3 email accounts and can fetch mail from those
+accounts and deliver them to the specified local IMAP folder. To enable the plugin
+add or uncomment the following in your hastymail2.conf file:
+
+plugin = pop_fetch
+
+Rebuild your hastymail2.rc file and logout then back in to enable the plugin.
+Pop3 accounts and plugin options can be set using the "fetch" link in the main menu.
+This is the first release of the plugin so testing and feedback is appreciated.
+
+Jason Munro
+jason@hastymail.org

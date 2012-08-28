@@ -1,0 +1,22 @@
+<?php
+$my_colors=array(
+"tool_bg"=>"#222244"
+,"tool_link"=>"#FFFFFF"
+,"folder_bg"=>"#222244"
+,"folder_link"=>"#FFFFFF"
+,"main_bg"=>"#f0f0f0"
+,"main_hilite"=>"#b1b1b9"
+,"main_text"=>"#000000"
+,"main_link"=>"#222222"
+,"main_head_bg"=>"#222244"
+,"main_head_txt"=>"#FFFFFF"
+,"main_darkbg"=>"#444466"
+,"main_light_txt"=>"#FFFFFF"
+,"quotes"=>"blue"
+,"font_family"=>"Verdana, Arial, Helvetica, sans-serif"
+,"font_size"=>"12"
+,"small_font_size"=>"10"
+,"menu_font_size"=>"12"
+,"folderlist_font_size"=>"12"
+);
+?>

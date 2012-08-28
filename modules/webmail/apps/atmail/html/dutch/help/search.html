@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Documentatie zoeken</title>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<LINK href="javascript/stylehelp.css" rel=stylesheet type=text/css>
+<font face="Verdana, Arial" size="+1"> Documentatie zoeken</font> [ <a href="parse.php?file=html/$this->Language/help/file.html">Help Index</a> ] 
+<hr noshade></head>
+<form method="post" action="search.php">
+<input type=hidden name="func" value="searchhelp">
+
+<table width="100%" border="0">
+
+<!-- if($var['matches']) { -->
+			<tr>
+			<td colspan=3>
+
+<b>Zoekresultaten voor:<i>$var['Keywords']</i></b>
+<p>
+Hieronder ziet u uw zoekresultaten. De meest relevante links staan bovenaan de lijst. Om uw zoekopdracht te verfijnen, kunt u meerdere zoekwoorden ingeven en duidelijk specifiëren waar moet worden gezocht.
+</p>
+
+<ul>
+			$var['matches']
+</ul>
+<hr noshade>
+			</td>
+			</tr>
+<!-- } -->
+
+  <tr> 
+              
+	<td colspan="3"><p>Gebruik het zoekformulier om sleutelwoorden in de @Mail documentatie te vinden. Geef hieronder uw zoektermen in en klik op Zoeken. Om uw zoekopdracht te verfijnen, kunt u meerdere sleutelwoorden ingeven en duidelijk specifiëren waar moet worden gezocht.<br><br></p>
+	  
+	</td>
+            </tr>
+            <tr> 
+              <td width="33%"> <font class="swb"> Zoektermen</font></td>
+              <td> 
+                <input class="form" name="keywords" size="40">
+              </td>
+              <td>
+                <input class="form" type="submit" name="Submit2" value="Search">
+              </td>
+            </tr>
+
+          </table> 
+
+</form>
+</body>
+</html>

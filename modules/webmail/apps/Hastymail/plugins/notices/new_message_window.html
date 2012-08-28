@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title id="title"></title>
+    <style type="text/css">
+    #message{
+        font-size: 20px;
+        text-align: center;
+        padding: 30px;
+    }
+    </style>
+    <script type="text/javascript">
+        window.onload = function() {
+            var title = window.opener.set_notice_title();
+            var notice = window.opener.set_notice_string();
+            document.title = title;
+            document.getElementById("message").innerHTML = notice;
+            document.body.style.color = window.opener.get_notice_fg();
+            document.body.style.backgroundColor = window.opener.get_notice_bg();
+            self.setTimeout("window.close()", 5000);
+            
+        };
+    </script>
+</head>
+<body id="body">
+    <div id="message"></div>
+</body>
+</html>

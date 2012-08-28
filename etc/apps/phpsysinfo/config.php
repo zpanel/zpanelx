@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 /**
  * PSI Config File
  *
@@ -13,6 +12,7 @@
  * @version   SVN: $Id: config.php.new 521 2011-11-06 17:29:25Z namiltd $
  * @link      http://phpsysinfo.sourceforge.net
  */
+ 
 // ********************************
 //        MAIN PARAMETERS
 // ********************************
@@ -266,4 +266,5 @@ define('PSI_UPS_PROGRAM', false);
  * See the following parameters in apcupsd.conf: NETSERVER, NISIP, NISPORT
  */
 define('PSI_UPS_APCUPSD_LIST', '127.0.0.1:3551');
+
 ?>

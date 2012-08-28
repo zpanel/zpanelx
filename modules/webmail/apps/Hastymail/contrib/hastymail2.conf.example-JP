@@ -1,0 +1,873 @@
+#hastymail2.conf
+
+# This is the "human readable" form of the hastymail configuration file.
+# After editing this file for your site you MUST run one of the included
+# install scripts, which will take these values and generate a hastymail2.rc
+# file. The resulting hastymail2.rc file is expected to be at /etc/hastymail/hastyamil2.rc
+# This setting can be changed by editing the index.php file in the hastymail source.
+# In index.php there are a few other setting in that file that cannot be 
+# stored in this configuration file so if you are looking for more 
+# advanced configuration abilities that file # might provide the solution.
+
+
+# GENERAL SETTINGS
+# ------------------------------------------------------------------------
+# These are the general settings for Hastymail, all are required.
+
+  # host_name
+  # ---------
+  # Host name of the website Hastymail is running on
+  # Leave blank to let Hastymail auto-detect this value
+
+host_name =
+
+  # url_base
+  # --------
+  # The relative path of the Hastymail install to the webserver document
+  # root. If the hastymail install resides at www.example.com/foo/ this
+  # value should be set to "url_base = /foo/"
+
+url_base = /hastymail2/
+
+  # http_prefix
+  # -----------
+  # Set to https if your site is running over SSL/TLS
+    
+http_prefix = http
+
+  # attachments directory
+  # ---------------------
+  # Absolute path to the attachments working directory. This is where
+  # attachments are stored temporarily for outgoing messages
+
+attachments_path = /var/hastymail2/attachments/
+
+  # settings_path
+  # -------------
+  # Absolute path to the settings directory. Unused if settings and contacts
+  # are being saved in the db
+
+settings_path = /var/hastymail2/user_settings/
+
+# IMAP SETTINGS
+# ------------------------------------------------------------------------
+# The following options are available to configure Hastymail to work with
+# your IMAP server. The IMAP protocol allows server software to have a variety
+# of configuration possibilities so review these carefully for correctness
+# with your IMAP server software.
+
+
+  # imap_port
+  # ---------
+  # The port on which your IMAP server is listening. Normally this is
+  # 143 unless you are using IMAPS which defaults to 993.
+
+imap_port = 143
+
+  # imap_server
+  # -----------
+  # Hostname or IP address of the IMAP server
+
+imap_server = localhost
+
+  # imap_read_only
+  # --------------
+  # When set to true this disables all write actions during IMAP
+  # communications.
+
+imap_read_only = false
+
+  # imap_ssl
+  # --------
+  # Set to true to enable IMAP over SSL/TLS. Don't forget to adjust
+  # the imap_port value if need be.
+
+imap_ssl = false
+
+  # imap_auth
+  # --------
+  # If set to false, plain LOGIN is used. Can also be set to "cram-md5"
+
+imap_auth = false
+
+  # imap_starttls
+  # -------------
+  # Set to true to enable STARTTLS logins. This requires PHP5
+
+imap_starttls = false
+
+  # imap_folder_prefix
+  # ------------------
+  # Some IMAP servers (notably UW) require a folder prefix to help
+  # the client find the users folders. In most cases this can be left
+  # blank. Some common defaults for notable IMAP servers:
+  #
+  # UW IMAP         mail/
+  # Cyrus           INBOX (or leave blank)
+  # Dovecot         leave blank
+  # Courier         INBOX 
+  
+imap_folder_prefix =
+
+  # imap_folder_exclude_hidden
+  # -------------------------
+  # If set to true any folder name returned from an IMAP LIST that
+  # begins with a "." is excluded from the folder list
+
+imap_folder_exclude_hidden = true
+
+  # imap_folder_delimiter_override
+  # -------------------------------
+  # IMAP folder delimiters are automatically determined from the IMAP
+  # LIST response. If you want to override what Hastymail finds there
+  # put the delimiter you want here, otherwise leave as false
+
+imap_folder_delimiter_override = false
+
+  # imap_folder_list_restricted
+  # -------------------------------
+  # Some IMAP servers, notably UW and EIMS, use a type of folder
+  # hierarchy that restricts a folder to containing either messages
+  # or other folders but not both. Set this to true to add the correct
+  # support for this on the folders management page
+
+imap_folder_list_restricted = false
+
+  # imap_use_folder_cache
+  # ---------------------
+  # Caching the folder list is almost always a good idea. Without the
+  # cache an expensive IMAP LIST command must be run on every page load.
+  # To disable change to false
+
+imap_use_folder_cache = true
+
+  # imap_use_uid_cache
+  # ------------------
+  # This caches the UIDS for a mailbox until a change in the state
+  # of the mailbox is registered. Without it an expensive IMAP SORT
+  # command must be run much more frequently. This cache "auto-prunes"
+  # to keep from growing overly large. It is recommended to leave this
+  # enabled for better performance, but to disable change to false
+
+imap_use_uid_cache = true
+
+  # imap_use_header_cache
+  # ---------------------
+  # Yet another level of caching, this option caches the headers for a
+  # page of messages in a mailbox. Like the UID cache it auto-prunes. It
+  # restricts the amount of IMAP FETCH calls required for repeated views
+  # of a mailbox page. If the mailbox state changes the UID cache is
+  # invalidated which causes this cache to be reset. This option requires
+  # that imap_use_uid_cache be set to true in order to function properly
+ 
+imap_use_header_cache = true
+
+  # imap_display_name
+  # -----------------
+  # If you configure Hastymail to be able to connect to more than one IMAP
+  # server set this to the display name to use for the default server
+
+imap_display_name = Main
+
+  # imap_disable_sort_speedup
+  # -------------------------
+  # IMAP responses follow a very specific format, but they can contain
+  # entities such as literal sequences and quoted strings. Because of
+  # this Hastymail uses a special line parsing routine to correctly handle
+  # these entities. SORT responses are simply numeric values seperated
+  # by spaces so to save overhead Hastymail does not use the line parser
+  # for sort responses and instead uses a much simpler routine which makes
+  # sorting a folder MUCH faster. To disable this short cut and use the
+  # fully RFC compliant response parser for SORT commands set the following
+  # to true.
+
+imap_disable_sort_speedup = false
+
+  # imap_search_charset
+  # -------------------
+  # IMAP search commands can contain an optional charset. If you have problems
+  # with the search page or the filters plugin changing this might help.
+  # Available options are utf-8, ascii, or you can leave this blank to
+  # omit the charset option from searches completely.
+
+imap_search_charset = utf-8
+
+
+# ALTERNATE IMAP SERVER SETTINGS
+# ------------------------------------------------------------------------
+# Hastymail can support logging into multiple IMAP acccounts using the following
+# settings. Each additional IMAP server will be displayed in a dropdown box on
+# the login page. Additional IMAP servers should be defined with the "alt_n_"
+# prefix where n is the number of the server. You can configure as many IMAP
+# servers as you need this way by setting up "alt_1_" settings, then "alt_2_"
+# settings etc. Any setting NOT defined for an alternate IMAP server will
+# fallback to the default imap server setting.
+
+#alt_1_imap_port = 993
+#alt_1_imap_server = 127.0.0.1
+#alt_1_imap_read_only = false
+#alt_1_imap_ssl = true
+#alt_1_imap_auth = false
+#alt_1_imap_starttls = false
+#alt_1_imap_folder_prefix =
+#alt_1_imap_folder_exlude_hidden = false
+#alt_1_imap_folder_delimiter_override = false
+#alt_1_imap_use_folder_cache = true
+#alt_1_imap_use_uid_cache = true
+#alt_1_imap_use_header_cache = true
+#alt_1_imap_display_name = Main (IMAPS)
+
+
+# SMTP SETTINGS
+# ------------------------------------------------------------------------
+# Use the following to configure Hastymail to correctly communicate with
+# your SMTP server for sending out mail. 
+
+  # smtp_server
+  # ----------
+  # SMTP server ip address or hostname
+
+smtp_server = localhost
+
+  # smtp_port
+  # ---------
+  # Port number that your SMTP server is listening on. The default is 25
+
+smtp_port = 25
+
+  # smtp_tls
+  # --------
+  # If you want to connect to SMTP over SSL/TLS set the following to true.
+  # Don't forget to change the smtp_port above if need  be.
+
+smtp_tls = false
+
+  # smtp_starttls
+  # -------------
+  # Enable STARTTLS support from SMTP connections
+
+smtp_starttls = false
+
+  # smtp_authentication_type
+  # -------------------
+  # Available options are plain, login, cram-md5, external, or user or leave
+  # blank for no authentication. "user" is a special option that will give
+  # each user the ability to select the username, password and authentication
+  # mechanism to use when connecting to the SMTP server. If login, plain or
+  # cram-md5 is selected the users IMAP username and password are used for
+  # SMTP authentication.
+
+smtp_authentication_type =
+
+
+# DATABASE OPTIONS
+# ------------------------------------------------------------------------
+# Hastymail can use a database for settings and contacts storage. Plugins
+# can also use this database connection for plugin specific needs. To enable
+# database support in Hastymail configure the following options to the proper
+# values for your site. 
+
+
+  # enable_database
+  # ---------------
+  # If set to true all the following database options must be set. This
+  # option only enables the database connection, which can be used by
+  # plugins that require it or by setting contacts or settings to a storage
+  # type of "db".
+
+enable_database = false
+
+  # db_hostname
+  # -----------
+  # Hostname or IP address of the DB server
+    
+db_hostname = localhost
+
+  # db_username
+  # -----------
+  # Username used to authenticate to the DB server
+
+db_username = username
+
+  # db_password
+  # -----------
+  # Password used to authenticate to the DB server
+
+db_password = password
+
+  # db_database
+  # -----------
+  # Database name that Hastymail uses
+
+db_database = hastymail
+
+  # db_pear_type
+  # ------------
+  # This can be set to DB to use the older pear DB support or MDB2 to use
+  # the newer pear DB library.
+
+db_pear_type = DB
+
+  # db_type
+  # -------
+  # This can be set to mysql for Mysql db support or pgsql for Postgres
+  # support
+
+db_type = mysql
+
+  # db_persistent
+  # -------------
+  # Chnage this to true to enable the perisetent database connection flag for 
+  # the PEAR databse connection method
+
+db_persistent = false
+
+
+# SITE SETTINGS
+# ------------------------------------------------------------------------
+# Site specific settings control some basic features of Hastymail 
+
+  # site_settings_storage
+  # ---------------------
+  # Can be "file" which requires the settings_path to be properly set and to
+  # be writable by the webserver, or "db" which requires that the database
+  # settings above are correctly configured. The expected table structure
+  # for the db settings is in db/user_settings.mysql.sql
+
+site_settings_storage = file
+
+  # site_contacts_storage 
+  # ---------------------
+  # Can be "file" which uses the settings_path or "db" to use the database.
+  # The expected table structure can be found in db/contacts.mysql.sql
+
+site_contacts_storage = file
+
+  # site_random_session_id
+  # ----------------------
+  # This forces the session id to be randomized while logged in. It
+  # requires PHP5 
+ 
+site_random_session_id = false
+
+  # site_append_login_domain
+  # ------------------------
+  # If your IMAP server requires users to login with their full email
+  # address you can set this to the email domain and it will be
+  # automatically appended. Any login attempts in which the username
+  # already contains the "@" character will be ignored. To use the
+  # domain used to access the login page use %d to represent the domain.
+  # You will need to set the "percent_d_host" option below to use the %d
+  # substitution.
+
+site_append_login_domain = false
+
+  # percent_d_host
+  # --------------
+  # The default email address assigned to new users, and automatically
+  # appending the domain to the login name, both support using %d
+  # as a substitute for the domain they used to access the login page with.
+  # This setting defines what part of the hostname to EXCLUDE from the %d
+  # match. If a user logged into mail.hastymail.org and percent_d_host is
+  # left blank any use of %d will be replaced with "mail.hastymail.org".
+  # If percent_d_host is set to "mail" then %d would result in "hastymail.org"
+  # This setting is treated as a regular expression so you can use regex
+  # syntax. For example the settings (|www|mail) will cause %d to be set to
+  #   "hastymail.org" for the following login pages:
+  #   www.hastymail.org
+  #   hastymail.org
+  #   mail.hastymail.org
+  # If you don't use the %d option in your config this setting is unused
+
+percent_d_host = (|www|mail)
+
+  # site_ajax_enabled
+  # -----------------
+  # Our AJAX system is a lightweight set of enhancements to the basic
+  # application functionality. The Javascript required is less than 5Kb.
+  # If you want to disable it you can do so by changing this to false. Hastymail
+  # will work fine without the additional functionality.
+ 
+site_ajax_enabled = true
+
+  # site_default_lang
+  # -----------------
+  # The default language for users who don't have a language set in their
+  # options. Available languages are:
+  #
+  # ca_ES       Catalan
+  # en_US       English
+  # es_ES       Spanish
+  # fi_FI       Finnish
+  # fr_FR       French
+  # nl_NL       Dutch
+  # tr_TR       Turkish
+  # uk_UA       Ukranian
+  # zh_CN       Chinese
+  # ja_JP       Japanese
+
+site_default_lang = ja_JP
+
+  # site_default_timezone
+  # ---------------------
+  # The default timezome for users who don't have a timezome set in their
+  # options. This only works with PHP5. If you are running PHP4 it should
+  # be set to false
+
+site_default_timezone = false
+
+  # site_page_title
+  # ---------------
+  # This string will be appended to page titles after the unread count and
+  # current page info.
+
+page_title = Hastymail2
+
+  # search_max
+  # ----------
+  # The search page supports adding search terms with AND/OR. This
+  # setting sets the maximum number of search terms that can be added.
+  # This system only supports a maximum of 5, so this option can be set
+  # to anything from 1 to 5.
+ 
+search_max = 3
+
+  # html_squish
+  # -----------
+  # This removes any extra whitespace and newlines from the final XHTML
+  # before sending it to the browser. It makes the page slightly smaller
+  # at the cost of source readablity and a few string_replace functions.
+
+html_squish = true
+
+  # html_message_iframe
+  # -------------------
+  # poorly formatted HTML messages can break the Hastymail layout. To
+  # separate the message HTML from the interface using an iframe set
+  # the following to true. HTML message content is filtered in either case.
+
+html_message_iframe = true
+
+  # site_theme 
+  # This sets the theme to use when users are not logged in
+
+site_theme = default
+
+  # use_cookies
+  # ------------
+  # Hastymail can use the PHP trans-sid ability to do login sessions
+  # without cookies. To enable set the following to false.
+
+use_cookies = true
+
+  # cookie_name
+  # -----------
+  # This is the name of the cookie used to manage your PHP session when
+  # logged into hastymail.
+ 
+cookie_name = hastymail2
+
+  # site_key
+  # --------
+  # Hastymail needs to keep your IMAP password in the PHP session while you
+  # are logged in. Rather than keep it stored in clear text we use a lightweight
+  # RC4 encryption that uses the following key to encrypt user passwords
+  # It has been reported that keys over 93 characters do NOT work properly
+
+site_key = asdfasdfasdfasdfasdf
+
+  # site_logo
+  # ---------
+  # This is the logo that appears after the page icon and before the folder
+  # list in the upper left hand corner of every page
+
+site_logo = <span>Hm<span class="super">2</span></span>
+
+
+  # special folders
+  # ---------------
+  # The following 3 options define the special folders new users will
+  # be assigned the first time they login to Hastymail. If these folders
+  # do not exist they will NOT be created unless the corresponding
+  # "auto_create" option is set to true
+
+sent_folder   = Sent
+trash_folder  = Trash
+drafts_folder = Drafts
+
+  # auto create special folders
+  # ---------------------------
+  # The following 3 options will trigger a special folder to be
+  # auto-created. It MUST be assigned a folder name with the corresponding
+  # "special folder" option above
+
+auto_create_sent   = true
+auto_create_drafts = true
+auto_create_trash  = true
+
+  # utf7 folder names
+  # -----------------
+  # Set the following to true to convert folder names using the IMAP
+  # utf7 folder name standard. This requires PHP multi-byte (mb) support.
+
+utf7_folders = false
+
+  # basic http auth
+  # ---------------
+  # Set the following to true to enable basic HTTP authentication.
+  # By default the username and password are decoded directly from the
+  # HTTP headers. To use values exposed to the PHP $_SERVER array instead
+  # set the http_auth_username and http_auth_password settings to the
+  # names in the $_SERVER array to use. 
+
+basic_http_auth = false
+# http_auth_username = PHP_AUTH_USER
+# http_auth_password = PHP_AUTH_PW
+
+  # logout_url
+  # ----------
+  # Set the following to a URL to redirect users to after they logout
+  # of Hastymail2. Leave as false to use the default logout/login page.
+  # The logout_url must be a complete URL, including the leading http://
+
+
+logout_url = false
+
+
+# PLUGINS
+# ------------------------------------------------------------------------
+# Every enabled plugin should be listed on a single line preceded by plugin =.
+# Plugin information is cached during login so adding and removing plugins
+# requires users to logout then back in to see the changes
+
+# example plugin with lost of comments
+#plugin = hello_world
+
+# Adds 3 javascript warning options to the compose page
+plugin = compose_warning 
+
+# adds a custom header option to the compose page (very basic)
+#plugin = custom_headers
+
+# adds a basic calender app to the menu (no scheduling support yet)
+#plugin = calendar
+
+# adds a "compose with HTML" option on the options page and replaces
+# the textarea on the compose page with tinymce
+#plugin = html_mail
+
+# adds support to integrate an LDAP addressbook into the compose page
+#plugin = ldap_addressbook
+
+# adds the ability to filter messages to other folders based on content
+#plugin = filters
+
+# add the ability to log activity with many different options
+#plugin = logger
+
+# add the ability to play a sound file or pop open a window when a new
+# message arrives
+#plugin =  notices
+
+# adds an rss/atom news feed page
+#plugin = news
+
+
+# THEMES
+# ------------------------------------------------------------------------
+# Every enabled theme should be listed on a single line precded by theme =.
+# Themes have 3 attributes: css, icons, and templates in that order.
+# Each should be listed after the theme name separated by commas. If any
+# attributes are missing they default to false.
+
+theme = default,true,true,true
+theme = green,true,true,false
+theme = buuf,true,true,false
+theme = buuf_deuce,true,true,false
+theme = dark,true,true,false
+theme = albook_sepia,true,true,true
+theme = aqua,true,true,false
+
+
+# DEBUG
+# ------------------------------------------------------------------------
+# If you are having problems getting Hastymail configured or working on
+# development the following debug options are available. These output
+# debug information to the logged in user so should NOT be enabled on
+# production setups. All debug output appears below the main Hastymail
+# page.
+
+
+  # show_imap_debug
+  # ---------------
+  # This will output a list of IMAP commands and the single line tagged
+  # response from the IMAP server. It includes a time offset from the last
+  # IMAP response/command so can also be used to track down performance
+  # bottlenecks. If you can't login to Hastymail and think your configuration
+  # is correct set this to true and see if it provides any clues
+ 
+show_imap_debug = false
+
+  # show_full_debug
+  # ---------------
+  # This option is only use if show_imap_debug is set to true. When set to
+  # true it will add the entire IMAP response to the debug output (can be quite
+  # large!) as well as additional debugging information.
+
+show_full_debug = false
+
+  # show_cache_usage
+  # ----------------
+  # This outputs a small estimation of the amount of memory being used by
+  # the uid and header cache as well as the estimated PHP memory usage if
+  # available.
+
+show_cache_usage = false
+
+  # db_debug
+  # --------
+  # This causes the database system to output debug information including
+  # general database configuration information as well as all the SQL issued
+  # during the page and any errors that were encountered. VERY handy for plugin
+  # development that uses the Hastymail database.
+
+db_debug = false
+
+
+# DEFAULT USER SETTINGS
+# ------------------------------------------------------------------------
+# New users, or users who have not saved any settings within Hastymail, will
+# have the following default settings when they login.
+
+
+  # GENERAL OPTIONS
+  # ----------------
+
+  # email address
+  # Use "%u" to include the users login name in the address
+  # If users login with a full email address just use %u to
+  # set that as the default. The %d option can be used to 
+  # insert the domain that the user logged into hastymail with.
+  # The "percent_d_host" option in the SITE SETTINGS section
+  # must be properly set for the %d option to work
+
+default_email_address = %u@hastymail.org
+
+  # theme name
+
+default_theme = default
+
+  # display mode, 1 is normal, 2 is "simple" mode
+  
+default_display_mode = 1
+
+  # timezone (PHP5 only) 
+
+default_timezone = Japan
+
+  # first page after login.
+
+default_first_page = mailbox
+
+  # font size % from the standard font size, which depends
+  # on the theme. The default theme standard font size is 10pt 
+
+default_font_size = 100%
+
+  # Interface language
+
+default_lang = ja_JP
+
+  # Show the folder list/tree 
+
+default_show_folder_list = false
+
+  # auto switch to simple mode when the browser is on a PDA/phone/text
+
+default_auto_switch_simple_mode = 1
+
+  # Show a javascript warning whenever a user is about to delete something
+
+default_enable_delete_warning = true
+
+  # expunge the INBOX when logging out
+
+default_expunge_on_exit = false
+
+  # time format for the clock
+
+default_time_format = h:i
+
+  # date format for the clock
+
+default_date_format = Y-m-d
+
+  # time format for message headers
+
+default_mailbox_date_format_2 = H:i:s
+
+  # date format for message headers
+
+default_mailbox_date_format = Y-m-d
+
+
+  # FOLDER OPTIONS
+  # ---------------
+  #
+  # See the special folders and auto create special folders options
+  # for the ability to define users initial Sent, Draft, and Trash
+  # folders
+
+  # folder list style. 1 is nested, 2 is flat
+
+default_folder_style = 1
+
+  # folder detail in the folder list and folder dropdown. 0 is no detail,
+  # 1 is unread messages only, and 2 is unread and total messages
+
+default_folder_detail = 1
+
+ # ajax update support for the folder list dropdown
+
+default_dropdown_ajax = true
+
+ # seconds between ajax updates to the folder dropdown or tree
+
+default_ajax_update_interval = 120
+
+  # ajax update support for the optional folder tree
+
+default_folder_list_ajax = false
+
+
+  # MESSAGE VIEW OPTIONS
+  # --------------------
+
+  # replace links in text messages to make them clickable
+
+default_text_links = false
+
+  # replace emails in text messages to make them clickable 
+
+default_text_email = false
+
+  # highlight quoted reply text when reading a message
+
+default_hl_reply = false
+
+  # font family used when reading a message
+
+default_font_family = monospace
+
+  # Show image attachment thumbnail previews (requires PHP GD support)
+
+default_image_thumbs = true
+
+ # show full message headers by default
+
+default_full_headers_default = false
+
+  # headers to be shown on the message view page
+
+default_small_headers = subject
+default_small_headers = from
+default_small_headers = date
+default_small_headers = to
+
+  # show html parts by default
+
+default_html_first = false
+
+  # show external images in HTML parts by default
+
+default_remote_image = false
+
+  # preselected message action for the move + navigation controls
+
+default_default_message_action = false
+
+
+  # MAILBOX VIEW OPTIONS
+  # --------------------
+
+  # number of messages visible on each mailbox page
+
+default_mailbox_per_page_count = 15
+
+  # show the messages at the bottom of the mailbox page view as well
+  # as on the top.
+
+default_mailbox_controls_bottom = false
+
+  # Display mailbox freeze option on the mailbox view
+
+default_mailbox_freeze = false
+
+  # always show expunge
+
+default_always_expunge = false
+
+  # only expunge selected
+
+default_selective_expunge = false
+
+  # page links above and below
+
+default_top_page_links = false
+
+
+  # NEW PAGE OPTIONS
+  # ----------------
+
+  # Folders to track for new messages. Each folder should have its own line.
+
+default_folder_check = INBOX
+
+  # New page refresh interval in seconds, 0 will disabled the automatic
+  # new mail page refresh.
+
+default_new_page_refresh = 60
+
+  # Hide folders on the new mail page when they have no unread mail
+
+default_hide_folder_on_empty = false
+
+
+  # COMPOSE OPTIONS
+  # ---------------
+
+  # outgoing text email format. 0 is fixed, 1 is flowed, and 2 is preformatted
+
+default_compose_text_format = 0
+
+  # outgoing text encoding. 0 is 8bit, 1 is printable-encoded, and 2 is base64
+
+default_compose_text_encoding = 0
+
+  # surpress the user_agent/x-mailer header on outgoing mesasges
+ 
+default_compose_hide_mailer = false
+
+  # Auto-save outgoing messages during compose in seconds. 0 means disabled
+
+default_compose_autosave = 120
+
+
+  # PLUGIN DEFAULTS
+  # -------------------------------
+
+  # Require confirmation when "send" is clicked on an outgoing messages
+
+default_compose_confirm_send = false
+
+  # Prompt for confirmation when "send" is clicked only if the subject is blank
+
+default_compose_confirm_subject = false
+
+  # Prompt for confirmation when exiting an in-process message
+
+default_compose_exit_warn = false
+
+  # compose using html format
+
+default_html_format_mail = false

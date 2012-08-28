@@ -1,0 +1,58 @@
+Message Translation
+
+If you have ever received a mail message from someone who is not in
+your country, you probably noticed that they used a different language
+than you. If you don't know their language, a translator might help you
+out.
+
+
+Features
+========
+
+* Multiple translation servers
+* Uses your language preference for setting up default translation options
+* You pick where you see the translation box
+* You decide which translation buttons you see
+
+
+Description
+===========
+
+This plugin lets you select, on a per-user basis, the translator you want
+to use.  It defaults to None.  It has different servers you can use, and
+it lists their strengths and limits with each one.  Also, there are
+multiple servers just in case one changes their interface or goes down.
+
+Since SquirrelMail is designed to have multiple translations of the text,
+this plugin takes your preference and will use it for selecting what to
+translate the text into.
+
+
+Future Work
+===========
+
+* Grab translation directly from server (need to send POST request directly)
+* Translate your outgoing message
+
+
+Servers
+=======
+
+Babelfish = babelfish.altavista.com
+Go.com = translator.go.com (disabled - service unavailable)
+Dictionary.com = www.dictionary.com/translate
+InterTran = tranexp.com
+GPLTrans = www.translator.cx (disabled - service unavailable)
+OteNet = systran.otenet.gr
+Promt = www.translate.ru
+Google Translate = www.google.com/translate
+
+Installation
+============
+
+Go back to the main directory, run configure and add the plugin.
+
+Some plugin settings can be adjusted by creating 
+config/translate_config.php or plugins/translate/config.php 
+configuration file. See plugins/translate/config_default.php and 
+plugins/translate/config_sample.php

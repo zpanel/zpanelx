@@ -1,0 +1,679 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 7.0.2" />
+<style type="text/css">
+/* Debug borders */
+p, li, dt, dd, div, pre, h1, h2, h3, h4, h5, h6 {
+/*
+  border: 1px solid red;
+*/
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a { color: blue; }
+a:visited { color: fuchsia; }
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
+tt {
+  color: navy;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  font-family: sans-serif;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  border-bottom: 2px solid silver;
+  padding-top: 0.5em;
+}
+
+div.sectionbody {
+  font-family: serif;
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+span#author {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+span#email {
+}
+span#revision {
+  font-family: sans-serif;
+}
+
+div#footer {
+  font-family: sans-serif;
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+div#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+div#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+div#preamble,
+div.tableblock, div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-right: 10%;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock > div.content {
+  padding-left: 2.0em;
+}
+div.quoteblock .attribution {
+  text-align: right;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 2px solid silver;
+}
+
+div.exampleblock > div.content {
+  border-left: 2px solid silver;
+  padding: 0.5em;
+}
+
+div.verseblock div.content {
+  white-space: pre;
+}
+
+div.imageblock div.content { padding-left: 0; }
+div.imageblock img { border: 1px solid silver; }
+span.image img { border-style: none; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: italic;
+}
+dd > *:first-child {
+  margin-top: 0;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.olist2 {
+  list-style-type: lower-alpha;
+}
+
+div.tableblock > table {
+  border-color: #527bbd;
+  border-width: 3px;
+}
+thead {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+tfoot {
+  font-weight: bold;
+}
+
+div.hlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+td.hlist1 {
+  vertical-align: top;
+  font-style: italic;
+  padding-right: 0.8em;
+}
+td.hlist2 {
+  vertical-align: top;
+}
+
+@media print {
+  div#footer-badges { display: none; }
+}
+include::./stylesheets/xhtml11-manpage.css[]
+/* Workarounds for IE6's broken and incomplete CSS2. */
+
+div.sidebar-content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+div.sidebar-title, div.image-title {
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 0.0em;
+  margin-bottom: 0.5em;
+}
+
+div.listingblock div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock-content {
+  padding-left: 2.0em;
+}
+
+div.exampleblock-content {
+  border-left: 2px solid silver;
+  padding-left: 0.5em;
+}
+</style>
+<title>gittutorial-2(7)</title>
+</head>
+<body>
+<div id="header">
+<h1>
+gittutorial-2(7) Manual Page
+</h1>
+<h2>NAME</h2>
+<div class="sectionbody">
+<p>gittutorial-2 -
+   A tutorial introduction to git: part two
+</p>
+</div>
+</div>
+<h2>SYNOPSIS</h2>
+<div class="sectionbody">
+<p>git *</p>
+</div>
+<h2>DESCRIPTION</h2>
+<div class="sectionbody">
+<p>You should work through <a href="gittutorial.html">gittutorial(7)</a>[A tutorial introduction to
+git] before reading this tutorial.</p>
+<p>The goal of this tutorial is to introduce two fundamental pieces of
+git's architecture--the object database and the index file--and to
+provide the reader with everything necessary to understand the rest
+of the git documentation.</p>
+</div>
+<h2>The git object database</h2>
+<div class="sectionbody">
+<p>Let's start a new project and create a small amount of history:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ mkdir test-project
+$ cd test-project
+$ git init
+Initialized empty Git repository in .git/
+$ echo 'hello world' &gt; file.txt
+$ git add .
+$ git commit -a -m "initial commit"
+Created initial commit 54196cc2703dc165cbd373a65a4dcf22d50ae7f7
+ create mode 100644 file.txt
+$ echo 'hello world!' &gt;file.txt
+$ git commit -a -m "add emphasis"
+Created commit c4d59f390b9cfd4318117afde11d601c1085f241</tt></pre>
+</div></div>
+<p>What are the 40 digits of hex that git responded to the commit with?</p>
+<p>We saw in part one of the tutorial that commits have names like this.
+It turns out that every object in the git history is stored under
+such a 40-digit hex name.  That name is the SHA1 hash of the object's
+contents; among other things, this ensures that git will never store
+the same data twice (since identical data is given an identical SHA1
+name), and that the contents of a git object will never change (since
+that would change the object's name as well).</p>
+<p>It is expected that the content of the commit object you created while
+following the example above generates a different SHA1 hash than
+the one shown above because the commit object records the time when
+it was created and the name of the person performing the commit.</p>
+<p>We can ask git about this particular object with the cat-file
+command. Don't copy the 40 hex digits from this example but use those
+from your own version. Note that you can shorten it to only a few
+characters to save yourself typing all 40 hex digits:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git cat-file -t 54196cc2
+commit
+$ git cat-file commit 54196cc2
+tree 92b8b694ffb1675e5975148e1121810081dbdffe
+author J. Bruce Fields &lt;bfields@puzzle.fieldses.org&gt; 1143414668 -0500
+committer J. Bruce Fields &lt;bfields@puzzle.fieldses.org&gt; 1143414668 -0500
+
+initial commit</tt></pre>
+</div></div>
+<p>A tree can refer to one or more "blob" objects, each corresponding to
+a file.  In addition, a tree can also refer to other tree objects,
+thus creating a directory hierarchy.  You can examine the contents of
+any tree using ls-tree (remember that a long enough initial portion
+of the SHA1 will also work):</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git ls-tree 92b8b694
+100644 blob 3b18e512dba79e4c8300dd08aeb37f8e728b8dad    file.txt</tt></pre>
+</div></div>
+<p>Thus we see that this tree has one file in it.  The SHA1 hash is a
+reference to that file's data:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git cat-file -t 3b18e512
+blob</tt></pre>
+</div></div>
+<p>A "blob" is just file data, which we can also examine with cat-file:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git cat-file blob 3b18e512
+hello world</tt></pre>
+</div></div>
+<p>Note that this is the old file data; so the object that git named in
+its response to the initial tree was a tree with a snapshot of the
+directory state that was recorded by the first commit.</p>
+<p>All of these objects are stored under their SHA1 names inside the git
+directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ find .git/objects/
+.git/objects/
+.git/objects/pack
+.git/objects/info
+.git/objects/3b
+.git/objects/3b/18e512dba79e4c8300dd08aeb37f8e728b8dad
+.git/objects/92
+.git/objects/92/b8b694ffb1675e5975148e1121810081dbdffe
+.git/objects/54
+.git/objects/54/196cc2703dc165cbd373a65a4dcf22d50ae7f7
+.git/objects/a0
+.git/objects/a0/423896973644771497bdc03eb99d5281615b51
+.git/objects/d0
+.git/objects/d0/492b368b66bdabf2ac1fd8c92b39d3db916e59
+.git/objects/c4
+.git/objects/c4/d59f390b9cfd4318117afde11d601c1085f241</tt></pre>
+</div></div>
+<p>and the contents of these files is just the compressed data plus a
+header identifying their length and their type.  The type is either a
+blob, a tree, a commit, or a tag.</p>
+<p>The simplest commit to find is the HEAD commit, which we can find
+from .git/HEAD:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ cat .git/HEAD
+ref: refs/heads/master</tt></pre>
+</div></div>
+<p>As you can see, this tells us which branch we're currently on, and it
+tells us this by naming a file under the .git directory, which itself
+contains a SHA1 name referring to a commit object, which we can
+examine with cat-file:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ cat .git/refs/heads/master
+c4d59f390b9cfd4318117afde11d601c1085f241
+$ git cat-file -t c4d59f39
+commit
+$ git cat-file commit c4d59f39
+tree d0492b368b66bdabf2ac1fd8c92b39d3db916e59
+parent 54196cc2703dc165cbd373a65a4dcf22d50ae7f7
+author J. Bruce Fields &lt;bfields@puzzle.fieldses.org&gt; 1143418702 -0500
+committer J. Bruce Fields &lt;bfields@puzzle.fieldses.org&gt; 1143418702 -0500
+
+add emphasis</tt></pre>
+</div></div>
+<p>The "tree" object here refers to the new state of the tree:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git ls-tree d0492b36
+100644 blob a0423896973644771497bdc03eb99d5281615b51    file.txt
+$ git cat-file blob a0423896
+hello world!</tt></pre>
+</div></div>
+<p>and the "parent" object refers to the previous commit:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git cat-file commit 54196cc2
+tree 92b8b694ffb1675e5975148e1121810081dbdffe
+author J. Bruce Fields &lt;bfields@puzzle.fieldses.org&gt; 1143414668 -0500
+committer J. Bruce Fields &lt;bfields@puzzle.fieldses.org&gt; 1143414668 -0500
+
+initial commit</tt></pre>
+</div></div>
+<p>The tree object is the tree we examined first, and this commit is
+unusual in that it lacks any parent.</p>
+<p>Most commits have only one parent, but it is also common for a commit
+to have multiple parents.   In that case the commit represents a
+merge, with the parent references pointing to the heads of the merged
+branches.</p>
+<p>Besides blobs, trees, and commits, the only remaining type of object
+is a "tag", which we won't discuss here; refer to <a href="git-tag.html">git-tag(1)</a>
+for details.</p>
+<p>So now we know how git uses the object database to represent a
+project's history:</p>
+<ul>
+<li>
+<p>
+"commit" objects refer to "tree" objects representing the
+    snapshot of a directory tree at a particular point in the
+    history, and refer to "parent" commits to show how they're
+    connected into the project history.
+</p>
+</li>
+<li>
+<p>
+"tree" objects represent the state of a single directory,
+    associating directory names to "blob" objects containing file
+    data and "tree" objects containing subdirectory information.
+</p>
+</li>
+<li>
+<p>
+"blob" objects contain file data without any other structure.
+</p>
+</li>
+<li>
+<p>
+References to commit objects at the head of each branch are
+    stored in files under .git/refs/heads/.
+</p>
+</li>
+<li>
+<p>
+The name of the current branch is stored in .git/HEAD.
+</p>
+</li>
+</ul>
+<p>Note, by the way, that lots of commands take a tree as an argument.
+But as we can see above, a tree can be referred to in many different
+ways--by the SHA1 name for that tree, by the name of a commit that
+refers to the tree, by the name of a branch whose head refers to that
+tree, etc.--and most such commands can accept any of these names.</p>
+<p>In command synopses, the word "tree-ish" is sometimes used to
+designate such an argument.</p>
+</div>
+<h2>The index file</h2>
+<div class="sectionbody">
+<p>The primary tool we've been using to create commits is "git commit
+-a", which creates a commit including every change you've made to
+your working tree.  But what if you want to commit changes only to
+certain files?  Or only certain changes to certain files?</p>
+<p>If we look at the way commits are created under the cover, we'll see
+that there are more flexible ways creating commits.</p>
+<p>Continuing with our test-project, let's modify file.txt again:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ echo "hello world, again" &gt;&gt;file.txt</tt></pre>
+</div></div>
+<p>but this time instead of immediately making the commit, let's take an
+intermediate step, and ask for diffs along the way to keep track of
+what's happening:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git diff
+--- a/file.txt
++++ b/file.txt
+@@ -1 +1,2 @@
+ hello world!
++hello world, again
+$ git add file.txt
+$ git diff</tt></pre>
+</div></div>
+<p>The last diff is empty, but no new commits have been made, and the
+head still doesn't contain the new line:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git diff HEAD
+diff --git a/file.txt b/file.txt
+index a042389..513feba 100644
+--- a/file.txt
++++ b/file.txt
+@@ -1 +1,2 @@
+ hello world!
++hello world, again</tt></pre>
+</div></div>
+<p>So "git diff" is comparing against something other than the head.
+The thing that it's comparing against is actually the index file,
+which is stored in .git/index in a binary format, but whose contents
+we can examine with ls-files:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git ls-files --stage
+100644 513feba2e53ebbd2532419ded848ba19de88ba00 0       file.txt
+$ git cat-file -t 513feba2
+blob
+$ git cat-file blob 513feba2
+hello world!
+hello world, again</tt></pre>
+</div></div>
+<p>So what our "git add" did was store a new blob and then put
+a reference to it in the index file.  If we modify the file again,
+we'll see that the new modifications are reflected in the "git diff"
+output:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ echo 'again?' &gt;&gt;file.txt
+$ git diff
+index 513feba..ba3da7b 100644
+--- a/file.txt
++++ b/file.txt
+@@ -1,2 +1,3 @@
+ hello world!
+ hello world, again
++again?</tt></pre>
+</div></div>
+<p>With the right arguments, git diff can also show us the difference
+between the working directory and the last commit, or between the
+index and the last commit:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git diff HEAD
+diff --git a/file.txt b/file.txt
+index a042389..ba3da7b 100644
+--- a/file.txt
++++ b/file.txt
+@@ -1 +1,3 @@
+ hello world!
++hello world, again
++again?
+$ git diff --cached
+diff --git a/file.txt b/file.txt
+index a042389..513feba 100644
+--- a/file.txt
++++ b/file.txt
+@@ -1 +1,2 @@
+ hello world!
++hello world, again</tt></pre>
+</div></div>
+<p>At any time, we can create a new commit using "git commit" (without
+the -a option), and verify that the state committed only includes the
+changes stored in the index file, not the additional change that is
+still only in our working tree:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git commit -m "repeat"
+$ git diff HEAD
+diff --git a/file.txt b/file.txt
+index 513feba..ba3da7b 100644
+--- a/file.txt
++++ b/file.txt
+@@ -1,2 +1,3 @@
+ hello world!
+ hello world, again
++again?</tt></pre>
+</div></div>
+<p>So by default "git commit" uses the index to create the commit, not
+the working tree; the -a option to commit tells it to first update
+the index with all changes in the working tree.</p>
+<p>Finally, it's worth looking at the effect of "git add" on the index
+file:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ echo "goodbye, world" &gt;closing.txt
+$ git add closing.txt</tt></pre>
+</div></div>
+<p>The effect of the "git add" was to add one entry to the index file:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git ls-files --stage
+100644 8b9743b20d4b15be3955fc8d5cd2b09cd2336138 0       closing.txt
+100644 513feba2e53ebbd2532419ded848ba19de88ba00 0       file.txt</tt></pre>
+</div></div>
+<p>And, as you can see with cat-file, this new entry refers to the
+current contents of the file:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git cat-file blob 8b9743b2
+goodbye, world</tt></pre>
+</div></div>
+<p>The "status" command is a useful way to get a quick summary of the
+situation:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD &lt;file&gt;..." to unstage)
+#
+#       new file: closing.txt
+#
+# Changed but not updated:
+#   (use "git add &lt;file&gt;..." to update what will be committed)
+#
+#       modified: file.txt
+#</tt></pre>
+</div></div>
+<p>Since the current state of closing.txt is cached in the index file,
+it is listed as "Changes to be committed".  Since file.txt has
+changes in the working directory that aren't reflected in the index,
+it is marked "changed but not updated".  At this point, running "git
+commit" would create a commit that added closing.txt (with its new
+contents), but that didn't modify file.txt.</p>
+<p>Also, note that a bare "git diff" shows the changes to file.txt, but
+not the addition of closing.txt, because the version of closing.txt
+in the index file is identical to the one in the working directory.</p>
+<p>In addition to being the staging area for new commits, the index file
+is also populated from the object database when checking out a
+branch, and is used to hold the trees involved in a merge operation.
+See the <a href="gitcore-tutorial.html">gitcore-tutorial(7)</a>[core tutorial] and the relevant man
+pages for details.</p>
+</div>
+<h2>What next?</h2>
+<div class="sectionbody">
+<p>At this point you should know everything necessary to read the man
+pages for any of the git commands; one good place to start would be
+with the commands mentioned in <a href="everyday.html">Everyday git</a>.  You
+should be able to find any unknown jargon in the
+<a href="gitglossary.html">gitglossary(7)</a>[Glossary].</p>
+<p>The <a href="user-manual.html">Git User's Manual</a> provides a more
+comprehensive introduction to git.</p>
+<p>The <a href="gitcvs-migration.html">gitcvs-migration(7)</a>[CVS migration] document explains how to
+import a CVS repository into git, and shows how to use git in a
+CVS-like way.</p>
+<p>For some interesting examples of git use, see the
+<a href="howto-index.html">howtos</a>.</p>
+<p>For git developers, the <a href="gitcore-tutorial.html">gitcore-tutorial(7)</a>[Core tutorial] goes
+into detail on the lower-level git mechanisms involved in, for
+example, creating a new commit.</p>
+</div>
+<h2>SEE ALSO</h2>
+<div class="sectionbody">
+<p><a href="gittutorial.html">gittutorial(7)</a>,
+<a href="gitcvs-migration.html">gitcvs-migration(7)</a>,
+<a href="gitcore-tutorial.html">gitcore-tutorial(7)</a>,
+<a href="gitglossary.html">gitglossary(7)</a>,
+<a href="everyday.html">Everyday git</a>,
+<a href="user-manual.html">The Git User's Manual</a></p>
+</div>
+<h2>GIT</h2>
+<div class="sectionbody">
+<p>Part of the <a href="git.html">git(1)</a> suite.</p>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 27-Jun-2008 08:26:24 UTC
+</div>
+</div>
+</body>
+</html>

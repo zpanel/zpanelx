@@ -1,0 +1,75 @@
+git-status(1)
+=============
+
+NAME
+----
+git-status - Show the working tree status
+
+
+SYNOPSIS
+--------
+'git-status' <options>...
+
+DESCRIPTION
+-----------
+Displays paths that have differences between the index file and the
+current HEAD commit, paths that have differences between the working
+tree and the index file, and paths in the working tree that are not
+tracked by git (and are not ignored by linkgit:gitignore[5]). The first
+are what you _would_ commit by running `git commit`; the second and
+third are what you _could_ commit by running `git add` before running
+`git commit`.
+
+The command takes the same set of options as `git-commit`; it
+shows what would be committed if the same options are given to
+`git-commit`.
+
+If there is no path that is different between the index file and
+the current HEAD commit (i.e., there is nothing to commit by running
+`git-commit`), the command exits with non-zero status.
+
+
+OUTPUT
+------
+The output from this command is designed to be used as a commit
+template comment, and all the output lines are prefixed with '#'.
+
+The paths mentioned in the output, unlike many other git commands, are
+made relative to the current directory if you are working in a
+subdirectory (this is on purpose, to help cutting and pasting). See
+the status.relativePaths config option below.
+
+
+CONFIGURATION
+-------------
+
+The command honors `color.status` (or `status.color` -- they
+mean the same thing and the latter is kept for backward
+compatibility) and `color.status.<slot>` configuration variables
+to colorize its output.
+
+If the config variable `status.relativePaths` is set to false, then all
+paths shown are relative to the repository root, not to the current
+directory.
+
+If `status.submodulesummary` is set to a non zero number or true (identical
+to -1 or an unlimited number), the submodule summary will be enabled and a
+summary of commits for modified submodules will be shown (see --summary-limit
+option of linkgit:git-submodule[1]).
+
+SEE ALSO
+--------
+linkgit:gitignore[5]
+
+Author
+------
+Written by Linus Torvalds <torvalds@osdl.org> and
+Junio C Hamano <junkio@cox.net>.
+
+Documentation
+--------------
+Documentation by David Greaves, Junio C Hamano and the git-list <git@vger.kernel.org>.
+
+GIT
+---
+Part of the linkgit:git[1] suite

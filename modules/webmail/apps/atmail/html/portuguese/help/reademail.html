@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>Guia de Ajuda do WebMail</title> 
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">       
+
+<script>
+function expandentry()	 {
+
+<!-- if($var['FirstLoad']) { -->
+if(parent.document.getElementById('calendar').style.display != 'block')
+parent.expand('reademail', parent.document.getElementById('readmsgimg') );
+<!-- } -->
+
+}
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" onload="expandentry()">
+
+<LINK href="javascript/stylehelp.css" rel="stylesheet" type="text/css">
+
+<font face="Verdana, Arial" size="+1">Ler Email</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">Índice de Ajuda</a> ]</font>
+
+<hr noshade>
+
+
+<p>A janela de email contem uma lista de mensagens recebidas pela sua conta de email - Movendo o mouse encima de uma mensagens específica, uma janelinha vai aparecer mostrando os 160 primeiros caracteres da mensangem. Para ler o email completo, clique no assunto da mensagem, isso abrirá ela inteira.</p>
+<p>Pelas prefeências no painel de controle você pode escolher qual ordem você deseja ordenar suas mensagens. Você pode selecionar ordenar por assunto, data de recebimento, remetente e id. Cada mensangem na caixa de mensagens pode ser marcada para ser movida para uma conta externa; essa função habilita você a selecionar as mensagens que deseja mover para a Lixeira ou mover para uma conta externa alternativa atravéz da pagina inicial do WebMail.</p>
+<p>Atravéz do painel de email, você pode ir diretamente para as opções da conta.</p>
+
+</font>
+</body>
+</html>

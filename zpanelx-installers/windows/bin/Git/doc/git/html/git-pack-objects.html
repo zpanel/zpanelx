@@ -1,0 +1,587 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 7.0.2" />
+<style type="text/css">
+/* Debug borders */
+p, li, dt, dd, div, pre, h1, h2, h3, h4, h5, h6 {
+/*
+  border: 1px solid red;
+*/
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a { color: blue; }
+a:visited { color: fuchsia; }
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
+tt {
+  color: navy;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  font-family: sans-serif;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  border-bottom: 2px solid silver;
+  padding-top: 0.5em;
+}
+
+div.sectionbody {
+  font-family: serif;
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+span#author {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+span#email {
+}
+span#revision {
+  font-family: sans-serif;
+}
+
+div#footer {
+  font-family: sans-serif;
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+div#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+div#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+div#preamble,
+div.tableblock, div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-right: 10%;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock > div.content {
+  padding-left: 2.0em;
+}
+div.quoteblock .attribution {
+  text-align: right;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 2px solid silver;
+}
+
+div.exampleblock > div.content {
+  border-left: 2px solid silver;
+  padding: 0.5em;
+}
+
+div.verseblock div.content {
+  white-space: pre;
+}
+
+div.imageblock div.content { padding-left: 0; }
+div.imageblock img { border: 1px solid silver; }
+span.image img { border-style: none; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: italic;
+}
+dd > *:first-child {
+  margin-top: 0;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.olist2 {
+  list-style-type: lower-alpha;
+}
+
+div.tableblock > table {
+  border-color: #527bbd;
+  border-width: 3px;
+}
+thead {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+tfoot {
+  font-weight: bold;
+}
+
+div.hlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+td.hlist1 {
+  vertical-align: top;
+  font-style: italic;
+  padding-right: 0.8em;
+}
+td.hlist2 {
+  vertical-align: top;
+}
+
+@media print {
+  div#footer-badges { display: none; }
+}
+include::./stylesheets/xhtml11-manpage.css[]
+/* Workarounds for IE6's broken and incomplete CSS2. */
+
+div.sidebar-content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+div.sidebar-title, div.image-title {
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 0.0em;
+  margin-bottom: 0.5em;
+}
+
+div.listingblock div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock-content {
+  padding-left: 2.0em;
+}
+
+div.exampleblock-content {
+  border-left: 2px solid silver;
+  padding-left: 0.5em;
+}
+</style>
+<title>git-pack-objects(1)</title>
+</head>
+<body>
+<div id="header">
+<h1>
+git-pack-objects(1) Manual Page
+</h1>
+<h2>NAME</h2>
+<div class="sectionbody">
+<p>git-pack-objects -
+   Create a packed archive of objects
+</p>
+</div>
+</div>
+<h2>SYNOPSIS</h2>
+<div class="sectionbody">
+<div class="verseblock">
+<div class="content"><em>git-pack-objects</em> [-q] [--no-reuse-delta] [--delta-base-offset] [--non-empty]
+        [--local] [--incremental] [--window=N] [--depth=N] [--all-progress]
+        [--revs [--unpacked | --all]*] [--stdout | base-name] &lt; object-list</div></div>
+</div>
+<h2>DESCRIPTION</h2>
+<div class="sectionbody">
+<p>Reads list of objects from the standard input, and writes a packed
+archive with specified base-name, or to the standard output.</p>
+<p>A packed archive is an efficient way to transfer set of objects
+between two repositories, and also is an archival format which
+is efficient to access.  The packed archive format (.pack) is
+designed to be self contained so that it can be unpacked without
+any further information, but for fast, random access to the objects
+in the pack, a pack index file (.idx) will be generated.</p>
+<p>Placing both in the pack/ subdirectory of $GIT_OBJECT_DIRECTORY (or
+any of the directories on $GIT_ALTERNATE_OBJECT_DIRECTORIES)
+enables git to read from such an archive.</p>
+<p><em>git-unpack-objects</em> command can read the packed archive and
+expand the objects contained in the pack into "one-file
+one-object" format; this is typically done by the smart-pull
+commands when a pack is created on-the-fly for efficient network
+transport by their peers.</p>
+<p>In a packed archive, an object is either stored as a compressed
+whole, or as a difference from some other object.  The latter is
+often called a delta.</p>
+</div>
+<h2>OPTIONS</h2>
+<div class="sectionbody">
+<dl>
+<dt>
+base-name
+</dt>
+<dd>
+<p>
+        Write into a pair of files (.pack and .idx), using
+        &lt;base-name&gt; to determine the name of the created file.
+        When this option is used, the two files are written in
+        &lt;base-name&gt;-&lt;SHA1&gt;.{pack,idx} files.  &lt;SHA1&gt; is a hash
+        of the sorted object names to make the resulting filename
+        based on the pack content, and written to the standard
+        output of the command.
+</p>
+</dd>
+<dt>
+--stdout
+</dt>
+<dd>
+<p>
+        Write the pack contents (what would have been written to
+        .pack file) out to the standard output.
+</p>
+</dd>
+<dt>
+--revs
+</dt>
+<dd>
+<p>
+        Read the revision arguments from the standard input, instead of
+        individual object names.  The revision arguments are processed
+        the same way as <a href="git-rev-list.html">git-rev-list(1)</a> with <tt>--objects</tt> flag
+        uses its <tt>commit</tt> arguments to build the list of objects it
+        outputs.  The objects on the resulting list are packed.
+</p>
+</dd>
+<dt>
+--unpacked
+</dt>
+<dd>
+<p>
+        This implies <tt>--revs</tt>.  When processing the list of
+        revision arguments read from the standard input, limit
+        the objects packed to those that are not already packed.
+</p>
+</dd>
+<dt>
+--all
+</dt>
+<dd>
+<p>
+        This implies <tt>--revs</tt>.  In addition to the list of
+        revision arguments read from the standard input, pretend
+        as if all refs under <tt>$GIT_DIR/refs</tt> are specified to be
+        included.
+</p>
+</dd>
+<dt>
+--include-tag
+</dt>
+<dd>
+<p>
+        Include unasked-for annotated tags if the object they
+        reference was included in the resulting packfile.  This
+        can be useful to send new tags to native git clients.
+</p>
+</dd>
+<dt>
+--window=[N]
+</dt>
+<dt>
+--depth=[N]
+</dt>
+<dd>
+<p>
+        These two options affect how the objects contained in
+        the pack are stored using delta compression.  The
+        objects are first internally sorted by type, size and
+        optionally names and compared against the other objects
+        within --window to see if using delta compression saves
+        space.  --depth limits the maximum delta depth; making
+        it too deep affects the performance on the unpacker
+        side, because delta data needs to be applied that many
+        times to get to the necessary object.
+        The default value for --window is 10 and --depth is 50.
+</p>
+</dd>
+<dt>
+--window-memory=[N]
+</dt>
+<dd>
+<p>
+        This option provides an additional limit on top of <tt>--window</tt>;
+        the window size will dynamically scale down so as to not take
+        up more than N bytes in memory.  This is useful in
+        repositories with a mix of large and small objects to not run
+        out of memory with a large window, but still be able to take
+        advantage of the large window for the smaller objects.  The
+        size can be suffixed with "k", "m", or "g".
+        <tt>--window-memory=0</tt> makes memory usage unlimited, which is the
+        default.
+</p>
+</dd>
+<dt>
+--max-pack-size=&lt;n&gt;
+</dt>
+<dd>
+<p>
+        Maximum size of each output packfile, expressed in MiB.
+        If specified,  multiple packfiles may be created.
+        The default is unlimited, unless the config variable
+        <tt>pack.packSizeLimit</tt> is set.
+</p>
+</dd>
+<dt>
+--incremental
+</dt>
+<dd>
+<p>
+        This flag causes an object already in a pack ignored
+        even if it appears in the standard input.
+</p>
+</dd>
+<dt>
+--local
+</dt>
+<dd>
+<p>
+        This flag is similar to <tt>--incremental</tt>; instead of
+        ignoring all packed objects, it only ignores objects
+        that are packed and not in the local object store
+        (i.e. borrowed from an alternate).
+</p>
+</dd>
+<dt>
+--non-empty
+</dt>
+<dd>
+<p>
+        Only create a packed archive if it would contain at
+        least one object.
+</p>
+</dd>
+<dt>
+--progress
+</dt>
+<dd>
+<p>
+        Progress status is reported on the standard error stream
+        by default when it is attached to a terminal, unless -q
+        is specified. This flag forces progress status even if
+        the standard error stream is not directed to a terminal.
+</p>
+</dd>
+<dt>
+--all-progress
+</dt>
+<dd>
+<p>
+        When --stdout is specified then progress report is
+        displayed during the object count and deltification phases
+        but inhibited during the write-out phase. The reason is
+        that in some cases the output stream is directly linked
+        to another command which may wish to display progress
+        status of its own as it processes incoming pack data.
+        This flag is like --progress except that it forces progress
+        report for the write-out phase as well even if --stdout is
+        used.
+</p>
+</dd>
+<dt>
+-q
+</dt>
+<dd>
+<p>
+        This flag makes the command not to report its progress
+        on the standard error stream.
+</p>
+</dd>
+<dt>
+--no-reuse-delta
+</dt>
+<dd>
+<p>
+        When creating a packed archive in a repository that
+        has existing packs, the command reuses existing deltas.
+        This sometimes results in a slightly suboptimal pack.
+        This flag tells the command not to reuse existing deltas
+        but compute them from scratch.
+</p>
+</dd>
+<dt>
+--no-reuse-object
+</dt>
+<dd>
+<p>
+        This flag tells the command not to reuse existing object data at all,
+        including non deltified object, forcing recompression of everything.
+        This implies --no-reuse-delta. Useful only in the obscure case where
+        wholesale enforcement of a different compression level on the
+        packed data is desired.
+</p>
+</dd>
+<dt>
+--compression=[N]
+</dt>
+<dd>
+<p>
+        Specifies compression level for newly-compressed data in the
+        generated pack.  If not specified,  pack compression level is
+        determined first by pack.compression,  then by core.compression,
+        and defaults to -1,  the zlib default,  if neither is set.
+        Add --no-reuse-object if you want to force a uniform compression
+        level on all data no matter the source.
+</p>
+</dd>
+<dt>
+--delta-base-offset
+</dt>
+<dd>
+<p>
+        A packed archive can express base object of a delta as
+        either 20-byte object name or as an offset in the
+        stream, but older version of git does not understand the
+        latter.  By default, git-pack-objects only uses the
+        former format for better compatibility.  This option
+        allows the command to use the latter format for
+        compactness.  Depending on the average delta chain
+        length, this option typically shrinks the resulting
+        packfile by 3-5 per-cent.
+</p>
+</dd>
+<dt>
+--threads=&lt;n&gt;
+</dt>
+<dd>
+<p>
+        Specifies the number of threads to spawn when searching for best
+        delta matches.  This requires that pack-objects be compiled with
+        pthreads otherwise this option is ignored with a warning.
+        This is meant to reduce packing time on multiprocessor machines.
+        The required amount of memory for the delta search window is
+        however multiplied by the number of threads.
+        Specifying 0 will cause git to auto-detect the number of CPU's
+        and set the number of threads accordingly.
+</p>
+</dd>
+<dt>
+--index-version=&lt;version&gt;[,&lt;offset&gt;]
+</dt>
+<dd>
+<p>
+        This is intended to be used by the test suite only. It allows
+        to force the version for the generated pack index, and to force
+        64-bit index entries on objects located above the given offset.
+</p>
+</dd>
+</dl>
+</div>
+<h2>Author</h2>
+<div class="sectionbody">
+<p>Written by Linus Torvalds &lt;torvalds@osdl.org&gt;</p>
+</div>
+<h2>Documentation</h2>
+<div class="sectionbody">
+<p>Documentation by Junio C Hamano</p>
+</div>
+<h2>SEE ALSO</h2>
+<div class="sectionbody">
+<p><a href="git-rev-list.html">git-rev-list(1)</a>
+<a href="git-repack.html">git-repack(1)</a>
+<a href="git-prune-packed.html">git-prune-packed(1)</a></p>
+</div>
+<h2>GIT</h2>
+<div class="sectionbody">
+<p>Part of the <a href="git.html">git(1)</a> suite</p>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 08-Jun-2008 22:46:51 UTC
+</div>
+</div>
+</body>
+</html>

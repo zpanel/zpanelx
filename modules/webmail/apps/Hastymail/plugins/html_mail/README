@@ -1,0 +1,10 @@
+This is the first version of a plugin to use Tiny MCE to compose HTML
+formatted mail within Hastymail. Tiny MCE is a nice cross platform
+WYSIWYG HTML editor. Tiny MCE is avilable here:
+
+http://tinymce.moxiecode.com/
+
+and is licensed under the LGPL 
+
+This plugin includes an unmodifed version of the Tiny MCE editor.
+

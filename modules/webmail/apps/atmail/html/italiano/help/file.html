@@ -1,0 +1,44 @@
+<title>Aiuto WebMail</title>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<LINK href="javascript/stylehelp.css" rel=stylesheet type=text/css>
+
+<font face="Verdana, Arial" size="+1">Aiuto WebMail</font>
+
+<hr noshade>
+<p><font face="Arial, Helvetica, Condensed" size="2">Con questo file di aiuto puoi imparare molto riguardo WebMail. Seleziona un argomento dalla lista qua sotto per ulteriori informazioni.</font></p>
+<ul>
+  <li><a href="parse.php?file=html/$this->Language/help/compose.html">Scrivi/Invia E-mail</a></li>
+  <li><a href="parse.php?file=html/$this->Language/help/reademail.html">Leggi Email</a></li>
+
+<!-- if($pref['allow_Calendar']) { -->
+ <li><a href="parse.php?file=html/$this->Language/help/calendar.html">L'Agenda</a></li>
+<!-- } -->
+
+<!-- if(file_exists("{$pref['install_dir']}/xhtml.php") && $pref['allow_Mobile']) { -->
+<li><a href="parse.php?file=html/$this->Language/help/wap.html">Wap E-mail</a></li>
+<!-- } -->
+
+<li><a href="parse.php?file=html/$this->Language/help/settings.html">Modifica delle impostazioni</a></li>
+  <li><a href="parse.php?file=html/$this->Language/help/addressbook.html">Rubrica</a></li>
+
+<!-- if($pref['allow_MultiAccounts']) { -->
+  <li><a href="parse.php?file=html/$this->Language/help/addpop3.html">Account POP3 multipli</a></li>
+<!-- } -->
+
+<!-- if($pref['allow_LDAP'] && extension_loaded('ldap')) { -->
+<li><a href="parse.php?file=html/$this->Language/help/ldap.html">Motore di ricerca LDAP</a></li>
+<!-- } -->
+
+<li><a href="parse.php?file=html/$this->Language/help/newmbox.html">Aiuto LDAP</a></li>
+
+<!-- if(file_exists($pref['aspell_dir']) || extension_loaded('pspell')) { -->
+<li><a href="parse.php?file=html/$this->Language/help/spell.html">Caratteristiche del Controllo Ortografico</a></li>
+<!-- } -->
+
+<!-- if($pref['allow_SMS'] && file_exists('sms.php')) { -->
+<li><a href="parse.php?file=html/$this->Language/help/sms.html">Aiuto SMS</a></li>
+<!-- } -->
+</ul>
+
+Con questo file di aiuto puoi imparare molto riguardo WebMail. Seleziona un argomento dalla lista qua sotto per ulteriori informazioni.

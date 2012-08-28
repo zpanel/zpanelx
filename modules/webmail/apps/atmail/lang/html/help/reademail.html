@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>$lang['lang_help_title']</title> 
+$lang['lang_Global_content_type']       
+
+<script>
+function expandentry()	 {
+
+<!-- if($var['FirstLoad']) { -->
+if(parent.document.getElementById('calendar').style.display != 'block')
+parent.expand('reademail', parent.document.getElementById('readmsgimg') );
+<!-- } -->
+
+}
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" onload="expandentry()">
+
+<LINK href="javascript/stylehelp.css" rel="stylesheet" type="text/css">
+
+<font face="Verdana, Arial" size="+1">$lang['lang_help_reademail_title']</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">$lang['lang_help_index']</a> ]</font>
+
+<hr noshade>
+
+
+<p>$lang['lang_help_reademail_text1']</p>
+<p>$lang['lang_help_reademail_text2']</p>
+<p>$lang['lang_help_reademail_text3']</p>
+
+</font>
+</body>
+</html>

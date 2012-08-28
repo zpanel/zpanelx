@@ -1,0 +1,865 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 7.0.2" />
+<style type="text/css">
+/* Debug borders */
+p, li, dt, dd, div, pre, h1, h2, h3, h4, h5, h6 {
+/*
+  border: 1px solid red;
+*/
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a { color: blue; }
+a:visited { color: fuchsia; }
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
+tt {
+  color: navy;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  font-family: sans-serif;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  border-bottom: 2px solid silver;
+  padding-top: 0.5em;
+}
+
+div.sectionbody {
+  font-family: serif;
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+span#author {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+span#email {
+}
+span#revision {
+  font-family: sans-serif;
+}
+
+div#footer {
+  font-family: sans-serif;
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+div#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+div#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+div#preamble,
+div.tableblock, div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-right: 10%;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock > div.content {
+  padding-left: 2.0em;
+}
+div.quoteblock .attribution {
+  text-align: right;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 2px solid silver;
+}
+
+div.exampleblock > div.content {
+  border-left: 2px solid silver;
+  padding: 0.5em;
+}
+
+div.verseblock div.content {
+  white-space: pre;
+}
+
+div.imageblock div.content { padding-left: 0; }
+div.imageblock img { border: 1px solid silver; }
+span.image img { border-style: none; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: italic;
+}
+dd > *:first-child {
+  margin-top: 0;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.olist2 {
+  list-style-type: lower-alpha;
+}
+
+div.tableblock > table {
+  border-color: #527bbd;
+  border-width: 3px;
+}
+thead {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+tfoot {
+  font-weight: bold;
+}
+
+div.hlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+td.hlist1 {
+  vertical-align: top;
+  font-style: italic;
+  padding-right: 0.8em;
+}
+td.hlist2 {
+  vertical-align: top;
+}
+
+@media print {
+  div#footer-badges { display: none; }
+}
+include::./stylesheets/xhtml11-manpage.css[]
+/* Workarounds for IE6's broken and incomplete CSS2. */
+
+div.sidebar-content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+div.sidebar-title, div.image-title {
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 0.0em;
+  margin-bottom: 0.5em;
+}
+
+div.listingblock div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock-content {
+  padding-left: 2.0em;
+}
+
+div.exampleblock-content {
+  border-left: 2px solid silver;
+  padding-left: 0.5em;
+}
+</style>
+<title>git-rebase(1)</title>
+</head>
+<body>
+<div id="header">
+<h1>
+git-rebase(1) Manual Page
+</h1>
+<h2>NAME</h2>
+<div class="sectionbody">
+<p>git-rebase -
+   Forward-port local commits to the updated upstream head
+</p>
+</div>
+</div>
+<h2>SYNOPSIS</h2>
+<div class="sectionbody">
+<div class="verseblock">
+<div class="content"><em>git-rebase</em> [-i | --interactive] [-v | --verbose] [-m | --merge]
+        [-s &lt;strategy&gt; | --strategy=&lt;strategy&gt;]
+        [-C&lt;n&gt;] [ --whitespace=&lt;option&gt;] [-p | --preserve-merges]
+        [--onto &lt;newbase&gt;] &lt;upstream&gt; [&lt;branch&gt;]
+<em>git-rebase</em> --continue | --skip | --abort</div></div>
+</div>
+<h2>DESCRIPTION</h2>
+<div class="sectionbody">
+<p>If &lt;branch&gt; is specified, git-rebase will perform an automatic
+<tt>git checkout &lt;branch&gt;</tt> before doing anything else.  Otherwise
+it remains on the current branch.</p>
+<p>All changes made by commits in the current branch but that are not
+in &lt;upstream&gt; are saved to a temporary area.  This is the same set
+of commits that would be shown by <tt>git log &lt;upstream&gt;..HEAD</tt>.</p>
+<p>The current branch is reset to &lt;upstream&gt;, or &lt;newbase&gt; if the
+--onto option was supplied.  This has the exact same effect as
+<tt>git reset --hard &lt;upstream&gt;</tt> (or &lt;newbase&gt;).</p>
+<p>The commits that were previously saved into the temporary area are
+then reapplied to the current branch, one by one, in order. Note that
+any commits in HEAD which introduce the same textual changes as a commit
+in HEAD..&lt;upstream&gt; are omitted (i.e., a patch already accepted upstream
+with a different commit message or timestamp will be skipped).</p>
+<p>It is possible that a merge failure will prevent this process from being
+completely automatic.  You will have to resolve any such merge failure
+and run <tt>git rebase --continue</tt>.  Another option is to bypass the commit
+that caused the merge failure with <tt>git rebase --skip</tt>.  To restore the
+original &lt;branch&gt; and remove the .dotest working files, use the command
+<tt>git rebase --abort</tt> instead.</p>
+<p>Assume the following history exists and the current branch is "topic":</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>          A---B---C topic
+         /
+    D---E---F---G master</tt></pre>
+</div></div>
+<p>From this point, the result of either of the following commands:</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>git-rebase master
+git-rebase master topic</tt></pre>
+</div></div>
+<p>would be:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>                  A'--B'--C' topic
+                 /
+    D---E---F---G master</tt></pre>
+</div></div>
+<p>The latter form is just a short-hand of <tt>git checkout topic</tt>
+followed by <tt>git rebase master</tt>.</p>
+<p>If the upstream branch already contains a change you have made (e.g.,
+because you mailed a patch which was applied upstream), then that commit
+will be skipped. For example, running <tt>git-rebase master</tt> on the
+following history (in which A' and A introduce the same set of changes,
+but have different committer information):</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>          A---B---C topic
+         /
+    D---E---A'---F master</tt></pre>
+</div></div>
+<p>will result in:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>                   B'---C' topic
+                  /
+    D---E---A'---F master</tt></pre>
+</div></div>
+<p>Here is how you would transplant a topic branch based on one
+branch to another, to pretend that you forked the topic branch
+from the latter branch, using <tt>rebase --onto</tt>.</p>
+<p>First let's assume your <em>topic</em> is based on branch <em>next</em>.
+For example feature developed in <em>topic</em> depends on some
+functionality which is found in <em>next</em>.</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>    o---o---o---o---o  master
+         \
+          o---o---o---o---o  next
+                           \
+                            o---o---o  topic</tt></pre>
+</div></div>
+<p>We would want to make <em>topic</em> forked from branch <em>master</em>,
+for example because the functionality <em>topic</em> branch depend on
+got merged into more stable <em>master</em> branch, like this:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>    o---o---o---o---o  master
+        |            \
+        |             o'--o'--o'  topic
+         \
+          o---o---o---o---o  next</tt></pre>
+</div></div>
+<p>We can get this using the following command:</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>git-rebase --onto master next topic</tt></pre>
+</div></div>
+<p>Another example of --onto option is to rebase part of a
+branch.  If we have the following situation:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>                            H---I---J topicB
+                           /
+                  E---F---G  topicA
+                 /
+    A---B---C---D  master</tt></pre>
+</div></div>
+<p>then the command</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>git-rebase --onto master topicA topicB</tt></pre>
+</div></div>
+<p>would result in:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>                 H'--I'--J'  topicB
+                /
+                | E---F---G  topicA
+                |/
+    A---B---C---D  master</tt></pre>
+</div></div>
+<p>This is useful when topicB does not depend on topicA.</p>
+<p>A range of commits could also be removed with rebase.  If we have
+the following situation:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>    E---F---G---H---I---J  topicA</tt></pre>
+</div></div>
+<p>then the command</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>git-rebase --onto topicA~5 topicA~3 topicA</tt></pre>
+</div></div>
+<p>would result in the removal of commits F and G:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>    E---H'---I'---J'  topicA</tt></pre>
+</div></div>
+<p>This is useful if F and G were flawed in some way, or should not be
+part of topicA.  Note that the argument to --onto and the &lt;upstream&gt;
+parameter can be any valid commit-ish.</p>
+<p>In case of conflict, git-rebase will stop at the first problematic commit
+and leave conflict markers in the tree.  You can use git diff to locate
+the markers (&lt;&lt;&lt;&lt;&lt;&lt;) and make edits to resolve the conflict.  For each
+file you edit, you need to tell git that the conflict has been resolved,
+typically this would be done with</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>git add &lt;filename&gt;</tt></pre>
+</div></div>
+<p>After resolving the conflict manually and updating the index with the
+desired resolution, you can continue the rebasing process with</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>git rebase --continue</tt></pre>
+</div></div>
+<p>Alternatively, you can undo the git-rebase with</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>git rebase --abort</tt></pre>
+</div></div>
+</div>
+<h2>OPTIONS</h2>
+<div class="sectionbody">
+<dl>
+<dt>
+&lt;newbase&gt;
+</dt>
+<dd>
+<p>
+        Starting point at which to create the new commits. If the
+        --onto option is not specified, the starting point is
+        &lt;upstream&gt;.  May be any valid commit, and not just an
+        existing branch name.
+</p>
+</dd>
+<dt>
+&lt;upstream&gt;
+</dt>
+<dd>
+<p>
+        Upstream branch to compare against.  May be any valid commit,
+        not just an existing branch name.
+</p>
+</dd>
+<dt>
+&lt;branch&gt;
+</dt>
+<dd>
+<p>
+        Working branch; defaults to HEAD.
+</p>
+</dd>
+<dt>
+--continue
+</dt>
+<dd>
+<p>
+        Restart the rebasing process after having resolved a merge conflict.
+</p>
+</dd>
+<dt>
+--abort
+</dt>
+<dd>
+<p>
+        Restore the original branch and abort the rebase operation.
+</p>
+</dd>
+<dt>
+--skip
+</dt>
+<dd>
+<p>
+        Restart the rebasing process by skipping the current patch.
+</p>
+</dd>
+<dt>
+-m
+</dt>
+<dt>
+--merge
+</dt>
+<dd>
+<p>
+        Use merging strategies to rebase.  When the recursive (default) merge
+        strategy is used, this allows rebase to be aware of renames on the
+        upstream side.
+</p>
+</dd>
+<dt>
+-s &lt;strategy&gt;
+</dt>
+<dt>
+--strategy=&lt;strategy&gt;
+</dt>
+<dd>
+<p>
+        Use the given merge strategy; can be supplied more than
+        once to specify them in the order they should be tried.
+        If there is no <tt>-s</tt> option, a built-in list of strategies
+        is used instead (<tt>git-merge-recursive</tt> when merging a single
+        head, <tt>git-merge-octopus</tt> otherwise).  This implies --merge.
+</p>
+</dd>
+<dt>
+-v
+</dt>
+<dt>
+--verbose
+</dt>
+<dd>
+<p>
+        Display a diffstat of what changed upstream since the last rebase.
+</p>
+</dd>
+<dt>
+-C&lt;n&gt;
+</dt>
+<dd>
+<p>
+        Ensure at least &lt;n&gt; lines of surrounding context match before
+        and after each change.  When fewer lines of surrounding
+        context exist they all must match.  By default no context is
+        ever ignored.
+</p>
+</dd>
+<dt>
+--whitespace=&lt;nowarn|warn|error|error-all|strip&gt;
+</dt>
+<dd>
+<p>
+        This flag is passed to the <tt>git-apply</tt> program
+        (see <a href="git-apply.html">git-apply(1)</a>) that applies the patch.
+</p>
+</dd>
+<dt>
+-i
+</dt>
+<dt>
+--interactive
+</dt>
+<dd>
+<p>
+        Make a list of the commits which are about to be rebased.  Let the
+        user edit that list before rebasing.  This mode can also be used to
+        split commits (see SPLITTING COMMITS below).
+</p>
+</dd>
+<dt>
+-p
+</dt>
+<dt>
+--preserve-merges
+</dt>
+<dd>
+<p>
+        Instead of ignoring merges, try to recreate them.  This option
+        only works in interactive mode.
+</p>
+</dd>
+</dl>
+</div>
+<h2>MERGE STRATEGIES</h2>
+<div class="sectionbody">
+<dl>
+<dt>
+resolve
+</dt>
+<dd>
+<p>
+        This can only resolve two heads (i.e. the current branch
+        and another branch you pulled from) using 3-way merge
+        algorithm.  It tries to carefully detect criss-cross
+        merge ambiguities and is considered generally safe and
+        fast.
+</p>
+</dd>
+<dt>
+recursive
+</dt>
+<dd>
+<p>
+        This can only resolve two heads using 3-way merge
+        algorithm.  When there are more than one common
+        ancestors that can be used for 3-way merge, it creates a
+        merged tree of the common ancestors and uses that as
+        the reference tree for the 3-way merge.  This has been
+        reported to result in fewer merge conflicts without
+        causing mis-merges by tests done on actual merge commits
+        taken from Linux 2.6 kernel development history.
+        Additionally this can detect and handle merges involving
+        renames.  This is the default merge strategy when
+        pulling or merging one branch.
+</p>
+</dd>
+<dt>
+octopus
+</dt>
+<dd>
+<p>
+        This resolves more than two-head case, but refuses to do
+        complex merge that needs manual resolution.  It is
+        primarily meant to be used for bundling topic branch
+        heads together.  This is the default merge strategy when
+        pulling or merging more than one branches.
+</p>
+</dd>
+<dt>
+ours
+</dt>
+<dd>
+<p>
+        This resolves any number of heads, but the result of the
+        merge is always the current branch head.  It is meant to
+        be used to supersede old development history of side
+        branches.
+</p>
+</dd>
+<dt>
+subtree
+</dt>
+<dd>
+<p>
+        This is a modified recursive strategy. When merging trees A and
+        B, if B corresponds to a subtree of A, B is first adjusted to
+        match the tree structure of A, instead of reading the trees at
+        the same level. This adjustment is also done to the common
+        ancestor tree.
+</p>
+</dd>
+</dl>
+</div>
+<h2>NOTES</h2>
+<div class="sectionbody">
+<p>When you rebase a branch, you are changing its history in a way that
+will cause problems for anyone who already has a copy of the branch
+in their repository and tries to pull updates from you.  You should
+understand the implications of using <em>git rebase</em> on a repository that
+you share.</p>
+<p>When the git rebase command is run, it will first execute a "pre-rebase"
+hook if one exists.  You can use this hook to do sanity checks and
+reject the rebase if it isn't appropriate.  Please see the template
+pre-rebase hook script for an example.</p>
+<p>Upon completion, &lt;branch&gt; will be the current branch.</p>
+</div>
+<h2>INTERACTIVE MODE</h2>
+<div class="sectionbody">
+<p>Rebasing interactively means that you have a chance to edit the commits
+which are rebased.  You can reorder the commits, and you can
+remove them (weeding out bad or otherwise unwanted patches).</p>
+<p>The interactive mode is meant for this type of workflow:</p>
+<ol>
+<li>
+<p>
+have a wonderful idea
+</p>
+</li>
+<li>
+<p>
+hack on the code
+</p>
+</li>
+<li>
+<p>
+prepare a series for submission
+</p>
+</li>
+<li>
+<p>
+submit
+</p>
+</li>
+</ol>
+<p>where point 2. consists of several instances of</p>
+<ol class="olist2">
+<li>
+<p>
+regular use
+</p>
+<ol>
+<li>
+<p>
+finish something worthy of a commit
+</p>
+</li>
+<li>
+<p>
+commit
+</p>
+</li>
+</ol>
+</li>
+<li>
+<p>
+independent fixup
+</p>
+<ol>
+<li>
+<p>
+realize that something does not work
+</p>
+</li>
+<li>
+<p>
+fix that
+</p>
+</li>
+<li>
+<p>
+commit it
+</p>
+</li>
+</ol>
+</li>
+</ol>
+<p>Sometimes the thing fixed in b.2. cannot be amended to the not-quite
+perfect commit it fixes, because that commit is buried deeply in a
+patch series.  That is exactly what interactive rebase is for: use it
+after plenty of "a"s and "b"s, by rearranging and editing
+commits, and squashing multiple commits into one.</p>
+<p>Start it with the last commit you want to retain as-is:</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>git rebase -i &lt;after-this-commit&gt;</tt></pre>
+</div></div>
+<p>An editor will be fired up with all the commits in your current branch
+(ignoring merge commits), which come after the given commit.  You can
+reorder the commits in this list to your heart's content, and you can
+remove them.  The list looks more or less like this:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>pick deadbee The oneline of this commit
+pick fa1afe1 The oneline of the next commit
+...</tt></pre>
+</div></div>
+<p>The oneline descriptions are purely for your pleasure; <tt>git-rebase</tt> will
+not look at them but at the commit names ("deadbee" and "fa1afe1" in this
+example), so do not delete or edit the names.</p>
+<p>By replacing the command "pick" with the command "edit", you can tell
+<tt>git-rebase</tt> to stop after applying that commit, so that you can edit
+the files and/or the commit message, amend the commit, and continue
+rebasing.</p>
+<p>If you want to fold two or more commits into one, replace the command
+"pick" with "squash" for the second and subsequent commit.  If the
+commits had different authors, it will attribute the squashed commit to
+the author of the first commit.</p>
+<p>In both cases, or when a "pick" does not succeed (because of merge
+errors), the loop will stop to let you fix things, and you can continue
+the loop with <tt>git rebase --continue</tt>.</p>
+<p>For example, if you want to reorder the last 5 commits, such that what
+was HEAD~4 becomes the new HEAD. To achieve that, you would call
+<tt>git-rebase</tt> like this:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git rebase -i HEAD~5</tt></pre>
+</div></div>
+<p>And move the first patch to the end of the list.</p>
+<p>You might want to preserve merges, if you have a history like this:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>           X
+            \
+         A---M---B
+        /
+---o---O---P---Q</tt></pre>
+</div></div>
+<p>Suppose you want to rebase the side branch starting at "A" to "Q". Make
+sure that the current HEAD is "B", and call</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git rebase -i -p --onto Q O</tt></pre>
+</div></div>
+</div>
+<h2>SPLITTING COMMITS</h2>
+<div class="sectionbody">
+<p>In interactive mode, you can mark commits with the action "edit".  However,
+this does not necessarily mean that <em>git rebase</em> expects the result of this
+edit to be exactly one commit.  Indeed, you can undo the commit, or you can
+add other commits.  This can be used to split a commit into two:</p>
+<ul>
+<li>
+<p>
+Start an interactive rebase with <em>git rebase -i &lt;commit&gt;^</em>, where
+  &lt;commit&gt; is the commit you want to split.  In fact, any commit range
+  will do, as long as it contains that commit.
+</p>
+</li>
+<li>
+<p>
+Mark the commit you want to split with the action "edit".
+</p>
+</li>
+<li>
+<p>
+When it comes to editing that commit, execute <em>git reset HEAD^</em>.  The
+  effect is that the HEAD is rewound by one, and the index follows suit.
+  However, the working tree stays the same.
+</p>
+</li>
+<li>
+<p>
+Now add the changes to the index that you want to have in the first
+  commit.  You can use <a href="git-add.html">git-add(1)</a> (possibly interactively) and/or
+  <a href="git-gui.html">git-gui(1)</a> to do that.
+</p>
+</li>
+<li>
+<p>
+Commit the now-current index with whatever commit message is appropriate
+  now.
+</p>
+</li>
+<li>
+<p>
+Repeat the last two steps until your working tree is clean.
+</p>
+</li>
+<li>
+<p>
+Continue the rebase with <em>git rebase --continue</em>.
+</p>
+</li>
+</ul>
+<p>If you are not absolutely sure that the intermediate revisions are
+consistent (they compile, pass the testsuite, etc.) you should use
+<a href="git-stash.html">git-stash(1)</a> to stash away the not-yet-committed changes
+after each commit, test, and amend the commit if fixes are necessary.</p>
+</div>
+<h2>Authors</h2>
+<div class="sectionbody">
+<p>Written by Junio C Hamano &lt;junkio@cox.net&gt; and
+Johannes E. Schindelin &lt;johannes.schindelin@gmx.de&gt;</p>
+</div>
+<h2>Documentation</h2>
+<div class="sectionbody">
+<p>Documentation by Junio C Hamano and the git-list &lt;git@vger.kernel.org&gt;.</p>
+</div>
+<h2>GIT</h2>
+<div class="sectionbody">
+<p>Part of the <a href="git.html">git(1)</a> suite</p>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 08-Jun-2008 22:46:57 UTC
+</div>
+</div>
+</body>
+</html>

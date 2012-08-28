@@ -1,0 +1,108 @@
+<chapter>
+   <title>
+      Frequently Asked Questions
+   </title>   
+   <summary>
+      Often people have the same questions that have been asked many times
+      before.  This is a list of commonly asked questions and answers.
+   </summary>
+</chapter>
+
+<section>
+   <title>
+      Can I use multiple names from the address book?
+   </title>
+   <description>
+      <p>
+      Yes.  The address book search will display all matches for the 
+      search criteria entered in the search box.  If 10 names are displayed 
+      any combination may be selected for either the <b>To:</b> or <b>CC:</b> 
+      fields.  All selected addresses will be inserted into the proper 
+      field when the Use Address button is pressed.
+      </p>
+   </description>
+</section>   
+
+<section>
+   <title>
+      Can I add names directly to the address book from a email?
+   </title>
+   <description>
+      <p>
+      No.  At this time you cannot add names directly from a received email 
+      to the address book.  You can, however, right click on the address and 
+      save it to the clipboard and paste this into the address book.  Try 
+      not to be disappointed.  SquirrelMail is under continual development 
+      and this might be included in the future in one form or another.
+      </p>
+   </description>
+</section>
+
+<section>
+   <title>
+      Who made SquirrelMail? 
+   </title>
+   <description>
+      <p>
+      A lot of people helped out.  To get a list of them, you can visit our
+      web site <a href="http://squirrelmail.org" target=_top>squirrelmail.org</a>.
+      </p>
+   </description>
+</section>
+
+<section>
+   <title>
+      What is webmail?
+   </title>
+   <description>
+      <p>
+      In SquirrelMail's case it gives you access through the IMAP protocol 
+      to your email account.  This means that you don't have to figure out how 
+      to setup someone else's stuff just to check your mail.
+      </p>
+   </description>
+</section>
+
+<section>
+   <title>
+      Where can I use this webmail?
+   </title>
+   <description>
+      <p>
+      Any where there is a browser available.
+      Wireless access (WAP/WML) is not on the drawing board at this time though.
+      </p>
+   </description>
+</section>
+
+<section>
+   <title>
+      Why use webmail instead of a regular email client?
+   </title>
+   <description>
+      <p>
+      It is doubtful that webmail will ever be a complete substitute for 
+      a regular email client.  But hey, who knows?  Anyway, If you ever 
+      were at a friend's house, on a trip, at home or work and away from 
+      your computer and wanted to check your mail you already know why.
+      Because it is a huge hassle to set your mail up on their computer 
+      and then delete it again.  SquirrelMail is designed to be a supplement
+      to your normal email client.
+      </p>
+   </description>
+</section>
+
+<section>
+   <title>
+      How does this stuff work?
+   </title>
+   <description>
+      <p>
+      SquirrelMail uses the IMAP protocol, info on it can be found 
+      <a href="http://imap.org"/>here</a>.  The program also uses 
+      its own IMAP functions, not those built in to PHP.  This won't 
+      matter to anybody except those responsible for installing it, 
+      but trust us when we say they appreciate it.
+      </p>
+   </description>
+</section>

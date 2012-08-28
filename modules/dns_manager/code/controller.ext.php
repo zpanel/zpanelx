@@ -7,7 +7,8 @@
  * @package ZPanel
  * @version $Id$
  * @author Bobby Allen - ballen@zpanelcp.com
- * @copyright (c) 2008-2011 ZPanel Group - http://www.zpanelcp.com/
+ * @patch Kimpe Andy - andykimpe@gmail.com
+ * @copyright (c) 2008-2012 ZPanel Group - http://www.zpanelcp.com/
  * @license http://opensource.org/licenses/gpl-3.0.html GNU Public License v3
  *
  * This program (ZPanel) is free software: you can redistribute it and/or modify
@@ -40,7 +41,7 @@ class module_controller {
     static $weightRange_error;
     static $portNumeric_error;
     static $portRange_error;
-    static $hostname_error;
+	static $hostname_error;
 
     static function getInit() {
         global $controller;
@@ -120,28 +121,28 @@ class module_controller {
         } else {
             $domainID = self::$editdomain;
         }
-        $domain = $zdbh->query("SELECT * FROM x_vhosts WHERE vh_id_pk=" . $domainID . " AND vh_type_in !=2 AND vh_deleted_ts IS NULL")->Fetch();
-        $zone_message = self::CheckZoneRecord($domainID);
-        $zonecheck_file = ctrl_options::GetSystemOption('temp_dir') . $domain['vh_name_vc'] . ".txt";
-        $zone_message = str_replace($zonecheck_file, "", $zone_message);
-        if (strstr(strtoupper($zone_message), "OK")) {
-            if (substr_count($zone_message, ":") >= 2) {
-                $zone_error_message = "<font color=\"orange\">" . ui_language::translate("Your DNS zone has been loaded, but with errors. Some features may not work until corrected.") . "</font>";
-            } else {
-                $zone_error_message = "<font color=\"green\">" . ui_language::translate("Your DNS zone has been loaded without errors.") . "</font>";
-            }
-            $zone_status = "<img src=\"modules/" . $controller->GetControllerRequest('URL', 'module') . "/assets/up.png\" />";
-        } else {
-            $zone_error_message = "<font color=\"red\">" . ui_language::translate("Errors detected have prevented your DNS zone from being loaded. Please correct the error(s) listed below. Until these errors are fixed, your DNS will not work.") . "</font>";
-            $zone_status = "<img src=\"modules/" . $controller->GetControllerRequest('URL', 'module') . "/assets/down.png\" />";
-        }
+		$domain = $zdbh->query("SELECT * FROM x_vhosts WHERE vh_id_pk=" . $domainID . " AND vh_type_in !=2 AND vh_deleted_ts IS NULL")->Fetch();
+		$zone_message=self::CheckZoneRecord($domainID);
+		$zonecheck_file = ctrl_options::GetOption('temp_dir') . $domain['vh_name_vc'] . ".txt";
+		$zone_message = str_replace($zonecheck_file, "", $zone_message);
+		if (strstr(strtoupper($zone_message), "OK")){
+			if (substr_count($zone_message, ":") >= 2){
+				$zone_error_message = "<font color=\"orange\">".ui_language::translate("Your DNS zone has been loaded, but with errors. Some features may not work until corrected.")."</font>";
+			} else {
+				$zone_error_message = "<font color=\"green\">".ui_language::translate("Your DNS zone has been loaded without errors.")."</font>";
+			}
+			$zone_status = "<img src=\"modules/".$controller->GetControllerRequest('URL', 'module')."/assets/up.png\" />";
+		} else {
+			$zone_error_message = "<font color=\"red\">".ui_language::translate("Errors detected have prevented your DNS zone from being loaded. Please correct the error(s) listed below. Until these errors are fixed, your DNS will not work.")."</font>";
+			$zone_status = "<img src=\"modules/".$controller->GetControllerRequest('URL', 'module')."/assets/down.png\" />";
+		}
         $line = "";
         $line .= "<!-- DNS FORM -->";
         //$line .= "<div style=\"margin-right:20px;\">";
         $line .= "<div id=\"dnsTitle\" class=\"account accountTitle\">";
-        $line .= "<div class=\"content\"><h2>" . ui_language::translate("DNS records for") . ":</h2><a href=\"http://" . $domain['vh_name_vc'] . "\" target=\"_blank\">" . $domain['vh_name_vc'] . "</a>";
+        $line .= "<div class=\"content\"><h2>".ui_language::translate("DNS records for").":</h2><a href=\"http://" . $domain['vh_name_vc'] . "\" target=\"_blank\">" . $domain['vh_name_vc'] . "</a>";
         $line .= "<div>";
-        $line .= "<div class=\"actions\"><a class=\"undo disabled\">" . ui_language::translate("Undo Changes") . "</a><a class=\"save disabled\">" . ui_language::translate("Save Changes") . "</a><a class=\"back\" href=\"/?module=" . $controller->GetControllerRequest('URL', 'module') . "\">" . ui_language::translate("Domain List") . "</a></div>";
+        $line .= "<div class=\"actions\"><a class=\"undo disabled\">".ui_language::translate("Undo Changes")."</a><a class=\"save disabled\">".ui_language::translate("Save Changes")."</a><a class=\"back\" href=\"/?module=" . $controller->GetControllerRequest('URL', 'module') . "\">".ui_language::translate("Domain List")."</a></div>";
         $line .= "</div><br class=\"clear\">";
         $line .= "</div>";
         $line .= "</div>";
@@ -163,6 +164,9 @@ class module_controller {
         if (self::IsTypeAllowed('MX')) {
             $line .= "<li><a href=\"#typeMX\">MX</a></li>";
         }
+		if (self::IsTypeAllowed('DKIM')) {
+            $line .= "<li><a href=\"#typeDKIM\">DKIM</a></li>";
+        }
         if (self::IsTypeAllowed('TXT')) {
             $line .= "<li><a href=\"#typeTXT\">TXT</a></li>";
         }
@@ -179,19 +183,19 @@ class module_controller {
         if (self::IsTypeAllowed('A')) {
             $line .= "<!-- A RECORDS -->";
             $line .= "<div class=\"records dnsRecordA ui-tabs-panel ui-widget-content ui-corner-bottom\" id=\"typeA\">";
-            $line .= "<div class=\"description\">" . ui_language::translate("The A record contains an IPv4 address. It's target is an IPv4 address, e.g. '192.168.1.1'.") . "</div>";
+            $line .= "<div class=\"description\">".ui_language::translate("The A record contains an IPv4 address. It's target is an IPv4 address, e.g. '192.168.1.1'.")."</div>";
             $line .= "<div class=\"header row\">";
-            $line .= "<div class=\"hostName\"><label class=\"enableToolTip\">" . ui_language::translate("Host Name") . "</label></div>";
+            $line .= "<div class=\"hostName\"><label class=\"enableToolTip\">".ui_language::translate("Host Name")."</label></div>";
             $line .= "<div class=\"TTL\"><label class=\"enableToolTip\">TTL</label></div>";
-            $line .= "<div class=\"in\">&nbsp;</div><div class=\"type\">&nbsp;</div><div class=\"target\"><label class=\"enableToolTip\">" . ui_language::translate("Target") . "</label></div>";
-            $line .= "<div class=\"actions\"><label>" . ui_language::translate("Actions") . "</label></div>";
+            $line .= "<div class=\"in\">&nbsp;</div><div class=\"type\">&nbsp;</div><div class=\"target\"><label class=\"enableToolTip\">".ui_language::translate("Target")."</label></div>";
+            $line .= "<div class=\"actions\"><label>".ui_language::translate("Actions")."</label></div>";
             $line .= "<br>";
             $line .= "</div>";
             //A Records
             $sql = $zdbh->prepare("SELECT * FROM x_dns WHERE dn_acc_fk=" . $currentuser['userid'] . " AND dn_type_vc='A' AND dn_vhost_fk=" . $domainID . " AND dn_deleted_ts IS NULL ORDER BY dn_host_vc ASC");
             $sql->execute();
             while ($rowdns = $sql->fetch()) {
-                if (ctrl_options::GetSystemOption('custom_ip') == strtolower("false")) {
+                if (ctrl_options::GetOption('custom_ip') == strtolower("false")) {
                     $custom_ip = "READONLY";
                 } else {
                     $custom_ip = NULL;
@@ -215,13 +219,13 @@ class module_controller {
                 $line .= "<br>\n";
                 $line .= "</div>\n";
             }
-            $line .= "<div class=\"add row\"><span><span><button class=\"fg-button ui-state-default ui-corner-all\" type=\"button\">" . ui_language::translate("Add New Record") . "</button></span></span></div>";
+            $line .= "<div class=\"add row\"><span><span><button class=\"fg-button ui-state-default ui-corner-all\" type=\"button\">".ui_language::translate("Add New Record")."</button></span></span></div>";
             $line .= "<div class=\"newRecord row\" style=\"display: none\">";
-            $line .= "<div class=\"hostName\"><label>" . ui_language::translate("Host Name") . "</label><input name=\"proto_hostName\" type=\"text\"></div>";
-            $line .= "<div class=\"TTL\"><label>TTL</label><input name=\"proto_ttl\" value=\"86400\" type=\"text\"></div>";
+            $line .= "<div class=\"hostName\"><label>".ui_language::translate("Host Name")."</label><input name=\"proto_hostName\" type=\"text\"></div>";
+            $line .= "<div class=\"TTL\"><label>TTL</label><input name=\"proto_ttl\" value=\"\" type=\"text\"></div>";
             $line .= "<div class=\"in\">IN</div>";
             $line .= "<div class=\"type\">A</div>";
-            $line .= "<div class=\"target\"><label>" . ui_language::translate("Target") . "</label><input name=\"proto_target\" type=\"text\"></div>";
+            $line .= "<div class=\"target\"><label>".ui_language::translate("Target")."</label><input name=\"proto_target\" type=\"text\"></div>";
             $line .= "<input class=\"delete\" name=\"proto_delete\" value=\"false\" type=\"hidden\"><span class=\"delete enableToolTip\"></span><input name=\"proto_type\" value=\"A\" type=\"hidden\">";
             $line .= "</div>";
             $line .= "</div> <!-- END A RECORDS -->";
@@ -229,14 +233,14 @@ class module_controller {
         if (self::IsTypeAllowed('AAAA')) {
             $line .= "<!-- AAA RECORDS -->";
             $line .= "<div class=\"records dnsRecordAAAA ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide\" id=\"typeAAAA\">";
-            $line .= "<div class=\"description\">" . ui_language::translate("The AAAA record contains an IPv6 address. It's target is an IPv6 address, e.g. '2607:fe90:2::1'.") . "</div>";
+            $line .= "<div class=\"description\">".ui_language::translate("The AAAA record contains an IPv6 address. It's target is an IPv6 address, e.g. '2607:fe90:2::1'.")."</div>";
             $line .= "<div class=\"header row\">";
-            $line .= "<div class=\"hostName\"><label class=\"enableToolTip\">" . ui_language::translate("Host Name") . "</label></div>";
+            $line .= "<div class=\"hostName\"><label class=\"enableToolTip\">".ui_language::translate("Host Name")."</label></div>";
             $line .= "<div class=\"TTL\"><label class=\"enableToolTip\">TTL</label></div>";
             $line .= "<div class=\"in\">&nbsp;</div>";
             $line .= "<div class=\"type\">&nbsp;</div>";
-            $line .= "<div class=\"target\"><label class=\"enableToolTip\">" . ui_language::translate("Target") . "</label></div>";
-            $line .= "<div class=\"actions\"><label>" . ui_language::translate("Actions") . "</label></div>";
+            $line .= "<div class=\"target\"><label class=\"enableToolTip\">".ui_language::translate("Target")."</label></div>";
+            $line .= "<div class=\"actions\"><label>".ui_language::translate("Actions")."</label></div>";
             $line .= "<br>";
             $line .= "</div>";
             //AAAA Records
@@ -262,12 +266,12 @@ class module_controller {
                 $line .= "<br>\n";
                 $line .= "</div>\n";
             }
-            $line .= "<div class=\"add row\"><span><span><button class=\"fg-button ui-state-default ui-corner-all\" type=\"button\">" . ui_language::translate("Add New Record") . "</button></span></span></div>";
+            $line .= "<div class=\"add row\"><span><span><button class=\"fg-button ui-state-default ui-corner-all\" type=\"button\">".ui_language::translate("Add New Record")."</button></span></span></div>";
             $line .= "<div class=\"newRecord row\" style=\"display: none\">";
-            $line .= "<div class=\"hostName\"><label>" . ui_language::translate("Host Name") . "</label><input name=\"proto_hostName\" type=\"text\"></div>";
-            $line .= "<div class=\"TTL\"><label>TTL</label><input name=\"proto_ttl\" value=\"86400\" type=\"text\"></div>";
+            $line .= "<div class=\"hostName\"><label>".ui_language::translate("Host Name")."</label><input name=\"proto_hostName\" type=\"text\"></div>";
+            $line .= "<div class=\"TTL\"><label>TTL</label><input name=\"proto_ttl\" value=\"\" type=\"text\"></div>";
             $line .= "<div class=\"in\">IN</div><div class=\"type\">AAAA</div>";
-            $line .= "<div class=\"target\"><label>" . ui_language::translate("Target") . "</label><input name=\"proto_target\" type=\"text\"></div>";
+            $line .= "<div class=\"target\"><label>".ui_language::translate("Target")."</label><input name=\"proto_target\" type=\"text\"></div>";
             $line .= "<input class=\"delete\" name=\"proto_delete\" value=\"false\" type=\"hidden\"><span class=\"delete enableToolTip\"></span><input name=\"proto_type\" value=\"AAAA\" type=\"hidden\">";
             $line .= "</div>";
             $line .= "</div> <!-- END AAA RECORDS -->";
@@ -275,15 +279,15 @@ class module_controller {
         if (self::IsTypeAllowed('CNAME')) {
             $line .= "<!-- CNAME RECORDS -->	";
             $line .= "<div class=\"records dnsRecordCNAME ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide\" id=\"typeCNAME\">";
-            $line .= "<div class=\"description\">" . ui_language::translate("The CNAME record specifies the canonical name of a record. It's target is a fully qualified domain name, e.g. 
-'webserver-01.example.com'.") . "</div>";
+            $line .= "<div class=\"description\">".ui_language::translate("The CNAME record specifies the canonical name of a record. It's target is a fully qualified domain name, e.g. 
+'webserver-01.example.com'.")."</div>";
             $line .= "<div class=\"header row\">";
-            $line .= "<div class=\"hostName\"><label class=\"enableToolTip\">" . ui_language::translate("Host Name") . "</label></div>";
+            $line .= "<div class=\"hostName\"><label class=\"enableToolTip\">".ui_language::translate("Host Name")."</label></div>";
             $line .= "<div class=\"TTL\"><label class=\"enableToolTip\">TTL</label></div>";
             $line .= "<div class=\"in\">&nbsp;</div>";
             $line .= "<div class=\"type\">&nbsp;</div>";
-            $line .= "<div class=\"target\"><label class=\"enableToolTip\">" . ui_language::translate("Target") . "</label></div>";
-            $line .= "<div class=\"actions\"><label>" . ui_language::translate("Actions") . "</label></div>";
+            $line .= "<div class=\"target\"><label class=\"enableToolTip\">".ui_language::translate("Target")."</label></div>";
+            $line .= "<div class=\"actions\"><label>".ui_language::translate("Actions")."</label></div>";
             $line .= "<br>";
             $line .= "</div>";
             //CNAME Records
@@ -308,13 +312,13 @@ class module_controller {
                 $line .= "<br>";
                 $line .= "</div>";
             }
-            $line .= "<div class=\"add row\"><span><span><button class=\"fg-button ui-state-default ui-corner-all\" type=\"button\">" . ui_language::translate("Add New Record") . "</button></span></span></div>";
+            $line .= "<div class=\"add row\"><span><span><button class=\"fg-button ui-state-default ui-corner-all\" type=\"button\">".ui_language::translate("Add New Record")."</button></span></span></div>";
             $line .= "<div class=\"newRecord row\" style=\"display: none\">";
-            $line .= "<div class=\"hostName\"><label>" . ui_language::translate("Host Name") . "</label><input name=\"proto_hostName\" type=\"text\"></div>";
-            $line .= "<div class=\"TTL\"><label>TTL</label><input name=\"proto_ttl\" value=\"86400\" type=\"text\"></div>";
+            $line .= "<div class=\"hostName\"><label>".ui_language::translate("Host Name")."</label><input name=\"proto_hostName\" type=\"text\"></div>";
+            $line .= "<div class=\"TTL\"><label>TTL</label><input name=\"proto_ttl\" value=\"\" type=\"text\"></div>";
             $line .= "<div class=\"in\">IN</div>";
             $line .= "<div class=\"type\">CNAME</div>";
-            $line .= "<div class=\"target\"><label>" . ui_language::translate("Target") . "</label><input name=\"proto_target\" type=\"text\"></div>";
+            $line .= "<div class=\"target\"><label>".ui_language::translate("Target")."</label><input name=\"proto_target\" type=\"text\"></div>";
             $line .= "<input class=\"delete\" name=\"proto_delete\" value=\"false\" type=\"hidden\"><span class=\"delete enableToolTip\"></span><input name=\"proto_type\" value=\"CNAME\" type=\"hidden\">";
             $line .= "</div>			";
             $line .= "</div> <!-- END CNAME RECORDS -->";
@@ -322,15 +326,15 @@ class module_controller {
         if (self::IsTypeAllowed('MX')) {
             $line .= "<!-- MX RECORDS -->";
             $line .= "<div class=\"records dnsRecordMX ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide\" id=\"typeMX\">";
-            $line .= "<div class=\"description\">" . ui_language::translate("The MX record specifies a mail exchanger host for a domain. Each mail exchanger has a priority or preference that is a numeric value between 0 and 65535.  It's target is a fully qualified domain name, e.g. 'mail.example.com'.") . "</div>";
+            $line .= "<div class=\"description\">".ui_language::translate("The MX record specifies a mail exchanger host for a domain. Each mail exchanger has a priority or preference that is a numeric value between 0 and 65535.  It's target is a fully qualified domain name, e.g. 'mail.example.com'.")."</div>";
             $line .= "<div class=\"header row\">";
-            $line .= "<div class=\"hostName\"><label class=\"enableToolTip\">" . ui_language::translate("Host Name") . "</label></div>";
+            $line .= "<div class=\"hostName\"><label class=\"enableToolTip\">".ui_language::translate("Host Name")."</label></div>";
             $line .= "<div class=\"TTL\"><label class=\"enableToolTip\">TTL</label></div>";
             $line .= "<div class=\"in\">&nbsp;</div>";
             $line .= "<div class=\"type\">&nbsp;</div>";
-            $line .= "<div class=\"priority\"><label class=\"enableToolTip\">" . ui_language::translate("Priority") . "</label></div>";
-            $line .= "<div class=\"target\"><label class=\"enableToolTip\">" . ui_language::translate("Target") . "</label></div>";
-            $line .= "<div class=\"actions\"><label>" . ui_language::translate("Actions") . "</label></div>";
+            $line .= "<div class=\"priority\"><label class=\"enableToolTip\">".ui_language::translate("Priority")."</label></div>";
+            $line .= "<div class=\"target\"><label class=\"enableToolTip\">".ui_language::translate("Target")."</label></div>";
+            $line .= "<div class=\"actions\"><label>".ui_language::translate("Actions")."</label></div>";
             $line .= "<br>";
             $line .= "</div>";
             //MX Records
@@ -351,28 +355,68 @@ class module_controller {
                 $line .= "<br>";
                 $line .= "</div>";
             }
-            $line .= "<div class=\"add row\"><span><span><button class=\"fg-button ui-state-default ui-corner-all\" type=\"button\">" . ui_language::translate("Add New Record") . "</button></span></span></div>";
+            $line .= "<div class=\"add row\"><span><span><button class=\"fg-button ui-state-default ui-corner-all\" type=\"button\">".ui_language::translate("Add New Record")."</button></span></span></div>";
             $line .= "<div class=\"newRecord row\" style=\"display: none\">";
-            $line .= "<div class=\"hostName\"><label>" . ui_language::translate("Host Name") . "</label><input name=\"proto_hostName\" type=\"text\"></div>";
-            $line .= "<div class=\"TTL\"><label>TTL</label><input name=\"proto_ttl\" value=\"86400\" type=\"text\"></div>";
+            $line .= "<div class=\"hostName\"><label>".ui_language::translate("Host Name")."</label><input name=\"proto_hostName\" type=\"text\"></div>";
+            $line .= "<div class=\"TTL\"><label>TTL</label><input name=\"proto_ttl\" value=\"\" type=\"text\"></div>";
             $line .= "<div class=\"in\">IN</div>";
             $line .= "<div class=\"type\">MX</div>";
             $line .= "<div class=\"priority\"><label>Priority</label><input name=\"proto_priority\" type=\"text\"></div>";
-            $line .= "<div class=\"target\"><label>" . ui_language::translate("Target") . "</label><input name=\"proto_target\" type=\"text\"></div>";
+            $line .= "<div class=\"target\"><label>".ui_language::translate("Target")."</label><input name=\"proto_target\" type=\"text\"></div>";
             $line .= "<input class=\"delete\" name=\"proto_delete\" value=\"false\" type=\"hidden\"><span class=\"delete enableToolTip\"></span>";
             $line .= "<input name=\"proto_type\" value=\"MX\" type=\"hidden\">";
             $line .= "</div>			";
             $line .= "</div> <!-- END MX RECORDS -->";
         }
-        if (self::IsTypeAllowed('TXT')) {
-            $line .= "<!-- TXT RECORDS -->";
-            $line .= "<div class=\"records dnsRecordTXT ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide\" id=\"typeTXT\">";
-            $line .= "<div class=\"description\">" . ui_language::translate("The TXT field can be used to attach textual data to a domain.") . "</div>";
+		if (self::IsTypeAllowed('DKIM')) {
+            $line .= "<!-- DIM RECORDS -->";
+            $line .= "<div class=\"records dnsRecordDKIM ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide\" id=\"typeDKIM\">";
+            $line .= "<div class=\"description\">".ui_language::translate("description a mettre a jour")."</div>";
             $line .= "<div class=\"header row\"><div class=\"hostName\"><label class=\"enableToolTip\">Host Name</label></div>";
             $line .= "<div class=\"TTL\"><label class=\"enableToolTip\">TTL</label></div>";
             $line .= "<div class=\"in\">&nbsp;</div><div class=\"type\">&nbsp;</div>";
-            $line .= "<div class=\"target\"><label class=\"enableToolTip\">" . ui_language::translate("Target") . "</label></div>";
-            $line .= "<div class=\"actions\"><label>" . ui_language::translate("Actions") . "</label></div>";
+            $line .= "<div class=\"target\"><label class=\"enableToolTip\">".ui_language::translate("Target")."</label></div>";
+            $line .= "<div class=\"actions\"><label>".ui_language::translate("Actions")."</label></div>";
+            $line .= "<br>";
+            $line .= "</div>";
+            //DKIM Records
+            $sql = $zdbh->prepare("SELECT * FROM x_dns WHERE dn_acc_fk=" . $currentuser['userid'] . " AND dn_type_vc='DKIM' AND dn_vhost_fk=" . $domainID . " AND dn_deleted_ts IS NULL ORDER BY dn_host_vc ASC");
+            $sql->execute();
+            while ($rowdns = $sql->fetch()) {
+                $line .= "<div class=\"dnsRecord row\">";
+                $line .= "<div class=\"hostName\"><span>" . $rowdns['dn_host_vc'] . "</span></div>";
+                $line .= "<div class=\"TTL\"><input name=\"ttl[" . $rowdns['dn_id_pk'] . "]\" value=\"" . $rowdns['dn_ttl_in'] . "\" type=\"text\"><input name=\"original_ttl[" . $rowdns['dn_id_pk'] . "]\" value=\"" . $rowdns['dn_ttl_in'] . "\" type=\"hidden\"></div>";
+                $line .= "<div class=\"in\">IN</div>";
+                $line .= "<div class=\"type\">DKIM</div>";
+                $line .= "<div class=\"target\"><input name=\"target[" . $rowdns['dn_id_pk'] . "]\" value=\"" . $rowdns['dn_target_vc'] . "\" type=\"text\"><input name=\"original_target[" . $rowdns['dn_id_pk'] . "]\" value=\"" . $rowdns['dn_target_vc'] . "\" type=\"hidden\"></div>";
+                $line .= "<span class=\"delete enableToolTip\"></span>";
+                $line .= "<span class=\"undo enableToolTip\"></span>";
+                $line .= "<input name=\"type[" . $rowdns['dn_id_pk'] . "]\" value=\"DKIM\" type=\"hidden\">";
+                $line .= "<input class=\"delete\" name=\"delete[" . $rowdns['dn_id_pk'] . "]\" value=\"false\" type=\"hidden\">";
+                $line .= "<br>";
+                $line .= "</div>";
+            }
+            $line .= "<div class=\"add row\"><span><span><button class=\"fg-button ui-state-default ui-corner-all\" type=\"button\">".ui_language::translate("Add New Record")."</button></span></span></div>";
+            $line .= "<div class=\"newRecord row\" style=\"display: none\">";
+            $line .= "<div class=\"hostName\"><label>".ui_language::translate("Host Name")."</label><input name=\"proto_hostName\" type=\"text\"></div>";
+            $line .= "<div class=\"TTL\"><label>TTL</label><input name=\"proto_ttl\" value=\"\" type=\"text\"></div>";
+            $line .= "<div class=\"in\">IN</div>";
+            $line .= "<div class=\"type\">DKIM</div>";
+            $line .= "<div class=\"target\"><label>".ui_language::translate("Target")."</label><input name=\"proto_target\" type=\"text\"></div>";
+            $line .= "<input class=\"delete\" name=\"proto_delete\" value=\"false\" type=\"hidden\"><span class=\"delete enableToolTip\"></span>";
+            $line .= "<input name=\"proto_type\" value=\"DKIM\" type=\"hidden\">";
+            $line .= "</div>";
+            $line .= "</div> <!-- END DKIM RECORDS -->";
+        }
+        if (self::IsTypeAllowed('TXT')) {
+            $line .= "<!-- TXT RECORDS -->";
+            $line .= "<div class=\"records dnsRecordTXT ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide\" id=\"typeTXT\">";
+            $line .= "<div class=\"description\">".ui_language::translate("The TXT field can be used to attach textual data to a domain.")."</div>";
+            $line .= "<div class=\"header row\"><div class=\"hostName\"><label class=\"enableToolTip\">Host Name</label></div>";
+            $line .= "<div class=\"TTL\"><label class=\"enableToolTip\">TTL</label></div>";
+            $line .= "<div class=\"in\">&nbsp;</div><div class=\"type\">&nbsp;</div>";
+            $line .= "<div class=\"target\"><label class=\"enableToolTip\">".ui_language::translate("Target")."</label></div>";
+            $line .= "<div class=\"actions\"><label>".ui_language::translate("Actions")."</label></div>";
             $line .= "<br>";
             $line .= "</div>";
             //TXT Records
@@ -392,13 +436,13 @@ class module_controller {
                 $line .= "<br>";
                 $line .= "</div>";
             }
-            $line .= "<div class=\"add row\"><span><span><button class=\"fg-button ui-state-default ui-corner-all\" type=\"button\">" . ui_language::translate("Add New Record") . "</button></span></span></div>";
+            $line .= "<div class=\"add row\"><span><span><button class=\"fg-button ui-state-default ui-corner-all\" type=\"button\">".ui_language::translate("Add New Record")."</button></span></span></div>";
             $line .= "<div class=\"newRecord row\" style=\"display: none\">";
-            $line .= "<div class=\"hostName\"><label>" . ui_language::translate("Host Name") . "</label><input name=\"proto_hostName\" type=\"text\"></div>";
-            $line .= "<div class=\"TTL\"><label>TTL</label><input name=\"proto_ttl\" value=\"86400\" type=\"text\"></div>";
+            $line .= "<div class=\"hostName\"><label>".ui_language::translate("Host Name")."</label><input name=\"proto_hostName\" type=\"text\"></div>";
+            $line .= "<div class=\"TTL\"><label>TTL</label><input name=\"proto_ttl\" value=\"60\" type=\"text\"></div>";
             $line .= "<div class=\"in\">IN</div>";
             $line .= "<div class=\"type\">TXT</div>";
-            $line .= "<div class=\"target\"><label>" . ui_language::translate("Target") . "</label><input name=\"proto_target\" type=\"text\"></div>";
+            $line .= "<div class=\"target\"><label>".ui_language::translate("Target")."</label><input name=\"proto_target\" type=\"text\"></div>";
             $line .= "<input class=\"delete\" name=\"proto_delete\" value=\"false\" type=\"hidden\"><span class=\"delete enableToolTip\"></span>";
             $line .= "<input name=\"proto_type\" value=\"TXT\" type=\"hidden\">";
             $line .= "</div>";
@@ -407,15 +451,15 @@ class module_controller {
         if (self::IsTypeAllowed('SRV')) {
             $line .= "<!-- SRV RECORDS -->	";
             $line .= "<div class=\"records dnsRecordSRV ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide\" id=\"typeSRV\">";
-            $line .= "<div class=\"description\">" . ui_language::translate("SRV records can be used to encode the location and port of services on a domain name.  It's target is a fully qualified domain name, e.g. 'host.example.com'.") . "</div>";
+            $line .= "<div class=\"description\">".ui_language::translate("SRV records can be used to encode the location and port of services on a domain name.  It's target is a fully qualified domain name, e.g. 'host.example.com'.")."</div>";
             $line .= "<div class=\"header row\">";
-            $line .= "<div class=\"hostName\"><label class=\"enableToolTip\">" . ui_language::translate("Host Name") . "</label></div>";
+            $line .= "<div class=\"hostName\"><label class=\"enableToolTip\">".ui_language::translate("Host Name")."</label></div>";
             $line .= "<div class=\"TTL\"><label class=\"enableToolTip\">TTL</label></div>";
-            $line .= "<div class=\"in\">&nbsp;</div><div class=\"type\">&nbsp;</div><div class=\"priority\"><label class=\"enableToolTip\">" . ui_language::translate("Priority") . "</label></div>";
-            $line .= "<div class=\"weight\"><label class=\"enableToolTip\">" . ui_language::translate("Weight") . "</label></div>";
-            $line .= "<div class=\"port\"><label class=\"enableToolTip\">" . ui_language::translate("Port") . "</label></div>";
-            $line .= "<div class=\"target\"><label class=\"enableToolTip\">" . ui_language::translate("Target") . "</label></div>";
-            $line .= "<div class=\"actions\"><label>" . ui_language::translate("Actions") . "</label></div>";
+            $line .= "<div class=\"in\">&nbsp;</div><div class=\"type\">&nbsp;</div><div class=\"priority\"><label class=\"enableToolTip\">".ui_language::translate("Priority")."</label></div>";
+            $line .= "<div class=\"weight\"><label class=\"enableToolTip\">".ui_language::translate("Weight")."</label></div>";
+            $line .= "<div class=\"port\"><label class=\"enableToolTip\">".ui_language::translate("Port")."</label></div>";
+            $line .= "<div class=\"target\"><label class=\"enableToolTip\">".ui_language::translate("Target")."</label></div>";
+            $line .= "<div class=\"actions\"><label>".ui_language::translate("Actions")."</label></div>";
             $line .= "<br>";
             $line .= "</div>";
             //SRV Records
@@ -438,16 +482,16 @@ class module_controller {
                 $line .= "<br>";
                 $line .= "</div>";
             }
-            $line .= "<div class=\"add row\"><span><span><button class=\"fg-button ui-state-default ui-corner-all\" type=\"button\">" . ui_language::translate("Add New Record") . "</button></span></span></div>";
+            $line .= "<div class=\"add row\"><span><span><button class=\"fg-button ui-state-default ui-corner-all\" type=\"button\">".ui_language::translate("Add New Record")."</button></span></span></div>";
             $line .= "<div class=\"newRecord row\" style=\"display: none\">";
-            $line .= "<div class=\"hostName\"><label>" . ui_language::translate("Host Name") . "</label><input name=\"proto_hostName\" type=\"text\"></div>";
-            $line .= "<div class=\"TTL\"><label>TTL</label><input name=\"proto_ttl\" value=\"86400\" type=\"text\"></div>";
+            $line .= "<div class=\"hostName\"><label>".ui_language::translate("Host Name")."</label><input name=\"proto_hostName\" type=\"text\"></div>";
+            $line .= "<div class=\"TTL\"><label>TTL</label><input name=\"proto_ttl\" value=\"\" type=\"text\"></div>";
             $line .= "<div class=\"in\">IN</div>";
             $line .= "<div class=\"type\">SRV</div>";
-            $line .= "<div class=\"priority\"><label>" . ui_language::translate("Priority") . "</label><input name=\"proto_priority\" type=\"text\"></div>";
-            $line .= "<div class=\"weight\"><label>" . ui_language::translate("Weight") . "</label><input name=\"proto_weight\" type=\"text\"></div>";
-            $line .= "<div class=\"port\"><label>" . ui_language::translate("Port") . "</label><input name=\"proto_port\" type=\"text\"></div>";
-            $line .= "<div class=\"target\"><label>" . ui_language::translate("Target") . "</label><input name=\"proto_target\" type=\"text\"></div>";
+            $line .= "<div class=\"priority\"><label>".ui_language::translate("Priority")."</label><input name=\"proto_priority\" type=\"text\"></div>";
+            $line .= "<div class=\"weight\"><label>".ui_language::translate("Weight")."</label><input name=\"proto_weight\" type=\"text\"></div>";
+            $line .= "<div class=\"port\"><label>".ui_language::translate("Port")."</label><input name=\"proto_port\" type=\"text\"></div>";
+            $line .= "<div class=\"target\"><label>".ui_language::translate("Target")."</label><input name=\"proto_target\" type=\"text\"></div>";
             $line .= "<input class=\"delete\" name=\"proto_delete\" value=\"false\" type=\"hidden\"><span class=\"delete enableToolTip\"></span>";
             $line .= "<input name=\"proto_type\" value=\"SRV\" type=\"hidden\">";
             $line .= "</div>";
@@ -456,14 +500,14 @@ class module_controller {
         if (self::IsTypeAllowed('SPF')) {
             $line .= "<!-- SPF RECORDS -->";
             $line .= "<div class=\"records dnsRecordSPF ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide\" id=\"typeSPF\">";
-            $line .= "<div class=\"description\">" . ui_language::translate("SPF records is used to store Sender Policy Framework details.  It's target is a text string, e.g.<br>'v=spf1 a:192.168.1.1 include:example.com mx ptr -all' (Click <a href=\"http://www.microsoft.com/mscorp/safety/content/technologies/senderid/wizard/\" target=\"_blank\">HERE</a> for the Microsoft SPF Wizard.)") . "</div>";
+            $line .= "<div class=\"description\">".ui_language::translate("SPF records is used to store Sender Policy Framework details.  It's target is a text string, e.g.<br>'v=spf1 a:192.168.1.1 include:example.com mx ptr -all' (Click <a href=\"http://www.microsoft.com/mscorp/safety/content/technologies/senderid/wizard/\" target=\"_blank\">HERE</a> for the Microsoft SPF Wizard.)")."</div>";
             $line .= "<div class=\"header row\">";
-            $line .= "<div class=\"hostName\"><label class=\"enableToolTip\">" . ui_language::translate("Host Name") . "</label></div>";
+            $line .= "<div class=\"hostName\"><label class=\"enableToolTip\">".ui_language::translate("Host Name")."</label></div>";
             $line .= "<div class=\"TTL\"><label class=\"enableToolTip\">TTL</label></div>";
             $line .= "<div class=\"in\">&nbsp;</div>";
             $line .= "<div class=\"type\">&nbsp;</div>";
-            $line .= "<div class=\"target\"><label class=\"enableToolTip\">" . ui_language::translate("Target") . "</label></div>";
-            $line .= "<div class=\"actions\"><label>" . ui_language::translate("Actions") . "</label></div>";
+            $line .= "<div class=\"target\"><label class=\"enableToolTip\">".ui_language::translate("Target")."</label></div>";
+            $line .= "<div class=\"actions\"><label>".ui_language::translate("Actions")."</label></div>";
             $line .= "<br>";
             $line .= "</div>";
             //SPF Records
@@ -483,10 +527,10 @@ class module_controller {
                 $line .= "<br>";
                 $line .= "</div>";
             }
-            $line .= "<div class=\"add row\"><span><span><button class=\"fg-button ui-state-default ui-corner-all\" type=\"button\">" . ui_language::translate("Add New Record") . "</button></span></span></div>";
+            $line .= "<div class=\"add row\"><span><span><button class=\"fg-button ui-state-default ui-corner-all\" type=\"button\">".ui_language::translate("Add New Record")."</button></span></span></div>";
             $line .= "<div class=\"newRecord row\" style=\"display: none\">";
-            $line .= "<div class=\"hostName\"><label>" . ui_language::translate("Host Name") . "</label><input name=\"proto_hostName\" type=\"text\"></div>";
-            $line .= "<div class=\"TTL\"><label>TTL</label><input name=\"proto_ttl\" value=\"86400\" type=\"text\"></div>";
+            $line .= "<div class=\"hostName\"><label>".ui_language::translate("Host Name")."</label><input name=\"proto_hostName\" type=\"text\"></div>";
+            $line .= "<div class=\"TTL\"><label>TTL</label><input name=\"proto_ttl\" value=\"600\" type=\"text\"></div>";
             $line .= "<div class=\"in\">IN</div>";
             $line .= "<div class=\"type\">SPF</div>";
             $line .= "<div class=\"target\"><label>Target</label><input name=\"proto_target\" type=\"text\"></div>";
@@ -498,12 +542,12 @@ class module_controller {
         if (self::IsTypeAllowed('NS')) {
             $line .= "<!-- NS RECORDS -->";
             $line .= "<div class=\"records dnsRecordNS ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide\" id=\"typeNS\">";
-            $line .= "<div class=\"description\">" . ui_language::translate("Nameserver record. Specifies nameservers for a domain. It's target is a fully qualified domain name, e.g.  'ns1.example.com'.  The records should match what the domain name has registered with the internet root servers.") . "</div>";
+            $line .= "<div class=\"description\">".ui_language::translate("Nameserver record. Specifies nameservers for a domain. It's target is a fully qualified domain name, e.g.  'ns1.example.com'.  The records should match what the domain name has registered with the internet root servers.")."</div>";
             $line .= "<div class=\"header row\">";
-            $line .= "<div class=\"hostName\"><label class=\"enableToolTip\">" . ui_language::translate("Host Name") . "</label></div>";
+            $line .= "<div class=\"hostName\"><label class=\"enableToolTip\">".ui_language::translate("Host Name")."</label></div>";
             $line .= "<div class=\"TTL\"><label class=\"enableToolTip\">TTL</label></div>";
-            $line .= "<div class=\"in\">&nbsp;</div><div class=\"type\">&nbsp;</div><div class=\"target\"><label class=\"enableToolTip\">" . ui_language::translate("Target") . "</label></div>";
-            $line .= "<div class=\"actions\"><label>" . ui_language::translate("Actions") . "</label></div>";
+            $line .= "<div class=\"in\">&nbsp;</div><div class=\"type\">&nbsp;</div><div class=\"target\"><label class=\"enableToolTip\">".ui_language::translate("Target")."</label></div>";
+            $line .= "<div class=\"actions\"><label>".ui_language::translate("Actions")."</label></div>";
             $line .= "<br>";
             $line .= "</div>";
             //NS Records
@@ -523,13 +567,13 @@ class module_controller {
                 $line .= "<br>";
                 $line .= "</div>";
             }
-            $line .= "<div class=\"add row\"><span><span><button class=\"fg-button ui-state-default ui-corner-all\" type=\"button\">" . ui_language::translate("Add New Record") . "</button></span></span></div>";
+            $line .= "<div class=\"add row\"><span><span><button class=\"fg-button ui-state-default ui-corner-all\" type=\"button\">".ui_language::translate("Add New Record")."</button></span></span></div>";
             $line .= "<div class=\"newRecord row\" style=\"display: none\">";
-            $line .= "<div class=\"hostName\"><label>" . ui_language::translate("Host Name") . "</label><input name=\"proto_hostName\" type=\"text\"></div>";
-            $line .= "<div class=\"TTL\"><label>TTL</label><input name=\"proto_ttl\" value=\"172800\" type=\"text\"></div>";
+            $line .= "<div class=\"hostName\"><label>".ui_language::translate("Host Name")."</label><input name=\"proto_hostName\" type=\"text\"></div>";
+            $line .= "<div class=\"TTL\"><label>TTL</label><input name=\"proto_ttl\" value=\"\" type=\"text\"></div>";
             $line .= "<div class=\"in\">IN</div>";
             $line .= "<div class=\"type\">NS</div>";
-            $line .= "<div class=\"target\"><label>" . ui_language::translate("Target") . "</label><input name=\"proto_target\" type=\"text\"></div>";
+            $line .= "<div class=\"target\"><label>".ui_language::translate("Target")."</label><input name=\"proto_target\" type=\"text\"></div>";
             $line .= "<input class=\"delete\" name=\"proto_delete\" value=\"false\" type=\"hidden\">";
             $line .= "<span class=\"delete enableToolTip\"></span>";
             $line .= "<input name=\"proto_type\" value=\"NS\" type=\"hidden\">";
@@ -541,7 +585,7 @@ class module_controller {
         $line .= "<div id=\"dnsTitle\" class=\"account accountTitle\">";
         $line .= "<div class=\"content\">";
         $line .= "<div>";
-        $line .= "<div class=\"actions\"><a class=\"undo disabled\">" . ui_language::translate("Undo Changes") . "</a><a class=\"save disabled\">" . ui_language::translate("Save Changes") . "</a><a class=\"back\" href=\"/?module=" . $controller->GetControllerRequest('URL', 'module') . "\">" . ui_language::translate("Domain List") . "</a></div>";
+        $line .= "<div class=\"actions\"><a class=\"undo disabled\">".ui_language::translate("Undo Changes")."</a><a class=\"save disabled\">".ui_language::translate("Save Changes")."</a><a class=\"back\" href=\"/?module=" . $controller->GetControllerRequest('URL', 'module') . "\">".ui_language::translate("Domain List")."</a></div>";
         $line .= "</div><br class=\"clear\">";
         $line .= "</div>";
         //$line .= "</div>";
@@ -549,13 +593,13 @@ class module_controller {
         //$line .= "</div>";
         $line .= "<!-- END DNS FORM -->";
         $line .= "<div class=\"zgrid_wrapper\">";
-        $line .= "<h2>DNS Status for domain: " . $domain['vh_name_vc'] . "</h2>";
-        $line .= "<table class=\"none\" cellpadding=\"0\" cellspacing=\"0\"><tr valign=\"top\"><td>";
-        $line .= $zone_status;
-        $line .= "</td><td>" . $zone_error_message . "<br><br>" . ui_language::translate("Please note that changes to your zone records can take up to 24 hours before they become 'live'.") . "<br><br><b>" . ui_language::translate("Output of DNS zone checker:") . "</b><br>";
-        $line .= $zone_message;
-        $line .= "</td></tr></table>";
-        $line .= "</div>";
+		$line .= "<h2>DNS Status for domain: " . $domain['vh_name_vc'] . "</h2>";
+		$line .= "<table class=\"none\" cellpadding=\"0\" cellspacing=\"0\"><tr valign=\"top\"><td>";
+		$line .= $zone_status;
+		$line .= "</td><td>".$zone_error_message."<br><br>".ui_language::translate("Please note that changes to your zone records can take up to 24 hours before they become 'live'.")."<br><br><b>".ui_language::translate("Output of DNS zone checker:")."</b><br>";
+		$line .= $zone_message;
+		$line .= "</td></tr></table>";
+		$line .= "</div>";
         return $line;
     }
 
@@ -585,7 +629,7 @@ class module_controller {
         $line .= "</tr>";
         $line .= "</table>";
         $line .= "</form>";
-        $line .= "<p>&nbsp;</p>";
+		$line .= "<p>&nbsp;</p>";
         $line .= "</div>";
         return $line;
     }
@@ -633,8 +677,8 @@ class module_controller {
         $domainID = $controller->GetControllerRequest('FORM', 'inDomain');
         $domainName = $domain = $zdbh->query("SELECT * FROM x_vhosts WHERE vh_id_pk=" . $domainID . " AND vh_type_in !=2 AND vh_deleted_ts IS NULL")->Fetch();
         $userID = $controller->GetControllerRequest('FORM', 'inUserID');
-        if (!fs_director::CheckForEmptyValue(ctrl_options::GetSystemOption('server_ip'))) {
-            $target = ctrl_options::GetSystemOption('server_ip');
+        if (!fs_director::CheckForEmptyValue(ctrl_options::GetOption('server_ip'))) {
+            $target = ctrl_options::GetOption('server_ip');
         } else {
             $target = $_SERVER["SERVER_ADDR"];
         }
@@ -654,7 +698,7 @@ class module_controller {
 															" . $domainID . ",
 															'A',
 															'@',
-															3600,
+															NULL,
 															'" . $target . "',
 															NULL,
 															NULL,
@@ -677,8 +721,8 @@ class module_controller {
 															" . $domainID . ",
 															'CNAME',
 															'www',
-															3600,
-															'@',
+															NULL,
+															'" . $domainName['vh_name_vc'] . "',
 															NULL,
 															NULL,
 															NULL,
@@ -700,12 +744,85 @@ class module_controller {
 															" . $domainID . ",
 															'CNAME',
 															'ftp',
-															3600,
-															'@',
+															NULL,
+															'" . $domainName['vh_name_vc'] . "',
 															NULL,
 															NULL,
 															NULL,
 															" . time() . ")");
+
+        $sql->execute();
+        $sql = $zdbh->prepare("INSERT INTO x_dns (dn_acc_fk,
+															dn_name_vc,
+															dn_vhost_fk,
+															dn_type_vc,
+															dn_host_vc,
+															dn_ttl_in,
+															dn_target_vc,
+															dn_priority_in,
+															dn_weight_in,
+															dn_port_in,
+															dn_created_ts) VALUES (
+															" . $userID . ",
+															'" . $domainName['vh_name_vc'] . "',
+															" . $domainID . ",
+															'A',
+															'pop',
+															NULL,
+															'" . $target . "',
+															NULL,
+															NULL,
+															NULL,
+															" . time() . ")");															
+
+        $sql->execute();
+        $sql = $zdbh->prepare("INSERT INTO x_dns (dn_acc_fk,
+															dn_name_vc,
+															dn_vhost_fk,
+															dn_type_vc,
+															dn_host_vc,
+															dn_ttl_in,
+															dn_target_vc,
+															dn_priority_in,
+															dn_weight_in,
+															dn_port_in,
+															dn_created_ts) VALUES (
+															" . $userID . ",
+															'" . $domainName['vh_name_vc'] . "',
+															" . $domainID . ",
+															'A',
+															'imap',
+															NULL,
+															'" . $target . "',
+															NULL,
+															NULL,
+															NULL,
+															" . time() . ")");															
+
+        $sql->execute();
+        $sql = $zdbh->prepare("INSERT INTO x_dns (dn_acc_fk,
+															dn_name_vc,
+															dn_vhost_fk,
+															dn_type_vc,
+															dn_host_vc,
+															dn_ttl_in,
+															dn_target_vc,
+															dn_priority_in,
+															dn_weight_in,
+															dn_port_in,
+															dn_created_ts) VALUES (
+															" . $userID . ",
+															'" . $domainName['vh_name_vc'] . "',
+															" . $domainID . ",
+															'A',
+															'smtp',
+															NULL,
+															'" . $target . "',
+															NULL,
+															NULL,
+															NULL,
+															" . time() . ")");															
+											
         $sql->execute();
         $sql = $zdbh->prepare("INSERT INTO x_dns (dn_acc_fk,
 															dn_name_vc,
@@ -723,7 +840,7 @@ class module_controller {
 															" . $domainID . ",
 															'A',
 															'mail',
-															86400,
+															NULL,
 															'" . $target . "',
 															NULL,
 															NULL,
@@ -746,12 +863,37 @@ class module_controller {
 															" . $domainID . ",
 															'MX',
 															'@',
-															86400,
+															NULL,
 															'mail." . $domainName['vh_name_vc'] . "',
 															10,
 															NULL,
 															NULL,
 															" . time() . ")");
+															
+		        $sql->execute();
+        $sql = $zdbh->prepare("INSERT INTO x_dns (dn_acc_fk,
+															dn_name_vc,
+															dn_vhost_fk,
+															dn_type_vc,
+															dn_host_vc,
+															dn_ttl_in,
+															dn_target_vc,
+															dn_priority_in,
+															dn_weight_in,
+															dn_port_in,
+															dn_created_ts) VALUES (
+															" . $userID . ",
+															'" . $domainName['vh_name_vc'] . "',
+															" . $domainID . ",
+															'SPF',
+															NULL,
+															NULL,
+															'v=spf1 a mx ~all',
+															NULL,
+															NULL,
+															NULL,
+															" . time() . ")");													
+															
         $sql->execute();
         $sql = $zdbh->prepare("INSERT INTO x_dns (dn_acc_fk,
 															dn_name_vc,
@@ -769,7 +911,7 @@ class module_controller {
 															" . $domainID . ",
 															'A',
 															'ns1',
-															172800,
+															NULL,
 															'" . $target . "',
 															NULL,
 															NULL,
@@ -792,7 +934,7 @@ class module_controller {
 															" . $domainID . ",
 															'A',
 															'ns2',
-															172800,
+															NULL,
 															'" . $target . "',
 															NULL,
 															NULL,
@@ -845,7 +987,7 @@ class module_controller {
 															NULL,
 															" . time() . ")");
         $sql->execute();
-        self::TriggerDNSUpdate($domainID);
+		self::TriggerDNSUpdate($domainID);
         self::$editdomain = $domainID;
         return;
     }
@@ -922,7 +1064,7 @@ class module_controller {
                 //The record has been marked for deletion, so lets delete it!
                 $sql = $zdbh->prepare("UPDATE x_dns SET dn_deleted_ts=" . time() . " WHERE dn_id_pk = " . $id . " AND dn_deleted_ts IS NULL");
                 $sql->execute();
-                self::TriggerDNSUpdate($domainID);
+				self::TriggerDNSUpdate($domainID);
                 //If deleting an A recod, also delete cnames pointing to it.
                 if ($type[$id] == "A") {
                     //$sql = $zdbh->prepare("UPDATE x_dns SET dn_deleted_ts=" . time() . " WHERE dn_type_vc='CNAME' AND dn_vhost_fk=".$domainID." AND dn_target_vc='".$target[$id]."' AND dn_deleted_ts IS NULL");
@@ -955,8 +1097,8 @@ class module_controller {
                     $sql = $zdbh->prepare("UPDATE x_dns SET dn_port_in=" . self::CleanRecord($port[$id], $type[$id]) . " WHERE dn_id_pk = " . $id . " AND dn_deleted_ts IS NULL");
                     $sql->execute();
                 }
-                //Flag the record for needing updating on next daemon run...
-                self::TriggerDNSUpdate($domainID);
+				//Flag the record for needing updating on next daemon run...
+				self::TriggerDNSUpdate($domainID);
             }
         }
         //NEW Records
@@ -985,9 +1127,9 @@ class module_controller {
                         if (isset($target['new_' . $id]) && !fs_director::CheckForEmptyValue($target['new_' . $id])) {
                             //If Custom IP addresses are not allowed.
                             if ($type['new_' . $id] == 'A') {
-                                if (ctrl_options::GetSystemOption('custom_ip') == strtolower("false")) {
-                                    if (!fs_director::CheckForEmptyValue(ctrl_options::GetSystemOption('server_ip'))) {
-                                        $target['new_' . $id] = ctrl_options::GetSystemOption('server_ip');
+                                if (ctrl_options::GetOption('custom_ip') == strtolower("false")) {
+                                    if (!fs_director::CheckForEmptyValue(ctrl_options::GetOption('server_ip'))) {
+                                        $target['new_' . $id] = ctrl_options::GetOption('server_ip');
                                     } else {
                                         $target['new_' . $id] = $_SERVER["SERVER_ADDR"];
                                     }
@@ -1035,8 +1177,8 @@ class module_controller {
 															" . $port_new . ",
 															" . time() . ")");
                         $sql->execute();
-                        //Flag the record for needing updating on next daemon run...
-                        self::TriggerDNSUpdate($domainID);
+						//Flag the record for needing updating on next daemon run...
+						self::TriggerDNSUpdate($domainID);
                     }
                 }
                 $id++;
@@ -1134,6 +1276,8 @@ class module_controller {
                             self::$invalidIPv6_error = TRUE;
                             return FALSE;
                         }
+					} elseif ($type[$id] == "DKIM") {	
+						
                     } elseif ($type[$id] == "TXT") {
                         
                     } elseif ($type[$id] == "SPF") {
@@ -1198,14 +1342,14 @@ class module_controller {
                     if ($delete['new_' . $id] == "false" && !fs_director::CheckForEmptyValue($type['new_' . $id])) {
                         //HOSTNAME
                         if (isset($hostName['new_' . $id]) && !fs_director::CheckForEmptyValue($hostName['new_' . $id]) && $hostName['new_' . $id] != "@") {
-
-                            //Check that hostname does not already exist.
-                            $hostname = $zdbh->query("SELECT * FROM x_dns WHERE dn_host_vc='" . $hostName['new_' . $id] . "' AND dn_vhost_fk=" . $domainID . " AND dn_deleted_ts IS NULL")->Fetch();
-                            if ($hostname) {
-                                self::$hostname_error = TRUE;
-                                return FALSE;
-                            }
-
+							
+							//Check that hostname does not already exist.
+							$hostname = $zdbh->query("SELECT * FROM x_dns WHERE dn_host_vc='" . $hostName['new_' . $id] . "' AND dn_vhost_fk=" . $domainID . " AND dn_deleted_ts IS NULL")->Fetch();
+							if ($hostname){
+								self::$hostname_error = TRUE;
+								return FALSE;
+							}
+							
                             if ($type['new_' . $id] != "SRV") {
                                 if (!self::IsValidDomainName($hostName['new_' . $id])) {
                                     return FALSE;
@@ -1231,11 +1375,13 @@ class module_controller {
                                     self::$invalidIPv6_error = TRUE;
                                     return FALSE;
                                 }
+							} elseif ($type['new_' . $id] == "DKIM") {	
+								
                             } elseif ($type['new_' . $id] == "TXT") {
                                 
                             } elseif ($type['new_' . $id] == "SPF") {
-                                
-                            } elseif ($type['new_' . $id] == "NS") {
+							
+							} elseif ($type['new_' . $id] == "NS")  {
                                 
                             } else {
                                 if (!self::IsValidIP($target['new_' . $id])) {
@@ -1297,7 +1443,7 @@ class module_controller {
         if ($a != "@") {
             $part = explode(".", $a);
             foreach ($part as $check) {
-                if (!preg_match('/^[a-z\d][a-z\d-]{0,62}$/i', $check) || preg_match('/-$/', $check)) {
+                if (!preg_match('/^[a-z.*-_\d][a-z.*-_\d-]{0,62}$/i', $check) || preg_match('/-$/', $check)) {
                     return false;
                 }
             }
@@ -1307,19 +1453,19 @@ class module_controller {
 
     static function CleanRecord($data, $type) {
         $data = trim($data);
-        if ($type == 'SPF' || $type == 'TXT') {
+        if ($type == 'SPF' || $type == 'DKIM' || $type == 'TXT') {
             $data = str_replace('"', '', $data);
             $data = str_replace('\'', '', $data);
             $data = addslashes($data);
         } else {
             $data = str_replace(' ', '', $data);
         }
-        //Add '@' if hostname is blank on NS and MX records.
-        if ($type == 'NS' || $type == 'MX') {
+		//Add '@' if hostname is blank on NS and MX records.
+		if ($type == 'NS' || $type == 'MX') {
             if ($data == '') {
-                $data = "@";
+            	$data = "@";
             }
-        }
+		}
 
         $data = strtolower($data);
         return $data;
@@ -1327,7 +1473,7 @@ class module_controller {
 
     static function IsTypeAllowed($type) {
         global $zdbh;
-        $record_types = ctrl_options::GetSystemOption('allowed_types');
+        $record_types = ctrl_options::GetOption('allowed_types');
         $record_types = explode(" ", $record_types);
         if (in_array($type, $record_types)) {
             return TRUE;
@@ -1420,91 +1566,97 @@ class module_controller {
     }
 
     static function TriggerDNSUpdate($id) {
-        global $zdbh;
+		global $zdbh;
         global $controller;
-        $GetRecords = ctrl_options::GetSystemOption('dns_hasupdates');
-        $records = explode(",", $GetRecords);
-        foreach ($records as $record) {
-            $RecordArray[] = $record;
-        }
-        if (!in_array($id, $RecordArray)) {
-            $newlist = $GetRecords . "," . $id;
-            $newlist = str_replace(",,", ",", $newlist);
-            $sql = "UPDATE x_settings SET so_value_tx='" . $newlist . "' WHERE so_name_vc='dns_hasupdates'";
-            $sql = $zdbh->prepare($sql);
-            $sql->execute();
-            return true;
-        }
+        $GetRecords = ctrl_options::GetOption('dns_hasupdates');
+		$records = explode(",", $GetRecords);
+		foreach ($records as $record){
+			$RecordArray[] = $record;
+		}
+		if (!in_array($id, $RecordArray)){	
+        	$newlist = $GetRecords . "," . $id;
+	        $newlist = str_replace(",,", ",", $newlist);
+	        $sql = "UPDATE x_settings SET so_value_tx='" . $newlist . "' WHERE so_name_vc='dns_hasupdates'";
+			$sql = $zdbh->prepare($sql);
+			$sql->execute();
+	        return true;
+		}
     }
 
-    static function CheckZoneRecord($domainID) {
-        global $zdbh;
-        $hasrecords = false;
-        $sql = "SELECT COUNT(*) FROM x_dns WHERE dn_vhost_fk=" . $domainID . "  AND dn_deleted_ts IS NULL";
-        if ($numrows = $zdbh->query($sql)) {
-            if ($numrows->fetchColumn() <> 0) {
-                $hasrecords = true;
-                $sql = $zdbh->prepare("SELECT * FROM x_dns WHERE dn_vhost_fk=" . $domainID . " AND dn_deleted_ts IS NULL ORDER BY dn_type_vc");
-                $sql->execute();
-                $domain = $zdbh->query("SELECT dn_name_vc FROM x_dns WHERE dn_vhost_fk=" . $domainID . " AND dn_deleted_ts IS NULL")->Fetch();
+	static function CheckZoneRecord($domainID){
+		global $zdbh;
+		$hasrecords=false;
+            $sql = "SELECT COUNT(*) FROM x_dns WHERE dn_vhost_fk=" . $domainID . "  AND dn_deleted_ts IS NULL";
+            if ($numrows = $zdbh->query($sql)) {
+                if ($numrows->fetchColumn() <> 0) {
+				$hasrecords=true;
+                    $sql = $zdbh->prepare("SELECT * FROM x_dns WHERE dn_vhost_fk=" . $domainID . " AND dn_deleted_ts IS NULL ORDER BY dn_type_vc");
+                    $sql->execute();
+                    $domain = $zdbh->query("SELECT dn_name_vc FROM x_dns WHERE dn_vhost_fk=" . $domainID . " AND dn_deleted_ts IS NULL")->Fetch();
+					
 
-
-                $zonecheck_file = (ctrl_options::GetSystemOption('temp_dir')) . $domain['dn_name_vc'] . ".txt";
-                $checkline = "$" . "TTL 10800" . fs_filehandler::NewLine();
-                $checkline .= "@ IN SOA " . $domain['dn_name_vc'] . ".    ";
-                $checkline .= "postmaster@" . $domain['dn_name_vc'] . ". (" . fs_filehandler::NewLine();
-                $checkline .= "                       " . time() . "	;serial" . fs_filehandler::NewLine();
-                $checkline .= "                       " . ctrl_options::GetSystemOption('refresh_ttl') . "      ;refresh after 6 hours" . fs_filehandler::NewLine();
-                $checkline .= "                       " . ctrl_options::GetSystemOption('retry_ttl') . "       ;retry after 1 hour" . fs_filehandler::NewLine();
-                $checkline .= "                       " . ctrl_options::GetSystemOption('expire_ttl') . "     ;expire after 1 week" . fs_filehandler::NewLine();
-                $checkline .= "                       " . ctrl_options::GetSystemOption('minimum_ttl') . " )    ;minimum TTL of 1 day" . fs_filehandler::NewLine();
-                while ($rowdns = $sql->fetch()) {
-                    if ($rowdns['dn_type_vc'] == "A") {
-                        $checkline .= $rowdns['dn_host_vc'] . "		" . $rowdns['dn_ttl_in'] . "		IN		A		" . $rowdns['dn_target_vc'] . fs_filehandler::NewLine();
+                    $zonecheck_file = (ctrl_options::GetOption('temp_dir')) . $domain['dn_name_vc'] . ".txt";
+                    $checkline = "$" . "TTL 86400" . fs_filehandler::NewLine();
+                    $checkline .= "@ IN SOA " . $domain['dn_name_vc'] . ".    ";
+                    $checkline .= "postmaster." . $domain['dn_name_vc'] . ". (" . fs_filehandler::NewLine();
+                    $checkline .= "                       " . date("Ymdt") . "	;serial" . fs_filehandler::NewLine();
+                    $checkline .= "                       " . ctrl_options::GetOption('refresh_ttl') . "      ;refresh after 6 hours" . fs_filehandler::NewLine();
+                    $checkline .= "                       " . ctrl_options::GetOption('retry_ttl') . "       ;retry after 1 hour" . fs_filehandler::NewLine();
+                    $checkline .= "                       " . ctrl_options::GetOption('expire_ttl') . "     ;expire after 1 week" . fs_filehandler::NewLine();
+                    $checkline .= "                       " . ctrl_options::GetOption('minimum_ttl') . " )    ;minimum TTL of 1 day" . fs_filehandler::NewLine();
+                    while ($rowdns = $sql->fetch()) {
+                        if ($rowdns['dn_type_vc'] == "A") {
+                            $checkline .= $rowdns['dn_host_vc'] . "		" . $rowdns['dn_ttl_in'] . "		IN		A		" . $rowdns['dn_target_vc'] . fs_filehandler::NewLine();
+                        }
+                        if ($rowdns['dn_type_vc'] == "AAAA") {
+                            $checkline .= $rowdns['dn_host_vc'] . "		" . $rowdns['dn_ttl_in'] . "		IN		AAAA		" . $rowdns['dn_target_vc'] . fs_filehandler::NewLine();
+                        }
+                        if ($rowdns['dn_type_vc'] == "CNAME") {
+                            $checkline .= $rowdns['dn_host_vc'] . "		" . $rowdns['dn_ttl_in'] . "		IN		CNAME		" . $rowdns['dn_target_vc'] . fs_filehandler::NewLine();
+                        }
+                        if ($rowdns['dn_type_vc'] == "MX") {
+                            $checkline .= $rowdns['dn_host_vc'] . "		" . $rowdns['dn_ttl_in'] . "		IN		MX		" . $rowdns['dn_priority_in'] . "	" . $rowdns['dn_target_vc'] . "." . fs_filehandler::NewLine();
+                        }
+						if ($rowdns['dn_type_vc'] == "DKIM") {
+                            $checkline .= $rowdns['dn_host_vc'] . "		" . $rowdns['dn_ttl_in'] . "		IN		TXT		\"( " . stripslashes($rowdns['dn_target_vc']) . " )\"" . fs_filehandler::NewLine();
+                        }
+                        if ($rowdns['dn_type_vc'] == "TXT") {
+                            $checkline .= $rowdns['dn_host_vc'] . "		" . $rowdns['dn_ttl_in'] . "		IN		TXT		\"" . stripslashes($rowdns['dn_target_vc']) . "\"" . fs_filehandler::NewLine();
+                        }
+                        if ($rowdns['dn_type_vc'] == "SRV") {
+                            $checkline .= $rowdns['dn_host_vc'] . "		" . $rowdns['dn_ttl_in'] . "		IN		SRV		" . $rowdns['dn_priority_in'] . "	" . $rowdns['dn_weight_in'] . "	" . $rowdns['dn_port_in'] . "	" . $rowdns['dn_target_vc'] . "." . fs_filehandler::NewLine();
+                        }
+                        if ($rowdns['dn_type_vc'] == "SPF") {
+                            $checkline .= $rowdns['dn_host_vc'] . "		" . $rowdns['dn_ttl_in'] . "		IN		TXT		\"" . stripslashes($rowdns['dn_target_vc']) . "\"" . fs_filehandler::NewLine();
+                        }
+                        if ($rowdns['dn_type_vc'] == "NS") {
+                            $checkline .= $rowdns['dn_host_vc'] . "		" . $rowdns['dn_ttl_in'] . "		IN		NS		" . $rowdns['dn_target_vc'] . "." . fs_filehandler::NewLine();
+                        }
                     }
-                    if ($rowdns['dn_type_vc'] == "AAAA") {
-                        $checkline .= $rowdns['dn_host_vc'] . "		" . $rowdns['dn_ttl_in'] . "		IN		AAAA		" . $rowdns['dn_target_vc'] . fs_filehandler::NewLine();
-                    }
-                    if ($rowdns['dn_type_vc'] == "CNAME") {
-                        $checkline .= $rowdns['dn_host_vc'] . "		" . $rowdns['dn_ttl_in'] . "		IN		CNAME		" . $rowdns['dn_target_vc'] . fs_filehandler::NewLine();
-                    }
-                    if ($rowdns['dn_type_vc'] == "MX") {
-                        $checkline .= $rowdns['dn_host_vc'] . "		" . $rowdns['dn_ttl_in'] . "		IN		MX		" . $rowdns['dn_priority_in'] . "	" . $rowdns['dn_target_vc'] . "." . fs_filehandler::NewLine();
-                    }
-                    if ($rowdns['dn_type_vc'] == "TXT") {
-                        $checkline .= $rowdns['dn_host_vc'] . "		" . $rowdns['dn_ttl_in'] . "		IN		TXT		\"" . stripslashes($rowdns['dn_target_vc']) . "\"" . fs_filehandler::NewLine();
-                    }
-                    if ($rowdns['dn_type_vc'] == "SRV") {
-                        $checkline .= $rowdns['dn_host_vc'] . "		" . $rowdns['dn_ttl_in'] . "		IN		SRV		" . $rowdns['dn_priority_in'] . "	" . $rowdns['dn_weight_in'] . "	" . $rowdns['dn_port_in'] . "	" . $rowdns['dn_target_vc'] . "." . fs_filehandler::NewLine();
-                    }
-                    if ($rowdns['dn_type_vc'] == "SPF") {
-                        $checkline .= $rowdns['dn_host_vc'] . "		" . $rowdns['dn_ttl_in'] . "		IN		SPF		\"" . stripslashes($rowdns['dn_target_vc']) . "\"" . fs_filehandler::NewLine();
-                    }
-                    if ($rowdns['dn_type_vc'] == "NS") {
-                        $checkline .= $rowdns['dn_host_vc'] . "		" . $rowdns['dn_ttl_in'] . "		IN		NS		" . $rowdns['dn_target_vc'] . "." . fs_filehandler::NewLine();
-                    }
-                }
-                fs_filehandler::UpdateFile($zonecheck_file, 0777, $checkline);
-            }
-        }
-        if ($hasrecords == true) {
-            //Check the temp zone record for errors
-            if (file_exists($zonecheck_file)) {
-                ob_start();
-                system(ctrl_options::GetSystemOption('named_checkzone') . " " . $domain['dn_name_vc'] . " " . $zonecheck_file, $retval);
-                $content_grabbed = ob_get_contents();
-                ob_end_clean();
-                unlink($zonecheck_file);
-                if ($retval == 0) {
-                    //Syntax check passed.
-                    return $content_grabbed;
-                } else {
-                    //Syntax ERROR.
-                    return $content_grabbed;
+					fs_filehandler::UpdateFile($zonecheck_file, 0777, $checkline);
                 }
             }
-        }
-    }
+			if ($hasrecords==true){
+				//Check the temp zone record for errors
+				if (file_exists($zonecheck_file)){
+					ob_start();
+		        	system(ctrl_options::GetOption('named_checkzone') . " " . $domain['dn_name_vc'] . " " . $zonecheck_file, $retval);
+		        	$content_grabbed = ob_get_contents();
+		        	ob_end_clean();
+					unlink($zonecheck_file);
+					if ($retval == 0){
+						//Syntax check passed.
+		    			return $content_grabbed;
+					} else {
+						//Syntax ERROR.
+						return $content_grabbed;
+					}
+				}
+			}
+	
+	}
+	
+
 
 }
 

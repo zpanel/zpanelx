@@ -1,0 +1,219 @@
+git-checkout(1)
+===============
+
+NAME
+----
+git-checkout - Checkout a branch or paths to the working tree
+
+SYNOPSIS
+--------
+[verse]
+'git-checkout' [-q] [-f] [[--track | --no-track] -b <new_branch> [-l]] [-m] [<branch>]
+'git-checkout' [<tree-ish>] <paths>...
+
+DESCRIPTION
+-----------
+
+When <paths> are not given, this command switches branches by
+updating the index and working tree to reflect the specified
+branch, <branch>, and updating HEAD to be <branch> or, if
+specified, <new_branch>.  Using -b will cause <new_branch> to
+be created; in this case you can use the --track or --no-track
+options, which will be passed to `git branch`.
+
+When <paths> are given, this command does *not* switch
+branches.  It updates the named paths in the working tree from
+the index file (i.e. it runs `git-checkout-index -f -u`), or
+from a named commit.  In
+this case, the `-f` and `-b` options are meaningless and giving
+either of them results in an error.  <tree-ish> argument can be
+used to specify a specific tree-ish (i.e. commit, tag or tree)
+to update the index for the given paths before updating the
+working tree.
+
+
+OPTIONS
+-------
+-q::
+	Quiet, suppress feedback messages.
+
+-f::
+	Proceed even if the index or the working tree differs
+	from HEAD.  This is used to throw away local changes.
+
+-b::
+	Create a new branch named <new_branch> and start it at
+	<branch>.  The new branch name must pass all checks defined
+	by linkgit:git-check-ref-format[1].  Some of these checks
+	may restrict the characters allowed in a branch name.
+
+-t::
+--track::
+	When creating a new branch, set up configuration so that git-pull
+	will automatically retrieve data from the start point, which must be
+	a branch. Use this if you always pull from the same upstream branch
+	into the new branch, and if you don't want to use "git pull
+	<repository> <refspec>" explicitly. This behavior is the default
+	when the start point is a remote branch. Set the
+	branch.autosetupmerge configuration variable to `false` if you want
+	git-checkout and git-branch to always behave as if '--no-track' were
+	given. Set it to `always` if you want this behavior when the
+	start-point is either a local or remote branch.
+
+--no-track::
+	Ignore the branch.autosetupmerge configuration variable.
+
+-l::
+	Create the new branch's reflog.  This activates recording of
+	all changes made to the branch ref, enabling use of date
+	based sha1 expressions such as "<branchname>@\{yesterday}".
+
+-m::
+	If you have local modifications to one or more files that
+	are different between the current branch and the branch to
+	which you are switching, the command refuses to switch
+	branches in order to preserve your modifications in context.
+	However, with this option, a three-way merge between the current
+	branch, your working tree contents, and the new branch
+	is done, and you will be on the new branch.
++
+When a merge conflict happens, the index entries for conflicting
+paths are left unmerged, and you need to resolve the conflicts
+and mark the resolved paths with `git add` (or `git rm` if the merge
+should result in deletion of the path).
+
+<new_branch>::
+	Name for the new branch.
+
+<branch>::
+	Branch to checkout; may be any object ID that resolves to a
+	commit.  Defaults to HEAD.
++
+When this parameter names a non-branch (but still a valid commit object),
+your HEAD becomes 'detached'.
+
+
+Detached HEAD
+-------------
+
+It is sometimes useful to be able to 'checkout' a commit that is
+not at the tip of one of your branches.  The most obvious
+example is to check out the commit at a tagged official release
+point, like this:
+
+------------
+$ git checkout v2.6.18
+------------
+
+Earlier versions of git did not allow this and asked you to
+create a temporary branch using `-b` option, but starting from
+version 1.5.0, the above command 'detaches' your HEAD from the
+current branch and directly point at the commit named by the tag
+(`v2.6.18` in the above example).
+
+You can use usual git commands while in this state.  You can use
+`git-reset --hard $othercommit` to further move around, for
+example.  You can make changes and create a new commit on top of
+a detached HEAD.  You can even create a merge by using `git
+merge $othercommit`.
+
+The state you are in while your HEAD is detached is not recorded
+by any branch (which is natural --- you are not on any branch).
+What this means is that you can discard your temporary commits
+and merges by switching back to an existing branch (e.g. `git
+checkout master`), and a later `git prune` or `git gc` would
+garbage-collect them.  If you did this by mistake, you can ask
+the reflog for HEAD where you were, e.g.
+
+------------
+$ git log -g -2 HEAD
+------------
+
+
+EXAMPLES
+--------
+
+. The following sequence checks out the `master` branch, reverts
+the `Makefile` to two revisions back, deletes hello.c by
+mistake, and gets it back from the index.
++
+------------
+$ git checkout master             <1>
+$ git checkout master~2 Makefile  <2>
+$ rm -f hello.c
+$ git checkout hello.c            <3>
+------------
++
+<1> switch branch
+<2> take out a file out of other commit
+<3> restore hello.c from HEAD of current branch
++
+If you have an unfortunate branch that is named `hello.c`, this
+step would be confused as an instruction to switch to that branch.
+You should instead write:
++
+------------
+$ git checkout -- hello.c
+------------
+
+. After working in a wrong branch, switching to the correct
+branch would be done using:
++
+------------
+$ git checkout mytopic
+------------
++
+However, your "wrong" branch and correct "mytopic" branch may
+differ in files that you have locally modified, in which case,
+the above checkout would fail like this:
++
+------------
+$ git checkout mytopic
+fatal: Entry 'frotz' not uptodate. Cannot merge.
+------------
++
+You can give the `-m` flag to the command, which would try a
+three-way merge:
++
+------------
+$ git checkout -m mytopic
+Auto-merging frotz
+------------
++
+After this three-way merge, the local modifications are _not_
+registered in your index file, so `git diff` would show you what
+changes you made since the tip of the new branch.
+
+. When a merge conflict happens during switching branches with
+the `-m` option, you would see something like this:
++
+------------
+$ git checkout -m mytopic
+Auto-merging frotz
+merge: warning: conflicts during merge
+ERROR: Merge conflict in frotz
+fatal: merge program failed
+------------
++
+At this point, `git diff` shows the changes cleanly merged as in
+the previous example, as well as the changes in the conflicted
+files.  Edit and resolve the conflict and mark it resolved with
+`git add` as usual:
++
+------------
+$ edit frotz
+$ git add frotz
+------------
+
+
+Author
+------
+Written by Linus Torvalds <torvalds@osdl.org>
+
+Documentation
+--------------
+Documentation by Junio C Hamano and the git-list <git@vger.kernel.org>.
+
+GIT
+---
+Part of the linkgit:git[1] suite

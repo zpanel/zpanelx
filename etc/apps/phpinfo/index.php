@@ -1,5 +1,4 @@
 <?php
-
 /**
  *
  * ZPanel - A Cross-Platform Open-Source Web Hosting Control panel.
@@ -24,5 +23,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+
 echo phpinfo();
 ?>

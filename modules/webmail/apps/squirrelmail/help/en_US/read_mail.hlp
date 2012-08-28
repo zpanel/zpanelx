@@ -1,0 +1,179 @@
+<chapter>
+   <title>
+      Reading an email message
+   </title>
+   <summary>
+      The ability to read an email message is one of the most basic features
+      of any email client.  However, SquirrelMail has quite a few features
+      for while you are reading messages.  This explains what they all do.
+   </summary>
+   <description>
+      <p>
+      Click on the subject of a particular mail and that message is displayed.
+      One thing you will notice is that email and web addresses are live 
+      links so you can click on them and send an email or open a page.  
+      Another really nifty feature is that mail threads are color coded.
+      The standard for a reply is to quote the previous message with ">" before
+      every line.  SquirrelMail sees this and color codes them.  A replied 
+      message will have a different color on the reply than the new text.  
+      This works two layers deep.  Another menu bar is now presented below the
+      main menu choices.  This bar is in three sections.  On the left side 
+      you may delete or return to the summary.  In the middle direct
+      navigation between messages is made possible.  On the right, various 
+      mailing functions are presented.
+      </p>
+   </description>
+</chapter>
+
+<section>
+   <title>
+      Message List
+   </title>
+   <description>
+      <p>
+      Click this link to return to the folder from which you came.
+      </p>
+   </description>
+</section>
+
+<section>
+   <title>
+      Delete
+   </title>
+   <description>
+      <p>
+      Click this link to delete the message being currently viewed.
+      All attachments of deleted mail are deleted as well.  You can prevent the 
+      loss of attachments by Downloading them first (explained further in
+      this chapter).<br />
+      In this context, deleting means that the message will be moved to
+      the folder called Trash. If you wish to keep the message afterall, view
+      the Trash folder and move the message out.
+      </p>
+   </description>
+</section>
+
+<section>
+   <title>
+      Navigation
+   </title>
+   <description>
+      <p>
+      In the middle of the bar are navigation buttons.  Previous will be 
+      an active link if it can be utilized and plain text otherwise.  Clicking 
+      this link will display the previous message without the need to go back 
+      to the summary display of messages. The same goes for the Next link which
+      will advance you to the mail immediately following the one
+      currently being viewed.
+      </p>
+   </description>
+</section>
+
+<section>
+   <title>
+      Forward
+   </title>
+   <description>
+      <p>
+      On the right, the forward link, when pressed, opens the Compose page 
+      with the previously viewed email in the text box below a tag of 
+      "--Original Message--".  "Fwd:" is prepended to the original subject 
+      line and placed in the correct field.  The various fields for sending 
+      to an address await your completion.  You may position the cursor in 
+      the text box in order to add comments to the already existing text.
+      You may also use the attachment feature.
+      </p>
+   </description>
+</section>
+
+<section>
+   <title>
+      Reply
+   </title>
+   <description>
+      <p>
+      Click this link to return a new message to the originator of the 
+      previously viewed message.  "Re:" is prepended to the original subject 
+      line and placed in the subject field.  Again, the text of the original 
+      message is quoted in the text box.  This time the ">" symbol is placed
+      in front of the original text.  You may note that some of the original
+      text doesn't have the ">" symbol.  This is due to line wrapping and
+      may be unavoidable.  Try setting the value of <i>Wrap incoming text</i> 
+      in the Options page to a larger number, this may help.  Comments can be 
+      made anywhere in the text box in addition to the quoted message.  You 
+      may also use the attachment feature.
+      </p>
+   </description>
+</section>
+
+<section>
+   <title>
+      Reply All
+   </title>
+   <description>
+      <p>
+      Same story here as "reply" with the exception that all addresses listed 
+      in the header will receive the mail.
+      </p>
+   </description>
+</section>
+
+<section>
+   <title>
+      View all headers
+   </title>
+   <description>
+      <p>
+      This will display the entire header for the email message.  This includes
+      the route that the message took to get here, and a lot more detailed
+      information about the message itself.
+      </p>
+   </description>
+</section>
+
+<section>
+   <title>
+      View Printable Version
+   </title>
+   <description>
+      <p>
+      If you want to print a message, you might want to click this link. It
+      presents you with a new window containing the message but with all unneccessary
+      information and menus removed, ready to print. Clicking the Print button in
+      this window will do so. Press Close to return to your message.
+      </p>
+   </description>
+</section>
+
+<section>
+   <title>
+      Download this as a file
+   </title>
+   <description>
+      <p>
+      At the bottom just above the bottom bar you will find this link.
+      Clicking this link allows you to save this email to your local hard drive
+      as a plain text message.  A simple header will be attached to the top
+      of the message as well.
+      </p>
+   </description>
+</section>
+
+<section>
+   <title>
+      Attachments
+   </title>
+   <description>
+      <p>
+      Any attachments sent with a received email will be displayed at the 
+      bottom of the message inside a colored box.  The file is presented 
+      as a link with a description of the file type to it's right.  Clicking 
+      on the file name will either display the attachment or present a 
+      download dialog depending on the file type.  If you wish to download
+      the file (rather than possibly viewing it), click on the "download" 
+      link on the right side.<br />
+      If your webbrowser supports viewing the attachment file type, another
+      link, "view" will be displayed which displays the file in your browser.
+      </p>
+   </description>
+</section>

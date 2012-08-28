@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Mail::SpamAssassin::Plugin::ASN - SpamAssassin plugin to look up the Autonomous System Number of the connecting IP address.</title>
+<link rev="made" href="mailto:" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#template_tags">TEMPLATE TAGS</a></li>
+	<li><a href="#configuration">CONFIGURATION</a></li>
+	<li><a href="#see_also">SEE ALSO</a></li>
+	<li><a href="#status">STATUS</a></li>
+	<li><a href="#administrator_settings">ADMINISTRATOR SETTINGS</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Mail::SpamAssassin::Plugin::ASN - SpamAssassin plugin to look up the Autonomous System Number (ASN) of the connecting IP address.</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+ loadplugin Mail::SpamAssassin::Plugin::ASN</pre>
+<pre>
+ asn_lookup asn.routeviews.org _ASN_ _ASNCIDR_</pre>
+<pre>
+ add_header all ASN _ASN_ _ASNCIDR_</pre>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>This plugin uses DNS lookups to the services of
+<code>http://www.routeviews.org/</code> to do the actual work. Please make sure
+that your use of the plugin does not overload their infrastructure -
+this generally means that <strong>you should not use this plugin in a
+high-volume environment</strong> or that you should use a local mirror of the
+zone (see <code>ftp://ftp.routeviews.org/dnszones/</code>).</p>
+<p>
+</p>
+<hr />
+<h1><a name="template_tags">TEMPLATE TAGS</a></h1>
+<p>This plugin allows you to create template tags containing the connecting
+IP's AS number and route info for that AS number.</p>
+<p>The default config will add a header that looks like this:</p>
+<pre>
+ X-Spam-ASN: AS24940 213.239.192.0/18</pre>
+<p>where ``AS24940'' is the ASN and ``213.239.192.0/18'' is the route
+announced by that ASN where the connecting IP address came from. If
+the AS announces multiple networks (more/less specific), they will
+all be added to the <code>_ASNCIDR_</code> tag, separated by spaces, eg:</p>
+<pre>
+ X-Spam-ASN: AS1680 89.138.0.0/15 89.139.0.0/16</pre>
+<p>
+</p>
+<hr />
+<h1><a name="configuration">CONFIGURATION</a></h1>
+<p>The standard ruleset contains a configuration that will add a header
+containing ASN data to scanned messages.  The bayes tokenizer will use the
+added header for bayes calculations, and thus affect which BAYES_* rule will
+trigger for a particular message.</p>
+<p><strong>Note</strong> that in most cases you should not score on the ASN data directly.
+Bayes learning will probably trigger on the _ASNCIDR_ tag, but probably not
+very well on the _ASN_ tag alone.</p>
+<p>
+</p>
+<hr />
+<h1><a name="see_also">SEE ALSO</a></h1>
+<p><a href="http://www.routeviews.org/">http://www.routeviews.org/</a> - all data regarding routing, ASNs etc</p>
+<p><a href="http://issues.apache.org/SpamAssassin/show_bug.cgi?id=4770">http://issues.apache.org/SpamAssassin/show_bug.cgi?id=4770</a> -
+SpamAssassin Issue #4770 concerning this plugin</p>
+<p>
+</p>
+<hr />
+<h1><a name="status">STATUS</a></h1>
+<p>Experimental - Dec. 18, 2006</p>
+<p>No in-depth analysis of the usefulness of bayes tokenization of ASN data has
+been performed.</p>
+<p>
+</p>
+<hr />
+<h1><a name="administrator_settings">ADMINISTRATOR SETTINGS</a></h1>
+<dl>
+<dt><strong><a name="item_asn_lookup_asn_2dzone_2eexample_2ecom__5b__asntag_">asn_lookup asn-zone.example.com [ _ASNTAG_ _ASNCIDRTAG_ ]</a></strong><br />
+</dt>
+<dd>
+Use this to lookup the ASN info for first external IP address in the specified
+zone and add the AS number to the first specified tag and routing info to the
+second specified tag.
+</dd>
+<dd>
+<p>If no tags are specified the AS number will be added to the _ASN_ tag and the
+routing info will be added to the _ASNCIDR_ tag.  You must specify either none
+or both of the tags.  Tags must start and end with an underscore.</p>
+</dd>
+<dd>
+<p>If two or more <em>asn_lookup</em>s use the same set of template tags, the results of
+their lookups will be appended to each other in the template tag values in no
+particular order.  Duplicate results will be omitted when combining results.
+In a similar fashion, you can also use the same template tag for both the AS
+number tag and the routing info tag.</p>
+</dd>
+<dd>
+<p>Examples:</p>
+</dd>
+<dd>
+<pre>
+  asn_lookup asn.routeviews.org</pre>
+</dd>
+<dd>
+<pre>
+  asn_lookup asn.routeviews.org _ASN_ _ASNCIDR_
+  asn_lookup myview.example.com _MYASN_ _MYASNCIDR_</pre>
+</dd>
+<dd>
+<pre>
+  asn_lookup asn.routeviews.org _COMBINEDASN_ _COMBINEDASNCIDR_
+  asn_lookup myview.example.com _COMBINEDASN_ _COMBINEDASNCIDR_</pre>
+</dd>
+<dd>
+<pre>
+  asn_lookup in1tag.example.net _ASNDATA_ _ASNDATA_</pre>
+</dd>
+</dl>
+
+</body>
+
+</html>

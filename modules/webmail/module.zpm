@@ -4,6 +4,12 @@
 <div class="zmodule_desc" id="zmodule_desc_<@ ModuleName @>"><p><@ ModuleDesc @></p>
 </div>
 
-<button class="fg-button ui-state-default ui-corner-all" type="submit" onclick="window.open('etc/apps/webmail/')"><@ LaunchWebMail @></button>
-
+<br />
+<br />
+&nbsp;&nbsp;&nbsp;<a href="modules/webmail/apps/roundcube/"> <img src="modules/webmail/apps/roundcube/skins/larry/images/roundcube_logo.png"> </a>
+&nbsp;&nbsp;&nbsp;<a href="modules/webmail/apps/squirrelmail/src/login.php"> <img src="modules/webmail/apps/squirrelmail/squirrelmail_logo.gif"> </a>
+&nbsp;&nbsp;&nbsp;<a href="modules/webmail/apps/IlohaMail/source/index.php" > <img src="modules/webmail/apps/IlohaMail/logo-webmail-ilohamail.png"> </a>
+&nbsp;&nbsp;&nbsp;<a href="modules/webmail/apps/atmail/" target="_black"> <img src="modules/webmail/apps/atmail/Atmail-logo.png"> </a><br />
+&nbsp;&nbsp;&nbsp;<a href="modules/webmail/apps/Hastymail/"> <img src="modules/webmail/apps/Hastymail/logo-webmail-hastymail2.png"> </a>
+&nbsp;&nbsp;&nbsp;<a href="modules/webmail/apps/AfterLogic/"> <img src="modules/webmail/apps/AfterLogic/al_logo.png"> </a>
 </div>

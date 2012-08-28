@@ -1,0 +1,39 @@
+Plugins
+=======
+
+To understand more about plugins, read:
+
+  http://squirrelmail.org/docs/admin/admin-7.html#ss7.1
+  http://squirrelmail.org/docs/devel/devel-4.html
+
+
+For the impatient, here is an extremely brief overview of how to
+install plugins.
+
+  1.  Change to the plugins directory.
+
+        $ cd plugins/
+
+  2.  Unarchive the plugin.
+
+        $ tar -zxvf /home/me/myplugin.tar.gz
+
+  3.  Note the directory that the plugin was created into.  For this
+      example, we will assume it was put in the directory: myplugin/.
+  
+  4.  Read the README, INSTALL or other documentation in your new plugin.  
+      Follow any important configuration instructions inside (about half
+      the time there are none, sometimes they are extensive).
+
+        $ cd myplugin/
+        $ more README
+
+  5.  Go to the config directory and run conf.pl
+
+        $ cd ../../config/
+        $ ./conf.pl
+
+  6.  Choose option 8 and proceed to add the new plugin following
+      the instructions there (move the desired plugin from the "Available
+      Plugins" category to the "Installed Plugins" category by entering
+      its number).  Save and exit, and your plugin should be in place.

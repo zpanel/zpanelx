@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>Utilità di sincronizzazione per Outlook</title>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<LINK href="javascript/stylehelp.css" rel=stylesheet type=text/css>
+<font face="Verdana,Arial" size="+1">
+Utilità di sincronizzazione per Outlook</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">Indice Aiuto</a> ]
+<hr noshade>
+
+<script>
+function expandentry()	 {
+
+<!-- if($var['FirstLoad']) { -->
+if(parent.document.getElementById('calendar').style.display != 'block')
+parent.expand('addressbook', parent.document.getElementById('addressbookimg'));
+<!-- } -->
+
+}
+</script>
+
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" onload="expandentry()">
+
+	<p><u>Che cos’è l’utilità sincronizza $pref['brandname']?</u>
+	<p>L’utility permette di sincronizzarla tua webmail con Outlook. Tutte le informazioni in rubrica saranno trasferite dalla webmail ad Outlook, e vice-versa.
+
+	<br>
+	
+	<p><u>Come attivo la sincronizzazione con Outlook?</u>
+	 <p> Per sincronizzare la tua Webmail con Outlook, segui le istruzioni di seguito:</ul>
+		<p><ol>
+		<li>Prima, download l’utility di installazioni di @Mail-sync da <a href="http://atmail.com/websync/websync-53.exe">http://atmail.com/websync/websync-53.exe</a>
+		<li>Nella finestra di Microsoft Outlook, vai in <b>Strumenti > Opzioni</b><br>
+		</ol>
+		<img src = "imgs/help/atmailsync1.gif " border = 1 color = black>
+		
+		<ol><li>Definire tutti i cambiamenti  nell’utility di sincronizzazione. Clicca su <b>Strumenti > Opzioni</b>, e andare sulla scheda "Configurazione Sincronizzazione @mail "<br>
+		</ol>
+		<img src = "imgs/help/atmailsync5.gif" border = 1 color = black><br><br>
+<ol>		<li>Salva tutti i cambiamenti, e chiudi la finestra
+		</ol>
+
+	  <br><p><u>Come sincronizzo la mia webmail con Outlook?</u> 
+	  <p>Dopo l’attivazione di  Mail-sincronizzazione (vedi sopra), verrà mostrato un pulsante "@Mail sync" nella tua barra degli strumenti:<br><br>
+	  <img src = "imgs/help/atmailsync4.gif" border = 1 color = black><br>
+	  <p>Click sul pulsante, e Outlook sarà automaticamente sincronizzato con il tuo account webmail account.
+
+</body>
+</html>

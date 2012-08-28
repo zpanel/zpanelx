@@ -1,0 +1,38 @@
+<!-- if($this->Ajax) { -->
+<Error>
+	<ErrorStatus>1</ErrorStatus>
+	<Status>1</Status>
+	<ErrorMessage><![CDATA[$var['error']]]></ErrorMessage>
+	<StatusMessage><![CDATA[Bericht geweigerd - Uw IP adres heeft het maximum toegestane aantal berichten per dag verstuurd. Om spam zoveel mogelijk tegen te gaan, werd uw uitgaand bericht geblokkeerd.  ]]></StatusMessage>
+</Error>
+<!-- } -->
+
+<!-- if(!$this->Ajax) { -->
+<html>
+<head>
+<title>Spam gevonden</title></head><body bgcolor="$this->BgColor" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+
+
+
+<style>
+
+.sw {font-family:Verdana;font-size:13px;color:#000000;}
+.swr {font-family:Verdana;font-size:13px;color:#FF0000;}
+</style>
+
+
+
+<LINK href="javascript/style$this->browser.css" rel="stylesheet" type="text/css">
+<img src="$pref['logo_big_img']"><br>
+<h1>Bericht geweigerd</h1>
+
+<font class="swr">Uw IP adres heeft het maximum toegestane aantal berichten per dag verstuurd. Om spam zoveel mogelijk tegen te gaan, werd uw uitgaand bericht geblokkeerd. </font> <font class="sw"> 
+<ul>
+<li>Gelieve uw e-mail beheerder ($this->admin_email) te contacteren voor hulp.</li>
+</ul>
+</font>
+</body>
+</html>
+
+<!-- } -->

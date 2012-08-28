@@ -1,0 +1,85 @@
+<!--Include="html/english/simple/header.html"-->
+<!-- here is our custom sidebar -->
+
+			<table width="163" cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="5" border="0"></td>
+					<td width="125"><img src="imgs/simple/shim.gif" width="125" height="5" border="0"></td>
+				</tr>
+
+				<tr>
+					<td width="38" bgcolor="#DEEBF6" class="optionselectedimg"><img onclick="location.href='ldap.php?search=local'" style="cursor: pointer; cursor: hand;" src="imgs/simple/sidebar_save_on.gif" width="38" height="31" border="0"></td>
+					<td width="125" style="border-top: 1px solid #468BC7; border-bottom: 1px solid #468BC7; border-right: 1px solid #468BC7; cursor: pointer; cursor: hand;" onclick="location.href='ldap.php?search=local'"><small  class="menuoption">&nbsp;&nbsp;New Search</small></td>
+				</tr>
+
+				<tr>
+					<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="5" border="0"></td>
+					<td width="125"><img src="imgs/simple/shim.gif" width="125" height="5" border="0"></td>
+				</tr>
+				
+				<tr>
+					<td width="38"><img src="imgs/simple/sidebar_bottom_tile.gif" width="38" height="95" border="0"></td>
+					<td width="125"><img src="imgs/simple/shim.gif" width="125" height="95" border="0"></td>
+				</tr>
+			</table>
+		 </td>
+
+<!--Include="html/english/simple/headerbar.html"-->
+
+<script language="JavaScript">
+window.status = ' Viewing LDAP Search Results ';
+</script>
+
+<SCRIPT language=JavaScript src="javascript/opencompose.js"></script>
+<SCRIPT language=JavaScript src="javascript/addbook.js"></script>
+
+<BODY bgcolor="$this->BgColor" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor" rightmargin=0 leftMargin=0 topMargin=0>
+
+<STYLE type=text/css>
+A:hover {
+        COLOR: #990000
+}
+</STYLE>
+
+$var['atmailstyle']
+
+<TABLE border=0 cellPadding=0 cellSpacing=0 width="100%">
+  <TBODY>
+
+  <tr> 
+<td class="item" width="29%" nowrap>&nbsp;<font class="mheader">
+Email Address
+</font></td>
+
+<td class="item" width="20%" nowrap>&nbsp;<font class="mheader">
+Full Name
+</font></td>
+
+    <td class="item" width="17%" nowrap>&nbsp;<font class="mheader">
+Home Phone
+</font></td>
+
+    <td class="item" width="15%">&nbsp;<font class="mheader">
+Location
+</font></td>
+    <td class="item" width="10%" nowrap align="right">
+&nbsp; 
+<font class="mheader">Abook</font>
+    </td>
+  </tr>
+<tr> 
+<td height="1" bgcolor='$this->PrimaryColor' colspan="6"> 
+</td>  
+</tr>
+
+$var['users']
+
+<tr><td colspan="5" align="left">
+
+&nbsp;<input class=stdbtnlong name=submit2 type="button" value="New Search" name="Compose"
+        onclick="location.href='ldap.php'">
+</td></tr>
+
+</TBODY></TABLE>
+
+<!--Include="html/english/simple/footer.html"-->

@@ -1,0 +1,16 @@
+#message_tags{padding-bottom: 10px; min-height: 400px;}
+.tag_title{font-weight: bold; margin-left: 25px; margin-top: 5px; margin-bottom: 0px; font-size: 115%; }
+.tag_title2{font-weight: normal; margin-left: 25px; margin-bottom: 10px; font-size: 115%; }
+.tag_title2 a{font-weight: bold; font-size: 125%;}
+#mailbox_title2{margin-left: 10px !important; margin-bottom: 15px !important;}
+.tag_list{ clear: both; float: none; }
+.tag_table{ clear: both; float: none; padding-bottom: 10px; margin-left: 40px;}
+.tag_table td{padding-right: 10px; font-style: italic; padding-bottom: 3px;}
+#mbx_outer{clear:both;}
+.list_link{display: block; padding: 20px;}
+.tag_search_opts{display: inline; font-size: 85%; font-weight: normal; padding-left: 20px;}
+.tag_search_opts input{margin-right: 2px; font-size: 100%; padding: 0px; padding-left: 3px; padding-right: 3px;}
+.empty_tag_list{text-align: center; padding: 20px !important; font-size: 115%; font-style: italic;}
+.repair, .del_all{margin-left: 40px;}
+#rename_fld{margin-left: 10px; width: 150px;}
+.tag_label{font-size: 125%; font-style: normal; font-weight: bold;}

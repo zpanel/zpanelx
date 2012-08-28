@@ -1,0 +1,30 @@
+# This is the right place to customize your installation of SpamAssassin.
+#
+# See 'perldoc Mail::SpamAssassin::Conf' for details of what can be
+# tweaked.
+#
+# This file will be loaded before *all other* configuration files, including
+# the system configuration.  As such, it's a good place to set things that
+# will affect how those files are parsed, like which plugins are loaded
+# etc.
+#
+###########################################################################
+
+# RelayCountry - add metadata for Bayes learning, marking the countries
+# a message was relayed through
+#
+loadplugin Mail::SpamAssassin::Plugin::RelayCountry
+
+# URIDNSBL - look up URLs found in the message against several DNS
+# blocklists.
+#
+loadplugin Mail::SpamAssassin::Plugin::URIDNSBL
+
+# Hashcash - perform hashcash verification.
+#
+loadplugin Mail::SpamAssassin::Plugin::Hashcash
+
+# SPF - perform SPF verification.
+#
+loadplugin Mail::SpamAssassin::Plugin::SPF
+

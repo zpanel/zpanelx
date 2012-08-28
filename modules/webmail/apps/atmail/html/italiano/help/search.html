@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Cerca documentazione</title>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<LINK href="javascript/stylehelp.css" rel=stylesheet type=text/css>
+<font face="Verdana, Arial" size="+1"> Cerca documentazione</font> [ <a href="parse.php?file=html/$this->Language/help/file.html">Help Index</a> ] 
+<hr noshade></head>
+<form method="post" action="search.php">
+<input type=hidden name="func" value="searchhelp">
+
+<table width="100%" border="0">
+
+<!-- if($var['matches']) { -->
+			<tr>
+			<td colspan=3>
+
+<b>Risultati della ricerca per :<i>$var['Keywords']</i></b>
+<p>
+I risultati della tua ricerca sono elencati qui sotto. I risultati più rilevanti sono elencati per primi. Per migliorare la ricerca usa più di una parola chiave.
+</p>
+
+<ul>
+			$var['matches']
+</ul>
+<hr noshade>
+			</td>
+			</tr>
+<!-- } -->
+
+  <tr> 
+              
+	<td colspan="3"><p>Usa il modulo di ricerca per trovare parole nella guida in linea di @Mail. Inserisci la parola per la ricerca di seguito e clicca 'Cerca'. Per affinare la ricerca specifica più parole chiave<br><br></p>
+	  
+	</td>
+            </tr>
+            <tr> 
+              <td width="33%"> <font class="swb"> Termini di Ricerca</font></td>
+              <td> 
+                <input class="form" name="keywords" size="40">
+              </td>
+              <td>
+                <input class="form" type="submit" name="Submit2" value="Search">
+              </td>
+            </tr>
+
+          </table> 
+
+</form>
+</body>
+</html>

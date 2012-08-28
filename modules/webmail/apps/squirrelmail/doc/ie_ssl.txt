@@ -1,0 +1,51 @@
+Internet Explorer and SSL
+Luke Ehresman <luke@squirrelmail.org>
+=====================================
+
+I've just spent the last few days trying to track down the now famous bug
+with IE and SSL.  The problem lies in the fact that PHP sends some no-cache
+headers whenever a session is started.  IE chokes when trying to download a
+file that it can't cache over SSL.  We use session management to store many
+things, one being the key to decypher the password.
+
+Once we had figured out that it was sessions in PHP that was causing the
+problem, we tried turning the session management off in the download script
+in Squirrelmail.  This introduced another problem for us because we NEEDED
+sessions to decypher the key so we could log into the IMAP server and
+download the attachment.
+
+Next we tried leaving the sessions turned off, but passed the key in through
+a GET parameter.  This worked, but is obviously not a very secure way of
+handling things.
+
+Our quest continued for a good solution.  Finally, I was browsing through
+the source of PHP, I noticed the 2 headers it was sending were "Pragma" and
+"Cache-Control".  I had the crazy idea of defining these again after the
+session had been started, and lo and behold, it worked!  Below is the code
+that made this work:
+
+     session_start()
+	 header("Pragma: ");
+	 header("Cache-Control: cache");
+
+With all the testing I have done, this works, and works very well for all
+browsers.
+
+
+This was submitted by Marcin Jessa <yazzy@yazzy.org>
+====================================================
+  Reading INSTALL file of SqWebMail i found following note:
+
+  Tweak the web server for MSIE
+     The MSIE browser has a number of bugs in its HTTP/1.1 implementation,
+     at least as of MSIE 4.x and 5.x. You must configure your web server to
+     use HTTP/1.0 when talking to any MSIE browser (at least until MSIE
+     gets fixed). The problem has to do with downloading attachments.
+     Apparently, MSIE forgets how MIME works, when it uses HTTP/1.1. For
+     the Apache server, insert the following directive in httpd.conf:
+  
+     BrowserMatch "MSIE" nokeepalive downgrade-1.0 force-response-1.0
+
+     Recent versions of Apache already have a similar directive for a
+     specific version of MSIE, MSIE 4.0b2. Just replace it with a
+     browsermatch for any MSIE version.

@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 /**
  * CpuDevice TO class
  *
@@ -13,8 +12,7 @@
  * @version   SVN: $Id: class.CpuDevice.inc.php 411 2010-12-28 22:32:52Z Jacky672 $
  * @link      http://phpsysinfo.sourceforge.net
  */
-
-/**
+ /**
  * CpuDevice TO class
  *
  * @category  PHP
@@ -25,22 +23,22 @@
  * @version   Release: 3.0
  * @link      http://phpsysinfo.sourceforge.net
  */
-class CpuDevice {
-
+class CpuDevice
+{
     /**
      * model of the cpu
      *
      * @var String
      */
     private $_model = "";
-
+    
     /**
      * speed of the cpu in hertz
      *
      * @var Integer
      */
     private $_cpuSpeed = 0;
-
+    
     /**
      * cache size in bytes, if available
      *
@@ -53,36 +51,36 @@ class CpuDevice {
      *
      * @var String
      */
-    private $_virt = null;
-
+    private $_virt = null;    
+    
     /**
      * busspeed in hertz, if available
      *
      * @var Integer
      */
     private $_busSpeed = null;
-
+    
     /**
      * temperature of the cpu, if available
      *
      * @var Integer
      */
     private $_temp = null;
-
+    
     /**
      * bogomips of the cpu, if available
      *
      * @var Integer
      */
     private $_bogomips = null;
-
+    
     /**
      * current load in percent of the cpu, if available
      *
      * @var Integer
      */
     private $_load = null;
-
+    
     /**
      * Returns $_bogomips.
      *
@@ -90,10 +88,11 @@ class CpuDevice {
      *
      * @return Integer
      */
-    public function getBogomips() {
+    public function getBogomips()
+    {
         return $this->_bogomips;
     }
-
+    
     /**
      * Sets $_bogomips.
      *
@@ -103,10 +102,11 @@ class CpuDevice {
      *
      * @return Void
      */
-    public function setBogomips($bogomips) {
+    public function setBogomips($bogomips)
+    {
         $this->_bogomips = $bogomips;
     }
-
+    
     /**
      * Returns $_busSpeed.
      *
@@ -114,10 +114,11 @@ class CpuDevice {
      *
      * @return Integer
      */
-    public function getBusSpeed() {
+    public function getBusSpeed()
+    {
         return $this->_busSpeed;
     }
-
+    
     /**
      * Sets $_busSpeed.
      *
@@ -127,10 +128,11 @@ class CpuDevice {
      *
      * @return Void
      */
-    public function setBusSpeed($busSpeed) {
+    public function setBusSpeed($busSpeed)
+    {
         $this->_busSpeed = $busSpeed;
     }
-
+    
     /**
      * Returns $_cache.
      *
@@ -138,10 +140,11 @@ class CpuDevice {
      *
      * @return Integer
      */
-    public function getCache() {
+    public function getCache()
+    {
         return $this->_cache;
     }
-
+    
     /**
      * Sets $_cache.
      *
@@ -151,10 +154,11 @@ class CpuDevice {
      *
      * @return Void
      */
-    public function setCache($cache) {
+    public function setCache($cache)
+    {
         $this->_cache = $cache;
     }
-
+    
     /**
      * Returns $_virt.
      *
@@ -162,10 +166,11 @@ class CpuDevice {
      *
      * @return String
      */
-    public function getVirt() {
+    public function getVirt()
+    {
         return $this->_virt;
     }
-
+    
     /**
      * Sets $_virt.
      *
@@ -175,10 +180,11 @@ class CpuDevice {
      *
      * @return Void
      */
-    public function setVirt($virt) {
+    public function setVirt($virt)
+    {
         $this->_virt = $virt;
-    }
-
+    }    
+    
     /**
      * Returns $_cpuSpeed.
      *
@@ -186,10 +192,11 @@ class CpuDevice {
      *
      * @return Integer
      */
-    public function getCpuSpeed() {
+    public function getCpuSpeed()
+    {
         return $this->_cpuSpeed;
     }
-
+    
     /**
      * Sets $_cpuSpeed.
      *
@@ -199,10 +206,11 @@ class CpuDevice {
      *
      * @return Void
      */
-    public function setCpuSpeed($cpuSpeed) {
+    public function setCpuSpeed($cpuSpeed)
+    {
         $this->_cpuSpeed = $cpuSpeed;
     }
-
+    
     /**
      * Returns $_model.
      *
@@ -210,10 +218,11 @@ class CpuDevice {
      *
      * @return String
      */
-    public function getModel() {
+    public function getModel()
+    {
         return $this->_model;
     }
-
+    
     /**
      * Sets $_model.
      *
@@ -223,10 +232,11 @@ class CpuDevice {
      *
      * @return Void
      */
-    public function setModel($model) {
+    public function setModel($model)
+    {
         $this->_model = $model;
     }
-
+    
     /**
      * Returns $_temp.
      *
@@ -234,10 +244,11 @@ class CpuDevice {
      *
      * @return Integer
      */
-    public function getTemp() {
+    public function getTemp()
+    {
         return $this->_temp;
     }
-
+    
     /**
      * Sets $_temp.
      *
@@ -247,10 +258,11 @@ class CpuDevice {
      *
      * @return Void
      */
-    public function setTemp($temp) {
+    public function setTemp($temp)
+    {
         $this->_temp = $temp;
     }
-
+    
     /**
      * Returns $_load.
      *
@@ -258,10 +270,11 @@ class CpuDevice {
      *
      * @return Integer
      */
-    public function getLoad() {
+    public function getLoad()
+    {
         return $this->_load;
     }
-
+    
     /**
      * Sets $_load.
      *
@@ -271,10 +284,9 @@ class CpuDevice {
      *
      * @return Void
      */
-    public function setLoad($load) {
+    public function setLoad($load)
+    {
         $this->_load = $load;
     }
-
 }
-
 ?>

@@ -1,0 +1,35 @@
+<style>
+TD.item           {     BACKGROUND-COLOR: $this->OnColor;
+                                BORDER-LEFT: inset;
+                                BORDER-RIGHT: inset;
+                                BORDER-TOP: inset;
+                                BORDER-BOTTOM: inset;
+                                BORDER-WIDTH: 0px; }
+
+TD.item2                  {     BACKGROUND-COLOR: $this->OffColor;
+                                BORDER-LEFT: inset;
+                                BORDER-RIGHT: inset;
+                                BORDER-TOP: inset;
+                                BORDER-BOTTOM: inset;
+                                BORDER-WIDTH: 0px; }
+
+FONT.item         {     FONT-SIZE: 12px;
+                                FONT-FAMILY: Tahoma, $this->FontStyle, Arial;
+                                FONT-WEIGHT: lighter;
+                                MARGIN: 0px;
+                                PADDING: 0px; }
+
+FONT.itemi         {     FONT-SIZE: 12px;
+                                FONT-FAMILY: Tahoma, $this->FontStyle, Arial;
+                                FONT-WEIGHT: lighter;
+                                MARGIN: 0px;
+                                PADDING: 0px; }
+
+
+FONT.itemb         {     FONT-SIZE: 12px;
+                                FONT-FAMILY: Tahoma, $this->FontStyle, Arial;
+                                FONT-WEIGHT: bold;
+                                MARGIN: 0px;
+                                PADDING: 0px; }
+
+</style>

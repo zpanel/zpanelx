@@ -1,0 +1,23 @@
+# <your language> SquirrelMail Demo Plugin Translation File
+# Copyright (c) 2007 The Squirrelmail Development Team
+# This file is distributed under the same license as the SquirrelMail package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: demo\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-09-05 11:38-0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: SquirrelMail Language Team <squirrelmail-i18n@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Demo"
+msgstr ""
+
+msgid "This is where you would describe what your plugin does."
+msgstr ""

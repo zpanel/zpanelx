@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>Modifica delle impostazioni</title> 
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">       
+
+<script>
+function expandentry()	 {
+
+<!-- if($var['FirstLoad']) { -->
+if(parent.document.getElementById('calendar').style.display != 'block')
+parent.expand('settings', parent.document.getElementById('settingsimg') );
+<!-- } -->
+
+}
+</script>
+</head>
+
+<LINK href="javascript/stylehelp.css" rel="stylesheet" type="text/css">
+
+<body bgcolor="#FFFFFF" text="#000000" onload="expandentry()">
+<font face="Verdana, Arial" size="+1">
+Modifica delle impostazioni</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">Indice Aiuto</a> ]</font>
+
+<hr noshade>
+<p>
+
+Per modificare le impostazioni del tuo Account usa il pannello delle impostazioni. Personalizza i servizi secondo le tue necessità, includendo le seguenti opzioni:<BR><BR>
+<u>Impostazioni WebMail</u>
+
+<ul>
+<li><B>Nome e Cognome</B><BR>
+Viene usato per la stesura delle E-mail: il tuo Nome e Cognome apparirà in tutti i tuoi messaggi in uscita.</li>
+
+<li><B>Rispondi a</B><BR>
+Inserisci il tuo indirizzo al quale il destinatario deve rispondere se è diverso dal tuo login attuale.</li>
+
+<li><B>Ordina le E-mail per</B><BR>        
+Seleziona in che modo ordinare le e-mail della tua MailBox.</li>
+
+<li><B>Scegli una visualizzazione</B><BR>        
+Scegli tra le diverse interfacce di WebMail. Per le versioni più vecchie del browser usare la opzione semplice, o se vuoi disattivare i popup menu mentre visualizzi le email nella posta in arrivo.</li>
+
+<li><B>Linguaggio del programma</B><BR>                       
+Scegli la lingua da visualizzare.</li>
+
+<li><B>Messaggi (Msgs) da visualizzare</B><BR>             
+Seleziona il numero di E-mail da visualizzare nella posta in arrivo. Con le icone avanti/indietro puoi sfogliare l'elenco dei messaggi.</li>
+
+<li><B>Velocità aggiornamento inbox</B><BR>             
+Seleziona il numero di minuti per l’aggiornamento della posta in arrivo. Sarai avvertito dei nuovi messaggio con un suono.</li>
+
+<li><B>Formato Data</B><BR>             
+Seleziona le impostazioni di visualizzazione della data nella Webmail e nel Calendario</li>
+
+<li><B>Formato Data</B><BR>             
+Seleziona il formato di visualizzazione delle date</li>
+
+<li><B>Seleziona il fuso orario</b><BR>
+Seleziona il tuo fuso orario attuale. in ogni e-mail inviata sarà indicata la data e l'ora di questo fuso orario.</li>
+
+<li><B>Firma dell’E-mail</B><BR>             
+Inserisci la firma dell’E-mail. Questa sarà inserita a tutte le e’mail inviate.</li>     
+
+<li><B>Svuota il cestino quando ti disconnetti</B><BR>                     
+Decidi se desideri svuotare il cestino quando ti disconnetti.</li>         
+
+<li><B>Editor HTML</B><BR>                
+Scegli se vuoi usare l'Editor HTML.</li>                                                              
+
+<li><B>Firma E-mail</B><BR>          
+Specifica la tua firma. Sarà inserita in tutti i messaggi in uscita</li></ul>
+
+</ul>
+
+</font></p>
+</body>
+</html>

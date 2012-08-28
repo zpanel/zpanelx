@@ -76,21 +76,21 @@ class module_controller {
                 }
 
                 $line .= "</tr>";
-                $numline = 0;
+				$numline = 0;
                 while ($modules = $modsql->fetch()) {
-                    if ($numline == 20) {
-                        $line .= "<tr>";
-                        $line .= "<th></th>";
-                        $line .= "<th>" . ui_language::translate("Module") . "</th>";
-                        $line .= "<th>" . ui_language::translate("On") . "/" . ui_language::translate("Off") . "</th>";
-                        $line .= "<th>" . ui_language::translate("Category") . "</th>";
-                        $line .= "<th style=\"text-align:center\">" . ui_language::translate("Up-to-date?") . "</th>";
-                        $groupssql = $zdbh->query("SELECT * FROM x_groups ORDER BY ug_name_vc ASC");
-                        while ($groups = $groupssql->fetch()) {
-                            $line .= "<th style=\"text-align:center\">" . $groups['ug_name_vc'] . "</th>";
-                        }
-                        $line .= "</tr>";
-                    }
+				  if ($numline == 20){
+                  	$line .= "<tr>";
+                  	$line .= "<th></th>";
+                  	$line .= "<th>" . ui_language::translate("Module") . "</th>";
+	                $line .= "<th>" . ui_language::translate("On") . "/" . ui_language::translate("Off") . "</th>";
+	                $line .= "<th>" . ui_language::translate("Category") . "</th>";
+	                $line .= "<th style=\"text-align:center\">" . ui_language::translate("Up-to-date?") . "</th>";
+	                $groupssql = $zdbh->query("SELECT * FROM x_groups ORDER BY ug_name_vc ASC");
+	                while ($groups = $groupssql->fetch()) {
+	                    $line .= "<th style=\"text-align:center\">" . $groups['ug_name_vc'] . "</th>";
+	                }
+					$line .= "</tr>";				
+				  }
                     $ismodadmin = 0;
                     $line .= "<tr>";
                     $line .= "<td>" . self::ModuleStatusIcon($modules['mo_id_pk']) . "</td>";
@@ -167,11 +167,11 @@ class module_controller {
                         }
                     }
                     $line .= "</tr>";
-                    $numline++;
-                    if ($numline == 21) {
-                        $numline = 0;
-                    }
-                }
+					$numline++;
+					if ($numline == 21){
+						$numline = 0;					
+					}
+				}
                 $line .= "</table><br>";
                 $line .= "<button class=\"fg-button ui-state-default ui-corner-all\" type=\"submit\" id=\"button\" name=\"inSave\" value=\"inSave\">" . ui_language::translate("Save changes") . "</button></form>";
             } else {
@@ -213,10 +213,7 @@ class module_controller {
                             ctrl_groups::DeleteGroupModulePermissions($groups['ug_id_pk'], $rowmodule['mo_id_pk']);
                         }
                     }
-                    $sql2 = $zdbh->prepare("UPDATE x_modules SET mo_enabled_en = :enabled, mo_category_fk = :category WHERE mo_id_pk = :moduleid");
-                    $sql2->bindParam(':enabled', $controller->GetControllerRequest('FORM', 'inDisable_' . $rowmodule['mo_id_pk'] . ''));
-                    $sql2->bindParam(':category', $controller->GetControllerRequest('FORM', 'inCategory_' . $rowmodule['mo_id_pk'] . ''));
-                    $sql2->bindParam(':moduleid', $rowmodule['mo_id_pk']);
+                    $sql2 = $zdbh->prepare("UPDATE x_modules SET mo_enabled_en = '" . $controller->GetControllerRequest('FORM', 'inDisable_' . $rowmodule['mo_id_pk'] . '') . "', mo_category_fk = '" . $controller->GetControllerRequest('FORM', 'inCategory_' . $rowmodule['mo_id_pk'] . '') . "' WHERE mo_id_pk = " . $rowmodule['mo_id_pk'] . "");
                     $sql2->execute();
                 }
                 self::$ok = TRUE;
@@ -313,26 +310,26 @@ class module_controller {
         } else {
             $archive_ext = fs_director::GetFileExtension($_FILES['modulefile']['name']);
             $module_folder = fs_director::GetFileNameNoExtentsion($_FILES['modulefile']['name']);
-            if (!fs_director::CheckFolderExists(ctrl_options::GetSystemOption('zpanel_root') . 'modules/' . $module_folder)) {
+            if (!fs_director::CheckFolderExists(ctrl_options::GetOption('zpanel_root') . 'modules/' . $module_folder)) {
                 if ($archive_ext != 'zpp') {
                     self::$error_message = "Package type was not detected as a .zpp (ZPanel Package) archive.";
                 } else {
-                    if (fs_director::CreateDirectory(ctrl_options::GetSystemOption('zpanel_root') . 'modules/' . $module_folder)) {
-                        if (sys_archive::Unzip($_FILES['modulefile']['tmp_name'], ctrl_options::GetSystemOption('zpanel_root') . 'modules/' . $module_folder . '/')) {
-                            if (!fs_director::CheckFileExists(ctrl_options::GetSystemOption('zpanel_root') . 'modules/' . $module_folder . '/module.xml')) {
+                    if (fs_director::CreateDirectory(ctrl_options::GetOption('zpanel_root') . 'modules/' . $module_folder)) {
+                        if (sys_archive::Unzip($_FILES['modulefile']['tmp_name'], ctrl_options::GetOption('zpanel_root') . 'modules/' . $module_folder . '/')) {
+                            if (!fs_director::CheckFileExists(ctrl_options::GetOption('zpanel_root') . 'modules/' . $module_folder . '/module.xml')) {
                                 self::$error_message = "No module.xml file found in the unzipped archive.";
                             } else {
                                 ui_module::ModuleInfoToDB($module_folder);
-                                $extra_config = ctrl_options::GetSystemOption('zpanel_root') . "modules/" . $module_folder . "/deploy/install.run";
+                                $extra_config = ctrl_options::GetOption('zpanel_root') . "modules/" . $module_folder . "/deploy/install.run";
                                 if (fs_director::CheckFileExists($extra_config))
-                                    exec(ctrl_options::GetSystemOption('php_exer') . " " . $extra_config . "");
+                                    exec(ctrl_options::GetOption('php_exer') . " " . $extra_config . "");
                                 self::$ok = true;
                             }
                         } else {
-                            self::$error_message = "Couldn't unzip the archive (" . $_FILES['modulefile']['tmp_name'] . ") to " . ctrl_options::GetSystemOption('zpanel_root') . 'modules/' . $module_folder . '/';
+                            self::$error_message = "Couldn't unzip the archive (" . $_FILES['modulefile']['tmp_name'] . ") to " . ctrl_options::GetOption('zpanel_root') . 'modules/' . $module_folder . '/';
                         }
                     } else {
-                        self::$error_message = "Couldn't create module folder in " . ctrl_options::GetSystemOption('zpanel_root') . 'modules/' . $module_folder . "";
+                        self::$error_message = "Couldn't create module folder in " . ctrl_options::GetOption('zpanel_root') . 'modules/' . $module_folder . "";
                     }
                 }
             } else {

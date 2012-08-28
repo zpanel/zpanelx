@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 /**
  * Linux System Class
  *
@@ -13,8 +12,7 @@
  * @version   SVN: $Id: class.Linux.inc.php 422 2011-01-21 12:42:25Z jacky672 $
  * @link      http://phpsysinfo.sourceforge.net
  */
-
-/**
+ /**
  * Linux sysinfo class
  * get all the required information from Linux system
  *
@@ -26,21 +24,22 @@
  * @version   Release: 3.0
  * @link      http://phpsysinfo.sourceforge.net
  */
-class Linux extends OS {
-
+class Linux extends OS
+{
     /**
      * call parent constructor
      */
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
     }
-
     /**
      * Hostname
      *
      * @return void
      */
-    private function _hostname() {
+    private function _hostname()
+    {
         if (PSI_USE_VHOST === true) {
             $this->sys->setHostname(getenv('SERVER_NAME'));
         } else {
@@ -53,13 +52,13 @@ class Linux extends OS {
             }
         }
     }
-
     /**
      * IP
      *
      * @return void
      */
-    private function _ip() {
+    private function _ip()
+    {
         if (PSI_USE_VHOST === true) {
             $this->sys->setIp(gethostbyname($this->_hostname()));
         } else {
@@ -70,13 +69,13 @@ class Linux extends OS {
             }
         }
     }
-
     /**
      * Kernel Version
      *
      * @return void
      */
-    private function _kernel() {
+    private function _kernel()
+    {
         if (CommonFunctions::executeProgram('uname', '-r', $strBuf, PSI_DEBUG)) {
             $result = trim($strBuf);
             if (CommonFunctions::executeProgram('uname', '-v', $strBuf, PSI_DEBUG)) {
@@ -85,7 +84,7 @@ class Linux extends OS {
                 }
             }
             if (CommonFunctions::executeProgram('uname', '-m', $strBuf, PSI_DEBUG)) {
-                $result .= ' ' . trim($strBuf);
+                $result .= ' '.trim($strBuf);
             }
             $this->sys->setKernel($result);
         } else {
@@ -100,38 +99,38 @@ class Linux extends OS {
             }
         }
     }
-
     /**
      * UpTime
      * time the system is running
      *
      * @return void
      */
-    private function _uptime() {
+    private function _uptime()
+    {
         CommonFunctions::rfts('/proc/uptime', $buf, 1);
         $ar_buf = preg_split('/ /', $buf);
         $this->sys->setUptime(trim($ar_buf[0]));
     }
-
     /**
      * Number of Users
      *
      * @return void
      */
-    private function _users() {
+    private function _users()
+    {
         if (CommonFunctions::executeProgram('who', '-q', $strBuf, PSI_DEBUG)) {
             $arrWho = preg_split('/=/', $strBuf);
             $this->sys->setUsers($arrWho[1]);
         }
     }
-
     /**
      * Processor Load
      * optionally create a loadbar
      *
      * @return void
      */
-    private function _loadavg() {
+    private function _loadavg()
+    {
         if (CommonFunctions::rfts('/proc/loadavg', $buf)) {
             $result = preg_split("/\s/", $buf, 4);
             // don't need the extra values, only first three
@@ -142,7 +141,6 @@ class Linux extends OS {
             $this->sys->setLoadPercent($this->_parseProcStat('cpu'));
         }
     }
-
     /**
      * fill the load for a individual cpu, through parsing /proc/stat for the specified cpu
      *
@@ -150,7 +148,8 @@ class Linux extends OS {
      *
      * @return Integer
      */
-    private function _parseProcStat($cpuline) {
+    private function _parseProcStat($cpuline)
+    {
         $load = 0;
         $load2 = 0;
         $total = 0;
@@ -158,7 +157,7 @@ class Linux extends OS {
         if (CommonFunctions::rfts('/proc/stat', $buf)) {
             $lines = preg_split("/\n/", $buf, -1, PREG_SPLIT_NO_EMPTY);
             foreach ($lines as $line) {
-                if (preg_match('/^' . $cpuline . ' (.*)/', $line, $matches)) {
+                if (preg_match('/^'.$cpuline.' (.*)/', $line, $matches)) {
                     $ab = 0;
                     $ac = 0;
                     $ad = 0;
@@ -171,13 +170,13 @@ class Linux extends OS {
             }
         }
         // we need a second value, wait 1 second befor getting (< 1 second no good value will occour)
-        if (PSI_LOAD_BAR) {
+        if(PSI_LOAD_BAR) {
             sleep(1);
         }
         if (CommonFunctions::rfts('/proc/stat', $buf)) {
             $lines = preg_split("/\n/", $buf, -1, PREG_SPLIT_NO_EMPTY);
             foreach ($lines as $line) {
-                if (preg_match('/^' . $cpuline . ' (.*)/', $line, $matches)) {
+                if (preg_match('/^'.$cpuline.' (.*)/', $line, $matches)) {
                     $ab = 0;
                     $ac = 0;
                     $ad = 0;
@@ -194,14 +193,14 @@ class Linux extends OS {
         }
         return 0;
     }
-
     /**
      * CPU information
      * All of the tags here are highly architecture dependant.
      *
      * @return void
      */
-    private function _cpuinfo() {
+    private function _cpuinfo()
+    {
         if (CommonFunctions::rfts('/proc/cpuinfo', $bufr)) {
             $processors = preg_split('/\s?\n\s?\n/', trim($bufr));
             foreach ($processors as $processor) {
@@ -211,40 +210,41 @@ class Linux extends OS {
                     $arrBuff = preg_split('/\s+:\s+/', trim($detail));
                     if (count($arrBuff) == 2) {
                         switch (strtolower($arrBuff[0])) {
-                            case 'processor':
-                                if (PSI_LOAD_BAR) {
-                                    $dev->setLoad($this->_parseProcStat('cpu' . trim($arrBuff[1])));
-                                }
-                                break;
-                            case 'model name':
-                            case 'cpu':
-                                $dev->setModel($arrBuff[1]);
-                                break;
-                            case 'cpu mhz':
-                            case 'clock':
-                                $dev->setCpuSpeed($arrBuff[1]);
-                                break;
-                            case 'cycle frequency [hz]':
-                                $dev->setCpuSpeed($arrBuff[1] / 1000000);
-                                break;
-                            case 'cpu0clktck':
-                                $dev->setCpuSpeed(hexdec($arrBuff[1]) / 1000000); // Linux sparc64
-                                break;
-                            case 'l2 cache':
-                            case 'cache size':
-                                $dev->setCache(preg_replace("/[a-zA-Z]/", "", $arrBuff[1]) * 1024);
-                                break;
-                            case 'bogomips':
-                            case 'cpu0bogo':
-                                $dev->setBogomips($arrBuff[1]);
-                                break;
-                            case 'flags':
-                                if (preg_match("/vmx/", $arrBuff[1])) {
-                                    $dev->setVirt("vmx");
-                                } else if (preg_match("/smv/", $arrBuff[1])) {
-                                    $dev->setVirt("smv");
-                                }
-                                break;
+                        case 'processor':
+                            if(PSI_LOAD_BAR) {
+                                $dev->setLoad($this->_parseProcStat('cpu'.trim($arrBuff[1])));
+                            }
+                            break;
+                        case 'model name':
+                        case 'cpu':
+                            $dev->setModel($arrBuff[1]);
+                            break;
+                        case 'cpu mhz':
+                        case 'clock':
+                            $dev->setCpuSpeed($arrBuff[1]);
+                            break;
+                        case 'cycle frequency [hz]':
+                            $dev->setCpuSpeed($arrBuff[1] / 1000000);
+                            break;
+                        case 'cpu0clktck':
+                            $dev->setCpuSpeed(hexdec($arrBuff[1]) / 1000000); // Linux sparc64
+                            break;
+                        case 'l2 cache':
+                        case 'cache size':
+                            $dev->setCache(preg_replace("/[a-zA-Z]/", "", $arrBuff[1]) * 1024);
+                            break;
+                        case 'bogomips':
+                        case 'cpu0bogo':
+                            $dev->setBogomips($arrBuff[1]);
+                            break;
+                        case 'flags':
+                            if(preg_match("/vmx/",$arrBuff[1])) {
+                                $dev->setVirt("vmx");
+                            }
+                            else if(preg_match("/smv/",$arrBuff[1])) {
+                                $dev->setVirt("smv");
+                            }
+                            break;
                         }
                     }
                 }
@@ -254,32 +254,33 @@ class Linux extends OS {
                 // Modified by Tom Weustink <freshy98@gmx.net> in 2004
                 $sparclist = array('SUNW,UltraSPARC@0,0', 'SUNW,UltraSPARC-II@0,0', 'SUNW,UltraSPARC@1c,0', 'SUNW,UltraSPARC-IIi@1c,0', 'SUNW,UltraSPARC-II@1c,0', 'SUNW,UltraSPARC-IIe@0,0');
                 foreach ($sparclist as $name) {
-                    if (CommonFunctions::rfts('/proc/openprom/' . $name . '/ecache-size', $buf, 1, 32, false)) {
+                    if (CommonFunctions::rfts('/proc/openprom/'.$name.'/ecache-size', $buf, 1, 32, false)) {
                         $dev->setCache(base_convert($buf, 16, 10));
                     }
                 }
                 // sparc64 specific code ends
+                
                 // XScale detection code
                 if ($dev->getModel() === "") {
                     foreach ($details as $detail) {
                         $arrBuff = preg_split('/\s+:\s+/', trim($detail));
                         if (count($arrBuff) == 2) {
                             switch (strtolower($arrBuff[0])) {
-                                case 'processor':
-                                    $dev->setModel($arrBuff[1]);
-                                    break;
-                                case 'bogomips':
-                                    $dev->setCpuSpeed($arrBuff[1]); //BogoMIPS are not BogoMIPS on this CPU, it's the speed
-                                    $dev->setBogomips(null); // no BogoMIPS available, unset previously set BogoMIPS 
-                                    break;
-                                case 'i size':
-                                case 'd size':
-                                    if ($dev->getCache() === null) {
-                                        $dev->setCache($arrBuff[1] * 1024);
-                                    } else {
-                                        $dev->setCache($dev->getCache() + ($arrBuff[1] * 1024));
-                                    }
-                                    break;
+                            case 'processor':
+                                $dev->setModel($arrBuff[1]);
+                                break;
+                            case 'bogomips':
+                                $dev->setCpuSpeed($arrBuff[1]); //BogoMIPS are not BogoMIPS on this CPU, it's the speed
+                                $dev->setBogomips(null); // no BogoMIPS available, unset previously set BogoMIPS 
+                                break;
+                            case 'i size':
+                            case 'd size':
+                                if ($dev->getCache() === null) {
+                                    $dev->setCache($arrBuff[1] * 1024);
+                                } else {
+                                    $dev->setCache($dev->getCache() + ($arrBuff[1] * 1024));
+                                }
+                                break;
                             }
                         }
                     }
@@ -295,13 +296,13 @@ class Linux extends OS {
             }
         }
     }
-
     /**
      * PCI devices
      *
      * @return void
      */
-    private function _pci() {
+    private function _pci()
+    {
         if (!$arrResults = Parser::lspci()) {
             if (CommonFunctions::rfts('/proc/pci', $strBuf, 0, 4096, false)) {
                 $booDevice = false;
@@ -328,39 +329,39 @@ class Linux extends OS {
             }
         }
     }
-
     /**
      * IDE devices
      *
      * @return void
      */
-    private function _ide() {
+    private function _ide()
+    {
         $bufd = CommonFunctions::gdc('/proc/ide', false);
         foreach ($bufd as $file) {
             if (preg_match('/^hd/', $file)) {
                 $dev = new HWDevice();
                 $dev->setName(trim($file));
-                if (CommonFunctions::rfts("/proc/ide/" . $file . "/media", $buf, 1)) {
+                if (CommonFunctions::rfts("/proc/ide/".$file."/media", $buf, 1)) {
                     if (trim($buf) == 'disk') {
-                        if (CommonFunctions::rfts("/proc/ide/" . $file . "/capacity", $buf, 1, 4096, false) || CommonFunctions::rfts("/sys/block/" . $file . "/size", $buf, 1, 4096, false)) {
+                        if (CommonFunctions::rfts("/proc/ide/".$file."/capacity", $buf, 1, 4096, false) || CommonFunctions::rfts("/sys/block/".$file."/size", $buf, 1, 4096, false)) {
                             $dev->setCapacity(trim($buf) * 512 / 1024);
                         }
                     }
                 }
-                if (CommonFunctions::rfts("/proc/ide/" . $file . "/model", $buf, 1)) {
-                    $dev->setName($dev->getName() . ": " . trim($buf));
+                if (CommonFunctions::rfts("/proc/ide/".$file."/model", $buf, 1)) {
+                    $dev->setName($dev->getName().": ".trim($buf));
                 }
                 $this->sys->setIdeDevices($dev);
             }
         }
     }
-
     /**
      * SCSI devices
      *
      * @return void
      */
-    private function _scsi() {
+    private function _scsi()
+    {
         $get_type = false;
         $device = null;
         if (CommonFunctions::executeProgram('lsscsi', '-c', $bufr, PSI_DEBUG) || CommonFunctions::rfts('/proc/scsi/scsi', $bufr, 0, 4096, PSI_DEBUG)) {
@@ -374,20 +375,20 @@ class Linux extends OS {
                 if ($get_type) {
                     preg_match('/Type:\s+(\S+)/i', $buf, $dev_type);
                     $dev = new HWDevice();
-                    $dev->setName($device[1] . ' ' . $device[2] . ' (' . $dev_type[1] . ')');
+                    $dev->setName($device[1].' '.$device[2].' ('.$dev_type[1].')');
                     $this->sys->setScsiDevices($dev);
                     $get_type = false;
                 }
             }
         }
     }
-
     /**
      * USB devices
      *
      * @return array
      */
-    private function _usb() {
+    private function _usb()
+    {
         $devnum = -1;
         if (!CommonFunctions::executeProgram('lsusb', '', $bufr, PSI_DEBUG)) {
             if (CommonFunctions::rfts('/proc/bus/usb/devices', $bufr, 0, 4096, false)) {
@@ -400,7 +401,7 @@ class Linux extends OS {
                         list($key, $value) = preg_split('/: /', $buf, 2);
                         list($key, $value2) = preg_split('/=/', $value, 2);
                         if (trim($key) != "SerialNumber") {
-                            $results[$devnum] .= " " . trim($value2);
+                            $results[$devnum] .= " ".trim($value2);
                         }
                     }
                 }
@@ -422,14 +423,14 @@ class Linux extends OS {
             }
         }
     }
-
     /**
      * Network devices
      * includes also rx/tx bytes
      *
      * @return void
      */
-    private function _network() {
+    private function _network()
+    {
         if (CommonFunctions::rfts('/proc/net/dev', $bufr)) {
             $bufe = preg_split("/\n/", $bufr, -1, PREG_SPLIT_NO_EMPTY);
             foreach ($bufe as $buf) {
@@ -447,13 +448,13 @@ class Linux extends OS {
             }
         }
     }
-
     /**
      * Physical memory information and Swap Space information
      *
      * @return void
      */
-    private function _memory() {
+    private function _memory()
+    {
         if (CommonFunctions::rfts('/proc/meminfo', $bufr)) {
             $bufe = preg_split("/\n/", $bufr, -1, PREG_SPLIT_NO_EMPTY);
             foreach ($bufe as $buf) {
@@ -488,26 +489,26 @@ class Linux extends OS {
             }
         }
     }
-
     /**
      * filesystem information
      *
      * @return void
      */
-    private function _filesystems() {
+    private function _filesystems()
+    {
         $arrResult = Parser::df("-P");
         foreach ($arrResult as $dev) {
             $this->sys->setDiskDevices($dev);
         }
     }
-
     /**
      * Distribution
      *
      * @return void
      */
-    private function _distro() {
-        $list = @parse_ini_file(APP_ROOT . "/data/distros.ini", true);
+    private function _distro()
+    {
+        $list = @parse_ini_file(APP_ROOT."/data/distros.ini", true);
         if (!$list) {
             return;
         }
@@ -526,7 +527,7 @@ class Linux extends OS {
             }
         } else {
             // Fall back in case 'lsb_release' does not exist ;)
-            foreach ($list as $section => $distribution) {
+            foreach ($list as $section=>$distribution) {
                 if (!isset($distribution["Files"])) {
                     continue;
                 } else {
@@ -540,7 +541,7 @@ class Linux extends OS {
                                 if ($distribution["Name"] == 'Synology') {
                                     $this->sys->setDistribution($distribution["Name"]);
                                 } else {
-                                    $this->sys->setDistribution($distribution["Name"] . " " . trim($buf));
+                                    $this->sys->setDistribution($distribution["Name"]." ".trim($buf));
                                 }
                             } else {
                                 $this->sys->setDistribution(trim($buf));
@@ -552,7 +553,6 @@ class Linux extends OS {
             }
         }
     }
-
     /**
      * get the information
      *
@@ -560,7 +560,8 @@ class Linux extends OS {
      *
      * @return Void
      */
-    function build() {
+    function build()
+    {
         $this->_distro();
         $this->_ip();
         $this->_hostname();
@@ -577,7 +578,5 @@ class Linux extends OS {
         $this->_filesystems();
         $this->_loadavg();
     }
-
 }
-
 ?>

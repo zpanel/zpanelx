@@ -1,0 +1,265 @@
+<!--Include="html/italiano/simple/header.html"-->
+
+<!-- here is our custom sidebar -->
+
+
+
+			<table width="163" cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="5" border="0"></td>
+					<td width="125"><img src="imgs/simple/shim.gif" width="125" height="5" border="0"></td>
+				</tr>
+
+			
+				<tr>
+					<td width="38" bgcolor="#DEEBF6" class="optionselectedimg"><img onclick="return validate_abook_simple();" style="cursor: pointer; cursor: hand;" src="imgs/simple/sidebar_addentry_on.gif" width="38" height="31" border="0"></td>
+
+
+<td width="125">
+<table width='115' cellpadding='0' cellspacing=0 border=0 height="33" class='optionselected'>
+<tr>
+<td onclick="return validate_abook_simple();">
+<font class="menuoption">&nbsp;&nbsp;Aggiungi Inserimento</small>
+</td>
+</tr>
+</table>
+</td>
+
+				</tr>
+				<tr>
+					<td width="38"><img src="imgs/simple/sidebar_bottom_tile.gif" width="38" height="95" border="0"></td>
+					<td width="125"><img src="imgs/simple/shim.gif" width="125" height="95" border="0"></td>
+				</tr>
+			</table>
+		 </td>
+
+<!--Include="html/italiano/simple/headerbar.html"-->
+
+<!--<SCRIPT language=JavaScript src="javascript/opencompose.js"></script>-->
+<script language="JavaScript" src="html/$this->Language/javascript/validate_abook.js"></script>
+<script language="JavaScript">
+window.status = ' Aggiungi un nuovo utente alla rubrica ';
+</script>
+
+$var['atmailstyle']
+
+<font class="sw">Crea un nuovo utente. Puoi specificare alcuni dettagli e il numero di telefono, o semplicemente registrare il loro nome e l'indirizzo E-mail.</font><br><br>
+
+<form method="post" name="abook">
+<input type=hidden name="func" value="open">
+<input type=hidden name="add" value="1">
+
+<table border='0' cellspacing='1' cellpadding='0' class='maintable'>
+
+<TABLE border='0' width='100%' cellpadding='4' cellspacing='0' class="table_control">
+
+<TR><TH class="topleft"><font class='mheader'>&nbsp;Aggiungi un utente alla rubrica</font></TH><TH class="middle"></TH><TH class="topright"></TH></TR>
+
+
+
+</TABLE>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5" class="borderstyle">
+    <tr>
+		<td bgcolor="$this->SecondaryColor">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5">
+<tr> 
+<td bgcolor="$this->SecondaryColor" width="150"><font class="sw">Indirizzo E-mail</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserEmail" size="40" maxlength="64" value="$var['UserEmail']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Nome</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserFirstName" size="40" maxlength="64" value="$var['UserFirstName']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Secondo Nome</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserMiddleName" size="40" maxlength="64" value="$var['UserMiddleName']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Cognome</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserLastName" size="40" maxlength="64" value="$var['UserLastName']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Indirizzo</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserHomeAddress" size="30" maxlength="64" value="$var['UserHomeAddress']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Città</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserHomeCity" size="30" maxlength="64" value="$var['UserHomeCity']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Stato</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserHomeState" size="20" maxlength="64" value="$var['UserHomeState']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">CAP</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserHomeZip" size="20" maxlength="64" value="$var['UserHomeZip']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Nazione</font></td>
+<td bgcolor="$this->SecondaryColor">
+<input type="text" class="inputfield" name="UserHomeCountry" size="35" maxlength="64" value="$var['UserHomeCountry']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">URL</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserURL" size="40" maxlength="128" value="$var['UserURL']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Nr. Cellulare</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserHomeMobile" size="20" maxlength="64" value="$var['UserHomeMobile']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Telefono di casa</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserHomePhone" size="20" maxlength="64" value="$var['UserHomePhone']">
+</td>
+</tr>
+
+<td bgcolor="$this->SecondaryColor"><font class="sw">Fax di casa</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserHomeFax" size="20" maxlength="64" value="$var['UserHomeFax']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Altre Informazioni</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<textarea name="UserInfo" cols="40" rows="5" class="inputfieldtextarea">$var['UserInfo']</textarea>
+</td>
+</tr>
+</table>
+
+
+
+</td>
+</tr>
+</table>
+<br>
+
+<table border='0' cellspacing='1' cellpadding='0' class='maintable'>
+
+
+<TABLE border='0' width='100%' cellpadding='4' cellspacing='0' class="table_control">
+
+<TR><TH class="topleft"><font class='mheader'>&nbsp;Affari</font></TH><TH class="middle"></TH><TH class="topright"></TH></TR>
+
+
+
+</TABLE>
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5" class="borderstyle">
+    <tr>
+		<td bgcolor="$this->SecondaryColor">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5">
+
+<tr>
+<td bgcolor="$this->SecondaryColor" width="150"><font class="sw">Ragione sociale</font></td>
+<td bgcolor="$this->SecondaryColor">
+<input type="text" class="inputfield" name="UserWorkCompany" size="40" maxlength="64" value="$var['UserWorkCompany']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Indirizzo</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserWorkAddress" size="30" maxlength="64" value="$var['UserWorkAddress']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Città</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserWorkCity" size="30" maxlength="64" value="$var['UserWorkCity']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Stato</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserWorkState" size="20" maxlength="64" value="$var['UserWorkState']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">CAP</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserWorkZip" size="20" maxlength="64" value="$var['UserWorkZip']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Nazione</font></td>
+<td bgcolor="$this->SecondaryColor">
+<input type="text" class="inputfield" name="UserWorkCountry" size="35" maxlength="64" value="$var['UserWorkCountry']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Cellulare di Lavoro</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserWorkMobile" size="20" maxlength="64" value="$var['UserWorkMobile']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Telefono ufficio</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserWorkPhone" size="20" maxlength="64" value="$var['UserWorkPhone']">
+</td>
+</tr>
+
+<td bgcolor="$this->SecondaryColor"><font class="sw">Fax ufficio</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserWorkFax" size="20" maxlength="64" value="$var['UserWorkFax']">
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+</form>
+</table>
+
+
+<!--Include="html/italiano/simple/footer.html"-->

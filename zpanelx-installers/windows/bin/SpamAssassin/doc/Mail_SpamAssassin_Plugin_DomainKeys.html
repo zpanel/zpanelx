@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Mail::SpamAssassin::Plugin::DomainKeys - perform DomainKeys verification tests</title>
+<link rev="made" href="mailto:" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#user_settings">USER SETTINGS</a></li>
+	<li><a href="#administrator_settings">ADMINISTRATOR SETTINGS</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Mail::SpamAssassin::Plugin::DomainKeys - perform DomainKeys verification tests</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+ loadplugin Mail::SpamAssassin::Plugin::DomainKeys [/path/to/DomainKeys.pm]</pre>
+<p>Signature:
+ header DK_SIGNED                eval:check_domainkeys_signed()
+ header DK_VERIFIED              eval:check_domainkeys_verified()</p>
+<p>Policy:
+   Note that DK policy record is only fetched if DK_VERIFIED is
+   false to save a signing domain from unnecessary DNS queries,
+   as recommended (SHOULD) by draft-delany-domainkeys-base.
+   Rules DK_POLICY_* should preferably not be relied upon when
+   DK_VERIFIED is true, although they will return false in current
+   implementation when a policy record is not fetched, except for
+   DK_POLICY_TESTING, which is true if t=y appears in a public key
+   record OR in a policy record (when available).
+ header DK_POLICY_TESTING        eval:check_domainkeys_testing()
+ header DK_POLICY_SIGNSOME       eval:check_domainkeys_signsome()
+ header DK_POLICY_SIGNALL        eval:check_domainkeys_signall()</p>
+<p>Whitelisting based on verified signature:
+ header USER_IN_DK_WHITELIST     eval:check_for_dk_whitelist_from()
+ header USER_IN_DEF_DK_WL        eval:check_for_def_dk_whitelist_from()</p>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>This is the DomainKeys plugin and it needs lots more documentation.</p>
+<p>Note that if the <code>Mail::SpamAssassin::Plugin::DKIM</code> plugin is installed with
+<code>Mail::DKIM</code> version 0.20 or later, that plugin will also perform Domain Key
+lookups on DomainKey-Signature headers, in which case this plugin is redundant.</p>
+<p>Here is author's note from module <code>Mail::DomainKeys</code> version 1.0:</p>
+<pre>
+  THIS MODULE IS OFFICIALLY UNSUPPORTED.</pre>
+<pre>
+  Please move on to DKIM like a responsible Internet user.  I have.</pre>
+<pre>
+  I will leave this module here on CPAN for a while, just in case someone
+  has grown to depend on it.  It is apparent that DK will not be the way
+  of the future. Thus, it is time to put this module to ground before it
+  causes any further harm.</pre>
+<pre>
+  Thanks for your support,
+  Anthony</pre>
+<p>
+</p>
+<hr />
+<h1><a name="user_settings">USER SETTINGS</a></h1>
+<dl>
+<dt><strong><a name="item_whitelist_from_dk_add_40ress_2ecom__5bsigning_doma">whitelist_from_dk <a href="mailto:add@ress.com">add@ress.com</a> [signing domain name]</a></strong><br />
+</dt>
+<dd>
+Use this to supplement the whitelist_from addresses with a check to make sure
+the message has been signed by a DomainKeys signature that can be verified
+against the From: domain's DomainKeys public key.
+</dd>
+<dd>
+<p>In order to support signing domain names that differ from the address domain
+name, only one whitelist entry is allowed per line, exactly like
+<code>whitelist_from_rcvd</code>.  Multiple <code>whitelist_from_dk</code> lines are allowed.  
+File-glob style meta characters are allowed for the From: address, just like
+with <code>whitelist_from_rcvd</code>.  The optional signing domain name parameter must
+match from the right-most side, also like in <code>whitelist_from_rcvd</code>.</p>
+</dd>
+<dd>
+<p>If no signing domain name parameter is specified the domain of the address
+parameter specified will be used instead.</p>
+</dd>
+<dd>
+<p>The From: address is obtained from a signed part of the message (ie. the
+``From:'' header), not from envelope data that is possible to forge.</p>
+</dd>
+<dd>
+<p>Since this whitelist requires a DomainKeys check to be made, network tests must
+be enabled.</p>
+</dd>
+<dd>
+<p>Examples:</p>
+</dd>
+<dd>
+<pre>
+  whitelist_from_dk joe@example.com
+  whitelist_from_dk *@corp.example.com</pre>
+</dd>
+<dd>
+<pre>
+  whitelist_from_dk bob@it.example.net  example.net
+  whitelist_from_dk *@eng.example.net   example.net</pre>
+</dd>
+<p></p>
+<dt><strong><a name="item_def_whitelist_from_dk_add_40ress_2ecom__5bsigning_">def_whitelist_from_dk <a href="mailto:add@ress.com">add@ress.com</a> [signing domain name]</a></strong><br />
+</dt>
+<dd>
+Same as <code>whitelist_from_dk</code>, but used for the default whitelist entries
+in the SpamAssassin distribution.  The whitelist score is lower, because
+these are often targets for spammer spoofing.
+</dd>
+<p></p></dl>
+<p>
+</p>
+<hr />
+<h1><a name="administrator_settings">ADMINISTRATOR SETTINGS</a></h1>
+<dl>
+<dt><strong><a name="item_n">domainkeys_timeout n             (default: 5)</a></strong><br />
+</dt>
+<dd>
+How many seconds to wait for a DomainKeys query to complete, before
+scanning continues without the DomainKeys result.
+</dd>
+</dl>
+
+</body>
+
+</html>

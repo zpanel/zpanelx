@@ -170,9 +170,9 @@ class module_controller {
         // Remove all priveledges to all databases
         $sql = $zdbh->prepare("GRANT USAGE ON *.* TO '" . $username . "'@'" . $access . "'");
         $sql->execute();
-        // Grant privileges for new user to the assigned database...
-        $sql = $zdbh->prepare("GRANT ALL PRIVILEGES ON `" . $rowdb['my_name_vc'] . "`.* TO '" . $username . "'@'" . $access . "'");
-        $sql->execute();
+		// Grant privileges for new user to the assigned database...
+		$sql = $zdbh->prepare("GRANT ALL PRIVILEGES ON `" . $rowdb['my_name_vc'] . "`.* TO '" . $username . "'@'" . $access . "'");
+		$sql->execute();
         $sql = $zdbh->prepare("FLUSH PRIVILEGES");
         $sql->execute();
         // Add user to zpanel database...
@@ -294,7 +294,7 @@ class module_controller {
         runtime_hook::Execute('OnBeforeAddDatabaseAccess');
         $rowdb = $zdbh->query("SELECT * FROM x_mysql_databases WHERE my_id_pk=" . $dbid . " AND my_deleted_ts IS NULL")->fetch();
         $rowuser = $zdbh->query("SELECT * FROM x_mysql_users WHERE mu_id_pk=" . $myuserid . " AND mu_deleted_ts IS NULL")->fetch();
-        $sql = $zdbh->prepare("GRANT ALL PRIVILEGES ON `" . $rowdb['my_name_vc'] . "`.* TO '" . $rowuser['mu_name_vc'] . "'@'" . $rowuser['mu_access_vc'] . "'");
+        $sql = $zdbh->prepare("GRANT ALTER, CREATE, CREATE TEMPORARY TABLES, DELETE, INDEX, INSERT, LOCK TABLES, SELECT, UPDATE ON " . $rowdb['my_name_vc'] . ".* TO '" . $rowuser['mu_name_vc'] . "'@'" . $rowuser['mu_access_vc'] . "'");
         $sql->execute();
         $sql = $zdbh->prepare("FLUSH PRIVILEGES");
         $sql->execute();
@@ -320,6 +320,7 @@ class module_controller {
         $rowuser = $zdbh->query("SELECT * FROM x_mysql_users WHERE mu_id_pk=" . $myuserid . " AND mu_deleted_ts IS NULL")->fetch();
         $sql = $zdbh->prepare("REVOKE ALL PRIVILEGES ON `" . $rowdb['my_name_vc'] . "`.* FROM '" . $rowuser['mu_name_vc'] . "'@'" . $rowuser['mu_access_vc'] . "'");
         $sql->execute();
+        //echo "NAME ".$rowdb['my_name_vc']." DBID ".$dbid." ROWDB " .$rowdbm['mm_database_fk'] . "RowUser " . $rowuser['mu_name_vc'] . " access " . $rowuser['mu_access_vc'];
         $sql = $zdbh->prepare("FLUSH PRIVILEGES");
         $sql->execute();
         $sql = $zdbh->prepare("DELETE FROM x_mysql_dbmap WHERE mm_id_pk=" . $mapid . " AND mm_user_fk=" . $myuserid . "");

@@ -1,0 +1,40 @@
+#mailbox_title2{
+    float: none;
+    background-color: #bbd8fb;
+    padding: 5px;
+    text-align: center;
+    margin: 0px;
+    margin-left: -20px;
+}
+#profile_page{
+    padding-left: 20px;
+    border: solid 1px #ccc;
+}
+#profile_page table {
+    padding-bottom: 20px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+#profile_page table th{
+    vertical-align: top;
+    padding: 5px;
+    text-align: left;
+    font-weight: normal;
+}
+#profile_page table td{
+    padding: 5px;
+}
+#profile_page h4{
+    clear: both;
+} 
+.profile_text{
+    width: 100%;
+}
+.profile_buttons{
+    margin-top: 10px;
+    padding-bottom: 20px;
+    margin-left: 20px;
+}
+#profile_page textarea{
+    padding-left: 2px;
+}

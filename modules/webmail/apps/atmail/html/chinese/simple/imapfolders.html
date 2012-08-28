@@ -1,0 +1,193 @@
+<!--Include="html/chinese/simple/header.html"-->
+
+$var['atmailstyle']
+$var['refresh']
+<script language="Javascript" src="javascript/trselect.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+window.focus();
+
+</SCRIPT>
+
+
+<SCRIPT LANGUAGE="JavaScript1.2" src="javascript/settings.js">
+</SCRIPT>
+
+<script LANGUAGE="JavaScript">
+function refreshfolders(type)	{
+location.href='util.php?func=imapfolders&type=list&FolderFilter=' + type;
+}
+
+function refreshfolderssub(type)	{
+location.href='util.php?func=imapfolders&type=list&lsub=1&FolderFilterSub=' + type;
+}
+
+var i=0;
+
+function selectall_folders(swch){
+len=swch.elements.length;
+for (i=0;i<len;i++){
+if (swch.elements[i].type=='checkbox'){
+swch.elements[i].checked=true;
+};
+}; 
+};
+
+function deselectall_folders(swch){
+len=swch.elements.length;
+for (i=0;i<len;i++){
+if (swch.elements[i].type=='checkbox'){
+swch.elements[i].checked=false;
+};
+}; 
+
+};
+</SCRIPT>
+<br>
+<form method="POST" name="mail" action="util.php">
+<input type="hidden" name="func" value="imapfolders">
+<input type="hidden" name="action" value="">
+
+ <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr bgcolor=""> 
+      <td height='20' colspan="7" bgcolor="$this->PrimaryColor" valign="middle"><font class="mheader"> 
+       &nbsp; 所有文件夾<br>
+        </font> </td>
+          <td bgcolor="$this->PrimaryColor" align="right" valign="top"><img src="$this->Bgtrans"></td> 
+    </tr>
+</table>
+
+ <table width="100%" border="0" cellspacing="0" cellpadding="3">
+    <tr> 
+      <td width="59%" bgcolor="$this->SecondaryColor" height="26" colspan='2'> <font class="sw"> 
+        在這裡你可以選擇文件夾從遠程IMAP服務器顯示在你的信箱.你可以選擇開啟一個文件夾/關閉查看.欲了解更多有關這一功能請參考聯機文檔.<br></td>
+    </tr>
+	<tr>
+<td colspan=2 height='1' bgcolor='#E9E7DD'></td>
+</tr>
+    <tr> 
+      <td width="59%" bgcolor="$this->SecondaryColor" height="26" colspan='2'> <font class="sw"> 
+       顯示文件夾中包含的名稱：</font></td>
+	</tr>
+
+	<tr> 
+      <td width="59%" bgcolor="$this->SecondaryColor" height="26" colspan='2'> <font class="sw"> 
+      &nbsp;<input class=text type="text" name="FolderFilter" size="30" value=""></font></td>
+	</tr>
+
+    <tr bgcolor="$this->SecondaryColor" height='250'> 
+<td width='100%'>
+
+<table width="100%" height="100%" cellpadding="0" cellspacing="5" border="0">
+				<tr>
+					<td width='90%'>	
+  <TABLE border=0 cellPadding=0 cellSpacing=0 width="100%">
+<tr>
+<td height="1" bgcolor='$this->PrimaryColor' colspan="3"> 
+</td>
+  $var['imapfolders_all']
+  </table>
+  </td>
+
+<td width='10%' valign='top' align='right'>
+<input type='button' class='stdbtn' value='添加文件夾' onclick="document.mail.action.value='add';document.mail.submit();">&nbsp;<br>
+<img src="imgs/xp/shim.gif" width="4" height="4" border="0">
+
+<input type='button' class='stdbtn' value='隱藏文件夾' disabled>&nbsp;<br><img src="imgs/xp/shim.gif" width="4" height="4" border="0">
+
+<input type='button' class='stdbtn' value='選擇所有' onclick="selectall_folders(document.mail)">&nbsp;<br>
+<img src="imgs/xp/shim.gif" width="4" height="4" border="0">
+
+<input type='button' class='stdbtn' value='取消' onclick="deselectall_folders(document.mail)">&nbsp;<br>
+<img src="imgs/xp/shim.gif" width="4" height="4" border="0">
+
+<input type='button' class='stdbtn' value='Refresh' onclick="refreshfolders(document.mail.FolderFilter.value);" >&nbsp;<br><img src="imgs/xp/shim.gif" width="4" height="4" border="0">
+
+</td>
+
+				</tr>
+
+</table>
+
+<td width='10' valign='top' align='right'>
+
+</td>
+
+</td>
+    </tr>
+  </table>
+
+<br><br>
+</form>
+
+<form method="POST" name="mail2" action="util.php">
+<input type="hidden" name="func" value="imapfolders">
+<input type="hidden" name="action" value="">
+
+ <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr bgcolor=""> 
+      <td height='20' colspan="7" bgcolor="$this->PrimaryColor" valign="middle"><font class="mheader"> 
+       &nbsp; 看得見的文件夾<br>
+        </font> </td>
+          <td bgcolor="$this->PrimaryColor" align="right" valign="top"><img src="$this->Bgtrans"></td> 
+    </tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+    <tr> 
+      <td width="59%" bgcolor="$this->SecondaryColor" height="26" colspan='2'> <font class="sw"> 
+        下面是清單的積極夾訂閱你的帳戶.你可以選擇隱藏選定文件夾中使用下面的核取方塊.<br></td>
+    </tr>
+	<tr>
+<td colspan=2 height='1' bgcolor='#E9E7DD'></td>
+</tr>
+    <tr> 
+      <td width="59%" bgcolor="$this->SecondaryColor" height="26" colspan='2'> <font class="sw"> 
+       顯示文件夾中包含的名稱：</font></td>
+	</tr>
+
+	<tr> 
+      <td width="59%" bgcolor="$this->SecondaryColor" height="26" colspan='2'> <font class="sw"> 
+      &nbsp;<input class=text type="text" name="FolderFilterSub" size="30" value=""></font></td>
+	</tr>
+
+    <tr bgcolor="$this->SecondaryColor" height='250'> 
+<td width='100%'>
+
+<table width="100%" height="100%" cellpadding="0" cellspacing="5" border="0">
+				<tr>
+					<td width='90%'>
+					<TABLE border=0 cellPadding=0 cellSpacing=0 width="100%">
+<tr>
+<td height="1" bgcolor='$this->PrimaryColor' colspan="3"> 
+</td>
+$var['imapfolders_subscribe']</table>
+					
+					</td>
+
+<td width='10%' valign='top' align='right'>
+
+<input type='button' class='stdbtn' value='添加文件夾' disabled>&nbsp;<br>
+<img src="imgs/xp/shim.gif" width="4" height="4" border="0">
+
+<input type='button' class='stdbtn' value='隱藏文件夾' onclick="document.mail2.action.value='hide';document.mail2.submit();" >&nbsp;<br>
+<img src="imgs/xp/shim.gif" width="4" height="4" border="0">
+
+<input type='button' class='stdbtn' value='選擇所有' onclick="selectall_folders(document.mail2)">&nbsp;<br>
+<img src="imgs/xp/shim.gif" width="4" height="4" border="0">
+
+<input type='button' class='stdbtn' value='取消' onclick="deselectall_folders(document.mail2)">&nbsp;<br>
+<img src="imgs/xp/shim.gif" width="4" height="4" border="0">
+
+<input type='button' class='stdbtn' value='Refresh' onclick="refreshfolderssub(document.mail2.FolderFilterSub.value);" >&nbsp;<br><img src="imgs/xp/shim.gif" width="4" height="4" border="0">
+</td>
+
+				</tr>
+</table>
+
+</td>
+    </tr>
+  </table>
+
+<br>
+</form>
+</body></html>

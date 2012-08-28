@@ -1,0 +1,1161 @@
+<style>
+/* Folder Highlights */
+
+.FolderHighlightIconOn {
+	border-top: 1px solid #ff9c03;
+	border-bottom: 1px solid #ff9c03;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+
+}
+
+.FolderHighlightOn {
+	border-top: 1px solid #ff9c03;
+	border-bottom: 1px solid #ff9c03;
+	border-right: 1px solid #ff9c03;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding-left: 5px;
+
+}
+
+.FolderHighlightIconOff {
+	border-top: 1px solid #deebf6;
+	border-bottom: 1px solid #deebf6;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+
+}
+
+.FolderHighlightOff {
+	border-top: 1px solid #ffffff;
+	border-bottom: 1px solid #ffffff;
+	border-right: 1px solid #ffffff;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding-left: 5px;
+
+}
+
+.FolderHighlightOver {
+	border-top: 1px solid #c5dbee;
+	border-bottom: 1px solid #c5dbee;
+	border-right: 1px solid #c5dbee;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding-left: 5px;
+
+}
+
+.FolderHighlightOut {
+	border-top: 1px solid #ffffff;
+	border-bottom: 1px solid #ffffff;
+	border-right: 1px solid #ffffff;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding-left: 5px;
+
+}
+
+
+/* Folder Borders */
+
+.ObjFLTableTbodyTrTdBorder {
+
+	border-top: 1px solid #468ac6;
+	border-bottom: 1px solid #468ac6;
+	border-right: 1px solid #468ac6;
+	font-weight: bold;
+
+}
+
+
+.ObjFLTableTbodyTrTdBorder2 {
+	border-top: 1px solid #ffffff;
+	border-bottom: 1px solid #ffffff;
+	border-right: 1px solid #ffffff;
+
+}
+
+
+
+.ObjMLTableTbodyTrTd {
+	width: 22px;
+	border-bottom: 1px solid #EBE9E4;
+}
+
+.ObjMLTableTbodyTrTd2 {
+	width: 30%;
+	border-bottom: 1px solid #EBE9E4;
+}
+
+.ObjMLTableTbodyTrTd3 {
+	width: 40%;
+	border-bottom: 1px solid #EBE9E4;
+}
+
+.ObjMLTableTbodyTrTd4 {
+	width: 70px;
+	border-bottom: 1px solid #EBE9E4;
+	text-align: right;
+}
+
+
+.ObjMLTableTbodyTrTdDiv {
+	width: 100%;
+	overflow: hidden;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	text-align: center;
+	padding: 2px 0px 2px 0px;
+	text-overflow: ellipsis;
+}
+
+.ObjMLTableTbodyTrTdDivBold {
+	font-weight: bold;
+	width: 100%;
+	overflow: hidden;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	padding: 2px 4px 2px 4px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.ObjMLTableTbodyTrTdDivBoldSize {
+	font-weight: bold;
+	width: 100%;
+	overflow: hidden;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	text-align: center;
+	padding: 2px 0px 2px 0px;
+}
+
+
+.ObjMLTableTbodyTrTdDiv2 {
+	width: 100%;
+	overflow: hidden;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	padding: 2px 4px 2px 4px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-weight: normal;
+}
+
+
+.ObjMLTableTbodyTrTdDiv3 {
+	width: 100%;
+	padding: 2px 4px 2px 5px;
+}
+
+
+.ObjMLTableTbodyTrTdDiv4 {
+	width: 100%;
+	padding: 2px 6px 2px 6px;
+}
+
+
+.ObjMLTableTbodyTrTdDiv5 {
+	width: 100%;
+	padding: 2px 4px 2px 4px;
+}
+
+
+.ObjFLTableTbodyTrTd {
+	width: 38px;
+	background-color: #DEEBF6;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+
+
+
+
+
+.ObjFLTableTbodyTrTd2 {
+
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+
+.ObjFLTableTbodyTrTd3, .ObjFLTableTbodyTrTdBorder, .ObjFLTableTbodyTrTdBorder2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding: 5px;
+}
+
+
+.ObjDnDDiv {
+	position: absolute;
+	border: 1px solid black;
+	background-color: #ffffe1;
+	cursor: pointer;
+	padding: 5px;
+}
+
+.ObjDnDDivContent {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding: 2px;
+}
+
+
+
+
+/* Message Header Rows */
+
+.ObjMRTableTbodyTrTdTableTbodyTrTd {
+	width: 70px;
+	white-space: nowrap;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: right;
+	padding-right: 5px;
+	border-bottom:  1px solid #ebe9e4;
+}
+
+
+.ObjMRTableTbodyTrTdTableTbodyTrTd2 {
+	width: 70%;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	border-bottom:  1px solid #ebe9e4;
+}
+
+
+.ObjMRTableTbodyTrTdTableTbodyTrTd3 {
+	width: 30%;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	border-bottom:  1px solid #ebe9e4;
+}
+
+
+.ObjMRTableTbodyTrTdTableTbodyTrTd4 {
+	width: 70px ;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	border-bottom:  1px solid #ebe9e4;
+}
+
+
+.ObjMRTableTbodyTrTdTableTbodyTrTd5 {
+	width: 90px;
+	white-space: nowrap;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: right;
+	padding-right: 5px;
+	border-bottom:  1px solid #ebe9e4;
+
+}
+
+
+.ObjMRTableTbodyTrTdTableTbodyTrTdvidmail {
+	width: 90px ;
+	white-space: nowrap;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: right;
+	padding-right: 5px;
+	padding-bottom: 7px;
+	border-bottom:  1px solid #ebe9e4;
+
+}
+
+
+.ObjMRTableTbodyTrTdTableTbodyTrTd6 {
+	width: 70%;
+	border-bottom:  1px solid #ebe9e4;
+
+
+}
+
+
+.ObjMRTableTbodyTrTdTableTbodyTrTd7 {
+	width: 70px;
+	white-space: nowrap;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: right;
+	padding-right: 5px;
+	border-bottom:  1px solid #ebe9e4;
+	vertical-align: top;
+}
+
+
+.ObjMRTableTbodyTrTdTableTbodyTrTd8 {
+	width: 100%;
+	white-space: nowrap;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	border-bottom:  1px solid #ebe9e4;
+
+}
+
+
+.ObjMRTableTbodyTrTdTableTbodyTrTd9 {
+	width: 100%;
+	height: 150px;
+	overflow: auto;
+
+}
+
+
+.ObjMRTableTbodyTrTd {
+	background-color: #f0f6fb;
+	border-bottom: 1px solid #bad4ea;
+
+}
+
+.ObjMRTableTbodyTrTd2 {
+	width: 242px;
+	height: 214px;
+
+}
+
+.ObjMRTableTbodyTrTd3 {
+	padding-left: 1px;
+	padding-top: 10px;
+
+}
+
+.ObjMRTableTbodyTrTd4 {
+	padding-left: 10px;
+	padding-top: 10px;
+	border-left: 1px solid #ebe9e4;
+}
+
+
+.ObjMRTableTbodyTrTdTableTbodyTrTdInput {
+	width: 100%;
+	border: 1px solid silver;
+}
+
+
+.ObjMRTableTbodyTrTdTableTbodyTrTdInputBorder {
+	border: 1px solid #bad4ea;
+}
+
+
+.ObjMRTableTbodyTrTdTableTbodyTrTdInputBorder2 {
+	border: 1px solid silver;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding: 2px;
+}
+
+
+.ObjMRTableTbodyTrTdTableTbodyTrTdInput2{
+	height: 22px;
+	overflow: auto;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding: 2px;
+}
+
+
+.ObjMRTableTbodyTrTdTableTbodyTrTdInput3{
+	width: 100%;
+	height: 22px;
+	overflow: auto;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding: 2px;
+}
+
+
+.ObjMRTableTbodyTrTdTableTbodyTrTdInput4{
+	width: 120px;
+	border: 1px solid silver;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding: 2px;
+}
+
+
+.ObjMRTableTbodyTrTdTableTbodyTrTdInput5{
+	width: 100%;
+	border: 1px solid silver;
+	height: 22px;
+	overflow: auto;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding: 2px;
+}
+
+
+.ObjMRTableTbodyTrTdTableTbodyTrTdInput6 {
+	height: 40px;
+}
+
+
+.ObjMRTableTbodyTrTdTableTbodyTrTdInput7 {
+	width: 100%;
+}
+
+#ComposeMsgFrom {
+	width: 100%;
+}
+
+#ComposeMsgSubject {
+	height: 22px;
+	border: 1px solid silver;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding: 2px;
+	
+}
+
+/* Spell Checker */
+
+.ObjSpellCheckerBox {
+	border: 1px solid red;
+	overflow: auto;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+
+
+.ObjSpellChkEdit {
+	border: 1px solid red;
+}
+
+
+.ObjSpellChkWord {
+
+	color: green;
+}
+
+.ObjMsgPageListSelectOption{
+	background-color: #deeaf6;
+}
+
+.ObjMsgReaderData {
+	overflow: auto;
+	height: 100%;
+}
+
+.ObjMRTableTbodyTrTdDivIFrame {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+
+}
+
+
+
+
+.ObjPopUpBoxItem {
+	width: 100%;
+	overflow: hidden;
+	height: 5px;
+	cursor: default;
+	border-top: 1px solid silver;
+	margin-top: 4px;
+
+}
+
+.ObjPopUpBoxItem2 {
+	height: 13px;
+	cursor: default;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding: 5px;
+
+
+}
+
+
+.ObjPopUpBoxItem3 {
+	height: 24px;
+	cursor: default;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding: 5px;
+
+}
+
+.ObjPopUpBoxItem4 {
+	cursor: default;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding: 5px;
+
+}
+
+.ObjPopUpBoxItem5 {
+	cursor: default;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	padding: 5px;
+
+}
+
+
+
+.ObjPopUpBox {
+	border: 1px solid #8EBEE5;
+	padding: 1px;
+	position: absolute;
+	width: 105px;
+	height: 237px;
+	background-color: white;
+
+}
+
+.ObjPopUpBox2 {
+	border: 1px solid #8EBEE5;
+	padding: 1px;
+	position: absolute;
+	width: 175px;
+	background-color: white;
+
+}
+
+.ObjMRTableTbodyTrTdDiv {
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+
+
+.ObjMRTableTbodyTrTdDivSpell {
+	display: none;
+	width: 100%;
+
+}
+
+
+
+.ObjMsgContainerDiv {
+
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+
+}
+
+
+.oPopBody {
+
+	border: 1px solid #8EBEE5;
+	padding: 1px;
+
+
+}
+
+.ObjMsgListBox {
+	width: 100%;
+}
+
+.ObjMsgListBox2 {
+
+	width: 600px;
+
+}
+
+.ObjMLTableTbodyTr {
+	cursor: pointer;
+}
+
+.opt {
+	background-color: #deeaf6;
+}
+
+.ObjSearchRow {
+	display: none;
+
+}
+
+.ObjFLTableTbodyTr {
+	cursor: default;
+
+}
+
+.ObjFLTableTbodyTr2 {
+	cursor: pointer;
+
+}
+
+.ObjFLTableTbodyTrDisplay {
+	display: none;
+}
+
+.ObjFLTableTbodyTrTdImg {
+	border-top: 1px solid #468ac6;
+	border-bottom: 1px solid #468ac6;
+}
+
+.ObjFLTableTbodyTrTdImg2 {
+	border-top: 1px solid #deebf6;
+	border-bottom: 1px solid #deebf6;
+}
+
+
+.ObjMRTable {
+	width: 100%;
+	height: 100%;
+	border-spacing: 5;
+	padding: 0;
+	border: 0;
+}
+
+.ObjMRTableBorder {
+	border: 1px solid #bad4ea;
+}
+
+
+.ObjMRTableTbodyTrTdTable {
+
+	border-spacing: 5;
+	padding: 0;
+}
+
+.ObjMRTableTbodyTrTdTable2 {
+
+	border-spacing: 0;
+	padding: 5;
+}
+
+.ObjMRTableTbodyTrTdIFrame {
+
+	border: 1px solid #bad4ea;
+}
+
+
+.ObjMRTableTbodyTrTdIFrame2 {
+
+	border: 1px solid silver;
+}
+
+
+.ObjMRTableTbodyTrTdTextArea {
+
+	overflow: auto;
+	padding: 4px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+
+}
+
+.ObjMRTableTbodyTrTdTextArea2 {
+
+	overflow: auto;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+
+}
+
+
+.ObjDellAppointment {
+
+	cursor: pointer;
+	margin-bottom: 1px;
+
+}
+
+
+
+/* Ajax livesearch on To/CC/BCC fields */
+
+.LSShadow {
+	padding-left : 2px;
+	padding-right : 2px;
+	border : 1px solid #FCFCF8;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color : #282211;
+	cursor : hand;
+	height: 19;
+	width: 100%;
+}
+
+.LSHighlight, #LSHighlight {
+	padding-left : 4px;
+	padding-right : 2px;
+	border: 1px solid #468BC7;
+	background: #C0D8EE;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #295E8C;
+	cursor: hand;
+	height: 19;
+	width: 100%;
+}
+
+
+
+/* Reading message div */
+
+
+.container {width:100%; position:relative; margin:0 auto; text-align:left; border-right:20px solid #fff; background:#fff}
+
+.fade_bottom {
+	position: absolute;
+	height: 40px;
+	width:98%;
+	bottom:6; left:5;
+	background:url(imgs/xp/fade_bottom.png);
+}
+
+
+
+/* #MsgListViewer {
+	width: 97%;
+	height: 97%;
+	padding: 10px;
+}
+*/
+
+
+.border_contain {
+	border: 1px solid #85b3dc;
+}
+
+
+
+/* Search Bar */
+
+.SearchRow {
+	border-bottom: 1px solid #85b3dc;
+	background-color: #deeaf6;
+	padding: 5px;
+}
+
+
+.SearchBorder {
+	border: 1px solid #85b3dc;
+	background-color: white;
+}
+
+
+.SearchFields {
+	padding: 0px 2px 0px 5px;
+	cursor: default;
+	color: #5b83a7;
+	font-family: Arial, Helvetica, sans-serif; font-size: 12px;;
+}
+
+
+#SearchFrom {
+	width: 100%;
+	border-top: 1px solid #ffffff;
+	border-bottom: 1px solid #ffffff;
+	border-left: 1px solid #ffffff;
+	border-right: 1px solid #85b3dc;
+}
+
+
+#SearchTo {
+	width: 100%;
+	border-top: 1px solid #ffffff;
+	border-bottom: 1px solid #ffffff;
+	border-left: 1px solid #ffffff;
+	border-right: 1px solid #85b3dc;
+}
+
+
+#SearchSubject {
+	width: 100%;
+	border-top: 1px solid #ffffff;
+	border-bottom: 1px solid #ffffff;
+	border-left: 1px solid #ffffff;
+	border-right: 1px solid #85b3dc;
+}
+
+
+#SearchMessage {
+	width: 100%;
+	border-top: 1px solid #ffffff;
+	border-bottom: 1px solid #ffffff;
+	border-left: 1px solid #ffffff;
+}
+
+
+.searchpad {
+	padding: 0px 5px 0px 5px;
+}
+
+
+.searchspan {
+	cursor: default;
+	color: #5b83a7;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;;
+}
+
+
+.SearchRowMore {
+	padding: 5px 0px 0px 0px;
+	cursor: default;
+	color: #5b83a7;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;;
+}
+
+
+.SearchRowMore {
+	padding: 5px 0px 0px 0px;
+	cursor: default;
+	color: #5b83a7;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;;
+}
+
+
+
+/* Sort Message */
+
+.SortBy {
+	width: 20px;
+	border-right: 1px solid #85b3dc;
+	background-color: #deebf6;
+	cursor: pointer;
+}
+
+
+.SortBy2 {
+	width: 30%;
+	border-right: 1px solid #85b3dc;
+	background-color: #deebf6;
+	cursor: pointer;
+}
+
+
+.SortBy3 {
+	width: 40%;
+	border-right: 1px solid #85b3dc;
+	background-color: #deebf6;
+	cursor: pointer;
+}
+
+
+.SortBy4 {
+	width: 87px;
+	border-right: 1px solid #85b3dc;
+	background-color: #deebf6;
+	cursor: pointer;
+}
+
+
+
+/*	Message Header Tiles */
+
+.headertile {
+	background-image: url(imgs/simple/listbox_header_tile.gif);
+	width: 20px;
+	height: 18px;
+	border-right: 1px solid #85b3dc;
+	background-color: #deebf6;
+	color: #5b83a7;
+	cursor: pointer;
+	font: menu;
+	text-align: center;
+}
+
+
+.headertile2 {
+	background-image: url(imgs/simple/listbox_header_tile.gif);
+	width: 30%;
+	height: 18px;
+	border-right: 1px solid #85b3dc;
+	background-color: #deebf6;
+	color: #5b83a7;
+	cursor: pointer;
+	font: menu;
+	text-align: center;
+}
+
+.headertile3 {
+	background-image: url(imgs/simple/listbox_header_tile.gif);
+	width: 40%;
+	height: 18px;
+	border-right: 1px solid #85b3dc;
+	background-color: #deebf6;
+	color: #5b83a7;
+	cursor: pointer;
+	font: menu;
+	text-align: center;
+}
+
+.headertile4 {
+	background-image: url(imgs/simple/listbox_header_tile.gif);
+	width: 87px;
+	height: 18px;
+	border-right: 1px solid #85b3dc;
+	background-color: #deebf6;
+	color: #5b83a7;
+	cursor: pointer;
+	font: menu;
+	text-align: center;
+}
+
+.headertilediv {
+	width: 100%;
+	height: 18px;
+}
+
+.headertilediv2 {
+	width: 100%;
+	height: 18px;
+	float: left;
+}
+
+
+#FromToField {
+	width: 100%;
+	height: 16px;
+	float: left;
+	padding-top: 2px;
+	margin-right: -27px;
+}
+
+
+
+.headertilediv3 {
+	width: 27px;
+	height: 18px;
+	float: left;
+}
+
+
+
+.msglistbox {
+	border-top: 1px solid #85b3dc;
+}
+
+
+
+.msglistbox {
+	border-top: 1px solid #85b3dc;
+}
+
+
+
+.MsgPageListRow {
+	border-top: 1px solid #85b3dc;
+	background-color: #deeaf6;
+	padding: 0px 10px 0px 10px;
+}
+
+
+
+#TotalMsgsStatus {
+	cursor: default;
+	color: #5b83a7;
+}
+
+
+
+/* Header */
+
+.headertiletop {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	background-image: url(imgs/simple/header_tile.gif);
+}
+
+
+.tdbackground{
+	background-image: url(imgs/simple/header_tile.gif);
+}
+
+
+.headerfont {
+	color: #5B83A7;
+}
+
+
+#BrandingLogo, #LoadingText, #LoadingIcon {
+	background-image: url(imgs/simple/header_tile.gif);
+	padding: 4px 5px 4px 5px;
+	font: 12px verdana,arial,helvetica;
+	color:#5B83A7;
+}
+
+
+.bodybackground {
+	background-image: url(imgs/simple/body_background.gif); background-repeat: no-repeat;
+}
+
+
+
+/* inputs */
+
+.inputfield {
+	width: 98%;
+	font-family: Verdana, Arial;
+	font-size:12px;
+	color:#353642;
+	FONT-WEIGHT: lighter;
+}
+
+.inputfieldcheckbox {
+	font-family: Verdana, Arial;
+	font-size:12px;
+	color:#353642;
+}
+
+.inputfieldselect {
+	width: 98%;
+	font-family: Verdana, Arial;
+	font-size:12px;
+	color:#353642;
+	FONT-WEIGHT: lighter;
+}
+
+
+
+.inputfieldtextarea {
+	width: 98%;
+	font-family: Verdana, Arial;
+	font-size:12px;
+	color:#353642;
+	FONT-WEIGHT: lighter;
+}
+
+
+
+
+.table_control {
+    padding: 0;
+    font: 12px verdana,arial,helvetica;
+	  background: url('imgs/tile_back1.gif');
+}
+
+
+.table_control th {
+    font: bold 12px verdana,arial,helvetica;
+    margin: 0;
+    text-align: left;
+
+}
+
+.middle {
+   font: bold 12px verdana,arial,helvetica;
+    margin: 0;
+    text-align: left;
+    background: url('imgs/tile_back1.gif');
+}
+
+
+.middle2 {
+   font: bold 12px verdana,arial,helvetica;
+    text-align: right;
+    background: url('imgs/tile_back1.gif');
+}
+
+
+.table_control td {
+    font: 12px verdana,arial,helvetica;
+    margin: 0;
+}
+
+
+.topleft {
+    background: url('imgs/round_left.gif') top left no-repeat;
+
+}
+
+
+
+.topright {
+    background: url('imgs/round_right.gif') top right no-repeat;
+}
+
+
+
+table.borderstyle
+{
+	border-left: 1px #96BDE0 solid;
+	border-right: 1px #96BDE0 solid;
+	border-bottom: 1px #96BDE0 solid;
+	border-top: 1px #96BDE0 solid;
+	border-spacing: 0px;
+}
+
+
+
+.CalendarBox {
+	position: absolute;
+	left: 0px; top: 0px;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	display: none;
+}
+
+
+
+/* top left images */
+
+.ajaximage_findmail {
+    background-image: url('imgs/simple/button_findmail_ajax.gif');
+	width: 163px;
+	height: 45px;
+}
+
+
+
+.ajaximage_settings {
+    background-image: url('imgs/simple/button_settings_ajax.gif');
+	width: 163px;
+	height: 45px;
+}
+
+
+
+.ajaximage_compose {
+    background-image: url('imgs/simple/button_composemail_ajax.gif');
+	width: 55px;
+	height: 105px;
+}
+
+
+.ajaximage_checkmail {
+    background-image: url('imgs/simple/button_checkmail_ajax.gif');
+	width: 108px;
+	height: 105px;
+}
+
+
+
+/* Footer */
+
+.footerfont {
+	color: #5B83A7;
+
+}
+
+
+.footertile{
+    background-image: url('imgs/simple/footer_tile.gif');
+
+}
+
+
+
+/* Sidebar Tile */
+
+.sidebartile{
+    background-image: url('imgs/simple/sidebar_bottom_tile.gif');
+	width: 38px;
+	height: 95px;
+
+}
+
+
+
+</style>

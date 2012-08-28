@@ -1,0 +1,296 @@
+$Date: 2011-05-03 00:46:46 -0700 (Tue, 03 May 2011) $
+
+This file lists the SquirrelMail settings set by option D in conf.pl
+
+These can be used if the administrator can't run conf.pl and wants to
+change these settings manually.  These settings can be different if
+the IMAP server uses shared folders.
+
+Possible server type values are:
+ other       = Unknown/generic
+ bincimap    = Binc IMAP server
+ courier     = Courier IMAP server
+ cyrus       = Cyrus IMAP server
+ dovecot     = Dovecot Secure IMAP server
+ exchange    = Microsoft Exchange IMAP server
+ gmail       = Google Mail IMAP server
+ hmailserver = hMailServer
+ macosx      = Mac OS X Mailserver
+ mercury32   = Mercury/32
+ uw          = University of Washington's IMAP server
+
+-----------------
+default settings:
+-----------------
+
+              imap_server_type = other
+         default_folder_prefix =
+                  trash_folder = INBOX.Trash
+                   sent_folder = INBOX.Sent
+                  draft_folder = INBOX.Drafts
+            show_prefix_option = false
+          default_sub_of_inbox = true
+show_contain_subfolders_option = false
+            optional_delimiter = detect
+                 delete_folder = false
+      force_username_lowercase = false
+
+-----------------
+'cyrus' settings:
+-----------------
+              imap_server_type = cyrus
+         default_folder_prefix = <none> (is not set)
+                  trash_folder = INBOX.Trash
+                   sent_folder = INBOX.Sent
+                  draft_folder = INBOX.Drafts
+            show_prefix_option = false
+          default_sub_of_inbox = true
+show_contain_subfolders_option = false
+            optional_delimiter = .
+                 delete_folder = true
+      force_username_lowercase = false
+
+--------------
+'uw' settings:
+--------------
+              imap_server_type = uw
+         default_folder_prefix = mail/
+                  trash_folder = Trash
+                   sent_folder = Sent
+                  draft_folder = Drafts
+            show_prefix_option = true
+          default_sub_of_inbox = false
+show_contain_subfolders_option = true
+            optional_delimiter = /
+                 delete_folder = true
+      force_username_lowercase = true
+
+--------------------
+'exchange' settings:
+--------------------
+              imap_server_type = exchange
+         default_folder_prefix = <none>  (is not set)
+                  trash_folder = INBOX/Deleted Items
+                   sent_folder = INBOX/Sent Items
+                  draft_folder = Drafts
+            show_prefix_option = false
+          default_sub_of_inbox = true
+show_contain_subfolders_option = false
+            optional_delimiter = detect
+                 delete_folder = true
+      force_username_lowercase = true
+
+-------------------
+'courier' settings:
+-------------------
+              imap_server_type = courier
+         default_folder_prefix = INBOX.
+                  trash_folder = Trash
+                   sent_folder = Sent
+                  draft_folder = Drafts
+            show_prefix_option = false
+          default_sub_of_inbox = true
+show_contain_subfolders_option = false
+            optional_delimiter = .
+                 delete_folder = true
+      force_username_lowercase = false
+
+------------------
+'macosx' settings:
+------------------
+              imap_server_type = macosx
+         default_folder_prefix = INBOX/
+                  trash_folder = Trash
+                   sent_folder = Sent
+                  draft_folder = Drafts
+            show_prefix_option = false
+          default_sub_of_inbox = true
+show_contain_subfolders_option = false
+            optional_delimiter = detect
+                 delete_folder = true
+      force_username_lowercase = false
+
+-----------------------
+'hmailserver' settings:
+-----------------------
+              imap_server_type = hmailserver   (used in imap_search.php)
+         default_folder_prefix =
+                  trash_folder = INBOX.Trash
+                   sent_folder = INBOX.Sent
+                  draft_folder = INBOX.Drafts
+            show_prefix_option = false
+          default_sub_of_inbox = true
+show_contain_subfolders_option = false
+            optional_delimiter = detect
+                 delete_folder = false
+      force_username_lowercase = false
+
+---------------------
+'mercury32' settings:
+---------------------
+Preset is used for Mercury Mail Transport System. Available since 1.5.0 and 1.4.6
+Free email server for Win32 and Netware.
+Tested Win32 v.4.01b
+CAPABILITY IMAP4rev1 X-MERCURY
+PERMANENTFLAGS (\Deleted \Draft \Seen \Answered)
+
+Comments:
+* Server side sorting and threading are not supported.
+* Message flags are not supported.
+* IMAP folders can store messages _or_ other folders.
+* Supports STARTTLS, if configured.
+* May have issues with 8bit IMAP folder names.
+
+Site URL: http://www.pmail.com
+
+              imap_server_type = mercury32
+         default_folder_prefix = <none> (is set to empty string)
+                  trash_folder = Trash
+                   sent_folder = Sent
+                  draft_folder = Drafts
+            show_prefix_option = false
+          default_sub_of_inbox = true
+show_contain_subfolders_option = true
+            optional_delimiter = detect
+                 delete_folder = true
+      force_username_lowercase = true
+
+-------------------
+'dovecot' settings:
+-------------------
+Preset used for Dovecot Secure IMAP server. Available since 1.5.1 and 1.4.6.
+
+There is no code specific to Dovecot IMAP server. Preset provides only a quick
+way to set correct folder settings.
+
+Tested v.0.99.14
+
+CAPABILITY IMAP4rev1 SORT THREAD=REFERENCES MULTIAPPEND UNSELECT LITERAL+ IDLE 
+  CHILDREN LISTEXT LIST-SUBSCRIBED NAMESPACE
+
+PERMANENTFLAGS (\Answered \Flagged \Deleted \Seen \Draft \*)
+
+IMAP server supports server side sorting and threading.
+
+Site URL: http://www.dovecot.org
+
+              imap_server_type = dovecot
+         default_folder_prefix = <none> (is set to empty string)
+                  trash_folder = Trash
+                   sent_folder = Sent
+                  draft_folder = Drafts
+            show_prefix_option = false
+          default_sub_of_inbox = false
+show_contain_subfolders_option = false
+            optional_delimiter = detect
+                 delete_folder = false
+      force_username_lowercase = true
+
+
+--------------------
+'bincimap' settings:
+--------------------
+Preset is used with Binc IMAP server. Available since 1.5.1 and 1.4.6.
+Tested v.1.2.13 and 1.3.4
+
+CAPABILITY IMAP4rev1 STARTTLS AUTH=LOGIN AUTH=PLAIN (1.2.13)
+CAPABILITY IMAP4rev1 STARTTLS AUTH=LOGIN AUTH=PLAIN IDLE LITERAL+ NAMESPACE CHILDREN (1.3.4)
+
+PERMANENTFLAGS (\Answered \Flagged \Deleted \Seen \Draft) - 1.2.13
+PERMANENTFLAGS (\Answered \Flagged \Deleted \Seen \Draft \*) - 1.3.4
+
+IMAP server does not support server side sorting and threading. Plain text 
+logins are disabled by default. Due to available storage backend configuration 
+options it is impossible to create single preset, which covers all setups.
+
+Site URL: http://www.bincimap.org
+
+* Default (1.2.13) configuration with Maildir++ depot and / delimiter
+              imap_server_type = bincimap (is used to handle INBOX in folder management)
+         default_folder_prefix = INBOX/
+                  trash_folder = Trash
+                   sent_folder = Sent
+                  draft_folder = Drafts
+            show_prefix_option = false
+          default_sub_of_inbox = false
+show_contain_subfolders_option = false
+            optional_delimiter = / (can be set to 'detect')
+                 delete_folder = true
+      force_username_lowercase = false (depends on checkpassword)
+
+* Default (1.3.4) configuration with IMAPdir depot - same as dovecot ?
+              imap_server_type = bincimap
+         default_folder_prefix = <none> (is set to empty string)
+                  trash_folder = Trash
+                   sent_folder = Sent
+                  draft_folder = Drafts
+            show_prefix_option = false
+          default_sub_of_inbox = false
+show_contain_subfolders_option = false
+            optional_delimiter = / (can be set to 'detect')
+                 delete_folder = true
+      force_username_lowercase = false (depends on checkpassword)
+
+
+* Configuration with Maildir++ depot and . delimiter - use courier preset.
+
+
+---------------------
+'gmail' settings:
+---------------------
+Support for using SquirrelMail as a front end for Google Mail (Gmail)
+accounts was added in SquirrelMail versions 1.4.20 and 1.5.2 and is
+currently experimental.
+
+CAPABILITY IMAP4rev1 UNSELECT LITERAL+ IDLE NAMESPACE QUOTA ID XLIST CHILDREN
+X-GM-EXT-1 UIDPLUS COMPRESS=DEFLATE 
+
+Notes:
+* Might want to remove "All Mail" from folder drop-down lists (such as the
+  ones for moving mail to folders... "All Mail" is not a folder in Gmail
+  (it is a super-folder that shows mail from all folders)
+* Might want to remove the whole folder list drop-down from Create Folder
+  section, since labels/folders are usually just created as children of <none>
+* Might want to remove any folders prefixed with [Gmail]/ from the rename
+  and delete folders drop down selectors, since those are Gmail system folders
+* Might want to tweak what's included in the (un)subscribe menus too(?)
+* The folder list order is slightly strange, with the Gmail system folders
+  listed below the user labels/folders and away from the other system folders
+  (drafts/sent/trash)
+* When a user changes languages in Gmail's interface, the Drafts, Sent and
+  Trash folder names are changed to localized versions thereof.  To see those
+  folders correctly in SquirrelMail, the user should change the SquirrelMail
+  language to match.  Moreover, SquirrelMail then needs to be told what
+  folders to use for Drafts, Sent and Trash in Options --> Folder Preferences.
+  These default settings will only correctly find the Sent, Trash and Drafts
+  folders if both Gmail and SquirrelMail languages are set to English.
+  (This could be solved with implementation of extended LIST command support.)
+* In some places (Europe?), the "[Gmail]" prefix should be "[Google Mail]"
+  and "Trash" might be called "Bin"
+
+              imap_server_type = gmail
+         default_folder_prefix = <none> (is set to empty string)
+                  trash_folder = [Gmail]/Trash
+         default_move_to_trash = true
+                   sent_folder = [Gmail]/Sent Mail
+                  draft_folder = [Gmail]/Drafts
+           auto_create_special = false
+            show_prefix_option = false
+          default_sub_of_inbox = false
+show_contain_subfolders_option = false
+            optional_delimiter = /
+                 delete_folder = true
+      force_username_lowercase = false
+                        domain = gmail.com
+             imapServerAddress = imap.gmail.com
+                      imapPort = 993
+                  use_imap_tls = true
+                imap_auth_mech = login
+             smtpServerAddress = smtp.gmail.com
+                      smtpPort = 465
+                  use_smtp_tls = true
+                smtp_auth_mech = login
+               pop_before_smtp = false
+                   useSendmail = false
+
+-------------------

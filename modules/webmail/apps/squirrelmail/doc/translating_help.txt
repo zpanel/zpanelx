@@ -1,0 +1,66 @@
+Translating the help files.
+===========================
+
+I have tried to write the help files in plain english with good grammer.
+Since English is not my strong point you probably can't tell, but I hope it 
+helps.
+
+The help files, at this point, are divided into functional areas.  Each .hlp 
+file represents a different functional block of how the program looks to the 
+user.
+
+Hopefully as SquirrelMail gets more widely used, non-english translations will
+be used to make other non-english translations.  You might want to keep this
+in mind when writing yours.  Remember that these will be used all over the
+world and in many different environments so local language dialects might 
+confuse someone else. 
+
+File Structure
+==============
+
+All translated files should be placed under the help directory.  Under the
+help directory create another directory. This directory MUST be named in the
+two letter standard abbreviation for the language. English is "en" and Polish 
+would be "pl" for example.
+
+The help files are written in a basic xml format.  Don't worry, XML isn't hard
+at all.  All it does is contain values inside tags like <start> and </start>.
+For these help files, the tags must be on their own line like this:
+   <tag>
+      Value for this tag
+   </tag>
+
+There are two types of main tags: <chapter> and <section>.  There can be only 
+one <chapter> tag in a .hlp file.  However, there can be many <section> tags.
+Inside each of these tags, there can be any combination of any of the following
+tags:  <title>, <description>, <summary>.  Here is an example:
+
+                     | <chapter>
+ The title can only  |    <title>
+ be one line long    |       My first chapter   
+                     |    </title>
+ Summary may be many |    <summary>
+ lines, but is short |       Just a brief summary
+                     |    </summary>
+                     |    <description>
+ Description can be  |       This is a more detailed description that
+ very long.  It is   |       can span many lines.  Usually this is the 
+ the main part of    |       bulk of the help section or chapter description.
+ the help section.   |    </description>
+                     | </chapter>
+
+
+Translating
+===========
+
+To translate, just copy all the .hlp files from help/en into the new directory
+that you created for this language (i.e.  help/pl).  You only need to translate
+what is between the tags.  Do not translate the actual tags such as <chapter> 
+or <summary>.  The tag names need to remain in English.  You should only translate
+the text between tags.
+
+Often there may be other HTML tags such as <b> for bold or <a href...> to make
+a link.  If you see any of these tags, just leave them and don't translate
+them either.  Only what is contained inside them if needed.
+
+That should be all!!

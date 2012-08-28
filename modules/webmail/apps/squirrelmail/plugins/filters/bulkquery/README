@@ -1,0 +1,34 @@
+
+bulkquery - A program by Brent Bice - 02/2002
+
+   Bulkquery is a multi-threaded program that makes a large number of
+DNS queries as fast as possible. It's tailored for making DNS queries for
+specific IP addresses against specific DNS based RBLs.
+
+   "Why bother?"
+I've been asked this several times. While running squirrelmail on a server
+with very little bandwidth and very high latency (a dial-up account - snicker)
+I noticed that while my filters plugin was making gethostbyname() function
+calls, my dial-up line was mostly idle. This was, apparently, because all
+the DNS function calls were being made in series. Once a DNS query had been
+sent, no others were sent until a response had been received or until a 
+certain timeout period had occurred.  And some of the RBLs were quite a
+bit faster than the others.  This seemed pretty inefficient. "Why not make
+more DNS queries while waiting for the replies," I thought.
+
+   After several attempts to make a multi-threaded program to make the queries
+using the standard DNS library calls, I realized why. The library functions
+weren't thread-safe and most of the replies would be lost. Luckily, a
+friend of a friend told me about the lwres API in Bind 9.x and told me that
+IT was definitely thread-safe and very fast.
+
+   Boy was SHE right!
+
+   So, how much faster is it?  It will depend on your bandwidth and the
+latency of your connection. But for those of us trying to make do with less,
+bulkquery is a LOT faster.  On a dial-up connection, I can make queries
+anywhere from 6 to 10 times faster!  On my T1 at work, the queries are
+usually between 2 and 7 times faster. The bottom line of all of this is
+that even on my T1 at work, the filters plugin can query ALL of the RBLs
+for all the new email in my INBOX in less than half the time it takes using
+the PHP gethostbyname() function calls.

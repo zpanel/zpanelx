@@ -1,0 +1,346 @@
+<!-- if($var['extratitle'] = "- {アドレス帳}") { -->
+<!-- } -->
+
+<!--Include="html/japanese/simple/header.html"-->
+
+<table width="163" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="5" border="0"></td>
+<td width="125"><img src="imgs/simple/shim.gif" width="125" height="5" border="0"></td>
+</tr>
+
+<tr>
+<td width="38" bgcolor="#DEEBF6" class="optionselectedimg"><img onclick="SetChecked()" src="imgs/simple/sidebar_compose_on.gif" width="38" height="31" border="0"></td>
+<td width="125">
+<table width='115' cellpadding='0' cellspacing=0 border=0 height="33" class='optionselected'>
+<tr>
+<td><small onclick="javascript:SetChecked()" style="cursor: pointer; cursor: hand;" class="menuoption">&nbsp;&nbsp;メール作成</small></td>
+</tr>
+</table>
+</tr>
+
+<tr>
+<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="5" border="0"></td>
+<td width="125"><img src="imgs/simple/shim.gif" width="125" height="12" border="0"></td>
+</tr>
+
+
+<tr>
+<td width="38"><img src="imgs/simple/sidebar_newcontact.gif" width="38" height="31" border="0"></td>
+<td width="125">
+<table width='115' cellpadding='0' cellspacing=0 border=0 height="31">
+<tr>
+<td nowrap onClick="location.href='abook.php?func=new'" style="cursor: pointer; cursor: hand;" onmouseover="this.className='optionroll'" onmouseout="this.className='optionover'" class='optionover'>
+<font class="menuoption">&nbsp;&nbsp;新規連絡先</td></tr>
+</table>
+</td>
+</tr>
+
+<tr>
+<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="5" border="0"></td>
+<td width="125"><img src="imgs/simple/shim.gif" width="125" height="12" border="0"></td>
+</tr>
+
+<tr>
+<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="5" border="0"></td>
+<td width="125"><img src="imgs/simple/shim.gif" width="125" height="5" border="0"></td>
+</tr>
+<tr>
+<td width="38"><img src="imgs/simple/sidebar_newgroup.gif" width="38" height="31" border="0"></td>
+<td width="125" >
+<table width='115' cellpadding='0' cellspacing=0 border=0 height="31">
+<tr>
+<td nowrap onClick="location.href='abook.php?func=group'" style="cursor: pointer; cursor: hand;" onmouseover="this.className='optionroll'" onmouseout="this.className='optionover'" class='optionover'>
+<font class="menuoption">&nbsp;&nbsp;新規グループ</td></tr>
+</table>
+</td>
+</tr>
+
+<tr>
+<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="5" border="0"></td>
+<td width="125"><img src="imgs/simple/shim.gif" width="125" height="12" border="0"></td>
+</tr>
+
+<tr>
+<td width="38"><img src="imgs/simple/sidebar_delete.gif" width="38" height="31" border="0"></td>
+<td width="125" >
+
+<table width='115' cellpadding='0' cellspacing=0 border=0 height="31">
+<tr>
+<td nowrap onClick="DelContact('multi');" style="cursor: pointer; cursor: hand;" onmouseover="this.className='optionroll'" onmouseout="this.className='optionover'" class='optionover'>
+<font class="menuoption">&nbsp;&nbsp;選択されたアイテムを削除</td></tr>
+</table>
+</td>
+</tr>
+
+
+
+<tr>
+<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="5" border="0"></td>
+<td width="125"><img src="imgs/simple/shim.gif" width="125" height="12" border="0"></td>
+</tr>
+
+<tr>
+<td width="38"><img src="imgs/simple/sidebar_import.gif" width="38" height="31" border="0"></td>
+<td width="125" >
+
+<table width='115' cellpadding='0' cellspacing=0 border=0 height="31">
+<tr>
+<td nowrap onClick="location.href='abook.php?func=import'" style="cursor: pointer; cursor: hand;" onmouseover="this.className='optionroll'" onmouseout="this.className='optionover'" class='optionover'>
+<font class="menuoption">&nbsp;&nbsp;インポート</td></tr>
+</table>
+</td>
+</tr>
+
+<tr>
+<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="5" border="0"></td>
+<td width="125"><img src="imgs/simple/shim.gif" width="125" height="12" border="0"></td>
+</tr>
+
+<tr>
+<td width="38"><img src="imgs/simple/sidebar_search.gif" width="38" height="31" border="0"></td>
+<td width="125" >
+<table width='115' cellpadding='0' cellspacing=0 border=0 height="31">
+<tr>
+<td nowrap onClick="location.href='ldap.php?search=local'" style="cursor: pointer; cursor: hand;" onmouseover="this.className='optionroll'" onmouseout="this.className='optionover'" class='optionover'>
+<font class="menuoption">&nbsp;&nbsp;検索</td></tr>
+</table>
+</td>
+</tr>
+<!-- if($pref['allow_Sync']) { -->
+<tr>
+<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="5" border="0"></td>
+<td width="125"><img src="imgs/simple/shim.gif" width="125" height="12" border="0"></td>
+</tr>
+
+<tr>
+<td width="38"><img src="imgs/simple/sidebar_sync.gif" width="38" height="31" border="0"></td>
+<td width="125">
+
+<table width='115' cellpadding='0' cellspacing=0 border=0 height="31">
+<tr>
+<td nowrap onClick="help('sync.html','$this->Language')" style="cursor: pointer; cursor: hand;" onmouseover="this.className='optionroll'" onmouseout="this.className='optionover'" class='optionover'>
+<font class="menuoption">&nbsp;&nbsp;Sync</td></tr>
+</table>
+
+</td>
+</tr>
+<!-- } -->
+<tr>
+<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="5" border="0"></td>
+<td width="125"><img src="imgs/simple/shim.gif" width="125" height="12" border="0"></td>
+</tr>
+
+<tr>
+<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="10" border="0"></td>
+<td width="125"><img src="imgs/simple/shim.gif" width="125" height="10" border="0"></td>
+</tr>
+<tr>
+<td width="38"><img src="imgs/simple/sidebar_bottom_tile.gif" width="38" height="95" border="0"></td>
+<td width="125"><img src="imgs/simple/shim.gif" width="125" height="95" border="0"></td>
+</tr>
+</table>
+</td>
+
+<!--Include="html/japanese/simple/headerbar.html"-->
+
+<script language="Javascript">
+function abooksort (sort, order) {
+
+location.href='abook.php?func=open&sort=' + sort + '&type=' + document.abook.type.value;
+
+}
+</script>
+
+<!-- if(!$this->Ajax) { -->
+<SCRIPT language=JavaScript src="javascript/opencompose.js"></script>
+<!-- } -->
+
+<SCRIPT language=JavaScript src="javascript/editgroup.js"></script>
+<script language="Javascript" src="javascript/trselect.js"></script>
+
+<script language="JavaScript">
+window.status = '$var['status'] アドレス帳を見る';
+
+
+function SetChecked() {
+var to, cc, bcc
+
+to = '';
+cc = '';
+bcc = '';
+
+aForm=document.abook
+
+var i=0
+
+len=aForm.elements.length
+
+for( i=0 ; i<len ; i++) {
+	if (aForm.elements[i].name=='To' && aForm.elements[i].checked) {
+	document.getElementById('addrecpTo').value +='; '+aForm.elements[i].value;
+	}
+	
+	if (aForm.elements[i].name=='Cc' && aForm.elements[i].checked) {
+	document.getElementById('addrecpCc').value +='; '+aForm.elements[i].value;
+	}
+	
+	if (aForm.elements[i].name=='Bcc' && aForm.elements[i].checked) {
+	document.getElementById('addrecpBcc').value +='; '+aForm.elements[i].value;
+	}
+}
+
+document.getElementById('addrecpTo').value = document.getElementById('addrecpTo').value.replace(/^; /, '');
+document.getElementById('addrecpCc').value = document.getElementById('addrecpCc').value.replace(/^; /, '');
+document.getElementById('addrecpBcc').value = document.getElementById('addrecpBcc').value.replace(/^; /, '');
+
+<!-- if($this->Ajax) { -->
+top.opencompose(document.getElementById('addrecpTo').value, document.getElementById('addrecpCc').value, document.getElementById('addrecpBcc').value);
+<!-- } -->
+
+<!-- if(!$this->Ajax) { -->
+document.addrecp.submit();
+<!-- } -->
+
+}
+
+<!--Include="html/japanese/javascript/abook.js"-->
+
+function CleanUpAbook()	{
+
+return;
+}
+
+function abookview(type) {
+
+if(type == "personal") {
+  location.href="abook.php?type=personal";
+  }
+if(type == "global") {
+  location.href="abook.php?type=global";
+  }
+}
+
+</script>
+<script language="JavaScript" src="javascript/composebook.js"></script>
+
+</HEAD>
+
+<STYLE type=text/css>
+A:hover {
+	COLOR: #990000
+}
+</STYLE>
+
+$var['atmailstyle']
+
+
+<form name="abook" method="post" action="abook.php">
+<input type='hidden' name='type' value='$var['abookview']'>
+<input type='hidden' name='current' value='$var['current']'>
+<input type='hidden' name='func' value='open'>
+<input type='hidden' name='order' value='$var['order']'>
+<input type='hidden' name='delmulti' value=''>
+
+<TABLE border=0 cellPadding=0 cellSpacing=0 width="100%">
+  <TBODY>
+
+  <tr>
+	<td width="20" class="$var['class']" align="center">
+      <font class="mheader">X</font>
+    </td>
+
+	<td width="20" class="$var['class']">
+      <font class="mheader">宛先</font>
+    </td>
+	<td class="$var['class']" width="20">
+      <font class="mheader">Cc</font>
+    </td>
+	<td class="$var['class']" width="20">
+      <font class="mheader">Bcc</font>
+    </td>
+    <td class="$var['class']" width="29%">
+	  &nbsp;&nbsp;<font class="mheader"><a class="maillink" href="javascript:abooksort('UserEmail', '')">Eメールアドレス</a></font>
+    </td>
+    <td class="$var['class']" width="20%" nowrap>
+	  &nbsp;&nbsp;<font class="mheader"><a class="maillink" href="javascript:abooksort('UserLastName', '')">氏名</a></font>
+	</td>
+    <td class="$var['class']" width="17%" nowrap>
+	  &nbsp;&nbsp;<font class="mheader"><a class="maillink" href="javascript:abooksort('UserWorkPhone', '')">勤務先電話番号</a></font>
+	</td>
+    <td class="$var['class']" width="17%" nowrap>
+	  &nbsp;&nbsp;<font class="mheader"><a class="maillink" href="javascript:abooksort('UserHomePhone', '')">自宅電話番号</a></font>
+	</td>
+    <td class="$var['class']" width="8%" nowrap align="right">
+	&nbsp;&nbsp;<font class="mheader">オプション</font>
+    </td>
+  </tr>
+  <tr>
+    <td height="1" bgcolor='$this->PrimaryColor' colspan="9">
+    </td>
+  </tr>
+
+$var['users']
+</TBODY></TABLE>
+
+      <table width="100%" border="0" cellspacing="3" cellpadding="0">
+        <tr>
+          <td width="65%" nowrap>
+
+<!-- if($var['prev_pos']) { -->
+<input class=stdbtn name=submit2 type="button" value="&lt; &lt; 前のメッセージへ" name="Compose"
+	onclick="location.href='abook.php?func=open&sort=$var['sort']&type=$var['abookview']&order=$var['order']&current=$var['prev_pos']&search=$var['search']'">
+<!-- } -->
+
+<!-- if($var['next_pos']) { -->
+<input class=stdbtn name=submit2 type="button" value="次へ &gt; &gt;" name="Compose"
+	onclick="location.href='abook.php?func=open&sort=$var['sort']&type=$var['abookview']&order=$var['order']&current=$var['next_pos']&search=$var['search']'">
+<!-- } -->
+
+          </td>
+          <td>
+
+<!-- if($pref['GlobalAbook'] || $pref['GlobalAbookRead'] ) { -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="100%" align="right"><font class="sw">
+      <select name="abookview" class="select" onChange="javascript:location.href='abook.php?func=open&type=' + this.options[this.selectedIndex].value">
+        <option value="personal">個人用フォルダ</option>
+        <option value="shared"
+<!-- } -->
+
+<!-- if($var['abookview'] == "shared" && ( $pref['GlobalAbookRead'] || $pref['GlobalAbook'] ) ) { -->
+selected
+<!-- } -->
+
+<!-- if( $pref['GlobalAbookRead'] || $pref['GlobalAbook'] ) { -->
+>共有の連絡先</option>
+<option value="global"
+<!-- } -->
+
+<!-- if($var['abookview'] == "global" && ( $pref['GlobalAbookRead'] || $pref['GlobalAbook'] ) ) { -->
+        selected
+<!-- } -->
+
+<!-- if( $pref['GlobalAbookRead'] || $pref['GlobalAbook'] ) { -->
+        >グローバル</option>
+      </select>
+	  </font></td>
+  </tr>
+</table>
+<!-- } -->
+
+		  </td>
+        </tr>
+      </table>
+</form>
+
+<form name="addrecp" method="post" action="compose.php">
+<input type=hidden name='func' value='new'>
+<input type=hidden name='To[]' id="addrecpTo" value=''>
+<input type=hidden name='Cc[]' id="addrecpCc" value=''>
+<input type=hidden name='Bcc[]' id="addrecpBcc" value=''>
+</form>
+
+</TBODY>
+<!--Include="html/japanese/simple/footer.html"-->

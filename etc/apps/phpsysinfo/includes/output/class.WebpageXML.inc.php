@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 /**
  * XML Generator class
  *
@@ -13,8 +12,7 @@
  * @version   SVN: $Id: class.WebpageXML.inc.php 388 2010-11-11 13:42:03Z jacky672 $
  * @link      http://phpsysinfo.sourceforge.net
  */
-
-/**
+ /**
  * class for xml output
  *
  * @category  PHP
@@ -25,54 +23,55 @@
  * @version   Release: 3.0
  * @link      http://phpsysinfo.sourceforge.net
  */
-class WebpageXML extends Output implements PSI_Interface_Output {
-
+class WebpageXML extends Output implements PSI_Interface_Output
+{
     /**
      * xml object that holds the generated xml
      *
      * @var XML
      */
     private $_xml;
-
+    
     /**
      * only plugin xml
      *
      * @var boolean
      */
     private $_pluginRequest = false;
-
+    
     /**
      * complete xml
      *
      * @var boolean
      */
     private $_completeXML = false;
-
+    
     /**
      * name of the plugin
      *
      * @var string
      */
     private $_pluginName = null;
-
+    
     /**
      * generate the output
      *
      * @return void
      */
-    private function _prepare() {
+    private function _prepare()
+    {
         if (!$this->_pluginRequest) {
             // Figure out which OS we are running on, and detect support
-            if (!file_exists(APP_ROOT . '/includes/os/class.' . PHP_OS . '.inc.php')) {
-                $this->error->addError("file_exists(class." . PHP_OS . ".php.inc)", PHP_OS . " is not currently supported");
+            if (!file_exists(APP_ROOT.'/includes/os/class.'.PHP_OS.'.inc.php')) {
+                $this->error->addError("file_exists(class.".PHP_OS.".php.inc)", PHP_OS." is not currently supported");
             }
-
+            
             // check if there is a valid sensor configuration in config.php
             $found = false;
             if (PSI_SENSOR_PROGRAM !== false) {
-                if (!file_exists(APP_ROOT . '/includes/mb/class.' . PSI_SENSOR_PROGRAM . '.inc.php')) {
+                if (!file_exists(APP_ROOT.'/includes/mb/class.'.PSI_SENSOR_PROGRAM.'.inc.php')) {
                     $found = false;
-                    $this->error->addError("file_exists(class." . htmlspecialchars(PSI_SENSOR_PROGRAM) . ".inc.php)", "specified sensor program is not supported");
+                    $this->error->addError("file_exists(class.".htmlspecialchars(PSI_SENSOR_PROGRAM).".inc.php)", "specified sensor program is not supported");
                 } else {
                     $found = true;
                 }
@@ -83,7 +82,7 @@ class WebpageXML extends Output implements PSI_Interface_Output {
              * @var boolean
              */
             define('PSI_MBINFO', $found);
-
+            
             // check if there is a valid hddtemp configuration in config.php
             $found = false;
             if (PSI_HDD_TEMP !== false) {
@@ -95,13 +94,13 @@ class WebpageXML extends Output implements PSI_Interface_Output {
              * @var boolean
              */
             define('PSI_HDDTEMP', $found);
-
+            
             // check if there is a valid ups configuration in config.php
             $found = false;
             if (PSI_UPS_PROGRAM !== false) {
-                if (!file_exists(APP_ROOT . '/includes/ups/class.' . PSI_UPS_PROGRAM . '.inc.php')) {
+                if (!file_exists(APP_ROOT.'/includes/ups/class.'.PSI_UPS_PROGRAM.'.inc.php')) {
                     $found = false;
-                    $this->error->addError("file_exists(class." . htmlspecialchars(PSI_UPS_PROGRAM) . ".inc.php)", "specified UPS program is not supported");
+                    $this->error->addError("file_exists(class.".htmlspecialchars(PSI_UPS_PROGRAM).".inc.php)", "specified UPS program is not supported");
                 } else {
                     $found = true;
                 }
@@ -112,13 +111,13 @@ class WebpageXML extends Output implements PSI_Interface_Output {
              * @var boolean
              */
             define('PSI_UPSINFO', $found);
-
+            
             // if there are errors stop executing the script until they are fixed
             if ($this->error->errorsExist()) {
                 $this->error->errorsAsXML();
             }
         }
-
+        
         // Create the XML
         if ($this->_pluginRequest) {
             $this->_xml = new XML(false, $this->_pluginName);
@@ -126,29 +125,31 @@ class WebpageXML extends Output implements PSI_Interface_Output {
             $this->_xml = new XML($this->_completeXML);
         }
     }
-
+    
     /**
      * render the output
      *
      * @return void
      */
-    public function run() {
+    public function run()
+    {
         header("Cache-Control: no-cache, must-revalidate\n");
         header("Content-Type: text/xml\n\n");
         $xml = $this->_xml->getXml();
         echo $xml->asXML();
     }
-
+    
     /**
      * get XML as pure string
      *
      * @return string
      */
-    public function getXMLString() {
+    public function getXMLString()
+    {
         $xml = $this->_xml->getXml();
         return $xml->asXML();
     }
-
+    
     /**
      * set parameters for the XML generation process
      *
@@ -157,7 +158,8 @@ class WebpageXML extends Output implements PSI_Interface_Output {
      *
      * @return void
      */
-    public function __construct($completeXML, $plugin = null) {
+    public function __construct($completeXML, $plugin = null)
+    {
         parent::__construct();
         if ($completeXML) {
             $this->_completeXML = true;
@@ -170,7 +172,5 @@ class WebpageXML extends Output implements PSI_Interface_Output {
         }
         $this->_prepare();
     }
-
 }
-
 ?>

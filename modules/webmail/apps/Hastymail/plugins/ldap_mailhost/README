@@ -1,0 +1,15 @@
+This plugin allows sites to dynamically determine which IMAP server users should
+login to based on an attribute in the user's LDAP entry.
+
+The IMAP server and LDAP relationships are defined in the settings.php file 
+(this file contains examples to illustrate the format). 
+
+In order for this plugin to work each IMAP server used by this plugin MUST be 
+defined in the hastymail.conf file using the alt_1, alt_2, etc style syntax.
+
+To enable this plugin add or uncomment the following in your hastymail2.conf file
+
+plugin = ldap_mailhost
+
+Then rebuild your hastymail2.rc file, and logout of hastymail then back in for the
+plugin to be enabled.

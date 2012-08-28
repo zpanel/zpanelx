@@ -1,0 +1,30 @@
+<HTML><HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8"> 
+</HEAD>
+
+<BODY
+bgcolor="$this->BgColor" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor" rightmargin=0 leftMargin=0 topMargin=0>
+
+<style type="text/css">a {text-decoration:none;}</style>
+
+<script language="Javascript" src="javascript/trselect.js"></script>
+<script language="Javascript">
+
+</script>
+
+$var['atmailstyle']
+$var['mailstyle']
+
+<form name="mail" method="post" action="util.php">
+
+<input type="hidden" name="func" value="imapfolders">
+<input type="hidden" name="type" value="list">
+
+<!-- if($var['lsub']) { -->
+<input type="hidden" name="lsub" value="1">
+<!-- } -->
+
+<input type="hidden" name="action" value="">
+
+<TABLE border=0 cellPadding=0 cellSpacing=0 width="100%">
+  <TBODY>

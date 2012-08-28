@@ -1,0 +1,313 @@
+<chapter>
+   <title>
+      Options
+   </title>
+   <summary>
+      You can customize the way that SquirrelMail looks and responds to you
+      by setting different options in this section.
+   </summary>
+   <description>
+      <p>
+      One of the great things about SquirrelMail is the degree to which it may be customized.
+      Depending on the configuration, you may have several choices of themes, languages,
+      folders, and other preferences.  All of these may be changed without affecting any other
+      users on the system.  There are at least five main parts to the Options:
+      Personal, Display, Message Highlighting, Folders and Index Order.
+      More parts may be available depending on your SquirrelMail installation.
+      </p>
+   </description>
+</chapter>
+
+<section>
+   <title>
+      Personal Information
+   </title>
+   <description>
+      <b>Full Name</b><br />
+      You should put your entire name here.  For example, "John Doe".  This is what is
+      shown to people that you send the message to.  They will see that it is from
+      "John Doe".  If you don't fill this in, they will see it is from your email address,
+      "jdoe@example.org".
+      <br /><br />
+      
+      <b>E-Mail Address</b><br />
+      <i>Optional</i> - If your email address is different than what is automatically
+      assigned, you can change it here.
+      <br /><br />
+      
+      <b>Reply To</b><br />
+      <i>Optional</i> - This is the email address that people will reply to when they
+      reply to your message.  If this is different than the email address you are sending
+      from, you can enter it here.  This is useful if you want people to reply to your
+      Yahoo account rather than your office address.
+      <br /><br />
+      
+      <b>Multiple Identities</b><br />
+      Click this link to edit multiple identities. This is useful if you want to
+      choose between different From-lines for different messages (for example
+      containing your work or your home emailaddress. On the page that appears,
+      you can add as many identities as you like. You will be offered a choice
+      of these when composing a message.<br /><br />
+      
+      <b>Reply Citation</b><br />
+      If you press Reply on a message, you will be presented with the Compose
+      form with the original message quoted. Before this quoted message, a text
+      like <tt>John Doe wrote:</tt> might be prepended (if the message you're replying
+      to originated from John Doe). This is called the citation line. Here you
+      can choose how this line looks.<br />
+      <ul>
+      <li><b>No Citation</b><br />
+      Prepends no citation line whatsoever.<br /><br />
+      <li><b>Author Wrote</b><br />
+      This produces the line: <tt>John Doe Wrote:</tt> where John Doe will be replaced
+      by whoever the message you're replying to was from.<br /><br />
+      <li><b>Quote Who XML</b><br />
+      This produces the line: <tt>&lt;quote who="John Doe"&gt;</tt>.<br /><br />
+      <li><b>User-Defined</b><br />
+      Enables you to define your own citation line. In the two text boxes below, you
+      can type in the citation start and end. Between these the author name will be
+      inserted.
+      </ul><br /><br />
+      
+      <b>Signature</b><br />
+      <i>Optional</i> - Signatures are attached at the bottom of all messages you send 
+      out.  If you want a signature, you must make sure that the checkbox beside
+      "use a signature" is checked, and then fill in what you want your signature to be
+      in the box below it.
+      <br /><br />
+   </description>
+</section>
+
+<section>
+   <title>
+      Display Preferences
+   </title>
+   <description>
+      <b>Theme</b><br />
+      SquirrelMail offers different color themes for your viewing pleasure.  You can
+      choose between the many listed there if you so desire.
+      <br /><br />
+
+      <b>Custom Stylesheet</b><br />
+      Changing a theme only changes the colors, a stylesheet may change more, for
+      example the font size used by SquirrelMail.
+      <br /><br />
+
+      <b>Language</b><br />
+      If English isn't your native tongue, you can easily change the language that
+      most things display in.  If your desired language is in the list, you can choose
+      it and all future SquirrelMail related messages will be in that language.  Note
+      that this doesn't translate incoming email messages or folder names.
+      <br /><br />
+
+      <b>Use Javascript</b><br />
+      One of our main goals in creating SquirrelMail was to have no Javascript in
+      any of our pages.  However, some of our developers made a very good address
+      book searching utility that uses Javascript. Some other Javascript functions
+      were added aswell. Rather than remove it, we now
+      give you the option of using 
+      pure HTML or allow Javascript aswell.  If
+      you don't know what this means, you are safest to choose Autodetect.
+      <br /><br />
+      
+      <b>Number of Messages to Index</b><br />
+      This is the number of messages to show at a time in a folder.  If there are
+      more than this number in the folder, you will see a "Previous" and "Next" link
+      above and below the listing which will take you to the previous or next
+      messages.
+      <br /><br />
+      
+      <b>Enable Page Selector</b><br />
+      Setting this to Yes shows page numbers above and below the message list to
+      quickly jump to a specific page of messages. The number <b>Maximum pages to show</b>
+      can limit how many page numbers will be displayed above and below the
+      message list.<br /><br />
+      
+      <b>Wrap incoming text at</b><br />
+      How many characters should we allow before wrapping the text.  This prevents
+      messages from scrolling way off the screen.  86 is usually a safe thing to
+      put in here, but you are free to change it to whatever you desire.
+      <br /><br />
+      
+      <b>Size of editor window</b><br />
+      How wide do you want your "Compose" box to be?  This is the number of characters
+      per line that you will be able to type before wrapping in the Compose section.
+      <br /><br />
+      
+      <b>Location of Buttons when Composing</b><br />
+      Where are the buttons Addresses, Save Draft and Send located?<br /><br />
+      
+      <b>Addressbook Display Format</b><br />
+      Choose how you want the addressbook to be displayed. If you want maximum
+      compatibility with all browsers, use HTML. Select Javascript if you
+      know your browser supports it, it will display a nicer addressbook.
+      <br /><br />
+      
+      <b>Show HTML Version by Default</b><br />
+      If a message you receive is in both text and HTML format, you can choose
+      if you want to see the HTML version (Yes) or the text version (No) by
+      default.<br /><br />
+      
+      <b>Include Me in CC when I Reply All</b><br />
+      Reply All sends your reply to all recepients of the original message,
+      including yourself. To leave your own email address out, set this to No.
+      <br /><br />
+      
+      <b>Enable Mailer Display</b><br />
+      When viewing a message, this displays which email program the sender used.
+      <br /><br />
+      
+      <b>Display Attached Images with Message</b><br />
+      If someone sends you a message with one or more images attached and you've
+      set this to Yes, the images will be displayed right away when you view
+      the message.
+      <br /><br />
+      
+      <b>Enable Subtle Printer Friendly Link</b><br />
+      This determines the way the Printable Version-link will be displayed.
+      <br /><br />
+      
+      <b>Enable Printer Friendly Clean Display</b><br />
+      This will clean out the message so the print looks nicer.
+      <br /><br />
+      
+      <b>Other Options</b><br />
+      Depending on the configuration of your SquirrelMail installation, some more
+      options might be displayed here. They hopefully should be self-explanatory.
+      <br /><br />
+      
+   </description>
+</section>
+
+<section>
+   <title>
+      Message Highlighting
+   </title>
+   <description>
+      The idea for this came because if you are subscribed to many mailing lists,
+      it is very hard to distinguish which messages came from where while reading
+      through the list of messages.  With Message Highlighting, you can have the
+      background color of all messages from one mailing list different than the
+      color of another list.<br /><br />
+
+      Just click on [New] to create a new one, or [Edit] to edit an existing one
+      and the options will appear below.<br /><br />
+      
+      <b>Identifying Name</b><br />
+      This is simply the name that you see which describes what it is.  For
+      example, if you are highlighting messages from your mother, you might
+      set this to "From Mom".
+      <br /><br />
+      
+      <b>Color</b><br />
+      This is the actual color that the background will be.  You can choose between
+      a number of pre-defined colors that we have selected for you, or you can enter
+      the HEX code for the color that you desire (i.e.  a6b492).  If you choose to
+      enter your own color, you must also select the radio button in front so that it is
+      checked.
+      <br /><br />
+      
+      <b>Match</b><br />
+      Here you can choose the matching phrase.  From the drop-down box, you can 
+      choose which header field to match against (to, from, subject...) and in the
+      text box, you can enter the phrase to match (mom@yahoo.com). 
+      <br /><br />
+   </description>
+</section>
+
+<section>
+   <title>
+      Folder Preferences
+   </title>
+   <description>
+      <b>Folder Path</b><br />
+      On some systems this will not be displayed.  If you don't see this option, just
+      ignore this.  On other systems, this is quite a necessary feature.  Usually the
+      option that is in there is what should be there.  This is the folder in your
+      home directory that holds all your email folders.  If you don't understand this,
+      just leave it what it is.
+      <br /><br />
+
+      <b>Trash Folder</b><br />
+      You can choose which folder messages will be sent to when you delete them. If
+      you don't want deleted messages to go to the trash, set this to "Don't use Trash".
+      <br /><br />
+      
+      <b>Sent Folder</b><br />
+      You can choose which folder your sent messages will go to.  If you don't want
+      these, just set it to "Don't use Sent".
+      <br /><br />
+
+      <b>Draft Folder</b><br />
+      You can choose which folder the messages you save as draft will go to.
+      If you don't want to use this, just set it to "Don't use Drafts".
+      <br /><br />
+      
+      <b>Location of folder list</b><br />
+      Determines wether you want the list of folders on the left or right of your
+      window.
+      <br /><br />
+      
+      <b>Width of folder list</b><br />
+      With this option, you can select how wide the list of folders will be.
+      If you have very long folder names or large fonts, it is good to set this
+      pretty high.  Otherwise, you should set it low so you don't waste screen space.
+      <br /><br />
+      
+      <b>Auto refresh folder list</b><br />
+      SquirrelMail has the functionality to automatically refresh the folder listing
+      on the left side of your browser window.  This will also update the number of
+      unseen messages that are in each folder.  This is a good way to check for unseen
+      messages in the INBOX without having to click on it every time.
+      <br /><br />
+
+      <b>Enable Unread Message Notification</b><br />
+      This option specifies how to display unseen messages in the folder listing on the
+      right side of your browser window.  If you set this to No Notification, you will
+      not be notified of unseen messages.  If you set it to INBOX, when you have new
+      messages, the INBOX will become bold and a number will appear to the right of it
+      to say how many new messages are in it.  If you set it to All Folders, this 
+      behavior will happen on all folders.  If you notice that loading the folder list
+      is really slow, you can set this to INBOX or None and that should speed it up.
+      <br /><br />
+      
+      <b>Unseen message notification type</b><br />
+      When new messages are in a folder, this option tells
+      either to only display the number of new messages or also display the
+      total number of messages in that folder.
+      <br /><br />
+      
+      <b>Enable Collapsable Folders</b><br />
+      Collapsable Folders allow you to 'fold' or collapse a folder which contains
+      subfolders so the subfolders will not be displayed. You can collapse a
+      folder by clicking the "-" next to it and expand it again with the "+" sign.
+      Setting this to No disables collapsing.
+      <br /><br />
+      
+      <b>Show Clock on Folders Panel</b><br />
+      Choose if you want a clock to be displayed above the folder list and how
+      it should look (Y=year, D=day, H=hour, M=minute, S=second). The option
+      <b>Hour Format</b> below gives you the choice of a 12- or 24-hour clock.
+      <br /><br />
+      
+      <b>Memory Search</b><br />
+      If you search a mailbox, the search will be saved for quick access later.
+      This defines how many mailbox searches will be saved.
+      <br /><br />
+      
+   </description>
+</section>
+
+<section>
+   <title>
+      Index Order
+   </title>
+   <description>
+      This section gives you control over the message list. You can choose how
+      much information you want in the message list and in what order it should
+      be displayed.
+      <br /><br />
+      Use the Up and Down links to move columns around, Del to remove a column
+      from the display and Add to add one.
+   </description>
+</section>

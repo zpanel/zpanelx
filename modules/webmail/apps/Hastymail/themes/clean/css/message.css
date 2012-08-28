@@ -1,0 +1,408 @@
+/* message view page */
+
+#content{
+    margin-right: 0px;
+}
+#prev_next{
+    color: #666;
+    float: right;
+    padding-left: 5px;
+    position: relative;
+}
+#prev_next a{
+    padding-right: 20px;
+    text-decoration: none;
+}
+#prev_next span, .prev_next_del span{ color: #999; padding-right: 20px;}
+#message_headers_clean table{
+    margin-left: -20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+}
+#message_headers_clean table td{
+    padding: 3px;
+}
+#message_headers_clean table th{
+    text-align: right;
+    padding: 3px;
+    padding-right: 20px;
+}
+#message_part_headers table th, #message_headers table th{
+    text-align: left;
+    padding: 3px;
+    width: 80px;
+    vertical-align: top;
+    font-size: 90%;
+    white-space: nowrap;
+    text-align: right;
+    padding-right: 10px;
+    background-color: transparent;
+    padding-left: 10px;
+}
+.prev_next_cell table, .prev_next_cell table td{
+    padding: 0px !important;
+    border: none !important;
+}
+.prev_next_cell{
+    vertical-align: top !important;
+}
+#message_part_headers table{
+    padding-top: 5px;
+    background-color: transparent;
+}
+#message_headers table{
+    clear: both;
+    width: 100%;
+    padding-bottom: 10px;
+    border-bottom: solid 1px #ccc;
+}
+#message_part_headers table td, #message_headers table td{
+    background-color: transparent;
+    vertical-align: top;
+    white-space: normal;
+    color: #000;
+    padding: 3px;
+    padding-right: 10px;
+}
+#message_part_headers table td, #message_part_headers table th{
+    background-color: transparent;
+}
+#message_part_headers table th{
+    padding-left: 40px;
+}
+#message_image{
+    min-height: 200px;
+    padding: 35px;
+    padding-bottom: 60px;
+}
+#message_html{
+    clear: both;
+    min-height: 200px;
+    padding-bottom: 60px;
+    padding-right: 15px;
+    padding-left: 35px;
+    padding-top: 20px;
+    max-width: 1280px;
+    float: none;
+}
+#message_text{
+    min-height: 200px;
+    font-size: 95%;
+    font-family: monospace;
+    padding: 35px;
+    padding-right: 0px;
+    padding-bottom: 60px;
+    max-width: 1280px;
+    overflow: auto;
+}
+pre {
+    white-space: pre-wrap; /* css-3 */
+    white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
+}
+
+#message_text span{
+    font-size: 0px;
+    width: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+#message_page_win{
+    margin: 20px;
+    margin-top: 5px;
+    border: solid 1px #aaa;
+    background-color: #fff;
+}
+#message_page{
+    width: 100%;
+}
+#message_parts{
+    border-top: solid 1px #ccc;
+    margin-top: -15px;
+    overflow: auto;
+    width: 100%;
+    margin-bottom: 20px;
+}
+#message_parts h4{
+    margin-bottom: 0px;
+    color: #333;
+    padding-left: 50px;
+    padding-top: 5px;
+    background-color: transparent;
+}
+#message_parts table{
+    font-size: 90%;
+    text-align: left;
+    width: 100%;
+}
+#message_parts table th{
+    padding: 3px;
+    text-align: left;
+    font-size: 90%;
+    padding-bottom: 0px;
+    padding-top: 7px;
+}
+#message_parts table td{
+    vertical-align: top;
+    padding: 3px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+}
+.view_cell a{
+}
+.filename_cell{
+}
+.description_cell{
+    line-height: 130%;
+    vertical-align: top;
+}
+.description_cell b{
+    font-size: 90%;
+}
+.small_cell{
+    padding-right: 3px;
+    white-space: nowrap;
+}
+.view_cell{
+    padding: 0px;
+    width: 125px;
+    white-space: nowrap;
+    text-align: right;
+}
+.current_part_row{
+    background-color: #ebeff7;
+}
+.current_part{
+    padding-right: 5px;
+    display: inline;
+}
+.message_links{
+    padding-top: 3px;
+    color: #666;
+    font-size: 90%;
+}
+.message_links a{
+    padding-right: 4px;
+    padding-left: 4px;
+    font-weight: normal;
+}    
+#search_links{
+    float: right;
+    font-size: 90%;
+    margin-top: -2px;
+    vertical-align: top;
+    padding-left: 10px;
+}
+#unread_links{
+    float: right;
+    margin-top: -2px;
+    font-size: 90%;
+    vertical-align: top;
+    padding-left: 10px;
+}
+#small_prev_next a, #message_part_headers table td .mprev_next a{
+    text-decoration: none;
+}
+#small_prev_next{
+    white-space: nowrap;
+    text-align: right;
+}
+.prev_next_del{
+    font-size: 80%;
+    margin-right: 5px;
+    white-space: nowrap;
+}
+#prev_next_dropdown3{
+    position: absolute;
+    background-color: #fff;
+    text-align: left;
+    line-height: 150%;
+    right: 50px;
+    margin-top: 14px;
+    padding: 10px;
+}
+#message_unkown{
+    margin: 100px;
+    text-align: center;
+    font-style: italic;
+}
+#prev_next_dropdown1{
+    position: absolute;
+    background-color: #fff;
+    text-align: left;
+    line-height: 150%;
+    padding: 10px;
+    margin-left: -10px;
+    margin-top: 14px;
+}
+#prev_next_dropdown2{
+    position: absolute;
+    right: -10px;
+    margin-top: 14px;
+    background-color: #fff;
+    line-height: 150%;
+    text-align: left;
+    padding: 10px;
+}
+#prev_next_dropdown3 a, #prev_next_dropdown3 span, #prev_next_dropdown1 a, #prev_next_dropdown2 a, #prev_next_dropdown1 span, #prev_next_dropdown2 span{
+    padding-left: 2px;
+    text-decoration: none;
+}
+.text_link{
+    font-family: Arial;
+    font-size: 85%;
+    font-weight: bold;
+}
+.reply{
+    font-weight: normal;
+    font-style: italic;
+    color: #888;
+}
+#mailbox_meta{
+    font-size: 75%;
+    font-weight: normal;
+    padding-left: 20px;
+}
+#page_links b{
+    padding: 3px;
+    padding-right: 7px;
+}
+#page_links{
+    font-style: normal !important;
+    padding-top: 5px;
+    text-align: center;
+}
+#page_links a{
+    font-size: 125%;
+    font-weight: normal;
+    padding-right: 3px;
+}
+#message_parts table .inner_part{
+}
+#prev_next_part{
+    text-align: left;
+    padding-left: 10px;
+    white-space: nowrap;
+}
+#message_contacts{
+    display: inline;
+    white-space: nowrap;
+}
+#message_contacts input{
+}
+#message_contacts option{
+}
+#message_contacts select{
+    max-width: 300px;
+    background-color: #fff;
+    color: #000;
+}
+#message_contacts input, #message_contacts select{
+    font-size: 80%;
+    margin-right: 5px;
+}
+#raw_message_text{
+    white-space: pre;
+    width: 100%;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    font-size: 90%;
+    overflow: auto;
+}
+#card_details {
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 30px;
+}
+#card_details th{
+    text-align: right;
+    padding-right: 10px;
+    font-size: 90%;
+}
+#frozen{
+    padding-right: 10px;
+    font-weight: bold;
+}
+.current_page_link{
+    font-weight: bold;
+}
+#prev_next_form table td {
+    white-space: nowrap !important;
+}
+#prev_next_form{
+}
+#prev_next_form input{
+}
+#prev_next_form select, #prev_next_form input{
+    margin-right: 5px;
+}
+#prev_next_form, #prev_next_form select, #prev_next_form option{
+    font-size: 90%;
+    min-width: 70px;
+}
+.pbutton, .nbutton, .ubutton{
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    vertical-align: 4px;
+    width: 21px;
+    height: 21px;
+    float: right;
+    border: none !important;
+}
+.pbutton{
+    background: transparent url('themes/clean/images/sprite.png') 0px -160px no-repeat;
+}
+.nbutton{
+    background: transparent url('themes/clean/images/sprite.png') -21px -160px no-repeat;
+}
+.ubutton{
+    background: transparent url('themes/clean/images/sprite.png') -42px -160px no-repeat;
+}
+.message_parts_heading{
+    padding-left: 5px;
+    vertical-align: 40%;
+    font-size: 90%;
+}
+.message_parts_heading a {
+    vertical-align: 40%;
+    padding-right: 5px;
+}
+iframe{
+    width: 100%;
+    min-height: 600px;
+    height: 100%;
+    overflow: auto;
+}
+#message_iframe{
+    padding: 10px;
+}
+.sm_prev_next, .sm_prev_next td{
+    padding: 0px !important;
+    padding-left: 5px !important;
+    text-align: center !important;
+}
+.mprev_next, .mprev_next td, .sm_prev_next, .sm_prev_next td{
+    border: none !important;
+    padding: 0px !important;
+    padding-left: 5px !important;
+    text-align: center !important;
+}
+.mprev_next td a, .sm_prev_next td a{
+    text-decoration: none !important;
+}
+.sm_prev_next{ width: 1% !important; float: right; }
+.up_button{width: 24px; height: 24px; float: right; background: url('themes/clean/images/sprite.png') -42px -160px no-repeat;}
+#message_part_headers .mprev_next{
+    border: none !important;
+    margin-left: -10px !important;
+    padding-bottom: 2px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+}
+.sm_prev_next {
+    border: none !important;
+}
+.subject_cell{font-size: 130%; font-weight: bold}

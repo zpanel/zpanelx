@@ -1,0 +1,47 @@
+<?php
+/********************************************************
+	lang/eng/edit_contact.inc
+	(C)2001-2002 Ryo Chijiiwa <Ryo@IlohaMail.org>
+
+	This file is part of IlohaMail, and released under GPL.
+	See COPYING, or http://www.fsf.org/copyleft/gpl.html
+
+********************************************************/
+
+//TRANSLATORS:  Uncomment next line for all non-English languages!!
+include("../lang/eng/edit_contact.inc");
+
+$ecStrings[0] = "Redaguoti";
+$ecStrings[1] = "Pridëti";
+$ecStrings[2] = " Kontaktà";
+$ecStrings[3] = "Vardas";
+$ecStrings[4] = "Elektroninis paðtas";
+$ecStrings[5] = "Adresas";
+$ecStrings[6] = "Grupë";
+$ecStrings[7] = "Komentarai";
+$ecStrings[8] = "Namø telefonas";
+$ecStrings[9] = "Darbo telefonas";
+$ecStrings[10] = "Mobilus telefonas";
+$ecStrings[11] = "Adresas";
+$ecStrings[12] = "Alt. el. paðtas";
+$ecStrings[13] = "Iðtrinti";
+$ecStrings[14] = "Kita";
+$ecStrings[15] = "Vardas";
+$ecStrings[16] = "Pavardë";
+$ecStrings[17] = "Gatvë";
+$ecStrings[18] = "Miestas";
+$ecStrings[19] = "Rajonas / Regionas";
+$ecStrings[20] = "Paðto indeksas";
+$ecStrings[21] = "Ðalis";
+
+
+$errors[0] = "Neiðëjo pridëti kontakto:  duomenø bazës klaida.";
+$errors[1] = "Áraðas su ðiuo adresu jau egzistuoja.";
+$errors[2] = "Spausti ";
+$errors[3] = "èia";
+$errors[4] = " redaguoti áraðà ið naujo.";
+$errors[5] = "Kontaktas nerastas, arba priëjimas negalimas.";
+$errors[6] = "Ar Jûs esate ásitikinæs, kad norite iðtrinti áraðà \"";
+$errors[7] = "\"?";
+
+?>

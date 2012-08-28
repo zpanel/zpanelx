@@ -31,10 +31,10 @@ class module_controller {
     static $alreadyexists;
     static $badname;
     static $bademail;
-    static $badpassword;
+	static $badpassword;
     static $userblank;
     static $emailblank;
-    static $passwordblank;
+	static $passwordblank;
     static $packageblank;
     static $groupblank;
     static $ok;
@@ -46,13 +46,9 @@ class module_controller {
     /**
      * The 'worker' methods.
      */
-    static function ListClients($uid = 0) {
+    static function ListClients($uid) {
         global $zdbh;
-        if ($uid == 0) {
-            $sql = "SELECT * FROM x_accounts WHERE ac_enabled_in=1 AND ac_deleted_ts IS NULL";
-        } else {
-            $sql = "SELECT * FROM x_accounts WHERE ac_reseller_fk=" . $uid . " AND ac_enabled_in=1 AND ac_deleted_ts IS NULL";
-        }
+        $sql = "SELECT * FROM x_accounts WHERE ac_reseller_fk=" . $uid . " AND ac_enabled_in=1 AND ac_deleted_ts IS NULL";
         $numrows = $zdbh->query($sql);
         if ($numrows->fetchColumn() <> 0) {
             $sql = $zdbh->prepare($sql);
@@ -60,13 +56,13 @@ class module_controller {
             $sql->execute();
             while ($rowclients = $sql->fetch()) {
                 if ($rowclients['ac_user_vc'] != "zadmin") {
-                    $numrowclients = $zdbh->query("SELECT COUNT(*) FROM x_accounts WHERE ac_reseller_fk=" . $rowclients['ac_id_pk'] . " AND ac_deleted_ts IS NULL")->fetch();
+					$numrowclients = $zdbh->query("SELECT COUNT(*) FROM x_accounts WHERE ac_reseller_fk=" . $rowclients['ac_id_pk'] . " AND ac_deleted_ts IS NULL")->fetch();
                     $currentuser = ctrl_users::GetUserDetail($rowclients['ac_id_pk']);
                     $currentuser['diskspacereadable'] = fs_director::ShowHumanFileSize(ctrl_users::GetQuotaUsages('diskspace', $currentuser['userid']));
                     $currentuser['diskspacequotareadable'] = fs_director::ShowHumanFileSize($currentuser['diskquota']);
                     $currentuser['bandwidthreadable'] = fs_director::ShowHumanFileSize(ctrl_users::GetQuotaUsages('bandwidth', $currentuser['userid']));
                     $currentuser['bandwidthquotareadable'] = fs_director::ShowHumanFileSize($currentuser['bandwidthquota']);
-                    $currentuser['numclients'] = $numrowclients[0];
+					$currentuser['numclients'] = $numrowclients[0];
                     array_push($res, $currentuser);
                 }
             }
@@ -83,15 +79,15 @@ class module_controller {
         if ($numrows->fetchColumn() <> 0) {
             $sql = $zdbh->prepare($sql);
             $res = array();
-            $skipclients = array();
+			$skipclients = array();
             $sql->execute();
             while ($rowclients = $sql->fetch()) {
-                $getgroup = $zdbh->query("SELECT * FROM x_groups WHERE ug_id_pk=" . $rowclients['ac_group_fk'] . "")->fetch();
-                if ($rowclients['ac_id_pk'] != $moveid && $getgroup['ug_name_vc'] == "Administrators" ||
-                        $rowclients['ac_id_pk'] != $moveid && $getgroup['ug_name_vc'] == "Resellers") {
-                    array_push($res, array('moveclientid' => $rowclients['ac_id_pk'],
-                        'moveclientname' => $rowclients['ac_user_vc']));
-                }
+			$getgroup = $zdbh->query("SELECT * FROM x_groups WHERE ug_id_pk=" . $rowclients['ac_group_fk'] . "")->fetch();			
+				if ($rowclients['ac_id_pk'] != $moveid && $getgroup['ug_name_vc'] == "Administrators" || 
+					$rowclients['ac_id_pk'] != $moveid && $getgroup['ug_name_vc'] == "Resellers"){
+                array_push($res, array( 'moveclientid'   => $rowclients['ac_id_pk'],
+										'moveclientname' => $rowclients['ac_user_vc']));
+				}
             }
             return $res;
         } else {
@@ -124,23 +120,23 @@ class module_controller {
     }
 
     static function ListCurrentClient($uid) {
-        global $zdbh;
+		global $zdbh;
         $sql = "SELECT * FROM x_profiles WHERE ud_user_fk=" . $uid . "";
         $numrows = $zdbh->query($sql);
         if ($numrows->fetchColumn() <> 0) {
             $sql = $zdbh->prepare($sql);
             $res = array();
             $sql->execute();
-            $currentuser = ctrl_users::GetUserDetail($uid);
+			$currentuser = ctrl_users::GetUserDetail($uid);
             while ($rowclients = $sql->fetch()) {
-                array_push($res, array('fullname' => $rowclients['ud_fullname_vc'],
-                    'username' => $currentuser['username'],
-                    'userid' => $currentuser['userid'],
-                    'fullname' => $rowclients['ud_fullname_vc'],
-                    'postcode' => $rowclients['ud_postcode_vc'],
-                    'address' => $rowclients['ud_address_tx'],
-                    'phone' => $rowclients['ud_phone_vc'],
-                    'email' => $currentuser['email']));
+                	array_push($res, array('fullname'   => $rowclients['ud_fullname_vc'],
+										   'username' => $currentuser['username'],
+										   'userid'   => $currentuser['userid'],
+										   'fullname'   => $rowclients['ud_fullname_vc'],
+										   'postcode'   => $rowclients['ud_postcode_vc'],
+										   'address'   => $rowclients['ud_address_tx'],
+										   'phone'   => $rowclients['ud_phone_vc'],
+                    					   'email' => $currentuser['email']));
             }
             return $res;
         } else {
@@ -158,22 +154,23 @@ class module_controller {
             $res = array();
             $sql->execute();
             while ($rowgroups = $sql->fetch()) {
-                if (strtoupper($currentuser['usergroup']) == "ADMINISTRATORS") {
-                    $selected = "";
-                    if ($rowgroups['ug_id_pk'] == $currentuser['usergroupid']) {
-                        $selected = " selected";
-                    }
-                    array_push($res, array('groupid' => $rowgroups['ug_id_pk'],
-                        'groupname' => ui_language::translate($rowgroups['ug_name_vc']),
-                        'groupselected' => $selected));
-                } else {
-                    if (strtoupper($rowgroups['ug_name_vc']) == "USERS") {
-                        array_push($res, array('groupid' => $rowgroups['ug_id_pk'],
-                            'groupname' => ui_language::translate($rowgroups['ug_name_vc']),
-                            'groupselected' => $selected));
-                    }
-                }
-            }
+				if (strtoupper($currentuser['usergroup']) == "ADMINISTRATORS"){
+					    $selected = "";
+		                if ($rowgroups['ug_id_pk'] == $currentuser['usergroupid']) {
+		                    $selected = " selected";
+		                }
+			            array_push($res, array('groupid'       => $rowgroups['ug_id_pk'],
+						                       'groupname'     => ui_language::translate($rowgroups['ug_name_vc']),
+		                   					   'groupselected' => $selected));	
+		
+            	} else{
+					if (strtoupper($rowgroups['ug_name_vc']) == "USERS"){
+			            array_push($res, array('groupid'       => $rowgroups['ug_id_pk'],
+						                       'groupname'     => ui_language::translate($rowgroups['ug_name_vc']),
+		                   					   'groupselected' => $selected));	
+					}		
+				}
+			}
             return $res;
         } else {
             return false;
@@ -186,30 +183,31 @@ class module_controller {
         $numrows = $zdbh->query($sql);
         if ($numrows->fetchColumn() <> 0) {
             $currentuser = ctrl_users::GetUserDetail($uid);
-            $reseller = ctrl_users::GetUserDetail($id);
+			$reseller = ctrl_users::GetUserDetail($id);
             $sql = $zdbh->prepare($sql);
             $res = array();
             $sql->execute();
             while ($rowgroups = $sql->fetch()) {
-                if (strtoupper($reseller['usergroup']) == "ADMINISTRATORS") {
-                    $selected = "";
-                    if ($rowgroups['ug_id_pk'] == $currentuser['usergroupid']) {
-                        $selected = " selected";
-                    }
-                    array_push($res, array('groupid' => $rowgroups['ug_id_pk'],
-                        'groupname' => ui_language::translate($rowgroups['ug_name_vc']),
-                        'groupselected' => $selected));
-                } else {
-                    if (strtoupper($rowgroups['ug_name_vc']) == "USERS") {
-                        $selected = "";
-                        if ($rowgroups['ug_id_pk'] == $currentuser['usergroupid']) {
-                            $selected = " selected";
-                        }
-                        array_push($res, array('groupid' => $rowgroups['ug_id_pk'],
-                            'groupname' => ui_language::translate($rowgroups['ug_name_vc']),
-                            'groupselected' => $selected));
-                    }
-                }
+			if (strtoupper($reseller['usergroup']) == "ADMINISTRATORS"){
+					    $selected = "";
+		                if ($rowgroups['ug_id_pk'] == $currentuser['usergroupid']) {
+		                    $selected = " selected";
+		                }
+			            array_push($res, array('groupid'       => $rowgroups['ug_id_pk'],
+						                       'groupname'     => ui_language::translate($rowgroups['ug_name_vc']),
+		                   					   'groupselected' => $selected));
+					
+				} else{
+					if (strtoupper($rowgroups['ug_name_vc']) == "USERS") {
+	                	$selected = "";
+		                if ($rowgroups['ug_id_pk'] == $currentuser['usergroupid']) {
+		                    $selected = " selected";
+		                }
+		                array_push($res, array('groupid'       => $rowgroups['ug_id_pk'],
+						                       'groupname'     => ui_language::translate($rowgroups['ug_name_vc']),
+		                   					   'groupselected' => $selected));			
+					}
+				}
             }
             return $res;
         } else {
@@ -273,7 +271,9 @@ class module_controller {
     static function SetClientProfile($userid, $column, $value) {
         global $zdbh;
         runtime_hook::Execute('OnBeforeSetClientProfile');
-        $sql = $zdbh->prepare("UPDATE x_profiles SET " . $column . "=" . $value . " WHERE ud_user_fk=" . $userid . "");
+        $sql = $zdbh->prepare("UPDATE x_profiles
+								SET " . $column . "=" . $value . " 
+								WHERE ud_user_fk=" . $userid . "");
         $sql->execute();
         runtime_hook::Execute('OnAfterSetClientProfile');
         return true;
@@ -287,21 +287,21 @@ class module_controller {
 			SET ac_deleted_ts=" . time() . " 
 			WHERE ac_id_pk=" . $userid . "");
         $sql->execute();
-        $sql = $zdbh->prepare("
+		$sql = $zdbh->prepare("
 			UPDATE x_accounts 
 			SET ac_reseller_fk = " . $moveid . " 
-			WHERE ac_reseller_fk = " . $userid . "");
-        $sql->execute();
-        $sql = $zdbh->prepare("
+			WHERE ac_reseller_fk = ".$userid."");
+		$sql->execute();
+		$sql = $zdbh->prepare("
 			UPDATE x_packages 
 			SET pk_reseller_fk = " . $moveid . " 
-			WHERE pk_reseller_fk = " . $userid . "");
-        $sql->execute();
-        $sql = $zdbh->prepare("
+			WHERE pk_reseller_fk = ".$userid."");
+		$sql->execute();
+		$sql = $zdbh->prepare("
 			UPDATE x_groups 
 			SET ug_reseller_fk = " . $moveid . " 
-			WHERE ug_reseller_fk = " . $userid . "");
-        $sql->execute();
+			WHERE ug_reseller_fk = ".$userid."");
+		$sql->execute();
         runtime_hook::Execute('OnAfterDeleteClient');
         self::$ok = true;
         return true;
@@ -310,33 +310,33 @@ class module_controller {
     static function ExecuteUpdateClient($clientid, $package, $enabled, $group, $fullname, $email, $address, $post, $phone, $newpass) {
         global $zdbh;
         runtime_hook::Execute('OnBeforeUpdateClient');
-        if ($newpass != "") {
-            // Check for password length...
-            if (strlen($newpass) < ctrl_options::GetSystemOption('password_minlength')) {
+		if ($newpass != ""){
+        	// Check for password length...
+        	if (strlen($newpass) < ctrl_options::GetOption('password_minlength')) {
                 self::$badpassword = true;
                 return false;
             }
-            $sql = $zdbh->prepare("UPDATE x_accounts SET ac_pass_vc= :newpass WHERE ac_id_pk= :clientid");
-            $sql->bindParam(':clientid', $clientid);
-            $sql->bindParam(':newpass', md5($newpass));
-            $sql->execute();
-        }
-        $sql = $zdbh->prepare("UPDATE x_accounts SET ac_email_vc= :email, ac_package_fk= :package, ac_enabled_in= :isenabled, ac_group_fk= :group WHERE ac_id_pk= " . $clientid . "");
-        $sql->bindParam(':email', $email);
-        $sql->bindParam(':package', $package);
-        $sql->bindParam(':isenabled', $enabled);
-        $sql->bindParam(':group', $group);
-        //$sql->bindParam(':accountid', $clientid);
+		$sql = $zdbh->prepare("UPDATE x_accounts SET 
+										ac_pass_vc=	   '" . md5($newpass) . "'
+										WHERE ac_id_pk=" . $clientid . "");
+        $sql->execute();
+		}
+        $sql = $zdbh->prepare("UPDATE x_accounts SET 
+										ac_email_vc=    '" . $email . "',
+										ac_package_fk= " . $package . " ,
+										ac_enabled_in= " . $enabled . ",
+                                        ac_group_fk=   " . $group . "
+										WHERE ac_id_pk=" . $clientid . "");
         $sql->execute();
 
-        $sql = $zdbh->prepare("UPDATE x_profiles SET ud_fullname_vc= :fullname, ud_group_fk= :group, ud_package_fk= :package, ud_address_tx= :address,ud_postcode_vc= :postcode, ud_phone_vc= :phone WHERE ud_user_fk=:accountid");
-        $sql->bindParam(':fullname', $fullname);
-        $sql->bindParam(':group', $group);
-        $sql->bindParam(':package', $package);
-        $sql->bindParam(':address', $address);
-        $sql->bindParam(':postcode', $post);
-        $sql->bindParam(':phone', $phone);
-        $sql->bindParam(':accountid', $clientid);
+        $sql = $zdbh->prepare("UPDATE x_profiles SET 
+										ud_fullname_vc= '" . $fullname . "',
+										ud_group_fk=    " . $group . ",
+										ud_package_fk=  " . $package . ",
+										ud_address_tx=  '" . $address . "',
+										ud_postcode_vc= '" . $post . "',
+										ud_phone_vc=    '" . $phone . "'
+										WHERE ud_user_fk=" . $clientid . "");
         $sql->execute();
         if ($enabled == 0) {
             self::DisableClient($clientid);
@@ -383,80 +383,98 @@ class module_controller {
     }
 
     static function CheckHasPackage($userid) {
-        global $zdbh;
-        $sql = "SELECT COUNT(*) FROM x_packages WHERE pk_reseller_fk='" . $userid . "' AND pk_deleted_ts IS NULL";
+		global $zdbh;
+    	$sql = "SELECT COUNT(*) FROM x_packages WHERE pk_reseller_fk='" . $userid . "' AND pk_deleted_ts IS NULL";
         if ($numrows = $zdbh->query($sql)) {
-            if ($numrows->fetchColumn() == 0) {
+        	if ($numrows->fetchColumn() == 0) {
                 return false;
             }
         }
-        return true;
+		return true;
     }
 
     static function ExecuteCreateClient($uid, $username, $packageid, $groupid, $fullname, $email, $address, $post, $phone, $password, $sendemail, $emailsubject, $emailbody) {
         global $zdbh;
         // Check for spaces and remove if found...
         $username = strtolower(str_replace(' ', '', $username));
-        $reseller = ctrl_users::GetUserDetail($uid);
+		$reseller = ctrl_users::GetUserDetail($uid);
         // Check for errors before we continue...
         if (fs_director::CheckForEmptyValue(self::CheckCreateForErrors($username, $packageid, $groupid, $email, $password))) {
             return false;
         }
         runtime_hook::Execute('OnBeforeCreateClient');
         // No errors found, so we can add the user to the database...
-        $sql = $zdbh->prepare("INSERT INTO x_accounts (ac_user_vc, ac_pass_vc, ac_email_vc, ac_package_fk, ac_group_fk, ac_usertheme_vc, ac_usercss_vc, ac_reseller_fk, ac_created_ts) VALUES (
-            :username, :password, :email, :packageid, :groupid, :resellertheme, :resellercss, " . $uid . ", " . time() . ")");
-        $sql->bindParam(':username', $username);
-        $sql->bindParam(':password', md5($password));
-        $sql->bindParam(':email', $email);
-        $sql->bindParam(':packageid', $packageid);
-        $sql->bindParam(':groupid', $groupid);
-        $sql->bindParam(':resellertheme', $reseller['usertheme']);
-        $sql->bindParam(':resellercss', $reseller['usercss']);
+        $sql = $zdbh->prepare("INSERT INTO x_accounts (
+										ac_user_vc,
+										ac_pass_vc,
+										ac_email_vc,
+										ac_package_fk,
+                                        ac_group_fk,
+										ac_usertheme_vc,
+										ac_usercss_vc,
+										ac_reseller_fk,
+										ac_created_ts) VALUES (
+										'" . $username . "',
+										'" . md5($password) . "',
+										'" . $email . "',
+                                        '" . $packageid . "',
+										'" . $groupid . "',
+										'" . $reseller['usertheme'] . "',
+										'" . $reseller['usercss'] . "',
+										" . $uid . ",
+										" . time() . ")");
         $sql->execute();
         // Now lets pull back the client ID so that we can add their personal address details etc...
         $client = $zdbh->query("SELECT * FROM x_accounts WHERE ac_reseller_fk=" . $uid . " ORDER BY ac_id_pk DESC")->Fetch();
-        $sql = $zdbh->prepare("INSERT INTO x_profiles (ud_user_fk, ud_fullname_vc, ud_group_fk, ud_package_fk, ud_address_tx, ud_postcode_vc, ud_phone_vc, ud_created_ts) VALUES (:userid, :fullname, :packageid, :groupid, :address, :postcode, :phone, " . time() . ")");
-        $sql->bindParam(':userid', $client['ac_id_pk']);
-        $sql->bindParam(':fullname', $fullname);
-        $sql->bindParam(':packageid', $packageid);
-        $sql->bindParam(':groupid', $groupid);
-        $sql->bindParam(':address', $address);
-        $sql->bindParam(':postcode', $post);
-        $sql->bindParam(':phone', $phone);
+        $sql = $zdbh->prepare("INSERT INTO x_profiles (ud_user_fk,
+										ud_fullname_vc,
+										ud_group_fk,
+										ud_package_fk,
+										ud_address_tx,
+										ud_postcode_vc,
+										ud_phone_vc,
+										ud_created_ts) VALUES (
+										 " . $client['ac_id_pk'] . ",
+										'" . $fullname . "',
+										'" . $packageid . "',
+										'" . $groupid . "',
+										'" . $address . "',
+										'" . $post . "',
+										'" . $phone . "',
+										 " . time() . ")");
         $sql->execute();
         // Now we add an entry into the bandwidth table, for the user for the upcoming month.
         $sql = $zdbh->prepare("INSERT INTO x_bandwidth (bd_acc_fk, bd_month_in, bd_transamount_bi, bd_diskamount_bi) VALUES (" . $client['ac_id_pk'] . "," . date("Ym", time()) . ", 0, 0)");
         $sql->execute();
         // Lets create the client diectories
-        fs_director::CreateDirectory(ctrl_options::GetSystemOption('hosted_dir') . $username);
-        fs_director::SetFileSystemPermissions(ctrl_options::GetSystemOption('hosted_dir') . $username, 0777);
-        fs_director::CreateDirectory(ctrl_options::GetSystemOption('hosted_dir') . $username . "/public_html");
-        fs_director::SetFileSystemPermissions(ctrl_options::GetSystemOption('hosted_dir') . $username . "/public_html", 0777);
-        fs_director::CreateDirectory(ctrl_options::GetSystemOption('hosted_dir') . $username . "/backups");
-        fs_director::SetFileSystemPermissions(ctrl_options::GetSystemOption('hosted_dir') . $username . "/backups", 0777);
-        // Send the user account details via. email (if requested)... 
-        if ($sendemail <> 0) {
-            $emailsubject = str_replace("{{username}}", $username, $emailsubject);
+        fs_director::CreateDirectory(ctrl_options::GetOption('hosted_dir') . $username);
+        fs_director::SetFileSystemPermissions(ctrl_options::GetOption('hosted_dir') . $username, 0777);
+        fs_director::CreateDirectory(ctrl_options::GetOption('hosted_dir') . $username . "/public_html");
+        fs_director::SetFileSystemPermissions(ctrl_options::GetOption('hosted_dir') . $username . "/public_html", 0777);
+        fs_director::CreateDirectory(ctrl_options::GetOption('hosted_dir') . $username . "/backups");
+        fs_director::SetFileSystemPermissions(ctrl_options::GetOption('hosted_dir') . $username . "/backups", 0777);
+		// Send the user account details via. email (if requested)... 
+		if ($sendemail <> 0){
+			$emailsubject = str_replace("{{username}}", $username, $emailsubject);
             $emailsubject = str_replace("{{password}}", $password, $emailsubject);
             $emailsubject = str_replace("{{fullname}}", $fullname, $emailsubject);
-            $emailbody = str_replace("{{username}}", $username, $emailbody);
+			$emailbody = str_replace("{{username}}", $username, $emailbody);
             $emailbody = str_replace("{{password}}", $password, $emailbody);
             $emailbody = str_replace("{{fullname}}", $fullname, $emailbody);
-
-            $phpmailer = new sys_email();
-            $phpmailer->Subject = $emailsubject;
-            $phpmailer->Body = $emailbody;
-            $phpmailer->AddAddress($email);
-            $phpmailer->SendEmail();
-        }
+			
+		    $phpmailer = new sys_email();
+        	$phpmailer->Subject = $emailsubject;
+	        $phpmailer->Body = $emailbody;
+	        $phpmailer->AddAddress($email);
+	        $phpmailer->SendEmail();
+		}
         runtime_hook::Execute('OnAfterCreateClient');
         self::$resetform = true;
         self::$ok = true;
         return true;
     }
 
-    static function CheckCreateForErrors($username, $packageid, $groupid, $email, $password = "") {
+    static function CheckCreateForErrors($username, $packageid, $groupid, $email, $password="") {
         global $zdbh;
         $username = strtolower(str_replace(' ', '', $username));
         // Check to make sure the username is not blank or exists before we go any further...
@@ -490,7 +508,7 @@ class module_controller {
             return false;
         }
         // Check to make sure the groupname is not blank and exists before we go any further...
-        if (!fs_director::CheckForEmptyValue($groupid)) {
+        if (!fs_director::CheckForEmptyValue($packageid)) {
             $sql = "SELECT COUNT(*) FROM x_groups WHERE ug_id_pk='" . $groupid . "'";
             if ($numrows = $zdbh->query($sql)) {
                 if ($numrows->fetchColumn() == 0) {
@@ -514,7 +532,7 @@ class module_controller {
         }
         // Check for password length...
         if (!fs_director::CheckForEmptyValue($password)) {
-            if (strlen($password) < ctrl_options::GetSystemOption('password_minlength')) {
+            if (strlen($password) < ctrl_options::GetOption('password_minlength')) {
                 self::$badpassword = true;
                 return false;
             }
@@ -539,11 +557,11 @@ class module_controller {
         }
         return true;
     }
-
-    static function DefaultEmailBody() {
-        $line = ui_language::translate("Hi {{fullname}},\r\rWe are pleased to inform you that your new hosting account is now active, you can now login to ZPanel using the following credentials:\r\rUsername: {{username}}\rPassword: {{password}}");
-        return $line;
-    }
+	
+	static function DefaultEmailBody(){
+		$line = ui_language::translate("Hi {{fullname}},\r\rWe are pleased to inform you that your new hosting account is now active, you can now login to ZPanel using the following credentials:\r\rUsername: {{username}}\rPassword: {{password}}");
+		return $line;
+	}
 
     /**
      * End 'worker' methods.
@@ -556,11 +574,11 @@ class module_controller {
         global $controller;
         $currentuser = ctrl_users::GetUserDetail();
         $formvars = $controller->GetAllControllerRequests('FORM');
-        if (isset($formvars['inSWE'])) {
-            $sendemail = $formvars['inSWE'];
-        } else {
-            $sendemail = 0;
-        }
+		if (isset($formvars['inSWE'])){
+			$sendemail = $formvars['inSWE'];
+		} else {
+			$sendemail = 0;
+		}
         if (self::ExecuteCreateClient($currentuser['userid'], $formvars['inNewUserName'], $formvars['inNewPackage'], $formvars['inNewGroup'], $formvars['inNewFullName'], $formvars['inNewEmailAddress'], $formvars['inNewAddress'], $formvars['inNewPostCode'], $formvars['inNewPhone'], $formvars['inNewPassword'], $sendemail, $formvars['inEmailSubject'], $formvars['inEmailBody'])) {
             unset($_POST['inNewUserName']);
             return true;
@@ -631,9 +649,9 @@ class module_controller {
     }
 
     static function getAllClientList() {
-        global $controller;
-        $currentuser = ctrl_users::GetUserDetail();
-        $urlvars = $controller->GetAllControllerRequests('URL');
+		global $controller;
+		$currentuser = ctrl_users::GetUserDetail();
+		$urlvars = $controller->GetAllControllerRequests('URL');
         $clientlist = self::ListAllClients($urlvars['other'], $currentuser['userid']);
         if (!fs_director::CheckForEmptyValue($clientlist)) {
             return $clientlist;
@@ -802,7 +820,7 @@ class module_controller {
 
     static function getDefaultEmailBody() {
         global $controller;
-        return self::DefaultEmailBody();
+		return self::DefaultEmailBody();
     }
 
     static function getFormName() {
@@ -876,26 +894,26 @@ class module_controller {
     }
 
     static function getRandomPassword() {
-        $minpasswordlength = ctrl_options::GetSystemOption('password_minlength');
-        $trylength = 9;
-        if ($trylength < $minpasswordlength) {
-            $uselength = $minpasswordlength;
-        } else {
-            $uselength = $trylength;
-        }
+		$minpasswordlength=ctrl_options::GetOption('password_minlength');
+		$trylength = 9;
+		if ($trylength < $minpasswordlength){
+			$uselength = $minpasswordlength;
+		} else {
+			$uselength = $trylength;
+		}
         $password = fs_director::GenerateRandomPassword($uselength, 4);
         return $password;
     }
 
     static function getMinPassLength() {
-        $minpasswordlength = ctrl_options::GetSystemOption('password_minlength');
-        $trylength = 9;
-        if ($trylength < $minpasswordlength) {
-            $uselength = $minpasswordlength;
-        } else {
-            $uselength = $trylength;
-        }
-        return $uselength;
+		$minpasswordlength=ctrl_options::GetOption('password_minlength');
+		$trylength = 9;
+		if ($trylength < $minpasswordlength){
+			$uselength = $minpasswordlength;
+		} else {
+			$uselength = $trylength;
+		}
+		return $uselength;
     }
 
     static function getResult() {
@@ -921,7 +939,7 @@ class module_controller {
             return ui_sysmessage::shout(ui_language::translate("Your email adress is not valid. Please enter a valid email address."), "zannounceerror");
         }
         if (!fs_director::CheckForEmptyValue(self::$badpassword)) {
-            return ui_sysmessage::shout(ui_language::translate("Your password did not meet the minimun length requirements. Characters needed for password length") . ": " . ctrl_options::GetSystemOption('password_minlength'), "zannounceerror");
+            return ui_sysmessage::shout(ui_language::translate("Your password did not meet the minimun length requirements. Characters needed for password length") .": " . ctrl_options::GetOption('password_minlength'), "zannounceerror");
         }
         if (!fs_director::CheckForEmptyValue(self::$alreadyexists)) {
             return ui_sysmessage::shout(ui_language::translate("A client with that name already appears to exsist on this server."), "zannounceerror");

@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>Accès refusé</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body bgcolor="#ffffff" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor">
+
+<style>
+
+.sw {font-family:Verdana;font-size:13px;color:#000000;}
+.swr {font-family:Verdana;font-size:13px;color:#FF0000;}
+</style>
+
+<LINK href="javascript/style$this->browser.css" rel="stylesheet" type="text/css">
+
+<img src="$pref['logo_big_img']"><br>
+<h1>Security Error</h1>
+
+<font class="swr">The account you are trying to login as has triggered a security warning.</font>
+<font class="sw"> 
+<ul>
+  <li>The account in the database is assosiated with the mail-server <b>$var['origserver']</b> , while you are trying to access the remote account with the mail-server <b>$var['server']</b></li>
+  <li>Access is locked since the assosiated mail-server address is no longer used</li>
+  <li>This is used as a security precaution to disallow access from unauthorized hostnames</li>
+</ul>
+</font>
+
+<p><font class="swr">To resolve the access error</font></p>
+<font class="sw">
+<ul>
+  <li>Login to the new remote-mailserver with the existing password used in $pref['brandname']</li>
+  <li>Contact the administrator $this->admin_email to assosciate your account with the new mail-server address</li>
+</ul>
+</font>
+</body>
+</html>
+
+

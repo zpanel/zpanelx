@@ -1,0 +1,5 @@
+This plugin adds 3 javascript warning options to the compose page:
+
+1. Confirm when sending a message
+2. Confirm when sending a message with a blank subject
+3. Confirm when exiting the compose page without sending a message.

@@ -1,0 +1,53 @@
+					</td>
+				</tr>
+			</table>
+		 </td>
+	</tr>
+<!-- if($this->Ajax) { -->
+			</table>
+		</td>
+	</tr>
+<!-- } -->
+
+	<tr>
+		<td><img src="imgs/simple/shim.gif" width="163" height="1" border="0"></td>
+		<td align="center">
+			
+			<table width="95%" cellpadding="0" cellspacing="0" border="0" align='center'>
+				<tr>
+					<td width="100"><img src="imgs/simple/footer_left.gif" width="100" height="35" border="0"></td>
+					<td class="footertile" width="100%"  height="35" align="center" nowrap>
+						<font class="footerfont">
+							<!-- <a class="swheader" href="util.php?func=start">Начальная страница</a> &nbsp; -->
+
+<!-- if($pref['allow_SMS']) { -->                                                                     
+<a class="swheader" href="sms.php?func=newsms">Отправить SMS</a>&nbsp;   
+<!-- } -->
+
+<!-- if($pref['allow_Folders']) { -->                                                                     
+<a class="swheader" href="util.php?func=info">Папки</a>&nbsp;   
+<!-- } -->
+
+							<!-- if($pref['allow_Profile']) { -->                                                                     
+							<a class="swheader" href="util.php?func=profile">Профиль</a>&nbsp;
+							<!-- } -->                                                                                              
+
+							<!-- if($pref['allow_SpamSettings'] && $domains["$this->pop3host"]) { -->                                                                     
+							<a class="swheader" href="util.php?func=spamsettings">Спам</a>&nbsp;
+							<!-- } -->                                                                                              
+
+							<a class="swheader" href="javascript:logout_simple()">Выход</a>
+						</font>
+					</td>
+					<td width="100"><img src="imgs/simple/footer_right.gif" width="100" height="35" border="0"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+<!-- if($var['moved_status'] === false) { -->
+<script>alert("A message could not be moved, possibly due to message size restrictions in the destination folder")</script>
+<!-- } -->
+</body>
+</html>

@@ -1,0 +1,6 @@
+#about_page{ padding-left: 20px; }
+#about_images{ margin-top: 20px; padding-bottom: 10px; text-align: center; }
+#about_images img{ border: none; margin: 20px; }
+.about_table { width: 75%; padding-left: 5px; margin-top: -15px; clear: both; }
+.about_table td{ padding-right: 15px; padding-bottom: 5px; vertical-align: top; padding-top: 2px; }
+.opt_leftcol{ white-space: nowrap; padding-left: 10px; color: #000; width: 220px; padding-right: 15px; }

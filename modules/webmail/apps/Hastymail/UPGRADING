@@ -1,0 +1,81 @@
+FROM 1.1 RC1 to 1.1 RC2
+---------------------
+
+No changes
+
+
+FROM 1.0/1.0.1 to 1.1 RC1
+---------------------
+
+- Changed the default HTML filter to HTMLPure which is a bit slower than
+  htmLawed but more secure. To get the best performance make sure the
+  pure_serializer_path value is set to a writable directory in the main
+  index.php file.
+- Added a new config setting called no_simplemode_cookies that disables
+  cookies when user's login via simple mode (this was the previous default
+  behavior). Now the default is to use cookies in simple mode.
+- Added two new themes, "Clean" and "Dark Gray". These can be enabled by
+  adding the following to your hastymail2.conf file:
+
+    theme = clean,true,true,true
+    theme = dark_gray,true,true,false
+
+- Added 4 new plugins, ldap_mailhost, message_tags, spam_folder, select_range.
+  Each plugin has a README file in hastymail2/plugin/<name>/ with more details.
+- Added support for opening attachments types that are natively supported by
+  the browser (like PDF files) either inline or in a new window. The mime
+  types to support are defined in the main index.php file
+
+
+ROM RC9 to 1.0
+-------------------
+
+- Added a new theme called "moss". It should be added to the hastymail.conf
+  file with the following: theme=moss,true,true,false
+- Added a "show_smtp_debug" setting. This will output SMTP debug information
+  at the bottom of the webpage when an outgoing message is sent.
+- Added a "trim_login_fields" setting. This will cause Hastymail to trim
+  whitespace from usernames and passwords when a user attempts to login.
+  Unlike prior releases this behavior is now disabled by default.
+- Added an "imap_use_namespaces" setting. This enables the use of the IMAP
+  NAMESPACE extension to determine available folders. This is a new feature
+  and is disabled by default.
+- Added 5 new plugins, login_alias, pop_fetch, saved_search, username, and
+  custom_reply_to
+- Updated the default user settings section at the bottom of the config file
+  to include all available settings.
+
+
+FROM RC8 to RC9
+---------------
+
+- None of the changes in these versions require any configuration updates
+
+
+FROM RC7 to RC8
+---------------
+
+- Added the http_content_type setting that when changed to xhmtl will send the
+  application/xhtml-xml content header
+- Fixed a typo in the imap_folder_delimiter_override option.
+- Changed the imap_search_charset setting options to be uppercase
+- Added several (commented out) plugin entries so that all the plugins are listed.
+  Newly added plugins are auto_address, js_help, js_notice, js_sign, context,
+  uuencode, and quota
+
+ 
+FROM RC6 to RC7
+---------------
+
+- Moved the filesystem_delim setting to the index.php file because we need to
+  use it before we have access to the site config values. If you were using
+  this option in the hastymail2.conf file you will need to set it to the correct
+  delimiter in the main index.php file instead. The default is still "/"
+- Expanded the alt_<nunmber> options in the configuration file to override any
+  setting, not just IMAP related settings. This way different IMAP server logins
+  can have different SMTP server settings, or different general settings.
+- Added icons for the main menu to the buuf theme which requires templates, and
+  the theme's entry in the hastymail2.conf file needs to be updated to the following:
+
+    theme = buuf,true,true,true
+

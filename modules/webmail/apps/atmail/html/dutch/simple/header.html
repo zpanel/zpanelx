@@ -1,0 +1,278 @@
+<html>
+<head>
+<!-- if($this->username && $this->pop3host) { -->
+<title>$pref['brandname'] - $this->username@$this->pop3host $var['extratitle']</title>
+<!-- } -->
+
+<!-- if(!$this->username || !$this->pop3host) { -->
+<title>$pref['brandname'] - Inloggen</title>
+<!-- } -->
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<link rel="stylesheet" href="html/css/calendar_simple.css" type="text/css">
+
+$var['atmailstyle']
+
+<script>
+var InterfaceStyle = "Simple";
+var InterfaceHeaderOffSet = 52;
+var SharedCal = "$pref['GlobalAbook']";
+var allow_EmailForwarding = "$pref['allow_EmailForwarding']";
+var allow_HtmlEditor = "$this->HtmlEditor";
+
+var agt=navigator.userAgent.toLowerCase();
+var safari = agt.indexOf("like gecko");
+if(safari != -1)	{
+document.write('<style>.tablewidth { width: 100%;} .maintable {BACKGROUND-COLOR: #96BDE0; width:99%;} .iframewidth {width:500px; } </style>');
+} else	{
+document.write('<style>.tablewidth { width: 100%;} .maintable {BACKGROUND-COLOR: #96BDE0; width:99%;} .iframewidth {width:100%; }</style>');
+}
+
+function toggleLayer( whichLayer )
+{
+  var elem, vis;
+  if( document.getElementById ) // this is the way the standards work
+    elem = document.getElementById( whichLayer );
+  else if( document.all ) // this is the way old msie versions work
+      elem = document.all[whichLayer];
+  else if( document.layers ) // this is the way nn4 works
+    elem = document.layers[whichLayer];
+  vis = elem.style;
+  // if the style.display value is blank we try to figure it out here
+  if(vis.display==''&&elem.offsetWidth!=undefined&&elem.offsetHeight!=undefined)
+    vis.display = (elem.offsetWidth!=0&&elem.offsetHeight!=0)?'block':'none';
+  vis.display = (vis.display==''||vis.display=='block')?'none':'block';
+}
+
+
+function logout_simple()	{
+<!-- if($this->EmptyTrash) { -->
+location.href='util.php?func=logout';
+}
+<!-- } -->
+
+<!-- if(!$this->EmptyTrash) { -->
+location.href='index.php?func=logout';
+}
+<!-- } -->
+</script>
+
+<script language="Javascript" src="javascript/webtoolkit.url.js"></script>
+
+<!-- if(!$this->Ajax) { -->
+<MAP NAME="button_composemail_Map">
+<AREA SHAPE="rect" ALT="Bericht schrijven" title="Bericht schrijven" COORDS="5,30,47,64" HREF="compose.php?func=new">
+</MAP>
+
+<MAP NAME="button_checkmail_Map">
+<AREA SHAPE="rect" ALT="Mail lezen" title="Mail lezen" COORDS="5,6,59,40" HREF="showmail.php?Folder=Inbox">
+
+<MAP NAME="button_settings_Map">
+<AREA SHAPE="rect" ALT="Instellingen" title="Instellingen" COORDS="103,7,147,44" HREF="util.php?func=settings">
+</MAP>
+
+<MAP NAME="button_findmail_Map">
+<AREA SHAPE="rect" ALT="E-mail zoeken" title="E-mail zoeken" COORDS="121,4,160,40" href="javascript:opensearch();">
+</MAP>
+
+<script language="Javascript" src="javascript/opensearch.js"></script>
+<!-- } -->
+
+<!-- if($this->Ajax) { -->
+<script language="JavaScript" src="html/$this->Language/javascript/ajax-lang.js"></script>
+<script language="JavaScript" src="javascript/ajax/ajax-int.js"></script>
+<!-- } -->
+
+<!-- if($this->Ajax && file_exists('cal.php')) { -->
+<script type="text/javascript" src="parse.php?file=javascript/ajax/cal_loader.js"></script>
+<!-- } -->
+
+<!-- if(!$this->Ajax) { -->
+<script language="Javascript" src="html/$this->Language/javascript/menubar-big.js"></script>
+<!-- } -->
+
+<script language="Javascript" src="html/$this->Language/javascript/composewin.js"></script>
+</head>
+
+<!--  Ajax interface -->
+
+<!-- if(preg_match('/compose\.php/', $_SERVER['SCRIPT_NAME']) && $this->AutoComplete && $this->Ajax) { -->
+<body bgcolor="#ffffff" vlink="#5B83A7" link="#5B83A7" leftmargin="0" rightmargin="0" topmargin="0" bottommargin="0" onresize="resize_iframe();" onclick="liveSearchHide();" onload="resize_iframe()">
+<!-- } -->
+
+<!-- if(preg_match('/compose\.php/', $_SERVER['SCRIPT_NAME']) && !$this->AutoComplete && $this->Ajax) { -->
+<body bgcolor="#ffffff" vlink="#5B83A7" link="#5B83A7" leftmargin="0" rightmargin="0" topmargin="0" bottommargin="0" onresize="resize_iframe();" onload="resize_iframe()">
+<!-- } -->
+
+<!-- if(!preg_match('/compose\.php/', $_SERVER['SCRIPT_NAME']) && $this->Ajax && $var['Ajax']) { -->
+<body scroll="yes" onload="PageLoaded('$var['func']', '$var['To']', '$var['Cc']', '$var['Bcc']');" onresize="FixShowMail();" bgcolor="#ffffff" vlink="#5B83A7" link="#5B83A7" leftmargin="0" rightmargin="0" topmargin="0" bottommargin="0">
+<!-- } -->
+
+<!-- if(!preg_match('/compose\.php/', $_SERVER['SCRIPT_NAME']) && $this->Ajax && !$var['Ajax']) { -->
+<body scroll="yes" onload="" bgcolor="#ffffff" vlink="#5B83A7" link="#5B83A7" leftmargin="0" rightmargin="0" topmargin="0" bottommargin="0">
+<!-- } -->
+
+<!-- Non Ajax interface -->
+
+<!-- if(preg_match('/compose\.php/', $_SERVER['SCRIPT_NAME']) && $this->AutoComplete && !$this->Ajax) { -->
+<body bgcolor="#ffffff" vlink="#5B83A7" link="#5B83A7" leftmargin="0" rightmargin="0" topmargin="0" bottommargin="0" onresize="resize_iframe();" onload="resize_iframe()">
+<!-- } -->
+
+<!-- if(preg_match('/compose\.php/', $_SERVER['SCRIPT_NAME']) && !$this->AutoComplete && !$this->Ajax) { -->
+<body bgcolor="#ffffff" vlink="#5B83A7" link="#5B83A7" leftmargin="0" rightmargin="0" topmargin="0" bottommargin="0" onresize="resize_iframe();" onload="resize_iframe()">
+<!-- } -->
+
+<!-- if(!preg_match('/compose\.php/', $_SERVER['SCRIPT_NAME']) && !$this->Ajax) { -->
+<body bgcolor="#ffffff" vlink="#5B83A7" link="#5B83A7" leftmargin="0" rightmargin="0" topmargin="0" bottommargin="0">
+<!-- } -->
+
+<div id="EmailSentNotice" style="display: none; position: absolute; top: 5px; right: 125px; font: menu; background-color: #deeaf6; color: #5b83a7; border: 1px solid #85b2dc; padding: 5px;">Bericht verstuurd</div>
+
+<div id="CalendarBox"></div>
+<!-- Hide quota bar if user has not enabled option -->
+<!-- if(!$pref['quota_bar']) { -->
+<style>
+div#QuotaBar { visibility:hidden; }
+div#QuotaLabel { visibility:hidden; }
+div#QuotaBarFill { visibility:hidden; }
+</style>
+<!-- } -->
+
+<!-- Hide quota bar if quota is not set -->
+<!-- if ($var['usedquota'] == 0) { -->
+<style>
+div#QuotaBar { visibility:hidden; }
+div#QuotaLabel { visibility:hidden; }
+div#QuotaBarFill { visibility:hidden; }
+</style>
+<!-- } -->
+
+<!-- Displays the percentage as pretty bar -->
+<!-- if (!$var['used_percent']) { -->
+<!-- no variable so no display at all -->
+<!-- } -->
+<!-- if (($var['used_percent']) && ($var['used_percent'] < 50)) { -->
+<div style="position:absolute;right:235;top:15;color:#5b83a7;font:menu;" id="QuotaLabel">Space Used:</div>
+<div style="border-left: 1px #96BDE0 solid;border-right: 1px #96BDE0 solid;border-bottom:1px #96BDE0 solid;border-top:1px #96BDE0 solid;border-spacing:0px;width:100px;height:21px;position:absolute;right:125;top:10;" id="QuotaBar">
+<div style="background-color:#00ff00;height:21px;width:$var['used_percent']px;" id="QuotaBarFill">&nbsp;</div>
+<div style="font:menu;color:#999999;position:absolute; text-align:center;width:100px;left:0; top:3;">$var['used_percent']%</div>
+</div>
+<!-- } -->
+<!-- if (($var['used_percent']) && ($var['used_percent'] > 50 ) && ($var['used_percent'] < 75))  { -->
+<div style="position:absolute;right:235;top:15;color:#5b83a7;font:menu;" id="QuotaLabel">Space Used:</div>
+<div style="border-left: 1px #96BDE0 solid;border-right: 1px #96BDE0 solid;border-bottom:1px #96BDE0 solid;border-top:1px #96BDE0 solid;border-spacing:0px;width:100px;height:21px;position:absolute;right:125;top:10;" id="QuotaBar">
+<div style="background-color:#ffff00;height:21px;width:$var['used_percent']px;" id="QuotaBarFill">&nbsp;</div>
+<div style="font:menu;color:#999999;position:absolute; text-align:center;width:100px;left:0; top:3;">$var['used_percent']%</div>
+</div>
+<!-- } -->
+<!-- if (($var['used_percent']) && ($var['used_percent'] > 75 )) { -->
+<div style="position:absolute;right:235;top:15;color:#5b83a7;font:menu;" id="QuotaLabel">Space Used:</div>
+<div style="border-left: 1px #96BDE0 solid;border-right: 1px #96BDE0 solid;border-bottom:1px #96BDE0 solid;border-top:1px #96BDE0 solid;border-spacing:0px;width:100px;height:21px;position:absolute;right:125;top:10;" id="QuotaBar">
+<div style="background-color:#ff0000;height:21px;width:$var['used_percent']px;" id="QuotaBarFill">&nbsp;</div>
+<div style="font:menu;color:#ffffff;font-weight:bold;position:absolute; text-align:center;width:100px;left:0; top:3;">$var['used_percent']%</div>
+</div>
+<!-- } -->
+<!-- if (($var['used_percent']) && ($var['used_percent'] > $pref['quota_alert_over'] )) { -->
+<div style="z-index:1;margin-left:auto;margin-right:auto;background-color:red;color:white;font:menu;border:2px solid black;width:100%;height:180px;position:absolute;" id="QuotaWarning">
+$pref['quota_alert_html']
+<p style="text-align:center;font-size:24px;">
+<a style="color:white;" href="javascript:void(0);" onclick="javascript:toggleLayer('QuotaWarning');">Dismiss</a>
+</p>
+</div>
+<!-- } -->
+
+<div id="SimpleInterface">
+
+
+<!-- if(preg_match('/MSIE/', $_SERVER['HTTP_USER_AGENT']) && $this->Ajax) { -->
+<div id="MainNavCompose" onmouseover="GrowPNG('MainNavCompose', true);" onmouseout="GrowPNG('MainNavCompose', false);" onclick="ComposeMsg();" style="cursor: pointer; position: absolute; top: 118px; left: 4px; width: 51px; height: 44px; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='imgs/simple/icon_compose.png', sizingMethod='scale');" title="Bericht schrijven"></div>
+
+<div id="MainNavChkMail" onmouseover="GrowPNG('MainNavChkMail', true);" onmouseout="GrowPNG('MainNavChkMail', false);" onclick="LoadFolders(); LoadMsgs();" style="cursor: pointer; position: absolute; top: 94px; left: 57px; width: 64px; height: 44px; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='imgs/simple/icon_chkmail.png', sizingMethod='scale');" title="Mail lezen"></div>
+
+<div id="MainNavSettings" onmouseover="GrowPNG('MainNavSettings', true);" onmouseout="GrowPNG('MainNavSettings', false);" onclick="window.location.href = 'util.php?func=settings';" style="cursor: pointer; position: absolute; top: 50px; left: 99px; width: 49px; height: 44px; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='imgs/simple/icon_settings.png', sizingMethod='scale');" title="Instellingen"></div>
+
+<div id="MainNavSearch" onmouseover="GrowPNG('MainNavSearch', true);" onmouseout="GrowPNG('MainNavSearch', false);" onclick="ToggleSearchRow();" style="cursor: pointer; position: absolute; top: 3px; left: 117px; width: 51px; height: 44px; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='imgs/simple/icon_search.png', sizingMethod='scale');" title="E-mail zoeken"></div>
+<!-- } -->
+
+<!-- if(!preg_match('/MSIE/', $_SERVER['HTTP_USER_AGENT']) && $this->Ajax) { -->
+<div id="MainNavCompose" onmouseover="GrowPNG('MainNavCompose', true);" onmouseout="GrowPNG('MainNavCompose', false);" onclick="ComposeMsg();" style="cursor: pointer; position: absolute; top: 118px; left: 4px; width: 51px; height: 44px;"><img id="MainNavComposeImg" src="imgs/simple/icon_compose.png" width="51" height="44" border="0" title="Bericht schrijven"></div>
+
+<div id="MainNavChkMail" onmouseover="GrowPNG('MainNavChkMail', true);" onmouseout="GrowPNG('MainNavChkMail', false);" onclick="LoadFolders(); LoadMsgs();" style="cursor: pointer; position: absolute; top: 94px; left: 57px; width: 64px; height: 44px;"><img id="MainNavChkMailImg" src="imgs/simple/icon_chkmail.png" width="64" height="44" border="0" title="Mail lezen"></div>
+
+<div id="MainNavSettings" onmouseover="GrowPNG('MainNavSettings', true);" onmouseout="GrowPNG('MainNavSettings', false);" onclick="window.location.href = 'util.php?func=settings';" style="cursor: pointer; position: absolute; top: 50px; left: 99px; width: 49px; height: 44px;"><img id="MainNavSettingsImg" src="imgs/simple/icon_settings.png" width="49" height="44" border="0" title="Instellingen"></div>
+
+<div id="MainNavSearch" onmouseover="GrowPNG('MainNavSearch', true);" onmouseout="GrowPNG('MainNavSearch', false);" onclick="ToggleSearchRow();" style="cursor: pointer; position: absolute; top: 3px; left: 117px; width: 51px; height: 44px;"><img id="MainNavSearchImg" src="imgs/simple/icon_search.png" width="51" height="44" border="0" title="E-mail zoeken"></div>
+<!-- } -->
+
+<!-- if($this->Ajax && $var['Ajax']) { -->
+<table width="100%" height="100%" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td width="163" valign="top">
+			<table width="163" cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td class="ajaximage_findmail" colspan="2"></td>
+				</tr>
+				<tr>
+					<td class="ajaximage_settings" colspan="2"></td>
+				</tr>
+				<tr>
+					<td class="ajaximage_compose"></td>
+					<td class="ajaximage_checkmail"></td>
+				</tr>
+			</table>
+			<div id="FolderBox" style="width: 150px;">
+				<table width="150" cellpadding="0" cellspacing="0" border="0">
+					<tr>
+						<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="5" border="0"></td>
+						<td width="129"><img src="imgs/simple/shim.gif" width="125" height="12" border="0"></td>
+					</tr>
+					<tr>
+						<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="10" border="0"></td>
+						<td width="125"><img src="imgs/simple/shim.gif" width="125" height="10" border="0"></td>
+					</tr>
+					<tr>
+						<td width="38"><img src="imgs/simple/sidebar_bottom_tile.gif" width="38" height="95" border="0"></td>
+						<td width="125"><img src="imgs/simple/shim.gif" width="125" height="95" border="0"></td>
+					</tr>
+				</table>
+			</div>
+		</td>
+<!-- } -->
+
+<!-- if($this->Ajax && !$var['Ajax']) { -->
+<table cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td width="163" valign="top">
+<table width="163" cellpadding="0" cellspacing="0" border="0">
+<tr>
+	<td class="ajaximage_findmail" colspan="2"></td>
+</tr>
+<tr>
+	<td class="ajaximage_settings" colspan="2"></td>
+</tr>
+<tr>
+	<td class="ajaximage_compose"></td>
+	<td class="ajaximage_checkmail"></td>
+</tr>
+</table>
+
+<!-- } -->
+
+<!-- if(!$this->Ajax) { -->
+<table cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td width="163" valign="top">
+<table width="163" cellpadding="0" cellspacing="0" border="0">
+<tr>
+	<td colspan="2"><img src="imgs/simple/button_findmail.gif" width="163" height="45" border="0" USEMAP="#button_findmail_Map"></td>
+</tr>
+<tr>
+	<td colspan="2"><img src="imgs/simple/button_settings.gif" width="163" height="45" border="0" USEMAP="#button_settings_Map"></td>
+</tr>
+<tr>
+	<td><img src="imgs/simple/button_composemail.gif" width="55" height="105" border="0" USEMAP="#button_composemail_Map"></td>
+	<td><img src="imgs/simple/button_checkmail.gif" width="108" height="105" border="0" USEMAP="#button_checkmail_Map"></td>
+</tr>
+</table>
+
+<!-- } -->

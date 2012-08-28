@@ -1,0 +1,73 @@
+How to translate SquirrelMail into another language?
+====================================================
+
+This document does not deal with Subversion and how to upload translations to
+the repository.
+
+1. First time translation
+-------------------------
+
+a) You must have gettext installed. If it is not installed you can
+   download the sources from
+   <URL:ftp://ftp.gnu.org/pub/gnu/gettext/>.
+
+b) Find the language code for the language you are going to translate
+   into. A list of language codes can be found at
+   <URL:http://lcweb.loc.gov/standards/iso639-2/langhome.html>. If
+   there is a 2 letter code for the language, use this.
+
+   Create a directory squirrelmail/locale/language_code/LC_MESSAGES/.
+   Copy squirrelmail/po/squirrelmail.pot into this directory and rename 
+   it to squirrelmail.po. This is the file that is going to be translated.
+
+c) To translate the actual strings fill in the msgstr after each
+   msgid with the appropriate translation. There are a few tools which
+   can make this job a bit easier at
+   <URL:http://i18n.kde.org/translation-howto/specialized-programs.html#gui-tools>.
+
+   Convert the translated squirrelmail.po into a binary file by
+   running the command "msgfmt -o squirrelmail.mo squirrelmail.po" in
+   the directory where the translated squirrelmail.po is residing.
+
+d) Add the language name and language code to the array at the top of
+   squirrelmail/functions/i18n.php.
+
+There is also a small script in the po/ directory that can help in
+creating charset mappings from the mappings files that are provided by
+the Unicode consortium.
+
+2. Maintaining translations
+---------------------------
+
+The text strings in the program will change over time. This means that
+strings that are already translated are no longer used and new strings
+are added. Therefore it is necessary to maintain the translations.
+
+a) There should always be an updated template containing all strings
+   in SquirrelMail in squirrelmail/po/squirrelmail.pot. To merge all new
+   strings in this file into an existing translation run the command
+
+msgmerge squirrelmail/locale/language/LC_MESSAGES/squirrelmail.po \
+squirrelmail/po/squirrelmail.pot > \
+squirrelmail/locale/language/LC_MESSAGES/squirrelmail.po.new
+
+   This should keep all strings that are unchanged and comment out all
+   strings that are no longer in use. You might want to make a copy
+   before doing this.
+
+SquirrelMail contains po/mergepo script that can merge strings without need
+to write that complex msgmerge command. Just put your translation name as 
+option.
+
+b) Run msgfmt again to create a new binary file.
+
+
+3. Updating the template
+------------------------
+
+SquirrelMail provides po/xgetpo script that extracts all the required 
+strings and updates po/squirrelmail.pot file.
+
+
+
+$Id: translating.txt 12125 2007-01-13 19:04:49Z kink $

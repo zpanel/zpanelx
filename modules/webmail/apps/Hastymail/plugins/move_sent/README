@@ -1,0 +1,14 @@
+This plugin adds the ability to select which folder to save sent mail to
+on the compose page, and has a checkbox to move a replied-to message to
+the same folder. To enable this plugin uncomment or add the following line
+to your hastymail2.conf file:
+
+plugin = move_sent
+
+Rebuild your hastymail2.rc file and logout then back in to enable the plugin.
+A setting will then be available in the compose section of the opitons page
+called "Show Sent folder selection". This plugin is only compatible with
+Hastymail2 versions RC8 or newer.
+
+Thanks very much to Joerg S for writing the code and donating the plugin
+to the Hastymail project

@@ -1,0 +1,51 @@
+<!-- if($var['Ajax']) { -->
+<Error>
+	<ErrorStatus>1</ErrorStatus>
+	<ErrorMessage><![CDATA[
+<!-- } -->
+
+<html>
+<head>
+<title>Sitzung Zeitüberschreitung $this->Ajax</title>
+<html lang="de"><meta http-equiv="Content-Type" content="text/html; charset=utf-8">       
+<script language="Javascript">
+// Reload to the master frame if we are inside a frameset
+if (parent.frames[1]) top.window.location=self.location;
+</script>
+</head>
+<body bgcolor="$this->BgColor" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor">
+
+<style>
+
+.sw {font-family:Verdana;font-size:13px;color:#000000;}
+.swr {font-family:Verdana;font-size:13px;color:#FF0000;}
+</style>
+
+
+
+<LINK href="javascript/style$this->browser.css" rel="stylesheet" type="text/css">
+<img src="$pref['logo_big_img']"><br>
+<h1>Zeitüberschreitung erreicht</h1>
+
+<font class="swr">Sitzung Zeitüberschreitung - Ihre Sitzung ist nicht mehr gültig.</font>
+<font class="sw"> 
+<ul>
+  <li>Sie waren zu lange inaktiv und wurden automatisch vom Server abgemeldet, bitte melden Sie sich neu an.</li>
+  <li>$pref['session_timeout'] Sekunden Inaktivität sind maximal erlaubt</li>
+  <li><a href="index.php" target="_top">Nochmal einloggen</a></li>
+</ul>
+</font>
+
+<p><font class="swr">Wenn Sie immer noch Probleme bei der Anmeldung haben</font></p>
+<font class="sw">
+<ul>
+  <li>Bitte unser Supportteam kontaktieren $this->admin_email für weitere Unterstützung</li>
+</ul>
+</font>
+</body>
+</html>
+
+<!-- if($var['Ajax']) { -->
+	]]></ErrorMessage>
+</Error>
+<!-- } -->

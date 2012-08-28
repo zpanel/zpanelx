@@ -1,0 +1,51 @@
+<!-- if($var['Ajax']) { -->
+<Error>
+	<ErrorStatus>1</ErrorStatus>
+	<ErrorMessage><![CDATA[
+<!-- } -->
+
+<html>
+<head>
+<title>Session Timeout $this->Ajax</title>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">       
+<script language="Javascript">
+// Reload to the master frame if we are inside a frameset
+if (parent.frames[1]) top.window.location=self.location;
+</script>
+</head>
+<body bgcolor="$this->BgColor" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor">
+
+<style>
+
+.sw {font-family:Verdana;font-size:13px;color:#000000;}
+.swr {font-family:Verdana;font-size:13px;color:#FF0000;}
+</style>
+
+
+
+<LINK href="javascript/style$this->browser.css" rel="stylesheet" type="text/css">
+<img src="$pref['logo_big_img']"><br>
+<h1>Timeout Exceeded</h1>
+
+<font class="swr">Session Timeout - Your login session has timed out.</font>
+<font class="sw"> 
+<ul>
+  <li>Your account activity has been inactive for too long.</li>
+  <li>$pref['session_timeout'] seconds maximum timeout allowed</li>
+  <li><a href="index.php" target="_top">Login to your account again</a></li>
+</ul>
+</font>
+
+<p><font class="swr">If you are still unsuccessful accessing your account</font></p>
+<font class="sw">
+<ul>
+  <li>Contact the Administrator $this->admin_email for assistance</li>
+</ul>
+</font>
+</body>
+</html>
+
+<!-- if($var['Ajax']) { -->
+	]]></ErrorMessage>
+</Error>
+<!-- } -->

@@ -1,0 +1,9 @@
+This plugin uses javascript to supply extened information about the settings on the options page.
+When on the options page mousing over an option label will trigger extended help information about
+that setting in the upper right of the page. To enable this plugin add or uncomment the following
+in your hastymail2.conf file:
+
+plugin = js_help
+
+Don't forget to rebuild your hastymail2.rc file after changing the hastymail2.conf file. If you
+are logged in logout and back in to activate the plugin.

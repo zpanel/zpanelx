@@ -1,0 +1,292 @@
+<!--Include="html/german/simple/header.html"-->
+
+<!-- here is our custom sidebar -->
+
+			<table width="163" cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="5" border="0"></td>
+					<td width="125"><img src="imgs/simple/shim.gif" width="125" height="5" border="0"></td>
+				</tr>
+
+			
+				<tr>
+					<td width="38" bgcolor="#DEEBF6" class="optionselectedimg"><img onclick="document.abook_new.submit()" style="cursor: pointer; cursor: hand;" src="imgs/simple/sidebar_addentry_on.gif" width="38" height="31" border="0"></td>
+
+<td width="125">
+<table width='115' cellpadding='0' cellspacing=0 border=0 height="33" class='optionselected'>
+<tr>
+<td onclick="document.abook_new.submit()">
+<font class="menuoption">&nbsp;&nbsp;Speichern</small>
+</td>
+</tr>
+</table>
+</td>
+
+				</tr>
+				<tr>
+					<td width="38"><img src="imgs/simple/sidebar_bottom_tile.gif" width="38" height="95" border="0"></td>
+					<td width="125"><img src="imgs/simple/shim.gif" width="125" height="95" border="0"></td>
+				</tr>
+			</table>
+		 </td>
+
+<!--Include="html/german/simple/headerbar.html"-->
+
+<!--<SCRIPT language=JavaScript src="javascript/opencompose.js"></script>-->
+<script language="JavaScript">
+window.status = ' Neuen Benutzer ins Adressbuch eintragen ';
+
+</script>
+
+
+$var['atmailstyle']
+
+<font class="sw">Anschauen $var['UserEmail'] des Adressbuch Profils. Sie können Änderungen vornehmen indem Sie die Felder unten bearbeiten. Wenn Sie auf abschicken klicken werden die Änderungen vorgenommen.</font><br><br>
+
+<form method="post" name="abook_new" ENCTYPE="multipart/form-data">
+
+<!-- The permissions hidden values -->
+<input type="hidden" name="WriteSelectedGroups">
+<input type="hidden" name="WriteSelectedUsers">
+<input type="hidden" name="ReadSelectedGroups">
+<input type="hidden" name="ReadSelectedUsers">
+<input type="hidden" name="PreviousEmail" value="$var['UserEmail']">
+
+<!-- Display fields only in the advanced interface so update doesnt delete them -->
+<input type="hidden" name="UserEmail2" value="$var['UserEmail2']">
+<input type="hidden" name="UserEmail3" value="$var['UserEmail3']">
+<input type="hidden" name="UserEmail4" value="$var['UserEmail4']">
+<input type="hidden" name="UserEmail5" value="$var['UserEmail5']">
+<input type="hidden" name="UserTitle" value="$var['UserTitle']">
+<input type="hidden" name="UserGender" value="$var['UserGender']">
+<input type="hidden" name="UserDOB" value="$var['UserDOB']">
+<input type="hidden" name="UserWorkTitle" value="$var['UserWorkTitle']">
+<input type="hidden" name="UserWorkDept" value="$var['UserWorkDept']">
+<input type="hidden" name="UserWorkOffice" value="$var['UserWorkOffice']">
+<input type="hidden" name="UserPgpKey" value="$var['UserPgpKey']">
+
+<input type=hidden name="func" value="open">
+<input type=hidden name="update" value="1">
+<input type=hidden name="type" value="$var['abookview']">
+<input type=hidden name="id" value="$var['id']">
+
+
+<table border='0' cellspacing='1' cellpadding='0' class='maintable'>
+
+<TABLE border='0' width='100%' cellpadding='4' cellspacing='0' class="table_control">
+
+<TR><TH class="topleft"><font class='mheader'>&nbsp;Person ins Adressbuch hinzufügen</font></TH>
+<TH class="middle"></TH>
+<TH class="topright"></TH></TR>
+
+
+
+</TABLE>
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5" class="borderstyle">
+    <tr>
+		<td bgcolor="$this->SecondaryColor">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5">
+<tr> 
+<td bgcolor="$this->SecondaryColor" width="150"><font class="sw">E-Mail Adresse</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserEmail" size="40" maxlength="64" value="$var['UserEmail']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Vorname</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserFirstName" size="40" maxlength="64" value="$var['UserFirstName']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">mittlerer Name</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserMiddleName" size="40" maxlength="64" value="$var['UserMiddleName']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Nachname</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserLastName" size="40" maxlength="64" value="$var['UserLastName']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Adresse</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserHomeAddress" size="30" maxlength="64" value="$var['UserHomeAddress']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Stadt</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserHomeCity" size="30" maxlength="64" value="$var['UserHomeCity']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Bundesland</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserHomeState" size="20" maxlength="64" value="$var['UserHomeState']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Postleitzahl</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserHomeZip" size="20" maxlength="64" value="$var['UserHomeZip']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Land</font></td>
+<td bgcolor="$this->SecondaryColor">
+<input type="text" class="inputfield" name="UserHomeCountry" size="35" maxlength="64" value="$var['UserHomeCountry']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">URL</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserURL" size="40" maxlength="128" value="$var['UserURL']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Handynummer</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserHomeMobile" size="20" maxlength="64" value="$var['UserHomeMobile']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Rufnummer (Zuhause)</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserHomePhone" size="20" maxlength="64" value="$var['UserHomePhone']">
+</td>
+</tr>
+
+<td bgcolor="$this->SecondaryColor"><font class="sw">Faxnummer (Zuhause)</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserHomeFax" size="20" maxlength="64" value="$var['UserHomeFax']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Extra Informationen</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<textarea name="UserInfo" cols="40" rows="5" class="inputfieldtextarea">$var['UserInfo']</textarea>
+</td>
+</tr>
+</table>
+
+
+</td>
+</tr>
+</table>
+
+<br><br>
+
+<table border='0' cellspacing='1' cellpadding='0' class='maintable'>
+
+<TABLE border='0' width='100%' cellpadding='4' cellspacing='0' class="table_control">
+
+<TR><TH class="topleft"><font class='mheader'>&nbsp;Geschäftlich</font></TH>
+<TH class="middle"></TH>
+<TH class="topright"></TH></TR>
+
+
+
+</TABLE>
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5" class="borderstyle">
+    <tr>
+		<td bgcolor="$this->SecondaryColor">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5">
+
+<tr>
+<td bgcolor="$this->SecondaryColor" width="150"><font class="sw">Firmenname</font></td>
+<td bgcolor="$this->SecondaryColor">
+<input type="text" class="inputfield" name="UserWorkCompany" size="40" maxlength="64" value="$var['UserWorkCompany']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Adresse</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserWorkAddress" size="30" maxlength="64" value="$var['UserWorkAddress']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Stadt</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserWorkCity" size="30" maxlength="64" value="$var['UserWorkCity']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Bundesland</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserWorkState" size="20" maxlength="64" value="$var['UserWorkState']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Postleitzahl</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserWorkZip" size="20" maxlength="64" value="$var['UserWorkZip']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Land</font></td>
+<td bgcolor="$this->SecondaryColor">
+<input type="text" class="inputfield" name="UserWorkCountry" size="35" maxlength="64" value="$var['UserWorkCountry']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Handy geschäftlich</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserWorkMobile" size="20" maxlength="64" value="$var['UserWorkMobile']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">Rufnummer (Büro)</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserWorkPhone" size="20" maxlength="64" value="$var['UserWorkPhone']">
+</td>
+</tr>
+
+<td bgcolor="$this->SecondaryColor"><font class="sw">Faxnummer (Büro)</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserWorkFax" size="20" maxlength="64" value="$var['UserWorkFax']">
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+</form>
+</table>
+
+<input type=submit name="submitform" value="übernehmen" class="stdbtnlong" style="display: none">
+
+<!--Include="html/german/simple/footer.html"-->

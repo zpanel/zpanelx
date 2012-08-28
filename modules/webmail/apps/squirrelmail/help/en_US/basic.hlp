@@ -1,0 +1,53 @@
+<chapter>
+   <title>
+      Introduction to SquirrelMail
+   </title>
+   <summary>
+      SquirrelMail provides a way of checking your E-Mail over the World Wide
+      Web. 
+   </summary>
+   <description>
+      <p>
+      So what exactly is <a href="http://squirrelmail.org/">SquirrelMail</a>?
+      It's a web interface to email that's written in <a href="http://php.net">PHP</a>.
+      It was designed to allow email access through your server from 
+      anywhere in the world via the Web.  More information about exactly 
+      how it does this and the IMAP protocol can be found <a href="http://imap.org">here</a>.
+      </p>
+   </description>
+</chapter>   
+
+<section>
+   <title>
+      The Basics
+   </title>
+   <description>
+      <p>
+      If you just have a quick question, you might want to look at the FAQ. 
+      </p>
+      <p>
+      SquirrelMail is laid out in two main sections called frames.  The 
+      left frame lists the currently subscribed folders.  More information 
+      about the left frame may be found under the "Folders" section of this
+      help documentation.
+      </p>
+      <p>
+      On the right is where most of the action will take place.  At the 
+      top of the page is a menu bar.  Sign out will safely log you out of 
+      the program when you are finished.  The Current Folder displays which 
+      of the folders listed in the left frame you are currently in.
+      Right after you log in, by default your INBOX will be shown.
+      </p>
+      <p>
+      Under the top bar is a row of menu choices:
+         <ul>
+            <li><b>Compose</b> - Make and send an email which may include attachments. 
+            <li><b>Addresses</b> - Holds a list of addresses that are contained in your personal address book.
+            <li><b>Folders</b> - All folder manipulation takes place under this.  You can delete, create, rename, subscribe, and unsubscribe folders. 
+            <li><b>Options</b> - Change settings of how SquirrelMail responds and looks. 
+            <li><b>Search</b> - With this tool, you can search through a mailbox for given criteria. 
+            <li><b>Help</b> - You are already here! 
+         </ul>
+      </p>
+   </description>
+</section>   

@@ -1,0 +1,45 @@
+<tr> 
+
+    <td width="20" class="$var['class']" nowrap>
+<input type="checkbox" name="delgroup[]" value="$var['id']" onclick='TRS(this)' title="選択されたアイテムを削除">
+</td>
+
+    <td width="20" class="$var['class']">
+<input type="checkbox" name="To" value="$var['ViewGroupEmail']" onclick='TRS(this)'>
+</td>
+
+<td class="$var['class']" width="20">
+<input type="checkbox" name="Cc" value="$var['ViewGroupEmail']" onclick='TRS(this)'>
+</td>
+
+    <td class="$var['class']" width="20">
+<input type="checkbox" name="Bcc" value="$var['ViewGroupEmail']" onclick='TRS(this)'>
+</td>
+
+    <td class="$var['class']" width="29%">
+<FONT class="sw">&nbsp;&nbsp;<a href="javascript:opencompose('$var['ViewGroupEmail']','','', '1')" title="クリックしてEメールを送信">$var['ViewGroupEmail']</a></FONT>
+</td>
+
+<td class="$var['class']" width="20%" nowrap>
+<FONT class="sw">&nbsp;$var['FullName']</FONT>
+</td>
+
+    <td class="$var['class']" width="17%" nowrap>
+<FONT class="sw">&nbsp;$var['WorkPhone']</FONT>
+	</td>
+
+    <td class="$var['class']" width="17%" nowrap>
+<FONT class="sw">&nbsp;$var['HomePhone']</FONT>
+</td>
+
+    <td class="$var['class']" width="8%" nowrap align="right">
+<a href="javascript:editgroup('$var['id']', 'personal')"><img alt="グループ編集" border=0 src="imgs/xp/modifygroup.gif" width="28" height="18"></a>
+<a class="cursor: hand;" onClick="javascript:DelContact('group','$var['Email']')"><img alt="グループ削除" border=0 height="18" src="imgs/xp/trash.gif" width="22"></a>
+
+</td>
+  </tr>
+
+<tr>
+<td height="1" bgcolor='$this->PrimaryColor' colspan="9">
+</td>
+</tr>

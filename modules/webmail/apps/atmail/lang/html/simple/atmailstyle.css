@@ -1,0 +1,89 @@
+<style>
+html { overflow: -moz-scrollbars-vertical !important; }
+BODY { backgroundcolor: $this->BgColor; link: $this->LinkColor; vlink: $this->VlinkColor; }
+A:vlink { COLOR: $this->VlinkColor; }
+A:hover { COLOR: #004182; }
+A { cursor: pointer; cursor: hand; }
+<!-- if($this->Language == "arabic") { --> 
+.sw {font-family:$this->FontStyle, Arial;font-size:12px;color:$this->TextColor;FONT-WEIGHT: lighter;}
+.swbold {font-family:$this->FontStyle, Arial;font-size:12px;color:$this->TextColor;FONT-WEIGHT: bold;}
+<!-- } -->
+<!-- if($this->Language != "arabic") { -->
+.sw {font-family:$this->FontStyle, Arial;font-size:12px;color:$this->TextColor;FONT-WEIGHT: lighter;}
+.swbold {font-family:$this->FontStyle, Arial;font-size:12px;color:$this->TextColor;font-weight:BOLD; }
+<!-- } -->
+.swb {font-family:$this->FontStyle, Arial;font-size:12px;color:$this->TextColor;}
+.swsmall {font-family:$this->FontStyle, Arial;font-size:12px;color:$this->TextColor;}
+.swhead {font-family:$this->FontStyle, Arial;font-size:14px;font-weight:BOLD;color:$this->TextColor;}
+.mheader {font-family:Verdana, Arial;font-size:12px;font-weight:BOLD;color:#667085;}
+.mlheader {font-family:$this->FontStyle, Arial;font-size:18px;font-weight:BOLD;color:$this->TextColor;}
+.msheader {font-family:$this->FontStyle, Arial;font-size:13px;font-weight:BOLD;color:$this->TextColor;}
+.maintitle {color:#003366; height: 20px; background-image: url(imgs/tile_back.gif); }
+.maintable {BACKGROUND-COLOR: #96BDE0; }
+TR.on	{BACKGROUND-COLOR: $this->SelectColor; }
+.swheadershowmail {font-family: $this->FontStyle, Arial, Helvetica, sans-serif;font-size: 11px;color:#5B83A7;FONT-WEIGHT: lighter;}
+
+.swheader {font-family:$this->FontStyle, Arial;font-size:12px;color:#5B83A7;FONT-WEIGHT: lighter;}
+.small {font-family:$this->FontStyle, Arial;font-size:12px;color:#000000;FONT-WEIGHT: lighter;}
+.smallbold {font-family:$this->FontStyle, Arial;font-size:9px;color:#000000;FONT-WEIGHT: bold;}
+.menuoption {font-family:Verdana, Arial;font-size:12px;color:#000000;FONT-WEIGHT: lighter; overflow: hidden; text-overflow:ellipsis;} 
+.swheadermenu {font-family:Verdana, Arial;font-size:12px;color:#5B83A7;FONT-WEIGHT: lighter; text-decoration: underline;}
+.folderlink {font-family:Verdana, Arial;font-size:12px;color:#000000;FONT-WEIGHT: lighter;}
+.optionroll { border-top: 1px solid $this->PrimaryColor; border-bottom: 1px solid $this->PrimaryColor; border-left: 1px solid #ffffff; border-right: 1px solid $this->PrimaryColor; cursor: pointer; cursor: hand;}
+.optionover { border-top: 1px solid #ffffff; border-bottom: 1px solid #ffffff; border-left: 1px solid #ffffff; border-right: 1px solid #ffffff; cursor: pointer; cursor: hand;}
+
+.optionselected { border-top: 1px solid #468BC7; border-bottom: 1px solid #468BC7; border-right: 1px solid #468BC7; cursor: pointer; cursor: hand; }
+.optionselectedimg { border-top: 1px solid #468BC7; border-bottom: 1px solid #468BC7; cursor: pointer; cursor: hand; }
+
+.folderlink {text-decoration:none;}
+.menuoption {font-family:Verdana, Arial;font-size:12px;color:#000000;FONT-WEIGHT: lighter; }
+.maillink {color:#000000; text-decoration:none; cursor:hand;}
+</style>
+
+<SCRIPT LANGUAGE="JavaScript">
+var MSIE=navigator.userAgent.indexOf("MSIE");
+var NETS=navigator.userAgent.indexOf("Netscape");
+var OPER=navigator.userAgent.indexOf("Opera");
+var agt=navigator.userAgent.toLowerCase();
+
+this.major = parseInt(navigator.appVersion);
+this.minor = parseFloat(navigator.appVersion);
+
+this.nav  = ((agt.indexOf('mozilla')!=-1) && (agt.indexOf('spoofer')==-1)
+&& (agt.indexOf('compatible') == -1) && (agt.indexOf('opera')==-1)
+&& (agt.indexOf('webtv')==-1));
+
+this.nav5 = (this.nav && (this.major == 5));
+this.nav5up = (this.nav && (this.major >= 5));
+
+this.win32 = ( this.win95 || this.winnt || this.win98 ||
+((this.major >= 4) && (navigator.platform == "Win32")) ||
+(agt.indexOf("win32")!=-1) || (agt.indexOf("32bit")!=-1) );
+
+var mac    = (agt.indexOf("mac")!=-1);
+
+if((MSIE>-1) || (OPER>-1) || (this.win32 && this.nav5up && MSIE>-1) ) {
+
+	if(mac) {
+	document.write("<style>.stdbtn { background-color: #F4F4F4; font: 9pt Tahoma, Arial; width: 75px;}");
+	document.write(".stdbtnlong { background-color: #F4F4F4; font: 9pt Tahoma, Arial; width: 95px;}");
+	document.write(".stdsel { background-color: #FFFFFF; font: 9pt Verdana, Arial; border: 1px solid black;padding: 3px;}");
+	document.write(".stdedit { background-color: #FFFFFF; font: 9pt Tahoma, Arial; border: 1px solid black;padding: 3px;}</style>");
+	} else  {
+	document.write("<style>.stdbtn { background-color: #F4F4F4; font: 8pt Tahoma, Arial; width: 75px;}");
+	document.write(".stdbtnlong { background-color: #F4F4F4; font: 8pt Tahoma, Arial; width: 95px;}");
+	document.write(".stdsel { background-color: #FFFFFF; font: 9pt Verdana, Arial; border: 1px solid black;padding: 3px; height: 22px;}");
+	document.write(".stdedit { background-color: #FFFFFF; font: 8pt Tahoma, Arial; border: 1px solid black;padding: 3px; height: 22px;}</style>");
+	}
+
+} else {
+document.write("<!--Netscape Style Sheet-->");
+document.write("<style>.stdbtn { background-color: #F4F4F4; font: 8pt Tahoma, Arial; width: 75px;}");
+document.write(".stdbtnlong { background-color: #F4F4F4; font: 8pt Tahoma, Arial; width: 95px;}");
+document.write(".stdsel { background-color: #FFFFFF; font: 9pt Verdana, Arial;}");
+document.write(".stdedit { background-color: #FFFFFF; font: 9pt Verdana, Arial;}</style>");
+
+}
+
+</SCRIPT>
+

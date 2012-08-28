@@ -1,5 +1,4 @@
 <?php
-
 /**
  * IPMI Plugin Config File
  *

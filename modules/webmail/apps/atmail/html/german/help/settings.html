@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>Einstellungen ändern</title> 
+<html lang="de"><meta http-equiv="Content-Type" content="text/html; charset=utf-8">       
+
+<script>
+function expandentry()	 {
+
+<!-- if($var['FirstLoad']) { -->
+if(parent.document.getElementById('calendar').style.display != 'block')
+parent.expand('settings', parent.document.getElementById('settingsimg') );
+<!-- } -->
+
+}
+</script>
+</head>
+
+<LINK href="javascript/stylehelp.css" rel="stylesheet" type="text/css">
+
+<body bgcolor="#FFFFFF" text="#000000" onload="expandentry()">
+<font face="Verdana, Arial" size="+1">
+Einstellungen ändern</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">Hilfe Index</a> ]</font>
+
+<hr noshade>
+<p>
+
+Verwenden Sie die Eigenschaften Option um die Eigenschaften Ihres E-Mail Accounts anzupassen. Passen Sie die Oberfläche auf Ihre Bedürfnisse an, die Eigenschaften beinhalten die folgenden Einstellungen:<BR><BR>
+<u>WebMail Einstellungen</u>
+
+<ul>
+<li><B>Vollständiger Name</B><BR>
+Dieser wird bei ausgehenden E-Mails als Absendernamen verwendet.</li>
+
+<li><B>Antwortadresse</B><BR>
+Geben Sie die Antwortadresse ein, wenn diese Ihrem Benutzernamen nicht entspricht.</li>
+
+<li><B>E-Mails sortieren nach</B><BR>        
+Wählen Sie ein Sortierungskriterium aus, anhand dessen Ihre Emails sortiert werden sollen.</li>
+
+<li><B>Layout</B><BR>        
+Ändern Sie die Oberfläche des WebMails und wählen Sie die einfache Oberfläche für ältere Browser aus.</li>
+
+<li><B>Sprache</B><BR>                       
+Wählen Sie die Sprache der Oberfläche aus.</li>
+
+<li><B>Nachrichten anzeigen</B><BR>             
+Wählen Sie die Anzahl von E-Mails die angezeigt werden im Eingangsordner.</li>
+
+<li><B>Posteingangs Aktualisierungsintervall</B><BR>             
+Geben Sie den Intervall (in Minuten) an, in welchem der Posteingang aktualisiert werden soll. Sie werden durch einen Hinweiston auf neue Nachrichten aufmerksam gemacht.</li>
+
+<li><B>Zeitformat</B><BR>             
+Wählen Sie die Voreinstellung, um im WebMail und im Kalender die Zeit anzuzeigen</li>
+
+<li><B>Datumsformat</B><BR>             
+Wählen Sie das Datumsformat das angezeigt werden soll</li>
+
+<li><B>Zeitzone wählen</b><BR>
+Wählen Sie die Zeitzone aus in der Sie sich befinden. Diese wird bei E-Mails immer angegeben.</li>
+
+<li><B>E-Mail Signatur</B><BR>             
+Geben Sie hier eine E-Mail Signatur an, die bei allen ausgehenden E-Mails angehängt wird.</li>     
+
+<li><B>Papierkorb leeren bei der Abmeldung</B><BR>                     
+Wählen Sie diese Option aus, wenn beim Abmelden der Papierkorb geleert werden soll.</li>         
+
+<li><B>HTML Editor</B><BR>                
+Wählen Sie diese Option, wenn Sie einen HTML Editor verwenden möchten.</li>                                                              
+
+<li><B>E-Mail Signatur</B><BR>          
+Erstellen Sie Ihre Signatur. Sie wird an alle ausgehenden Nachrichten automatisch angehängt</li></ul>
+
+</ul>
+
+</font></p>
+</body>
+</html>

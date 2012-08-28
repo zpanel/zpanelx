@@ -1,0 +1,1111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 7.0.2" />
+<style type="text/css">
+/* Debug borders */
+p, li, dt, dd, div, pre, h1, h2, h3, h4, h5, h6 {
+/*
+  border: 1px solid red;
+*/
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a { color: blue; }
+a:visited { color: fuchsia; }
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
+tt {
+  color: navy;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  font-family: sans-serif;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  border-bottom: 2px solid silver;
+  padding-top: 0.5em;
+}
+
+div.sectionbody {
+  font-family: serif;
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+span#author {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+span#email {
+}
+span#revision {
+  font-family: sans-serif;
+}
+
+div#footer {
+  font-family: sans-serif;
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+div#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+div#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+div#preamble,
+div.tableblock, div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-right: 10%;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock > div.content {
+  padding-left: 2.0em;
+}
+div.quoteblock .attribution {
+  text-align: right;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 2px solid silver;
+}
+
+div.exampleblock > div.content {
+  border-left: 2px solid silver;
+  padding: 0.5em;
+}
+
+div.verseblock div.content {
+  white-space: pre;
+}
+
+div.imageblock div.content { padding-left: 0; }
+div.imageblock img { border: 1px solid silver; }
+span.image img { border-style: none; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: italic;
+}
+dd > *:first-child {
+  margin-top: 0;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.olist2 {
+  list-style-type: lower-alpha;
+}
+
+div.tableblock > table {
+  border-color: #527bbd;
+  border-width: 3px;
+}
+thead {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+tfoot {
+  font-weight: bold;
+}
+
+div.hlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+td.hlist1 {
+  vertical-align: top;
+  font-style: italic;
+  padding-right: 0.8em;
+}
+td.hlist2 {
+  vertical-align: top;
+}
+
+@media print {
+  div#footer-badges { display: none; }
+}
+include::./stylesheets/xhtml11-manpage.css[]
+/* Workarounds for IE6's broken and incomplete CSS2. */
+
+div.sidebar-content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+div.sidebar-title, div.image-title {
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 0.0em;
+  margin-bottom: 0.5em;
+}
+
+div.listingblock div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock-content {
+  padding-left: 2.0em;
+}
+
+div.exampleblock-content {
+  border-left: 2px solid silver;
+  padding-left: 0.5em;
+}
+</style>
+<title>gitglossary(7)</title>
+</head>
+<body>
+<div id="header">
+<h1>
+gitglossary(7) Manual Page
+</h1>
+<h2>NAME</h2>
+<div class="sectionbody">
+<p>gitglossary -
+   A GIT Glossary
+</p>
+</div>
+</div>
+<h2>SYNOPSIS</h2>
+<div class="sectionbody">
+<p>*</p>
+</div>
+<h2>DESCRIPTION</h2>
+<div class="sectionbody">
+<dl>
+<dt>
+<a id="def_alternate_object_database"></a>alternate object database
+</dt>
+<dd>
+<p>
+        Via the alternates mechanism, a <a href="#def_repository">repository</a>
+        can inherit part of its <a href="#def_object_database">object database</a>
+        from another object database, which is called "alternate".
+</p>
+</dd>
+<dt>
+<a id="def_bare_repository"></a>bare repository
+</dt>
+<dd>
+<p>
+        A bare repository is normally an appropriately
+        named <a href="#def_directory">directory</a> with a <tt>.git</tt> suffix that does not
+        have a locally checked-out copy of any of the files under
+        revision control. That is, all of the <tt>git</tt>
+        administrative and control files that would normally be present in the
+        hidden <tt>.git</tt> sub-directory are directly present in the
+        <tt>repository.git</tt> directory instead,
+        and no other files are present and checked out. Usually publishers of
+        public repositories make bare repositories available.
+</p>
+</dd>
+<dt>
+<a id="def_blob_object"></a>blob object
+</dt>
+<dd>
+<p>
+        Untyped <a href="#def_object">object</a>, e.g. the contents of a file.
+</p>
+</dd>
+<dt>
+<a id="def_branch"></a>branch
+</dt>
+<dd>
+<p>
+        A "branch" is an active line of development.  The most recent
+        <a href="#def_commit">commit</a> on a branch is referred to as the tip of
+        that branch.  The tip of the branch is referenced by a branch
+        <a href="#def_head">head</a>, which moves forward as additional development
+        is done on the branch.  A single git
+        <a href="#def_repository">repository</a> can track an arbitrary number of
+        branches, but your <a href="#def_working_tree">working tree</a> is
+        associated with just one of them (the "current" or "checked out"
+        branch), and <a href="#def_HEAD">HEAD</a> points to that branch.
+</p>
+</dd>
+<dt>
+<a id="def_cache"></a>cache
+</dt>
+<dd>
+<p>
+        Obsolete for: <a href="#def_index">index</a>.
+</p>
+</dd>
+<dt>
+<a id="def_chain"></a>chain
+</dt>
+<dd>
+<p>
+        A list of objects, where each <a href="#def_object">object</a> in the list contains
+        a reference to its successor (for example, the successor of a
+        <a href="#def_commit">commit</a> could be one of its <a href="#def_parent">parents</a>).
+</p>
+</dd>
+<dt>
+<a id="def_changeset"></a>changeset
+</dt>
+<dd>
+<p>
+        BitKeeper/cvsps speak for "<a href="#def_commit">commit</a>". Since git does not
+        store changes, but states, it really does not make sense to use the term
+        "changesets" with git.
+</p>
+</dd>
+<dt>
+<a id="def_checkout"></a>checkout
+</dt>
+<dd>
+<p>
+        The action of updating all or part of the
+        <a href="#def_working_tree">working tree</a> with a <a href="#def_tree_object">tree object</a>
+        or <a href="#def_blob_object">blob</a> from the
+        <a href="#def_object_database">object database</a>, and updating the
+        <a href="#def_index">index</a> and <a href="#def_HEAD">HEAD</a> if the whole working tree has
+        been pointed at a new <a href="#def_branch">branch</a>.
+</p>
+</dd>
+<dt>
+<a id="def_cherry-picking"></a>cherry-picking
+</dt>
+<dd>
+<p>
+        In <a href="#def_SCM">SCM</a> jargon, "cherry pick" means to choose a subset of
+        changes out of a series of changes (typically commits) and record them
+        as a new series of changes on top of a different codebase. In GIT, this is
+        performed by the "git cherry-pick" command to extract the change introduced
+        by an existing <a href="#def_commit">commit</a> and to record it based on the tip
+        of the current <a href="#def_branch">branch</a> as a new commit.
+</p>
+</dd>
+<dt>
+<a id="def_clean"></a>clean
+</dt>
+<dd>
+<p>
+        A <a href="#def_working_tree">working tree</a> is clean, if it
+        corresponds to the <a href="#def_revision">revision</a> referenced by the current
+        <a href="#def_head">head</a>. Also see "<a href="#def_dirty">dirty</a>".
+</p>
+</dd>
+<dt>
+<a id="def_commit"></a>commit
+</dt>
+<dd>
+<p>
+        As a noun: A single point in the
+        git history; the entire history of a project is represented as a
+        set of interrelated commits.  The word "commit" is often
+        used by git in the same places other revision control systems
+        use the words "revision" or "version".  Also used as a short
+        hand for <a href="#def_commit_object">commit object</a>.
+</p>
+<p>As a verb: The action of storing a new snapshot of the project's
+state in the git history, by creating a new commit representing the current
+state of the <a href="#def_index">index</a> and advancing <a href="#def_HEAD">HEAD</a>
+to point at the new commit.</p>
+</dd>
+<dt>
+<a id="def_commit_object"></a>commit object
+</dt>
+<dd>
+<p>
+        An <a href="#def_object">object</a> which contains the information about a
+        particular <a href="#def_revision">revision</a>, such as <a href="#def_parent">parents</a>, committer,
+        author, date and the <a href="#def_tree_object">tree object</a> which corresponds
+        to the top <a href="#def_directory">directory</a> of the stored
+        revision.
+</p>
+</dd>
+<dt>
+<a id="def_core_git"></a>core git
+</dt>
+<dd>
+<p>
+        Fundamental data structures and utilities of git. Exposes only limited
+        source code management tools.
+</p>
+</dd>
+<dt>
+<a id="def_DAG"></a>DAG
+</dt>
+<dd>
+<p>
+        Directed acyclic graph. The <a href="#def_commit_object">commit objects</a> form a
+        directed acyclic graph, because they have parents (directed), and the
+        graph of commit objects is acyclic (there is no <a href="#def_chain">chain</a>
+        which begins and ends with the same <a href="#def_object">object</a>).
+</p>
+</dd>
+<dt>
+<a id="def_dangling_object"></a>dangling object
+</dt>
+<dd>
+<p>
+        An <a href="#def_unreachable_object">unreachable object</a> which is not
+        <a href="#def_reachable">reachable</a> even from other unreachable objects; a
+        dangling object has no references to it from any
+        reference or <a href="#def_object">object</a> in the <a href="#def_repository">repository</a>.
+</p>
+</dd>
+<dt>
+<a id="def_detached_HEAD"></a>detached HEAD
+</dt>
+<dd>
+<p>
+        Normally the <a href="#def_HEAD">HEAD</a> stores the name of a
+        <a href="#def_branch">branch</a>.  However, git also allows you to <a href="#def_checkout">check out</a>
+        an arbitrary <a href="#def_commit">commit</a> that isn't necessarily the tip of any
+        particular branch.  In this case HEAD is said to be "detached".
+</p>
+</dd>
+<dt>
+<a id="def_dircache"></a>dircache
+</dt>
+<dd>
+<p>
+        You are <strong>waaaaay</strong> behind. See <a href="#def_index">index</a>.
+</p>
+</dd>
+<dt>
+<a id="def_directory"></a>directory
+</dt>
+<dd>
+<p>
+        The list you get with "ls" :-)
+</p>
+</dd>
+<dt>
+<a id="def_dirty"></a>dirty
+</dt>
+<dd>
+<p>
+        A <a href="#def_working_tree">working tree</a> is said to be "dirty" if
+        it contains modifications which have not been <a href="#def_commit">committed</a> to the current
+        <a href="#def_branch">branch</a>.
+</p>
+</dd>
+<dt>
+<a id="def_ent"></a>ent
+</dt>
+<dd>
+<p>
+        Favorite synonym to "<a href="#def_tree-ish">tree-ish</a>" by some total geeks. See
+        <tt>http://en.wikipedia.org/wiki/Ent_(Middle-earth)</tt> for an in-depth
+        explanation. Avoid this term, not to confuse people.
+</p>
+</dd>
+<dt>
+<a id="def_evil_merge"></a>evil merge
+</dt>
+<dd>
+<p>
+        An evil merge is a <a href="#def_merge">merge</a> that introduces changes that
+        do not appear in any <a href="#def_parent">parent</a>.
+</p>
+</dd>
+<dt>
+<a id="def_fast_forward"></a>fast forward
+</dt>
+<dd>
+<p>
+        A fast-forward is a special type of <a href="#def_merge">merge</a> where you have a
+        <a href="#def_revision">revision</a> and you are "merging" another
+        <a href="#def_branch">branch</a>'s changes that happen to be a descendant of what
+        you have. In such these cases, you do not make a new <a href="#def_merge">merge</a>
+        <a href="#def_commit">commit</a> but instead just update to his
+        revision. This will happen frequently on a
+        <a href="#def_tracking_branch">tracking branch</a> of a remote
+        <a href="#def_repository">repository</a>.
+</p>
+</dd>
+<dt>
+<a id="def_fetch"></a>fetch
+</dt>
+<dd>
+<p>
+        Fetching a <a href="#def_branch">branch</a> means to get the
+        branch's <a href="#def_head_ref">head ref</a> from a remote
+        <a href="#def_repository">repository</a>, to find out which objects are
+        missing from the local <a href="#def_object_database">object database</a>,
+        and to get them, too.  See also <a href="git-fetch.html">git-fetch(1)</a>.
+</p>
+</dd>
+<dt>
+<a id="def_file_system"></a>file system
+</dt>
+<dd>
+<p>
+        Linus Torvalds originally designed git to be a user space file system,
+        i.e. the infrastructure to hold files and directories. That ensured the
+        efficiency and speed of git.
+</p>
+</dd>
+<dt>
+<a id="def_git_archive"></a>git archive
+</dt>
+<dd>
+<p>
+        Synonym for <a href="#def_repository">repository</a> (for arch people).
+</p>
+</dd>
+<dt>
+<a id="def_grafts"></a>grafts
+</dt>
+<dd>
+<p>
+        Grafts enables two otherwise different lines of development to be joined
+        together by recording fake ancestry information for commits. This way
+        you can make git pretend the set of <a href="#def_parent">parents</a> a <a href="#def_commit">commit</a> has
+        is different from what was recorded when the commit was
+        created. Configured via the <tt>.git/info/grafts</tt> file.
+</p>
+</dd>
+<dt>
+<a id="def_hash"></a>hash
+</dt>
+<dd>
+<p>
+        In git's context, synonym to <a href="#def_object_name">object name</a>.
+</p>
+</dd>
+<dt>
+<a id="def_head"></a>head
+</dt>
+<dd>
+<p>
+        A <a href="#def_ref">named reference</a> to the <a href="#def_commit">commit</a> at the tip of a
+        <a href="#def_branch">branch</a>.  Heads are stored in
+        <tt>$GIT_DIR/refs/heads/</tt>, except when using packed refs. (See
+        <a href="git-pack-refs.html">git-pack-refs(1)</a>.)
+</p>
+</dd>
+<dt>
+<a id="def_HEAD"></a>HEAD
+</dt>
+<dd>
+<p>
+        The current <a href="#def_branch">branch</a>.  In more detail: Your <a href="#def_working_tree">working tree</a> is normally derived from the state of the tree
+        referred to by HEAD.  HEAD is a reference to one of the
+        <a href="#def_head">heads</a> in your repository, except when using a
+        <a href="#def_detached_HEAD">detached HEAD</a>, in which case it may
+        reference an arbitrary commit.
+</p>
+</dd>
+<dt>
+<a id="def_head_ref"></a>head ref
+</dt>
+<dd>
+<p>
+        A synonym for <a href="#def_head">head</a>.
+</p>
+</dd>
+<dt>
+<a id="def_hook"></a>hook
+</dt>
+<dd>
+<p>
+        During the normal execution of several git commands, call-outs are made
+        to optional scripts that allow a developer to add functionality or
+        checking. Typically, the hooks allow for a command to be pre-verified
+        and potentially aborted, and allow for a post-notification after the
+        operation is done. The hook scripts are found in the
+        <tt>$GIT_DIR/hooks/</tt> directory, and are enabled by simply
+        making them executable.
+</p>
+</dd>
+<dt>
+<a id="def_index"></a>index
+</dt>
+<dd>
+<p>
+        A collection of files with stat information, whose contents are stored
+        as objects. The index is a stored version of your
+        <a href="#def_working_tree">working tree</a>. Truth be told, it can also contain a second, and even
+        a third version of a working tree, which are used
+        when <a href="#def_merge">merging</a>.
+</p>
+</dd>
+<dt>
+<a id="def_index_entry"></a>index entry
+</dt>
+<dd>
+<p>
+        The information regarding a particular file, stored in the
+        <a href="#def_index">index</a>. An index entry can be unmerged, if a
+        <a href="#def_merge">merge</a> was started, but not yet finished (i.e. if
+        the index contains multiple versions of that file).
+</p>
+</dd>
+<dt>
+<a id="def_master"></a>master
+</dt>
+<dd>
+<p>
+        The default development <a href="#def_branch">branch</a>. Whenever you
+        create a git <a href="#def_repository">repository</a>, a branch named
+        "master" is created, and becomes the active branch. In most
+        cases, this contains the local development, though that is
+        purely by convention and is not required.
+</p>
+</dd>
+<dt>
+<a id="def_merge"></a>merge
+</dt>
+<dd>
+<p>
+        As a verb: To bring the contents of another
+        <a href="#def_branch">branch</a> (possibly from an external
+        <a href="#def_repository">repository</a>) into the current branch.  In the
+        case where the merged-in branch is from a different repository,
+        this is done by first <a href="#def_fetch">fetching</a> the remote branch
+        and then merging the result into the current branch.  This
+        combination of fetch and merge operations is called a
+        <a href="#def_pull">pull</a>.  Merging is performed by an automatic process
+        that identifies changes made since the branches diverged, and
+        then applies all those changes together.  In cases where changes
+        conflict, manual intervention may be required to complete the
+        merge.
+</p>
+<p>As a noun: unless it is a <a href="#def_fast_forward">fast forward</a>, a
+successful merge results in the creation of a new <a href="#def_commit">commit</a>
+representing the result of the merge, and having as
+<a href="#def_parent">parents</a> the tips of the merged <a href="#def_branch">branches</a>.
+This commit is referred to as a "merge commit", or sometimes just a
+"merge".</p>
+</dd>
+<dt>
+<a id="def_object"></a>object
+</dt>
+<dd>
+<p>
+        The unit of storage in git. It is uniquely identified by the
+        <a href="#def_SHA1">SHA1</a> of its contents. Consequently, an
+        object can not be changed.
+</p>
+</dd>
+<dt>
+<a id="def_object_database"></a>object database
+</dt>
+<dd>
+<p>
+        Stores a set of "objects", and an individual <a href="#def_object">object</a> is
+        identified by its <a href="#def_object_name">object name</a>. The objects usually
+        live in <tt>$GIT_DIR/objects/</tt>.
+</p>
+</dd>
+<dt>
+<a id="def_object_identifier"></a>object identifier
+</dt>
+<dd>
+<p>
+        Synonym for <a href="#def_object_name">object name</a>.
+</p>
+</dd>
+<dt>
+<a id="def_object_name"></a>object name
+</dt>
+<dd>
+<p>
+        The unique identifier of an <a href="#def_object">object</a>. The <a href="#def_hash">hash</a>
+        of the object's contents using the Secure Hash Algorithm
+        1 and usually represented by the 40 character hexadecimal encoding of
+        the <a href="#def_hash">hash</a> of the object.
+</p>
+</dd>
+<dt>
+<a id="def_object_type"></a>object type
+</dt>
+<dd>
+<p>
+        One of the identifiers "<a href="#def_commit_object">commit</a>",
+        "<a href="#def_tree_object">tree</a>", "<a href="#def_tag_object">tag</a>" or
+        "<a href="#def_blob_object">blob</a>" describing the type of an
+        <a href="#def_object">object</a>.
+</p>
+</dd>
+<dt>
+<a id="def_octopus"></a>octopus
+</dt>
+<dd>
+<p>
+        To <a href="#def_merge">merge</a> more than two <a href="#def_branch">branches</a>. Also denotes an
+        intelligent predator.
+</p>
+</dd>
+<dt>
+<a id="def_origin"></a>origin
+</dt>
+<dd>
+<p>
+        The default upstream <a href="#def_repository">repository</a>. Most projects have
+        at least one upstream project which they track. By default
+        <em>origin</em> is used for that purpose. New upstream updates
+        will be fetched into remote <a href="#def_tracking_branch">tracking branches</a> named
+        origin/name-of-upstream-branch, which you can see using
+        "<tt>git branch -r</tt>".
+</p>
+</dd>
+<dt>
+<a id="def_pack"></a>pack
+</dt>
+<dd>
+<p>
+        A set of objects which have been compressed into one file (to save space
+        or to transmit them efficiently).
+</p>
+</dd>
+<dt>
+<a id="def_pack_index"></a>pack index
+</dt>
+<dd>
+<p>
+        The list of identifiers, and other information, of the objects in a
+        <a href="#def_pack">pack</a>, to assist in efficiently accessing the contents of a
+        pack.
+</p>
+</dd>
+<dt>
+<a id="def_parent"></a>parent
+</dt>
+<dd>
+<p>
+        A <a href="#def_commit_object">commit object</a> contains a (possibly empty) list
+        of the logical predecessor(s) in the line of development, i.e. its
+        parents.
+</p>
+</dd>
+<dt>
+<a id="def_pickaxe"></a>pickaxe
+</dt>
+<dd>
+<p>
+        The term <a href="#def_pickaxe">pickaxe</a> refers to an option to the diffcore
+        routines that help select changes that add or delete a given text
+        string. With the <tt>--pickaxe-all</tt> option, it can be used to view the full
+        <a href="#def_changeset">changeset</a> that introduced or removed, say, a
+        particular line of text. See <a href="git-diff.html">git-diff(1)</a>.
+</p>
+</dd>
+<dt>
+<a id="def_plumbing"></a>plumbing
+</dt>
+<dd>
+<p>
+        Cute name for <a href="#def_core_git">core git</a>.
+</p>
+</dd>
+<dt>
+<a id="def_porcelain"></a>porcelain
+</dt>
+<dd>
+<p>
+        Cute name for programs and program suites depending on
+        <a href="#def_core_git">core git</a>, presenting a high level access to
+        core git. Porcelains expose more of a <a href="#def_SCM">SCM</a>
+        interface than the <a href="#def_plumbing">plumbing</a>.
+</p>
+</dd>
+<dt>
+<a id="def_pull"></a>pull
+</dt>
+<dd>
+<p>
+        Pulling a <a href="#def_branch">branch</a> means to <a href="#def_fetch">fetch</a> it and
+        <a href="#def_merge">merge</a> it.  See also <a href="git-pull.html">git-pull(1)</a>.
+</p>
+</dd>
+<dt>
+<a id="def_push"></a>push
+</dt>
+<dd>
+<p>
+        Pushing a <a href="#def_branch">branch</a> means to get the branch's
+        <a href="#def_head_ref">head ref</a> from a remote <a href="#def_repository">repository</a>,
+        find out if it is a direct ancestor to the branch's local
+        head ref, and in that case, putting all
+        objects, which are <a href="#def_reachable">reachable</a> from the local
+        head ref, and which are missing from the remote
+        repository, into the remote
+        <a href="#def_object_database">object database</a>, and updating the remote
+        head ref. If the remote <a href="#def_head">head</a> is not an
+        ancestor to the local head, the push fails.
+</p>
+</dd>
+<dt>
+<a id="def_reachable"></a>reachable
+</dt>
+<dd>
+<p>
+        All of the ancestors of a given <a href="#def_commit">commit</a> are said to be
+        "reachable" from that commit. More
+        generally, one <a href="#def_object">object</a> is reachable from
+        another if we can reach the one from the other by a <a href="#def_chain">chain</a>
+        that follows <a href="#def_tag">tags</a> to whatever they tag,
+        <a href="#def_commit_object">commits</a> to their parents or trees, and
+        <a href="#def_tree_object">trees</a> to the trees or <a href="#def_blob_object">blobs</a>
+        that they contain.
+</p>
+</dd>
+<dt>
+<a id="def_rebase"></a>rebase
+</dt>
+<dd>
+<p>
+        To reapply a series of changes from a <a href="#def_branch">branch</a> to a
+        different base, and reset the <a href="#def_head">head</a> of that branch
+        to the result.
+</p>
+</dd>
+<dt>
+<a id="def_ref"></a>ref
+</dt>
+<dd>
+<p>
+        A 40-byte hex representation of a <a href="#def_SHA1">SHA1</a> or a name that
+        denotes a particular <a href="#def_object">object</a>. These may be stored in
+        <tt>$GIT_DIR/refs/</tt>.
+</p>
+</dd>
+<dt>
+<a id="def_reflog"></a>reflog
+</dt>
+<dd>
+<p>
+        A reflog shows the local "history" of a ref.  In other words,
+        it can tell you what the 3rd last revision in _this_ repository
+        was, and what was the current state in _this_ repository,
+        yesterday 9:14pm.  See <a href="git-reflog.html">git-reflog(1)</a> for details.
+</p>
+</dd>
+<dt>
+<a id="def_refspec"></a>refspec
+</dt>
+<dd>
+<p>
+        A "refspec" is used by <a href="#def_fetch">fetch</a> and
+        <a href="#def_push">push</a> to describe the mapping between remote
+        <a href="#def_ref">ref</a> and local ref. They are combined with a colon in
+        the format &lt;src&gt;:&lt;dst&gt;, preceded by an optional plus sign, +.
+        For example: <tt>git fetch $URL
+        refs/heads/master:refs/heads/origin</tt> means "grab the master
+        <a href="#def_branch">branch</a> <a href="#def_head">head</a> from the $URL and store
+        it as my origin branch head". And <tt>git push
+        $URL refs/heads/master:refs/heads/to-upstream</tt> means "publish my
+        master branch head as to-upstream branch at $URL". See also
+        <a href="git-push.html">git-push(1)</a>.
+</p>
+</dd>
+<dt>
+<a id="def_repository"></a>repository
+</dt>
+<dd>
+<p>
+        A collection of <a href="#def_ref">refs</a> together with an
+        <a href="#def_object_database">object database</a> containing all objects
+        which are <a href="#def_reachable">reachable</a> from the refs, possibly
+        accompanied by meta data from one or more <a href="#def_porcelain">porcelains</a>. A
+        repository can share an object database with other repositories
+        via <a href="#def_alternate_object_database">alternates mechanism</a>.
+</p>
+</dd>
+<dt>
+<a id="def_resolve"></a>resolve
+</dt>
+<dd>
+<p>
+        The action of fixing up manually what a failed automatic
+        <a href="#def_merge">merge</a> left behind.
+</p>
+</dd>
+<dt>
+<a id="def_revision"></a>revision
+</dt>
+<dd>
+<p>
+        A particular state of files and directories which was stored in the
+        <a href="#def_object_database">object database</a>. It is referenced by a
+        <a href="#def_commit_object">commit object</a>.
+</p>
+</dd>
+<dt>
+<a id="def_rewind"></a>rewind
+</dt>
+<dd>
+<p>
+        To throw away part of the development, i.e. to assign the
+        <a href="#def_head">head</a> to an earlier <a href="#def_revision">revision</a>.
+</p>
+</dd>
+<dt>
+<a id="def_SCM"></a>SCM
+</dt>
+<dd>
+<p>
+        Source code management (tool).
+</p>
+</dd>
+<dt>
+<a id="def_SHA1"></a>SHA1
+</dt>
+<dd>
+<p>
+        Synonym for <a href="#def_object_name">object name</a>.
+</p>
+</dd>
+<dt>
+<a id="def_shallow_repository"></a>shallow repository
+</dt>
+<dd>
+<p>
+        A shallow <a href="#def_repository">repository</a> has an incomplete
+        history some of whose <a href="#def_commit">commits</a> have <a href="#def_parent">parents</a> cauterized away (in other
+        words, git is told to pretend that these commits do not have the
+        parents, even though they are recorded in the <a href="#def_commit_object">commit         object</a>). This is sometimes useful when you are interested only in the
+        recent history of a project even though the real history recorded in the
+        upstream is much larger. A shallow repository
+        is created by giving the <tt>--depth</tt> option to <a href="git-clone.html">git-clone(1)</a>, and
+        its history can be later deepened with <a href="git-fetch.html">git-fetch(1)</a>.
+</p>
+</dd>
+<dt>
+<a id="def_symref"></a>symref
+</dt>
+<dd>
+<p>
+        Symbolic reference: instead of containing the <a href="#def_SHA1">SHA1</a>
+        id itself, it is of the format <em>ref: refs/some/thing</em> and when
+        referenced, it recursively dereferences to this reference.
+        <em><a href="#def_HEAD">HEAD</a></em> is a prime example of a symref. Symbolic
+        references are manipulated with the <a href="git-symbolic-ref.html">git-symbolic-ref(1)</a>
+        command.
+</p>
+</dd>
+<dt>
+<a id="def_tag"></a>tag
+</dt>
+<dd>
+<p>
+        A <a href="#def_ref">ref</a> pointing to a <a href="#def_tag_object">tag</a> or
+        <a href="#def_commit_object">commit object</a>. In contrast to a <a href="#def_head">head</a>,
+        a tag is not changed by a <a href="#def_commit">commit</a>. Tags (not
+        <a href="#def_tag_object">tag objects</a>) are stored in <tt>$GIT_DIR/refs/tags/</tt>. A
+        git tag has nothing to do with a Lisp tag (which would be
+        called an <a href="#def_object_type">object type</a> in git's context). A
+        tag is most typically used to mark a particular point in the
+        commit ancestry <a href="#def_chain">chain</a>.
+</p>
+</dd>
+<dt>
+<a id="def_tag_object"></a>tag object
+</dt>
+<dd>
+<p>
+        An <a href="#def_object">object</a> containing a <a href="#def_ref">ref</a> pointing to
+        another object, which can contain a message just like a
+        <a href="#def_commit_object">commit object</a>. It can also contain a (PGP)
+        signature, in which case it is called a "signed tag object".
+</p>
+</dd>
+<dt>
+<a id="def_topic_branch"></a>topic branch
+</dt>
+<dd>
+<p>
+        A regular git <a href="#def_branch">branch</a> that is used by a developer to
+        identify a conceptual line of development. Since branches are very easy
+        and inexpensive, it is often desirable to have several small branches
+        that each contain very well defined concepts or small incremental yet
+        related changes.
+</p>
+</dd>
+<dt>
+<a id="def_tracking_branch"></a>tracking branch
+</dt>
+<dd>
+<p>
+        A regular git <a href="#def_branch">branch</a> that is used to follow changes from
+        another <a href="#def_repository">repository</a>. A tracking
+        branch should not contain direct modifications or have local commits
+        made to it. A tracking branch can usually be
+        identified as the right-hand-side <a href="#def_ref">ref</a> in a Pull:
+        <a href="#def_refspec">refspec</a>.
+</p>
+</dd>
+<dt>
+<a id="def_tree"></a>tree
+</dt>
+<dd>
+<p>
+        Either a <a href="#def_working_tree">working tree</a>, or a <a href="#def_tree_object">tree         object</a> together with the dependent <a href="#def_blob_object">blob</a> and tree objects
+        (i.e. a stored representation of a working tree).
+</p>
+</dd>
+<dt>
+<a id="def_tree_object"></a>tree object
+</dt>
+<dd>
+<p>
+        An <a href="#def_object">object</a> containing a list of file names and modes along
+        with refs to the associated blob and/or tree objects. A
+        <a href="#def_tree">tree</a> is equivalent to a <a href="#def_directory">directory</a>.
+</p>
+</dd>
+<dt>
+<a id="def_tree-ish"></a>tree-ish
+</dt>
+<dd>
+<p>
+        A <a href="#def_ref">ref</a> pointing to either a <a href="#def_commit_object">commit         object</a>, a <a href="#def_tree_object">tree object</a>, or a <a href="#def_tag_object">tag         object</a> pointing to a tag or commit or tree object.
+</p>
+</dd>
+<dt>
+<a id="def_unmerged_index"></a>unmerged index
+</dt>
+<dd>
+<p>
+        An <a href="#def_index">index</a> which contains unmerged
+        <a href="#def_index_entry">index entries</a>.
+</p>
+</dd>
+<dt>
+<a id="def_unreachable_object"></a>unreachable object
+</dt>
+<dd>
+<p>
+        An <a href="#def_object">object</a> which is not <a href="#def_reachable">reachable</a> from a
+        <a href="#def_branch">branch</a>, <a href="#def_tag">tag</a>, or any other reference.
+</p>
+</dd>
+<dt>
+<a id="def_working_tree"></a>working tree
+</dt>
+<dd>
+<p>
+        The tree of actual checked out files.  The working tree is
+        normally equal to the <a href="#def_HEAD">HEAD</a> plus any local changes
+        that you have made but not yet committed.
+</p>
+</dd>
+</dl>
+</div>
+<h2>SEE ALSO</h2>
+<div class="sectionbody">
+<p><a href="gittutorial.html">gittutorial(7)</a>, <a href="gittutorial-2.html">gittutorial-2(7)</a>,
+<a href="giteveryday.html">giteveryday(7)</a>, <a href="gitcvs-migration.html">gitcvs-migration(7)</a>,
+<a href="user-manual.html">The Git User's Manual</a></p>
+</div>
+<h2>GIT</h2>
+<div class="sectionbody">
+<p>Part of the <a href="git.html">git(1)</a> suite.</p>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 08-Jun-2008 01:34:32 UTC
+</div>
+</div>
+</body>
+</html>

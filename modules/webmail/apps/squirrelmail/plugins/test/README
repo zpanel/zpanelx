@@ -1,0 +1,27 @@
+Test plugin for SquirrelMail
+============================
+Version $Id$
+
+Copyright 1999-2011 The SquirrelMail Project Team
+
+
+Description
+===========
+
+This plugin provides some test mechanisms for further
+diagnosis of the system upon which you are attempting
+to run SquirrelMail.
+
+This plugin is intended as an administrative tool and 
+should not be enabled in a production environment.
+
+
+
+License
+=======
+
+This plugin is released under the GNU General Public
+License (see the file COPYING for details).
+
+
+

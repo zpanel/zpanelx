@@ -1,0 +1,19 @@
+This is a logging plugin for Hastymail2. It has support for 4 differnet
+logging mechanisms and several options to control what events and
+information is logged.
+
+The 4 differnet log types are:
+
+file   :   log to a specified file. The delimter between fields is configurable
+syslog :   log to the system syslog with a specific log level
+php    :   log to the log facility configured for PHP on this host
+db     :   log to the db connection configured in the hastymail.conf file. A
+           mysql create table statement is included in the table.sql file.
+
+Event and information options include what fields to be logged and what
+events should trigger a log message. See the included settings.php file
+for more information.
+
+Questions and feedback are always welcome.
+Jason Munro
+jason@hastymail.org

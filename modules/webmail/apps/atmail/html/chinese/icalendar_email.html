@@ -1,0 +1,18 @@
+<style type="text/css">
+.li_header {font-weight: bold;}
+.ical_email_header {font-size: 16px;}
+</style>
+
+<h1 class="ical_email_header">日曆活動邀請</h1>
+<p>你已被列入日曆事件.詳情如下：</p>
+<ul>
+        <li><span class="li_header">標題</span>: $var['Title']</li>
+        <li><span class="li_header">作者</span>: $var['author']</li>
+        <li><span class="li_header">描述</span>: $var['CalMessage']</li>
+        <li><span class="li_header">啟動</span>: $var['DateStart']</li>
+        <li><span class="li_header">完</span>: $var['DateEnd']</li>
+        <li><span class="li_header">與會者</span>: $var['participants']</li>
+</ul>
+
+<atmail_cal_id:$var['id']/>
+

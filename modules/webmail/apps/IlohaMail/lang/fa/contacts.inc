@@ -1,0 +1,35 @@
+<?php
+/********************************************************
+	lang/eng/contacts.inc
+	(C)2001-2002 Ryo Chijiiwa <Ryo@IlohaMail.org>
+
+	This file is part of IlohaMail, and released under GPL.
+	See COPYING, or http://www.fsf.org/copyleft/gpl.html
+
+********************************************************/
+
+//TRANSLATORS:  Uncomment next line for all non-English languages!!
+//include("../lang/eng/contacts.inc");
+
+$cStrings[0] = "ÏÝÊÑ ÊãÇÓåÇ";
+$cStrings[1] = "ÇÖÇÝå ßÑÏä ÊãÇÓ";
+$cStrings[2] = " ÊãÇÓ";
+$cStrings[3] = "äÇã";
+$cStrings[4] = "ÓÊ ÇáßÊÑæäíßí";
+$cStrings[5] = "ÂÏÑÓ ÇíäÊÑäÊí";
+$cStrings[6] = "Ñæå";
+$cStrings[7] = "ÊæÖíÍ";
+$cStrings[8] = "ÇÖÇÝå/æíÑÇíÔ ÊãÇÓ";
+$cStrings[9] = "ÓÊ ÇáßÊÑæäíßí";
+$cStrings[10] = "ÇíÌÇÏ";
+
+$cStrings["close"] = "ÈÓÊä äÌÑå";
+$cStrings["addto"] = "ÇÖÇÝå ßÑÏä ÊãÇÓåÇ Èå %s";
+$cStrings["showgrp"] = "äãÇíÔ %s";
+$cStrings["all"] = "åãå";
+$cStrings["instructions"] = "ÈÑ Ñæí äÇã ßáíß ßäíÏ ÊÇ ÇÖÇÝå ÔæÏ. æ íÇ ÈÑ Ñæí Ñæå ßáíß ßäíÏ ÊÇ ÊãÇã ÇÝÑÇÏ Ñæå ÇÖÇÝå ÔæäÏ.";
+
+$cErrors[0] = "ÝåÑÓÊ ÊãÇÓåÇ ÎÇáí ÇÓÊ";
+
+
+?>

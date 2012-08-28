@@ -1,0 +1,379 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 7.0.2" />
+<style type="text/css">
+/* Debug borders */
+p, li, dt, dd, div, pre, h1, h2, h3, h4, h5, h6 {
+/*
+  border: 1px solid red;
+*/
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a { color: blue; }
+a:visited { color: fuchsia; }
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
+tt {
+  color: navy;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  font-family: sans-serif;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  border-bottom: 2px solid silver;
+  padding-top: 0.5em;
+}
+
+div.sectionbody {
+  font-family: serif;
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+span#author {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+span#email {
+}
+span#revision {
+  font-family: sans-serif;
+}
+
+div#footer {
+  font-family: sans-serif;
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+div#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+div#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+div#preamble,
+div.tableblock, div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-right: 10%;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock > div.content {
+  padding-left: 2.0em;
+}
+div.quoteblock .attribution {
+  text-align: right;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 2px solid silver;
+}
+
+div.exampleblock > div.content {
+  border-left: 2px solid silver;
+  padding: 0.5em;
+}
+
+div.verseblock div.content {
+  white-space: pre;
+}
+
+div.imageblock div.content { padding-left: 0; }
+div.imageblock img { border: 1px solid silver; }
+span.image img { border-style: none; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: italic;
+}
+dd > *:first-child {
+  margin-top: 0;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.olist2 {
+  list-style-type: lower-alpha;
+}
+
+div.tableblock > table {
+  border-color: #527bbd;
+  border-width: 3px;
+}
+thead {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+tfoot {
+  font-weight: bold;
+}
+
+div.hlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+td.hlist1 {
+  vertical-align: top;
+  font-style: italic;
+  padding-right: 0.8em;
+}
+td.hlist2 {
+  vertical-align: top;
+}
+
+@media print {
+  div#footer-badges { display: none; }
+}
+include::./stylesheets/xhtml11-manpage.css[]
+/* Workarounds for IE6's broken and incomplete CSS2. */
+
+div.sidebar-content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+div.sidebar-title, div.image-title {
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 0.0em;
+  margin-bottom: 0.5em;
+}
+
+div.listingblock div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock-content {
+  padding-left: 2.0em;
+}
+
+div.exampleblock-content {
+  border-left: 2px solid silver;
+  padding-left: 0.5em;
+}
+</style>
+<title>git-merge-index(1)</title>
+</head>
+<body>
+<div id="header">
+<h1>
+git-merge-index(1) Manual Page
+</h1>
+<h2>NAME</h2>
+<div class="sectionbody">
+<p>git-merge-index -
+   Run a merge for files needing merging
+</p>
+</div>
+</div>
+<h2>SYNOPSIS</h2>
+<div class="sectionbody">
+<p><em>git-merge-index</em> [-o] [-q] &lt;merge-program&gt; (-a | [--] &lt;file&gt;*)</p>
+</div>
+<h2>DESCRIPTION</h2>
+<div class="sectionbody">
+<p>This looks up the &lt;file&gt;(s) in the index and, if there are any merge
+entries, passes the SHA1 hash for those files as arguments 1, 2, 3 (empty
+argument if no file), and &lt;file&gt; as argument 4.  File modes for the three
+files are passed as arguments 5, 6 and 7.</p>
+</div>
+<h2>OPTIONS</h2>
+<div class="sectionbody">
+<dl>
+<dt>
+--
+</dt>
+<dd>
+<p>
+        Do not interpret any more arguments as options.
+</p>
+</dd>
+<dt>
+-a
+</dt>
+<dd>
+<p>
+        Run merge against all files in the index that need merging.
+</p>
+</dd>
+<dt>
+-o
+</dt>
+<dd>
+<p>
+        Instead of stopping at the first failed merge, do all of them
+        in one shot - continue with merging even when previous merges
+        returned errors, and only return the error code after all the
+        merges are over.
+</p>
+</dd>
+<dt>
+-q
+</dt>
+<dd>
+<p>
+        Do not complain about failed merge program (the merge program
+        failure usually indicates conflicts during merge). This is for
+        porcelains which might want to emit custom messages.
+</p>
+</dd>
+</dl>
+<p>If "git-merge-index" is called with multiple &lt;file&gt;s (or -a) then it
+processes them in turn only stopping if merge returns a non-zero exit
+code.</p>
+<p>Typically this is run with a script calling git's imitation of
+the merge command from the RCS package.</p>
+<p>A sample script called "git-merge-one-file" is included in the
+distribution.</p>
+<p>ALERT ALERT ALERT! The git "merge object order" is different from the
+RCS "merge" program merge object order. In the above ordering, the
+original is first. But the argument order to the 3-way merge program
+"merge" is to have the original in the middle. Don't ask me why.</p>
+<p>Examples:</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>torvalds@ppc970:~/merge-test&gt; git-merge-index cat MM
+This is MM from the original tree.                    # original
+This is modified MM in the branch A.                  # merge1
+This is modified MM in the branch B.                  # merge2
+This is modified MM in the branch B.                  # current contents</tt></pre>
+</div></div>
+<p>or</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>torvalds@ppc970:~/merge-test&gt; git-merge-index cat AA MM
+cat: : No such file or directory
+This is added AA in the branch A.
+This is added AA in the branch B.
+This is added AA in the branch B.
+fatal: merge program failed</tt></pre>
+</div></div>
+<p>where the latter example shows how "git-merge-index" will stop trying to
+merge once anything has returned an error (i.e., "cat" returned an error
+for the AA file, because it didn't exist in the original, and thus
+"git-merge-index" didn't even try to merge the MM thing).</p>
+</div>
+<h2>Author</h2>
+<div class="sectionbody">
+<p>Written by Linus Torvalds &lt;torvalds@osdl.org&gt;
+One-shot merge by Petr Baudis &lt;pasky@ucw.cz&gt;</p>
+</div>
+<h2>Documentation</h2>
+<div class="sectionbody">
+<p>Documentation by David Greaves, Junio C Hamano and the git-list &lt;git@vger.kernel.org&gt;.</p>
+</div>
+<h2>GIT</h2>
+<div class="sectionbody">
+<p>Part of the <a href="git.html">git(1)</a> suite</p>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 08-Jun-2008 01:33:53 UTC
+</div>
+</div>
+</body>
+</html>

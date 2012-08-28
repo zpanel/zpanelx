@@ -1,0 +1,38 @@
+<!-- if($this->Ajax) { -->
+<Error>
+	<ErrorStatus>1</ErrorStatus>
+	<Status>1</Status>
+	<ErrorMessage><![CDATA[$var['error']]]></ErrorMessage>
+	<StatusMessage><![CDATA[Message Denied - Your IP address has sent the maximum number of messages per day. To reduce the possibility of spam, your outgoing message has been blocked.  ]]></StatusMessage>
+</Error>
+<!-- } -->
+
+<!-- if(!$this->Ajax) { -->
+<html>
+<head>
+<title>Spam Detected</title></head><body bgcolor="$this->BgColor" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+
+
+
+<style>
+
+.sw {font-family:Verdana;font-size:13px;color:#000000;}
+.swr {font-family:Verdana;font-size:13px;color:#FF0000;}
+</style>
+
+
+
+<LINK href="javascript/style$this->browser.css" rel="stylesheet" type="text/css">
+<img src="$pref['logo_big_img']"><br>
+<h1>Message Denied</h1>
+
+<font class="swr">Your IP address has sent the maximum number of messages per day. To reduce the possibility of spam, your outgoing message has been blocked. </font> <font class="sw"> 
+<ul>
+<li>Contact your e-mail administrator ($this->admin_email) for assistance.</li>
+</ul>
+</font>
+</body>
+</html>
+
+<!-- } -->

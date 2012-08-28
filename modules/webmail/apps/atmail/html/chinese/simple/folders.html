@@ -1,0 +1,313 @@
+<!-- if($var['extratitle'] = "- {文件夾管理器}") { -->
+<!-- } -->
+
+<!--Include="html/chinese/simple/header.html"-->
+
+<script Language="JavaScript" src="html/$this->Language/javascript/validate_folders.js"></script>
+<script Language="JavaScript" src="html/$this->Language/javascript/checkemail.js"></script>
+<script Language="JavaScript" src="html/$this->Language/javascript/checkalpha.js"></script>
+
+
+<table width="163" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="5" border="0"></td>
+		<td width="125"><img src="imgs/simple/shim.gif" width="125" height="5" border="0"></td>
+	</tr>
+
+	<tr>
+		<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="10" border="0"></td>
+		<td width="125"><img src="imgs/simple/shim.gif" width="125" height="10" border="0"></td>
+	</tr>
+	<tr>
+		<td width="38"><img src="imgs/simple/sidebar_bottom_tile.gif" width="38" height="95" border="0"></td>
+		<td width="125"><img src="imgs/simple/shim.gif" width="125" height="95" border="0"></td>
+	</tr>
+</table>
+</td>
+
+<!--Include="html/chinese/simple/headerbar.html"-->
+
+<SCRIPT LANGUAGE="JavaScript">
+window.focus();
+
+var MSIE=navigator.userAgent.indexOf("MSIE");
+var NETS=navigator.userAgent.indexOf("Netscape");
+var OPER=navigator.userAgent.indexOf("Opera");
+if((MSIE>-1) || (OPER>-1)) {
+document.write("<style>.stdbtn { background-color: #F4F4F4; font: 8pt Tahoma; width: 75px;}");
+document.write(".stdbtnlong { background-color: #F4F4F4; font: 8pt Tahoma; width: 95px;}</style>");
+} else {
+document.write("<!--Netscape Style Sheet-->");
+}
+
+function DeleteFolder(FolderNum, FolderName, purge) {
+
+	var FolderNameRaw = FolderName;
+	FolderName = Url.decode(FolderName);
+	if (purge == 1) {
+		var confirmtxt = '該文件夾'+FolderName+ '包含'+ FolderNum +'信息.你是否確實從這個文件夾刪除所有郵件?folder?';
+	} else {
+		var confirmtxt = '該文件夾'+FolderName+'包含'+FolderNum +'信息. 你是否確實你想刪除此文件夾？';
+	}
+	if (confirm([confirmtxt])) {
+      location.href = "util.php?func=info&delete=" + FolderNameRaw + '&purge=' + purge;
+    }
+}
+
+
+var delim = "$var['delim']";
+
+function updateRename(folder) {
+	if (folder.length == 0) {
+		document.renamefolders.foldername.disabled=true;
+		document.renamefolders.renamefolder.disabled=true;
+		document.getElementById('parentName').innerHTML = '';
+	} else {
+		document.renamefolders.foldername.disabled=false;
+		document.renamefolders.renamefolder.disabled=false;
+
+		if (folder.indexOf(delim) != -1) {
+			var parts = folder.split(delim);
+			parts.pop();
+			document.getElementById('parentName').innerHTML = Url.decode(parts.join(delim) + delim);
+		} else {
+			document.getElementById('parentName').innerHTML = '';
+		}
+	}
+}
+
+
+var utf7enabled = "$pref['allow_utf7_folders']";
+</SCRIPT>
+
+<font class="sw">通過信箱小組你可以監控郵件文件夾.選項包括增加一個新的信箱，閱讀其內容，並刪除信箱.</font><br><br>
+
+<form method="post" name="folders" onsubmit="return validate_form(this)">
+<input type="hidden" name="func" value="info">
+
+<table border='0' cellspacing='1' cellpadding='0' class='maintable'>
+
+
+<TABLE border='0' width='100%' cellpadding='4' cellspacing='0' class="table_control">
+
+<TR><TH class="topleft"><font class='mheader'>&nbsp;信箱名稱 </TH>
+<TH class="middle2"><font class='mheader'>&nbsp;</font></TH>
+<TH class="middle2"><font class='mheader'>&nbsp;</font></TH>
+<TH class="middle2"><font class='mheader'>&nbsp;</font></TH>
+<TH class="middle2"><font class='mheader'>&nbsp;</font></TH>
+<TH class="middle2"><font class='mheader'>&nbsp;</font></TH>
+<TH class="middle2"><font class='mheader'>&nbsp;</font></TH>
+<TH class="middle2"><font class='mheader'>&nbsp;</font></TH>
+<TH class="middle2"><font class='mheader'>&nbsp;</font></TH>
+<TH class="middle2"><font class='mheader'>&nbsp;全部郵件</font></TH>
+<TH class="middle"><font class='mheader'>&nbsp;文件大小(KB)</font></TH>
+<TH class="topright"><font class='mheader'>&nbsp;刪除</font></TH></TR>
+
+</TABLE>
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="4" class="borderstyle">
+$var['folders']
+</table>
+
+<br/>
+
+<table border='0' cellspacing='1' cellpadding='0' class='maintable'>
+
+
+<TABLE border='0' width='100%' cellpadding='4' cellspacing='0' class="table_control">
+
+<TR><TH class="topleft"><font class='mheader'>&nbsp;創建1個新信箱</font></TH>
+<TH class="middle"></TH>
+<TH class="topright"></TH></TR>
+
+
+
+</TABLE>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5" class="borderstyle">
+    <tr>
+		<td bgcolor="$this->SecondaryColor">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5">
+<tr>
+<td width="30%" bgcolor="$this->SecondaryColor"><font class="sw">信箱名稱</font></td>
+<td width="40%" bgcolor="$this->SecondaryColor">
+<input onfocus="javascript:this.value=''" type="text" class="inputfield" name="foldername" value="輸入郵箱名稱" size="30">
+</td>
+<td width="30%" bgcolor="$this->SecondaryColor" align="right">
+<input type="submit" name="creatembox" value="添加文件夾" class="stdbtnlong">
+</td></tr></table>
+
+</td></tr>
+</form>
+</table>
+
+<br>
+
+<TABLE border='0' width='100%' cellpadding='4' cellspacing='0' class="table_control">
+
+<TR><TH class="topleft"><font class='mheader'>&nbsp;個人文件夾重新命名</font></TH>
+<TH class="middle"></TH>
+<TH class="topright"></TH></TR>
+
+</TABLE>
+<table width="100%" border="0" cellspacing="0" cellpadding="5" class="borderstyle">
+    <tr>
+		<td bgcolor="$this->SecondaryColor">
+<form method="post" name="renamefolders" onsubmit="return validate_form(this)">
+<input type="hidden" name="func" value="info">
+<table width="100%" border="0" cellspacing="0" cellpadding="5">
+
+  <tr>
+
+  <tr>
+    <td width="20%" bgcolor="$this->SecondaryColor"><font class="sw">選擇文件夾重新命名</font></td>
+    <td width="20%" bgcolor="$this->SecondaryColor">
+    <select class="inputfield" name="curname" onchange="updateRename(this.value)">
+	$var['renamefolderbox']
+      </select>
+    </td>
+    <td width="20%" bgcolor="$this->SecondaryColor" style="text-align: right"><font class="sw">新名稱: <span id="parentName" style="font-weight:bold"></span></font></td>
+    <td width="20%" bgcolor="$this->SecondaryColor">
+        <input type="text" name="foldername" class="inputfield" disabled>
+    </td>
+    <td width="10%" bgcolor="$this->SecondaryColor" align="right">
+      <input class="stdbtnlong" type="submit" name="renamefolder" value="重新命名" disabled>
+    </td>
+  </tr>
+</table>
+</td></tr>
+</form>
+</table>
+
+<br>
+
+<table border='0' cellspacing='1' cellpadding='0' class='maintable'>
+
+<!-- if($domains[$this->pop3host] && $var['usedquota'] > 0 && $var['totalquota'] > 0) { -->
+<TABLE border='0' width='100%' cellpadding='4' cellspacing='0' class="table_control">
+
+<TR><TH class="topleft"><font class='mheader'>&nbsp;郵箱配額[ [磁盤空間使用 $var['usedquota']  Kb 於 $var['totalquota'] Kb]</font></TH>
+<TH class="middle"></TH>
+<TH class="topright"></TH></TR>
+
+</TABLE>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="2" class="borderstyle">
+  <tr>
+    <td width="100%" bgcolor="$this->SecondaryColor" height="26" colspan="2">
+      <table width="100%" border="0" cellspacing="0" cellpadding="3">
+        <tr>
+          <td bgcolor="#E0EBF6" width="$var['used_percent']"><font class="mheader">&nbsp;$var['used']</font></td>
+          <td bgcolor="$this->SecondaryColor"><div align="right"><font class="mheader">100%</font></div></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<br>
+<!-- } -->
+
+<!-- if($pref['allow_EmailToFolderRules']) { -->
+<a name="filter"></a>
+
+<form onsubmit="if(!check_email(this.sort_email)) { return false; }" name="filter">
+<input type="hidden" name="func" value="info">
+
+<table border='0' cellspacing='1' cellpadding='0' class='maintable'>
+
+<TABLE border='0' width='100%' cellpadding='4' cellspacing='0' class="table_control">
+
+<TR><TH class="topleft"><font class='mheader'>&nbsp;郵件文件夾類型 Email to Folder Sorting</font></TH>
+<TH class="middle"></TH>
+<TH class="topright"></TH></TR>
+
+</TABLE>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5" class="borderstyle">
+    <tr>
+		<td bgcolor="$this->SecondaryColor">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5">
+  <tr>
+    <td width="30%" bgcolor="$this->SecondaryColor"><font class="sw">郵件地址</font></td>
+    <td bgcolor="$this->SecondaryColor" colspan="2">
+      <input type="text" class="inputfield" name="sort_email" size="30" onblur="return check_email(this)">
+    </td>
+  </tr>
+  <tr>
+    <td width="30%" bgcolor="$this->SecondaryColor"><font class="sw"><i>或</i> 郵件主旨</font></td>
+    <td bgcolor="$this->SecondaryColor" colspan="2">
+      <input type="text" class="inputfield" name="sort_subject" size="30">
+    </td>
+  </tr>
+
+  <tr>
+    <td width="30%" bgcolor="$this->SecondaryColor"><font class="sw">移動郵件到</font></td>
+    <td width="40%" bgcolor="$this->SecondaryColor">
+      <select class="inputfield" name="sort_box">
+	$var['folderbox']
+      </select>
+    </td>
+    <td width="30%" bgcolor="$this->SecondaryColor" align="right">
+      <input class="stdbtnlong" type="submit" name="addsort" value="新增郵件類型">
+    </td>
+  </tr>
+</form>
+
+<!-- } -->
+
+<!-- if($var['sort_email'] && $pref['allow_EmailToFolderRules']) { -->
+
+<form>
+<input type="hidden" name="func" value="info">
+<input type="hidden" name="type" value="EmailAddress">
+  <tr>
+    <td width="30%" bgcolor="$this->SecondaryColor"><font class="sw">郵件類型</font></td>
+    <td width="40%" bgcolor="$this->SecondaryColor">
+      <select class="select" name="delete_sort">
+	$var['sort_email']
+      </select>
+    </td>
+    <td width="30%" bgcolor="$this->SecondaryColor" align="right">
+      <input class="stdbtnlong" type="submit" name="delsort" value="刪除任務">
+    </td>
+  </tr>
+</form>
+<!-- } -->
+
+<!-- if($var['sort_subj'] && $pref['allow_EmailToFolderRules']) {	-->
+
+<form>
+<input type="hidden" name="func" value="info">
+<input type="hidden" name="type" value="EmailSubject">
+
+  <tr>
+    <td width="30%" bgcolor="$this->SecondaryColor"><font class="sw">主旨類型</font></td>
+    <td width="40%" bgcolor="$this->SecondaryColor">
+      <select class="select" name="delete_sort">
+	$var['sort_subj']
+      </select>
+    </td>
+    <td width="30%" bgcolor="$this->SecondaryColor" align="right">
+      <input class="stdbtnlong" type="submit" name="delsort" value="刪除任務">
+    </td>
+  </tr>
+<!-- } -->
+</table>
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+</form>
+</table>
+
+
+
+
+<!--Include="html/chinese/simple/footer.html"-->

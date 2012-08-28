@@ -1,0 +1,62 @@
+<!-- if($this->Ajax) { -->
+<Error>
+	<ErrorStatus>1</ErrorStatus>
+	<ErrorMessage><![CDATA[
+<!-- } -->
+
+<html>
+<head>
+<title>Actualiza e intentalo de nuevo</title>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">    
+</head>
+<body bgcolor="$this->BgColor" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor">
+
+<style>
+
+.sw {font-family:Verdana;font-size:13px;color:#000000;}
+.swr {font-family:Verdana;font-size:13px;color:#FF0000;}
+</style>
+
+
+<LINK href="javascript/style$this->browser.css" rel="stylesheet" type="text/css">
+<img src="$pref['logo_big_img']"><br>
+<h1>Error en la Bandeja de Entrada</h1>
+
+<font class="swr">El servidor a respondido - $var['status']
+</font>
+
+<font class="sw"> 
+<ul>
+
+<!-- if($this->Ajax) { -->
+  <li><a href="javascript:history.back()">Actualiza e intentalo de nuevo</a>
+<!-- } -->
+
+<!-- if(!$this->Ajax) { -->
+  <li><a href="javascript:location.reload()">Actualiza e intentalo de nuevo</a>
+<!-- } -->
+
+</li>
+
+  <li>Asegurate que no estás accediendo a tu Bandeja de Entrada en dos o más ventanas al mismo tiempo. Este archivo está bloqueado porque está abierto en otra sesión de tu Bandeja de Entrada.</li>
+
+  <li>Asegurate que no tienes abiertas dos sesiones de email al mismo tiempo - Sólo está permitida una Cuenta de email por usuario</li>
+
+  <li>Intenta acceder de nuevo en algunos minutos</li>
+
+</ul>
+</font>
+
+<p><font class="swr">Si aún no has logrado ingresar en tu Cuenta de email</font></p>
+<font class="sw">
+<ul>
+  <li>Contacta con el Administrador $this->admin_email para recibir ayuda</li>
+</ul>
+</font>
+</body>
+</html>
+
+<!-- if($this->Ajax) { -->
+	]]></ErrorMessage>
+</Error>
+<!-- } -->

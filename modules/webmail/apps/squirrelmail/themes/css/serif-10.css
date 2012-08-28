@@ -1,0 +1,13 @@
+body, td, th, dd, dt, h1, h2, h3, h4, h5, h6, p, ol, ul, li {
+  font-family: serif;
+}
+body, small {
+  font-size: 8pt;
+}
+td, th {
+  font-size: 10pt;
+}
+textarea, pre {
+  font-family: monospace;
+  font-size: 9pt;
+}

@@ -1,0 +1,441 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 7.0.2" />
+<style type="text/css">
+/* Debug borders */
+p, li, dt, dd, div, pre, h1, h2, h3, h4, h5, h6 {
+/*
+  border: 1px solid red;
+*/
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a { color: blue; }
+a:visited { color: fuchsia; }
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
+tt {
+  color: navy;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  font-family: sans-serif;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  border-bottom: 2px solid silver;
+  padding-top: 0.5em;
+}
+
+div.sectionbody {
+  font-family: serif;
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+span#author {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+span#email {
+}
+span#revision {
+  font-family: sans-serif;
+}
+
+div#footer {
+  font-family: sans-serif;
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+div#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+div#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+div#preamble,
+div.tableblock, div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-right: 10%;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock > div.content {
+  padding-left: 2.0em;
+}
+div.quoteblock .attribution {
+  text-align: right;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 2px solid silver;
+}
+
+div.exampleblock > div.content {
+  border-left: 2px solid silver;
+  padding: 0.5em;
+}
+
+div.verseblock div.content {
+  white-space: pre;
+}
+
+div.imageblock div.content { padding-left: 0; }
+div.imageblock img { border: 1px solid silver; }
+span.image img { border-style: none; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: italic;
+}
+dd > *:first-child {
+  margin-top: 0;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.olist2 {
+  list-style-type: lower-alpha;
+}
+
+div.tableblock > table {
+  border-color: #527bbd;
+  border-width: 3px;
+}
+thead {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+tfoot {
+  font-weight: bold;
+}
+
+div.hlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+td.hlist1 {
+  vertical-align: top;
+  font-style: italic;
+  padding-right: 0.8em;
+}
+td.hlist2 {
+  vertical-align: top;
+}
+
+@media print {
+  div#footer-badges { display: none; }
+}
+/* Workarounds for IE6's broken and incomplete CSS2. */
+
+div.sidebar-content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+div.sidebar-title, div.image-title {
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 0.0em;
+  margin-bottom: 0.5em;
+}
+
+div.listingblock div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock-content {
+  padding-left: 2.0em;
+}
+
+div.exampleblock-content {
+  border-left: 2px solid silver;
+  padding-left: 0.5em;
+}
+</style>
+<title>Reverting an existing commit</title>
+</head>
+<body>
+<div id="header">
+<h1>Reverting an existing commit</h1>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<p>One of the changes I pulled into the <em>master</em> branch turns out to
+break building GIT with GCC 2.95.  While they were well intentioned
+portability fixes, keeping things working with gcc-2.95 was also
+important.  Here is what I did to revert the change in the <em>master</em>
+branch and to adjust the <em>pu</em> branch, using core GIT tools and
+barebone Porcelain.</p>
+<p>First, prepare a throw-away branch in case I screw things up.</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git checkout -b revert-c99 master</tt></pre>
+</div></div>
+<p>Now I am on the <em>revert-c99</em> branch.  Let's figure out which commit to
+revert.  I happen to know that the top of the <em>master</em> branch is a
+merge, and its second parent (i.e. foreign commit I merged from) has
+the change I would want to undo.  Further I happen to know that that
+merge introduced 5 commits or so:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git show-branch --more=4 master master^2 | head
+* [master] Merge refs/heads/portable from http://www.cs.berkeley....
+ ! [master^2] Replace C99 array initializers with code.
+--
+-  [master] Merge refs/heads/portable from http://www.cs.berkeley....
+*+ [master^2] Replace C99 array initializers with code.
+*+ [master^2~1] Replace unsetenv() and setenv() with older putenv().
+*+ [master^2~2] Include sys/time.h in daemon.c.
+*+ [master^2~3] Fix ?: statements.
+*+ [master^2~4] Replace zero-length array decls with [].
+*  [master~1] tutorial note about git branch</tt></pre>
+</div></div>
+<p>The <em>&#8212;more=4</em> above means "after we reach the merge base of refs,
+show until we display four more common commits".  That last commit
+would have been where the "portable" branch was forked from the main
+git.git repository, so this would show everything on both branches
+since then.  I just limited the output to the first handful using
+<em>head</em>.</p>
+<p>Now I know <em>master^2~4</em> (pronounce it as "find the second parent of
+the <em>master</em>, and then go four generations back following the first
+parent") is the one I would want to revert.  Since I also want to say
+why I am reverting it, the <em>-n</em> flag is given to <em>git revert</em>.  This
+prevents it from actually making a commit, and instead <em>git revert</em>
+leaves the commit log message it wanted to use in <em>.msg</em> file:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git revert -n master^2~4
+$ cat .msg
+Revert "Replace zero-length array decls with []."
+
+This reverts 6c5f9baa3bc0d63e141e0afc23110205379905a4 commit.
+$ git diff HEAD ;# to make sure what we are reverting makes sense.
+$ make CC=gcc-2.95 clean test ;# make sure it fixed the breakage.
+$ make clean test ;# make sure it did not cause other breakage.</tt></pre>
+</div></div>
+<p>The reverted change makes sense (from reading the <em>diff</em> output), does
+fix the problem (from <em>make CC=gcc-2.95</em> test), and does not cause new
+breakage (from the last <em>make test</em>).  I'm ready to commit:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git commit -a -s ;# read .msg into the log,
+                    # and explain why I am reverting.</tt></pre>
+</div></div>
+<p>I could have screwed up in any of the above steps, but in the worst
+case I could just have done <em>git checkout master</em> to start over.
+Fortunately I did not have to; what I have in the current branch
+<em>revert-c99</em> is what I want.  So merge that back into <em>master</em>:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git checkout master
+$ git merge revert-c99 ;# this should be a fast forward
+Updating from 10d781b9caa4f71495c7b34963bef137216f86a8 to e3a693c...
+ cache.h        |    8 ++++----
+ commit.c       |    2 +-
+ ls-files.c     |    2 +-
+ receive-pack.c |    2 +-
+ server-info.c  |    2 +-
+ 5 files changed, 8 insertions(+), 8 deletions(-)</tt></pre>
+</div></div>
+<p>There is no need to redo the test at this point.  We fast forwarded
+and we know <em>master</em> matches <em>revert-c99</em> exactly.  In fact:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git diff master..revert-c99</tt></pre>
+</div></div>
+<p>says nothing.</p>
+<p>Then we rebase the <em>pu</em> branch as usual.</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git checkout pu
+$ git tag pu-anchor pu
+$ git rebase master
+* Applying: Redo "revert" using three-way merge machinery.
+First trying simple merge strategy to cherry-pick.
+Finished one cherry-pick.
+* Applying: Remove git-apply-patch-script.
+First trying simple merge strategy to cherry-pick.
+Simple cherry-pick fails; trying Automatic cherry-pick.
+Removing Documentation/git-apply-patch-script.txt
+Removing git-apply-patch-script
+Finished one cherry-pick.
+* Applying: Document "git cherry-pick" and "git revert"
+First trying simple merge strategy to cherry-pick.
+Finished one cherry-pick.
+* Applying: mailinfo and applymbox updates
+First trying simple merge strategy to cherry-pick.
+Finished one cherry-pick.
+* Applying: Show commits in topo order and name all commits.
+First trying simple merge strategy to cherry-pick.
+Finished one cherry-pick.
+* Applying: More documentation updates.
+First trying simple merge strategy to cherry-pick.
+Finished one cherry-pick.</tt></pre>
+</div></div>
+<p>The temporary tag <em>pu-anchor</em> is me just being careful, in case <em>git
+rebase</em> screws up.  After this, I can do these for sanity check:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git diff pu-anchor..pu ;# make sure we got the master fix.
+$ make CC=gcc-2.95 clean test ;# make sure it fixed the breakage.
+$ make clean test ;# make sure it did not cause other breakage.</tt></pre>
+</div></div>
+<p>Everything is in the good order.  I do not need the temporary branch
+nor tag anymore, so remove them:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ rm -f .git/refs/tags/pu-anchor
+$ git branch -d revert-c99</tt></pre>
+</div></div>
+<p>It was an emergency fix, so we might as well merge it into the
+<em>release candidate</em> branch, although I expect the next release would
+be some days off:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git checkout rc
+$ git pull . master
+Packing 0 objects
+Unpacking 0 objects
+
+* committish: e3a693c...        refs/heads/master from .
+Trying to merge e3a693c... into 8c1f5f0... using 10d781b...
+Committed merge 7fb9b7262a1d1e0a47bbfdcbbcf50ce0635d3f8f
+ cache.h        |    8 ++++----
+ commit.c       |    2 +-
+ ls-files.c     |    2 +-
+ receive-pack.c |    2 +-
+ server-info.c  |    2 +-
+ 5 files changed, 8 insertions(+), 8 deletions(-)</tt></pre>
+</div></div>
+<p>And the final repository status looks like this:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git show-branch --more=1 master pu rc
+! [master] Revert "Replace zero-length array decls with []."
+ ! [pu] git-repack: Add option to repack all objects.
+  * [rc] Merge refs/heads/master from .
+---
+ +  [pu] git-repack: Add option to repack all objects.
+ +  [pu~1] More documentation updates.
+ +  [pu~2] Show commits in topo order and name all commits.
+ +  [pu~3] mailinfo and applymbox updates
+ +  [pu~4] Document "git cherry-pick" and "git revert"
+ +  [pu~5] Remove git-apply-patch-script.
+ +  [pu~6] Redo "revert" using three-way merge machinery.
+  - [rc] Merge refs/heads/master from .
+++* [master] Revert "Replace zero-length array decls with []."
+  - [rc~1] Merge refs/heads/master from .
+... [master~1] Merge refs/heads/portable from http://www.cs.berkeley....</tt></pre>
+</div></div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 08-Jun-2008 01:34:36 UTC
+</div>
+</div>
+</body>
+</html>

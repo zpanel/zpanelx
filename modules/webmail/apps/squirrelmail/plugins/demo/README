@@ -1,0 +1,32 @@
+Demo plugin for SquirrelMail 
+============================
+Version $Id$
+
+Copyright 1999-2011 The SquirrelMail Project Team
+
+
+Description
+===========
+
+This plugin provides test/sample code for many of the hook
+points in the SquirrelMail core.  It is primarily intended
+as an aid to plugin authors who can copy the code herein to
+ensure correct hook code and thus focus on other more 
+important plugin functionality.  This plugin should not be
+enabled in a production environment.
+
+Note that the hook code herein is specific to the version
+of SquirrelMail that it is found in and is not necessarily
+cross-version compatible.  Please consult the demo plugin
+in all versions of SquirrelMail that your plugin will target.
+
+
+
+License
+=======
+
+This plugin is released under the GNU General Public
+License (see the file COPYING for details).
+
+
+

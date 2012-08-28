@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>Accesso Negato</title>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">       
+</head>
+<body bgcolor="$this->BgColor" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor">
+
+<style>
+
+.sw {font-family:Verdana;font-size:13px;color:#000000;}
+.swr {font-family:Verdana;font-size:13px;color:#FF0000;}
+</style>
+
+
+
+<LINK href="javascript/style$this->browser.css" rel="stylesheet" type="text/css">
+<img src="$pref['logo_big_img']"><br>
+<h1>Username inesistente</h1>
+
+<font class="swr">L'account a cui tenti di accedere è inesistente.</font>
+<font class="sw"> 
+<ul>
+  <li>Verifica che l’username e la password siano corretti.</li>
+  <li>Controlla nelle impostazioni del tuo browser che il supporto cookies sia abilitato</li>
+</ul>
+</font>
+
+<p><font class="swr">Se l'accesso al tuo account non funziona ancora</font></p>
+<font class="sw">
+<ul>
+  <li>Clicca <a href="http://iscrizionidavide.cometacom.it">Ho dimenticato la password</a> per recuperarla</li>
+  <li>Contatta l'amministratore $this->admin_email per assistenza</li>
+    <!-- if($pref['allow_Signup']) { -->
+	<li><a href="http://iscrizionidavide.cometacom.it">Crea un nuovo account</a></li>
+	<!-- } -->
+</ul>
+</font>
+</body>
+</html>
+
+

@@ -1,0 +1,11 @@
+The js_sign plugin changes the "Sign" button on the compose page to use an ajax
+callback to get the selected profiles signature and javascript to insert the sig
+into the message at the current cursor position (the default Hastymail2 behavior
+is to append the signature at the bottom of the message). To enable this plugin
+add or uncomment the following in your hastymail2.conf file:
+
+plugin = js_sign
+
+Rebuild the hastymail2.rc file and logout then back in to enable the plugin.
+This plugin is a part of Hastymail so questions and comments can be directed to
+our forums, mailing lists, or directly to me at jason@hastymail.org.

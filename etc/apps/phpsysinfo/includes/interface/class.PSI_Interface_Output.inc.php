@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 /**
  * Basic Output Functions
  *
@@ -13,8 +12,7 @@
  * @version   SVN: $Id: class.PSI_Interface_Output.inc.php 214 2009-05-25 08:32:40Z bigmichi1 $
  * @link      http://phpsysinfo.sourceforge.net
  */
-
-/**
+ /**
  * define which methods a output class for phpsysinfo must implement
  * to be recognized and fully work without errors
  *
@@ -26,8 +24,8 @@
  * @version   Release: 3.0
  * @link      http://phpsysinfo.sourceforge.net
  */
-interface PSI_Interface_Output {
-
+interface PSI_Interface_Output
+{
     /**
      * generate the output
      *
@@ -35,5 +33,4 @@ interface PSI_Interface_Output {
      */
     function run();
 }
-
 ?>

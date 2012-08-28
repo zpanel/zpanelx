@@ -1,43 +1,45 @@
 <html>
-    <head>
-        <title>PHPMailer - Sendmail basic test</title>
-    </head>
-    <body>
+<head>
+<title>PHPMailer - Sendmail basic test</title>
+</head>
+<body>
 
-        <?php
-        require_once('../class.phpmailer.php');
+<?php
 
-        $mail = new PHPMailer(); // defaults to using php "mail()"
+require_once('../class.phpmailer.php');
 
-        $mail->IsSendmail(); // telling the class to use SendMail transport
+$mail             = new PHPMailer(); // defaults to using php "mail()"
 
-        $body = file_get_contents('contents.html');
-        $body = eregi_replace("[\]", '', $body);
+$mail->IsSendmail(); // telling the class to use SendMail transport
 
-        $mail->AddReplyTo("name@yourdomain.com", "First Last");
+$body             = file_get_contents('contents.html');
+$body             = eregi_replace("[\]",'',$body);
 
-        $mail->SetFrom('name@yourdomain.com', 'First Last');
+$mail->AddReplyTo("name@yourdomain.com","First Last");
 
-        $mail->AddReplyTo("name@yourdomain.com", "First Last");
+$mail->SetFrom('name@yourdomain.com', 'First Last');
 
-        $address = "whoto@otherdomain.com";
-        $mail->AddAddress($address, "John Doe");
+$mail->AddReplyTo("name@yourdomain.com","First Last");
 
-        $mail->Subject = "PHPMailer Test Subject via Sendmail, basic";
+$address = "whoto@otherdomain.com";
+$mail->AddAddress($address, "John Doe");
 
-        $mail->AltBody = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
+$mail->Subject    = "PHPMailer Test Subject via Sendmail, basic";
 
-        $mail->MsgHTML($body);
+$mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
 
-        $mail->AddAttachment("images/phpmailer.gif");      // attachment
-        $mail->AddAttachment("images/phpmailer_mini.gif"); // attachment
+$mail->MsgHTML($body);
 
-        if (!$mail->Send()) {
-            echo "Mailer Error: " . $mail->ErrorInfo;
-        } else {
-            echo "Message sent!";
-        }
-        ?>
+$mail->AddAttachment("images/phpmailer.gif");      // attachment
+$mail->AddAttachment("images/phpmailer_mini.gif"); // attachment
 
-    </body>
+if(!$mail->Send()) {
+  echo "Mailer Error: " . $mail->ErrorInfo;
+} else {
+  echo "Message sent!";
+}
+
+?>
+
+</body>
 </html>

@@ -1,0 +1,101 @@
+<!--Include="html/german/simple/header.html"-->
+
+<script type="text/javascript">
+//<!--Include="html/german/javascript/alerts.js"-->
+</script>
+
+<!-- here is our custom sidebar -->
+
+			<table width="163" cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="5" border="0"></td>
+					<td width="125"><img src="imgs/simple/shim.gif" width="125" height="5" border="0"></td>
+				</tr>
+
+<tr>
+<td width="38" bgcolor="#DEEBF6" class="optionselectedimg"><img onclick="document.abookimport.submit()" style="cursor: pointer; cursor: hand;" src="imgs/simple/sidebar_send_on.gif" width="38" height="31" border="0"></td>
+<td width="125">
+<table width='115' cellpadding='0' cellspacing=0 border=0 height="33" class='optionselected'>
+<tr>
+<td onclick="document.abookimport.submit()">
+<font class="menuoption">&nbsp;&nbsp;Importiere die Datei &gt;&gt;</small>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+
+				<tr>
+					<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="5" border="0"></td>
+					<td width="125"><img src="imgs/simple/shim.gif" width="125" height="5" border="0"></td>
+				</tr>
+				
+				<tr>
+					<td width="38"><img src="imgs/simple/sidebar_bottom_tile.gif" width="38" height="95" border="0"></td>
+					<td width="125"><img src="imgs/simple/shim.gif" width="125" height="95" border="0"></td>
+				</tr>
+			</table>
+		 </td>
+
+<!--Include="html/german/simple/headerbar.html"-->
+$var['atmailstyle']
+$var['refresh']
+
+<SCRIPT LANGUAGE="JavaScript">
+window.focus();
+
+<!--  Begin
+var MSIE=navigator.userAgent.indexOf("MSIE");
+var NETS=navigator.userAgent.indexOf("Netscape");
+var OPER=navigator.userAgent.indexOf("Opera");
+if((MSIE>-1) || (OPER>-1)) {
+document.write("<style>.stdbtn { background-color: #F4F4F4; font: 8pt Tahoma; width: 75px;}");
+document.write(".stdbtnlong { background-color: #F4F4F4; font: 8pt Tahoma; width: 95px;}</style>");
+} else {
+document.write("<!--Netscape Style Sheet-->");
+}
+// End -->
+</SCRIPT>
+
+<font class="sw"> Erstens: Wählen Sie den Dateitypen des zu importierenden Adressbuchs aus. Die meisten E-Mail Programme können das Adressbuch als CSV Datei exportieren, so dass Sie das Adressbuch in Ihr $pref['brandname'] Benutzerkonto einfügen können. Wählen Sie den CSV Dateitypen aus, geben Sie den Dateinamen und den lokalen Pfad der Datei an, um die Datei hoch zu laden.</font><br><br>
+
+<form name="abookimport" method="post" ENCTYPE="multipart/form-data">
+<input type="hidden" name="func" value="importfile">
+
+
+		
+
+<table border='0' cellspacing='1' cellpadding='0' class='maintable'>
+  
+		<TABLE border='0' width='100%' cellpadding='4' cellspacing='0' class="table_control">
+
+<TR><TH class="topleft"><font class='mheader'>&nbsp;Auswahl der Importierungsoptionen</font></TH><TH class="middle"></TH><TH class="topright"></TH></TR>
+
+
+
+</TABLE>
+
+  <table width="100%" cellpadding="3" cellspacing="0" class="borderstyle">
+    <tr bgcolor="$this->SecondaryColor"> 
+      <td><font class="sw">Importierungstyp</font></td>
+      <td align="right"><select name="ImportType" class="inputfieldselect" id="ImportType">
+          <option value="CSV1">CSV Datei ( durch Kommas getrennt )</option>
+        </select></td>
+    </tr>
+    <tr bgcolor="$this->SecondaryColor"> 
+      <td><font class="sw">Die erste Reihe enthält die Beschreibung der Spalten</font></td>
+      <td align="right"><input name="ColumnType" type="checkbox" value="checkbox" checked></td>
+    </tr>
+    <tr bgcolor="$this->SecondaryColor"> 
+      <td><font class="sw">Wählen Sie die zu importierende Datei aus</font></td>
+      <td align="right"><input type="file" class="filebtn" name="fileupload" enctype="multipart/form-data" size="25"></td>
+    </tr>
+   
+  </table>
+  </td>
+  </tr>
+  </table>
+  <p>&nbsp;</p>
+  </form>
+
+<!--Include="html/german/simple/footer.html"-->

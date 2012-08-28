@@ -1,0 +1,18 @@
+<style type="text/css">
+.li_header {font-weight: bold;}
+.ical_email_header {font-size: 16px;}
+</style>
+
+<h1 class="ical_email_header">Calendar Event Invitation</h1>
+<p>You have been included in a calendar event. The details follow:</p>
+<ul>
+        <li><span class="li_header">Title</span>: $var['Title']</li>
+        <li><span class="li_header">Author</span>: $var['author']</li>
+        <li><span class="li_header">Description</span>: $var['CalMessage']</li>
+        <li><span class="li_header">Starts</span>: $var['DateStart']</li>
+        <li><span class="li_header">Ends</span>: $var['DateEnd']</li>
+        <li><span class="li_header">Participants</span>: $var['participants']</li>
+</ul>
+
+<atmail_cal_id:$var['id']/>
+

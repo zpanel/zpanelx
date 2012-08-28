@@ -1,0 +1,70 @@
+# SpamAssassin user preferences file.  See
+# 'doc\Mail_SpamAssassin_Conf.html' in spamassassin folder
+# for details of what can be tweaked.
+#
+###############################################################
+
+# How many points before a mail is considered spam.
+#
+required_score      6.3
+
+# Whitelist and blacklist addresses are now file-glob-style
+# patterns, so "friend@somewhere.com", "*@isp.com", or
+# "*.domain.net" will all work.
+#
+# whitelist_from    someone@somewhere.com
+
+# In order to enable HashCash plug-in, you need to specify
+# addresses (file-glob-style) that you may receive mail at.
+#
+# hashcash_accept   me@myisp.net  another.my.address@domain.net
+
+# Add your own customised scores for some tests below.  The
+# default scores are read from the installed spamassassin rules
+# files, but you can override them here.  To see the list of
+# tests and their default scores, open 'doc\tests.html'
+# in spamassassin folder.
+#
+# score SYMBOLIC_TEST_NAME n.nn
+
+# Speakers of Asian languages, like Chinese, Japanese and
+# Korean, will almost definitely want to uncomment the
+# following lines. They will switch off some rules that detect
+# 8-bit characters, which commonly trigger on mails using CJK
+# character sets, or that assume a western-style charset is in
+# use. 
+# 
+# score HTML_COMMENT_8BITS	0
+# score UPPERCASE_25_50		0
+# score UPPERCASE_50_75		0
+# score UPPERCASE_75_100	0
+# score OBSCURED_EMAIL          0
+
+# Speakers of any language that uses non-English, accented
+# characters may wish to uncomment the following lines. They
+# turn off rules that fire on misformatted messages generated
+# by common mail apps in contravention of the email RFCs.
+#
+# score SUBJ_ILLEGAL_CHARS      0
+
+# Donation-based online blacklist.
+# Recommended donation: $10 per year.
+# SpamCop (http://www.spamcop.net/bl.shtml)
+# score RCVD_IN_BL_SPAMCOP_NET  0  3.2  0  2.6
+
+# Uncomment the line below if you do not wish SpamAssassin
+# to rewrite the subject of the messages tagged as spam.
+#
+# rewrite_header   Subject
+#
+# Uncomment the line below so that spam will be delivered to
+# your mail client as an original and not as an attachment.
+#
+# report_safe  0
+
+# Uncomment and edit the line below to include the trusted
+# networks (and only trusted networks), such as the network
+# of your ISP. This will prevent any hosts on this network
+# from being unnecessarily checked against the blacklists.
+#
+# trusted_networks  128.42.

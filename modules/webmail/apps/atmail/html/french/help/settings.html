@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>Changer les paramètres</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">       
+
+<script>
+function expandentry()	 {
+
+<!-- if($var['FirstLoad']) { -->
+if(parent.document.getElementById('calendar').style.display != 'block')
+parent.expand('settings', parent.document.getElementById('settingsimg') );
+<!-- } -->
+
+}
+</script>
+</head>
+
+<LINK href="javascript/stylehelp.css" rel="stylesheet" type="text/css">
+
+<body bgcolor="#FFFFFF" text="#000000" onload="expandentry()">
+<font face="Verdana, Arial" size="+1">
+Changer les paramètres</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">Index</a> ]</font>
+
+<hr noshade>
+<p>
+
+Utilisez le panneau de configuration pour modifier les préférences de votre compte e-mail. Les préférences concernent:<BR><BR>
+<u>Préférences du WebMail</u>
+
+<ul>
+<li><B>Nom</B><BR>
+Le nom est utilisé lors de l'envoi d'un mail et sera affiché sur tous les emails sortants.</li>
+
+<li><B>Répondre à</B><BR>
+Changez l'adresse de réponse si elle est différente de celle utilisée avec ce compte.</li>
+
+<li><B>Trier les messages par</B><BR>        
+Choisissez le critère de tri pour les messages dans votre boîte email.</li>
+
+<li><B>Configurer l'interface</B><BR>        
+Cochez les différentes fonctionnalités de l'interface du WebMail. Pour les anciens navigateurs, il est recommandé de faire simple. Vous avez la possibilité de désactiver les fenêtres 'popup' quand vous lisez les messages dans la boîte de réception.</li>
+
+<li><B>Langue</B><BR>                       
+Séléctionnez la langue que vous désirez utiliser.</li>
+
+<li><B>Messages à afficher</B><BR>             
+Définissez le nombre de message à afficher dans la boîte de réception. Vous pouvez naviguer dans la boîte email avec les icones précédent/suite.</li>
+
+<li><B>Taux de rafraîchissement du dossier des messages reçus</B><BR>             
+Sélectionnez le nombre de minutes pour le rafraîchissement automatique du dossier des messages reçus. Vous serez avertis d'un nouvel email par un son.</li>
+
+<li><B>Format du temps</B><BR>             
+Indiquez votre préférence pour l'affichage du temps dans l'interface de Webmail et de Calendrier</li>
+
+<li><B>Format de la date</B><BR>             
+Sélectionnez le format d'affichage de la date</li>
+
+<li><B>Choisir la zone horaire</b><BR>
+Entrez votre zone horaire. Quand vous envoyez des messages, ceci détermine l'heure et la date.</li>
+
+<li><B>Signature de messagerie</B><BR>             
+Entrez la signature pour vos messages. Elle sera appliqué à tous les emails sortants.</li>     
+
+<li><B>Vider la poubelle à la sortie</B><BR>                     
+Cochez cette option si vous désirez effacer le contenu de la poubelle quand vous vous déconnectez.</li>         
+
+<li><B>Editeur HTML</B><BR>                
+Choisissez si vous voulez utiliser ou non l'éditeur HTML.</li>                                                              
+
+<li><B>Signature d'email</B><BR>          
+Indiquez votre signature. Elle sera incluse à tous vos emails sortants</li></ul>
+
+</ul>
+
+</font></p>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>WebMail Hilfe</title> 
+<html lang="de"><meta http-equiv="Content-Type" content="text/html; charset=utf-8">       
+
+<script>
+function expandentry()	 {
+
+<!-- if($var['FirstLoad']) { -->
+if(parent.document.getElementById('calendar').style.display != 'block')
+parent.expand('reademail', parent.document.getElementById('readmsgimg') );
+<!-- } -->
+
+}
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" onload="expandentry()">
+
+<LINK href="javascript/stylehelp.css" rel="stylesheet" type="text/css">
+
+<font face="Verdana, Arial" size="+1">Email lesen</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">Hilfe Index</a> ]</font>
+
+<hr noshade>
+
+
+<p>Das E-Mail Fenster beinhaltet eine Liste von Nachrichten die empfangen wurden - wenn Sie mit der Maus darüber gehen, erscheinen die ersten 160 Zeichen dieser Nachricht. Um diese E-Mail vollständig zu lesen klicken auf auf die Betreffzeile.</p>
+<p>Sie können in den Eigenschaften die Sortierung beeinflussen. Sie können das Postfach nach Betreff, Datum, Absender und ID sortieren. Jede Nachricht kann markiert werden um z.B. in einen anderen Ordner verschoben zu werden; Sie können die Nachricht(en) markieren um diese z.B. in den Papierkorb zu verschieben.</p>
+<p>Im E-Mail Fenster können Sie direkt zu den Optionen des Postfachs springen, oder auch zu dem Ordnerinformations Fenster gelangen um die Einstellungen von diesem einzusehen.</p>
+
+</font>
+</body>
+</html>

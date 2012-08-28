@@ -1,0 +1,20 @@
+	</MsgList>
+	<Timestamp>20060607112334</Timestamp>
+
+<FolderList>
+$var['folders_default_ajax']
+<!-- if($var['nrrecords'] || $var['search']) { -->
+<Fol Name="Search" Display="Zoeken" Count="$var['nrrecords']" Icon="search" State="" />
+<!-- } -->
+
+</FolderList>
+
+<!-- if($var['nrrecords'] || $var['search']) { -->
+<MsgNav Total="$var['fulltotal']" View="$var['fulltotal']" Start="$var['start']"/>
+<!-- } -->
+
+<!-- if(!$var['nrrecords'] && !$var['search']) { -->
+<MsgNav Total="$var['fulltotal']" View="$this->MsgNum" Start="$var['start']"/>
+<!-- } -->
+
+</UserEmails>

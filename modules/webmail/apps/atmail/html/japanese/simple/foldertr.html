@@ -1,0 +1,35 @@
+<tr><td width="45%" bgcolor="$this->SecondaryColor" height="26">
+
+<!-- if($this->Ajax) { -->
+<font class="sw">
+<!-- if($this->Ajax) { -->
+&nbsp;<a href="javascript:LoadFolders('$var['FolderLink']');">$var['FolderName']</a></font>
+</td>
+<!-- } -->
+
+
+<!-- if(!$this->Ajax) { -->
+<font class="sw">
+&nbsp;<a
+href="showmail.php?Folder=$var['FolderLink']">$var['FolderName']</a></font>
+<!-- } -->
+
+</td>
+<!-- } -->
+
+<td width="25%" bgcolor="$this->SecondaryColor"><font class="sw">$var['MsgNum'] メール</font></td>
+<td width="20%" bgcolor="$this->SecondaryColor"><font class="sw">$var['Size'] Kb</font></td>
+<td width="10%" bgcolor="$this->SecondaryColor" align="right">
+
+<!-- if(!$var['SystemFolder']) { -->
+<a onClick="javascript:DeleteFolder('$var['MsgNum']','$var['FolderLink']', 0);" title="$var['FolderName']を削除する">
+<img border=0 src="imgs/delete-folder.gif" width="22" height="18" alt="$var['FolderName']を削除する">
+</a>
+&nbsp;
+<!-- } -->
+<a onClick="javascript:DeleteFolder('$var['MsgNum']','$var['FolderLink']', 1);" title="Purge $var['FolderName']">
+<img border=0 src="imgs/trash.gif" width="22" height="18" alt="Purge $var['FolderName']">
+</a>
+</td>
+
+</tr>

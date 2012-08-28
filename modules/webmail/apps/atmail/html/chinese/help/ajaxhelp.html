@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>Ajax Interface Hints & Tips</title>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<LINK href="javascript/stylehelp.css" rel=stylesheet type=text/css>
+<font face="Verdana,Arial" size="+1">AJAX Interface</font> [ <a href="parse.php?file=html/$this->Language/help/file.html">Help 
+Index</a> ] 
+<hr noshade>
+
+<script>
+function expandentry()	 {
+
+<!-- if($var['FirstLoad']) { -->
+if(parent.document.getElementById('troubleshooting').style.display != 'block')
+parent.expand('troubleshooting', parent.document.getElementById('mainimg'));
+<!-- } -->
+
+}
+</script>
+
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" onload="expandentry()">
+
+	
+<p><u>什麼是AJAX的界面？</u> 
+<p>AJAX 介面可讓你存取版本的簡單的界面，創造的Javascript , 該異步加載數據從服務器-增加了提高速度和瀏覽器/操作系統的兼容性.它的大部分特徵的內部客戶端的界面，從而增加了可用性的網絡郵件界面. 
+  
+<p>的一個主要優點簡單阿賈克斯接口是一個信息高速緩存職能 瀏覽器，避免使用重新加載頁面.</p>
+
+<p><u>我如何使AJAX的界面？</u> 
+<p>AJAX界面是自動啟用當你登錄指定的接口.若要使用需要界面效果:IE 5.5以上或Firefox / Mozilla的1.X 需要，請注意這個接口不支持舊版本的瀏覽器.
+
+<p><u>如何使用AJAX的界面？</u> 
+<p>當使用AJAX界面，你有機會獲得以下功能來管理電子郵件訊息： 
+<ul>
+  <li>你可以按Shift點擊電子郵件中的窗格中，突出了一些郵件在同一時間. 按Ctrl +點擊工程，以及.</li>
+  <p><img src="imgs/help/ajaxshift.gif" width="279" height="114"> 
+  <br><br>
+  <li>你可以按'刪除'鍵，鍵盤快捷鍵同時強調郵件主題電子郵件窗格中刪除該郵件.</li>
+
+  <li>使用頂端郵件標題排序電子郵件的瀏覽器，無需請求郵件從郵件服務器了.</li>
+
+  <li>郵件閱讀一個文件夾內緩存在瀏覽器中，因此，如果要求同樣的訊息沒有重新載入網頁是必要的.第一欄的電子郵件行表示如果郵件是緩存在瀏覽器內.</li>
+
+  <li>當回答了信息撰寫面板自動彈出，並且不需要重新載入網頁.</li>
+
+
+  <br>
+  <li>右鍵點擊郵件會出現一個彈出式菜單中含有更多的選擇.</li>
+  <p><img src="imgs/help/ajaxrclick.gif"></p>
+  <li>壓的向上和向下滾動按鈕，將通過郵件在目前選定郵箱.</li>
+  <br>
+  <li>將郵件，突出主題行的郵件（星期日）要移動，並且將它拖曳到你想要的資料夾<br>
+  <p><img src="imgs/help/ajaxtrash.gif">&nbsp;</p>
+  </li>
+  <li>專欄瀏覽電子郵件，信息和addressbook可以自動調整大小.點擊圖標在右上角選擇哪一個欄，以顯示在網頁上.</li>
+</ul>
+
+</body>
+</html>

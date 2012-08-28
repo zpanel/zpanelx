@@ -36,7 +36,7 @@ class module_controller {
         $username = $currentuser['username'];
         $res = array();
         $dirFiles = array();
-        $backupdir = ctrl_options::GetSystemOption('hosted_dir') . $username . "/backups/";
+        $backupdir = ctrl_options::GetOption('hosted_dir') . $username . "/backups/";
         if ($handle = opendir($backupdir)) {
             while (false !== ($file = readdir($handle))) {
                 if ($file != "." && $file != ".." && stristr($file, "_") && substr($file, -4) == ".zip") {
@@ -49,28 +49,28 @@ class module_controller {
             sort($dirFiles);
             foreach ($dirFiles as $file) {
                 $filesize = fs_director::ShowHumanFileSize(filesize($backupdir . $file));
-                $filedate = date("F d Y H:i:s", filemtime($backupdir . $file));
+				$filedate = date ("F d Y H:i:s", filemtime($backupdir . $file)); 
                 array_push($res, array('backupfile' => substr($file, 0, -4),
-                    'created' => $filedate,
-                    'filesize' => $filesize));
+                    					'created'   => $filedate,
+                    					'filesize'  => $filesize));
             }
         }
-        self::array_sort_by_column($res, 'created');
+		self::array_sort_by_column($res, 'created');
         return $res;
     }
 
-    static function array_sort_by_column(&$arr, $col, $dir = SORT_ASC) {
-        $sort_col = array();
-        foreach ($arr as $key => $row) {
-            $sort_col[$key] = $row[$col];
-        }
-        array_multisort($sort_col, $dir, $arr);
-    }
-
+	static function array_sort_by_column(&$arr, $col, $dir = SORT_ASC) {
+    	$sort_col = array();
+    	foreach ($arr as $key=> $row) {
+        	$sort_col[$key] = $row[$col];
+    	}
+    	array_multisort($sort_col, $dir, $arr);
+	}
+	
     static function CheckHasData($userid) {
         $currentuser = ctrl_users::GetUserDetail($userid);
-        $datafolder = ctrl_options::GetSystemOption('hosted_dir') . $currentuser['username'] . "/public_html/";
-        $dirFiles = array();
+        $datafolder = ctrl_options::GetOption('hosted_dir') . $currentuser['username'] . "/public_html/";
+		$dirFiles = array();
         if ($handle = opendir($datafolder)) {
             while (false !== ($file = readdir($handle))) {
                 if ($file != "." && $file != "..") {
@@ -80,7 +80,7 @@ class module_controller {
         }
         closedir($handle);
         if (!fs_director::CheckForEmptyValue($dirFiles)) {
-            return true;
+			return true;
         }
         return false;
     }
@@ -110,25 +110,25 @@ class module_controller {
 
     static function ExecuteDeleteBackup($username, $file) {
         runtime_hook::Execute('OnBeforeDeleteBackup');
-        $backup_file_to_delete = ctrl_options::GetSystemOption('hosted_dir') . $username . "/backups/" . $file . ".zip";
+        $backup_file_to_delete = ctrl_options::GetOption('hosted_dir') . $username . "/backups/" . $file . ".zip";
         unlink($backup_file_to_delete);
         runtime_hook::Execute('OnAfterDeleteBackup');
     }
 
     static function ExecuteCreateBackupDirectory($username) {
-        $backupdir = ctrl_options::GetSystemOption('hosted_dir') . $username . "/backups/";
+        $backupdir = ctrl_options::GetOption('hosted_dir') . $username . "/backups/";
         if (!is_dir($backupdir)) {
             fs_director::CreateDirectory($backupdir);
         }
     }
 
     static function CheckPurgeDate() {
-        if (strtolower(ctrl_options::GetSystemOption('purge_bu')) == "true") {
-            return ctrl_options::GetSystemOption('purge_date');
-        } else {
-            return false;
-        }
-    }
+		if (strtolower(ctrl_options::GetOption('purge_bu')) == "true") {
+    		return ctrl_options::GetOption('purge_date');
+		} else {
+			return false;
+		}
+	}
 
     static function doBackup() {
         global $zdbh;
@@ -162,7 +162,7 @@ class module_controller {
         $currentuser = ctrl_users::GetUserDetail();
         return self::CheckHasData($currentuser['userid']);
     }
-
+	
     static function GetBackUpList() {
         global $controller;
         $currentuser = ctrl_users::GetUserDetail();
@@ -185,7 +185,7 @@ class module_controller {
 
     static function GetDiskAllowed() {
         global $controller;
-        if (strtolower(ctrl_options::GetSystemOption('disk_bu')) == "true")
+        if (strtolower(ctrl_options::GetOption('disk_bu')) == "true")
             return true;
         return false;
     }
@@ -193,6 +193,7 @@ class module_controller {
     static function GetPurgeDate() {
         return self::CheckPurgeDate();
     }
+
 
     static function getCreateBackupDirectory() {
         $currentuser = ctrl_users::GetUserDetail();

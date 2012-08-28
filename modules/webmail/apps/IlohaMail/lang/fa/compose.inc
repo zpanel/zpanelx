@@ -1,0 +1,55 @@
+<?php
+/********************************************************
+	lang/eng/compose.inc
+	(C)2001-2002 Ryo Chijiiwa <Ryo@IlohaMail.org>
+
+	This file is part of IlohaMail, and released under GPL.
+	See COPYING, or http://www.fsf.org/copyleft/gpl.html
+
+********************************************************/
+
+//TRANSLATORS:  Uncomment next line for all non-English languages!!
+//include("../lang/eng/compose.inc");
+
+$composeHStrings[0] = "ãæÖæÚ";
+$composeHStrings[1] = "ÇÒ";
+$composeHStrings[2] = "Èå";
+$composeHStrings[3] = "ÑæäæÔÊ";
+$composeHStrings[4] = "ÑæäæÔÊ äåÇä";
+$composeHStrings[5] = "ÊÇÑíÎ";
+
+
+$composeStrings[0] = "äæÔÊä äÇãå ÌÏíÏ";
+$composeStrings[1] = "ÇÑÓÇá äÇãå";
+$composeStrings[2] = "ÈÇÑßÐÇÑí Èå ÓÑæÑ";
+$composeStrings[3] = "ÇáÕÇÞ ÇãÖÇÁ";
+$composeStrings[4] = "ÇáÕÇÞ";
+$composeStrings[5] = "ÏÝÊÑ ÊãÇÓåÇ";
+$composeStrings[6] = "äåÇä ßÑÏä ÊãÇÓåÇ";
+$composeStrings[7] = "ãÊä äÇãå:";
+$composeStrings[8] = "ÇÖÇÝå";
+$composeStrings[9] = "ÏÑ ÊÇÑíÎ %d, %s  äæÔÊå:\n";
+$composeStrings[10] = "--- äÇãå ÇÕáí ---\n";
+$composeStrings[11] = "ÈÓÊä äÌÑå";
+
+$composeStrings[12] = "ÈÑÑÓí ÇãáÇÁ";
+$composeStrings[13] = "ÊÕÍíÍ ÇãáÇ¡";
+$composeStrings[14] = "ÈÏæä  ÊÛííÑÇÊ";
+$composeStrings[15] = "ÇÔßÇáÇÊ ÇãáÇíí ãæÌæÏ";
+$composeStrings[16] = "ÊÛííÑÇÊ ÇãáÇÁ";
+$composeStrings[17] = "Ôã æÔí";
+$composeStrings[18] = "Çß";
+
+$composeStrings["title"] = "äæÔÊä äÇãå ÌÏíÏ";
+
+$composeErrors[0] = "ÑÔÊå ãæÖæÚ ÎÇáí ÇÓÊ. áØÝÇ íß ãæÖæÚ ÑÇ æÇÑÏ ßäíÏ æ íÇ ÏæÈÇÑå ÈÑ Ñæí Ïßãå \"".$composeStrings[1]."\" ßáíß ßäíÏ ÊÇ äÇãå ÇÑÓÇá ÔæÏ.";
+$composeErrors[1] = "ÑÔÊå \"ÇÒ\" ÎÇáíÓÊ.  áØÝÇ íß ÂÏÑÓ ÓÊí ÕÍíÍ æÇÑÏ ßäíÏ.";
+$composeErrors[2] = "ÑÔÊå \"Èå\" ÎÇáíÓÊ.  áØÝÇ íß ÂÏÑÓ ÓÊí ÕÍíÍ æÇÑÏ ßäíÏ";
+$composeErrors[3] = "ÈÇÑÐÇÑí Èå ÓÑæÑ äÇãæÝÞ ÈæÏ.";
+$composeErrors[4] = "ÝÇíáí ÏÑíÇÝÊ äÔÏ.";
+$composeErrors[5] = "ÈÑÇí ÌáæíÑí ÇÒ ÇÑÓÇá äÇãå åÇí ÇáßÊÑæäíßí äÇÎæÇÓÊå ÈÑÇí ÏíÑ ßÇÑÈÑÇä ÔãÇ ãíÊæÇäíÏ åÑ %3 ËÇäíå ÈÑÇí %1 ßÇÑÈÑ äÇãå ÈÝÑÓÊíÏ (ãÌãæÚÇ %2 äÇãå)";
+
+$composeErrors[6] = "åí ÇÔßÇá ÇãáÇíí íÇÝÊ äÔÏ";
+$composeErrors[7] = "ÈÑÑÓí ÇãáÇíí ÈÑÇí Çíä ÒÈÇä ãææÏ äíÓÊ.";
+$composeErrors[8] = "(%s áÛÊäÇãå ãæÑÏ ÇÓÊÝÇÏå)";
+?>

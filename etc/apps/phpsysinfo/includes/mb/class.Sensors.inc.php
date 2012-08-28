@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 /**
  * Basic OS Class
  *
@@ -13,8 +12,7 @@
  * @version   SVN: $Id: class.Sensors.inc.php 263 2009-06-22 13:01:52Z bigmichi1 $
  * @link      http://phpsysinfo.sourceforge.net
  */
-
-/**
+ /**
  * Basic OS functions for all OS classes
  *
  * @category  PHP
@@ -25,30 +23,31 @@
  * @version   Release: 3.0
  * @link      http://phpsysinfo.sourceforge.net
  */
-abstract class Sensors implements PSI_Interface_Sensor {
-
+abstract class Sensors implements PSI_Interface_Sensor
+{
     /**
      * object for error handling
      *
      * @var Error
      */
     protected $error;
-
+    
     /**
      * object for the information
      *
      * @var MBInfo
      */
     protected $mbinfo;
-
+    
     /**
      * build the global Error object
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->error = Error::singleton();
         $this->mbinfo = new MBInfo();
     }
-
+    
     /**
      * get the filled or unfilled (with default values) MBInfo object
      *
@@ -56,11 +55,10 @@ abstract class Sensors implements PSI_Interface_Sensor {
      *
      * @return MBInfo
      */
-    public final function getMBInfo() {
+    public final function getMBInfo()
+    {
         $this->build();
         return $this->mbinfo;
     }
-
 }
-
 ?>

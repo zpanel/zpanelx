@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 /**
  * SensorDevice TO class
  *
@@ -13,8 +12,7 @@
  * @version   SVN: $Id: class.SensorDevice.inc.php 252 2009-06-17 13:06:44Z bigmichi1 $
  * @link      http://phpsysinfo.sourceforge.net
  */
-
-/**
+ /**
  * SensorDevice TO class
  *
  * @category  PHP
@@ -25,29 +23,29 @@
  * @version   Release: 3.0
  * @link      http://phpsysinfo.sourceforge.net
  */
-class SensorDevice {
-
+class SensorDevice
+{
     /**
      * name of the sensor
      *
      * @var String
      */
     private $_name = "";
-
+    
     /**
      * current value of the sensor
      *
      * @var Integer
      */
     private $_value = 0;
-
+    
     /**
      * maximum value of the sensor
      *
      * @var Integer
      */
     private $_max = 0;
-
+    
     /**
      * minimum value of the sensor
      *
@@ -55,6 +53,7 @@ class SensorDevice {
      */
     private $_min = 0;
 
+    
     /**
      * Returns $_max.
      *
@@ -62,10 +61,11 @@ class SensorDevice {
      *
      * @return Integer
      */
-    public function getMax() {
+    public function getMax()
+    {
         return $this->_max;
     }
-
+    
     /**
      * Sets $_max.
      *
@@ -75,10 +75,11 @@ class SensorDevice {
      *
      * @return Void
      */
-    public function setMax($max) {
+    public function setMax($max)
+    {
         $this->_max = $max;
     }
-
+    
     /**
      * Returns $_min.
      *
@@ -86,10 +87,11 @@ class SensorDevice {
      *
      * @return Integer
      */
-    public function getMin() {
+    public function getMin()
+    {
         return $this->_min;
     }
-
+    
     /**
      * Sets $_min.
      *
@@ -99,10 +101,11 @@ class SensorDevice {
      *
      * @return Void
      */
-    public function setMin($min) {
+    public function setMin($min)
+    {
         $this->_min = $min;
     }
-
+    
     /**
      * Returns $_name.
      *
@@ -110,10 +113,11 @@ class SensorDevice {
      *
      * @return String
      */
-    public function getName() {
+    public function getName()
+    {
         return $this->_name;
     }
-
+    
     /**
      * Sets $_name.
      *
@@ -123,10 +127,11 @@ class SensorDevice {
      *
      * @return Void
      */
-    public function setName($name) {
+    public function setName($name)
+    {
         $this->_name = $name;
     }
-
+    
     /**
      * Returns $_value.
      *
@@ -134,10 +139,11 @@ class SensorDevice {
      *
      * @return Integer
      */
-    public function getValue() {
+    public function getValue()
+    {
         return $this->_value;
     }
-
+    
     /**
      * Sets $_value.
      *
@@ -147,10 +153,9 @@ class SensorDevice {
      *
      * @return Void
      */
-    public function setValue($value) {
+    public function setValue($value)
+    {
         $this->_value = $value;
     }
-
 }
-
 ?>

@@ -1,0 +1,228 @@
+<?php
+if (!isset($Langue)) {
+$Langue = explode(',',$_SERVER['HTTP_ACCEPT_LANGUAGE']);
+$Langue = strtolower(substr(chop($Langue[0]),0,2));
+}
+if (file_exists("lang/login.".$Langue.".php")) { 
+include("lang/login.".$Langue.".php");
+} else { 
+include("lang/login.en.php");
+} 
+?>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title><?php echo TXT_BOOTSTRAP_TITLE; ?></title>
+    
+        <!-- Bootstrap framework -->
+            <link rel="stylesheet" href="etc/styles/bootstrap/bootstrap/bootstrap.min.css" />
+            <link rel="stylesheet" href="etc/styles/bootstrap/bootstrap/bootstrap-responsive.min.css" />
+    
+        <!-- Favicon -->
+            <link rel="shortcut icon" href="etc/styles/bootstrap/inc/favicon.ico" />
+    
+        <!--[if lte IE 8]>
+            <script src="etc/styles/bootstrap/inc/html5.js"></script>
+			<script src="etc/styles/bootstrap/inc/respond.min.js"></script>
+        <![endif]--> 
+		
+    </head>
+    <body class="login_page" style="display:none">
+    
+    <div class="login_wrapper">
+		
+		<div class="login_box">
+        
+        <?php if (isset($_GET['resetkey'])) { ?>
+	
+	 <!-- BEGIN CONFIRMATION -->
+        
+        		<form action="<?php echo $_SERVER['PHP_SELF']; ?>?resetkey=<?php echo $_GET['resetkey']; ?>" method="post" name="frmZConfirm" id="login_form">
+            			<div class="top_b"><img src="etc/styles/bootstrap/images/zp_logo_sm.png" /></div>
+            
+				<div class="alert alert-info alert-login">
+					<?php echo TXT_BOOTSTRAP_RESET; ?>
+				</div>
+            
+				<div class="cnt_b">
+					<div class="formRow">
+						<div class="input-prepend">
+							<span class="add-on"><i class="icon-lock"></i></span><input type="password" name="inNewPass" placeholder="<?php echo TXT_BOOTSTRAP_PASSWORD; ?>" />
+						</div>
+					</div>
+                    		<div class="formRow">
+						<div class="input-prepend">
+							<span class="add-on"><i class="icon-lock"></i></span><input type="password" name="inNewPass2" placeholder="<?php echo TXT_BOOTSTRAP_RETYPE_PASSWORD; ?>" />
+						</div>
+					</div>
+					<div class="formRow">
+						<div class="input-prepend">
+							<span class="add-on">@</span><input type="text" name="inConfEmail" placeholder="<?php echo TXT_DEFAULT_YOUR_EMAIL; ?>" />
+						</div>
+					</div>
+				</div>
+				<div class="btm_b clearfix">
+					<button class="btn btn-inverse pull-right" type="submit" name="Confirm"  value="1"><?php echo TXT_BOOTSTRAP_CONFIRM; ?></button>
+					<a href="/index.php"><?php echo TXT_DEFAULT_BACK_LOGIN; ?></a>
+				</div>  
+			</form>
+                                            
+
+		<!-- END CONFIRMATION -->
+
+             <?php } else { ?>
+
+		<!-- BEGIN LOGIN -->
+
+			
+	     		<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="frmZLogin" id="login_form">
+            			<div class="top_b"><img src="etc/styles/bootstrap/images/zp_logo_sm.png" />
+				</div>
+
+            		<?php
+				if (isset($_GET['invalidlogin'])) {
+					echo '<div class="alert alert-error alert-login">';
+					echo TXT_BOOTSTRAP_INVALID_LOGIN;
+					echo '</div>';
+				}
+				if (isset($_GET['loggedout'])) {
+					echo '<div class="alert alert-success alert-login">';
+					echo TXT_DEFAULT_LOGOUT_SUCCESSFULY;
+					echo '</div>';
+				}
+				if (isset($_GET['passwordreset'])) {
+				echo '<div class="alert alert-success alert-login">';
+				echo TXT_DEFAULT_RESET_EMAIL;
+				echo '</div>';
+				}
+			?>
+     
+            
+				<div class="cnt_b">
+					<div class="formRow">
+						<div class="input-prepend">
+							<span class="add-on"><i class="icon-user"></i></span><input type="text" id="username" name="inUsername" placeholder="<?php echo TXT_DEFAULT_USERNAME; ?>" />
+						</div>
+					</div>
+					<div class="formRow">
+						<div class="input-prepend">
+							<span class="add-on"><i class="icon-lock"></i></span><input type="password" id="password" name="inPassword" placeholder="<?php echo TXT_DEFAULT_PASSWORD; ?>" />
+						</div>
+					</div>
+					<div class="formRow clearfix">
+						<label class="checkbox"><input type="checkbox" name="inRemember" /> <?php echo TXT_DEFAULT_REMEMBER_ME; ?></label>
+					</div>
+				</div>
+				<div class="btm_b clearfix">
+					<button class="btn btn-inverse pull-right" type="submit" name="sublogin2" value="LogIn"><?php echo TXT_BOOTSTRAP_SIGNIN; ?></button>
+					<span class="link_reg"><a href="#pass_form"><?php echo TXT_DEFAULT_FORGOT_PASSWORD; ?></a></span>
+				</div>  
+			</form>
+		
+		<!-- END LOGIN -->
+
+		<?php }?>
+
+		<!-- BEGIN FORGOT PASSWORD-->			
+
+			<form action="" method="post" name="frmZForgot" id="pass_form" style="display:none">
+				<div class="top_b"><img src="etc/styles/bootstrap/images/zp_logo_sm.png" /></div>    
+				<div class="cnt_b">
+					<div class="formRow clearfix">
+						<div class="input-prepend">
+							<span class="add-on">@</span><input type="text" name="inForgotPassword" placeholder="<?php echo TXT_DEFAULT_YOUR_EMAIL; ?>" />
+							<input name="panel" type="hidden" value="reset1">
+						</div>
+					</div>
+				</div>
+				<div class="btm_b clearfix">
+					<button class="btn btn-inverse pull-right" type="submit" name="sublogin2" value="LogIn"><?php echo TXT_DEFAULT_RESET; ?></button>
+                    <a href="/index.php"><?php echo TXT_DEFAULT_BACK_LOGIN; ?></a>
+				</div>  
+			</form>
+
+		<!-- END FORGOT PASSWORD-->
+			
+		</div>
+        
+		<div class="links_b links_btm clearfix">
+			<?php echo TXT_DEFAULT_POWERED_BY; ?> <a href="http://www.zpanelcp.com/" target="_blank" title="ZPanel - Taking hosting to the next level!">ZPanel</a><br /><?php echo TXT_DEFAULT_SERVER_RUNING; ?>: ZPanel <?php echo sys_versions::ShowZpanelVersion(); ?>
+		</div>  
+        
+        </div>
+        
+	 <script src="etc/styles/bootstrap/inc/jquery.login.min.js"></script>
+        <script src="etc/styles/bootstrap/inc/jquery.actual.min.js"></script>
+        <script src="etc/styles/bootstrap/inc/jquery.validate.min.js"></script>
+	 <script src="etc/styles/bootstrap/inc/bootstrap.min.js"></script>
+
+        <script type='text/javascript'> 
+        $(document).ready(function(){				   
+        	$(window).resize(function(){
+	        	$('.login_wrapper').css({
+	        		position:'absolute',
+	        		left: ($(window).width() - $('.login_wrapper').outerWidth())/2,
+	        		top: ($(window).height() - $('.login_wrapper').outerHeight())/2,
+	        	});
+	        });
+	        $(window).resize();
+        });
+        </script>
+
+        <script type='text/javascript'>
+            $(document).ready(function(){
+                
+				//* boxes animation
+				form_wrapper = $('.login_box');
+                $('.linkform a,.link_reg a').on('click',function(e){
+					var target	= $(this).attr('href'),
+						target_height = $(target).actual('height');
+					$(form_wrapper).css({
+						'height'		: form_wrapper.height()
+					});	
+					$(form_wrapper.find('form:visible')).fadeOut(400,function(){
+						form_wrapper.stop().animate({
+                            height	: target_height
+                        },500,function(){
+				$('.alert').hide();
+                            $(target).fadeIn(400);
+                            $('.links_btm .linkform').toggle();
+							$(form_wrapper).css({
+								'height'		: ''
+							});	
+                        });
+					});
+					e.preventDefault();
+				});
+				
+				//* validation
+				$('#login_form').validate({
+					onkeyup: false,
+					errorClass: 'error',
+					validClass: 'valid',
+					rules: {
+						username: { required: true, minlength: 3 },
+						password: { required: true, minlength: 3 }
+					},
+					highlight: function(element) {
+						$(element).closest('div').addClass("f_error");
+					},
+					unhighlight: function(element) {
+						$(element).closest('div').removeClass("f_error");
+					},
+					errorPlacement: function(error, element) {
+						$(element).closest('div').append(error);
+					}
+				});
+            });
+        </script>
+
+	<script type='text/javascript'>
+            $(window).load(function() {
+              $('body').fadeIn(1500);
+            });
+        </script>
+    </body>
+</html>

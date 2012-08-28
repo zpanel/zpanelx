@@ -1,0 +1,9 @@
+The js_notice plugin is a simple plugin that uses javascript to show/hide notices and error
+messages. To enable the plugin add or uncomment the following in your hastymail.conf file:
+
+plugin = js_notice
+
+Don't forget to rebuild the hastymail2.rc file after editing the hastymail2.conf.
+Plugin configs are cached when you login so be sure to logout and back in to
+enable the plugin This plugin is a part of Hastymail so questions and comments
+can be directed to our forums, mailing lists, or directly to me at jason@hastymail.org.

@@ -1,0 +1,234 @@
+<!--Include="html/japanese/simple/header.html"-->
+
+<script language="JavaScript" src="javascript/composebook.js"></script>
+<script language="javascript" src="javascript/abookadd.js"></script>
+<script language="javascript" src="javascript/ajax/validate.js"></script>
+<script language="javascript" src="html/$this->Language/javascript/validate_group.js"></script>
+
+<!-- here is our custom sidebar -->
+
+			<table width="163" cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="5" border="0"></td>
+					<td width="125"><img src="imgs/simple/shim.gif" width="125" height="5" border="0"></td>
+				</tr>
+
+			
+				<tr>
+					<td width="38" bgcolor="#DEEBF6" class="optionselectedimg"><img onclick="document.abook_new.submit()" style="cursor: pointer; cursor: hand;" src="imgs/simple/sidebar_addentry_on.gif" width="38" height="31" border="0"></td>
+
+<td width="125">
+<table width='115' cellpadding='0' cellspacing=0 border=0 height="33" class='optionselected'>
+<tr>
+<td onclick="SubmitGroup();">
+<font class="menuoption">&nbsp;&nbsp;保存</small>
+</td>
+</tr>
+</table>
+</td>
+
+				</tr>
+				<tr>
+					<td width="38"><img src="imgs/simple/sidebar_bottom_tile.gif" width="38" height="95" border="0"></td>
+					<td width="125"><img src="imgs/simple/shim.gif" width="125" height="95" border="0"></td>
+				</tr>
+			</table>
+		 </td>
+
+<!--Include="html/japanese/simple/headerbar.html"-->
+
+<SCRIPT language=JavaScript src="javascript/opencompose.js"></script>
+<script language="JavaScript">
+window.status = ' アドレス帳にユーザーを追加 ';
+
+</script>
+
+
+$var['atmailstyle']
+
+<font class="sw">Eメールアドレスを左側のパネルから選択し、ユーザーを右側のパネルに追加して新しいEメールグループを作成します。オプションで、グループ情報とユーザーの閲覧/書き込みパーミッションを入力することができます。</font><br><br>
+
+<table border='0' cellspacing='1' cellpadding='0' class='maintable'>
+<form name="MainForm" action="abook.php">
+<input type="hidden" name="func" value="open">
+<input type="hidden" name="savegroupxp" value="1">
+<input type="hidden" name="id" value="$var['id']">
+<input type="hidden" name="UserGroupPrev" value="$var['UserEmail']">
+
+
+<TABLE border='0' width='100%' cellpadding='4' cellspacing='0' class="table_control">
+
+<TR><TH class="topleft"><font class='mheader'>&nbsp;グループEメール</font></TH><TH class="middle"></TH><TH class="topright"></TH></TR>
+
+
+
+</TABLE>
+
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5" class="borderstyle">
+    <tr>
+		<td bgcolor="$this->SecondaryColor">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5">
+<tr> 
+<td bgcolor="$this->SecondaryColor" nowrap><font class="sw">グループ名:</font></td>
+<td bgcolor="$this->SecondaryColor" width="100%" nowrap> 
+<input type="text" class="inputfield" name="UserGroup" size="40" maxlength="64" value="$var['UserEmail']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor" colspan=2>
+	
+    <table width="100%" border="0" cellspacing="1" cellpadding="1">
+      <tr> 
+        <td bgcolor='$this->SecondaryColor' width="45%"> 
+          <select name="Addresses[]" id="Addresses" multiple size="16" class="select" style="width:98%" >
+            <option value="-1">--- すべてのEメールを追加</option>
+$var['rows']
+		  </select>
+        </td>
+        <td align="center" width="10%" nowrap><font class='sw'> 
+          <input class="stdbtn" type="button" value="&nbsp;追加     &gt;&gt;  " onClick="moveItems(this.form.Addresses,'ToAddress')" name="button2">
+          <br>
+          <input class="stdbtn" type="button" value="&nbsp;&nbsp;削除 &lt;&lt;&nbsp;&nbsp;" onClick="deleteItems('ToAddress')" name="button">
+          </font></td>
+        <td width="45%"> 
+          <select name="ToAddress[]" id="ToAddress" width="50" multiple size="16" class="select" style="width:98%" >
+			$var['emailto']
+          </select>
+        </td>
+      </tr>
+    </table>
+
+</td>
+</tr>
+
+</table>
+
+
+
+</td>
+</tr>
+</table>
+
+<br><br>
+
+<table border='0' cellspacing='1' cellpadding='0' class='maintable'>
+
+
+<TABLE border='0' width='100%' cellpadding='4' cellspacing='0' class="table_control">
+
+<TR><TH class="topleft"><font class='mheader'>&nbsp;グループ情報</font></TH><TH class="middle"></TH><TH class="topright"></TH></TR>
+
+
+
+</TABLE>
+
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5" class="borderstyle"> 
+    <tr>
+		<td bgcolor="$this->SecondaryColor">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5">
+
+<tr> 
+<td bgcolor="$this->SecondaryColor" width="150"><font class="sw">名</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserFirstName" size="40" maxlength="64" value="$var['UserFirstName']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">ミドルネーム</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserMiddleName" size="40" maxlength="64" value="$var['UserMiddleName']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">姓</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserLastName" size="40" maxlength="64" value="$var['UserLastName']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">番地</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserHomeAddress" size="30" maxlength="64" value="$var['UserHomeAddress']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">市区町村</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserHomeCity" size="30" maxlength="64" value="$var['UserHomeCity']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">都道府県</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserHomeState" size="20" maxlength="64" value="$var['UserHomeState']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">郵便番号</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserHomeZip" size="20" maxlength="64" value="$var['UserHomeZip']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">国</font></td>
+<td bgcolor="$this->SecondaryColor">
+<input type="text" class="inputfield" name="UserHomeCountry" size="35" maxlength="64" value="$var['UserHomeCountry']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">URL</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserURL" size="40" maxlength="128" value="$var['UserURL']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">自宅電話番号</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserHomePhone" size="20" maxlength="64" value="$var['UserHomePhone']">
+</td>
+</tr>
+
+<td bgcolor="$this->SecondaryColor"><font class="sw">自宅ファックス番号</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<input type="text" class="inputfield" name="UserHomeFax" size="20" maxlength="64" value="$var['UserHomeFax']">
+</td>
+</tr>
+
+<tr> 
+<td bgcolor="$this->SecondaryColor"><font class="sw">追加情報</font></td>
+<td bgcolor="$this->SecondaryColor"> 
+<textarea name="UserInfo" cols="40" rows="5" class="inputfieldtextarea">$var['UserInfo']</textarea>
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
+
+<br>
+
+</form>
+<!--Include="html/japanese/simple/footer.html"-->

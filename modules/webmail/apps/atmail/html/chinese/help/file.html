@@ -1,0 +1,44 @@
+<title>網頁郵件幫助指南</title>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<LINK href="javascript/stylehelp.css" rel=stylesheet type=text/css>
+
+<font face="Verdana, Arial" size="+1">網頁郵件幫助指南</font>
+
+<hr noshade>
+<p><font face="Arial, Helvetica, Condensed" size="2">以此幫助文件，你可以了解更多有關網頁郵件.選擇從上述清單了解更多有關主題.</font></p>
+<ul>
+  <li><a href="parse.php?file=html/$this->Language/help/compose.html">撰寫/發送電子郵件</a></li>
+  <li><a href="parse.php?file=html/$this->Language/help/reademail.html">閱讀電子郵件</a></li>
+
+<!-- if($pref['allow_Calendar']) { -->
+ <li><a href="parse.php?file=html/$this->Language/help/calendar.html">日曆</a></li>
+<!-- } -->
+
+<!-- if(file_exists("{$pref['install_dir']}/xhtml.php") && $pref['allow_Mobile']) { -->
+<li><a href="parse.php?file=html/$this->Language/help/wap.html">無線電子郵件</a></li>
+<!-- } -->
+
+<li><a href="parse.php?file=html/$this->Language/help/settings.html">修改設置</a></li>
+  <li><a href="parse.php?file=html/$this->Language/help/addressbook.html">通訊錄</a></li>
+
+<!-- if($pref['allow_MultiAccounts']) { -->
+  <li><a href="parse.php?file=html/$this->Language/help/addpop3.html">多功能 POP3 帳戶</a></li>
+<!-- } -->
+
+<!-- if($pref['allow_LDAP'] && extension_loaded('ldap')) { -->
+<li><a href="parse.php?file=html/$this->Language/help/ldap.html">LDAP搜索引擎</a></li>
+<!-- } -->
+
+<li><a href="parse.php?file=html/$this->Language/help/newmbox.html">郵箱選項</a></li>
+
+<!-- if(file_exists($pref['aspell_dir']) || extension_loaded('pspell')) { -->
+<li><a href="parse.php?file=html/$this->Language/help/spell.html">拼寫檢查功能</a></li>
+<!-- } -->
+
+<!-- if($pref['allow_SMS'] && file_exists('sms.php')) { -->
+<li><a href="parse.php?file=html/$this->Language/help/sms.html">短信幫助</a></li>
+<!-- } -->
+</ul>
+
+以此幫助文件，你可以了解更多有關網頁郵件.選擇從上述清單了解更多有關主題.

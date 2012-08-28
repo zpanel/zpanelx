@@ -1,0 +1,142 @@
+/* new mail page */
+
+#new_page{
+    overflow: auto;
+    width: 100%;
+    padding-bottom: 20px;
+    clear: both;
+}
+.message_controls, .message_controls2{
+    padding-bottom: 0px;
+    margin-left: 0px;
+    padding-left: 7px;
+}
+.toggle_folder{
+    padding-left: 28px;
+    padding-right: 20px;
+    vertical-align: -60%;
+    text-decoration: none;
+    clear: none;
+}
+#toggle_all_button{
+    margin-left: 15px;
+}
+.unread_mailbox_table h4 a{
+    text-decoration: none;
+}
+.mbx_row:hover{background-color: #f5f5f5;}
+
+.unread_mailbox_table h4{
+    border: none;
+    padding: 0px;
+    margin: 0px;
+    margin-top: 10px;
+    font-size: 115%;
+    float: left;
+    clear: none;
+    padding-left: 25px;
+    
+}
+.unread_mailbox_table td{
+    padding-top: 5px;
+    padding-bottom: 2px;
+    padding-right: 5px;
+    vertical-align: top;
+}
+.empty_unread{
+    margin-left: 40px;
+    font-style: italic;
+    font-size: 90%;
+    color: #aaa;
+}
+.unread_mailbox_table th{
+    text-align: left;
+    background-color: transparent;
+    font-size: 80%;
+    padding-bottom: 2px;
+    padding-top: 3px;
+}
+.unread_mailbox_table th a{ padding-left: 17px; }
+.unread_mailbox_table{ padding-bottom: 20px; margin-top: 5px;}
+
+#new_page_inner{
+}
+#new_page_meta{
+    float: right;
+    font-weight: normal;
+    text-align: right;
+    padding-right: 10px;
+}
+.mbx_unseen_from, .mbx_unseen_subject a{ }
+.mbx_unseen_checkbox, .mbx_unseen_indicators, .mbx_unseen_subject, .mbx_unseen_from, .mbx_unseen_date, .mbx_unseen_size{ background-color: transparent; }
+.mbx_unseen_checkbox, .mbx_checkbox, .mbx_unseen_indicators, .mbx_indicators, .mbx_unseen_size, .mbx_size{ white-space: nowrap; }
+.mbx_unseen_from, .mbx_unseen_date, .mbx_unseen_size, .mbx_size, .mbx_date, .mbx_from{
+    white-space: nowrap;
+    font-size: 90%;
+}
+.last_read_hidden{
+    visibility: hidden;
+    padding-right: 3px;
+}
+.last_read{
+    padding-right: 3px;
+}
+.mbx_unseen_checkbox, .mbx_checkbox{
+    width: 1%;
+    padding-left: 10px;
+    padding-top: 3px !important;
+}
+.mbx_unseen_indicators, .mbx_indicators{
+    padding-left: 5px;
+    width: 1%;
+    white-space: nowrap;
+}
+.unread_mailbox_table .mbx_title_cell{
+    padding-bottom: 0px;
+}
+#edit_new_page{
+    float: left;
+    margin-left: 25px;
+    margin-bottom: 10px;
+    font-size: 80%;
+}
+#no_new_mail{
+    text-align: center;
+    border-top: solid 1px #ccc;
+    font-style: italic;
+    font-size: 110%;
+    padding: 20px;
+}
+.frozen{
+    font-weight: bold;
+    padding-left: 10px;
+}
+.deleted_message a {
+    color: #888;
+    text-decoration: line-through;
+}
+.mbx_unseen_image_cell {
+    width: 45px;
+    padding: 0px !important;
+    padding-top: 7px !important;
+    white-space: nowrap;
+    background-color: transparent;
+}
+.mbx_unseen_image_cell div{
+    background: transparent url('themes/clean/images/sprite.png') -64px -138px no-repeat;
+    margin-top: 0px;
+    margin-right: 8px;
+    float: left;
+    width: 14px !important;
+    height: 10px !important;
+}
+.mbx_unseen_subject a{
+    text-decoration: none;
+    font-size: 110%;
+    width: 60%;
+}
+.mbx_subject, .mbx_unseen_subject, .subject_cell_heading{
+    font-size: 110%;
+    width: 60%;
+    padding-left: 3px;
+}

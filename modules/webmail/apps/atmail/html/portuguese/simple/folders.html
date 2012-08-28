@@ -1,0 +1,313 @@
+<!-- if($var['extratitle'] = "- {Gerenciador de Pastas}") { -->
+<!-- } -->
+
+<!--Include="html/portuguese/simple/header.html"-->
+
+<script Language="JavaScript" src="html/$this->Language/javascript/validate_folders.js"></script>
+<script Language="JavaScript" src="html/$this->Language/javascript/checkemail.js"></script>
+<script Language="JavaScript" src="html/$this->Language/javascript/checkalpha.js"></script>
+
+
+<table width="163" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="5" border="0"></td>
+		<td width="125"><img src="imgs/simple/shim.gif" width="125" height="5" border="0"></td>
+	</tr>
+
+	<tr>
+		<td width="38" bgcolor="#DEEBF6"><img src="imgs/simple/shim.gif" width="38" height="10" border="0"></td>
+		<td width="125"><img src="imgs/simple/shim.gif" width="125" height="10" border="0"></td>
+	</tr>
+	<tr>
+		<td width="38"><img src="imgs/simple/sidebar_bottom_tile.gif" width="38" height="95" border="0"></td>
+		<td width="125"><img src="imgs/simple/shim.gif" width="125" height="95" border="0"></td>
+	</tr>
+</table>
+</td>
+
+<!--Include="html/portuguese/simple/headerbar.html"-->
+
+<SCRIPT LANGUAGE="JavaScript">
+window.focus();
+
+var MSIE=navigator.userAgent.indexOf("MSIE");
+var NETS=navigator.userAgent.indexOf("Netscape");
+var OPER=navigator.userAgent.indexOf("Opera");
+if((MSIE>-1) || (OPER>-1)) {
+document.write("<style>.stdbtn { background-color: #F4F4F4; font: 8pt Tahoma; width: 75px;}");
+document.write(".stdbtnlong { background-color: #F4F4F4; font: 8pt Tahoma; width: 95px;}</style>");
+} else {
+document.write("<!--Netscape Style Sheet-->");
+}
+
+function DeleteFolder(FolderNum, FolderName, purge) {
+
+	var FolderNameRaw = FolderName;
+	FolderName = Url.decode(FolderName);
+	if (purge == 1) {
+		var confirmtxt = 'The Folder ' + FolderName +' contains ' + FolderNum + ' Message(s). Are you sure you want to delete all messages from this folder?';
+	} else {
+		var confirmtxt = 'A pasta ' + FolderName + ' contem ' + FolderNum + ' Mensagen(s). Tem certeza que deseja apagar tudo?';
+	}
+	if (confirm([confirmtxt])) {
+      location.href = "util.php?func=info&delete=" + FolderNameRaw + '&purge=' + purge;
+    }
+}
+
+
+var delim = "$var['delim']";
+
+function updateRename(folder) {
+	if (folder.length == 0) {
+		document.renamefolders.foldername.disabled=true;
+		document.renamefolders.renamefolder.disabled=true;
+		document.getElementById('parentName').innerHTML = '';
+	} else {
+		document.renamefolders.foldername.disabled=false;
+		document.renamefolders.renamefolder.disabled=false;
+
+		if (folder.indexOf(delim) != -1) {
+			var parts = folder.split(delim);
+			parts.pop();
+			document.getElementById('parentName').innerHTML = Url.decode(parts.join(delim) + delim);
+		} else {
+			document.getElementById('parentName').innerHTML = '';
+		}
+	}
+}
+
+
+var utf7enabled = "$pref['allow_utf7_folders']";
+</SCRIPT>
+
+<font class="sw">Atravéz do Painel você pode monitorar suas Pastas. As opções incluem criar nova conta, ler mensagens e apagar mensagem.</font><br><br>
+
+<form method="post" name="folders" onsubmit="return validate_form(this)">
+<input type="hidden" name="func" value="info">
+
+<table border='0' cellspacing='1' cellpadding='0' class='maintable'>
+
+
+<TABLE border='0' width='100%' cellpadding='4' cellspacing='0' class="table_control">
+
+<TR><TH class="topleft"><font class='mheader'>&nbsp;Conta </TH>
+<TH class="middle2"><font class='mheader'>&nbsp;</font></TH>
+<TH class="middle2"><font class='mheader'>&nbsp;</font></TH>
+<TH class="middle2"><font class='mheader'>&nbsp;</font></TH>
+<TH class="middle2"><font class='mheader'>&nbsp;</font></TH>
+<TH class="middle2"><font class='mheader'>&nbsp;</font></TH>
+<TH class="middle2"><font class='mheader'>&nbsp;</font></TH>
+<TH class="middle2"><font class='mheader'>&nbsp;</font></TH>
+<TH class="middle2"><font class='mheader'>&nbsp;</font></TH>
+<TH class="middle2"><font class='mheader'>&nbsp;Total de Mensagens</font></TH>
+<TH class="middle"><font class='mheader'>&nbsp;Tamanho (kb)</font></TH>
+<TH class="topright"><font class='mheader'>&nbsp;Apagar</font></TH></TR>
+
+</TABLE>
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="4" class="borderstyle">
+$var['folders']
+</table>
+
+<br/>
+
+<table border='0' cellspacing='1' cellpadding='0' class='maintable'>
+
+
+<TABLE border='0' width='100%' cellpadding='4' cellspacing='0' class="table_control">
+
+<TR><TH class="topleft"><font class='mheader'>&nbsp;Criar nova Conta</font></TH>
+<TH class="middle"></TH>
+<TH class="topright"></TH></TR>
+
+
+
+</TABLE>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5" class="borderstyle">
+    <tr>
+		<td bgcolor="$this->SecondaryColor">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5">
+<tr>
+<td width="30%" bgcolor="$this->SecondaryColor"><font class="sw">Conta</font></td>
+<td width="40%" bgcolor="$this->SecondaryColor">
+<input onfocus="javascript:this.value=''" type="text" class="inputfield" name="foldername" value="Informe o Nome da Caixa de Entrada" size="30">
+</td>
+<td width="30%" bgcolor="$this->SecondaryColor" align="right">
+<input type="submit" name="creatembox" value="Adicionar Pasta" class="stdbtnlong">
+</td></tr></table>
+
+</td></tr>
+</form>
+</table>
+
+<br>
+
+<TABLE border='0' width='100%' cellpadding='4' cellspacing='0' class="table_control">
+
+<TR><TH class="topleft"><font class='mheader'>&nbsp;Rename Personal Folder</font></TH>
+<TH class="middle"></TH>
+<TH class="topright"></TH></TR>
+
+</TABLE>
+<table width="100%" border="0" cellspacing="0" cellpadding="5" class="borderstyle">
+    <tr>
+		<td bgcolor="$this->SecondaryColor">
+<form method="post" name="renamefolders" onsubmit="return validate_form(this)">
+<input type="hidden" name="func" value="info">
+<table width="100%" border="0" cellspacing="0" cellpadding="5">
+
+  <tr>
+
+  <tr>
+    <td width="20%" bgcolor="$this->SecondaryColor"><font class="sw">Select folder to rename</font></td>
+    <td width="20%" bgcolor="$this->SecondaryColor">
+    <select class="inputfield" name="curname" onchange="updateRename(this.value)">
+	$var['renamefolderbox']
+      </select>
+    </td>
+    <td width="20%" bgcolor="$this->SecondaryColor" style="text-align: right"><font class="sw">New Name: <span id="parentName" style="font-weight:bold"></span></font></td>
+    <td width="20%" bgcolor="$this->SecondaryColor">
+        <input type="text" name="foldername" class="inputfield" disabled>
+    </td>
+    <td width="10%" bgcolor="$this->SecondaryColor" align="right">
+      <input class="stdbtnlong" type="submit" name="renamefolder" value="Rename" disabled>
+    </td>
+  </tr>
+</table>
+</td></tr>
+</form>
+</table>
+
+<br>
+
+<table border='0' cellspacing='1' cellpadding='0' class='maintable'>
+
+<!-- if($domains[$this->pop3host] && $var['usedquota'] > 0 && $var['totalquota'] > 0) { -->
+<TABLE border='0' width='100%' cellpadding='4' cellspacing='0' class="table_control">
+
+<TR><TH class="topleft"><font class='mheader'>&nbsp;Cota do Email [Espaço utilizado $var['usedquota'] Kb de $var['totalquota'] Kb Total]</font></TH>
+<TH class="middle"></TH>
+<TH class="topright"></TH></TR>
+
+</TABLE>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="2" class="borderstyle">
+  <tr>
+    <td width="100%" bgcolor="$this->SecondaryColor" height="26" colspan="2">
+      <table width="100%" border="0" cellspacing="0" cellpadding="3">
+        <tr>
+          <td bgcolor="#E0EBF6" width="$var['used_percent']"><font class="mheader">&nbsp;$var['used']</font></td>
+          <td bgcolor="$this->SecondaryColor"><div align="right"><font class="mheader">100%</font></div></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<br>
+<!-- } -->
+
+<!-- if($pref['allow_EmailToFolderRules']) { -->
+<a name="filter"></a>
+
+<form onsubmit="if(!check_email(this.sort_email)) { return false; }" name="filter">
+<input type="hidden" name="func" value="info">
+
+<table border='0' cellspacing='1' cellpadding='0' class='maintable'>
+
+<TABLE border='0' width='100%' cellpadding='4' cellspacing='0' class="table_control">
+
+<TR><TH class="topleft"><font class='mheader'>&nbsp;Regras de Mensagens</font></TH>
+<TH class="middle"></TH>
+<TH class="topright"></TH></TR>
+
+</TABLE>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5" class="borderstyle">
+    <tr>
+		<td bgcolor="$this->SecondaryColor">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5">
+  <tr>
+    <td width="30%" bgcolor="$this->SecondaryColor"><font class="sw">Endereço de Email</font></td>
+    <td bgcolor="$this->SecondaryColor" colspan="2">
+      <input type="text" class="inputfield" name="sort_email" size="30" onblur="return check_email(this)">
+    </td>
+  </tr>
+  <tr>
+    <td width="30%" bgcolor="$this->SecondaryColor"><font class="sw"><i>ou</i> Assunto</font></td>
+    <td bgcolor="$this->SecondaryColor" colspan="2">
+      <input type="text" class="inputfield" name="sort_subject" size="30">
+    </td>
+  </tr>
+
+  <tr>
+    <td width="30%" bgcolor="$this->SecondaryColor"><font class="sw">Mover Email para</font></td>
+    <td width="40%" bgcolor="$this->SecondaryColor">
+      <select class="inputfield" name="sort_box">
+	$var['folderbox']
+      </select>
+    </td>
+    <td width="30%" bgcolor="$this->SecondaryColor" align="right">
+      <input class="stdbtnlong" type="submit" name="addsort" value="Adicionar Regra">
+    </td>
+  </tr>
+</form>
+
+<!-- } -->
+
+<!-- if($var['sort_email'] && $pref['allow_EmailToFolderRules']) { -->
+
+<form>
+<input type="hidden" name="func" value="info">
+<input type="hidden" name="type" value="EmailAddress">
+  <tr>
+    <td width="30%" bgcolor="$this->SecondaryColor"><font class="sw">Regras por Email</font></td>
+    <td width="40%" bgcolor="$this->SecondaryColor">
+      <select class="select" name="delete_sort">
+	$var['sort_email']
+      </select>
+    </td>
+    <td width="30%" bgcolor="$this->SecondaryColor" align="right">
+      <input class="stdbtnlong" type="submit" name="delsort" value="Apagar Regra">
+    </td>
+  </tr>
+</form>
+<!-- } -->
+
+<!-- if($var['sort_subj'] && $pref['allow_EmailToFolderRules']) {	-->
+
+<form>
+<input type="hidden" name="func" value="info">
+<input type="hidden" name="type" value="EmailSubject">
+
+  <tr>
+    <td width="30%" bgcolor="$this->SecondaryColor"><font class="sw">Regras por Assunto</font></td>
+    <td width="40%" bgcolor="$this->SecondaryColor">
+      <select class="select" name="delete_sort">
+	$var['sort_subj']
+      </select>
+    </td>
+    <td width="30%" bgcolor="$this->SecondaryColor" align="right">
+      <input class="stdbtnlong" type="submit" name="delsort" value="Apagar Regra">
+    </td>
+  </tr>
+<!-- } -->
+</table>
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+</form>
+</table>
+
+
+
+
+<!--Include="html/portuguese/simple/footer.html"-->

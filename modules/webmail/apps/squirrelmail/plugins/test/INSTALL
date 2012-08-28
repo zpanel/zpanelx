@@ -1,0 +1,13 @@
+Installing Test
+===============
+
+The Test plugin comes with SquirrelMail, so you should
+only need to activate it using the configuration utility.
+
+1) Go to your config directory and run conf.pl.  Choose
+   option 8 and move the plugin from the "Available Plugins"
+   category to the "Installed Plugins" category.  Save and exit.
+
+  $ cd config/
+  $ ./conf.pl
+

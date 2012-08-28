@@ -1,0 +1,44 @@
+.checkbox_cell_heading{ padding-left: 15px !important; }
+#mailbox_meta{ font-size: 75%; font-weight: normal; padding-left: 20px; }
+#search_page_inner{ margin-top: 0px; }
+#search_res{ overflow: auto; width: 100%; }
+.search_res_table h4{ border: none; margin-top: 10px; margin-bottom: 0px; padding: 0px; padding-left: 20px; }
+.search_res_table td{ padding-left: 10px; padding-top: 5px; padding-bottom: 4px; vertical-align: top; }
+.empty_search_res{ padding: 20px; margin-top: 20px; margin-left: 50px; font-style: italic; color: #999; }
+.search_res_table th{ border-bottom: solid 1px #758269; padding-bottom: 5px; padding-left: 10px; text-align: left; background-color: #dee5d8; font-size: 80%; padding-top: 3px; }
+.search_res_table th a{ padding-left: 21px; }
+.search_res_table{ padding-bottom: 20px; }
+.search_res_table .mbx_unseen_indicators { padding-left: 15px; }
+.message_controls2, .message_controls{ clear: both; background-color: #dee5d8; font-size: 80%; padding-bottom: 5px; border-top: solid 1px #758269; font-weight: bold; text-align: left; padding-left: 10px; padding-top: 5px; }
+#mailbox_title2 { margin-bottom: 10px; padding-left: 20px;}
+.message_controls2{ vertical-align: middle; min-height: 20px; border-bottom: solid 1px #758269; }
+.message_controls2 select, .message_controls2 input, .message_controls select, .message_controls input{ color: #333; padding: 1px; padding-left: 2px; margin-right: 3px; padding-right: 2px; }
+#new_page_meta{ font-weight: normal; text-align: right; padding-right: 10px; margin-top: -25px; padding-bottom: 5px; background-color: #dee5d8; }
+.mbx_indicators{ width: 1%; white-space: nowrap; padding-left: 10px; }
+.indicators{ font-style: italic; }
+.mbx_unseen_from, .mbx_unseen_subject a{ font-weight: bold; }
+.mbx_unseen_indicators, .mbx_indicators, .mbx_unseen_size, .mbx_size{ white-space: nowrap; }
+.mbx_unseen_from, .mbx_unseen_date, .mbx_unseen_size, .mbx_size, .mbx_date, .mbx_from{ white-space: nowrap; font-size: 90%; }
+.mbx_unseen_checkbox, .mbx_checkbox{ width: 1%; white-space: nowrap; padding-left: 5px; }
+.deleted_message a { color: #888; text-decoration: line-through; }
+#search_form{ padding-left: 20px; }
+#search_form table{ width: 300px; margin-left: 20px; margin-bottom: 20px; }
+#search_form table td{ white-space: nowrap; vertical-align: top; font-size: 95%; padding-top: 10px; }
+#search_form table td option { padding-right: 10px; }
+#search_form table td select, #search_form table td option{ font-size: 90%; color: #333; }
+#search_form table td input, #search_form table td select{ margin-left: 5px; margin-right: 5px; }
+#search_form table td div{ display: inline; white-space: nowrap; }
+#search_form table th{ white-space: nowrap; vertical-align: top; padding-right: 10px; font-weight: normal; text-align: left; padding-left: 20px; padding-top: 10px; }
+#search_form table td .search_button{ margin: 0px; margin-top: 30px; }
+#search_form table td .alt_button{ font-weight: bold; }
+#search_form table .and_or{ padding-bottom: 10px; font-weight: bold; text-align: center; }
+#search_form table .button_row{ padding-top: 20px; text-align: center; }
+#search_form table .top_row{ padding-left: 0px; font-weight: bold; vertical-align: middle; }
+#search_form a{ padding-left: 20px; font-size: 90%; }
+.last_read_hidden{ visibility: hidden; padding-right: 3px; }
+.last_read{ font-size: 90%; vertical-align: 20%; padding-right: 3px; }
+.flagged { background-color: #eef2eb !important; }
+.mbx_image_cell, .mbx_unseen_image_cell { padding: 0px !important; padding-top: 7px !important; padding-left: 6px !important; width: 45px; font-size: 0px; white-space: nowrap;}
+.mbx_image_cell div{ background: #fff url('themes/moss/images/sprite.png') 0px -44px no-repeat; width: 14px !important; height: 13px !important; margin-right: 8px !important; float: left;}
+.mbx_unseen_image_cell div{ background: #fff url('themes/moss/images/sprite.png') 0px -30px no-repeat; width: 14px !important; height: 13px !important; margin-right: 8px !important; float: left;}
+.mbx_subject, .mbx_unseen_subject, .subject_cell_heading{ padding-left: 3px !important; }

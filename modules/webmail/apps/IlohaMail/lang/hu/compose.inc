@@ -1,0 +1,55 @@
+<?php
+include("../lang/eng/compose.inc"); // <-- do not delete
+/********************************************************
+	lang/hu/compose.inc
+	(C)2001-2002 Ryo Chijiiwa <Ryo@IlohaMail.org>
+
+	This file is part of IlohaMail, and released under GPL.
+	See COPYING, or http://www.fsf.org/copyleft/gpl.html
+
+********************************************************/
+
+$composeHStrings[0] = "Téma";
+$composeHStrings[1] = "Feladó";
+$composeHStrings[2] = "Címzett";
+$composeHStrings[3] = "Másolat";
+$composeHStrings[4] = "Vakmásolat";
+$composeHStrings[5] = "Dátum";
+
+
+$composeStrings[0] = "Levélírás";
+$composeStrings[1] = "Levél küldése";
+$composeStrings[2] = "Feltöltés";
+$composeStrings[3] = "Aláírás";
+$composeStrings[4] = "Melléklet";
+$composeStrings[5] = "Címjegyzék mutatása";
+$composeStrings[6] = "Címjegyzék takarása";
+$composeStrings[7] = "Üzenet:";
+$composeStrings[8] = "Hozzáad";
+$composeStrings[9] = "%d -n, %s irta:\n";
+$composeStrings[10] = "--- Eredeti üzenet---\n";
+$composeStrings[11] = "Ablak zárása";
+
+$composeStrings[12] = "Helyesírás ellenõrzés";
+$composeStrings[13] = "Javítás";
+$composeStrings[14] = "Mellõz";
+$composeStrings[15] = "Lehetésges hibák";
+$composeStrings[16] = "Javítások";
+$composeStrings[17] = "mellõz";
+$composeStrings[18] = "töröl";
+
+$composeStrings["title"] = "Új üzenet szerkesztése";
+
+
+$composeErrors[0] = "A Téma nincs kitöltve. Kérjük, irjon be egy témát vagy kattintson ujra a \"".$composeStrings[1]."\" gombra.";
+$composeErrors[1] = "A \"Feladó\" nincs kitöltve.  Kérjük, irja be az Ön e-mail címét.";
+$composeErrors[2] = "A \"Címzett\" nincs kitöltve.  Kérjük, irja be a Címzett e-mail címét.";
+$composeErrors[3] = "Sikertelen feltöltés";
+$composeErrors[4] = "Nem jött fájl.";
+$composeErrors[5] = "%3 másodpercenként csak %1 cimzettnek (összesen %2-nek) küldhet üzenetet azért, hogy a kéretlen levelek (SPAM) küldését elkerüljük.";
+
+$composeErrors[6] = "Nincs helyesírási hiba.";
+$composeErrors[7] = "Ezen a nyelven nem lehet ellenõrizni a helyesírást.";
+$composeErrors[8] = "(%s szótár)";
+
+?>

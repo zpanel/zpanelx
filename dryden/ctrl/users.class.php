@@ -15,7 +15,7 @@ class ctrl_users {
     /**
      * Returns an array of infomation for the account details, package, groups and quota limits for a given UID.
      * @author Bobby Allen (ballen@zpanelcp.com)
-     * @global db_driver $zdbh The ZPX database handle.
+     * @global obj $zdbh The ZPX database handle.
      * @param int $uid The ZPanel user account ID.
      * @return array
      */
@@ -44,7 +44,7 @@ class ctrl_users {
         $userdetail->addItemValue('enabled', $dbvals['ac_enabled_in']);
         $userdetail->addItemValue('usertheme', $dbvals['ac_usertheme_vc']);
         $userdetail->addItemValue('usercss', $dbvals['ac_usercss_vc']);
-        $userdetail->addItemValue('lastlogon', $dbvals['ac_lastlogon_ts']);
+		$userdetail->addItemValue('lastlogon', $dbvals['ac_lastlogon_ts']);
         $userdetail->addItemValue('fullname', $dbvals['ud_fullname_vc']);
         $userdetail->addItemValue('packagename', $dbvals['pk_name_vc']);
         $userdetail->addItemValue('usergroup', $dbvals['ug_name_vc']);
@@ -157,7 +157,7 @@ class ctrl_users {
     /**
      * Checks that the specified user is active and therefore allowed to login to the panel.
      * @author Bobby Allen (ballen@zpanelcp.com)
-     * @global db_driver $zdbh The ZPX database handle.
+     * @global obj $zdbh The ZPX database handle.
      * @param int $uid The ZPanel user account ID.
      * @return type 
      */

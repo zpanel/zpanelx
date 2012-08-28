@@ -1,0 +1,440 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0037) -->
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
+<!-- BEGIN ZLOADER PROGRESSBAR DIV -->
+	<div class="zloader_overlay" id="zloader_overlay" style="display:none;"></div>
+	<div class="zloader" id="zloader" style="display:none;">
+	<div class="zloader_content" id="zloader_content">
+	<img src="<# ui_tpl_assetfolderpath #>/images/loading.gif" id="zloader_image" alt="Loading...">
+	</div>
+	</div>
+	<!-- END ZLOADER PROGRESSBAR DIV -->
+	
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<script type="text/javascript">
+function load()
+{
+
+}
+</script>
+<!-- Start zPanel Index -->
+<title>ZPanel &gt; <# ui_tpl_username #> - <# ui_tpl_domainname #></title>
+<link rel="shortcut icon" href="<# ui_tpl_assetfolderpath #>/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="<# ui_tpl_assetfolderpath #>/css/combined_optimized.css">
+ 
+<style type="text/css">
+
+.spriteui_img{margin:0;padding:0;background:url("<# ui_tpl_assetfolderpath #>/images/ui_sprites_img_skip_filetype_gif.jpg");}  #ui-aqua-hd-lt{background-position:0 -1px;width:7px;height:22px;}#ui-aqua-hd-rt{background-position:0 -25px;width:7px;height:22px;}
+
+.spriteui_img_trans{position:relative;margin:0;padding:0;top:0px;float:left;background:url("<# ui_tpl_assetfolderpath #>/images/ui_sprites_img_only_filetype_gif.gif");} #ui-accept{background-position:0 -0px;width:16px;height:16px;}#ui-collapse{background-position:0 -16px;width:14px;height:14px;}#ui-expand{background-position:0 -30px;width:14px;height:14px;}#ui-getstart-icon{background-position:0 -44px;width:72px;height:72px;}#ui-homeb{background-position:0 -116px;width:20px;height:19px;}#ui-reject{background-position:0 -135px;width:16px;height:16px;}#ui-start32{background-position:0 -151px;width:32px;height:32px;}#ui-stop32{background-position:0 -183px;width:32px;height:32px;}#ui-x3-hd-close{background-position:0 -215px;width:16px;height:16px;}#ui-x3-hd-closehover{background-position:0 -231px;width:16px;height:16px;}
+
+.spriteui_bg{position:relative;margin:0;padding:0;top:0px;float:left;background:url("<# ui_tpl_assetfolderpath #>/images/ui_sprites_bg_snap_to_smallest_width.png");}#ui-aqua-hd-bg{background-position:0 -0px;width:18px;height:22px;}#ui-button-bg{background-position:0 -322px;width:1px;height:22px;}#ui-button-bg-over{background-position:0 -644px;width:1px;height:22px;}#ui-tbl-bg{background-position:0 -966px;width:18px;height:22px;}#ui-tbl-bg-over{background-position:0 -1288px;width:509px;height:21px;}#ui-bg{background-position:0 -1609px;width:6px;height:640px;}
+
+.spriteheading_compleximg{position:relative;margin:0;padding:0;top:0px;float:left;background:url("<# ui_tpl_assetfolderpath #>/images/heading_sprites_compleximg.jpg") no-repeat;}#heading-top-billboard{background-position:0 -1px;width:742px;height:145px;}
+
+.spriteheading_img{position:relative;margin:0;padding:0;top:0px;float:left;background:url("<# ui_tpl_assetfolderpath #>/images/heading_sprites_img.png");}#heading-help_off{background-position:0 -0px;width:35px;height:37px;}#heading-help_on{background-position:0 -37px;width:35px;height:37px;}#heading-home_off{background-position:0 -74px;width:35px;height:37px;}#heading-home_on{background-position:0 -111px;width:35px;height:37px;}#heading-logout_off{background-position:0 -148px;width:35px;height:37px;}#heading-logout_on{background-position:0 -185px;width:35px;height:37px;}
+
+.spriteheading_bg{position:relative;top:0px;left:0px;margin:0;padding:0;background:url("<# ui_tpl_assetfolderpath #>/images/heading_sprites_bg_snap_to_smallest_width.png") repeat-x;}#heading-bottom_bg{background-position:0 -0px;height:23px;}#heading-top-header-bg{background-position:0 -23px;height:145px;}
+
+.box-expand-control{cursor:pointer;cursor:hand;background:url("<# ui_tpl_assetfolderpath #>/images/ui_sprites_img_only_filetype_gif.gif") repeat;background-position:0 -30px;width:14px;height:14px;}
+
+.box-collapse-control{cursor:pointer;cursor:hand;background:url("<# ui_tpl_assetfolderpath #>/images/ui_sprites_img_only_filetype_gif.gif") repeat;background-position:0 -16px;width:14px;height:14px;}
+
+.create-button, .input-button{background-image:url("<# ui_tpl_assetfolderpath #>/images/ui_sprites_bg_snap_to_smallest_width.png"); background-repeat: repeat-x;}.create-button, .input-button{ background-position:0 -322px;height:22px; }
+
+.create-button:hover, .input-button:hover{background-image:url("<# ui_tpl_assetfolderpath #>/images/ui_sprites_bg_snap_to_smallest_width.png"); background-repeat: repeat-x;}.create-button:hover, .input-button:hover{ background-position:0 -644px;height:22px; }
+
+body{background-image:url("<# ui_tpl_assetfolderpath #>/images/ui_sprites_bg_snap_to_smallest_width.png"); background-repeat: repeat-x;}body{ background-position:0 -1609px;}
+
+h3, h6, #notices h6, #quota-warnings h6, #content-stats h6{background:url("<# ui_tpl_assetfolderpath #>/images/ui_sprites_bg_snap_to_smallest_width.png") bottom repeat-x;}h3, h6, #notices h6, #quota-warnings h6, #content-stats h6{background-position:0 -966px;}
+ 
+
+.yui-panel .tl,.yui-panel .lt,.panel .tl,.panel .lt {background: url("<# ui_tpl_assetfolderpath #>/images/ui_sprites_img_skip_filetype_gif.jpg") repeat;background-position:0 -1px;width:7px;height:22px;}
+.yui-panel .tr,.yui-panel .rt,.panel .tr,.panel .rt {background: url("<# ui_tpl_assetfolderpath #>/images/ui_sprites_img_skip_filetype_gif.jpg") repeat;background-position:0 -25px;width:7px;height:22px;}
+.yui-panel .container-close:hover,.panel .close:hover,.panel .close.secure:hover,.panel .close.nonsecure:hover {background:url("<# ui_tpl_assetfolderpath #>/images/ui_sprites_img_only_filetype_gif.gif") repeat;background-position:0 -231px;width:16px;height:16px;}
+.yui-panel .container-close,.panel .close,.panel .close.secure,.panel .close.nonsecure {background:url("<# ui_tpl_assetfolderpath #>/images/ui_sprites_img_only_filetype_gif.gif") repeat;background-position:0 -215px;width:16px;height:16px;}
+.fm-panel .container-close:hover,.panel .close:hover,.panel .close.secure:hover,.panel .close.nonsecure:hover {background:url("<# ui_tpl_assetfolderpath #>/images/ui_sprites_img_only_filetype_gif.gif") repeat;}
+.fm-panel .container-close,.panel .close,.panel .close.secure,.panel .close.nonsecure {background:url("<# ui_tpl_assetfolderpath #>/images/ui_sprites_img_only_filetype_gif.gif") repeat;}
+
+div.index_box_header {
+	background: transparent url('<# ui_tpl_assetfolderpath #>/images/ui_sprites_bg_snap_to_smallest_width.png') repeat-x scroll center bottom;
+}
+/* css2 */
+#boxes{width:100%;padding:0;margin:0;font-size:10px;}#files,#logs,#mail,#domains,#db,#sec,#software,#pref,#advanced{margin:0;margin-bottom:0;padding:0;}.celldrop_active{background-color:#22f;height:5px;width:100%;padding:0;}.celldrop{height:5px;width:100%;padding:0;}.topcell{border:1px solid #ccc;padding:0;margin:0;text-align:center;height:27px;}.cellform{padding:0;margin:0;display:inline;}.cellbox{border:1px solid #ccc;padding:0;margin:0;width:100%;text-align:center;line-height:1.2em;}#main .item{padding:0;float:left;width:60px;height:63px;margin:0 5px 5px 5px;}.itemlink{text-decoration:none;cursor:pointer;cursor:hand;}.cellheading{border-right:2px #ccc solid;font:12px Verdana,sans-serif;color:#333;font-weight:700;}h6{margin:0 0 9px;padding:0;border-bottom:2px #ccc solid;font:12px Verdana,sans-serif;color:#333;font-weight:700;text-align:center;height:15px;cursor:move;}h6.sfhover{cursor:pointer;}h3{margin:0 0 10px;padding:0;border-bottom:2px #ccc solid;font:12px Verdana,sans-serif;color:#333;font-weight:700;text-align:center;height:15px;cursor:default;}h6:hover{cursor:move;}#content-stats{margin:0;padding:0;width:auto;text-align:center;overflow:hidden;}#stats-header{border-top:1px solid #ccc;border-right:1px solid #ccc;border-left:1px solid #ccc;cursor:pointer;position:relative;}#stats{width:100%;padding:0;margin:0;}#stats,#stats_extended{border-right:1px solid #ccc;border-left:1px solid #ccc;}#extended_stats{margin:0;padding:0;width:auto;text-align:center;overflow:hidden;}.domaintxt{font-size:9px;}div.stats_progress_bar{width:110px;height:10px;border:1px solid #ccc;}div.stats_progress_bar_text,div.stats_progress_bar_percent{display:none;}#stats table,#stats_extended table{border-collapse:collapse;overflow:hidden;}#stats td,#stats_extended td{padding-top:5px;padding-bottom:5px;border-bottom:1px #ccc solid;border-collapse:collapse;overflow:hidden;}#stats .nopad-nobrd{padding:0;margin:0;border:none;}#stats .row-odd,#stats_extended .row-odd{background-color:#F3F3F3;}#stats .row-even,#stats_extended .row-even{background-color:#fff;padding:5px;}#stats .txt{font-size:9px;font-weight:700;}td.stats_left{text-align:center;color:#666;font-weight:700;font:9px Arial,Helvetica,sans-serif;width:40%;}td.stats_right{text-align:left;padding-left:10px;font:10px Verdana,sans-serif;width:60%;}#expand{float:right;}td.reseller-drop-l{width:220px;}td.reseller-drop-r{width:500px;}td.reseller-drop-l,td.reseller-drop-r{text-align:center;font-size:11px;}#optionselect-content{background-color:#E4EFF2;padding:0 15px 15px 15px;height:300px;}#noticeboard{padding:0 5px;width:auto;}#jump-search h3{margin:0;}.jump-tbl{padding-right:4px;width:100%;border-collapse:collapse;}#quickjump{width:90%;margin:5px 0;}#faaboard{padding:0 10px;width:auto;}.box-expand-control,.box-collapse-control{position:absolute;right:0;top:0;}#stats-header h3{padding:0;margin:0;}#content-stats-end{width:100%;padding-top:5px;}.cellbox-header{position:relative;}.index_box_header{clear:none;}.box-collapse-control{position:absolute;top:0;right:0;}div.index_box_header{border-style:solid;text-align:center;padding:0;margin:0 0 9px;line-height:normal;height:15px;font-weight:700;font-variant:normal;font-style:normal;font-stretch:normal;font-size-adjust:none;font-size:12px;font-family:Verdana,sans-serif;cursor:move;color:#333;border-bottom:2px solid #CCC;clear:none;margin-bottom:10px;background-position:0 -966px;}
+
+/* end css2 */
+#themego, #acctgo { display: none }
+</style>
+<noscript>
+&lt;style type="text/css"&gt;
+    #themego, #acctgo { display: inline }
+    #jump-search { display: none }
+&lt;/style&gt;
+</noscript>
+<!-- BEGIN ZPanel_parsed_css.html -->
+<style type="text/css">
+.smclearbr{line-height:1px;height:1px;}.cellheading,h3,h6,#notices h6,#quota-warnings h6,#content-stats h6{background:url("<# ui_tpl_assetfolderpath #>/images/tbl-bg.jpg") repeat-x bottom;}.sortable th,.nonsortable th, .dynamic_table th{background-image:url("<# ui_tpl_assetfolderpath #>/images/tbl-bg.jpg");background-repeat:repeat-x;}h6:hover,h6.sfhover{background:url("<# ui_tpl_assetfolderpath #>/images/tbl-bg-over.jpg") repeat-x bottom;}.pass_bar_base,.pass_barbig_base,.progress_bar_base,.progress_barbig_base{background-image:url("<# ui_tpl_assetfolderpath #>/images/progress-bar-effx.png");background-repeat:repeat-x;}.accept{background:url("<# ui_tpl_assetfolderpath #>/images/accept.gif") no-repeat;width:16px;height:16px;}.reject{background:url("<# ui_tpl_assetfolderpath #>/images/reject.gif") no-repeat;width:16px;height:16px;}#ui-getstart-icon{background-position:0 0;background-image:url("<# ui_tpl_assetfolderpath #>/images/getstart-icon.gif");width:72px;height:72px;}.mainpopbg{background:url("<# ui_tpl_assetfolderpath #>/images/getstart-bg.jpg") no-repeat bottom right #e4eff2;}.yui-panel .bd p.validation_msg,.panel .bd 
+p.validation_msg,.validation_msg{background:url("<# ui_tpl_assetfolderpath #>/images/reject.gif") no-repeat left top;}
+</style>
+
+<link href="<# ui_tpl_assetfolderpath #>/css/local.css" rel="stylesheet" type="text/css">
+<!--[if gt IE 6]>
+<style type="text/css">.ls_fieldset legend{margin-top:20px;}#footer ul{list-style:none;margin:0;padding:0;text-align:center;}#cpanel #border-efx #content{width:100%;}.sortable{margin-left:-10px;}#cpanel #border-efx #content #sub{width:218px;min-height:300px;#cpanel #border-efx #content{float:left;margin:5px 0 0 12px;padding:0;}#cpanel #border-efx #content #main{width:500px;float:right;min-height:300px;margin:0 15px 0 0;padding:0;}.input-button{height:23px;vertical-align:bottom;margin-left:2px;}.input-button:hover{height:23px;color:#014D5F;vertical-align:bottom;margin-left:2px;}#optionselect-content{height:287px;padding:15px;}.formbox h4{margin:5px 0 3px 0;}#backup-nav ol li a:hover{cursor:hand;}.or_spacer{position:relative;top:-9px;}#ife-create-legend ul{margin:10px 0 10px 0;}#ife-create-form fieldset{background:#fff;}toptop .ife-module{padding:0 15px;}#clearspambox{margin-right:30px;}#ftptbl{margin-left:-27px;}.yui-panel .bd p.validation_msg,.panel .bd p.validation_msg,.validation_msg{margin:0;}.search-panel{height:28px;margin-bottom:0;text-align:left;width:100%;}</style>
+<![endif]-->
+
+
+
+<!-- Changes layout of index page for all non english languages -->
+
+
+
+<!-- START stdmheader.html -->
+
+</head>
+<body id="cpanel_body" class="yui-skin-sam"><iframe style="position: absolute; visibility: visible; background-color: transparent; border-width: 0pt; width: 2em; height: 2em; left: 0pt; top: -23px;" title="Text Resize Monitor" id="_yuiResizeMonitor"></iframe><div style="position: absolute; z-index: 999;" id="menu_drag_el"></div>
+
+<div id="cpanel">
+
+    <div id="border-efx">
+    <!--Handheld heading-->
+    
+    <!--Start Header-->
+    <div id="heading-top-header-bg" class="spriteheading_bg">
+	<div id="heading-top-billboard" class="spriteheading_compleximg">  
+	    <div id="leftheader">
+        
+		<div class="spriteheading_img" id="heading-home_off" onmouseover="this.id=&#39;heading-home_on&#39;;" onmouseout="this.id=&#39;heading-home_off&#39;;" style="cursor:pointer;cursor:hand;height:35px;display:inline">
+		    <a style="display: block; width: 100%; height: 100%; text-decoration: none;" target="_top" href="index.php">&nbsp;</a>
+		</div>
+        
+	    </div>
+	
+	    <div id="rightheader" style="float:right;">
+        
+		    <div class="spriteheading_img" id="heading-help_off" onmouseover="this.id=&#39;heading-help_on&#39;;" onmouseout="this.id=&#39;heading-help_off&#39;;" style="cursor:pointer;cursor:hand;height:35px;display:inline">
+			<a onclick="show_help(); return false;" style="display: block; height: 100%; width: 100%; text-decoration: none;" target="_blank" href="index.php">&nbsp;</a>
+		    </div>
+		
+		<div class="spriteheading_img" id="heading-logout_off" onmouseover="this.id=&#39;heading-logout_on&#39;;" onmouseout="this.id=&#39;heading-logout_off&#39;;" style="cursor:pointer;cursor:hand;height:35px;display:inline">
+		    <a style="display: block; width: 100%; height: 100%; text-decoration: none;" target="_top" href="index.php?logout">&nbsp;</a>
+		</div>
+	    </div>
+	
+	    <!--This div will display logo when media-type=handheld-->
+	    <div id="handheld-head">ZPanel X</div>
+	    
+	    <div id="logo">
+		
+		<img id="logo-top-logo" alt="" src="<# ui_tpl_assetfolderpath #>/images/zp_logo.png" class="toplogo">
+		
+	    </div>
+	</div>
+    </div>
+    <!--End Header-->
+    <div class="clearitsm">&nbsp;</div>
+    <!--Start Content-->
+    <div id="content">
+    <!-- END stdmheader.html -->
+
+<div id="switch">
+
+</div><!-- end switch -->
+		
+<div class="clearitmed">&nbsp;</div>
+			
+<div id="sub">
+    
+    <div id="notices">
+	<h3>Notices</h3>
+	<div id="noticeboard">
+	   <p></p>
+	   <p dir="rtl" align="center"></p><div dir="rtl" align="center"><# ui_tpl_notice #></div><p></p>
+        <p></p>
+	</div>
+	<div class="clearit">&nbsp;</div>
+    </div><!-- end notices -->
+			
+    <!-- end jump-search -->
+
+    <div id="faa" style="">
+	<h3>Frequently Accessed Areas</h3>
+	<div id="faaboard"><ul><li><a href="index.php?module=kfm" id="faa_item_filemanager">File Manager</a></li><li><a href="index.php?module=ftp_management" id="faa_item_anonymousmsg">FTP accounts</a></li><li><a href="index.php?module=domains" id="faa_item_subdomains">Add Domains</a></li><li><a href="index.php?module=phpmyadmin" id="faa_item_phpMyAdmin">phpMyAdmin</a></li><li><a href="index.php?module=mysql_databases" id="faa_item_mysql">MySQL Databases</a></li></ul></div>
+	<div class="clearit">&nbsp;</div>
+    </div><!-- end faa -->
+
+    
+    <div id="content-stats" class="newContent">
+	<div id="stats-header">
+		<div class="box-expand-control" id="toggle_extended_stats_img">&nbsp;</div>
+		<h3>Stats</h3>
+	</div>
+	<table id="stats" cellpadding="0" cellspacing="0">
+<!--		<tbody><tr class="row-even">
+			<td class="stats_left">Main Domain</td>
+			<td class="stats_right"><b>NEEDS CODE</b></td>
+		</tr>
+-->
+		<tr class="row-odd">
+			<td class="stats_left">Last Login</td>
+			<td class="stats_right"><# ui_tpl_lastlogon #></td>
+		</tr>
+		
+			<tr class="row-even">
+				<td class="stats_left">Your IP </td>
+				<td class="stats_right">166.147.124.230</td>
+			</tr>
+			<tr class="row-odd">
+				<td class="stats_left">Disk Space Usage</td>
+				<td class="stats_right"><# ui_tpl_usagediskspace #> / <# ui_tpl_quotadiskspace #> <br>
+					<# ui_tpl_progbardisk #></td>
+			</tr>
+			<tr class="row-even">
+				<td class="stats_left">Monthly Bandwidth Transfer</td>
+				<td class="stats_right">
+					<# ui_tpl_usagebandwidth #> / <# ui_tpl_quotabandwidth #><br>
+					<# ui_tpl_progbarbandwidth #></td>
+			</tr>
+		
+	</tbody></table>
+        
+	    <div id="extended_stats"><table id="stats_extended" class="truncate-table" cellpadding="0" cellspacing="0" width="100%">
+   
+    <tbody><tr class="row-odd">
+        <td class="stats_left">Email Accounts</td>
+        <td class="stats_right">
+           <# ui_tpl_usedemail #> / <# ui_tpl_totalemail #> </td>
+    </tr>
+    <tr class="row-even">
+        <td class="stats_left">Domains</td>
+        <td class="stats_right"><# ui_tpl_useddomains #> / <# ui_tpl_totaldomains #>
+                    </td>
+    </tr>
+    <tr class="row-odd">
+        <td class="stats_left">Subdomains</td>
+        <td class="stats_right">
+           <# ui_tpl_usedsubdomains #></span> / <# ui_tpl_totalsubdomains #>
+        </td>
+    </tr>
+    <tr class="row-even">
+        <td class="stats_left">Parked Domains</td>
+        <td class="stats_right"><# ui_tpl_usedparkeddomains #> / <# ui_tpl_totalparkeddomains #>
+           
+        </td>
+    </tr>
+    <tr class="row-odd">
+        <td class="stats_left">FTP Accounts</td>
+        <td class="stats_right"><# ui_tpl_usedftp #> / <# ui_tpl_totalftp #>
+               </td>
+    </tr>
+    <tr class="row-even">
+        <td class="stats_left">SQL Databases</td>
+        <td class="stats_right"><# ui_tpl_usedmysql #> / <# ui_tpl_totalmysql #></td>
+    </tr>
+
+<tr class="row-odd">
+    <td class="stats_left">Hosting package</td>
+    <td class="stats_right"><# ui_tpl_packagename #></td>
+</tr>
+<tr class="row-even">
+    <td class="stats_left">Server Uptime</td>
+    <td class="stats_right"><# ui_tpl_serveruptime #></td>
+</tr>
+<tr class="row-odd">
+    <td class="stats_left">zPanel Version</td>
+    <td class="stats_right"><# ui_tpl_zpanelversion #></td>
+</tr>
+<tr class="row-even">
+    <td class="stats_left">Theme</td>
+    <td class="stats_right">cPanelx</td>
+</tr>
+<tr class="row-odd">
+    <td class="stats_left">Apache version</td>
+    <td class="stats_right"><# ui_tpl_apacheversion #></td>
+</tr>
+<tr class="row-even">
+    <td class="stats_left">PHP version</td>
+    <td class="stats_right"><# ui_tpl_phpversion #></td>
+</tr>
+<tr class="row-odd">
+    <td class="stats_left">MySQL version</td>
+    <td class="stats_right"><# ui_tpl_mysqlversion #></td>
+</tr>
+<tr class="row-even">
+    <td class="stats_left">Operating system</td>
+    <td class="stats_right"><img src="<# ui_tpl_assetfolderpath #>/images/os_icons/<# ui_tpl_serverosname #>.png" border="0" width="16" height="16" style="float:left;"/>&nbsp;<# ui_tpl_serverosname #></td>
+</tr>
+<tr class="row-odd">
+    <td class="stats_left">Shared IP Address</td>
+    <td class="stats_right"><# ui_tpl_serveripaddress #></td>
+</tr>
+
+<tr class="row-even">
+        <td class="stats_left">Service Status</td>
+        <td class="stats_right"><a href="?module=services">Click to View</a></td>
+    </tr>
+</tbody></table>
+
+</div>
+	    <div id="extended_stats_state" style="display: none">shown</div>
+        <div id="content-stats-end" style="">
+			<div id="extended_stats_loading_icon" style="display: none"></div>            
+			<a href="#" id="toggle_extended_stats" class="action_link">collapse stats</a>        </div>
+    
+	</div><!-- end content-stats -->
+	<p></p>
+		<div id="notices">
+	<h3>Domain List</h3>
+	<div id="noticeboard">
+	   <p></p>
+	   <p></p>
+	   <# ui_tpl_clientdomains #>
+	</div>
+	<div class="clearit">&nbsp;</div>
+    </div>
+</div><!-- end sub -->
+
+<script type="text/javascript" src="<# ui_tpl_assetfolderpath #>/js/utilities_container.js"></script>
+<script type="text/javascript" src="<# ui_tpl_assetfolderpath #>/js/cpanel-all-min.js"></script>
+<!-- START optionselect-script.html -->
+<script type="text/javascript">
+//<![CDATA[
+var optionselect_autogo=0;
+
+
+
+//]]>
+</script>
+<!-- END optionselect-script.html -->
+
+<script type="text/javascript" src="<# ui_tpl_assetfolderpath #>/js/x3main_optimized.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+truncate_on=1;
+truncate_start_row=0;
+truncate_wrap=1;
+truncate_tooltips=0;
+truncate_fontsize=10;
+register_truncate_table('stats');
+maxwidth=220;
+// initialize the extended stats bar
+YAHOO.util.Event.onDOMReady(init_extended_stats);
+//]]>
+</script>
+<div id="main">
+<div id="boxes">
+<# ui_tpl_modulelist #><# ui_tpl_module #>
+<div id="divgen"></div>
+<!-- Start Getting Started -->
+<!-- START getstarted-pop.html -->
+<div style="left: 297px; top: 205px; z-index: 2; visibility: hidden; opacity: 1;" id="gettingstarted_win_c" class="yui-panel-container yui-overlay-hidden"><div class="yui-module yui-overlay yui-panel" id="gettingstarted_win" style="display: block; visibility: inherit;"><input style="position: absolute; top: 1px; outline: 0pt none; margin: 0pt; border: 0pt none; padding: 0pt; height: 1px; width: 1px; z-index: -1; opacity: 0;">
+    <div id="gettingstarted_win_h" style="cursor: move;" class="hd">
+        <div class="lt"></div>
+        <span>Welcome New User</span>
+        <div class="rt"></div>
+    </div>
+    <div class="bd">
+        <div class="mainpopbg content" id="gettingstarted-content" style="padding: 15px; height: 165px; display: block;">
+            <h2 style="font: 14px Verdana, Arial, Helvetica, sans-serif bold; margin: 0; padding-bottom:0; color: #014251;">Do you need help getting started?</h2>
+            <br>
+            <div><div id="ui-getstart-icon" style="float:left">&nbsp;</div><p style="margin-left: 5px">Our Getting Started Wizard will guide you through basic setup steps and get you up and going in no time.</p></div>
+            <p style="margin: 10px 0;"><a href="./getstarted/index.html" class="create-button">Get Started Now</a> &nbsp; <a href="javascript:void(0);" class="create-button" id="hide_gettingstarted">No, I'm fine. Thanks!</a></p>
+            <br>
+            <p>You can <a target="_blank" href="http://130.185.72.199:2082/tutorial.html" style="font-weight: bold; text-decoration: underline;">view our video tutorials</a> to help you setup your ZPanel.</p>
+            <p style="margin:0;"><input id="disable_gettingstarted" value="1" name="checkbox" type="checkbox"><label for="disable_gettingstarted">Don't show this again</label></p>
+        </div>
+    </div>
+   
+<a href="#" class="container-close">Close</a><input style="position: absolute; top: 1px; outline: 0pt none; margin: 0pt; border: 0pt none; padding: 0pt; height: 1px; width: 1px; z-index: -1; opacity: 0;"></div></div>
+<script type="text/javascript">
+//<![CDATA[
+var init_getstarted = function() {
+    YAHOO.util.Event.on("disable_gettingstarted", "click", function() { disable_gettingstarted(); });
+    YAHOO.util.Event.on("hide_gettingstarted", "click", function() { handle_hide_gettingstarted(); });
+};
+YAHOO.util.Event.onDOMReady(init_getstarted);
+//]]>
+</script>
+<!-- END getstarted-pop.html -->
+<!-- End Getting Started -->		
+ <!-- START stdfooter.html -->
+<div class="clearitmed">&nbsp;</div>
+</div><!--Close Content Div-->
+<!--Start Footer-->
+		<div id="heading-bottom_bg" class="spriteheading_bg footer">
+			<ul class="links footer_ul">
+				<li class="footer_li"><a class="footer_li_a bottomlink" href="index.php">Home</a></li>
+				<li class="footer_li"><span class="footer">
+				<li class="footer_li"><span class="footer">
+				<span style="font-size: 18px">.</span></span></li>
+                <li class="footer_li"><a onclick="show_help(); return false;" target="_blank" href="#" class="bottomlink footer_li_a">Help</a></li>
+				<li class="footer_li"><span style="font-size: 18px">.</span></li>
+<!--                <li class="footer_li"><a href="/contact/contactinfo.html" class="bottomlink footer_li_a" target="_blank">Contact</a></li>
+                <li class="footer_li"><span style="font-size: 18px">.</span></li>
+-->
+				<li class="footer_li"><a href="index.php?logout" class="bottomlink footer_li_a">Logout</a></li>
+			</ul>
+		</div>
+		<!--End Footer-->
+	</div><!--Close border-efx div-->
+</div><!--Close cpanel div-->
+
+<!-- Start Help Code -->
+<div style="display:none;" id="win">
+	<div class="hd">
+		<div class="lt"></div>
+		<span>Interface Help</span>
+		<div class="rt"></div>
+	</div>
+
+	<div class="bd">
+		<div class="content" id="help-content" style="height:400px;">
+<h2>The ZPanel home page</h2>
+  <p>The ZPanel interface provides access to all of the ZPanel features. Click <em>Home</em> in the top left corner of the screen or at the bottom of the screen at any time to return to the main interface.</p>
+<p>We recommend you first complete the Getting Started Wizard. To do so, click the <em>Getting Started Wizard</em> icon.</p>
+<h2>Customize Menus</h2>
+<ul>
+	<li>To adjust a menu's position, click and drag the menu's heading bar to a new location.</li>
+	<li>To maximize or minimize a menu, click the arrow in the menu's heading bar.</li>
+	<li>To toggle the display of header and footer graphics, click <em>lite graphics</em> or <em>full graphics</em>.</li>
+	<li>To toggle the display of feature icons in the menus, click <em>hide icons</em> or <em>show icons</em>.</li>
+	<li>To reset all interface settings and return to the default, click <em>reset all interface settings</em>.</li>
+	<li>To reveal all menus, click <em>reveal all boxes</em>.</li>
+	<li>To reset the menu ordering to the default, click <em>reset box order</em>.</li>
+</ul>
+<h2>Filter Features Shown</h2>
+<ul>
+	<li>Enter keyword(s) in <em>Find</em> box.</li>
+</ul>
+<p><strong>Note:</strong> Click <em>X</em> to the right of the <em>Find</em> box to remove the filter.</p>
+<h2>Read a Feature's Help File</h2>
+<ul>
+	<li>Click the <em>Help</em> icon in the top right corner of the screen or at the bottom of the screen at any time.</li>
+</ul>
+<h2>View Technical Support Contact Information</h2>
+<ul>
+	<li>Click <em>Contact</em> at the bottom of the screen at any time.</li>
+</ul>
+<h2>Log Out of ZPanel</h2>
+<ul>
+	<li>Click <em>Logout</em> in the top right corner of the screen or at the bottom of the screen at any time.</li>
+</ul>
+<h2>Frequently Accessed Areas Section</h2>
+<p>This list shows links to your most accessed features on the ZPanel interface.</p>
+<h2>Stats Section</h2>
+<p>This information details your use of hosting account resources.</p>
+<p>To view the status of available services, click <em>Click to View</em> at the bottom of the <em>Stats</em> section.</p>
+		</div>
+	</div>
+</div>
+<!-- End Help Code -->
+
+ <table align="center" class="fosoter" width="95%" border="0" cellpadding="0" cellspacing="0">
+                <tbody><tr class="copypowerc">
+                    <td class="copypower"><br /><CENTER>Copyright © 2010-2012 <a href="http://www.cpanel.com/" target="_blank">cPanel</a>. Powered by <a href="http://www.zpanelcp.com/">ZPanel</a></CENTER><br></td>
+                </tr>
+            </tbody></table>
+<!-- END stdfooter.html -->
+<!-- END Cyber/index.html -->
+<!-- cPanel [11.30] (pro,trial) Copyright (c) 2011 cPanel, Inc. Licensed on static.164.209.63.178.clients.your-server.de --><div style="position: absolute; visibility: hidden; " id="drag_placeholder"></div></body></html>

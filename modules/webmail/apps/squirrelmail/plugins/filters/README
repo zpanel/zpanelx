@@ -1,0 +1,52 @@
+Filters Plugin
+
+ABOUT PLUGIN
+------------
+This plugin sorts messages in your inbox into different folders based upon 
+given criteria. It is most useful for people who are subscribed to mailing 
+lists to help organize their messages. The argument stands that filtering is 
+not the place of the client, which is why this has been made a plugin for 
+SquirrelMail. You may be better off using products such as Sieve, Maildrop or 
+Procmail to do your filtering so it happens even when SquirrelMail isn't 
+running.
+
+IMPORTANT: At least one version of PHP has bugs in the checkdnsrr() function
+that the SPAM filtering code RELIES ON. The PHP server that comes with Mandrake
+8.1 has this problem -- checkdnsrr() NEVER finds the inaddr records, even the
+ones that really exist.
+
+This is a poor alternative to procmail or Elm's filter programs. This is a
+pathetic replacement for good RBL mail scanning when you get the mail. This is
+more for systems that can't/won't offer that kind of functionality and you 
+still require it.
+
+This is slow. Yep. Slow.
+
+INSTALLATION
+------------
+Plugin is installed by enabling it in SquirrelMail configuration script. 
+Plugin configuration can be changed with configuration files stored in 
+config/filters_config.php or plugins/filters/config.php. Default configuration
+values can be found in plugins/filters/config_default.php. If both 
+configuration files are present, plugin uses file from config directory.
+
+Main configuration option that must be changed is $SpamFilters_YourHop setting.
+See comments about it in config_default.php. If $SpamFilters_YourHop uses 
+default value, plugin will be unable to use RBL filtering correctly and 
+warning message will is displayed to end user. If you don't want to use RBL 
+filtering, you can disable it by setting $AllowSpamFilters option to false. If 
+you can control your incoming SMTP server, it is recommended to turn RBL 
+filtering on server.
+
+If you use UW and if you encounter strange errors while using this plugin on
+your system, edit configuration file and set $UseSeparateImapConnection to 
+true. This may not solve the problem. One problem it might fix is if you run UW
+2001 and if you don't see the number of unread messages in your left-hand 
+folder pane, or if you see timeouts or IMAP server error messages. Turning on 
+this feature may slow down the filters a bit more since it has to open a new 
+connection.
+
+Lastly, if there are some IPs that you want to refuse email from or some IPs 
+you want to accept email from REGARDLESS of what the DNS databases say, you can
+put in overrides in the SpamFilters_DNScache[] array. See the comments in 
+config_default.php for more info on this.

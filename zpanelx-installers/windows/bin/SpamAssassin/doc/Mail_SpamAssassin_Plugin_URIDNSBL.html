@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>URIDNSBL - look up URLs against DNS blocklists</title>
+<link rev="made" href="mailto:" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#user_settings">USER SETTINGS</a></li>
+	<li><a href="#rule_definitions_and_privileged_settings">RULE DEFINITIONS AND PRIVILEGED SETTINGS</a></li>
+	<li><a href="#administrator_settings">ADMINISTRATOR SETTINGS</a></li>
+	<li><a href="#notes">NOTES</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>URIDNSBL - look up URLs against DNS blocklists</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+  loadplugin    Mail::SpamAssassin::Plugin::URIDNSBL
+  uridnsbl      URIBL_SBLXBL    sbl-xbl.spamhaus.org.   TXT</pre>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>This works by analysing message text and HTML for URLs, extracting the
+domain names from those, querying their NS records in DNS, resolving
+the hostnames used therein, and querying various DNS blocklists for
+those IP addresses.  This is quite effective.</p>
+<p>
+</p>
+<hr />
+<h1><a name="user_settings">USER SETTINGS</a></h1>
+<dl>
+<dt><strong><a name="item_uridnsbl_skip_domain_domain1_domain2__2e_2e_2e">uridnsbl_skip_domain domain1 domain2 ...</a></strong><br />
+</dt>
+<dd>
+Specify a domain, or a number of domains, which should be skipped for the
+URIBL checks.  This is very useful to specify very common domains which are
+not going to be listed in URIBLs.
+</dd>
+<p></p></dl>
+<p>
+</p>
+<hr />
+<h1><a name="rule_definitions_and_privileged_settings">RULE DEFINITIONS AND PRIVILEGED SETTINGS</a></h1>
+<dl>
+<dt><strong><a name="item_uridnsbl_name_of_rule_dnsbl_zone_lookuptype">uridnsbl NAME_OF_RULE dnsbl_zone lookuptype</a></strong><br />
+</dt>
+<dd>
+Specify a lookup.  <code>NAME_OF_RULE</code> is the name of the rule to be
+used, <code>dnsbl_zone</code> is the zone to look up IPs in, and <code>lookuptype</code>
+is the type of lookup (<strong>TXT</strong> or <strong>A</strong>).   Note that you must also
+define a body-eval rule calling <code>check_uridnsbl()</code> to use this.
+</dd>
+<dd>
+<p>Example:</p>
+</dd>
+<dd>
+<pre>
+ uridnsbl        URIBL_SBLXBL    sbl-xbl.spamhaus.org.   TXT
+ body            URIBL_SBLXBL    eval:check_uridnsbl('URIBL_SBLXBL')
+ describe        URIBL_SBLXBL    Contains a URL listed in the SBL/XBL blocklist</pre>
+</dd>
+<p></p>
+<dt><strong><a name="item_urirhsbl_name_of_rule_rhsbl_zone_lookuptype">urirhsbl NAME_OF_RULE rhsbl_zone lookuptype</a></strong><br />
+</dt>
+<dd>
+Specify a RHSBL-style domain lookup.  <code>NAME_OF_RULE</code> is the name of the rule
+to be used, <code>rhsbl_zone</code> is the zone to look up domain names in, and
+<code>lookuptype</code> is the type of lookup (<strong>TXT</strong> or <strong>A</strong>).   Note that you must also
+define a body-eval rule calling <code>check_uridnsbl()</code> to use this.
+</dd>
+<dd>
+<p>An RHSBL zone is one where the domain name is looked up, as a string; e.g. a
+URI using the domain <code>foo.com</code> will cause a lookup of
+<code>foo.com.uriblzone.net</code>.  Note that hostnames are stripped from the domain
+used in the URIBL lookup, so the domain <code>foo.bar.com</code> will look up
+<code>bar.com.uriblzone.net</code>, and <code>foo.bar.co.uk</code> will look up
+<code>bar.co.uk.uriblzone.net</code>.</p>
+</dd>
+<dd>
+<p>If a URI consists IP address instead of a hostname, the IP address is looked
+up (using the standard reversed quads method) in each <code>rhsbl_zone</code>.</p>
+</dd>
+<dd>
+<p>Example:</p>
+</dd>
+<dd>
+<pre>
+  urirhsbl        URIBL_RHSBL    rhsbl.example.org.   TXT</pre>
+</dd>
+<p></p>
+<dt><strong><a name="item_urirhssub_name_of_rule_rhsbl_zone_lookuptype_subte">urirhssub NAME_OF_RULE rhsbl_zone lookuptype subtest</a></strong><br />
+</dt>
+<dd>
+Specify a RHSBL-style domain lookup with a sub-test.  <code>NAME_OF_RULE</code> is the
+name of the rule to be used, <code>rhsbl_zone</code> is the zone to look up domain names
+in, and <code>lookuptype</code> is the type of lookup (<strong>TXT</strong> or <strong>A</strong>).
+</dd>
+<dd>
+<p><code>subtest</code> is the sub-test to run against the returned data.  The sub-test may
+either be an IPv4 dotted address for RHSBLs that return multiple A records or a
+non-negative decimal number to specify a bitmask for RHSBLs that return a
+single A record containing a bitmask of results.</p>
+</dd>
+<dd>
+<p>Note that, as with <code>urirhsbl</code>, you must also define a body-eval rule calling
+<code>check_uridnsbl()</code> to use this.</p>
+</dd>
+<dd>
+<p>Example:</p>
+</dd>
+<dd>
+<pre>
+  urirhssub   URIBL_RHSBL_4    rhsbl.example.org.   A    127.0.0.4
+  urirhssub   URIBL_RHSBL_8    rhsbl.example.org.   A    8</pre>
+</dd>
+<p></p></dl>
+<p>
+</p>
+<hr />
+<h1><a name="administrator_settings">ADMINISTRATOR SETTINGS</a></h1>
+<dl>
+<dt><strong><a name="item_n">uridnsbl_max_domains N		(default: 20)</a></strong><br />
+</dt>
+<dd>
+The maximum number of domains to look up.
+</dd>
+<p></p></dl>
+<p>
+</p>
+<hr />
+<h1><a name="notes">NOTES</a></h1>
+<p>The <code>uridnsbl_timeout</code> option has been obsoleted by the <code>rbl_timeout</code>
+option.  See the <code>Mail::SpamAssassin::Conf</code> POD for details on <code>rbl_timeout</code>.</p>
+
+</body>
+
+</html>

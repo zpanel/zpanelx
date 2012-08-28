@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>Guide et aide WebMail</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">       
+
+<script>
+function expandentry()	 {
+
+<!-- if($var['FirstLoad']) { -->
+if(parent.document.getElementById('calendar').style.display != 'block')
+parent.expand('reademail', parent.document.getElementById('readmsgimg') );
+<!-- } -->
+
+}
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" onload="expandentry()">
+
+<LINK href="javascript/stylehelp.css" rel="stylesheet" type="text/css">
+
+<font face="Verdana, Arial" size="+1">Lire les messages</font>  [ <a href="parse.php?file=html/$this->Language/help/file.html">Index</a> ]</font>
+
+<hr noshade>
+
+
+<p>La fenêtre email contient la liste de tous les messages qui sont stockés dans le répertoire. En déplaçant la souris sur un message particulier une fenêtre 'popup' vous affiche les 160 premiers caractères du message. Pour ouvrir le message en entier, cliquez sur le sujet.</p>
+<p>Avec les préférences dans le panneau de configuration, vous pouvez choisir l'ordre dans lequel vous allez lire vos messages. Vous pouvez effectuer des tris par rapport au sujet, la date de réception, l'expédieur et le numéro ID. Vous pouvez sélectionner des message afin de les déplacer dans d'autres répertoires. Cette fonction vous permet également de déplacer les messages sélectionnés dans la poubelle.</p>
+<p>A travers le panneau de fenêtre d'email, vous pouvez directement aller dans les Options du compte ou visualier les informations concernant les répertoires.</p>
+
+</font>
+</body>
+</html>

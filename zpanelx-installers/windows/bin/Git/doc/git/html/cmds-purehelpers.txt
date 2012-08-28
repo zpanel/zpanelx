@@ -1,0 +1,30 @@
+linkgit:git-check-attr[1]::
+	Display gitattributes information..
+
+linkgit:git-check-ref-format[1]::
+	Make sure ref name is well formed.
+
+linkgit:git-fmt-merge-msg[1]::
+	Produce a merge commit message.
+
+linkgit:git-mailinfo[1]::
+	Extracts patch and authorship from a single e-mail message.
+
+linkgit:git-mailsplit[1]::
+	Simple UNIX mbox splitter program.
+
+linkgit:git-merge-one-file[1]::
+	The standard helper program to use with git-merge-index.
+
+linkgit:git-patch-id[1]::
+	Compute unique ID for a patch.
+
+linkgit:git-peek-remote[1]::
+	(deprecated) List the references in a remote repository.
+
+linkgit:git-sh-setup[1]::
+	Common git shell script setup code.
+
+linkgit:git-stripspace[1]::
+	Filter out empty lines.
+

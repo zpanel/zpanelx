@@ -1,0 +1,50 @@
+# SpamAssassin - DomainKeys rules
+#
+# Please don't modify this file as your changes will be overwritten with
+# the next update. Use @@LOCAL_RULES_DIR@@/local.cf instead.
+# See 'perldoc Mail::SpamAssassin::Conf' for details.
+#
+# <@LICENSE>
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to you under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at:
+# 
+#     http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# </@LICENSE>
+#
+###########################################################################
+
+# Requires the Mail::SpamAssassin::Plugin::DomainKeys plugin be loaded.
+
+ifplugin Mail::SpamAssassin::Plugin::DomainKeys
+
+header DK_SIGNED		eval:check_domainkeys_signed()
+header DK_VERIFIED		eval:check_domainkeys_verified()
+header DK_POLICY_TESTING	eval:check_domainkeys_testing()
+header DK_POLICY_SIGNSOME	eval:check_domainkeys_signsome()
+header DK_POLICY_SIGNALL	eval:check_domainkeys_signall()
+
+tflags DK_SIGNED		net nice
+tflags DK_VERIFIED		net nice
+tflags DK_POLICY_SIGNSOME	net nice
+tflags DK_POLICY_SIGNALL	net nice
+tflags DK_POLICY_TESTING	net nice
+
+describe DK_SIGNED	        Domain Keys: message has a signature
+describe DK_VERIFIED		Domain Keys: signature passes verification
+describe DK_POLICY_SIGNSOME	Domain Keys: policy says domain signs some mails
+describe DK_POLICY_SIGNALL	Domain Keys: policy says domain signs all mails
+describe DK_POLICY_TESTING	Domain Keys: policy says domain is testing DK
+
+# TODO: whitelist based on DK_VERIFIED results
+
+endif   # Mail::SpamAssassin::Plugin::DomainKeys

@@ -1,0 +1,44 @@
+<title>ウェブメールヘルプガイド</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<LINK href="javascript/stylehelp.css" rel=stylesheet type=text/css>
+
+<font face="Verdana, Arial" size="+1">ウェブメールヘルプガイド</font>
+
+<hr noshade>
+<p><font face="Arial, Helvetica, Condensed" size="2">各ヘルプファイルでは、ウェブメールについてより詳しくご紹介しています。上部のトピックリストよりご覧になりたい情報を選択してください。</font></p>
+<ul>
+  <li><a href="parse.php?file=html/$this->Language/help/compose.html">Eメールの作成/送信</a></li>
+  <li><a href="parse.php?file=html/$this->Language/help/reademail.html">メールを読む</a></li>
+
+<!-- if($pref['allow_Calendar']) { -->
+ <li><a href="parse.php?file=html/$this->Language/help/calendar.html">カレンダー</a></li>
+<!-- } -->
+
+<!-- if(file_exists("{$pref['install_dir']}/xhtml.php") && $pref['allow_Mobile']) { -->
+<li><a href="parse.php?file=html/$this->Language/help/wap.html">WAP Eメール</a></li>
+<!-- } -->
+
+<li><a href="parse.php?file=html/$this->Language/help/settings.html">設定変更</a></li>
+  <li><a href="parse.php?file=html/$this->Language/help/addressbook.html">アドレス帳</a></li>
+
+<!-- if($pref['allow_MultiAccounts']) { -->
+  <li><a href="parse.php?file=html/$this->Language/help/addpop3.html">マルチPOP3アカウント</a></li>
+<!-- } -->
+
+<!-- if($pref['allow_LDAP'] && extension_loaded('ldap')) { -->
+<li><a href="parse.php?file=html/$this->Language/help/ldap.html">LDAP サーチエンジン</a></li>
+<!-- } -->
+
+<li><a href="parse.php?file=html/$this->Language/help/newmbox.html">メールボックスオプション</a></li>
+
+<!-- if(file_exists($pref['aspell_dir']) || extension_loaded('pspell')) { -->
+<li><a href="parse.php?file=html/$this->Language/help/spell.html">スペルチェック機能</a></li>
+<!-- } -->
+
+<!-- if($pref['allow_SMS'] && file_exists('sms.php')) { -->
+<li><a href="parse.php?file=html/$this->Language/help/sms.html">SMS ヘルプ</a></li>
+<!-- } -->
+</ul>
+
+各ヘルプファイルでは、ウェブメールについてより詳しくご紹介しています。上部のトピックリストよりご覧になりたい情報を選択してください。

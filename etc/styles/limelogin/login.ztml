@@ -1,0 +1,144 @@
+<?php
+if (!isset($Langue)) {
+$Langue = explode(',',$_SERVER['HTTP_ACCEPT_LANGUAGE']);
+$Langue = strtolower(substr(chop($Langue[0]),0,2));
+}
+if (file_exists("lang/login.".$Langue.".php")) { 
+include("lang/login.".$Langue.".php");
+} else { 
+include("lang/login.en.php");
+} 
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <title><?php echo TXT_LIMELOGINTEMPLATE_TITLE; ?> - <?php echo TXT_DEFAULT_POWERED_BY; ?> Zpanel</title>
+        <link href="etc/styles/limelogin/inc/login.css" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" type="image/x-icon" href="etc/styles/limelogin/images/favicon.ico">
+        <script type="text/javascript" src="etc/styles/limelogin/inc/jquery.min.js"></script>
+		<script>
+		$(document).ready(function(){
+			setTimeout(function(){
+			$("div.message_red").fadeOut("slow", function () {
+			$("div.message_red").remove();
+		});
+			}, 2000);
+		});
+		$(document).ready(function(){
+			setTimeout(function(){
+			$("div.message_blue").fadeOut("slow", function () {
+			$("div.message_blue").remove();
+		});
+			}, 2000);
+		});
+		$(document).ready(function(){
+			setTimeout(function(){
+			$("div.message_green").fadeOut("slow", function () {
+			$("div.message_green").remove();
+		});
+			}, 2000);
+		});
+		
+		function toggleVisibility(sId, lId){
+			var me=document.getElementById(sId);
+			var le=document.getElementById(lId);
+			if (me.style.display=="none"){
+			me.style.display="block";
+		} 
+		else {
+			me.style.display="none";
+		}
+			if (le.style.display=="block"){
+			le.style.display="none";
+		}
+		else {
+			le.style.display="block";
+		}
+		}
+		</script>
+	</head>
+<body>
+<div id="contain">
+	<?php if (isset($_GET['resetkey'])) { ?>
+    	<!-- BEGIN CONFIRMATION -->
+			<form action="<?php echo $_SERVER['../PHP_SELF']; ?>?resetkey=<?php echo $_GET['resetkey']; ?>" name="frmZConfirm" class="login" method="post" >
+				<h1> <?php echo TXT_LIMELOGINTEMPLATE_RESETPASSWORD; ?></h1>
+				<div class="info"><img src="etc/styles/limelogin/images/info.png" width="16" height="16" alt="Reset Icon" /><?php echo TXT_LIMELOGINTEMPLATE_TEXT_RESET; ?>
+				</div>
+				<fieldset id="confirm">
+      				<input name="inNewPass" id="newpass" type="password" maxlength="20" placeholder="<?php echo TXT_BOOTSTRAP_PASSWORD; ?>" tabindex="1">
+      				<input name="inNewPass2" id="confirmpass" type="password" maxlength="20" placeholder="<?php echo TXT_BOOTSTRAP_CONFIRM; ?> <?php echo TXT_BOOTSTRAP_PASSWORD; ?>" tabindex="2">
+      				<input name="inConfEmail" id="email" type="text" maxlength="20" placeholder="<?php echo TXT_LIMELOGINTEMPLATE_ACOUNTEMAIL; ?>" tabindex="3">
+				</fieldset>
+    			<fieldset id="actions">
+        			<input name="Confirm" class="submit" type="submit" value="<?php echo TXT_LIMELOGINTEMPLATE_RESET; ?>" tabindex="4">
+    			</fieldset>
+			</form>
+		<!-- END CONFIRMATION -->
+	<?php } else { ?>
+		<!-- BEGIN LOGIN -->
+			<div id="login_wrap" style="display:block;">
+				<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="frmZLogin" class="login">
+					<h1> <?php echo TXT_LIMELOGINTEMPLATE_TITLE; ?></h1>
+					<?php
+						if (isset($_GET['invalidlogin'])) {
+                            echo '<div class="message_red"><img src="etc/styles/limelogin/images/wrong.png" width="16" height="16" alt="Wrong" />';
+							echo TXT_DEFAULT_INVALID_LOGIN;
+							echo '</div>';
+						}
+						if (isset($_GET['loggedout'])) {
+							echo '<div class="message_green"><img src="etc/styles/limelogin/images/loggreen.png" width="16" height="16" alt="Logged out" />';
+							echo TXT_DEFAULT_LOGOUT_SUCCESSFULY;
+							echo '</div>';
+						}
+						if (isset($_GET['passwordreset'])) {
+							echo '<div class="message_blue"><img src="etc/styles/limelogin/images/loggreen.png" width="16" height="16" alt="Logged out" />';
+							echo TXT_DEFAULT_RESET_EMAIL;
+							echo '</div>';
+						}
+					?>
+					<fieldset class="inputs">
+						<input name="inUsername" type="text" id="username" placeholder="<?php echo TXT_DEFAULT_USERNAME; ?>" maxlength="20"/>
+						<input name="inPassword" type="password" id="password" placeholder="<?php echo TXT_DEFAULT_PASSWORD; ?>" maxlength="20"/>
+					</fieldset>
+						<fieldset class="remember"> 
+							<div class="checkbox_contain">       
+                            	<div id="checkbox">
+									<input name="inRemember" class="remember" type="checkbox" value="1"/><?php echo TXT_DEFAULT_REMEMBER_ME; ?>
+								</div>
+                            	<div id="forgot">
+                                	<a href="javascript:void(0);" onclick="toggleVisibility('forgot_wrap', 'login_wrap');"><?php echo TXT_DEFAULT_FORGOT_PASSWORD; ?></a>
+								</div>
+							</div>
+						</fieldset>
+					<fieldset>
+						<button type="submit" class="submit" name="sublogin2"><?php echo TXT_DEFAULT_BUTTON_SUBMIT; ?></button>
+					</fieldset>
+				</form>
+			</div>
+		<!-- END LOGIN -->
+		<!-- BEGIN FORGOT PASSWORD-->
+			<div id="forgot_wrap" style="display:none;">
+				<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="frmZForgot" class="login">
+					<h1> <?php echo TXT_LIMELOGINTEMPLATE_RESETPASSWORD; ?></h1>
+    			<fieldset class="inputs">
+                    <div class="info"><?php echo TXT_LIMELOGINTEMPLATE_ENTER_EMAIL_ACCOUNT; ?></div>
+    				<input name="inForgotPassword" type="text" id="email" placeholder="<?php echo TXT_LIMELOGINTEMPLATE_ACOUNTEMAIL; ?>" tabindex="1" />
+					<input name="panel" type="hidden" value="reset1">
+				</fieldset>
+    				<div class="checkbox_contain">  
+    					<div id="return">
+                			<a href="javascript:void(0);" onclick="toggleVisibility('forgot_wrap', 'login_wrap');"><?php echo TXT_LIMELOGINTEMPLATE_RETURN_LOGIN; ?></a>
+						</div>
+    				</div>
+    				<fieldset>
+    					<button type="submit" class="submit" name="sublogin2" ><?php echo TXT_DEFAULT_BUTTON_SUBMIT; ?></button>
+    				</fieldset>
+					</form>
+				</div>
+			<!-- END FORGOT PASSWORD-->
+		<?php }?>
+	<div id="poweredbox"><?php echo TXT_DEFAULT_POWERED_BY; ?> <a href="http://www.zpanelcp.com/" target="_blank" title="ZPanel - Taking hosting to the next level!">ZPanel</a><br><?php echo TXT_DEFAULT_SERVER_RUNING; ?>: ZPanel <?php echo sys_versions::ShowZpanelVersion(); ?></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>Accesso Negato</title>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+</head>
+<body bgcolor="#ffffff" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor">
+
+<style>
+
+.sw {font-family:Verdana;font-size:13px;color:#000000;}
+.swr {font-family:Verdana;font-size:13px;color:#FF0000;}
+</style>
+
+<LINK href="javascript/style$this->browser.css" rel="stylesheet" type="text/css">
+
+<img src="$pref['logo_big_img']"><br>
+<h1>Errore di Sicurezza</h1>
+
+<font class="swr">L’account al quale stai provando ad accedere ha restituito un errore di sicurezza.</font>
+<font class="sw"> 
+<ul>
+  <li>L’account nel database è associato al mail-server <b>$var['origserver']</b> , mentre state provando con l’account remoto con il mail-server <b>$var['server']</b></li>
+  <li>L’accesso è bloccato perché il mail-server address associato non è più usato</li>
+  <li>Questo è usato come precauzione di sicurezza per disattivare accessi da hostname non autorizzati</li>
+</ul>
+</font>
+
+<p><font class="swr">Per risolvere l’errore di accesso</font></p>
+<font class="sw">
+<ul>
+  <li>Login al nuovo mailserver remoto con la password esistente usata con $pref['brandname']</li>
+  <li>Contatta l’amministratore $this->admin_email per associare il tuo account con il nuovo indirizzo del mail-server</li>
+</ul>
+</font>
+</body>
+</html>
+
+

@@ -1,0 +1,68 @@
+SquirrelSpell plugin
+--------------------
+
+Modify the sqspell_config.php file making sure you have ispell or aspell
+available on your system and located in PHP's path. The squirrelspell
+doesn't check for that and if it is not available, you're just going to
+get a "No errors found" message every time. :) Quite pleasing, but not
+very useful.
+
+Read files in "doc" directory -- they explain some features.
+
+Enable the plugin either by hand or by running the configure script from
+your SquirrelMail install directory.
+
+NOTE: If you are using php >= 4.3.0 squirrelspell should work in safe mode.
+Otherwise, you may have to disable safe mode for the squirrelspell directory.
+   APACHE CONF EXAMPLE:
+        <Directory /webroot/squirrelmail/plugins/squirrelspell>
+                php_admin_value safe_mode 0
+        </Directory>
+
+
+Enjoy and report bugs. ;)
+
+This is an options commented sqspell_config.php
+
+<?php
+/**
+ *  sqspell_config.php -- SquirrelSpell Configuration file.
+ *
+ *  Copyright (c) 1999-2011 The SquirrelMail Project Team
+ *  Licensed under the GNU GPL. For full terms see the file COPYING.
+ */
+
+/** @ignore */
+if (! defined('SM_PATH')) define('SM_PATH','../../');
+
+/**
+ * getHashedFile() function for SQSPELL_WORDS_FILE and 
+ * sqgetGlobalVar() from global.php
+ */
+include_once(SM_PATH . 'functions/prefs.php');
+
+/** vars needed for getHashedFile() */
+global $data_dir;
+sqgetGlobalVar('username', $username, SQ_SESSION);
+
+/**
+ * List of configured dictionaries
+ */
+$SQSPELL_APP = array('English' => 'ispell -a',
+                     'Spanish' => 'ispell -d spanish -a');
+
+/**
+ * Default dictionary
+ */
+$SQSPELL_APP_DEFAULT = 'English';
+
+/**
+ * File that stores user's dictionary
+ *     
+ * This setting is used only when squirrelspell is upgraded from
+ * older setup. Since 1.5.1 SquirrelSpell stores all settings in
+ * same place that stores other SquirrelMail user preferences.
+ */
+$SQSPELL_WORDS_FILE =
+   getHashedFile($username, $data_dir, "$username.words");
+

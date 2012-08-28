@@ -1,0 +1,14 @@
+This plugin adds support for downloading uuencoded attachments.
+To enable this plugin add the following to your hastymail2.conf file
+and re-run the install_config.php script:
+
+plugin = uuencode
+
+If uuencode attachments are found in a message they will be displayed in the
+parts section of the message view just like mime attachments. Because
+uuencoded attachments don't supply any file type information only download
+links are provided.
+
+questions or comments can be sent to:
+
+jason@hastymail.org

@@ -1,0 +1,156 @@
+<html>           
+<head>                        
+<title>Joindre</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script language="Javascript">
+var AttachmentList = "$var['AttachNames']";
+window.focus();
+function UpdateAttach()	{
+
+opener.window.UpdateAttachDiv(AttachmentList);
+
+}
+
+function updateSubmitState() {
+    if (document.Compose.fileupload.value) {
+        document.Compose.upload.disabled = false;
+    } else {
+        document.Compose.upload.disabled = true;
+    }
+}
+
+</script>
+
+</head>
+
+<style>
+.filebtn {
+background-color: #F4F4F4; font: 8pt Tahoma; width: 150px;
+}
+
+   .table_control {
+    padding: 0;
+    font: 11px verdana,arial,helveetica;
+	  background: url('imgs/tile_back1.gif');
+}
+.table_control th {
+    font: bold 11px verdana,arial,helveetica;
+    margin: 0;
+    text-align: left;
+
+}
+.middle {
+   font: bold 11px verdana,arial,helveetica;
+    margin: 0;
+    text-align: left;
+    background: url('imgs/tile_back1.gif');
+}
+.table_control td {
+    font: 11px verdana,arial,helveetica;
+    margin: 0;
+}
+.topleft {
+    background: url('imgs/round_left.gif') top left no-repeat;
+
+
+}
+.topright {
+    background: url('imgs/round_right.gif') top right no-repeat;
+}
+		table.borderstyle
+{
+border-left: 1px #96BDE0 solid;
+border-right: 1px #96BDE0 solid;
+border-bottom: 1px #96BDE0 solid;
+border-top: 1px #96BDE0 solid;
+border-spacing: 0px;
+}
+
+
+</style>
+
+<body onunload ="UpdateAttach()" bgcolor="$this->BgColor" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor">
+
+$var['atmailstyle']
+
+<form name=Compose method=post action="compose.php?sending_attachment=1&unique=$var['unique']" ENCTYPE="multipart/form-data">
+<input type="hidden" name="func" value="attachment">
+<input type="hidden" name="unique" value="$var['unique']">
+
+<table border='0' cellspacing='1' cellpadding='0' class='maintable'>
+
+
+
+<TABLE border='0' width='100%' cellpadding='4' cellspacing='0' class="table_control">
+
+<TR><TH class="topleft"><font class='mheader'>&nbsp;Joindre un fichier</font></TH><TH class="middle"></TH><TH class="topright"></TH></TR>
+
+
+
+</TABLE>
+
+
+
+  <table width='100%'  cellspacing='1' cellpadding='1' bgcolor="$this->HeaderColor" class="borderstyle">
+    <tr>
+      <th align="right" width=14%  NOWRAP bgcolor="$this->PrimaryColor">
+        <div class="sw"><font class="sw">Etape 1:</font></div>
+      </th>
+      <td bgcolor="$this->SecondaryColor" NOWRAP colspan="3">
+        <div class="sw">&nbsp; <font class="sw">Cliquez et parcourir pour sélectionner un fichier.</font> <br>
+          &nbsp; <font class="sw"></font>
+          <input type="hidden" name="MAX_FILE_SIZE" value="$var['maxfilesize']">
+<input type="file" class="filebtn" name="fileupload" enctype="multipart/form-data" size="35" value="1" onchange="updateSubmitState()">
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <th align="right" width=14%  bgcolor="$this->PrimaryColor">
+        <div class="sw"><font class="sw">Etape 2:</font></div>
+      </th>
+      <td bgcolor="$this->SecondaryColor" colspan="3">
+        <p>&nbsp; <font class="sw">Cliquez pour joindre un fichier.</font>
+          <input type=submit class="stdbtn" name=upload value="Ajouter un fichier" disabled>
+          <br>
+          <font class="swsmall">&nbsp; <font class="sw"></font>Répétez les étapes 1 et 2 pour joindre d'autres fichiers.</font> </p>
+        </td>
+    </tr>
+    <tr>
+      <th align="right" width=14%  bgcolor="$this->PrimaryColor">
+        <div class="sw"><font class="sw">Etape 3:</font></div>
+      </th>
+      <td bgcolor="$this->SecondaryColor" colspan="3">&nbsp; <font class="sw">Cliquez sur 'Valider' lorsque vous avez terminé.
+&nbsp;        <input type=button class="stdbtn" name=DBack value=" Valider " onClick="UpdateAttach(); window.close()">
+        </font></td>
+    </tr>
+  </table>
+</td>
+</tr>
+</table>
+
+  <br>
+
+<table border='0' cellspacing='1' cellpadding='0' class='maintable' width='100%'>
+
+
+<TABLE border='0' width='100%' cellpadding='4' cellspacing='0' class="table_control">
+
+<TR><TH class="topleft"><font class='sw'>&nbsp;Nom de fichier</font></TH>
+<TH class="middle"><font class='sw'>&nbsp;Taille</font></TH>
+<TH class="topright"><font class="sw">&nbsp;Effacer</font></TH></TR>
+
+
+
+</TABLE>
+
+
+
+<table width='100%' border='0' cellspacing='0' cellpadding='1' class="borderstyle">
+$var['attachments']
+</table>
+  </td>
+  </tr>
+  </table>
+
+  </form>
+</body></html>

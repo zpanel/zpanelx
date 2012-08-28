@@ -6,8 +6,8 @@
  * 
  * @package ZPanel
  * @version $Id$
- * @author Bobby Allen - ballen@zpanelcp.com
- * @copyright (c) 2008-2011 ZPanel Group - http://www.zpanelcp.com/
+ * @author Kimpe Andy - andykimpe@gmail.com
+ * @copyright (c) 2012 Hebergement Web Gratuit  - http://www.hebergement-web-gratuit.fr/
  * @license http://opensource.org/licenses/gpl-3.0.html GNU Public License v3
  *
  * This program (ZPanel) is free software: you can redistribute it and/or modify
@@ -37,7 +37,7 @@ class module_controller {
     }
 
     static function getModuleDesc() {
-        $message = ui_language::translate("Webmail is a convenient way for you to check your email accounts online without the need to configure an email client.");
+        $message = ui_language::translate("Webmail is a convenient way to check your email accounts online without the need to configure a mail client to connect to webmail click on the image of your choice.");
         return $message;
     }
 

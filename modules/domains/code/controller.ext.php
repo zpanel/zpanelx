@@ -38,7 +38,7 @@ class module_controller {
     /**
      * The 'worker' methods.
      */
-    static function ListDomains($uid = 0) {
+    static function ListDomains($uid=0) {
         global $zdbh;
         if ($uid == 0) {
             $sql = "SELECT * FROM x_vhosts WHERE vh_deleted_ts IS NULL AND vh_type_in=1 ORDER BY vh_name_vc ASC";
@@ -69,8 +69,8 @@ class module_controller {
         global $controller;
         $currentuser = ctrl_users::GetUserDetail($uid);
         $res = array();
-        $handle = @opendir(ctrl_options::GetSystemOption('hosted_dir') . $currentuser['username'] . "/public_html");
-        $chkdir = ctrl_options::GetSystemOption('hosted_dir') . $currentuser['username'] . "/public_html/";
+        $handle = @opendir(ctrl_options::GetOption('hosted_dir') . $currentuser['username'] . "/public_html");
+        $chkdir = ctrl_options::GetOption('hosted_dir') . $currentuser['username'] . "/public_html/";
         if (!$handle) {
             # Log an error as the folder cannot be opened...
         } else {
@@ -111,26 +111,37 @@ class module_controller {
             //** New Home Directory **//
             if ($autohome == 1) {
                 $destination = "/" . str_replace(".", "_", $domain);
-                $vhost_path = ctrl_options::GetSystemOption('hosted_dir') . $currentuser['username'] . "/public_html/" . $destination . "/";
+                $vhost_path = ctrl_options::GetOption('hosted_dir') . $currentuser['username'] . "/public_html/" . $destination . "/";
                 fs_director::CreateDirectory($vhost_path);
                 fs_director::SetFileSystemPermissions($vhost_path, 0777);
                 //** Existing Home Directory **//
             } else {
                 $destination = "/" . $destination;
-                $vhost_path = ctrl_options::GetSystemOption('hosted_dir') . $currentuser['username'] . "/public_html/" . $destination . "/";
+                $vhost_path = ctrl_options::GetOption('hosted_dir') . $currentuser['username'] . "/public_html/" . $destination . "/";
             }
             // Error documents:- Error pages are added automatically if they are found in the _errorpages directory
             // and if they are a valid error code, and saved in the proper format, i.e. <error_number>.html
             fs_director::CreateDirectory($vhost_path . "/_errorpages/");
-            $errorpages = ctrl_options::GetSystemOption('static_dir') . "/errorpages/";
+            $errorpages = ctrl_options::GetOption('static_dir') . "/errorpages/";
             if (is_dir($errorpages)) {
                 if ($handle = @opendir($errorpages)) {
                     while (($file = @readdir($handle)) !== false) {
                         if ($file != "." && $file != "..") {
                             $page = explode(".", $file);
-                            if (!fs_director::CheckForEmptyValue(self::CheckErrorDocument($page[0]))) {
                                 fs_filehandler::CopyFile($errorpages . $file, $vhost_path . '/_errorpages/' . $file);
-                            }
+                        }
+                    }
+                    closedir($handle);
+                }
+            }
+			fs_director::CreateDirectory($vhost_path . "/lang/");
+            $lang = ctrl_options::GetOption('static_dir') . "/lang/";
+            if (is_dir($lang)) {
+                if ($handle = @opendir($lang)) {
+                    while (($file = @readdir($handle)) !== false) {
+                        if ($file != "." && $file != "..") {
+                            $page = explode(".", $file);
+                                fs_filehandler::CopyFile($lang . $file, $vhost_path . '/lang/' . $file);
                         }
                     }
                     closedir($handle);
@@ -138,7 +149,13 @@ class module_controller {
             }
             // Lets copy the default welcome page across...
             if ((!file_exists($vhost_path . "/index.html")) && (!file_exists($vhost_path . "/index.php")) && (!file_exists($vhost_path . "/index.htm"))) {
-                fs_filehandler::CopyFileSafe(ctrl_options::GetSystemOption('static_dir') . "pages/welcome.html", $vhost_path . "/index.html");
+                fs_filehandler::CopyFileSafe(ctrl_options::GetOption('static_dir') . "pages/welcome.php", $vhost_path . "/index.php");
+            }
+			if ((!file_exists($vhost_path . "/lang.php"))) {
+                fs_filehandler::CopyFileSafe(ctrl_options::GetOption('static_dir') . "pages/lang.php", $vhost_path . "/lang.php");
+            }
+			if ((!file_exists($vhost_path . "/.htaccess"))) {
+                fs_filehandler::CopyFileSafe(ctrl_options::GetOption('static_dir') . "pages/.htaccess", $vhost_path . "/.htaccess");
             }
             // If all has gone well we need to now create the domain in the database...
             $sql = $zdbh->prepare("INSERT INTO x_vhosts (vh_acc_fk,
@@ -152,14 +169,14 @@ class module_controller {
 														 1,
 														 " . time() . ")"); //CLEANER FUNCTION ON $domain and $homedirectory_to_use (Think I got it?)
             $sql->execute();
-            # Only run if the Server platform is Windows.
-            if (sys_versions::ShowOSPlatformVersion() == 'Windows') {
-                if (ctrl_options::GetSystemOption('disable_hostsen') == 'false') {
-                    # Lets add the hostname to the HOSTS file so that the server can view the domain immediately...
-                    @exec("C:/zpanel/bin/zpss/setroute.exe " . $domain . "");
-                    @exec("C:/zpanel/bin/zpss/setroute.exe www." . $domain . "");
-                }
-            }
+			# Only run if the Server platform is Windows.
+    		if (sys_versions::ShowOSPlatformVersion() == 'Windows') {
+		        if (ctrl_options::GetOption('disable_hostsen') == 'false') {
+		            # Lets add the hostname to the HOSTS file so that the server can view the domain immediately...
+		            @exec("C:/zpanel/bin/zpss/setroute.exe " . $domain . "");
+		            @exec("C:/zpanel/bin/zpss/setroute.exe www." . $domain . "");
+		        }
+		    }
             self::SetWriteApacheConfigTrue();
             $retval = TRUE;
             runtime_hook::Execute('OnAfterAddDomain');
@@ -198,7 +215,7 @@ class module_controller {
         // Check to make sure user not adding a subdomain and blocks stealing of subdomains....
         // Get shared domain list
         $SharedDomains = array();
-        $a = ctrl_options::GetSystemOption('shared_domains');
+        $a = ctrl_options::GetOption('shared_domains');
         $a = explode(',', $a);
         foreach ($a as $b) {
             $SharedDomains[] = $b;

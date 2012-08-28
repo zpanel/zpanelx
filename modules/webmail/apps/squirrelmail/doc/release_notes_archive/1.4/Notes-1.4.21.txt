@@ -1,0 +1,111 @@
+/**************************************
+ * Release Notes: SquirrelMail 1.4.21 *
+ * The "Wiser Leaders" Release        *
+ * 23 Jul 2010                        *
+ **************************************/
+
+In this edition of SquirrelMail Release Notes:
+   * All about this Release!
+   * Security issues
+   * Locales / Translations / Charsets
+   * Reporting your favorite SquirrelMail bug
+
+
+All about this release
+======================
+
+This is primarily a maintenance release which addresses a
+smattering of small issues and adds some fine-tuning of
+recent changes.  It also closes two relatively low-risk
+security issues.
+
+Before this release, for environments with highly active
+users, the number of security tokens could have bloated
+user session (and preference) files to an unacceptable
+size, hurting overall responsiveness.  This release scales
+back the default validity period of security tokens from
+30 days to two days, which should fix this problem in most
+cases.  The administrator is always free to change this
+value by specifying $max_token_age_days in
+config/config_local.php.
+
+There are also fixes for minor issues related to header
+folding, faster and more resilient display of encoded
+subjects, quoting of encoded addresses upon reply, provision
+of a subject when using forward-as-attachment, and a few
+other tidbits.
+
+For a complete list of changes, please see the file "ChangeLog"
+in the doc/ directory.
+
+
+Security issues
+===============
+
+This release also includes fixes for two low-risk
+vulnerabilities.  The first, CVE-2010-1637, allows
+authenticated users to use the Mail Fetch plugin as a
+network/port/DNS scanner.  The second, CVE-2010-2813,
+poses a denial-of-service risk when passwords containing
+8-bit characters are used to log in.  While we
+characterize these issues as fairly low risk, it is
+nevertheless recommended that users of previous versions
+of SquirrelMail upgrade at their earliest convenience.
+
+
+Locales / Translations / Charsets
+=================================
+
+Translations are not a part of the main SquirrelMail package.  They
+are downloaded separately; you can obtain all languages in one
+package or get an individual language.  You can find these packages
+on our web site.  They also contain installation instructions.
+
+
+Reporting your favorite SquirrelMail bug
+========================================
+
+We constantly aim to make SquirrelMail even better. So we need you to
+submit any bug you come across! However, before you do so, please have
+a look at our various support resources to make sure the issue isn't
+already known or solved:
+
+   http://squirrelmail.org/docs/admin/admin-10.html
+   http://squirrelmail.org/docs/admin/admin-12.html
+   http://squirrelmail.org/wiki/KnownBugs
+   http://squirrelmail.org/wiki/SolvingProblems
+
+You should also search existing tracker items for your issue (remember
+to check for CLOSED and PENDING items as well as OPEN ones) - if you
+find such an (open) item, please do add any more details you have to
+it to help us fix and close the bug report.
+
+When reporting a new bug, please mention what SquirrelMail release(s)
+it pertains to, and list as many details about your system as possible,
+including your IMAP server and web server details.
+
+   http://squirrelmail.org/bugs
+
+Thanks for your cooperation! This helps us to make sure nothing slips
+through the cracks. 
+
+Any questions about installing or using SquirrelMail can be directed
+to our user support list:
+
+   squirrelmail-users@lists.sourceforge.net
+
+When posting support requests there, please carefully follow our posting
+guidelines:
+
+   http://squirrelmail.org/postingguidelines
+
+If you want to join us in coding SquirrelMail, or have other things to
+share with the developers, join the development mailinglist:
+
+   squirrelmail-devel@lists.sourceforge.net
+
+
+                  Happy SquirrelMailing!
+
+                    - The SquirrelMail Project Team
+

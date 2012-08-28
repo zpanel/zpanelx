@@ -1,0 +1,51 @@
+<!-- if($var['Ajax']) { -->
+<Error>
+	<ErrorStatus>1</ErrorStatus>
+	<ErrorMessage><![CDATA[
+<!-- } -->
+
+<html>
+<head>
+<title>Время сессии истекло $this->Ajax</title>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">       
+<script language="Javascript">
+// Reload to the master frame if we are inside a frameset
+if (parent.frames[1]) top.window.location=self.location;
+</script>
+</head>
+<body bgcolor="$this->BgColor" text="$this->TextColor" link="$this->LinkColor" vlink="$this->VlinkColor" alink="$this->LinkColor">
+
+<style>
+
+.sw {font-family:Verdana;font-size:13px;color:#000000;}
+.swr {font-family:Verdana;font-size:13px;color:#FF0000;}
+</style>
+
+
+
+<LINK href="javascript/style$this->browser.css" rel="stylesheet" type="text/css">
+<img src="$pref['logo_big_img']"><br>
+<h1>Время истекло</h1>
+
+<font class="swr">Время истекло - Время Вашей сессии истекло.</font>
+<font class="sw"> 
+<ul>
+  <li>Сеанс слишком долго был неактивен</li>
+  <li>$pref['session_timeout'] секунд составляет максимальное время сеанса.</li>
+  <li><a href="index.php" target="_top">Выполните вход в учетную запись повторно</a></li>
+</ul>
+</font>
+
+<p><font class="swr">Если Вы все еще не можете получить доступ к учетной записи</font></p>
+<font class="sw">
+<ul>
+  <li>Обратитесь к администратору $this->admin_email за помощью</li>
+</ul>
+</font>
+</body>
+</html>
+
+<!-- if($var['Ajax']) { -->
+	]]></ErrorMessage>
+</Error>
+<!-- } -->

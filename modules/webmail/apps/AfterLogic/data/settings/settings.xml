@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Settings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Common>
+		<!-- Default title that will be shown in browser's header (Default domain settings). -->
+		<SiteName>AfterLogic WebMail Lite</SiteName>
+		<!-- License key is supplied here. -->
+		<LicenseKey />
+		<AdminLogin>mailadmin</AdminLogin>
+		<AdminPassword>d6a9a933c8aafc51e55ac0662b6e4d4a</AdminPassword>
+		<DBType>MySQL</DBType>
+		<DBPrefix>AfterLogic</DBPrefix>
+		<DBHost>localhost</DBHost>
+		<DBName>zpanel_AfterLogic</DBName>
+		<DBLogin>webmail</DBLogin>
+		<DBPassword>zaLV0FNTyxKoV3hEjZibOTp3GYUCDr</DBPassword>
+		<UseSlaveConnection>Off</UseSlaveConnection>
+		<DBSlaveHost>127.0.0.1</DBSlaveHost>
+		<DBSlaveName />
+		<DBSlaveLogin>root</DBSlaveLogin>
+		<DBSlavePassword />
+		<DefaultLanguage>English</DefaultLanguage>
+		<DefaultTimeZone>29</DefaultTimeZone>
+		<DefaultTimeFormat>F24</DefaultTimeFormat>
+		<AllowRegistration>Off</AllowRegistration>
+		<AllowPasswordReset>Off</AllowPasswordReset>
+		<EnableLogging>Off</EnableLogging>
+		<EnableEventLogging>Off</EnableEventLogging>
+		<LoggingLevel>Full</LoggingLevel>
+		<EnableMobileSync>Off</EnableMobileSync>
+	</Common>
+	<WebMail>
+		<AllowWebMail>On</AllowWebMail>
+		<IncomingMailProtocol>IMAP4</IncomingMailProtocol>
+		<IncomingMailServer>127.0.0.1</IncomingMailServer>
+		<IncomingMailPort>143</IncomingMailPort>
+		<IncomingMailUseSSL>Off</IncomingMailUseSSL>
+		<OutgoingMailServer>127.0.0.1</OutgoingMailServer>
+		<OutgoingMailPort>25</OutgoingMailPort>
+		<OutgoingMailAuth>AuthCurrentUser</OutgoingMailAuth>
+		<OutgoingMailLogin />
+		<OutgoingMailPassword />
+		<OutgoingMailUseSSL>Off</OutgoingMailUseSSL>
+		<OutgoingSendingMethod>Specified</OutgoingSendingMethod>
+		<UserQuota>0</UserQuota>
+		<AutoCheckMailInterval>0</AutoCheckMailInterval>
+		<DefaultSkin>AfterLogic</DefaultSkin>
+		<MailsPerPage>20</MailsPerPage>
+		<EnableMailboxSizeLimit>Off</EnableMailboxSizeLimit>
+		<MailboxSizeLimit>0</MailboxSizeLimit>
+		<TakeImapQuota>On</TakeImapQuota>
+		<AllowUsersChangeInterfaceSettings>On</AllowUsersChangeInterfaceSettings>
+		<AllowUsersChangeEmailSettings>On</AllowUsersChangeEmailSettings>
+		<EnableAttachmentSizeLimit>Off</EnableAttachmentSizeLimit>
+		<AttachmentSizeLimit>10240000</AttachmentSizeLimit>
+		<AllowLanguageOnLogin>On</AllowLanguageOnLogin>
+		<FlagsLangSelect>Off</FlagsLangSelect>
+		<LoginFormType>Email</LoginFormType>
+		<UseLoginAsEmailAddress>On</UseLoginAsEmailAddress>
+		<LoginAtDomainValue />
+		<DefaultDomainValue />
+		<UseAdvancedLogin>Off</UseAdvancedLogin>
+		<UseCaptcha>Off</UseCaptcha>
+		<UseReCaptcha>Off</UseReCaptcha>
+		<AllowNewUsersRegister>On</AllowNewUsersRegister>
+		<AllowUsersAddNewAccounts>Off</AllowUsersAddNewAccounts>
+		<AllowIdentities>Off</AllowIdentities>
+		<StoreMailsInDb>Off</StoreMailsInDb>
+		<AllowInsertImage>On</AllowInsertImage>
+		<AllowBodySize>Off</AllowBodySize>
+		<MaxBodySize>600</MaxBodySize>
+		<MaxSubjectSize>255</MaxSubjectSize>
+		<Layout>Side</Layout>
+		<AlwaysShowImagesInMessage>Off</AlwaysShowImagesInMessage>
+		<SaveMail>Always</SaveMail>
+		<IdleSessionTimeout>0</IdleSessionTimeout>
+		<UseSortImapForDateMode>Off</UseSortImapForDateMode>
+		<DetectSpecialFoldersWithXList>On</DetectSpecialFoldersWithXList>
+		<EnableLastLoginNotification>Off</EnableLastLoginNotification>
+	</WebMail>
+	<Calendar>
+		<AllowCalendar>Off</AllowCalendar>
+		<ShowWeekEnds>Off</ShowWeekEnds>
+		<WorkdayStarts>9</WorkdayStarts>
+		<WorkdayEnds>18</WorkdayEnds>
+		<ShowWorkDay>On</ShowWorkDay>
+		<WeekStartsOn>Monday</WeekStartsOn>
+		<DefaultTab>Month</DefaultTab>
+		<AllowReminders>On</AllowReminders>
+		<DAVUrl />
+	</Calendar>
+	<Contacts>
+		<AllowContacts>On</AllowContacts>
+		<ContactsPerPage>20</ContactsPerPage>
+		<PersonalAddressBook>
+			<Mode>Sql</Mode>
+		</PersonalAddressBook>
+		<ShowGlobalContactsInAddressBook>Off</ShowGlobalContactsInAddressBook>
+		<GlobalAddressBook>
+			<Mode>Off</Mode>
+			<Sql>
+				<Visibility>Off</Visibility>
+			</Sql>
+		</GlobalAddressBook>
+	</Contacts>
+	<StorageTypes>
+		<MailSuite>db</MailSuite>
+		<Db>db</Db>
+		<Domains>db</Domains>
+		<Subadmins>db</Subadmins>
+		<Contacts>db</Contacts>
+		<Users>db</Users>
+		<WebMail>db</WebMail>
+		<Calendar>sabredav</Calendar>
+	</StorageTypes>
+</Settings>
