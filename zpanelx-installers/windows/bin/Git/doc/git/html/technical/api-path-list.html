@@ -1,0 +1,491 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 7.0.2" />
+<style type="text/css">
+/* Debug borders */
+p, li, dt, dd, div, pre, h1, h2, h3, h4, h5, h6 {
+/*
+  border: 1px solid red;
+*/
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a { color: blue; }
+a:visited { color: fuchsia; }
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
+tt {
+  color: navy;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  font-family: sans-serif;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  border-bottom: 2px solid silver;
+  padding-top: 0.5em;
+}
+
+div.sectionbody {
+  font-family: serif;
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+span#author {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+span#email {
+}
+span#revision {
+  font-family: sans-serif;
+}
+
+div#footer {
+  font-family: sans-serif;
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+div#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+div#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+div#preamble,
+div.tableblock, div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-right: 10%;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock > div.content {
+  padding-left: 2.0em;
+}
+div.quoteblock .attribution {
+  text-align: right;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 2px solid silver;
+}
+
+div.exampleblock > div.content {
+  border-left: 2px solid silver;
+  padding: 0.5em;
+}
+
+div.verseblock div.content {
+  white-space: pre;
+}
+
+div.imageblock div.content { padding-left: 0; }
+div.imageblock img { border: 1px solid silver; }
+span.image img { border-style: none; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: italic;
+}
+dd > *:first-child {
+  margin-top: 0;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.olist2 {
+  list-style-type: lower-alpha;
+}
+
+div.tableblock > table {
+  border-color: #527bbd;
+  border-width: 3px;
+}
+thead {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+tfoot {
+  font-weight: bold;
+}
+
+div.hlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+td.hlist1 {
+  vertical-align: top;
+  font-style: italic;
+  padding-right: 0.8em;
+}
+td.hlist2 {
+  vertical-align: top;
+}
+
+@media print {
+  div#footer-badges { display: none; }
+}
+/* Workarounds for IE6's broken and incomplete CSS2. */
+
+div.sidebar-content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+div.sidebar-title, div.image-title {
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 0.0em;
+  margin-bottom: 0.5em;
+}
+
+div.listingblock div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock-content {
+  padding-left: 2.0em;
+}
+
+div.exampleblock-content {
+  border-left: 2px solid silver;
+  padding-left: 0.5em;
+}
+</style>
+<title>path-list API</title>
+</head>
+<body>
+<div id="header">
+<h1>path-list API</h1>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<p>The path_list API offers a data structure and functions to handle sorted
+and unsorted string lists.</p>
+<p>The name is a bit misleading, a path_list may store not only paths but
+strings in general.</p>
+<p>The caller:</p>
+<ol>
+<li>
+<p>
+Allocates and clears a <tt>struct path_list</tt> variable.
+</p>
+</li>
+<li>
+<p>
+Initializes the members. You might want to set the flag <tt>strdup_paths</tt>
+  if the strings should be strdup()ed. For example, this is necessary
+  when you add something like git_path("&#8230;"), since that function returns
+  a static buffer that will change with the next call to git_path().
+</p>
+<p>If you need something advanced, you can manually malloc() the <tt>items</tt>
+member (you need this if you add things later) and you should set the
+<tt>nr</tt> and <tt>alloc</tt> members in that case, too.</p>
+</li>
+<li>
+<p>
+Adds new items to the list, using <tt>path_list_append</tt> or <tt>path_list_insert</tt>.
+</p>
+</li>
+<li>
+<p>
+Can check if a string is in the list using <tt>path_list_has_path</tt> or
+  <tt>unsorted_path_list_has_path</tt> and get it from the list using
+  <tt>path_list_lookup</tt> for sorted lists.
+</p>
+</li>
+<li>
+<p>
+Can sort an unsorted list using <tt>sort_path_list</tt>.
+</p>
+</li>
+<li>
+<p>
+Finally it should free the list using <tt>path_list_clear</tt>.
+</p>
+</li>
+</ol>
+<p>Example:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>struct path_list list;
+int i;
+
+memset(&amp;list, 0, sizeof(struct path_list));
+path_list_append("foo", &amp;list);
+path_list_append("bar", &amp;list);
+for (i = 0; i &lt; list.nr; i++)
+        printf("%s\n", list.items[i].path)</tt></pre>
+</div></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">It is more efficient to build an unsorted list and sort it
+afterwards, instead of building a sorted list (<tt>O(n log n)</tt> instead of
+<tt>O(n^2)</tt>).</td>
+</tr></table>
+</div>
+<p>+
+However, if you use the list to check if a certain string was added
+already, you should not do that (using unsorted_path_list_has_path()),
+because the complexity would be quadratic again (but with a worse factor).</p>
+</div>
+</div>
+<h2>Functions</h2>
+<div class="sectionbody">
+<ul>
+<li>
+<p>
+General ones (works with sorted and unsorted lists as well)
+</p>
+<dl>
+<dt>
+<tt>print_path_list</tt>
+</dt>
+<dd>
+<p>
+        Dump a path_list to stdout, useful mainly for debugging purposes. It
+        can take an optional header argument and it writes out the
+        string-pointer pairs of the path_list, each one in its own line.
+</p>
+</dd>
+<dt>
+<tt>path_list_clear</tt>
+</dt>
+<dd>
+<p>
+        Free a path_list. The <tt>path</tt> pointer of the items will be freed in case
+        the <tt>strdup_paths</tt> member of the path_list is set. The second parameter
+        controls if the <tt>util</tt> pointer of the items should be freed or not.
+</p>
+</dd>
+</dl>
+</li>
+<li>
+<p>
+Functions for sorted lists only
+</p>
+<dl>
+<dt>
+<tt>path_list_has_path</tt>
+</dt>
+<dd>
+<p>
+        Determine if the path_list has a given string or not.
+</p>
+</dd>
+<dt>
+<tt>path_list_insert</tt>
+</dt>
+<dd>
+<p>
+        Insert a new element to the path_list. The returned pointer can be handy
+        if you want to write something to the <tt>util</tt> pointer of the
+        path_list_item containing the just added string.
+</p>
+<p>Since this function uses xrealloc() (which die()s if it fails) if the
+list needs to grow, it is safe not to check the pointer. I.e. you may
+write <tt>path_list_insert(&#8230;)-&gt;util = &#8230;;</tt>.</p>
+</dd>
+<dt>
+<tt>path_list_lookup</tt>
+</dt>
+<dd>
+<p>
+        Look up a given string in the path_list, returning the containing
+        path_list_item. If the string is not found, NULL is returned.
+</p>
+</dd>
+</dl>
+</li>
+<li>
+<p>
+Functions for unsorted lists only
+</p>
+<dl>
+<dt>
+<tt>path_list_append</tt>
+</dt>
+<dd>
+<p>
+        Append a new string to the end of the path_list.
+</p>
+</dd>
+<dt>
+<tt>sort_path_list</tt>
+</dt>
+<dd>
+<p>
+        Make an unsorted list sorted.
+</p>
+</dd>
+<dt>
+<tt>unsorted_path_list_has_path</tt>
+</dt>
+<dd>
+<p>
+        It's like <tt>path_list_has_path()</tt> but for unsorted lists.
+</p>
+<p>This function needs to look through all items, as opposed to its
+counterpart for sorted lists, which performs a binary search.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<h2>Data structures</h2>
+<div class="sectionbody">
+<ul>
+<li>
+<p>
+<tt>struct path_list_item</tt>
+</p>
+</li>
+</ul>
+<p>Represents an item of the list. The <tt>path</tt> member is a pointer to the
+string, and you may use the <tt>util</tt> member for any purpose, if you want.</p>
+<ul>
+<li>
+<p>
+<tt>struct path_list</tt>
+</p>
+</li>
+</ul>
+<p>Represents the list itself.</p>
+<ol>
+<li>
+<p>
+The array of items are available via the <tt>items</tt> member.
+</p>
+</li>
+<li>
+<p>
+The <tt>nr</tt> member contains the number of items stored in the list.
+</p>
+</li>
+<li>
+<p>
+The <tt>alloc</tt> member is used to avoid reallocating at every insertion.
+  You should not tamper with it.
+</p>
+</li>
+<li>
+<p>
+Setting the <tt>strdup_paths</tt> member to 1 will strdup() the strings
+  before adding them, see above.
+</p>
+</li>
+</ol>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 18-Jun-2008 03:17:08 UTC
+</div>
+</div>
+</body>
+</html>

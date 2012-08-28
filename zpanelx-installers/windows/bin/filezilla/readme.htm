@@ -1,0 +1,1138 @@
+<p align="center"><b><u>FileZilla Server version 0.9.41 beta</u></b></p>
+<p align="center">Copyright 2001-2012<br>
+by <a href="mailto:tim.kosse@filezilla-project.org">Tim Kosse</a><a href="http://filezilla-project.org/"><br>
+http://filezilla-project.org/</a></p>
+<p align="left"><u><b>Features:</b></u></p>
+<ul>
+  <li>almost unlimited number of users</li>
+  <li>multi-threaded engine</li>
+  <li>runs as service under 2000 and XP, Vista and Windows 7</li>
+  <li>anti fxp / bounce attack filter</li>
+  <li>secure password storage (as MD5 hash)</li>
+  <li>real-time user/group management</li>
+  <li>
+    all options can be set at runtime, there's no need to take
+    the server offline
+  </li>
+  <li>
+    no-transfer timeout which can kick idle users which use
+    basic keep alive systems
+  </li>
+  <li>Server and user/group speed limits based on rule sets.</li>
+  <li>MODE Z file transfer compression</li>
+</ul>
+<p align="left"><u><b>Release Notes:</b></u></p>
+<p align="left">Please report any bugs immediately to <a href="mailto:tim.kosse@filezilla-project.org">tim.kosse@filezilla-project.org</a>
+and don't forget to include some system details as it helps to identify the
+bugs.</p>
+<p align="left"><u><b>The tray icon</b></u></p>
+<p align="left">From the tray icon you've access to different features of
+FileZilla Server. You can enable/disable, lock/unlock or exit the server as well
+as restoring it to normal size.</p>
+<table border="0">
+  <tr>
+    <td colspan="3"><p align="left"><u>List of tray icon states:</u></p>
+    </td>
+  </tr>
+  <tr>
+    <td>red</td>
+    <td></td>
+    <td>server offline</td>
+  </tr>
+  <tr>
+    <td>yellow</td>
+    <td></td>
+    <td>server online</td>
+  </tr>
+  <tr>
+    <td>green</td>
+    <td></td>
+    <td>client connected</td>
+  </tr>
+  <tr>
+    <td>flashing red-green</td>
+    <td></td>
+    <td>server will go offline or will exit when all clients are disconnected</td>
+  </tr>
+  <tr>
+    <td>flashing red-yellow</td>
+    <td></td>
+    <td>server is locked</td>
+  </tr>
+  <tr>
+    <td>flashing yellow-green</td>
+    <td></td>
+    <td>server is locked and clients are still connected</td>
+  </tr>
+</table>
+<p align="left"><b><u>Version History:</u></b></p>
+<p>For a more detailed list of changes, please have a look at the SVN changelog located at <a href="http://filezilla-project.org/changelog.php?type=2">http://filezilla-project.org/changelog.php?type=2</a>.</p>
+<p><b>Version 0.9.41</b></p>
+<blockquote>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>Fix parsing of IP address filters ending with :0 or equivalent substringss.</li>
+    <li>Allow speed limits larger than 64 MiB/s.</li>
+    <li>Show more verbose error messages if transfer connection cannot be established.</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.40</b></p>
+<blockquote>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>The service no longer crashes if connecting with the administration interface when there are clients connected over IPv6</li>
+    <li>Close the connection if there is additional data in the input buffers when processing the AUTH command.</li>
+    <li>Display correct connection state item in administration interface when getting initial list of connected clients</li>
+  </ul>
+</blockquote
+<p><b>Version 0.9.39</b></p>
+<blockquote>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>Do not attempt to display a message box if creating an administration interface binding fails. This freezes the service on some machines.</li>
+    <li>On FTP over TLS connections, the socket address family was not initialized from the underlaying socket</li>
+    <li>Fix a bug in IPv4 address filters and increase their performance</li>
+  </ul>
+</blockquote
+<p><b>Version 0.9.38</b></p>
+<blockquote>
+  <u>New features:</u>
+  <ul>
+    <li>IPv6 support</li>
+  </ul>
+  <u>Incompatible changes:</u>
+  <ul>
+    <li>Range, wildcard, regular expression and dot-decimal notation subnet IP address filters have been removed. These filter rules need to be recreated using CIDR notation.</li>
+  </ul>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>Upon /reload-config, notify all running instances, not just the first found.</li>
+    <li>Report correct physical path of aliases in administration interface</li>
+    <li>Fix reply code on permanent bans, not of 5yz type</li>
+    <li>Increased default size of socket buffers</li>
+    <li>Fix a crash when entering invalid IP filters</li>
+    <li>Fixed a crash when a connection closes</li>
+    <li>Updated to most recent OpenSSL version</li>
+  </ul>
+</blockquote
+<p><b>Version 0.9.37</b></p>
+<blockquote>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>Advertise support for PBSZ and PROT in FEAT reply</li>
+    <li>Allow PROT after PORT/PASV/EPRT/EPSV but before transfer command</li>
+    <li>Use correct replies for RNTO, EPRT and MKD command</li>
+    <li>Reply with correct error code in response to transfer commands if PROT P is required but not set</li>
+    <li>Fix display of non-ASCII characters in log</li>
+    <li>Ignore read-only attribute on DELE</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.36</b></p>
+<blockquote>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>Fix welcome message</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.35</b></p>
+<blockquote>
+  <u>New features:</u>
+  <ul>
+    <li>Administration interface is now Unicode enabled.</li>
+  </ul>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>Fix saving of speed-limit rules</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.34</b></p>
+<blockquote>
+  <u>New features:</u>
+  <ul>
+    <li>Show address of server in title bar of administration interface (patch submitted by eyebex)</li>
+  </ul>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>Disable some weak TLS/SSL ciphers such as DES-CBC-SHA which shouldn't be used anymore</li>
+    <li>Work around some obscure error reported by OpenSSL, fixes spurious transfer failures</li>
+    <li>Use case-insensitive comparison instead of always converting to lowercase in permissions handling. Fixes problems with sharing case-sensitive network resources.</li>
+    <li>Settings with empty data were not loaded from settings file correctly and reverted back to default values (patch submitted by eyebex)</li>
+    <li>Improve performance of (re-)loading settings</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.33</b></p>
+<blockquote>
+  <u>New features:</u>
+  <ul>
+    <li>Add /servicename and /servicedisplayname options to change the (display) name of the server service.</li>
+  </ul>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>Fix potential double-delete in admin connection code, could be used for remote denial of service if using remote administration (not enabled by default).</li>
+    <li>Increase minimum value for maximum allowed login attempts before autoban to 10.</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.32</b></p>
+<blockquote>
+  <u>New features:</u>
+  <ul>
+    <li>Use thousands separator in output of large numbers.</li>
+  </ul>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>Disallow weak SSLv2.</li>
+    <li>Slightly reword FTP over TLS/SSL settings page.</li>
+    <li>Adjust width of user and group lists on permissions dialogs.</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.31</b></p>
+<blockquote>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>Fix buffer overflow in SSL code leading to a potential security vulnerability.</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.30</b></p>
+<blockquote>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>Fix a rare case in which SSL shutdown notifications were created but not actually sent.</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.29</b></p>
+<blockquote>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>Executable path did not get quoted properly in service creation leading to a <strong>local</strong> privilege escalation vulnerability.</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.28</b></p>
+<blockquote>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>Directly reject PROT C if PROT P is required instead of complaining after a transfer command</li>
+    <li>Fix race in transfer connection initialization leading to timeouts</li>
+    <li>No-transfer timeouts could not be disabled in 0.9.27</li>
+    <li>Server startup options in installer had no effect</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.27</b></p>
+<blockquote>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>An orderly SSL/TLS shutdown was not performed in all cases</li>
+    <li>Disallow no-transfer timeouts smaller than 600 seconds</li>
+  </ul>
+</blockquote>
+<p>For a more detailed list of changes, please have a look at the CVS changelog located at <a href="http://filezilla-project.org/changelog.php?type=2">http://filezilla-project.org/changelog.php?type=2</a>.</p>
+<p><b>Version 0.9.26</b></p>
+<blockquote>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>Downloading empty files over TLS connections no longer closes the connection prematurely</li>
+    <li>Updated to latest OpenSSL version</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.25</b></p>
+<blockquote>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>Implement OPTS MLST as required by RFC 3659</li>
+    <li>Add some more validation to prevent &quot;Protocol Error, invalid data&quot; errors</li>
+    <li>Attempt to fix problems with certificate loading some users are experiencing</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.24</b></p>
+<blockquote>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>Fix MFMT command from not accepting all valid dates</li>
+    <li>Fix keysize selection in certificate generation dialog</li>
+    <li>Updated to latest OpenSSL version</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.23</b></p>
+<blockquote>
+  <u>New features:</u>
+  <ul>
+    <li>Add support for MFMT command to change file modification time</li>
+    <li>Add basic autoban implementation for the paranoid server admins</li>
+    <li>Add TYPE L 8 as an alias for TYPE I</li>
+  </ul>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>Fix some timezone issues</li>
+    <li>Fix CTRL+C for message log</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.22</b></p>
+<blockquote>
+  <u>Fixed bugs:</u>
+   <ul>
+    <li>Fix denial of service vulnerability due to nullpointer dereference.</li>
+    <li>Added support for broken clients sending CWD command without arguments.</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.21</b></p>
+<blockquote>
+  <u>Changed features:</u>
+  <ul>
+    <li>The default address for the &quot;Retrieve external IP address from:&quot; option has changed.</li>
+  </ul>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>Fix SSL related issue on empty directory listings</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.20</b></p>
+<blockquote>
+  <u>New features:</u>
+  <ul>
+    <li>Add option to ban user to the context menu of the connected users list.</li>
+  </ul>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>Fix SSL shutdown behaviour, fixes compatibility with some clients.</li>
+    <li>Internal changes to allow larger lists of banned IP addresses.</li>
+    <li>Improved datasocket creation in active mode.</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.19</b></p>
+<blockquote>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>Updated to OpenSSL 0.9.8d due to security vulnerabilites in OpenSSL</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.18</b></p>
+<blockquote>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>Fix MLSD command not displaying all aliases</li>
+    <li>Fix keyboard nagivation in settings dialog</li>
+    <li>Added OPTS UTF8 OFF command</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.17</b></p>
+<blockquote>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>Fix critical buffer overflow in admin interface. Remote code execution with the rights of the user running the admin interface might have been possible. Only the interface was affected, the service was unaffected.</li>
+    <li>Fix memory leak in service</li>
+    <li>Compatibility fixes for systems with more than one CPU</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.16</b></p>
+<blockquote>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>Fix conversion problem if any configuration data had a non-English character.</li>
+    <li>Internal changes to make whole service use Unicode</li>
+    <li>Fix explicit SSL (0.9.16a)</li>
+    <li>Fix buffer overflow in settings dialog (0.9.16b)</li>
+    <li>Fix problem with list of connected users (0.9.16c)</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.15</b></p>
+<blockquote>
+  <u>New features:</u>
+  <ul>
+    <li>UTF-8 support as specified in <a href="http://www.faqs.org/rfcs/rfc2640.html">RFC 2640</a>. As result, the minimum required Windows version is now Windows 2000.</li>
+  </ul>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>SSL file truncation problem</li>
+    <li>Compatiblity fix for NAT-in-NAT environments</li>
+    <li>Compatibility with clients sending the STRU command</li>
+    <li>Fix loading of aliases in UNC format</li> 
+  </ul>
+</blockquote>
+<p><b>Version 0.9.14</b></p>
+<blockquote>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>Fixed problem with SSL transfers aborting or even crashing the server.</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.13</b></p>
+<blockquote>
+  <u>New features:</u>
+  <ul>
+    <li>Option to not use external ip address in passive mode if client is within local network. Enabled by default.</li>
+    <li>Option to ignore the address given in the PORT command if it's from an unrouteable address range, but the client has a routeable address. Enabled by default.</li>
+  </ul>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>Fixed problems with the case-(in)sensitivity of aliases</li>
+    <li>(0.9.13b) Fixed passive mode problems introduced in 0.9.13</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.12</b></p>
+<blockquote>
+  <u>New features:</u>
+  <ul>
+    <li>Alias targets can now be virtual paths as well</li>
+    <li>Add option to allow reading of files which are opened for writing by another process</li>
+    <li>Always require a set password even for local connections now. If you don't remember your password, delete it from <b>FileZilla Server.xml</b></li>
+    <li>Workaround for SMC routers with P@SW bug</li>
+    <li>Added SITE NAMEFMT command with "1" as only supported naming format. Required by at least one client running on AS/400 server.</li>
+  </ul>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>Don't allow AUTH SSL/TLS command if already using SSL/TLS, broadcast SSL/TLS availability in FEAT response</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.11</b></p>
+<blockquote>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>No longer freezes if using a password protected keyfile.</li>
+    <li>It was not possible to access filenames starting with multiple dots</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.10</b></p>
+<blockquote>
+  <u>New features:</u>
+  <ul>
+    <li>Option to force SSL login for selected users/groups</li>
+  </ul>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>SSL mode fixes, fix truncated downloads</li>
+    <li>fix creation of multiple ports if not bound to all IP addresses</li>
+  </ul>
+</blockquote
+<p><b>Version 0.9.9</b></p>
+<blockquote>
+  <u>New features:</u>
+  <ul>
+    <li>Option to force PROT P for SSL/TLS connections.</li>
+  </ul>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>Now compiled against zlib 1.2.3 to fix potential security vulnerability</li>
+  </ul>
+</blockquote
+<p><b>Version 0.9.8c</b></p>
+<blockquote>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>Sometimes file downloads aborted prematurely leading to incomplete files.</li>
+    <li>Don't send MODE Z in FEAT response if MODE Z has been disabled.</li>
+  </ul>
+</blockquote>    
+<p><b>Version 0.9.8b</b></p>
+<blockquote>
+  <u>New features:</u>
+  <ul>
+    <li>Added option to set socket buffer size, increased default buffer sizes</li>
+  </ul>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>Wildcards in argument to LIST command were not handled properly</li>
+    <li>Use proper reply code for AUTH SSL and AUTH TLS commands</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.8</b></p>
+<blockquote>
+  <u>New features:</u>
+  <ul>
+    <li>Service and Admin interface can be installed separately in the installer</li>
+  </ul>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>Infinite loop if user disconnects while throttled by anti-hammering code</li>
+    <li>Accept PBSZ command if using SSL/TLS</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.7</b></p>
+<blockquote>
+  <u>New features:</u>
+  <ul>
+    <li>Option to force explicit SSL</li>
+  </ul>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>Available bandwidth was not distributed properly if using speedlimits</li>
+    <li>possible crash after closing client connections if using SSL</li>
+    <li>time based speed limits over midnight did not work properly</li>
+    <li>Connection freeze after SSL initialization</li>
+    <li>taking server offline and back online did not work properly if used multiple times in a row</li>
+    <li>fix infinite loop if speedlimits are enabled</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.6a</b></p>
+<blockquote>
+  <u>fixed bugs:</u>
+  <ul>
+    <li>Sockets for admin interface or transfer connections could not be created on all systems</li>
+    <li>Input box for the listen ports did not accept separator characters.</li>
+    <li>reserved MSDOS device name did not work properly</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.6</b></p>
+<blockquote>
+  <u>New features:</u>
+  <ul>
+    <li>SSL/TLS encryption. This feature is still experimental, use at your own risk.</li>
+  </ul>
+  <u>Fixed bugs:</u>
+  <ul>
+    <li>Infinite loop on file uploads or directory listings if using zlib compression</li>
+    <li>Sending commands with filenames as arguments which did contain reserved MSDOS device names (such as NUL, CON, COM1, LPT1) could freeze FileZilla Server on older systems. Those filenames are now considered invalid</li>
+    <li>Fixed crash if taking server offline</li>
+    <li>Connection limits for users did not work as intended</li>
+    <li>The /reload-config command line switch has been fixed</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.5</b></p>
+<blockquote>
+  <u>fixed bugs:</u>
+  <ul>
+    <li>Typo in anti-hammering code, delayed connections were never unstalled</li>
+    <li>Aliases for directories containing :u did not work if username did contain uppercase chars</li>
+    <li>If renaming groups, adjust user accounts accordingly</li>
+    <li>If deleting groups which are in use, ask what to do with the affected users</li>
+    <li>Use same network interface for transfer connection as for the control connection to solve some firewall issues, patch by dartonw</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.4e</b></p>
+<blockquote>
+  <u>fixed bugs:</u>
+  <ul>
+    <li>Fixed buffer overflow in admin interface</li>
+    <li>Aliases did not always display in NLST listings</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.4</b></p>
+<blockquote>
+  <u>new features:</u>
+  <ul>
+    <li>List of connected users displays more details: IP, current file, progress and speed. Based on patch by "Tropics"</li>
+    <li>Admininterface reconnects automatically after connection loss</li>
+    <li>Folders to which the user has no access, won't be displayed in directory listings</li>
+    <li>All IP filters can now also filter hostnames using regular expressions, based on patch from Sebastian Schuberth</li>
+    <li>implemented MLSD and MLST commands</li>
+    <li>implemented ALLO command</li>
+    <li>If user password in settings file is not 32 characters long (and thus not a MD5 hash) convert it to a MD5 hash.</li>
+  </ul>
+  <u>removed features:</u>
+  <blockquote>
+  <p>The permissions handling code has been simplified a lot. In the process
+     some features as described above have been removed, partially due to 
+     better alternatives.
+  <ul>
+    <li>
+      Removed non-relative directory structure mode.
+      It did expose the servers physical directory structure.
+      Also there were some bugs regarding this mode in the previous code.
+    </li>
+    <li>
+      Removed "Resolve Shortcuts" option. Aliases are more flexible since 
+      they allow username replacement (using <b>:u</b>) and don't depend on
+      some files on your drive which could be replaced by other applications.
+    </li>
+  </ul>
+  </blockquote>
+  <u>fixed bugs:</u>
+  <ul>
+    <li>Dashes as prefix for command line options did not work</li>
+    <li>Time pickers in speedlimit rule dialog did change type to date pickers.</li>
+    <li>Internal changes for 64bit portability</li>
+    <li>Fixed rare crash which could occur whenever a user disconneced</li>
+    <li>Fixed crashes if stopping server</li>
+    <li>Use proper reply for MKD commands to already existing directories</li>
+    <li>No longer display folder selection dialog for remote administration sessions.</li>
+    <li>Internal changes to reduce CPU load</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.3</b></p>
+<blockquote>
+  <u>new features:</u>
+  <ul>
+    <li>
+      Welcome messages can be hidden to no longer display in the interface and logfiles.
+      Based on patch by Jason Jackson.
+    </li>
+    <li>Max. Welcome message size greatly increased</li>
+  </ul>
+  <u>fixed bugs:</u>
+  <ul>
+    <li>
+      security fix for zlib which could lead to denial of service attacks
+      if MODE Z transfers are allowed.
+    </li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.2</b></p>
+<blockquote>
+  <u>new features:</u>
+  <ul>
+    <li>increased speed of admin interface</li>
+    <li>implemented anti-hammering code to prevent brute force password cracking.
+        Can't be disabled for good reason.</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.1</b></p>
+<blockquote>
+  <u>new features:</u>
+  <ul>
+    <li>Directory aliases to simplify usage of virtual file system</li>
+    <li>IP filter to limit access to server</li>
+    <li>Users / groups can be disabled</li>
+    <li>Comments field for users and groups</li>
+    <li>Added HELP command (0.9.1b)</li>
+  </ul>
+  <u>fixed bugs:</u>
+  <ul>
+    <li>ip filter did not work properly together with groups (0.9.1a)</li>
+    <li>fixed deadlock in external IP check and speed limit code</li>
+    <li>fixed infinite loop in zlib mode</li>
+    <li>speed limits were not calculcated properly</li>
+    <li>wrong timezone was used in speed limit rules</li>
+    <li>global speed limits weren't initialized properly</li>
+    <li>fixed error message if editing speed limit rules</li>
+    <li>groups no longer duplicate if opening groups dialog on inactive servers without any user accounts</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.9.0</b></p>
+<blockquote>
+  <u>new features:</u>
+  <ul>
+    <li>MODE Z file transfer compression</li>
+    <li>server listening socket can be bound to specific IPs</li>
+  </ul>
+  <u>fixed bugs:</u>
+  <ul>
+    <li>server did not shutdown properly</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.8.9</b></p>
+<blockquote>
+  <u>fixed bugs:</u>
+  <ul>
+    <li>Interface could crash if kicking user</li>
+    <li>group ip based connection limit did not work</li>
+    <li>fixed alignment of years in directory listings</li>
+    <li>fixed crash if listening socket can't be created</li>
+    <li>changed MKD return code to 257</li>
+  </ul>
+</blockquote>
+<p><b>Version 0.8.8</b></p>
+<blockquote>
+  <u>new features:</u>
+  <ul>
+    <li>added hostname support for external PASV IP address</li>
+    <li>support for remote IP detection scripts</li>
+    <li>config file can be reloaded by calling <u>"FileZilla Server.exe" /reload-config</u>
+  </ul>
+  <u>fixed bugs:</u>
+  <ul>
+    <li>Fixed format of permissions field in directory listings</li>
+    <li>group membership for user accounts wasn't set on startup</li>
+    <li>somtimes the last few bytes were missing on uploaded files</li>
+    <li>fixed missing titles of users and groups dialog</li>
+  </ul>
+</blockquote>
+<p><b>version 0.8.7</b></p>
+<blockquote>
+  <u>new features and improvements:</u>
+  <ul>
+    <li>lots of performance improvements:
+      <ul>
+        <li>connection establishment is up to 100ms faster</li>
+        <li>some optimizations in the welcome message, directory listing and permission code</li>
+      </ul>
+      Thanks to Tom Diviney for a lot of testing.
+    </li>
+    <li>Improved behaviour of LIST and NLST with arguments, should fix the mget issue, fix provided by Bengt Johannesson</li>
+  </ul>
+  <u>fixed bugs:</u>
+  <ul>
+    <li>Creation of transfer connection in active mode was not RFC 959 compatible.</li>
+    <li>possible fix for stalling GSS transfers</li>
+  </ul>
+</blockquote>
+<p><b>version 0.8.6</b></p>
+<blockquote>
+  <u>new features:</u>
+  <ul>
+    <li>new log window, it's now possible to select text</li>
+  </ul>
+  <u>fixed bugs:</u>
+  <ul>
+    <li>due to a bug in the Windows api function CreateDirectory it was possible to create directories with one or more dots at the end of their name.
+      Such directories can't be accessed or deleted by most programs.
+      FileZilla Server now checks for dots at the end of diretories and denies creation of such directories.
+      If you already have such directories on your disk, you can delete them in the console using <b>rmdir \\?\&lt;path&gt;</b>, replace path with the full path of the invalid directory.</li>
+    <li>Usergroups no longer change randomly if there are more than one user group.</li>
+  </ul>
+</blockquote>
+<p><b>version 0.8.5:</b></p>
+<blockquote>
+  <u>new features:</u>
+  <ul>
+    <li>Added server menu to interface with Active and Lock items (same funcionality as the first two icons)</li>
+  </ul>
+  <u>fixed bugs:</u>
+  <ul>
+    <li>Users without delete permission could delete empty directories</li>
+    <li>Files could be renamed over account boundaries</li>
+    <li>Locking the server did not work</li>
+    <li>Defatult width of users pane was zero if starting the interface on low resolution (800x600 or fewer) monitors.</li>
+  </ul>
+</blockquote>
+<p><b>version 0.8.4:</b></p>
+<blockquote>
+  <u>new features:</u>
+  <ul>
+    <li>Global as well as user specific speed limits can be set</li>
+    <li>Added user groups</li>
+    <li>Support for Kerberos GSSAPI authentication</li>
+    <li>Transfer buffer size can now be set</li>
+  </ul>
+</blockquote>
+<p align="left"><b>version 0.8.3:</b></p>
+<blockquote>
+<p align="left"><u>new features:</u></p>
+  <ul>
+    <li>
+<p align="left">remote administration</p>
+    </li>
+    <li>
+<p align="left">logging to file</p>
+    </li>
+  </ul>
+<p align="left"><u>fixed bugs:</u></p>
+  <ul>
+    <li>
+<p align="left">admin interface could hang during connect (fixed in 0.8.3a)</li>
+    <li>
+<p align="left">F2 to rename user accounts / dirs in users dialog now works correctly
+    </li>
+    <li>
+<p align="left">sometimes files sent to clients were not sent correctly</li>
+  </ul>
+</blockquote>
+<p align="left"><b>version 0.8.2</b></p>
+<blockquote>
+<p align="left"><u>fixed bugs:</u></p>
+  <ul>
+    <li>
+<p align="left">fixed &quot;account duplication&quot; if taking server offline and back
+online
+    </li>
+    <li>
+<p align="left">fixed timeouts, active clients no longer timeout without reason.
+    </li>
+  </ul>
+</blockquote>
+<p align="left"><b>version 0.8.1</b></p>
+<blockquote>
+<p align="left"><u>new features:</u></p>
+  <ul>
+    <li>
+<p align="left">added settings converter due to popular request</p>
+    </li>
+  </ul>
+<p align="left"><u>fixed bugs:</u></p>
+  <ul>
+    <li>
+<p align="left">not all account settings could be read correctly from xml
+file
+    </li>
+    <li>
+<p align="left">fixed some bugs in the server &lt;--&gt; interface protocol
+    </li>
+    <li>
+<p align="left">fixed buffer overflow in server side admin socket class
+    </li>
+    <li>
+<p align="left">some minor fixes</li>
+  </ul>
+</blockquote>
+<p align="left"><b>version 0.8.0:</b></p>
+<blockquote>
+<p align="left"><u>new features:</u></p>
+  <ul>
+    <li>
+<p align="left">Separated server from the user interface, interface now runs in
+its own process
+    </li>
+    <li>
+<p align="left">Sever now runs as service under Windows NT4, 2000 and XP
+    </li>
+  </ul>
+<p align="left"><u>fixed bugs:</u><ul>
+    <li>
+<p align="left">fixed problems with non relative paths and drive letters.
+This should also fix the compatibility to some versions of the IE and other
+browsers (fixed by TJ Drennan)
+    </li>
+    <li>
+<p align="left">fixed crash if a directory did contain files with a year
+larger than 2038
+    </li>
+    <li>
+<p align="left">server no longer sometimes stops responding after issuing
+shutdown
+    </li>
+  </ul>
+</blockquote>
+<p align="left"><b>version 0.7.4:</b></p>
+<blockquote>
+<p align="left"><u>new features:</u></p>
+  <ul>
+    <li>
+<p align="left">installer now uses modernUI style
+    </li>
+  </ul>
+<p align="left"><u>fixed bugs:</u></p>
+  <ul>
+    <li>
+<p align="left">added warning if accepting a new connection failed. Some
+bad firewalls do allow creating listen sockets and pass through connection
+attempts but block accepting them.
+    </li>
+    <li>
+<p align="left">fixed some problems with the socket class
+    </li>
+    <li>
+<p align="left">fixed GDI-resource leak
+    </li>
+  </ul>
+</blockquote>
+<p align="left"><b>version 0.7.3:</b></p>
+<blockquote>
+<p align="left"><u>fixed bugs:</u></p>
+  <ul>
+    <li>
+<p align="left">improved thread responsiveness to messages
+    </li>
+    <li>
+<p align="left">fixed display of transferrate
+    </li>
+    <li>
+<p align="left">reduced flicker of main window while resizing
+    </li>
+    <li>
+<p align="left">when deleting a user, the user data could get mixed up
+    </li>
+    <li>
+<p align="left">now no error message appears when &quot;Enable custom PASV settings&quot;
+is disabled
+    </li>
+    <li>
+<p align="left">now NULL passwords are supported if an account does not require
+a password (anonymous for example)
+    </li>
+    <li>
+<p align="left">&quot;Maximum connection count&quot; for user accounts did not work
+    </li>
+  </ul>
+</blockquote>
+<p align="left"><b>version 0.7.2:</b></p>
+<blockquote>
+<p align="left"><u>new features:</u></p>
+  <ul>
+    <li>
+<p align="left">added custom PASV IP and port settings
+    </li>
+    <li>
+<p align="left">added XCUP, XPWD, XMKD, XRMD and NOP commands
+    </li>
+  </ul>
+<p align="left"><u>fixed bugs:</u></p>
+  <ul>
+    <li>
+<p align="left">QUIT works without beeing logged on
+    </li>
+    <li>
+<p align="left">Telnet commands no longer show up in message log
+    </li>
+    <li>
+<p align="left">fixed cancel button in users dialog not working properly
+    </li>
+    <li>
+<p align="left">added missing users dialog menu entry
+    </li>
+  </ul>
+</blockquote>
+<p align="left"><b>version 0.7.1:</b></p>
+<blockquote>
+<p align="left"><u>fixed bugs:</u></p>
+  <ul>
+    <li>
+<p align="left">fixed problems with usernames containing uppercase
+characters
+    </li>
+    <li>
+<p align="left">fixed installer creating source project shortcut in wrong
+directory
+    </li>
+    <li>
+<p align="left">fixed security hole, could list directories outside your
+ftproot.
+    </li>
+  </ul>
+</blockquote>
+<p align="left"><b>version 0.7:</b></p>
+<blockquote>
+<p align="left"><u>enhanced features:</u></p>
+  <ul>
+    <li>
+<p align="left">new Winsock wrapper class, should increase performance a little bit
+    </li>
+    <li>
+<p align="left">prepared the use of format specifications in welcome message. If
+you had used a custom welcome message before using version 0.7, you would have
+to reenter the message.</p>
+    </li>
+  </ul>
+<p align="left"><u>fixed bugs:</u></p>
+  <ul>
+    <li>
+<p align="left">fixed problem with LIST and NLST command and parameters
+    </li>
+    <li>
+<p align="left">files are now stored with the names passed with the STOR command, no
+longer all lowercase
+    </li>
+    <li>
+<p align="left">correct handling of quoted arguments
+    </li>
+  </ul>
+</blockquote>
+<p align="left"><b>version 0.6:</b></p>
+<blockquote>
+<p align="left"><u>new features:</u></p>
+  <ul>
+    <li>
+<p align="left">custom welcome message
+    </li>
+    <li>
+<p align="left">server port can be changed without having to manually close and
+reopen it.
+    </li>
+    <li>
+<p align="left">increased performance under heavy load
+    </li>
+    <li>
+<p align="left">added NLST and MDTM (last modified time) commands
+    </li>
+    <li>
+<p align="left">crash log generation
+    </li>
+  </ul>
+<p align="left"><u>fixed bugs:</u></p>
+    <ul>
+      <li>
+<p align="left">fixed security hole that allowed to list directories within your
+ftp root without list permission.
+      </li>
+      <li>
+<p align="left">fixed some more deadlocks
+      </li>
+</ul>
+</blockquote>
+<p align="left"><b>version 0.5.2 beta:</b></p>
+<blockquote>
+<p align="left"><u>fixed bugs:</u></p>
+  <ul>
+    <li>
+<p align="left">fixed problem with usernames containing uppercase characters
+    </li>
+    <li>
+<p align="left">Server hanged when it was unable to get the homedir of a user
+    </li>
+  </ul>
+</blockquote>
+<p align="left"><b>version 0.5.1 beta:</b></p>
+<blockquote>
+<p align="left"><u>fixed bugs:</u></p>
+  <ul>
+    <li>
+<p align="left">could not always determinate filesize correctly</p>
+    </li>
+  </ul>
+</blockquote>
+<p align="left"><b>version 0.5 beta:</b></p>
+<blockquote>
+<p align="left"><u>new featurs:</u></p>
+  <ul>
+    <li>
+<p align="left">NLST command added
+    </li>
+    <li>
+<p align="left">a path can be passed to LIST and NLST as argument
+    </li>
+    <li>
+<p align="left">start minimized option
+    </li>
+  </ul>
+<p align="left"><u>fixed bugs:</u></p>
+  <ul>
+    <li>
+<p align="left">multiple problems with files larger than 2GB</p>
+    </li>
+  </ul>
+</blockquote>
+<p align="left"><b>version 0.4 beta:</b></p>
+<blockquote>
+<p align="left"><u>new features:</u></p>
+  <ul>
+    <li>
+<p align="left">APPE and QUIT command added</p>
+    </li>
+  </ul>
+<p align="left"><u>fixed bugs:</u></p>
+  <ul>
+    <li>
+<p align="left">sometimes permissions could not be retrieved due to a bug in
+GetRealDirectory(), permission was always denied.
+    </li>
+    <li>
+<p align="left">when using APPE or &quot;REST x&quot; (x!=0), it was possible to upload
+new files in folders with append permission but no write permission.
+    </li>
+    <li>
+<p align="left">fixed some minor bugs</p>
+    </li>
+  </ul>
+</blockquote>
+<p align="left"><b>version 0.3 beta:</b></p>
+<blockquote>
+<p align="left"><u>new features:</u></p>
+  <ul>
+    <li>
+<p align="left">ip limit per user
+    <li>
+<p align="left">users can be renamed
+    <li>
+<p align="left">transfer count and rate will be displayed
+    <li>
+<p align="left">NOOP command implemented
+  </ul>
+<p align="left"><u>enhanced features:</u></p>
+  <ul>
+    <li>
+<p align="left">speed of directory listings improved</p>
+  </ul>
+<p align="left"><u>fixed bugs:</u></p>
+  <ul>
+    <li>
+<p align="left"><u>timeouts weren't calculated properly</u></p>
+  </ul>
+</blockquote>
+<p align="left"><b>version 0.2 beta:</b></p>
+<blockquote>
+<p align="left"><u>new features:</u></p>
+  <ul>
+    <li>
+<p align="left">ABOR and SYST commands added
+    </li>
+    <li>
+<p align="left">login timeout integrated</li>
+    <li>
+<p align="left">users can be kicked</li>
+    <li>
+<p align="left">number of threads can be changed at runtime</li>
+  </ul>
+<p align="left"><u>fixed bugs:</u></p>
+  <ul>
+    <li>
+<p align="left">MKD could not create multiple directory levels at once
+    </li>
+    <li>
+    <p align="left">files were not sent completely to clients</li>
+    <li>
+    <p align="left">some problems in the users dialog</li>
+    <li>
+<p align="left">control channel now sends line endings with &lt;CRLF&gt; as specified
+in RFC 959 instead of &lt;LF&gt;</li>
+    <li>
+<p align="left">InitTransfer called too early in some rare cases</li>
+    <li>
+<p align="left">a whole bunch of bugs causing crashes or freezes</li>
+  </ul>
+</blockquote>
+<p align="left"><b>version 0.1 beta:</b></p>
+<blockquote>
+<p align="left"><u>new featuers:</u></p>
+  <ul>
+    <li>
+      <p align="left">options dialog</li>
+    <li>
+      <p align="left">timeout and no transfer timeout</li>
+    <li>
+      <p align="left">port selection</li>
+    <li>
+      <p align="left">number of threads can be selected</li>
+    <li>
+      <p align="left">max number of users</li>
+    <li>
+      <p align="left">user-specific bypass max user and local max user setting</li>
+    <li>
+      <p align="left">all connected users are displayed on the right pane of the
+      main window</li>
+    <li>
+      <p align="left">added systray icon</li>
+    <li>
+      <p align="left">bounce attack / fxp protection</li>
+    <li>
+      <p align="left">ABOR command implemented</li>
+    <li>
+      <p align="left">now only one file transfer and one directory listing can
+      be active at the same time, so you can still browse the server during file
+      transfers.</li>
+  </ul>
+  <p align="left"><u>fixed bugs:</u></p>
+  <ul>
+    <li>
+      <p align="left">sometimes the threads were not shut down correctly with
+      FileZilla</li>
+    <li>
+      <p align="left">fixed some issues in the user account manager</li>
+    <li>
+      <p align="left">Server could crash if a new transfer was initiated while
+      another transfer is still active.&nbsp;</li>
+  </ul>
+</blockquote>
+<p align="left"><b>version 0.0.2 alpha:</b></p>
+<blockquote>
+<p align="left"><u>new features:</u></p>
+  <ul>
+    <li>
+      <p align="left">non relative paths</li>
+    <li>
+      <p align="left">file transfers</li>
+    <li>
+      <p align="left">PASV mode support</li>
+    <li>
+      <p align="left">delete files and directory</li>
+    <li>
+      <p align="left">create directories</li>
+    <li>
+      <p align="left">renaming of files/dirs</li>
+  </ul>
+<p align="left"><u>fixed bugs:</u>
+<ul>
+  <li>
+    <p align="left">the message log now displays the seconds, too</li>
+</ul>
+</blockquote>
+<p align="left"><b>version 0.0.1 alpha:</b></p>
+<blockquote>
+  <p align="left">first public release</p>
+  <p align="left"><u>new features:</u></p>
+  <ul>
+    <li>
+      <p align="left">user account manager</li>
+    <li>
+      <p align="left">browsing of directories</li>
+    <li>
+      <p align="left">Windows shorcut files (.lnk files) resolving</li>
+    <li>
+      <p align="left">multithreaded engine with very basic load balancing</li>
+  </ul>
+</blockquote>

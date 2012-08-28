@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Mail::SpamAssassin::Plugin::DCC - perform DCC check of messages</title>
+<link rev="made" href="mailto:" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#user_options">USER OPTIONS</a></li>
+	<li><a href="#administrator_options">ADMINISTRATOR OPTIONS</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Mail::SpamAssassin::Plugin::DCC - perform DCC check of messages</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+  loadplugin     Mail::SpamAssassin::Plugin::DCC</pre>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>The DCC or Distributed Checksum Clearinghouse is a system of servers
+collecting and counting checksums of millions of mail messages. The
+counts can be used by SpamAssassin to detect and reject or filter spam.</p>
+<p>Because simplistic checksums of spam can be easily defeated, the main
+DCC checksums are fuzzy and ignore aspects of messages.  The fuzzy
+checksums are changed as spam evolves.</p>
+<p>Note that DCC is disabled by default in <code>init.pre</code> because it is not
+open source.  See the DCC license for more details.</p>
+<p>See <a href="http://www.rhyolite.com/anti-spam/dcc/">http://www.rhyolite.com/anti-spam/dcc/</a> for more information about
+DCC.</p>
+<p>
+</p>
+<hr />
+<h1><a name="user_options">USER OPTIONS</a></h1>
+<dl>
+<dt><strong><a name="item_use_dcc">use_dcc (0|1)     (default: 1)</a></strong><br />
+</dt>
+<dd>
+Whether to use DCC, if it is available.
+</dd>
+<p></p>
+<dt><strong><a name="item_dcc_body_max">dcc_body_max NUMBER</a></strong><br />
+</dt>
+<dt><strong><a name="item_dcc_fuz1_max">dcc_fuz1_max NUMBER</a></strong><br />
+</dt>
+<dt><strong><a name="item_dcc_fuz2_max">dcc_fuz2_max NUMBER</a></strong><br />
+</dt>
+<dd>
+This option sets how often a message's body/fuz1/fuz2 checksum must have been
+reported to the DCC server before SpamAssassin will consider the DCC check as
+matched.
+</dd>
+<dd>
+<p>As nearly all DCC clients are auto-reporting these checksums, you should set
+this to a relatively high value, e.g. <code>999999</code> (this is DCC's MANY count).</p>
+</dd>
+<dd>
+<p>The default is <code>999999</code> for all these options.</p>
+</dd>
+<p></p></dl>
+<p>
+</p>
+<hr />
+<h1><a name="administrator_options">ADMINISTRATOR OPTIONS</a></h1>
+<dl>
+<dt><strong><a name="item_n">dcc_timeout n     (default: 8)</a></strong><br />
+</dt>
+<dd>
+How many seconds you wait for DCC to complete, before scanning continues
+without the DCC results.
+</dd>
+<p></p>
+<dt><strong><a name="item_dcc_home">dcc_home STRING</a></strong><br />
+</dt>
+<dd>
+This option tells SpamAssassin specifically where to find the dcc homedir.
+If <a href="#item_dcc_path"><code>dcc_path</code></a> is not specified, it will default to looking in
+<code>dcc_home/bin</code> for dcc client instead of relying on SpamAssassin to find it
+in the current PATH.  If it isn't found there, it will look in the current
+PATH. If a <code>dccifd</code> socket is found in <a href="#item_dcc_home"><code>dcc_home</code></a>, it will use that
+interface that instead of <code>dccproc</code>.
+</dd>
+<p></p>
+<dt><strong><a name="item_dcc_dccifd_path">dcc_dccifd_path STRING</a></strong><br />
+</dt>
+<dd>
+This option tells SpamAssassin specifically where to find the dccifd socket.
+If <a href="#item_dcc_dccifd_path"><code>dcc_dccifd_path</code></a> is not specified, it will default to looking in
+<a href="#item_dcc_home"><code>dcc_home</code></a> If a <code>dccifd</code> socket is found, it will use it instead of
+<code>dccproc</code>.
+</dd>
+<p></p>
+<dt><strong><a name="item_dcc_path">dcc_path STRING</a></strong><br />
+</dt>
+<dd>
+This option tells SpamAssassin specifically where to find the <code>dccproc</code>
+client instead of relying on SpamAssassin to find it in the current PATH.
+Note that if <em>taint mode</em> is enabled in the Perl interpreter, you should
+use this, as the current PATH will have been cleared.
+</dd>
+<p></p>
+<dt><strong><a name="item_dcc_options_options">dcc_options options</a></strong><br />
+</dt>
+<dd>
+Specify additional options to the <code>dccproc(8)</code> command. Please note that only
+characters in the range [0-9A-Za-z ,._/-] are allowed for security reasons.
+</dd>
+<dd>
+<p>The default is <code>undef</code>.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_dccifd_options_options">dccifd_options options</a></strong><br />
+</dt>
+<dd>
+Specify additional options to send to the <code>dccifd(8)</code> daemon. Please note that only
+characters in the range [0-9A-Za-z ,._/-] are allowed for security reasons.
+</dd>
+<dd>
+<p>The default is <code>undef</code>.</p>
+</dd>
+<p></p></dl>
+
+</body>
+
+</html>

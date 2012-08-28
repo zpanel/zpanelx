@@ -1,0 +1,273 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Mail::SpamAssassin::Plugin::TextCat - TextCat language guesser</title>
+<link rev="made" href="mailto:" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#user_options">USER OPTIONS</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Mail::SpamAssassin::Plugin::TextCat - TextCat language guesser</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+  loadplugin     Mail::SpamAssassin::Plugin::TextCat</pre>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>This plugin will try to guess the language used in the message text.</p>
+<p>You can then specify which languages are considered okay for incoming
+mail and if the guessed language is not okay, <code>UNWANTED_LANGUAGE_BODY</code>
+is triggered</p>
+<p>It will always add the results to a ``X-Language'' name-value pair in
+the message metadata data structure. This may be useful as Bayes
+tokens. The results can also be added to marked-up messages using
+``add_header'', with the _LANGUAGES_ tag. See
+<a href="/Mail/SpamAssassin/Conf.html">the Mail::SpamAssassin::Conf manpage</a> for details.</p>
+<p>Note: the language cannot always be recognized with sufficient
+confidence.  In that case, <code>UNWANTED_LANGUAGE_BODY</code> will not trigger.</p>
+<p>
+</p>
+<hr />
+<h1><a name="user_options">USER OPTIONS</a></h1>
+<dl>
+<dt><strong><a name="item_ok_languages_xx__5b_yy_zz__2e_2e_2e__5d__28default">ok_languages xx [ yy zz ... ]		(default: all)</a></strong><br />
+</dt>
+<dd>
+This option is used to specify which languages are considered okay for
+incoming mail.  SpamAssassin will try to detect the language used in the
+message text.
+</dd>
+<dd>
+<p>Note that the language cannot always be recognized with sufficient
+confidence.  In that case, no points will be assigned.</p>
+</dd>
+<dd>
+<p>The rule <code>UNWANTED_LANGUAGE_BODY</code> is triggered based on how this is set.</p>
+</dd>
+<dd>
+<p>In your configuration, you must use the two or three letter language
+specifier in lowercase, not the English name for the language.  You may
+also specify <code>all</code> if a desired language is not listed, or if you want to
+allow any language.  The default setting is <code>all</code>.</p>
+</dd>
+<dd>
+<p>Examples:</p>
+</dd>
+<dd>
+<pre>
+  ok_languages all         (allow all languages)
+  ok_languages en          (only allow English)
+  ok_languages en ja zh    (allow English, Japanese, and Chinese)</pre>
+</dd>
+<dd>
+<p>Note: if there are multiple ok_languages lines, only the last one is used.</p>
+</dd>
+<dd>
+<p>Select the languages to allow from the list below:</p>
+</dd>
+<dl>
+<dt><strong><a name="item_af__2d_afrikaans">af	- Afrikaans</a></strong><br />
+</dt>
+<dt><strong><a name="item_am__2d_amharic">am	- Amharic</a></strong><br />
+</dt>
+<dt><strong><a name="item_ar__2d_arabic">ar	- Arabic</a></strong><br />
+</dt>
+<dt><strong><a name="item_be__2d_byelorussian">be	- Byelorussian</a></strong><br />
+</dt>
+<dt><strong><a name="item_bg__2d_bulgarian">bg	- Bulgarian</a></strong><br />
+</dt>
+<dt><strong><a name="item_bs__2d_bosnian">bs	- Bosnian</a></strong><br />
+</dt>
+<dt><strong><a name="item_ca__2d_catalan">ca	- Catalan</a></strong><br />
+</dt>
+<dt><strong><a name="item_cs__2d_czech">cs	- Czech</a></strong><br />
+</dt>
+<dt><strong><a name="item_cy__2d_welsh">cy	- Welsh</a></strong><br />
+</dt>
+<dt><strong><a name="item_da__2d_danish">da	- Danish</a></strong><br />
+</dt>
+<dt><strong><a name="item_de__2d_german">de	- German</a></strong><br />
+</dt>
+<dt><strong><a name="item_el__2d_greek">el	- Greek</a></strong><br />
+</dt>
+<dt><strong><a name="item_en__2d_english">en	- English</a></strong><br />
+</dt>
+<dt><strong><a name="item_eo__2d_esperanto">eo	- Esperanto</a></strong><br />
+</dt>
+<dt><strong><a name="item_es__2d_spanish">es	- Spanish</a></strong><br />
+</dt>
+<dt><strong><a name="item_et__2d_estonian">et	- Estonian</a></strong><br />
+</dt>
+<dt><strong><a name="item_eu__2d_basque">eu	- Basque</a></strong><br />
+</dt>
+<dt><strong><a name="item_fa__2d_persian">fa	- Persian</a></strong><br />
+</dt>
+<dt><strong><a name="item_fi__2d_finnish">fi	- Finnish</a></strong><br />
+</dt>
+<dt><strong><a name="item_fr__2d_french">fr	- French</a></strong><br />
+</dt>
+<dt><strong><a name="item_fy__2d_frisian">fy	- Frisian</a></strong><br />
+</dt>
+<dt><strong><a name="item_ga__2d_irish_gaelic">ga	- Irish Gaelic</a></strong><br />
+</dt>
+<dt><strong><a name="item_gd__2d_scottish_gaelic">gd	- Scottish Gaelic</a></strong><br />
+</dt>
+<dt><strong><a name="item_he__2d_hebrew">he	- Hebrew</a></strong><br />
+</dt>
+<dt><strong><a name="item_hi__2d_hindi">hi	- Hindi</a></strong><br />
+</dt>
+<dt><strong><a name="item_hr__2d_croatian">hr	- Croatian</a></strong><br />
+</dt>
+<dt><strong><a name="item_hu__2d_hungarian">hu	- Hungarian</a></strong><br />
+</dt>
+<dt><strong><a name="item_hy__2d_armenian">hy	- Armenian</a></strong><br />
+</dt>
+<dt><strong><a name="item_id__2d_indonesian">id	- Indonesian</a></strong><br />
+</dt>
+<dt><strong><a name="item_is__2d_icelandic">is	- Icelandic</a></strong><br />
+</dt>
+<dt><strong><a name="item_it__2d_italian">it	- Italian</a></strong><br />
+</dt>
+<dt><strong><a name="item_ja__2d_japanese">ja	- Japanese</a></strong><br />
+</dt>
+<dt><strong><a name="item_ka__2d_georgian">ka	- Georgian</a></strong><br />
+</dt>
+<dt><strong><a name="item_ko__2d_korean">ko	- Korean</a></strong><br />
+</dt>
+<dt><strong><a name="item_la__2d_latin">la	- Latin</a></strong><br />
+</dt>
+<dt><strong><a name="item_lt__2d_lithuanian">lt	- Lithuanian</a></strong><br />
+</dt>
+<dt><strong><a name="item_lv__2d_latvian">lv	- Latvian</a></strong><br />
+</dt>
+<dt><strong><a name="item_mr__2d_marathi">mr	- Marathi</a></strong><br />
+</dt>
+<dt><strong><a name="item_ms__2d_malay">ms	- Malay</a></strong><br />
+</dt>
+<dt><strong><a name="item_ne__2d_nepali">ne	- Nepali</a></strong><br />
+</dt>
+<dt><strong><a name="item_nl__2d_dutch">nl	- Dutch</a></strong><br />
+</dt>
+<dt><strong><a name="item_no__2d_norwegian">no	- Norwegian</a></strong><br />
+</dt>
+<dt><strong><a name="item_pl__2d_polish">pl	- Polish</a></strong><br />
+</dt>
+<dt><strong><a name="item_pt__2d_portuguese">pt	- Portuguese</a></strong><br />
+</dt>
+<dt><strong><a name="item_qu__2d_quechua">qu	- Quechua</a></strong><br />
+</dt>
+<dt><strong><a name="item_rm__2d_rhaeto_2dromance">rm	- Rhaeto-Romance</a></strong><br />
+</dt>
+<dt><strong><a name="item_ro__2d_romanian">ro	- Romanian</a></strong><br />
+</dt>
+<dt><strong><a name="item_ru__2d_russian">ru	- Russian</a></strong><br />
+</dt>
+<dt><strong><a name="item_sa__2d_sanskrit">sa	- Sanskrit</a></strong><br />
+</dt>
+<dt><strong><a name="item_sco__2d_scots">sco	- Scots</a></strong><br />
+</dt>
+<dt><strong><a name="item_sk__2d_slovak">sk	- Slovak</a></strong><br />
+</dt>
+<dt><strong><a name="item_sl__2d_slovenian">sl	- Slovenian</a></strong><br />
+</dt>
+<dt><strong><a name="item_sq__2d_albanian">sq	- Albanian</a></strong><br />
+</dt>
+<dt><strong><a name="item_sr__2d_serbian">sr	- Serbian</a></strong><br />
+</dt>
+<dt><strong><a name="item_sv__2d_swedish">sv	- Swedish</a></strong><br />
+</dt>
+<dt><strong><a name="item_sw__2d_swahili">sw	- Swahili</a></strong><br />
+</dt>
+<dt><strong><a name="item_ta__2d_tamil">ta	- Tamil</a></strong><br />
+</dt>
+<dt><strong><a name="item_th__2d_thai">th	- Thai</a></strong><br />
+</dt>
+<dt><strong><a name="item_tl__2d_tagalog">tl	- Tagalog</a></strong><br />
+</dt>
+<dt><strong><a name="item_tr__2d_turkish">tr	- Turkish</a></strong><br />
+</dt>
+<dt><strong><a name="item_uk__2d_ukrainian">uk	- Ukrainian</a></strong><br />
+</dt>
+<dt><strong><a name="item_vi__2d_vietnamese">vi	- Vietnamese</a></strong><br />
+</dt>
+<dt><strong><a name="item_yi__2d_yiddish">yi	- Yiddish</a></strong><br />
+</dt>
+<dt><strong><a name="item_chinese">zh	- Chinese (both Traditional and Simplified)</a></strong><br />
+</dt>
+<dt><strong>zh.big5	- Chinese (Traditional only)</strong><br />
+</dt>
+<dt><strong>zh.gb2312	- Chinese (Simplified only)</strong><br />
+</dt>
+</dl>
+<p></p>
+<dt><strong><a name="item_inactive_languages_xx__5b_yy_zz__2e_2e_2e__5d__28d">inactive_languages xx [ yy zz ... ]		(default: see below)</a></strong><br />
+</dt>
+<dd>
+This option is used to specify which languages will not be considered
+when trying to guess the language.  For performance reasons, supported
+languages that have fewer than about 5 million speakers are disabled by
+default.  Note that listing a language in <code>ok_languages</code> automatically
+enables it for that user.
+</dd>
+<dd>
+<p>The default setting is:</p>
+</dd>
+<dl>
+<dt><strong><a name="item_bs_cy_eo_et_eu_fy_ga_gd_is_la_lt_lv_rm_sa_sco_sl_y">bs cy eo et eu fy ga gd is la lt lv rm sa sco sl yi</a></strong><br />
+</dt>
+</dl>
+<p>That list is Bosnian, Welsh, Esperanto, Estonian, Basque, Frisian, Irish
+Gaelic, Scottish Gaelic, Icelandic, Latin, Lithuanian, Latvian,
+Rhaeto-Romance, Sanskrit, Scots, Slovenian, and Yiddish.</p>
+<dt><strong><a name="item_n">textcat_max_languages N (default: 5)</a></strong><br />
+</dt>
+<dd>
+The maximum number of languages before the classification is considered unknown.
+</dd>
+<p></p>
+<dt><strong>textcat_optimal_ngrams N (default: 0)</strong><br />
+</dt>
+<dd>
+If the number of ngrams is lower than this number then they will be removed.  This
+can be used to speed up the program for longer inputs.  For shorter inputs, this
+should be set to 0.
+</dd>
+<p></p>
+<dt><strong>textcat_max_ngrams N (default: 400)</strong><br />
+</dt>
+<dd>
+The maximum number of ngrams that should be compared with each of the languages
+models (note that each of those models is used completely).
+</dd>
+<p></p>
+<dt><strong>textcat_acceptable_score N (default: 1.05)</strong><br />
+</dt>
+<dd>
+Include any language that scores at least <code>textcat_acceptable_score</code> in the
+returned list of languages
+</dd>
+<p></p></dl>
+
+</body>
+
+</html>

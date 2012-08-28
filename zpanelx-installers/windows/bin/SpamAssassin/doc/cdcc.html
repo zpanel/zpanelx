@@ -1,0 +1,405 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<HTML>
+<HEAD>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+    <TITLE>cdcc.8</TITLE>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <STYLE type="text/css">
+        BODY {background-color:white; color:black}
+    </STYLE>
+</HEAD>
+<BODY>
+<PRE>
+<!-- Manpage converted by man2html 3.0.1 -->
+<B><A HREF="cdcc.html">cdcc(8)</A></B>               Distributed Checksum Clearinghouse               <B><A HREF="cdcc.html">cdcc(8)</A></B>
+
+
+</PRE>
+<H2><A NAME="NAME">NAME</A></H2><PRE>
+     <B>cdcc</B> -- Control Distributed Checksum Clearinghouse
+
+
+</PRE>
+<H2><A NAME="SYNOPSIS">SYNOPSIS</A></H2><PRE>
+     <B>cdcc</B> [<B>-Vdq</B>] [<B>-h</B> <I>homedir</I>] [<B>-c</B> <I>ids</I>] [<I>op1</I> <I>op2</I> <I>...</I> [<I>-</I>]]
+
+
+</PRE>
+<H2><A NAME="DESCRIPTION">DESCRIPTION</A></H2><PRE>
+     <B>Cdcc</B> is used to clear, control, and query the control file used by Dis-
+     tributed Checksum Clearinghouse clients such as <B><A HREF="dccm.html">dccm(8)</A></B>.  The host names,
+     UDP port numbers, IDs, and passwords local clients use to talk to servers
+     as well as IP addresses, round trip times, and other information are con-
+     tained in the <I>map</I> file.  While <B>cdcc</B> is set-UID, it uses the real UID only
+     when accessing the <I>map</I> file.  It refuses to display sensitive information
+     such as passwords unless the real UID is the same as the effective UID.
+     Note that <B>cdcc</B> needs to be set to a UID that can read and write the <I>map</I>
+     file, but that UID need not be 0.
+
+     <B>Cdcc</B> is also used to send commands to DCC servers to tell them to stop,
+     reload their lists of DCC IDs, turn on tracing, and so forth.
+
+     Many commands sent to DCC servers require a numeric DCC ID and a password
+     recognized by the server.  A DCC password is a 1-32 character string that
+     does not contain blank, tab, newline or carriage return characters.  The
+     ID is specified with the <B>id</B> operation.  If <B>cdcc</B> is run with a real UID
+     that can read the <I>ids</I> file and a password is not specified (see the
+     <B>password</B> operation), then the current password for the specified ID in
+     the <I>ids</I> file will be used.  If no <I>ids</I> file is available and a password
+     and DCC ID are not specified, <B>cdcc</B> uses the anonymous DCC client-ID.  DCC
+     servers do not expect a password from clients using the anonymous client-
+     ID, but they also won't honor control requests.
+
+     Operations that modify the <I>map</I> file can only be performed when the real
+     UID is sufficient to modify the file directly.  Trying to perform an
+     operation that requires a password without specifying a server-ID or
+     without using a UID that can access the <I>ids</I> file produces an error mes-
+     sage complaining about a "privileged operation."
+
+     Commands and operations are read from the command line or from stdin.  A
+     series of <I>op1</I> <I>op2</I> <I>...</I> operations followed a <I>-</I> (a dash) causes operations
+     to be read from stdin after the command line operations are processed.
+     Semi-colons or newlines separate commands in UNIX command-line "words,"
+     as well as when commands are read from stdin.  Since each command line
+     operation must be a shell "word," quotes are often required as in
+
+           % cdcc "load map.txt"
+     or
+
+           % cdcc "host localhost;info" stats
+
+   <A NAME="OPTIONS"><B>OPTIONS</B></A>
+     The following options are available:
+
+     <A NAME="OPTION-V"><B>-V</B></A>   displays the version of the DCC controller.
+
+     <A NAME="OPTION-d"><B>-d</B></A>   enables debugging output from the DCC client library.  Additional <B>-d</B>
+          options increase the number of messages.  <B>-q</B> quiets initial com-
+          plaints about the map file, and some messages about successful com-
+          mands.
+
+     <A NAME="OPTION-h"><B>-h</B></A> <I>homedir</I>
+          overrides the default DCC home directory, which is often /var/dcc.
+          See the <B>homedir</B> operation.
+
+     <A NAME="OPTION-c"><B>-c</B></A> <I>ids</I>
+          specifies file containing DCC IDs and passwords known by the local
+          DCC server.  An <I>ids</I> file that can be read by others cannot be used.
+          The format of the <I>ids</I> file is described in <B><A HREF="dccd.html">dccd(8)</A></B>.
+
+     <I>op1</I> <I>op2</I> <I>...</I>
+          are operations or commands such as "id 100; stop".  Commands or
+          operations specified on the command line are performed before the
+          first interactive request.  The last command can be <I>-</I> to specify
+          that additional commands should be read from stdin.
+
+   <A NAME="OPERATIONS"><B>OPERATIONS</B></A>
+     Local operations include the following:
+
+     <A NAME="OPERATION-help"><B>help</B></A> [<I>command</I>]
+           lists information about one or all available commands and opera-
+           tions.
+
+     <A NAME="OPERATION-exit"><B>exit</B></A>  stops <B>cdcc</B>
+
+     <A NAME="OPERATION-grey"><B>grey</B></A> [<I>on</I> | <I>off</I>]
+           switches between DCC and greylist servers.
+
+     <A NAME="OPERATION-homedir"><B>homedir</B></A> [<I>path</I>]
+           displays or specifies the DCC home directory.
+
+     <A NAME="OPERATION-file"><B>file</B></A> [<I>map</I>]
+           displays or specifies the name or path of the map file.  The string
+           "-" specifies the default file <I>map</I> in the DCC home directory.
+
+     <A NAME="OPERATION-new-map"><B>new map</B></A> [<I>map</I>]
+           creates a new, empty file for DCC server host names, port numbers,
+           passwords, and so forth.  There must not already be a file of the
+           same name.  The default is <I>map</I> in the DCC home directory.
+
+     <A NAME="OPERATION-delete"><B>delete</B></A> <I>host</I>[,<I>port</I>]
+           deletes the entry in the <I>map</I> file for <I>host</I> and UDP <I>port.</I> If
+           greylist mode has been set with the <B>grey on</B> command, the entry for
+           the grelist server at <I>host</I> is deleted.
+
+     <A NAME="OPERATION-add"><B>add</B></A> <I>host</I>[,<I>port</I>] [<I>RTT+adj</I>|<I>RTT-adj</I>] [<I>Greylist</I>] [<I>client-ID</I> [password]]
+           adds an entry to the <I>map</I> file.  The <I>port</I> can be "-" to specify the
+           default DCC server port number.
+
+           An adjustment to the round trip time is a multiple of 10 millisec-
+           onds between -4000 and +4000 following the string <I>RTT</I>.  The adjust-
+           ment is added to the average measured round trip time when the DCC
+           client software picks the "nearest" DCC server, or the server with
+           the smallest RTT.  If an IP address is mentioned more than once in
+           the list of servers, for example because it is among the addresses
+           for more than one server name, conflicts among RTT adjustments are
+           resolved by picking the adjustment with the largest absolute value.
+
+           <I>Greylist</I> marks an entry for a greylist servers.  <I>Greylist</I> is
+           assumed if greylist mode has been set with the <B>grey on</B> command, See
+           <B><A HREF="dccd.html">dccd(8)</A></B>.
+
+           If both the client-ID and the password are absent, the anonymous
+           client-ID, 1, is used.  The string <I>anon</I> is equivalent to the anony-
+           mous client-ID.  A null password string is assumed if the password
+           is missing and the client-ID is 1 or also missing.
+
+     <A NAME="OPERATION-load"><B>load</B></A> <I>info-file</I>
+           loads the current parameter file with the host names, port numbers,
+           IDs, and passwords in <I>info-file</I>.  Standard input is understood if
+           <I>info-file</I> is "-".
+
+           A suitable file can be created with the <B>info</B> operation.  It con-
+           sists of ignored blank or comment lines starting with '#' and other
+           lines in the same format as the arguments to the <B>add</B> operation.
+           Note that output of the <B>info</B> command will lack passwords unless it
+           is run by a privileged user.
+
+     <A NAME="OPERATION-host"><B>host</B></A> [<I>hostname</I>]
+           specifies the host name of the DCC server to which commands should
+           be sent.  If <I>hostname</I> is "-", the current default DCC server is
+           chosen.
+
+     <A NAME="OPERATION-port"><B>port</B></A> [<I>port</I>]
+           specifies the UDP port number of the DCC server to which commands
+           should be sent.  The default is 6277 or 6276 depending on the set-
+           ting of the greylist mode controlled with the <B>grey</B> command.
+
+     <A NAME="OPERATION-password"><B>password</B></A> <I>secret</I>
+           specifies the password with which to sign commands sent to the DCC
+           server specified with the <B>server</B> and <B>port</B> operations.
+
+     <A NAME="OPERATION-id"><B>id</B></A> [<I>ID</I>]
+           specifies or displays the numeric DCC ID for commands sent to the
+           DCC server specified with the <B>server</B> and <B>port</B> operations.  If no
+           password is specified with the <B>password</B> command, the password is
+           sought in the local <I>ids</I>.
+
+     <A NAME="OPERATION-info"><B>info</B></A> [<B>-N</B>]
+           displays information about the connections to DCC servers.  It
+           starts with the current date and name of the current <I>map</I> file or
+           says that <B>cdcc</B> is using the implicit file created with the <B>server</B>
+           and <B>port</B> operations.  It then says when host names will next be
+           resolved into IP addresses, the smallest round trip time to the IP
+           addresses of known DCC servers.  The host name, UDP port number (or
+           dash if it is the default), DCC client-ID, and password (if <B>cdcc</B> is
+           used by a privileged user) are shown in one line per configured DCC
+           server.
+
+           The currently preferred IP address is indicated by an asterisk.
+           The "brand" of the server, its DCC ID, and its IP address are dis-
+           played in one line per IP address.  The performance of the server
+           at each IP address in the most recent 32 operations is displayed in
+           a second line.  The second line ends with the measured delay
+           imposed by the server on requests with this client's ID.
+
+           <B>-N</B> displays the reverse DNS name of each server.
+
+     <A NAME="OPERATION-RTT"><B>RTT</B></A> [<B>-N</B>]
+           measures the round trip time to the DCC servers.  It does this by
+           discarding accumulated information and forcing a probe of all
+           listed server IP addresses.
+
+           <I>Beware</I> that when run with sufficient privilege, the <B>RTT</B> operation
+           is like the <B>info</B> and <B>load</B> operations and displays cleartext pass-
+           words.
+
+           <B>-N</B> displays the reverse DNS name of each server.
+
+     <A NAME="OPERATION-debug"><B>debug</B></A> [<I>on</I> | <I>off</I> | <I>TTL=x</I>]
+           increases or decreases debugging information from the DCC client
+           library or sets the IP TTL on queries to the server.  See <B>-d</B>.
+
+           Some systems do not include the functions required to change the IP
+           TTL.  Others apparently including Microsoft Windows XP include
+           required functions but have no apparent effect.
+
+     <A NAME="OPERATION-IPv6"><B>IPv6</B></A> [<I>on</I> | <I>off</I>]
+           sets a switch to cause clients using the map file to try to use
+           IPv6.
+
+     <A NAME="OPERATION-SOCKS"><B>SOCKS</B></A> [<I>on</I> <I>off</I>]
+           sets a switch to cause DCC clients using the map to use the SOCKS5
+           protocol, if they have been built with a SOCKS library.  The socks
+           library linked with the DCC client must be configured appropri-
+           ately, often including knowing which DCC servers must be connected
+           via the SOCKS proxy and which can be reached directly.  DCC clients
+           use SOCKS functions such as Rsendto() with all or no servers
+           depending on the setting of this switch.
+
+     <A NAME="OPERATION-src"><B>src</B></A> [<I>-</I> | <I>IPaddress</I>]
+           displays or configures the source address of DCC client requests.
+           <I>-</I> removes the explicit configuration of the source, while <I>IPaddress</I>
+           sets it.  This makes sense only on multi-homed hosts.  It can be
+           useful for passing firewalls.
+
+   <A NAME="DCC-SERVER-COMMANDS"><B>DCC SERVER COMMANDS</B></A>
+     Commands that can be sent to a DCC server include the following.  Most of
+     the commands must be used with the server's <I>ID</I> specified with the <B>id</B> com-
+     mand.  The specified ID is included in the commands sent to the server
+     The command itself is digitally signed with the first password associated
+     with the ID in the <I>ids</I> file.  The server requires that the signature
+     match one of the passwords associated with the ID in its <I>ids</I> file.
+
+     <A NAME="OPERATION-delck-type-hex1-hex2-hex3-hex4"><B>delck type hex1 hex2 hex3 hex4</B></A>
+          asks the server to delete the <I>type</I> checksum with value <I>hex1</I> <I>hex2</I>
+          <I>hex3</I> <I>hex4</I>.  The type and checksum values can be found in <B><A HREF="dccproc.html">dccproc(8)</A></B>
+          and <B><A HREF="dccm.html">dccm(8)</A></B> log files or computed with <I>dccproc</I> <B>-QC</B>.
+
+          There are very few situations where it makes sense to bother to
+          delete checksums.  For example, mail that was accidentally reported
+          with a target count of "MANY" is either private and so will not be
+          seen by other people and so will not be affected, or it is bulk and
+          its source so must have already been white-listed by recipients.
+
+     <A NAME="OPERATION-stats"><B>stats</B></A> [<I>all</I> | <I>clear</I>]
+          displays current status and statistics from the current DCC server
+          or for <I>all</I> known DCC servers.
+
+     <A NAME="OPERATION-clients"><B>clients</B></A> [<B>-nsiaV</B>] [<I>max</I> [<I>thold</I>]] [<I>addr</I>[<I>/prefix</I>]]
+          displays some of the clients recently seen by the server.
+          <B>clients -n</B> displays only the IP addresses and not the names of
+          clients.  <B>clients -s</B> sorts the clients by the number of requests
+          they have made.  <B>clients -i</B> counts clients with the same client-ID
+          as single entities.  <B>clients -a</B> produces 24 hour average numbers of
+          requests.  <B>clients</B> <I>max</I> displays only the <I>max</I> most recent clients.
+          <B>clients</B> <I>max</I> <I>thold</I> displays the most recent <I>max</I> clients that have
+          made at least <I>thold</I> requests.
+
+          <B>clients -V</B> includes information about DCC protocol versions used by
+          clients.
+
+          If present, <I>addr</I>[<I>/prefix</I>] restricts the results to the DCC client
+          with that IP address or clients with addresses in that CIDR block.
+
+          The mechanism that implements this command involves asking the DCC
+          server for the first approximately 100 clients, then the second
+          about 100, and so on, If entries change position in the complete
+          list maintained by the server between requests, the displayed list
+          will have duplicate or missing entries.
+
+          Only clients heard from since the server was started or <B>stats clear</B>
+          was last used are displayed.
+
+     <A NAME="OPERATION-stop"><B>stop</B></A>
+          tells the DCC server to exit.
+
+     <A NAME="OPERATION-system-stop"><B>system stop</B></A>
+          tells the DCC server to exit so that the operating system can be
+          shut down.  This tells the DCC server on some systems to delete the
+          dcc_db.hash file to speed system shut down.  The file will be
+          rebuilt automatically by <B>dbclean</B> when the DCC server is restarted.
+
+     <A NAME="OPERATION-clean-stop"><B>clean stop</B></A>
+          tells the DCC server to exit after applying fsync() to the database.
+
+     <A NAME="OPERATION-reload-IDs"><B>reload IDs</B></A>
+          tells the local DCC server to reload its DCC <I>ids</I> file immediately.
+          This command is not strictly needed.  Every several minutes, the DCC
+          server notices if the file has been changed and automatically reads
+          it.
+
+     <A NAME="OPERATION-flood-check"><B>flood check</B></A>
+          tells the DCC server to check for changes in the <I>flod</I> file and try
+          to restart any of the streams to peers that are broken.
+
+     <A NAME="OPERATION-flood-shutdown"><B>flood shutdown</B></A>
+          tells the DCC server to cleanly stop flooding checksums to and from
+          peers.  The server will wait for sending and receiving peers to
+          agree to stop.  Each <B>flood shutdown</B> or <B>flood halt</B> request increases
+          a count of reasons why the server should not flood checksums.
+
+     <A NAME="OPERATION-flood-halt"><B>flood halt</B></A>
+          tells the DCC server to abruptly stop flooding checksums to and from
+          peers.
+
+     <A NAME="OPERATION-flood-rewind"><B>flood rewind</B></A> <I>server-ID</I>
+          tells the DCC server to ask its peer with <I>server-ID</I> to rewind and
+          resend its stream of checksums.
+
+     <A NAME="OPERATION-flood-ffwd-in"><B>flood ffwd in</B></A> <I>server-ID</I>
+          tells the DCC server to ask its peer to "fast forward" or skip to
+          the end of the incoming flood.
+
+     <A NAME="OPERATION-flood-ffwd-out"><B>flood ffwd out</B></A> <I>server-ID</I>
+          tells the DCC server to "fast forward" or skip to the current end of
+          the flood to its peer.
+
+     <A NAME="OPERATION-flood-resume"><B>flood resume</B></A>
+          tells the DCC server to reduce the number of reasons to not flood
+          checksums increased by <B>flood shutdown</B> and <B>flood halt.</B> When the num-
+          ber of reasons reaches zero, the server tries to resume flooding.
+
+     <A NAME="OPERATION-flood-list"><B>flood list</B></A>
+          displays the list of current incoming and outgoing floods.  Each
+          line contains the server-ID of the peer, the IP address and port
+          used for the outgoing flood, the address for the incoming flood if
+          different, and the host name.  Only the server-IDs of flooding peers
+          are disclosed with the server's ID.
+
+     <A NAME="OPERATION-flood-stats"><B>flood stats</B></A> [<B>clear</B>] { <I>server-ID</I> | <I>all</I> }
+          displays counts of checksum reports sent and received by the current
+          flooding connections to and from <I>server-ID</I> or <I>all</I> flooding connec-
+          tions and then optionally clears the counts.
+
+     <A NAME="OPERATION-DB-unlock"><B>DB unlock</B></A>
+          is used by <B>dbclean</B> to tell the server that the database expiration
+          has begun.
+
+     <A NAME="OPERATION-DB-new"><B>DB new</B></A>
+          is used by <B>dbclean</B> to tell the server that the database cleaning is
+          complete.
+
+     <A NAME="OPERATION-trace"><B>trace</B></A> <I>mode</I> <I>{on|off}</I>
+          turns the server's tracing <I>mode</I> on or off.  <I>Mode</I> must be one of:
+            <I>ADMN</I>    administrative requests from <B>cdcc</B>
+            <I>ANON</I>    errors by anonymous clients
+            <I>CLNT</I>    errors by authenticated clients
+            <I>RLIM</I>    rate-limited messages
+            <I>QUERY</I>   all queries and reports
+            <I>RIDC</I>    messages concerning the report-ID cache that is used to
+                    detect duplicate reports from clients
+            <I>FLOOD</I>   messages about inter-server flooding connections
+            <I>FLOOD2</I>  messages about flooded reports
+            <I>IDS</I>     unknown server-IDs in flooded reports
+            <I>BL</I>      blacklisted clients
+
+     <A NAME="OPERATION-trace"><B>trace</B></A> <I>default</I>
+          turns on <I>ANON</I> and <I>CLNT</I> tracing and turns off all others.
+
+     <A NAME="OPERATION-cdcc"><B>cdcc</B></A> exits 0 on success, and &gt;0 if an error occurs in operations speci-
+     fied on the command line.
+
+
+</PRE>
+<H2><A NAME="FILES">FILES</A></H2><PRE>
+     <A NAME="FILE-/var/dcc">/var/dcc</A>  DCC home directory
+     <A NAME="FILE-map">map</A>       memory mapped file in the home DCC home directory of server
+               host names, port numbers, passwords, measured round trip times
+               (RTT), and so forth.
+     <A NAME="FILE-ids">ids</A>       list of IDs and passwords, as described in <B><A HREF="dccd.html">dccd(8)</A></B>.  It is only
+               required by systems running the DCC server, but is used by <B>cdcc</B>
+               if available.
+
+
+</PRE>
+<H2><A NAME="SEE-ALSO">SEE ALSO</A></H2><PRE>
+     <B><A HREF="dbclean.html">dbclean(8)</A></B>, <B><A HREF="dcc.html">dcc(8)</A></B>, <B><A HREF="dccd.html">dccd(8)</A></B>, <B><A HREF="dblist.html">dblist(8)</A></B>, <B><A HREF="dccifd.html">dccifd(8)</A></B>, <B><A HREF="dccm.html">dccm(8)</A></B>, <B><A HREF="dccproc.html">dccproc(8)</A></B>,
+     <B><A HREF="dccsight.html">dccsight(8)</A></B>.
+
+
+</PRE>
+<H2><A NAME="HISTORY">HISTORY</A></H2><PRE>
+     Implementation of <B>cdcc</B> was started at Rhyolite Software in 2000.  This
+     document describes DCC version 1.3.61.
+
+                              September 25, 2007
+</PRE>
+<HR>
+<ADDRESS>
+Man(1) output converted with
+<a href="http://www.oac.uci.edu/indiv/ehood/man2html.html">man2html</a>
+modified for the DCC $Date 2001/04/29 03:22:18 $
+</ADDRESS>
+</BODY>
+</HTML>

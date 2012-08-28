@@ -1,0 +1,50 @@
+# SpamAssassin - DKIM rules
+#
+# Please don't modify this file as your changes will be overwritten with
+# the next update. Use @@LOCAL_RULES_DIR@@/local.cf instead.
+# See 'perldoc Mail::SpamAssassin::Conf' for details.
+#
+# <@LICENSE>
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to you under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at:
+# 
+#     http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# </@LICENSE>
+#
+###########################################################################
+
+# Requires the Mail::SpamAssassin::Plugin::DKIM plugin be loaded.
+
+ifplugin Mail::SpamAssassin::Plugin::DKIM
+
+header DKIM_SIGNED		eval:check_dkim_signed()
+header DKIM_VERIFIED		eval:check_dkim_verified()
+header DKIM_POLICY_TESTING	eval:check_dkim_testing()
+header DKIM_POLICY_SIGNSOME	eval:check_dkim_signsome()
+header DKIM_POLICY_SIGNALL	eval:check_dkim_signall()
+
+tflags DKIM_SIGNED		net nice
+tflags DKIM_VERIFIED		net nice
+tflags DKIM_POLICY_SIGNSOME	net nice
+tflags DKIM_POLICY_SIGNALL	net nice
+tflags DKIM_POLICY_TESTING	net nice
+
+describe DKIM_SIGNED	        Domain Keys Identified Mail: message has a signature
+describe DKIM_VERIFIED		Domain Keys Identified Mail: signature passes verification
+describe DKIM_POLICY_SIGNSOME	Domain Keys Identified Mail: policy says domain signs some mails
+describe DKIM_POLICY_SIGNALL	Domain Keys Identified Mail: policy says domain signs all mails
+describe DKIM_POLICY_TESTING	Domain Keys Identified Mail: policy says domain is testing DK
+
+# TODO: whitelist based on DKIM_VERIFIED results
+
+endif   # Mail::SpamAssassin::Plugin::DKIM

@@ -1,0 +1,171 @@
+git-merge(1)
+============
+
+NAME
+----
+git-merge - Join two or more development histories together
+
+
+SYNOPSIS
+--------
+[verse]
+'git-merge' [-n] [--stat] [--no-commit] [--squash] [-s <strategy>]...
+	[-m <msg>] <remote> <remote>...
+'git-merge' <msg> HEAD <remote>...
+
+DESCRIPTION
+-----------
+This is the top-level interface to the merge machinery
+which drives multiple merge strategy scripts.
+
+The second syntax (<msg> `HEAD` <remote>) is supported for
+historical reasons.  Do not use it from the command line or in
+new scripts.  It is the same as `git merge -m <msg> <remote>`.
+
+
+OPTIONS
+-------
+include::merge-options.txt[]
+
+-m <msg>::
+	The commit message to be used for the merge commit (in case
+	it is created). The `git-fmt-merge-msg` script can be used
+	to give a good default for automated `git-merge` invocations.
+
+<remote>::
+	Other branch head merged into our branch.  You need at
+	least one <remote>.  Specifying more than one <remote>
+	obviously means you are trying an Octopus.
+
+include::merge-strategies.txt[]
+
+
+If you tried a merge which resulted in a complex conflicts and
+would want to start over, you can recover with
+linkgit:git-reset[1].
+
+CONFIGURATION
+-------------
+include::merge-config.txt[]
+
+branch.<name>.mergeoptions::
+	Sets default options for merging into branch <name>. The syntax and
+	supported options are equal to that of git-merge, but option values
+	containing whitespace characters are currently not supported.
+
+HOW MERGE WORKS
+---------------
+
+A merge is always between the current `HEAD` and one or more
+commits (usually, branch head or tag), and the index file must
+exactly match the
+tree of `HEAD` commit (i.e. the contents of the last commit) when
+it happens.  In other words, `git-diff --cached HEAD` must
+report no changes.
+
+[NOTE]
+This is a bit of a lie.  In certain special cases, your index is
+allowed to be different from the tree of the `HEAD` commit.  The most
+notable case is when your `HEAD` commit is already ahead of what
+is being merged, in which case your index can have arbitrary
+differences from your `HEAD` commit.  Also, your index entries
+may have differences from your `HEAD` commit that match
+the result of a trivial merge (e.g. you received the same patch
+from an external source to produce the same result as what you are
+merging).  For example, if a path did not exist in the common
+ancestor and your head commit but exists in the tree you are
+merging into your repository, and if you already happen to have
+that path exactly in your index, the merge does not have to
+fail.
+
+Otherwise, merge will refuse to do any harm to your repository
+(that is, it may fetch the objects from remote, and it may even
+update the local branch used to keep track of the remote branch
+with `git pull remote rbranch:lbranch`, but your working tree,
+`.git/HEAD` pointer and index file are left intact).
+
+You may have local modifications in the working tree files.  In
+other words, `git-diff` is allowed to report changes.
+However, the merge uses your working tree as the working area,
+and in order to prevent the merge operation from losing such
+changes, it makes sure that they do not interfere with the
+merge. Those complex tables in read-tree documentation define
+what it means for a path to "interfere with the merge".  And if
+your local modifications interfere with the merge, again, it
+stops before touching anything.
+
+So in the above two "failed merge" case, you do not have to
+worry about loss of data --- you simply were not ready to do
+a merge, so no merge happened at all.  You may want to finish
+whatever you were in the middle of doing, and retry the same
+pull after you are done and ready.
+
+When things cleanly merge, these things happen:
+
+1. The results are updated both in the index file and in your
+   working tree;
+2. Index file is written out as a tree;
+3. The tree gets committed; and
+4. The `HEAD` pointer gets advanced.
+
+Because of 2., we require that the original state of the index
+file to match exactly the current `HEAD` commit; otherwise we
+will write out your local changes already registered in your
+index file along with the merge result, which is not good.
+Because 1. involves only the paths different between your
+branch and the remote branch you are pulling from during the
+merge (which is typically a fraction of the whole tree), you can
+have local modifications in your working tree as long as they do
+not overlap with what the merge updates.
+
+When there are conflicts, these things happen:
+
+1. `HEAD` stays the same.
+
+2. Cleanly merged paths are updated both in the index file and
+   in your working tree.
+
+3. For conflicting paths, the index file records up to three
+   versions; stage1 stores the version from the common ancestor,
+   stage2 from `HEAD`, and stage3 from the remote branch (you
+   can inspect the stages with `git-ls-files -u`).  The working
+   tree files have the result of "merge" program; i.e. 3-way
+   merge result with familiar conflict markers `<<< === >>>`.
+
+4. No other changes are done.  In particular, the local
+   modifications you had before you started merge will stay the
+   same and the index entries for them stay as they were,
+   i.e. matching `HEAD`.
+
+After seeing a conflict, you can do two things:
+
+ * Decide not to merge.  The only clean-up you need are to reset
+   the index file to the `HEAD` commit to reverse 2. and to clean
+   up working tree changes made by 2. and 3.; `git-reset` can
+   be used for this.
+
+ * Resolve the conflicts.  `git-diff` would report only the
+   conflicting paths because of the above 2. and 3..  Edit the
+   working tree files into a desirable shape, `git-add` or `git-rm`
+   them, to make the index file contain what the merge result
+   should be, and run `git-commit` to commit the result.
+
+
+SEE ALSO
+--------
+linkgit:git-fmt-merge-msg[1], linkgit:git-pull[1],
+linkgit:gitattributes[5]
+
+
+Author
+------
+Written by Junio C Hamano <junkio@cox.net>
+
+
+Documentation
+--------------
+Documentation by Junio C Hamano and the git-list <git@vger.kernel.org>.
+
+GIT
+---
+Part of the linkgit:git[1] suite

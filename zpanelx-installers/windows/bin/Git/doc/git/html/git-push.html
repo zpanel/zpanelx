@@ -1,0 +1,776 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 7.0.2" />
+<style type="text/css">
+/* Debug borders */
+p, li, dt, dd, div, pre, h1, h2, h3, h4, h5, h6 {
+/*
+  border: 1px solid red;
+*/
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a { color: blue; }
+a:visited { color: fuchsia; }
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
+tt {
+  color: navy;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  font-family: sans-serif;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  border-bottom: 2px solid silver;
+  padding-top: 0.5em;
+}
+
+div.sectionbody {
+  font-family: serif;
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+span#author {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+span#email {
+}
+span#revision {
+  font-family: sans-serif;
+}
+
+div#footer {
+  font-family: sans-serif;
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+div#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+div#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+div#preamble,
+div.tableblock, div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-right: 10%;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock > div.content {
+  padding-left: 2.0em;
+}
+div.quoteblock .attribution {
+  text-align: right;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 2px solid silver;
+}
+
+div.exampleblock > div.content {
+  border-left: 2px solid silver;
+  padding: 0.5em;
+}
+
+div.verseblock div.content {
+  white-space: pre;
+}
+
+div.imageblock div.content { padding-left: 0; }
+div.imageblock img { border: 1px solid silver; }
+span.image img { border-style: none; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: italic;
+}
+dd > *:first-child {
+  margin-top: 0;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.olist2 {
+  list-style-type: lower-alpha;
+}
+
+div.tableblock > table {
+  border-color: #527bbd;
+  border-width: 3px;
+}
+thead {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+tfoot {
+  font-weight: bold;
+}
+
+div.hlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+td.hlist1 {
+  vertical-align: top;
+  font-style: italic;
+  padding-right: 0.8em;
+}
+td.hlist2 {
+  vertical-align: top;
+}
+
+@media print {
+  div#footer-badges { display: none; }
+}
+include::./stylesheets/xhtml11-manpage.css[]
+/* Workarounds for IE6's broken and incomplete CSS2. */
+
+div.sidebar-content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+div.sidebar-title, div.image-title {
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 0.0em;
+  margin-bottom: 0.5em;
+}
+
+div.listingblock div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock-content {
+  padding-left: 2.0em;
+}
+
+div.exampleblock-content {
+  border-left: 2px solid silver;
+  padding-left: 0.5em;
+}
+</style>
+<title>git-push(1)</title>
+</head>
+<body>
+<div id="header">
+<h1>
+git-push(1) Manual Page
+</h1>
+<h2>NAME</h2>
+<div class="sectionbody">
+<p>git-push -
+   Update remote refs along with associated objects
+</p>
+</div>
+</div>
+<h2>SYNOPSIS</h2>
+<div class="sectionbody">
+<div class="verseblock">
+<div class="content"><em>git-push</em> [--all] [--dry-run] [--tags] [--receive-pack=&lt;git-receive-pack&gt;]
+           [--repo=all] [-f | --force] [-v | --verbose] [&lt;repository&gt; &lt;refspec&gt;&#8230;]</div></div>
+</div>
+<h2>DESCRIPTION</h2>
+<div class="sectionbody">
+<p>Updates remote refs using local refs, while sending objects
+necessary to complete the given refs.</p>
+<p>You can make interesting things happen to a repository
+every time you push into it, by setting up <em>hooks</em> there.  See
+documentation for <a href="git-receive-pack.html">git-receive-pack(1)</a>.</p>
+</div>
+<h2>OPTIONS</h2>
+<div class="sectionbody">
+<dl>
+<dt>
+&lt;repository&gt;
+</dt>
+<dd>
+<p>
+        The "remote" repository that is destination of a push
+        operation.  See the section <a href="#URLS">GIT URLS</a> below.
+</p>
+</dd>
+<dt>
+&lt;refspec&gt;
+</dt>
+<dd>
+<p>
+        The canonical format of a &lt;refspec&gt; parameter is
+        <tt>+?&lt;src&gt;:&lt;dst&gt;</tt>; that is, an optional plus <tt>+</tt>, followed
+        by the source ref, followed by a colon <tt>:</tt>, followed by
+        the destination ref.
+</p>
+<p>The &lt;src&gt; side represents the source branch (or arbitrary
+"SHA1 expression", such as <tt>master~4</tt> (four parents before the
+tip of <tt>master</tt> branch); see <a href="git-rev-parse.html">git-rev-parse(1)</a>) that you
+want to push.  The &lt;dst&gt; side represents the destination location.</p>
+<p>The local ref that matches &lt;src&gt; is used
+to fast forward the remote ref that matches &lt;dst&gt; (or, if no &lt;dst&gt; was
+specified, the same ref that &lt;src&gt; referred to locally).  If
+the optional leading plus <tt>+</tt> is used, the remote ref is updated
+even if it does not result in a fast forward update.</p>
+<p><tt>tag &lt;tag&gt;</tt> means the same as <tt>refs/tags/&lt;tag&gt;:refs/tags/&lt;tag&gt;</tt>.</p>
+<p>A parameter &lt;ref&gt; without a colon pushes the &lt;ref&gt; from the source
+repository to the destination repository under the same name.</p>
+<p>Pushing an empty &lt;src&gt; allows you to delete the &lt;dst&gt; ref from
+the remote repository.</p>
+<p>The special refspec <tt>:</tt> (or <tt>+:</tt> to allow non-fast forward updates)
+directs git to push "matching" heads: for every head that exists on
+the local side, the remote side is updated if a head of the same name
+already exists on the remote side.  This is the default operation mode
+if no explicit refspec is found (that is neither on the command line
+nor in any Push line of the corresponding remotes file---see below).</p>
+</dd>
+<dt>
+--all
+</dt>
+<dd>
+<p>
+        Instead of naming each ref to push, specifies that all
+        refs under <tt>$GIT_DIR/refs/heads/</tt> be pushed.
+</p>
+</dd>
+<dt>
+--mirror
+</dt>
+<dd>
+<p>
+        Instead of naming each ref to push, specifies that all
+        refs under <tt>$GIT_DIR/refs/</tt> (which includes but is not
+        limited to <tt>refs/heads/</tt>, <tt>refs/remotes/</tt>, and <tt>refs/tags/</tt>)
+        be mirrored to the remote repository.  Newly created local
+        refs will be pushed to the remote end, locally updated refs
+        will be force updated on the remote end, and deleted refs
+        will be removed from the remote end.  This is the default
+        if the configuration option <tt>remote.&lt;remote&gt;.mirror</tt> is
+        set.
+</p>
+</dd>
+<dt>
+--dry-run
+</dt>
+<dd>
+<p>
+        Do everything except actually send the updates.
+</p>
+</dd>
+<dt>
+--tags
+</dt>
+<dd>
+<p>
+        All refs under <tt>$GIT_DIR/refs/tags</tt> are pushed, in
+        addition to refspecs explicitly listed on the command
+        line.
+</p>
+</dd>
+<dt>
+--receive-pack=&lt;git-receive-pack&gt;
+</dt>
+<dd>
+<p>
+        Path to the <em>git-receive-pack</em> program on the remote
+        end.  Sometimes useful when pushing to a remote
+        repository over ssh, and you do not have the program in
+        a directory on the default $PATH.
+</p>
+</dd>
+<dt>
+--exec=&lt;git-receive-pack&gt;
+</dt>
+<dd>
+<p>
+        Same as --receive-pack=&lt;git-receive-pack&gt;.
+</p>
+</dd>
+<dt>
+-f
+</dt>
+<dt>
+--force
+</dt>
+<dd>
+<p>
+        Usually, the command refuses to update a remote ref that is
+        not an ancestor of the local ref used to overwrite it.
+        This flag disables the check.  This can cause the
+        remote repository to lose commits; use it with care.
+</p>
+</dd>
+<dt>
+--repo=&lt;repo&gt;
+</dt>
+<dd>
+<p>
+        When no repository is specified the command defaults to
+        "origin"; this overrides it.
+</p>
+</dd>
+<dt>
+--thin
+</dt>
+<dt>
+--no-thin
+</dt>
+<dd>
+<p>
+        These options are passed to <tt>git-send-pack</tt>.  Thin
+        transfer spends extra cycles to minimize the number of
+        objects to be sent and meant to be used on slower connection.
+</p>
+</dd>
+<dt>
+-v
+</dt>
+<dt>
+--verbose
+</dt>
+<dd>
+<p>
+        Run verbosely.
+</p>
+</dd>
+</dl>
+</div>
+<h2>GIT URLS<a id="URLS"></a></h2>
+<div class="sectionbody">
+<p>One of the following notations can be used
+to name the remote repository:</p>
+<div class="exampleblock">
+<div class="exampleblock-content">
+<ul>
+<li>
+<p>
+rsync://host.xz/path/to/repo.git/
+</p>
+</li>
+<li>
+<p>
+http://host.xz/path/to/repo.git/
+</p>
+</li>
+<li>
+<p>
+https://host.xz/path/to/repo.git/
+</p>
+</li>
+<li>
+<p>
+git://host.xz/path/to/repo.git/
+</p>
+</li>
+<li>
+<p>
+git://host.xz/~user/path/to/repo.git/
+</p>
+</li>
+<li>
+<p>
+ssh://&#91;user@&#93;host.xz&#91;:port&#93;/path/to/repo.git/
+</p>
+</li>
+<li>
+<p>
+ssh://&#91;user@&#93;host.xz/path/to/repo.git/
+</p>
+</li>
+<li>
+<p>
+ssh://&#91;user@&#93;host.xz/~user/path/to/repo.git/
+</p>
+</li>
+<li>
+<p>
+ssh://&#91;user@&#93;host.xz/~/path/to/repo.git
+</p>
+</li>
+</ul>
+</div></div>
+<p>SSH is the default transport protocol over the network.  You can
+optionally specify which user to log-in as, and an alternate,
+scp-like syntax is also supported.  Both syntaxes support
+username expansion, as does the native git protocol, but
+only the former supports port specification. The following
+three are identical to the last three above, respectively:</p>
+<div class="exampleblock">
+<div class="exampleblock-content">
+<ul>
+<li>
+<p>
+&#91;user@&#93;host.xz:/path/to/repo.git/
+</p>
+</li>
+<li>
+<p>
+&#91;user@&#93;host.xz:~user/path/to/repo.git/
+</p>
+</li>
+<li>
+<p>
+&#91;user@&#93;host.xz:path/to/repo.git
+</p>
+</li>
+</ul>
+</div></div>
+<p>To sync with a local directory, you can use:</p>
+<div class="exampleblock">
+<div class="exampleblock-content">
+<ul>
+<li>
+<p>
+/path/to/repo.git/
+</p>
+</li>
+<li>
+<p>
+file:///path/to/repo.git/
+</p>
+</li>
+</ul>
+</div></div>
+<p>They are mostly equivalent, except when cloning.  See
+<a href="git-clone.html">git-clone(1)</a> for details.</p>
+<p>If there are a large number of similarly-named remote repositories and
+you want to use a different format for them (such that the URLs you
+use will be rewritten into URLs that work), you can create a
+configuration section of the form:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>        [url "&lt;actual url base&gt;"]
+                insteadOf = &lt;other url base&gt;</tt></pre>
+</div></div>
+<p>For example, with this:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>        [url "git://git.host.xz/"]
+                insteadOf = host.xz:/path/to/
+                insteadOf = work:</tt></pre>
+</div></div>
+<p>a URL like "work:repo.git" or like "host.xz:/path/to/repo.git" will be
+rewritten in any context that takes a URL to be "git://git.host.xz/repo.git".</p>
+</div>
+<h2>REMOTES<a id="REMOTES"></a></h2>
+<div class="sectionbody">
+<p>The name of one of the following can be used instead
+of a URL as <tt>&lt;repository&gt;</tt> argument:</p>
+<ul>
+<li>
+<p>
+a remote in the git configuration file: <tt>$GIT_DIR/config</tt>,
+</p>
+</li>
+<li>
+<p>
+a file in the <tt>$GIT_DIR/remotes</tt> directory, or
+</p>
+</li>
+<li>
+<p>
+a file in the <tt>$GIT_DIR/branches</tt> directory.
+</p>
+</li>
+</ul>
+<p>All of these also allow you to omit the refspec from the command line
+because they each contain a refspec which git will use by default.</p>
+<h3>Named remote in configuration file</h3>
+<p>You can choose to provide the name of a remote which you had previously
+configured using <a href="git-remote.html">git-remote(1)</a>, <a href="git-config.html">git-config(1)</a>
+or even by a manual edit to the <tt>$GIT_DIR/config</tt> file.  The URL of
+this remote will be used to access the repository.  The refspec
+of this remote will be used by default when you do
+not provide a refspec on the command line.  The entry in the
+config file would appear like this:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>        [remote "&lt;name&gt;"]
+                url = &lt;url&gt;
+                push = &lt;refspec&gt;
+                fetch = &lt;refspec&gt;</tt></pre>
+</div></div>
+<h3>Named file in <tt>$GIT_DIR/remotes</tt></h3>
+<p>You can choose to provide the name of a
+file in <tt>$GIT_DIR/remotes</tt>.  The URL
+in this file will be used to access the repository.  The refspec
+in this file will be used as default when you do not
+provide a refspec on the command line.  This file should have the
+following format:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>        URL: one of the above URL format
+        Push: &lt;refspec&gt;
+        Pull: &lt;refspec&gt;
+</tt></pre>
+</div></div>
+<p><tt>Push:</tt> lines are used by <tt>git-push</tt> and
+<tt>Pull:</tt> lines are used by <tt>git-pull</tt> and <tt>git-fetch</tt>.
+Multiple <tt>Push:</tt> and <tt>Pull:</tt> lines may
+be specified for additional branch mappings.</p>
+<h3>Named file in <tt>$GIT_DIR/branches</tt></h3>
+<p>You can choose to provide the name of a
+file in <tt>$GIT_DIR/branches</tt>.
+The URL in this file will be used to access the repository.
+This file should have the following format:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>        &lt;url&gt;#&lt;head&gt;</tt></pre>
+</div></div>
+<p><tt>&lt;url&gt;</tt> is required; <tt>#&lt;head&gt;</tt> is optional.
+When you do not provide a refspec on the command line,
+git will use the following refspec, where <tt>&lt;head&gt;</tt> defaults to <tt>master</tt>,
+and <tt>&lt;repository&gt;</tt> is the name of this file
+you provided in the command line.</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>        refs/heads/&lt;head&gt;:&lt;repository&gt;</tt></pre>
+</div></div>
+</div>
+<h2>OUTPUT</h2>
+<div class="sectionbody">
+<p>The output of "git push" depends on the transport method used; this
+section describes the output when pushing over the git protocol (either
+locally or via ssh).</p>
+<p>The status of the push is output in tabular form, with each line
+representing the status of a single ref. Each line is of the form:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt> &lt;flag&gt; &lt;summary&gt; &lt;from&gt; -&gt; &lt;to&gt; (&lt;reason&gt;)</tt></pre>
+</div></div>
+<dl>
+<dt>
+flag
+</dt>
+<dd>
+<p>
+        A single character indicating the status of the ref. This is
+        blank for a successfully pushed ref, <tt>!</tt> for a ref that was
+        rejected or failed to push, and <em>=</em> for a ref that was up to
+        date and did not need pushing (note that the status of up to
+        date refs is shown only when <tt>git push</tt> is running verbosely).
+</p>
+</dd>
+<dt>
+summary
+</dt>
+<dd>
+<p>
+        For a successfully pushed ref, the summary shows the old and new
+        values of the ref in a form suitable for using as an argument to
+        <tt>git log</tt> (this is <tt>&lt;old&gt;..&lt;new&gt;</tt> in most cases, and
+        <tt>&lt;old&gt;&#8230;&lt;new&gt;</tt> for forced non-fast forward updates). For a
+        failed update, more details are given for the failure.
+        The string <tt>rejected</tt> indicates that git did not try to send the
+        ref at all (typically because it is not a fast forward). The
+        string <tt>remote rejected</tt> indicates that the remote end refused
+        the update; this rejection is typically caused by a hook on the
+        remote side. The string <tt>remote failure</tt> indicates that the
+        remote end did not report the successful update of the ref
+        (perhaps because of a temporary error on the remote side, a
+        break in the network connection, or other transient error).
+</p>
+</dd>
+<dt>
+from
+</dt>
+<dd>
+<p>
+        The name of the local ref being pushed, minus its
+        <tt>refs/&lt;type&gt;/</tt> prefix. In the case of deletion, the
+        name of the local ref is omitted.
+</p>
+</dd>
+<dt>
+to
+</dt>
+<dd>
+<p>
+        The name of the remote ref being updated, minus its
+        <tt>refs/&lt;type&gt;/</tt> prefix.
+</p>
+</dd>
+<dt>
+reason
+</dt>
+<dd>
+<p>
+        A human-readable explanation. In the case of successfully pushed
+        refs, no explanation is needed. For a failed ref, the reason for
+        failure is described.
+</p>
+</dd>
+</dl>
+</div>
+<h2>Examples</h2>
+<div class="sectionbody">
+<dl>
+<dt>
+git push origin master
+</dt>
+<dd>
+<p>
+        Find a ref that matches <tt>master</tt> in the source repository
+        (most likely, it would find <tt>refs/heads/master</tt>), and update
+        the same ref (e.g. <tt>refs/heads/master</tt>) in <tt>origin</tt> repository
+        with it.  If <tt>master</tt> did not exist remotely, it would be
+        created.
+</p>
+</dd>
+<dt>
+git push origin :experimental
+</dt>
+<dd>
+<p>
+        Find a ref that matches <tt>experimental</tt> in the <tt>origin</tt> repository
+        (e.g. <tt>refs/heads/experimental</tt>), and delete it.
+</p>
+</dd>
+<dt>
+git push origin master:satellite/master
+</dt>
+<dd>
+<p>
+        Find a ref that matches <tt>master</tt> in the source repository
+        (most likely, it would find <tt>refs/heads/master</tt>), and update
+        the ref that matches <tt>satellite/master</tt> (most likely, it would
+        be <tt>refs/remotes/satellite/master</tt>) in <tt>origin</tt> repository with it.
+</p>
+</dd>
+<dt>
+git push origin master:refs/heads/experimental
+</dt>
+<dd>
+<p>
+        Create the branch <tt>experimental</tt> in the <tt>origin</tt> repository
+        by copying the current <tt>master</tt> branch.  This form is only
+        needed to create a new branch or tag in the remote repository when
+        the local name and the remote name are different; otherwise,
+        the ref name on its own will work.
+</p>
+</dd>
+</dl>
+</div>
+<h2>Author</h2>
+<div class="sectionbody">
+<p>Written by Junio C Hamano &lt;junkio@cox.net&gt;, later rewritten in C
+by Linus Torvalds &lt;torvalds@osdl.org&gt;</p>
+</div>
+<h2>Documentation</h2>
+<div class="sectionbody">
+<p>Documentation by Junio C Hamano and the git-list &lt;git@vger.kernel.org&gt;.</p>
+</div>
+<h2>GIT</h2>
+<div class="sectionbody">
+<p>Part of the <a href="git.html">git(1)</a> suite</p>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 21-Jun-2008 09:40:20 UTC
+</div>
+</div>
+</body>
+</html>

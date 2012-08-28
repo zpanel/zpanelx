@@ -1,0 +1,2636 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 7.0.2" />
+<style type="text/css">
+/* Debug borders */
+p, li, dt, dd, div, pre, h1, h2, h3, h4, h5, h6 {
+/*
+  border: 1px solid red;
+*/
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a { color: blue; }
+a:visited { color: fuchsia; }
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
+tt {
+  color: navy;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  font-family: sans-serif;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  border-bottom: 2px solid silver;
+  padding-top: 0.5em;
+}
+
+div.sectionbody {
+  font-family: serif;
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+span#author {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+span#email {
+}
+span#revision {
+  font-family: sans-serif;
+}
+
+div#footer {
+  font-family: sans-serif;
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+div#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+div#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+div#preamble,
+div.tableblock, div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-right: 10%;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock > div.content {
+  padding-left: 2.0em;
+}
+div.quoteblock .attribution {
+  text-align: right;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 2px solid silver;
+}
+
+div.exampleblock > div.content {
+  border-left: 2px solid silver;
+  padding: 0.5em;
+}
+
+div.verseblock div.content {
+  white-space: pre;
+}
+
+div.imageblock div.content { padding-left: 0; }
+div.imageblock img { border: 1px solid silver; }
+span.image img { border-style: none; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: italic;
+}
+dd > *:first-child {
+  margin-top: 0;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.olist2 {
+  list-style-type: lower-alpha;
+}
+
+div.tableblock > table {
+  border-color: #527bbd;
+  border-width: 3px;
+}
+thead {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+tfoot {
+  font-weight: bold;
+}
+
+div.hlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+td.hlist1 {
+  vertical-align: top;
+  font-style: italic;
+  padding-right: 0.8em;
+}
+td.hlist2 {
+  vertical-align: top;
+}
+
+@media print {
+  div#footer-badges { display: none; }
+}
+include::./stylesheets/xhtml11-manpage.css[]
+/* Workarounds for IE6's broken and incomplete CSS2. */
+
+div.sidebar-content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+div.sidebar-title, div.image-title {
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 0.0em;
+  margin-bottom: 0.5em;
+}
+
+div.listingblock div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock-content {
+  padding-left: 2.0em;
+}
+
+div.exampleblock-content {
+  border-left: 2px solid silver;
+  padding-left: 0.5em;
+}
+</style>
+<title>git-config(1)</title>
+</head>
+<body>
+<div id="header">
+<h1>
+git-config(1) Manual Page
+</h1>
+<h2>NAME</h2>
+<div class="sectionbody">
+<p>git-config -
+   Get and set repository or global options
+</p>
+</div>
+</div>
+<h2>SYNOPSIS</h2>
+<div class="sectionbody">
+<div class="verseblock">
+<div class="content"><em>git-config</em> [&lt;file-option&gt;] [type] [-z|--null] name [value [value_regex]]
+<em>git-config</em> [&lt;file-option&gt;] [type] --add name value
+<em>git-config</em> [&lt;file-option&gt;] [type] --replace-all name [value [value_regex]]
+<em>git-config</em> [&lt;file-option&gt;] [type] [-z|--null] --get name [value_regex]
+<em>git-config</em> [&lt;file-option&gt;] [type] [-z|--null] --get-all name [value_regex]
+<em>git-config</em> [&lt;file-option&gt;] [type] [-z|--null] --get-regexp name_regex [value_regex]
+<em>git-config</em> [&lt;file-option&gt;] --unset name [value_regex]
+<em>git-config</em> [&lt;file-option&gt;] --unset-all name [value_regex]
+<em>git-config</em> [&lt;file-option&gt;] --rename-section old_name new_name
+<em>git-config</em> [&lt;file-option&gt;] --remove-section name
+<em>git-config</em> [&lt;file-option&gt;] [-z|--null] -l | --list
+<em>git-config</em> [&lt;file-option&gt;] --get-color name [default]
+<em>git-config</em> [&lt;file-option&gt;] --get-colorbool name [stdout-is-tty]</div></div>
+</div>
+<h2>DESCRIPTION</h2>
+<div class="sectionbody">
+<p>You can query/set/replace/unset options with this command. The name is
+actually the section and the key separated by a dot, and the value will be
+escaped.</p>
+<p>Multiple lines can be added to an option by using the <em>--add</em> option.
+If you want to update or unset an option which can occur on multiple
+lines, a POSIX regexp <tt>value_regex</tt> needs to be given.  Only the
+existing values that match the regexp are updated or unset.  If
+you want to handle the lines that do <strong>not</strong> match the regex, just
+prepend a single exclamation mark in front (see also <a href="#EXAMPLES">[EXAMPLES]</a>).</p>
+<p>The type specifier can be either <em>--int</em> or <em>--bool</em>, which will make
+<em>git-config</em> ensure that the variable(s) are of the given type and
+convert the value to the canonical form (simple decimal number for int,
+a "true" or "false" string for bool).  If no type specifier is passed,
+no checks or transformations are performed on the value.</p>
+<p>The file-option can be one of <em>--system</em>, <em>--global</em> or <em>--file</em>
+which specify where the values will be read from or written to.
+The default is to assume the config file of the current repository,
+.git/config unless defined otherwise with GIT_DIR and GIT_CONFIG
+(see <a href="#FILES">[FILES]</a>).</p>
+<p>This command will fail if:</p>
+<ol>
+<li>
+<p>
+The config file is invalid,
+</p>
+</li>
+<li>
+<p>
+Can not write to the config file,
+</p>
+</li>
+<li>
+<p>
+no section was provided,
+</p>
+</li>
+<li>
+<p>
+the section or key is invalid,
+</p>
+</li>
+<li>
+<p>
+you try to unset an option which does not exist,
+</p>
+</li>
+<li>
+<p>
+you try to unset/set an option for which multiple lines match, or
+</p>
+</li>
+<li>
+<p>
+you use <em>--global</em> option without $HOME being properly set.
+</p>
+</li>
+</ol>
+</div>
+<h2>OPTIONS</h2>
+<div class="sectionbody">
+<dl>
+<dt>
+--replace-all
+</dt>
+<dd>
+<p>
+        Default behavior is to replace at most one line. This replaces
+        all lines matching the key (and optionally the value_regex).
+</p>
+</dd>
+<dt>
+--add
+</dt>
+<dd>
+<p>
+        Adds a new line to the option without altering any existing
+        values.  This is the same as providing <em>^$</em> as the value_regex.
+</p>
+</dd>
+<dt>
+--get
+</dt>
+<dd>
+<p>
+        Get the value for a given key (optionally filtered by a regex
+        matching the value). Returns error code 1 if the key was not
+        found and error code 2 if multiple key values were found.
+</p>
+</dd>
+<dt>
+--get-all
+</dt>
+<dd>
+<p>
+        Like get, but does not fail if the number of values for the key
+        is not exactly one.
+</p>
+</dd>
+<dt>
+--get-regexp
+</dt>
+<dd>
+<p>
+        Like --get-all, but interprets the name as a regular expression.
+        Also outputs the key names.
+</p>
+</dd>
+<dt>
+--global
+</dt>
+<dd>
+<p>
+        For writing options: write to global ~/.gitconfig file rather than
+        the repository .git/config.
+</p>
+<p>For reading options: read only from global ~/.gitconfig rather than
+from all available files.</p>
+<p>See also <a href="#FILES">[FILES]</a>.</p>
+</dd>
+<dt>
+--system
+</dt>
+<dd>
+<p>
+        For writing options: write to system-wide $(prefix)/etc/gitconfig
+        rather than the repository .git/config.
+</p>
+<p>For reading options: read only from system-wide $(prefix)/etc/gitconfig
+rather than from all available files.</p>
+<p>See also <a href="#FILES">[FILES]</a>.</p>
+</dd>
+<dt>
+-f config-file
+</dt>
+<dt>
+--file config-file
+</dt>
+<dd>
+<p>
+        Use the given config file instead of the one specified by GIT_CONFIG.
+</p>
+</dd>
+<dt>
+--remove-section
+</dt>
+<dd>
+<p>
+        Remove the given section from the configuration file.
+</p>
+</dd>
+<dt>
+--rename-section
+</dt>
+<dd>
+<p>
+        Rename the given section to a new name.
+</p>
+</dd>
+<dt>
+--unset
+</dt>
+<dd>
+<p>
+        Remove the line matching the key from config file.
+</p>
+</dd>
+<dt>
+--unset-all
+</dt>
+<dd>
+<p>
+        Remove all lines matching the key from config file.
+</p>
+</dd>
+<dt>
+-l
+</dt>
+<dt>
+--list
+</dt>
+<dd>
+<p>
+        List all variables set in config file.
+</p>
+</dd>
+<dt>
+--bool
+</dt>
+<dd>
+<p>
+        git-config will ensure that the output is "true" or "false"
+</p>
+</dd>
+<dt>
+--int
+</dt>
+<dd>
+<p>
+        git-config will ensure that the output is a simple
+        decimal number.  An optional value suffix of <em>k</em>, <em>m</em>, or <em>g</em>
+        in the config file will cause the value to be multiplied
+        by 1024, 1048576, or 1073741824 prior to output.
+</p>
+</dd>
+<dt>
+-z
+</dt>
+<dt>
+--null
+</dt>
+<dd>
+<p>
+        For all options that output values and/or keys, always
+        end values with the null character (instead of a
+        newline). Use newline instead as a delimiter between
+        key and value. This allows for secure parsing of the
+        output without getting confused e.g. by values that
+        contain line breaks.
+</p>
+</dd>
+<dt>
+--get-colorbool name [stdout-is-tty]
+</dt>
+<dd>
+<p>
+        Find the color setting for <tt>name</tt> (e.g. <tt>color.diff</tt>) and output
+        "true" or "false".  <tt>stdout-is-tty</tt> should be either "true" or
+        "false", and is taken into account when configuration says
+        "auto".  If <tt>stdout-is-tty</tt> is missing, then checks the standard
+        output of the command itself, and exits with status 0 if color
+        is to be used, or exits with status 1 otherwise.
+        When the color setting for <tt>name</tt> is undefined, the command uses
+        <tt>color.ui</tt> as fallback.
+</p>
+</dd>
+<dt>
+--get-color name default
+</dt>
+<dd>
+<p>
+        Find the color configured for <tt>name</tt> (e.g. <tt>color.diff.new</tt>) and
+        output it as the ANSI color escape sequence to the standard
+        output.  The optional <tt>default</tt> parameter is used instead, if
+        there is no color configured for <tt>name</tt>.
+</p>
+</dd>
+</dl>
+</div>
+<h2><a id="FILES"></a>FILES</h2>
+<div class="sectionbody">
+<p>If not set explicitly with <em>--file</em>, there are three files where
+git-config will search for configuration options:</p>
+<dl>
+<dt>
+$GIT_DIR/config
+</dt>
+<dd>
+<p>
+        Repository specific configuration file. (The filename is
+        of course relative to the repository root, not the working
+        directory.)
+</p>
+</dd>
+<dt>
+~/.gitconfig
+</dt>
+<dd>
+<p>
+        User-specific configuration file. Also called "global"
+        configuration file.
+</p>
+</dd>
+<dt>
+$(prefix)/etc/gitconfig
+</dt>
+<dd>
+<p>
+        System-wide configuration file.
+</p>
+</dd>
+</dl>
+<p>If no further options are given, all reading options will read all of these
+files that are available. If the global or the system-wide configuration
+file are not available they will be ignored. If the repository configuration
+file is not available or readable, git-config will exit with a non-zero
+error code. However, in neither case will an error message be issued.</p>
+<p>All writing options will per default write to the repository specific
+configuration file. Note that this also affects options like <em>--replace-all</em>
+and <em>--unset</em>. <strong>git-config will only ever change one file at a time</strong>.</p>
+<p>You can override these rules either by command line options or by environment
+variables. The <em>--global</em> and the <em>--system</em> options will limit the file used
+to the global or system-wide file respectively. The GIT_CONFIG environment
+variable has a similar effect, but you can specify any filename you want.</p>
+<p>The GIT_CONFIG_LOCAL environment variable on the other hand only changes
+the name used instead of the repository configuration file. The global and
+the system-wide configuration files will still be read. (For writing options
+this will obviously result in the same behavior as using GIT_CONFIG.)</p>
+</div>
+<h2>ENVIRONMENT</h2>
+<div class="sectionbody">
+<dl>
+<dt>
+GIT_CONFIG
+</dt>
+<dd>
+<p>
+        Take the configuration from the given file instead of .git/config.
+        Using the "--global" option forces this to ~/.gitconfig. Using the
+        "--system" option forces this to $(prefix)/etc/gitconfig.
+</p>
+</dd>
+<dt>
+GIT_CONFIG_LOCAL
+</dt>
+<dd>
+<p>
+        Take the configuration from the given file instead if .git/config.
+        Still read the global and the system-wide configuration files, though.
+</p>
+</dd>
+</dl>
+<p>See also <a href="#FILES">[FILES]</a>.</p>
+</div>
+<h2><a id="EXAMPLES"></a>EXAMPLES</h2>
+<div class="sectionbody">
+<p>Given a .git/config like this:</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>#
+# This is the config file, and
+# a '#' or ';' character indicates
+# a comment
+#</tt></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>; core variables
+[core]
+        ; Don't trust file modes
+        filemode = false</tt></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>; Our diff algorithm
+[diff]
+        external = "/usr/local/bin/gnu-diff -u"
+        renames = true</tt></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>; Proxy settings
+[core]
+        gitproxy="proxy-command" for kernel.org
+        gitproxy=default-proxy ; for all the rest</tt></pre>
+</div></div>
+<p>you can set the filemode to true with</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>% git config core.filemode true</tt></pre>
+</div></div>
+<p>The hypothetical proxy command entries actually have a postfix to discern
+what URL they apply to. Here is how to change the entry for kernel.org
+to "ssh".</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>% git config core.gitproxy '"ssh" for kernel.org' 'for kernel.org$'</tt></pre>
+</div></div>
+<p>This makes sure that only the key/value pair for kernel.org is replaced.</p>
+<p>To delete the entry for renames, do</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>% git config --unset diff.renames</tt></pre>
+</div></div>
+<p>If you want to delete an entry for a multivar (like core.gitproxy above),
+you have to provide a regex matching the value of exactly one line.</p>
+<p>To query the value for a given key, do</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>% git config --get core.filemode</tt></pre>
+</div></div>
+<p>or</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>% git config core.filemode</tt></pre>
+</div></div>
+<p>or, to query a multivar:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>% git config --get core.gitproxy "for kernel.org$"</tt></pre>
+</div></div>
+<p>If you want to know all the values for a multivar, do:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>% git config --get-all core.gitproxy</tt></pre>
+</div></div>
+<p>If you like to live dangerous, you can replace <strong>all</strong> core.gitproxy by a
+new one with</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>% git config --replace-all core.gitproxy ssh</tt></pre>
+</div></div>
+<p>However, if you really only want to replace the line for the default proxy,
+i.e. the one without a "for &#8230;" postfix, do something like this:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>% git config core.gitproxy ssh '! for '</tt></pre>
+</div></div>
+<p>To actually match only values with an exclamation mark, you have to</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>% git config section.key value '[!]'</tt></pre>
+</div></div>
+<p>To add a new proxy, without altering any of the existing ones, use</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>% git config core.gitproxy '"proxy-command" for example.com'</tt></pre>
+</div></div>
+<p>An example to use customized color from the configuration in your
+script:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>#!/bin/sh
+WS=$(git config --get-color color.diff.whitespace "blue reverse")
+RESET=$(git config --get-color "" "reset")
+echo "${WS}your whitespace color or blue reverse${RESET}"</tt></pre>
+</div></div>
+</div>
+<h2>CONFIGURATION FILE</h2>
+<div class="sectionbody">
+<p>The git configuration file contains a number of variables that affect
+the git command's behavior. <tt>.git/config</tt> file for each repository
+is used to store the information for that repository, and
+<tt>$HOME/.gitconfig</tt> is used to store per user information to give
+fallback values for <tt>.git/config</tt> file. The file <tt>/etc/gitconfig</tt>
+can be used to store system-wide defaults.</p>
+<p>They can be used by both the git plumbing
+and the porcelains. The variables are divided into sections, where
+in the fully qualified variable name the variable itself is the last
+dot-separated segment and the section name is everything before the last
+dot. The variable names are case-insensitive and only alphanumeric
+characters are allowed. Some variables may appear multiple times.</p>
+<h3>Syntax</h3>
+<p>The syntax is fairly flexible and permissive; whitespaces are mostly
+ignored.  The <em>#</em> and <em>;</em> characters begin comments to the end of line,
+blank lines are ignored.</p>
+<p>The file consists of sections and variables.  A section begins with
+the name of the section in square brackets and continues until the next
+section begins.  Section names are not case sensitive.  Only alphanumeric
+characters, <em><tt>-</tt></em> and <em><tt>.</tt></em> are allowed in section names.  Each variable
+must belong to some section, which means that there must be section
+header before first setting of a variable.</p>
+<p>Sections can be further divided into subsections.  To begin a subsection
+put its name in double quotes, separated by space from the section name,
+in the section header, like in example below:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>        [section "subsection"]
+</tt></pre>
+</div></div>
+<p>Subsection names can contain any characters except newline (doublequote
+<em><tt>"</tt></em> and backslash have to be escaped as <em><tt>\"</tt></em> and <em><tt>\\</tt></em>,
+respectively) and are case sensitive.  Section header cannot span multiple
+lines.  Variables may belong directly to a section or to a given subsection.
+You can have <tt>[section]</tt> if you have <tt>[section "subsection"]</tt>, but you
+don't need to.</p>
+<p>There is also (case insensitive) alternative <tt>[section.subsection]</tt> syntax.
+In this syntax subsection names follow the same restrictions as for section
+name.</p>
+<p>All the other lines are recognized as setting variables, in the form
+<em>name = value</em>.  If there is no equal sign on the line, the entire line
+is taken as <em>name</em> and the variable is recognized as boolean "true".
+The variable names are case-insensitive and only alphanumeric
+characters and <em><tt>-</tt></em> are allowed.  There can be more than one value
+for a given variable; we say then that variable is multivalued.</p>
+<p>Leading and trailing whitespace in a variable value is discarded.
+Internal whitespace within a variable value is retained verbatim.</p>
+<p>The values following the equals sign in variable assign are all either
+a string, an integer, or a boolean.  Boolean values may be given as yes/no,
+0/1 or true/false.  Case is not significant in boolean values, when
+converting value to the canonical form using <em>--bool</em> type specifier;
+<tt>git-config</tt> will ensure that the output is "true" or "false".</p>
+<p>String values may be entirely or partially enclosed in double quotes.
+You need to enclose variable value in double quotes if you want to
+preserve leading or trailing whitespace, or if variable value contains
+beginning of comment characters (if it contains <em>#</em> or <em>;</em>).
+Double quote <em><tt>"</tt></em> and backslash <em><tt>\</tt></em> characters in variable value must
+be escaped: use <em><tt>\"</tt></em> for <em><tt>"</tt></em> and <em><tt>\\</tt></em> for <em><tt>\</tt></em>.</p>
+<p>The following escape sequences (beside <em><tt>\"</tt></em> and <em><tt>\\</tt></em>) are recognized:
+<em><tt>\n</tt></em> for newline character (NL), <em><tt>\t</tt></em> for horizontal tabulation (HT, TAB)
+and <em><tt>\b</tt></em> for backspace (BS).  No other char escape sequence, nor octal
+char sequences are valid.</p>
+<p>Variable value ending in a <em><tt>\</tt></em> is continued on the next line in the
+customary UNIX fashion.</p>
+<p>Some variables may require special value format.</p>
+<h3>Example</h3>
+<div class="literalblock">
+<div class="content">
+<pre><tt># Core variables
+[core]
+        ; Don't trust file modes
+        filemode = false</tt></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt># Our diff algorithm
+[diff]
+        external = "/usr/local/bin/gnu-diff -u"
+        renames = true</tt></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>[branch "devel"]
+        remote = origin
+        merge = refs/heads/devel</tt></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt># Proxy settings
+[core]
+        gitProxy="ssh" for "kernel.org"
+        gitProxy=default-proxy ; for the rest</tt></pre>
+</div></div>
+<h3>Variables</h3>
+<p>Note that this list is non-comprehensive and not necessarily complete.
+For command-specific variables, you will find a more detailed description
+in the appropriate manual page. You will find a description of non-core
+porcelain configuration variables in the respective porcelain documentation.</p>
+<dl>
+<dt>
+core.fileMode
+</dt>
+<dd>
+<p>
+        If false, the executable bit differences between the index and
+        the working copy are ignored; useful on broken filesystems like FAT.
+        See <a href="git-update-index.html">git-update-index(1)</a>. True by default.
+</p>
+</dd>
+<dt>
+core.quotepath
+</dt>
+<dd>
+<p>
+        The commands that output paths (e.g. <tt>ls-files</tt>,
+        <tt>diff</tt>), when not given the <tt>-z</tt> option, will quote
+        "unusual" characters in the pathname by enclosing the
+        pathname in a double-quote pair and with backslashes the
+        same way strings in C source code are quoted.  If this
+        variable is set to false, the bytes higher than 0x80 are
+        not quoted but output as verbatim.  Note that double
+        quote, backslash and control characters are always
+        quoted without <tt>-z</tt> regardless of the setting of this
+        variable.
+</p>
+</dd>
+<dt>
+core.autocrlf
+</dt>
+<dd>
+<p>
+        If true, makes git convert <tt>CRLF</tt> at the end of lines in text files to
+        <tt>LF</tt> when reading from the filesystem, and convert in reverse when
+        writing to the filesystem.  The variable can be set to
+        <em>input</em>, in which case the conversion happens only while
+        reading from the filesystem but files are written out with
+        <tt>LF</tt> at the end of lines.  Currently, which paths to consider
+        "text" (i.e. be subjected to the autocrlf mechanism) is
+        decided purely based on the contents.
+</p>
+</dd>
+<dt>
+core.safecrlf
+</dt>
+<dd>
+<p>
+        If true, makes git check if converting <tt>CRLF</tt> as controlled by
+        <tt>core.autocrlf</tt> is reversible.  Git will verify if a command
+        modifies a file in the work tree either directly or indirectly.
+        For example, committing a file followed by checking out the
+        same file should yield the original file in the work tree.  If
+        this is not the case for the current setting of
+        <tt>core.autocrlf</tt>, git will reject the file.  The variable can
+        be set to "warn", in which case git will only warn about an
+        irreversible conversion but continue the operation.
+</p>
+<p>CRLF conversion bears a slight chance of corrupting data.
+autocrlf=true will convert CRLF to LF during commit and LF to
+CRLF during checkout.  A file that contains a mixture of LF and
+CRLF before the commit cannot be recreated by git.  For text
+files this is the right thing to do: it corrects line endings
+such that we have only LF line endings in the repository.
+But for binary files that are accidentally classified as text the
+conversion can corrupt data.</p>
+<p>If you recognize such corruption early you can easily fix it by
+setting the conversion type explicitly in .gitattributes.  Right
+after committing you still have the original file in your work
+tree and this file is not yet corrupted.  You can explicitly tell
+git that this file is binary and git will handle the file
+appropriately.</p>
+<p>Unfortunately, the desired effect of cleaning up text files with
+mixed line endings and the undesired effect of corrupting binary
+files cannot be distinguished.  In both cases CRLFs are removed
+in an irreversible way.  For text files this is the right thing
+to do because CRLFs are line endings, while for binary files
+converting CRLFs corrupts data.</p>
+<p>Note, this safety check does not mean that a checkout will generate a
+file identical to the original file for a different setting of
+<tt>core.autocrlf</tt>, but only for the current one.  For example, a text
+file with <tt>LF</tt> would be accepted with <tt>core.autocrlf=input</tt> and could
+later be checked out with <tt>core.autocrlf=true</tt>, in which case the
+resulting file would contain <tt>CRLF</tt>, although the original file
+contained <tt>LF</tt>.  However, in both work trees the line endings would be
+consistent, that is either all <tt>LF</tt> or all <tt>CRLF</tt>, but never mixed.  A
+file with mixed line endings would be reported by the <tt>core.safecrlf</tt>
+mechanism.</p>
+</dd>
+<dt>
+core.symlinks
+</dt>
+<dd>
+<p>
+        If false, symbolic links are checked out as small plain files that
+        contain the link text. <a href="git-update-index.html">git-update-index(1)</a> and
+        <a href="git-add.html">git-add(1)</a> will not change the recorded type to regular
+        file. Useful on filesystems like FAT that do not support
+        symbolic links. True by default.
+</p>
+</dd>
+<dt>
+core.gitProxy
+</dt>
+<dd>
+<p>
+        A "proxy command" to execute (as <em>command host port</em>) instead
+        of establishing direct connection to the remote server when
+        using the git protocol for fetching. If the variable value is
+        in the "COMMAND for DOMAIN" format, the command is applied only
+        on hostnames ending with the specified domain string. This variable
+        may be set multiple times and is matched in the given order;
+        the first match wins.
+</p>
+<p>Can be overridden by the <em>GIT_PROXY_COMMAND</em> environment variable
+(which always applies universally, without the special "for"
+handling).</p>
+</dd>
+<dt>
+core.ignoreStat
+</dt>
+<dd>
+<p>
+        If true, commands which modify both the working tree and the index
+        will mark the updated paths with the "assume unchanged" bit in the
+        index. These marked files are then assumed to stay unchanged in the
+        working copy, until you mark them otherwise manually - Git will not
+        detect the file changes by lstat() calls. This is useful on systems
+        where those are very slow, such as Microsoft Windows.
+        See <a href="git-update-index.html">git-update-index(1)</a>.
+        False by default.
+</p>
+</dd>
+<dt>
+core.preferSymlinkRefs
+</dt>
+<dd>
+<p>
+        Instead of the default "symref" format for HEAD
+        and other symbolic reference files, use symbolic links.
+        This is sometimes needed to work with old scripts that
+        expect HEAD to be a symbolic link.
+</p>
+</dd>
+<dt>
+core.bare
+</dt>
+<dd>
+<p>
+        If true this repository is assumed to be <em>bare</em> and has no
+        working directory associated with it.  If this is the case a
+        number of commands that require a working directory will be
+        disabled, such as <a href="git-add.html">git-add(1)</a> or <a href="git-merge.html">git-merge(1)</a>.
+</p>
+<p>This setting is automatically guessed by <a href="git-clone.html">git-clone(1)</a> or
+<a href="git-init.html">git-init(1)</a> when the repository was created.  By default a
+repository that ends in "/.git" is assumed to be not bare (bare =
+false), while all other repositories are assumed to be bare (bare
+= true).</p>
+</dd>
+<dt>
+core.worktree
+</dt>
+<dd>
+<p>
+        Set the path to the working tree.  The value will not be
+        used in combination with repositories found automatically in
+        a .git directory (i.e. $GIT_DIR is not set).
+        This can be overridden by the GIT_WORK_TREE environment
+        variable and the <em>--work-tree</em> command line option. It can be
+        a absolute path or relative path to the directory specified by
+        --git-dir or GIT_DIR.
+        Note: If --git-dir or GIT_DIR are specified but none of
+        --work-tree, GIT_WORK_TREE and core.worktree is specified,
+        the current working directory is regarded as the top directory
+        of your working tree.
+</p>
+</dd>
+<dt>
+core.logAllRefUpdates
+</dt>
+<dd>
+<p>
+        Enable the reflog. Updates to a ref &lt;ref&gt; is logged to the file
+        "$GIT_DIR/logs/&lt;ref&gt;", by appending the new and old
+        SHA1, the date/time and the reason of the update, but
+        only when the file exists.  If this configuration
+        variable is set to true, missing "$GIT_DIR/logs/&lt;ref&gt;"
+        file is automatically created for branch heads.
+</p>
+<p>This information can be used to determine what commit
+was the tip of a branch "2 days ago".</p>
+<p>This value is true by default in a repository that has
+a working directory associated with it, and false by
+default in a bare repository.</p>
+</dd>
+<dt>
+core.repositoryFormatVersion
+</dt>
+<dd>
+<p>
+        Internal variable identifying the repository format and layout
+        version.
+</p>
+</dd>
+<dt>
+core.sharedRepository
+</dt>
+<dd>
+<p>
+        When <em>group</em> (or <em>true</em>), the repository is made shareable between
+        several users in a group (making sure all the files and objects are
+        group-writable). When <em>all</em> (or <em>world</em> or <em>everybody</em>), the
+        repository will be readable by all users, additionally to being
+        group-shareable. When <em>umask</em> (or <em>false</em>), git will use permissions
+        reported by umask(2). When <em>0xxx</em>, where <em>0xxx</em> is an octal number,
+        files in the repository will have this mode value. <em>0xxx</em> will override
+        user's umask value, and thus, users with a safe umask (0077) can use
+        this option. Examples: <em>0660</em> is equivalent to <em>group</em>. <em>0640</em> is a
+        repository that is group-readable but not group-writable.
+        See <a href="git-init.html">git-init(1)</a>. False by default.
+</p>
+</dd>
+<dt>
+core.warnAmbiguousRefs
+</dt>
+<dd>
+<p>
+        If true, git will warn you if the ref name you passed it is ambiguous
+        and might match multiple refs in the .git/refs/ tree. True by default.
+</p>
+</dd>
+<dt>
+core.compression
+</dt>
+<dd>
+<p>
+        An integer -1..9, indicating a default compression level.
+        -1 is the zlib default. 0 means no compression,
+        and 1..9 are various speed/size tradeoffs, 9 being slowest.
+        If set, this provides a default to other compression variables,
+        such as <em>core.loosecompression</em> and <em>pack.compression</em>.
+</p>
+</dd>
+<dt>
+core.loosecompression
+</dt>
+<dd>
+<p>
+        An integer -1..9, indicating the compression level for objects that
+        are not in a pack file. -1 is the zlib default. 0 means no
+        compression, and 1..9 are various speed/size tradeoffs, 9 being
+        slowest.  If not set,  defaults to core.compression.  If that is
+        not set,  defaults to 1 (best speed).
+</p>
+</dd>
+<dt>
+core.packedGitWindowSize
+</dt>
+<dd>
+<p>
+        Number of bytes of a pack file to map into memory in a
+        single mapping operation.  Larger window sizes may allow
+        your system to process a smaller number of large pack files
+        more quickly.  Smaller window sizes will negatively affect
+        performance due to increased calls to the operating system's
+        memory manager, but may improve performance when accessing
+        a large number of large pack files.
+</p>
+<p>Default is 1 MiB if NO_MMAP was set at compile time, otherwise 32
+MiB on 32 bit platforms and 1 GiB on 64 bit platforms.  This should
+be reasonable for all users/operating systems.  You probably do
+not need to adjust this value.</p>
+<p>Common unit suffixes of <em>k</em>, <em>m</em>, or <em>g</em> are supported.</p>
+</dd>
+<dt>
+core.packedGitLimit
+</dt>
+<dd>
+<p>
+        Maximum number of bytes to map simultaneously into memory
+        from pack files.  If Git needs to access more than this many
+        bytes at once to complete an operation it will unmap existing
+        regions to reclaim virtual address space within the process.
+</p>
+<p>Default is 256 MiB on 32 bit platforms and 8 GiB on 64 bit platforms.
+This should be reasonable for all users/operating systems, except on
+the largest projects.  You probably do not need to adjust this value.</p>
+<p>Common unit suffixes of <em>k</em>, <em>m</em>, or <em>g</em> are supported.</p>
+</dd>
+<dt>
+core.deltaBaseCacheLimit
+</dt>
+<dd>
+<p>
+        Maximum number of bytes to reserve for caching base objects
+        that multiple deltafied objects reference.  By storing the
+        entire decompressed base objects in a cache Git is able
+        to avoid unpacking and decompressing frequently used base
+        objects multiple times.
+</p>
+<p>Default is 16 MiB on all platforms.  This should be reasonable
+for all users/operating systems, except on the largest projects.
+You probably do not need to adjust this value.</p>
+<p>Common unit suffixes of <em>k</em>, <em>m</em>, or <em>g</em> are supported.</p>
+</dd>
+<dt>
+core.excludesfile
+</dt>
+<dd>
+<p>
+        In addition to <em>.gitignore</em> (per-directory) and
+        <em>.git/info/exclude</em>, git looks into this file for patterns
+        of files which are not meant to be tracked.  See
+        <a href="gitignore.html">gitignore(5)</a>.
+</p>
+</dd>
+<dt>
+core.editor
+</dt>
+<dd>
+<p>
+        Commands such as <tt>commit</tt> and <tt>tag</tt> that lets you edit
+        messages by launching an editor uses the value of this
+        variable when it is set, and the environment variable
+        <tt>GIT_EDITOR</tt> is not set.  The order of preference is
+        <tt>GIT_EDITOR</tt> environment, <tt>core.editor</tt>, <tt>VISUAL</tt> and
+        <tt>EDITOR</tt> environment variables and then finally <tt>vi</tt>.
+</p>
+</dd>
+<dt>
+core.pager
+</dt>
+<dd>
+<p>
+        The command that git will use to paginate output.  Can be overridden
+        with the <tt>GIT_PAGER</tt> environment variable.
+</p>
+</dd>
+<dt>
+core.whitespace
+</dt>
+<dd>
+<p>
+        A comma separated list of common whitespace problems to
+        notice.  <tt>git diff</tt> will use <tt>color.diff.whitespace</tt> to
+        highlight them, and <tt>git apply --whitespace=error</tt> will
+        consider them as errors:
+</p>
+<ul>
+<li>
+<p>
+<tt>trailing-space</tt> treats trailing whitespaces at the end of the line
+  as an error (enabled by default).
+</p>
+</li>
+<li>
+<p>
+<tt>space-before-tab</tt> treats a space character that appears immediately
+  before a tab character in the initial indent part of the line as an
+  error (enabled by default).
+</p>
+</li>
+<li>
+<p>
+<tt>indent-with-non-tab</tt> treats a line that is indented with 8 or more
+  space characters as an error (not enabled by default).
+</p>
+</li>
+<li>
+<p>
+<tt>cr-at-eol</tt> treats a carriage-return at the end of line as
+  part of the line terminator, i.e. with it, <tt>trailing-space</tt>
+  does not trigger if the character before such a carriage-return
+  is not a whitespace (not enabled by default).
+</p>
+</li>
+</ul>
+</dd>
+<dt>
+core.fsyncobjectfiles
+</dt>
+<dd>
+<p>
+        This boolean will enable <em>fsync()</em> when writing object files.
+</p>
+<p>This is a total waste of time and effort on a filesystem that orders
+data writes properly, but can be useful for filesystems that do not use
+journalling (traditional UNIX filesystems) or that only journal metadata
+and not file contents (OS X's HFS+, or Linux ext3 with "data=writeback").</p>
+</dd>
+<dt>
+alias.*
+</dt>
+<dd>
+<p>
+        Command aliases for the <a href="git.html">git(1)</a> command wrapper - e.g.
+        after defining "alias.last = cat-file commit HEAD", the invocation
+        "git last" is equivalent to "git cat-file commit HEAD". To avoid
+        confusion and troubles with script usage, aliases that
+        hide existing git commands are ignored. Arguments are split by
+        spaces, the usual shell quoting and escaping is supported.
+        quote pair and a backslash can be used to quote them.
+</p>
+<p>If the alias expansion is prefixed with an exclamation point,
+it will be treated as a shell command.  For example, defining
+"alias.new = !gitk --all --not ORIG_HEAD", the invocation
+"git new" is equivalent to running the shell command
+"gitk --all --not ORIG_HEAD".</p>
+</dd>
+<dt>
+apply.whitespace
+</dt>
+<dd>
+<p>
+        Tells <tt>git-apply</tt> how to handle whitespaces, in the same way
+        as the <em>--whitespace</em> option. See <a href="git-apply.html">git-apply(1)</a>.
+</p>
+</dd>
+<dt>
+branch.autosetupmerge
+</dt>
+<dd>
+<p>
+        Tells <tt>git-branch</tt> and <tt>git-checkout</tt> to setup new branches
+        so that <a href="git-pull.html">git-pull(1)</a> will appropriately merge from the
+        starting point branch. Note that even if this option is not set,
+        this behavior can be chosen per-branch using the <tt>--track</tt>
+        and <tt>--no-track</tt> options. The valid settings are: <tt>false</tt> &#8212; no
+        automatic setup is done; <tt>true</tt> &#8212; automatic setup is done when the
+        starting point is a remote branch; <tt>always</tt> &#8212; automatic setup is
+        done when the starting point is either a local branch or remote
+        branch. This option defaults to true.
+</p>
+</dd>
+<dt>
+branch.autosetuprebase
+</dt>
+<dd>
+<p>
+        When a new branch is created with <tt>git-branch</tt> or <tt>git-checkout</tt>
+        that tracks another branch, this variable tells git to set
+        up pull to rebase instead of merge (see "branch.&lt;name&gt;.rebase").
+        When <tt>never</tt>, rebase is never automatically set to true.
+        When <tt>local</tt>, rebase is set to true for tracked branches of
+        other local branches.
+        When <tt>remote</tt>, rebase is set to true for tracked branches of
+        remote branches.
+        When <tt>always</tt>, rebase will be set to true for all tracking
+        branches.
+        See "branch.autosetupmerge" for details on how to set up a
+        branch to track another branch.
+        This option defaults to never.
+</p>
+</dd>
+<dt>
+branch.&lt;name&gt;.remote
+</dt>
+<dd>
+<p>
+        When in branch &lt;name&gt;, it tells <tt>git fetch</tt> which remote to fetch.
+        If this option is not given, <tt>git fetch</tt> defaults to remote "origin".
+</p>
+</dd>
+<dt>
+branch.&lt;name&gt;.merge
+</dt>
+<dd>
+<p>
+        When in branch &lt;name&gt;, it tells <tt>git fetch</tt> the default
+        refspec to be marked for merging in FETCH_HEAD. The value is
+        handled like the remote part of a refspec, and must match a
+        ref which is fetched from the remote given by
+        "branch.&lt;name&gt;.remote".
+        The merge information is used by <tt>git pull</tt> (which at first calls
+        <tt>git fetch</tt>) to lookup the default branch for merging. Without
+        this option, <tt>git pull</tt> defaults to merge the first refspec fetched.
+        Specify multiple values to get an octopus merge.
+        If you wish to setup <tt>git pull</tt> so that it merges into &lt;name&gt; from
+        another branch in the local repository, you can point
+        branch.&lt;name&gt;.merge to the desired branch, and use the special setting
+        <tt>.</tt> (a period) for branch.&lt;name&gt;.remote.
+</p>
+</dd>
+<dt>
+branch.&lt;name&gt;.mergeoptions
+</dt>
+<dd>
+<p>
+        Sets default options for merging into branch &lt;name&gt;. The syntax and
+        supported options are equal to that of <a href="git-merge.html">git-merge(1)</a>, but
+        option values containing whitespace characters are currently not
+        supported.
+</p>
+</dd>
+<dt>
+branch.&lt;name&gt;.rebase
+</dt>
+<dd>
+<p>
+        When true, rebase the branch &lt;name&gt; on top of the fetched branch,
+        instead of merging the default branch from the default remote when
+        "git pull" is run.
+        <strong>NOTE</strong>: this is a possibly dangerous operation; do <strong>not</strong> use
+        it unless you understand the implications (see <a href="git-rebase.html">git-rebase(1)</a>
+        for details).
+</p>
+</dd>
+<dt>
+browser.&lt;tool&gt;.cmd
+</dt>
+<dd>
+<p>
+        Specify the command to invoke the specified browser. The
+        specified command is evaluated in shell with the URLs passed
+        as arguments. (See <a href="git-web--browse.html">git-web--browse(1)</a>.)
+</p>
+</dd>
+<dt>
+browser.&lt;tool&gt;.path
+</dt>
+<dd>
+<p>
+        Override the path for the given tool that may be used to
+        browse HTML help (see <em>-w</em> option in <a href="git-help.html">git-help(1)</a>) or a
+        working repository in gitweb (see <a href="git-instaweb.html">git-instaweb(1)</a>).
+</p>
+</dd>
+<dt>
+clean.requireForce
+</dt>
+<dd>
+<p>
+        A boolean to make git-clean do nothing unless given -f
+        or -n.   Defaults to true.
+</p>
+</dd>
+<dt>
+color.branch
+</dt>
+<dd>
+<p>
+        A boolean to enable/disable color in the output of
+        <a href="git-branch.html">git-branch(1)</a>. May be set to <tt>always</tt>,
+        <tt>false</tt> (or <tt>never</tt>) or <tt>auto</tt> (or <tt>true</tt>), in which case colors are used
+        only when the output is to a terminal. Defaults to false.
+</p>
+</dd>
+<dt>
+color.branch.&lt;slot&gt;
+</dt>
+<dd>
+<p>
+        Use customized color for branch coloration. <tt>&lt;slot&gt;</tt> is one of
+        <tt>current</tt> (the current branch), <tt>local</tt> (a local branch),
+        <tt>remote</tt> (a tracking branch in refs/remotes/), <tt>plain</tt> (other
+        refs).
+</p>
+<p>The value for these configuration variables is a list of colors (at most
+two) and attributes (at most one), separated by spaces.  The colors
+accepted are <tt>normal</tt>, <tt>black</tt>, <tt>red</tt>, <tt>green</tt>, <tt>yellow</tt>, <tt>blue</tt>,
+<tt>magenta</tt>, <tt>cyan</tt> and <tt>white</tt>; the attributes are <tt>bold</tt>, <tt>dim</tt>, <tt>ul</tt>,
+<tt>blink</tt> and <tt>reverse</tt>.  The first color given is the foreground; the
+second is the background.  The position of the attribute, if any,
+doesn't matter.</p>
+</dd>
+<dt>
+color.diff
+</dt>
+<dd>
+<p>
+        When set to <tt>always</tt>, always use colors in patch.
+        When false (or <tt>never</tt>), never.  When set to <tt>true</tt> or <tt>auto</tt>, use
+        colors only when the output is to the terminal. Defaults to false.
+</p>
+</dd>
+<dt>
+color.diff.&lt;slot&gt;
+</dt>
+<dd>
+<p>
+        Use customized color for diff colorization.  <tt>&lt;slot&gt;</tt> specifies
+        which part of the patch to use the specified color, and is one
+        of <tt>plain</tt> (context text), <tt>meta</tt> (metainformation), <tt>frag</tt>
+        (hunk header), <tt>old</tt> (removed lines), <tt>new</tt> (added lines),
+        <tt>commit</tt> (commit headers), or <tt>whitespace</tt> (highlighting
+        whitespace errors). The values of these variables may be specified as
+        in color.branch.&lt;slot&gt;.
+</p>
+</dd>
+<dt>
+color.interactive
+</dt>
+<dd>
+<p>
+        When set to <tt>always</tt>, always use colors for interactive prompts
+        and displays (such as those used by "git add --interactive").
+        When false (or <tt>never</tt>), never.  When set to <tt>true</tt> or <tt>auto</tt>, use
+        colors only when the output is to the terminal. Defaults to false.
+</p>
+</dd>
+<dt>
+color.interactive.&lt;slot&gt;
+</dt>
+<dd>
+<p>
+        Use customized color for <tt>git add --interactive</tt>
+        output. <tt>&lt;slot&gt;</tt> may be <tt>prompt</tt>, <tt>header</tt>, or <tt>help</tt>, for
+        three distinct types of normal output from interactive
+        programs.  The values of these variables may be specified as
+        in color.branch.&lt;slot&gt;.
+</p>
+</dd>
+<dt>
+color.pager
+</dt>
+<dd>
+<p>
+        A boolean to enable/disable colored output when the pager is in
+        use (default is true).
+</p>
+</dd>
+<dt>
+color.status
+</dt>
+<dd>
+<p>
+        A boolean to enable/disable color in the output of
+        <a href="git-status.html">git-status(1)</a>. May be set to <tt>always</tt>,
+        <tt>false</tt> (or <tt>never</tt>) or <tt>auto</tt> (or <tt>true</tt>), in which case colors are used
+        only when the output is to a terminal. Defaults to false.
+</p>
+</dd>
+<dt>
+color.status.&lt;slot&gt;
+</dt>
+<dd>
+<p>
+        Use customized color for status colorization. <tt>&lt;slot&gt;</tt> is
+        one of <tt>header</tt> (the header text of the status message),
+        <tt>added</tt> or <tt>updated</tt> (files which are added but not committed),
+        <tt>changed</tt> (files which are changed but not added in the index),
+        <tt>untracked</tt> (files which are not tracked by git), or
+        <tt>nobranch</tt> (the color the <em>no branch</em> warning is shown in, defaulting
+        to red). The values of these variables may be specified as in
+        color.branch.&lt;slot&gt;.
+</p>
+</dd>
+<dt>
+commit.template
+</dt>
+<dd>
+<p>
+        Specify a file to use as the template for new commit messages.
+</p>
+</dd>
+<dt>
+color.ui
+</dt>
+<dd>
+<p>
+        When set to <tt>always</tt>, always use colors in all git commands which
+        are capable of colored output. When false (or <tt>never</tt>), never. When
+        set to <tt>true</tt> or <tt>auto</tt>, use colors only when the output is to the
+        terminal. When more specific variables of color.* are set, they always
+        take precedence over this setting. Defaults to false.
+</p>
+</dd>
+<dt>
+diff.autorefreshindex
+</dt>
+<dd>
+<p>
+        When using <tt>git diff</tt> to compare with work tree
+        files, do not consider stat-only change as changed.
+        Instead, silently run <tt>git update-index --refresh</tt> to
+        update the cached stat information for paths whose
+        contents in the work tree match the contents in the
+        index.  This option defaults to true.  Note that this
+        affects only <tt>git diff</tt> Porcelain, and not lower level
+        <tt>diff</tt> commands, such as <tt>git diff-files</tt>.
+</p>
+</dd>
+<dt>
+diff.external
+</dt>
+<dd>
+<p>
+        If this config variable is set, diff generation is not
+        performed using the internal diff machinery, but using the
+        given command.  Note: if you want to use an external diff
+        program only on a subset of your files, you might want to
+        use <a href="gitattributes.html">gitattributes(5)</a> instead.
+</p>
+</dd>
+<dt>
+diff.renameLimit
+</dt>
+<dd>
+<p>
+        The number of files to consider when performing the copy/rename
+        detection; equivalent to the git diff option <em>-l</em>.
+</p>
+</dd>
+<dt>
+diff.renames
+</dt>
+<dd>
+<p>
+        Tells git to detect renames.  If set to any boolean value, it
+        will enable basic rename detection.  If set to "copies" or
+        "copy", it will detect copies, as well.
+</p>
+</dd>
+<dt>
+fetch.unpackLimit
+</dt>
+<dd>
+<p>
+        If the number of objects fetched over the git native
+        transfer is below this
+        limit, then the objects will be unpacked into loose object
+        files. However if the number of received objects equals or
+        exceeds this limit then the received pack will be stored as
+        a pack, after adding any missing delta bases.  Storing the
+        pack from a push can make the push operation complete faster,
+        especially on slow filesystems.  If not set, the value of
+        <tt>transfer.unpackLimit</tt> is used instead.
+</p>
+</dd>
+<dt>
+format.numbered
+</dt>
+<dd>
+<p>
+        A boolean which can enable sequence numbers in patch subjects.
+        Setting this option to "auto" will enable it only if there is
+        more than one patch.  See --numbered option in
+        <a href="git-format-patch.html">git-format-patch(1)</a>.
+</p>
+</dd>
+<dt>
+format.headers
+</dt>
+<dd>
+<p>
+        Additional email headers to include in a patch to be submitted
+        by mail.  See <a href="git-format-patch.html">git-format-patch(1)</a>.
+</p>
+</dd>
+<dt>
+format.suffix
+</dt>
+<dd>
+<p>
+        The default for format-patch is to output files with the suffix
+        <tt>.patch</tt>. Use this variable to change that suffix (make sure to
+        include the dot if you want it).
+</p>
+</dd>
+<dt>
+format.pretty
+</dt>
+<dd>
+<p>
+        The default pretty format for log/show/whatchanged command,
+        See <a href="git-log.html">git-log(1)</a>, <a href="git-show.html">git-show(1)</a>,
+        <a href="git-whatchanged.html">git-whatchanged(1)</a>.
+</p>
+</dd>
+<dt>
+gc.aggressiveWindow
+</dt>
+<dd>
+<p>
+        The window size parameter used in the delta compression
+        algorithm used by <em>git gc --aggressive</em>.  This defaults
+        to 10.
+</p>
+</dd>
+<dt>
+gc.auto
+</dt>
+<dd>
+<p>
+        When there are approximately more than this many loose
+        objects in the repository, <tt>git gc --auto</tt> will pack them.
+        Some Porcelain commands use this command to perform a
+        light-weight garbage collection from time to time.  The
+        default value is 6700.  Setting this to 0 disables it.
+</p>
+</dd>
+<dt>
+gc.autopacklimit
+</dt>
+<dd>
+<p>
+        When there are more than this many packs that are not
+        marked with <tt>*.keep</tt> file in the repository, <tt>git gc
+        --auto</tt> consolidates them into one larger pack.  The
+        default value is 50.  Setting this to 0 disables it.
+</p>
+</dd>
+<dt>
+gc.packrefs
+</dt>
+<dd>
+<p>
+        <tt>git gc</tt> does not run <tt>git pack-refs</tt> in a bare repository by
+        default so that older dumb-transport clients can still fetch
+        from the repository.  Setting this to <tt>true</tt> lets <tt>git
+        gc</tt> to run <tt>git pack-refs</tt>.  Setting this to <tt>false</tt> tells
+        <tt>git gc</tt> never to run <tt>git pack-refs</tt>. The default setting is
+        <tt>notbare</tt>. Enable it only when you know you do not have to
+        support such clients.  The default setting will change to <tt>true</tt>
+        at some stage, and setting this to <tt>false</tt> will continue to
+        prevent <tt>git pack-refs</tt> from being run from <tt>git gc</tt>.
+</p>
+</dd>
+<dt>
+gc.pruneexpire
+</dt>
+<dd>
+<p>
+        When <tt>git gc</tt> is run, it will call <tt>prune --expire 2.weeks.ago</tt>.
+        Override the grace period with this config variable.
+</p>
+</dd>
+<dt>
+gc.reflogexpire
+</dt>
+<dd>
+<p>
+        <tt>git reflog expire</tt> removes reflog entries older than
+        this time; defaults to 90 days.
+</p>
+</dd>
+<dt>
+gc.reflogexpireunreachable
+</dt>
+<dd>
+<p>
+        <tt>git reflog expire</tt> removes reflog entries older than
+        this time and are not reachable from the current tip;
+        defaults to 30 days.
+</p>
+</dd>
+<dt>
+gc.rerereresolved
+</dt>
+<dd>
+<p>
+        Records of conflicted merge you resolved earlier are
+        kept for this many days when <tt>git rerere gc</tt> is run.
+        The default is 60 days.  See <a href="git-rerere.html">git-rerere(1)</a>.
+</p>
+</dd>
+<dt>
+gc.rerereunresolved
+</dt>
+<dd>
+<p>
+        Records of conflicted merge you have not resolved are
+        kept for this many days when <tt>git rerere gc</tt> is run.
+        The default is 15 days.  See <a href="git-rerere.html">git-rerere(1)</a>.
+</p>
+</dd>
+<dt>
+rerere.enabled
+</dt>
+<dd>
+<p>
+        Activate recording of resolved conflicts, so that identical
+        conflict hunks can be resolved automatically, should they
+        be encountered again.  <a href="git-rerere.html">git-rerere(1)</a> command is by
+        default enabled if you create <tt>rr-cache</tt> directory under
+        <tt>$GIT_DIR</tt>, but can be disabled by setting this option to false.
+</p>
+</dd>
+<dt>
+gitcvs.enabled
+</dt>
+<dd>
+<p>
+        Whether the CVS server interface is enabled for this repository.
+        See <a href="git-cvsserver.html">git-cvsserver(1)</a>.
+</p>
+</dd>
+<dt>
+gitcvs.logfile
+</dt>
+<dd>
+<p>
+        Path to a log file where the CVS server interface well&#8230; logs
+        various stuff. See <a href="git-cvsserver.html">git-cvsserver(1)</a>.
+</p>
+</dd>
+</dl>
+<p>gitcvs.usecrlfattr
+        If true, the server will look up the <tt>crlf</tt> attribute for
+        files to determine the <em>-k</em> modes to use. If <tt>crlf</tt> is set,
+        the <em>-k</em> mode will be left blank, so cvs clients will
+        treat it as text. If <tt>crlf</tt> is explicitly unset, the file
+        will be set with <em>-kb</em> mode, which supresses any newline munging
+        the client might otherwise do. If <tt>crlf</tt> is not specified,
+        then <em>gitcvs.allbinary</em> is used. See <a href="gitattribute.html">gitattribute(5)</a>.</p>
+<dl>
+<dt>
+gitcvs.allbinary
+</dt>
+<dd>
+<p>
+        This is used if <em>gitcvs.usecrlfattr</em> does not resolve
+        the correct <em>-kb</em> mode to use. If true, all
+        unresolved files are sent to the client in
+        mode <em>-kb</em>. This causes the client to treat them
+        as binary files, which suppresses any newline munging it
+        otherwise might do. Alternatively, if it is set to "guess",
+        then the contents of the file are examined to decide if
+        it is binary, similar to <em>core.autocrlf</em>.
+</p>
+</dd>
+<dt>
+gitcvs.dbname
+</dt>
+<dd>
+<p>
+        Database used by git-cvsserver to cache revision information
+        derived from the git repository. The exact meaning depends on the
+        used database driver, for SQLite (which is the default driver) this
+        is a filename. Supports variable substitution (see
+        <a href="git-cvsserver.html">git-cvsserver(1)</a> for details). May not contain semicolons (<tt>;</tt>).
+        Default: <em>%Ggitcvs.%m.sqlite</em>
+</p>
+</dd>
+<dt>
+gitcvs.dbdriver
+</dt>
+<dd>
+<p>
+        Used Perl DBI driver. You can specify any available driver
+        for this here, but it might not work. git-cvsserver is tested
+        with <em>DBD::SQLite</em>, reported to work with <em>DBD::Pg</em>, and
+        reported <strong>not</strong> to work with <em>DBD::mysql</em>. Experimental feature.
+        May not contain double colons (<tt>:</tt>). Default: <em>SQLite</em>.
+        See <a href="git-cvsserver.html">git-cvsserver(1)</a>.
+</p>
+</dd>
+<dt>
+gitcvs.dbuser, gitcvs.dbpass
+</dt>
+<dd>
+<p>
+        Database user and password. Only useful if setting <em>gitcvs.dbdriver</em>,
+        since SQLite has no concept of database users and/or passwords.
+        <em>gitcvs.dbuser</em> supports variable substitution (see
+        <a href="git-cvsserver.html">git-cvsserver(1)</a> for details).
+</p>
+</dd>
+<dt>
+gitcvs.dbTableNamePrefix
+</dt>
+<dd>
+<p>
+        Database table name prefix.  Prepended to the names of any
+        database tables used, allowing a single database to be used
+        for several repositories.  Supports variable substitution (see
+        <a href="git-cvsserver.html">git-cvsserver(1)</a> for details).  Any non-alphabetic
+        characters will be replaced with underscores.
+</p>
+</dd>
+</dl>
+<p>All gitcvs variables except for <em>gitcvs.usecrlfattr</em> and
+<em>gitcvs.allbinary</em> can also be specified as
+<em>gitcvs.&lt;access_method&gt;.&lt;varname&gt;</em> (where <em>access_method</em>
+is one of "ext" and "pserver") to make them apply only for the given
+access method.</p>
+<dl>
+<dt>
+gui.commitmsgwidth
+</dt>
+<dd>
+<p>
+        Defines how wide the commit message window is in the
+        <a href="git-gui.html">git-gui(1)</a>. "75" is the default.
+</p>
+</dd>
+<dt>
+gui.diffcontext
+</dt>
+<dd>
+<p>
+        Specifies how many context lines should be used in calls to diff
+        made by the <a href="git-gui.html">git-gui(1)</a>. The default is "5".
+</p>
+</dd>
+<dt>
+gui.matchtrackingbranch
+</dt>
+<dd>
+<p>
+        Determines if new branches created with <a href="git-gui.html">git-gui(1)</a> should
+        default to tracking remote branches with matching names or
+        not. Default: "false".
+</p>
+</dd>
+<dt>
+gui.newbranchtemplate
+</dt>
+<dd>
+<p>
+        Is used as suggested name when creating new branches using the
+        <a href="git-gui.html">git-gui(1)</a>.
+</p>
+</dd>
+<dt>
+gui.pruneduringfetch
+</dt>
+<dd>
+<p>
+        "true" if <a href="git-gui.html">git-gui(1)</a> should prune tracking branches when
+        performing a fetch. The default value is "false".
+</p>
+</dd>
+<dt>
+gui.trustmtime
+</dt>
+<dd>
+<p>
+        Determines if <a href="git-gui.html">git-gui(1)</a> should trust the file modification
+        timestamp or not. By default the timestamps are not trusted.
+</p>
+</dd>
+<dt>
+gui.spellingdictionary
+</dt>
+<dd>
+<p>
+        Specifies the dictionary used for spell checking commit messages in
+        the <a href="git-gui.html">git-gui(1)</a>. When set to "none" spell checking is turned
+        off.
+</p>
+</dd>
+<dt>
+help.browser
+</dt>
+<dd>
+<p>
+        Specify the browser that will be used to display help in the
+        <em>web</em> format. See <a href="git-help.html">git-help(1)</a>.
+</p>
+</dd>
+<dt>
+help.format
+</dt>
+<dd>
+<p>
+        Override the default help format used by <a href="git-help.html">git-help(1)</a>.
+        Values <em>man</em>, <em>info</em>, <em>web</em> and <em>html</em> are supported. <em>man</em> is
+        the default. <em>web</em> and <em>html</em> are the same.
+</p>
+</dd>
+<dt>
+http.proxy
+</dt>
+<dd>
+<p>
+        Override the HTTP proxy, normally configured using the <em>http_proxy</em>
+        environment variable (see <a href="curl.html">curl(1)</a>).  This can be overridden
+        on a per-remote basis; see remote.&lt;name&gt;.proxy
+</p>
+</dd>
+<dt>
+http.sslVerify
+</dt>
+<dd>
+<p>
+        Whether to verify the SSL certificate when fetching or pushing
+        over HTTPS. Can be overridden by the <em>GIT_SSL_NO_VERIFY</em> environment
+        variable.
+</p>
+</dd>
+<dt>
+http.sslCert
+</dt>
+<dd>
+<p>
+        File containing the SSL certificate when fetching or pushing
+        over HTTPS. Can be overridden by the <em>GIT_SSL_CERT</em> environment
+        variable.
+</p>
+</dd>
+<dt>
+http.sslKey
+</dt>
+<dd>
+<p>
+        File containing the SSL private key when fetching or pushing
+        over HTTPS. Can be overridden by the <em>GIT_SSL_KEY</em> environment
+        variable.
+</p>
+</dd>
+<dt>
+http.sslCAInfo
+</dt>
+<dd>
+<p>
+        File containing the certificates to verify the peer with when
+        fetching or pushing over HTTPS. Can be overridden by the
+        <em>GIT_SSL_CAINFO</em> environment variable.
+</p>
+</dd>
+<dt>
+http.sslCAPath
+</dt>
+<dd>
+<p>
+        Path containing files with the CA certificates to verify the peer
+        with when fetching or pushing over HTTPS. Can be overridden
+        by the <em>GIT_SSL_CAPATH</em> environment variable.
+</p>
+</dd>
+<dt>
+http.maxRequests
+</dt>
+<dd>
+<p>
+        How many HTTP requests to launch in parallel. Can be overridden
+        by the <em>GIT_HTTP_MAX_REQUESTS</em> environment variable. Default is 5.
+</p>
+</dd>
+<dt>
+http.lowSpeedLimit, http.lowSpeedTime
+</dt>
+<dd>
+<p>
+        If the HTTP transfer speed is less than <em>http.lowSpeedLimit</em>
+        for longer than <em>http.lowSpeedTime</em> seconds, the transfer is aborted.
+        Can be overridden by the <em>GIT_HTTP_LOW_SPEED_LIMIT</em> and
+        <em>GIT_HTTP_LOW_SPEED_TIME</em> environment variables.
+</p>
+</dd>
+<dt>
+http.noEPSV
+</dt>
+<dd>
+<p>
+        A boolean which disables using of EPSV ftp command by curl.
+        This can helpful with some "poor" ftp servers which don't
+        support EPSV mode. Can be overridden by the <em>GIT_CURL_FTP_NO_EPSV</em>
+        environment variable. Default is false (curl will use EPSV).
+</p>
+</dd>
+<dt>
+i18n.commitEncoding
+</dt>
+<dd>
+<p>
+        Character encoding the commit messages are stored in; git itself
+        does not care per se, but this information is necessary e.g. when
+        importing commits from emails or in the gitk graphical history
+        browser (and possibly at other places in the future or in other
+        porcelains). See e.g. <a href="git-mailinfo.html">git-mailinfo(1)</a>. Defaults to <em>utf-8</em>.
+</p>
+</dd>
+<dt>
+i18n.logOutputEncoding
+</dt>
+<dd>
+<p>
+        Character encoding the commit messages are converted to when
+        running <tt>git-log</tt> and friends.
+</p>
+</dd>
+<dt>
+instaweb.browser
+</dt>
+<dd>
+<p>
+        Specify the program that will be used to browse your working
+        repository in gitweb. See <a href="git-instaweb.html">git-instaweb(1)</a>.
+</p>
+</dd>
+<dt>
+instaweb.httpd
+</dt>
+<dd>
+<p>
+        The HTTP daemon command-line to start gitweb on your working
+        repository. See <a href="git-instaweb.html">git-instaweb(1)</a>.
+</p>
+</dd>
+<dt>
+instaweb.local
+</dt>
+<dd>
+<p>
+        If true the web server started by <a href="git-instaweb.html">git-instaweb(1)</a> will
+        be bound to the local IP (127.0.0.1).
+</p>
+</dd>
+<dt>
+instaweb.modulepath
+</dt>
+<dd>
+<p>
+        The module path for an apache httpd used by <a href="git-instaweb.html">git-instaweb(1)</a>.
+</p>
+</dd>
+<dt>
+instaweb.port
+</dt>
+<dd>
+<p>
+        The port number to bind the gitweb httpd to. See
+        <a href="git-instaweb.html">git-instaweb(1)</a>.
+</p>
+</dd>
+<dt>
+log.date
+</dt>
+<dd>
+<p>
+        Set default date-time mode for the log command. Setting log.date
+        value is similar to using git log's --date option. The value is one of
+        following alternatives: {relative,local,default,iso,rfc,short}.
+        See <a href="git-log.html">git-log(1)</a>.
+</p>
+</dd>
+<dt>
+log.showroot
+</dt>
+<dd>
+<p>
+        If true, the initial commit will be shown as a big creation event.
+        This is equivalent to a diff against an empty tree.
+        Tools like <a href="git-log.html">git-log(1)</a> or <a href="git-whatchanged.html">git-whatchanged(1)</a>, which
+        normally hide the root commit will now show it. True by default.
+</p>
+</dd>
+<dt>
+man.viewer
+</dt>
+<dd>
+<p>
+        Specify the programs that may be used to display help in the
+        <em>man</em> format. See <a href="git-help.html">git-help(1)</a>.
+</p>
+</dd>
+<dt>
+merge.stat
+</dt>
+<dd>
+<p>
+        Whether to print the diffstat berween ORIG_HEAD and merge result
+        at the end of the merge.  True by default.
+</p>
+</dd>
+<dt>
+merge.log
+</dt>
+<dd>
+<p>
+        Whether to include summaries of merged commits in newly created
+        merge commit messages. False by default.
+</p>
+</dd>
+<dt>
+merge.renameLimit
+</dt>
+<dd>
+<p>
+        The number of files to consider when performing rename detection
+        during a merge; if not specified, defaults to the value of
+        diff.renameLimit.
+</p>
+</dd>
+<dt>
+merge.tool
+</dt>
+<dd>
+<p>
+        Controls which merge resolution program is used by
+        <a href="git-mergetool.html">git-mergetool(1)</a>.  Valid built-in values are: "kdiff3",
+        "tkdiff", "meld", "xxdiff", "emerge", "vimdiff", "gvimdiff", and
+        "opendiff".  Any other value is treated is custom merge tool
+        and there must be a corresponing mergetool.&lt;tool&gt;.cmd option.
+</p>
+</dd>
+<dt>
+merge.verbosity
+</dt>
+<dd>
+<p>
+        Controls the amount of output shown by the recursive merge
+        strategy.  Level 0 outputs nothing except a final error
+        message if conflicts were detected. Level 1 outputs only
+        conflicts, 2 outputs conflicts and file changes.  Level 5 and
+        above outputs debugging information.  The default is level 2.
+        Can be overridden by <em>GIT_MERGE_VERBOSITY</em> environment variable.
+</p>
+</dd>
+<dt>
+merge.&lt;driver&gt;.name
+</dt>
+<dd>
+<p>
+        Defines a human readable name for a custom low-level
+        merge driver.  See <a href="gitattributes.html">gitattributes(5)</a> for details.
+</p>
+</dd>
+<dt>
+merge.&lt;driver&gt;.driver
+</dt>
+<dd>
+<p>
+        Defines the command that implements a custom low-level
+        merge driver.  See <a href="gitattributes.html">gitattributes(5)</a> for details.
+</p>
+</dd>
+<dt>
+merge.&lt;driver&gt;.recursive
+</dt>
+<dd>
+<p>
+        Names a low-level merge driver to be used when
+        performing an internal merge between common ancestors.
+        See <a href="gitattributes.html">gitattributes(5)</a> for details.
+</p>
+</dd>
+<dt>
+man.&lt;tool&gt;.cmd
+</dt>
+<dd>
+<p>
+        Specify the command to invoke the specified man viewer. The
+        specified command is evaluated in shell with the man page
+        passed as argument. (See <a href="git-help.html">git-help(1)</a>.)
+</p>
+</dd>
+<dt>
+man.&lt;tool&gt;.path
+</dt>
+<dd>
+<p>
+        Override the path for the given tool that may be used to
+        display help in the <em>man</em> format. See <a href="git-help.html">git-help(1)</a>.
+</p>
+</dd>
+<dt>
+mergetool.&lt;tool&gt;.path
+</dt>
+<dd>
+<p>
+        Override the path for the given tool.  This is useful in case
+        your tool is not in the PATH.
+</p>
+</dd>
+<dt>
+mergetool.&lt;tool&gt;.cmd
+</dt>
+<dd>
+<p>
+        Specify the command to invoke the specified merge tool.  The
+        specified command is evaluated in shell with the following
+        variables available: <em>BASE</em> is the name of a temporary file
+        containing the common base of the files to be merged, if available;
+        <em>LOCAL</em> is the name of a temporary file containing the contents of
+        the file on the current branch; <em>REMOTE</em> is the name of a temporary
+        file containing the contents of the file from the branch being
+        merged; <em>MERGED</em> contains the name of the file to which the merge
+        tool should write the results of a successful merge.
+</p>
+</dd>
+<dt>
+mergetool.&lt;tool&gt;.trustExitCode
+</dt>
+<dd>
+<p>
+        For a custom merge command, specify whether the exit code of
+        the merge command can be used to determine whether the merge was
+        successful.  If this is not set to true then the merge target file
+        timestamp is checked and the merge assumed to have been successful
+        if the file has been updated, otherwise the user is prompted to
+        indicate the success of the merge.
+</p>
+</dd>
+<dt>
+mergetool.keepBackup
+</dt>
+<dd>
+<p>
+        After performing a merge, the original file with conflict markers
+        can be saved as a file with a <tt>.orig</tt> extension.  If this variable
+        is set to <tt>false</tt> then this file is not preserved.  Defaults to
+        <tt>true</tt> (i.e. keep the backup files).
+</p>
+</dd>
+<dt>
+pack.window
+</dt>
+<dd>
+<p>
+        The size of the window used by <a href="git-pack-objects.html">git-pack-objects(1)</a> when no
+        window size is given on the command line. Defaults to 10.
+</p>
+</dd>
+<dt>
+pack.depth
+</dt>
+<dd>
+<p>
+        The maximum delta depth used by <a href="git-pack-objects.html">git-pack-objects(1)</a> when no
+        maximum depth is given on the command line. Defaults to 50.
+</p>
+</dd>
+<dt>
+pack.windowMemory
+</dt>
+<dd>
+<p>
+        The window memory size limit used by <a href="git-pack-objects.html">git-pack-objects(1)</a>
+        when no limit is given on the command line.  The value can be
+        suffixed with "k", "m", or "g".  Defaults to 0, meaning no
+        limit.
+</p>
+</dd>
+<dt>
+pack.compression
+</dt>
+<dd>
+<p>
+        An integer -1..9, indicating the compression level for objects
+        in a pack file. -1 is the zlib default. 0 means no
+        compression, and 1..9 are various speed/size tradeoffs, 9 being
+        slowest.  If not set,  defaults to core.compression.  If that is
+        not set,  defaults to -1, the zlib default, which is "a default
+        compromise between speed and compression (currently equivalent
+        to level 6)."
+</p>
+</dd>
+<dt>
+pack.deltaCacheSize
+</dt>
+<dd>
+<p>
+        The maximum memory in bytes used for caching deltas in
+        <a href="git-pack-objects.html">git-pack-objects(1)</a>.
+        A value of 0 means no limit. Defaults to 0.
+</p>
+</dd>
+<dt>
+pack.deltaCacheLimit
+</dt>
+<dd>
+<p>
+        The maximum size of a delta, that is cached in
+        <a href="git-pack-objects.html">git-pack-objects(1)</a>. Defaults to 1000.
+</p>
+</dd>
+<dt>
+pack.threads
+</dt>
+<dd>
+<p>
+        Specifies the number of threads to spawn when searching for best
+        delta matches.  This requires that <a href="git-pack-objects.html">git-pack-objects(1)</a>
+        be compiled with pthreads otherwise this option is ignored with a
+        warning. This is meant to reduce packing time on multiprocessor
+        machines. The required amount of memory for the delta search window
+        is however multiplied by the number of threads.
+        Specifying 0 will cause git to auto-detect the number of CPU's
+        and set the number of threads accordingly.
+</p>
+</dd>
+<dt>
+pack.indexVersion
+</dt>
+<dd>
+<p>
+        Specify the default pack index version.  Valid values are 1 for
+        legacy pack index used by Git versions prior to 1.5.2, and 2 for
+        the new pack index with capabilities for packs larger than 4 GB
+        as well as proper protection against the repacking of corrupted
+        packs.  Version 2 is selected and this config option ignored
+        whenever the corresponding pack is larger than 2 GB.  Otherwise
+        the default is 1.
+</p>
+</dd>
+<dt>
+pack.packSizeLimit
+</dt>
+<dd>
+<p>
+        The default maximum size of a pack.  This setting only affects
+        packing to a file, i.e. the git:// protocol is unaffected.  It
+        can be overridden by the <tt>--max-pack-size</tt> option of
+        <a href="git-repack.html">git-repack(1)</a>.
+</p>
+</dd>
+<dt>
+pull.octopus
+</dt>
+<dd>
+<p>
+        The default merge strategy to use when pulling multiple branches
+        at once.
+</p>
+</dd>
+<dt>
+pull.twohead
+</dt>
+<dd>
+<p>
+        The default merge strategy to use when pulling a single branch.
+</p>
+</dd>
+<dt>
+remote.&lt;name&gt;.url
+</dt>
+<dd>
+<p>
+        The URL of a remote repository.  See <a href="git-fetch.html">git-fetch(1)</a> or
+        <a href="git-push.html">git-push(1)</a>.
+</p>
+</dd>
+<dt>
+remote.&lt;name&gt;.proxy
+</dt>
+<dd>
+<p>
+        For remotes that require curl (http, https and ftp), the URL to
+        the proxy to use for that remote.  Set to the empty string to
+        disable proxying for that remote.
+</p>
+</dd>
+<dt>
+remote.&lt;name&gt;.fetch
+</dt>
+<dd>
+<p>
+        The default set of "refspec" for <a href="git-fetch.html">git-fetch(1)</a>. See
+        <a href="git-fetch.html">git-fetch(1)</a>.
+</p>
+</dd>
+<dt>
+remote.&lt;name&gt;.push
+</dt>
+<dd>
+<p>
+        The default set of "refspec" for <a href="git-push.html">git-push(1)</a>. See
+        <a href="git-push.html">git-push(1)</a>.
+</p>
+</dd>
+<dt>
+remote.&lt;name&gt;.mirror
+</dt>
+<dd>
+<p>
+        If true, pushing to this remote will automatically behave
+        as if the <tt>--mirror</tt> option was given on the command line.
+</p>
+</dd>
+<dt>
+remote.&lt;name&gt;.skipDefaultUpdate
+</dt>
+<dd>
+<p>
+        If true, this remote will be skipped by default when updating
+        using the update subcommand of <a href="git-remote.html">git-remote(1)</a>.
+</p>
+</dd>
+<dt>
+remote.&lt;name&gt;.receivepack
+</dt>
+<dd>
+<p>
+        The default program to execute on the remote side when pushing.  See
+        option --receive-pack of <a href="git-push.html">git-push(1)</a>.
+</p>
+</dd>
+<dt>
+remote.&lt;name&gt;.uploadpack
+</dt>
+<dd>
+<p>
+        The default program to execute on the remote side when fetching.  See
+        option --upload-pack of <a href="git-fetch-pack.html">git-fetch-pack(1)</a>.
+</p>
+</dd>
+<dt>
+remote.&lt;name&gt;.tagopt
+</dt>
+<dd>
+<p>
+        Setting this value to --no-tags disables automatic tag following when
+        fetching from remote &lt;name&gt;
+</p>
+</dd>
+<dt>
+remotes.&lt;group&gt;
+</dt>
+<dd>
+<p>
+        The list of remotes which are fetched by "git remote update
+        &lt;group&gt;".  See <a href="git-remote.html">git-remote(1)</a>.
+</p>
+</dd>
+<dt>
+repack.usedeltabaseoffset
+</dt>
+<dd>
+<p>
+        Allow <a href="git-repack.html">git-repack(1)</a> to create packs that uses
+        delta-base offset.  Defaults to false.
+</p>
+</dd>
+<dt>
+showbranch.default
+</dt>
+<dd>
+<p>
+        The default set of branches for <a href="git-show-branch.html">git-show-branch(1)</a>.
+        See <a href="git-show-branch.html">git-show-branch(1)</a>.
+</p>
+</dd>
+<dt>
+status.relativePaths
+</dt>
+<dd>
+<p>
+        By default, <a href="git-status.html">git-status(1)</a> shows paths relative to the
+        current directory. Setting this variable to <tt>false</tt> shows paths
+        relative to the repository root (this was the default for git
+        prior to v1.5.4).
+</p>
+</dd>
+<dt>
+status.showUntrackedFiles
+</dt>
+<dd>
+<p>
+        By default, <a href="git-status.html">git-status(1)</a> and <a href="git-commit.html">git-commit(1)</a> show
+        files which are not currently tracked by Git. Directories which
+        contain only untracked files, are shown with the directory name
+        only. Showing untracked files means that Git needs to lstat() all
+        all the files in the whole repository, which might be slow on some
+        systems. So, this variable controls how the commands displays
+        the untracked files. Possible values are:
+</p>
+<ul>
+<li>
+<p>
+<em>no</em>     - Show no untracked files
+</p>
+</li>
+<li>
+<p>
+<em>normal</em> - Shows untracked files and directories
+</p>
+</li>
+<li>
+<p>
+<em>all</em>    - Shows also individual files in untracked directories.
+</p>
+</li>
+</ul>
+<p>If this variable is not specified, it defaults to <em>normal</em>.
+This variable can be overridden with the -u|--untracked-files option
+of <a href="git-status.html">git-status(1)</a> and <a href="git-commit.html">git-commit(1)</a>.</p>
+</dd>
+<dt>
+tar.umask
+</dt>
+<dd>
+<p>
+        This variable can be used to restrict the permission bits of
+        tar archive entries.  The default is 0002, which turns off the
+        world write bit.  The special value "user" indicates that the
+        archiving user's umask will be used instead.  See umask(2) and
+        <a href="git-archive.html">git-archive(1)</a>.
+</p>
+</dd>
+<dt>
+url.&lt;base&gt;.insteadOf
+</dt>
+<dd>
+<p>
+        Any URL that starts with this value will be rewritten to
+        start, instead, with &lt;base&gt;. In cases where some site serves a
+        large number of repositories, and serves them with multiple
+        access methods, and some users need to use different access
+        methods, this feature allows people to specify any of the
+        equivalent URLs and have git automatically rewrite the URL to
+        the best alternative for the particular user, even for a
+        never-before-seen repository on the site.  When more than one
+        insteadOf strings match a given URL, the longest match is used.
+</p>
+</dd>
+<dt>
+user.email
+</dt>
+<dd>
+<p>
+        Your email address to be recorded in any newly created commits.
+        Can be overridden by the <em>GIT_AUTHOR_EMAIL</em>, <em>GIT_COMMITTER_EMAIL</em>, and
+        <em>EMAIL</em> environment variables.  See <a href="git-commit-tree.html">git-commit-tree(1)</a>.
+</p>
+</dd>
+<dt>
+user.name
+</dt>
+<dd>
+<p>
+        Your full name to be recorded in any newly created commits.
+        Can be overridden by the <em>GIT_AUTHOR_NAME</em> and <em>GIT_COMMITTER_NAME</em>
+        environment variables.  See <a href="git-commit-tree.html">git-commit-tree(1)</a>.
+</p>
+</dd>
+<dt>
+user.signingkey
+</dt>
+<dd>
+<p>
+        If <a href="git-tag.html">git-tag(1)</a> is not selecting the key you want it to
+        automatically when creating a signed tag, you can override the
+        default selection with this variable.  This option is passed
+        unchanged to gpg's --local-user parameter, so you may specify a key
+        using any method that gpg supports.
+</p>
+</dd>
+<dt>
+imap
+</dt>
+<dd>
+<p>
+        The configuration variables in the <em>imap</em> section are described
+        in <a href="git-imap-send.html">git-imap-send(1)</a>.
+</p>
+</dd>
+<dt>
+receive.fsckObjects
+</dt>
+<dd>
+<p>
+        If it is set to true, git-receive-pack will check all received
+        objects. It will abort in the case of a malformed object or a
+        broken link. The result of an abort are only dangling objects.
+        Defaults to false.
+</p>
+</dd>
+<dt>
+receive.unpackLimit
+</dt>
+<dd>
+<p>
+        If the number of objects received in a push is below this
+        limit then the objects will be unpacked into loose object
+        files. However if the number of received objects equals or
+        exceeds this limit then the received pack will be stored as
+        a pack, after adding any missing delta bases.  Storing the
+        pack from a push can make the push operation complete faster,
+        especially on slow filesystems.  If not set, the value of
+        <tt>transfer.unpackLimit</tt> is used instead.
+</p>
+</dd>
+<dt>
+receive.denyNonFastForwards
+</dt>
+<dd>
+<p>
+        If set to true, git-receive-pack will deny a ref update which is
+        not a fast forward. Use this to prevent such an update via a push,
+        even if that push is forced. This configuration variable is
+        set when initializing a shared repository.
+</p>
+</dd>
+<dt>
+transfer.unpackLimit
+</dt>
+<dd>
+<p>
+        When <tt>fetch.unpackLimit</tt> or <tt>receive.unpackLimit</tt> are
+        not set, the value of this variable is used instead.
+        The default value is 100.
+</p>
+</dd>
+<dt>
+web.browser
+</dt>
+<dd>
+<p>
+        Specify a web browser that may be used by some commands.
+        Currently only <a href="git-instaweb.html">git-instaweb(1)</a> and <a href="git-help.html">git-help(1)</a>
+        may use it.
+</p>
+</dd>
+</dl>
+</div>
+<h2>Author</h2>
+<div class="sectionbody">
+<p>Written by Johannes Schindelin &lt;Johannes.Schindelin@gmx.de&gt;</p>
+</div>
+<h2>Documentation</h2>
+<div class="sectionbody">
+<p>Documentation by Johannes Schindelin, Petr Baudis and the git-list &lt;git@vger.kernel.org&gt;.</p>
+</div>
+<h2>GIT</h2>
+<div class="sectionbody">
+<p>Part of the <a href="git.html">git(1)</a> suite</p>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 29-Jun-2008 08:48:21 UTC
+</div>
+</div>
+</body>
+</html>

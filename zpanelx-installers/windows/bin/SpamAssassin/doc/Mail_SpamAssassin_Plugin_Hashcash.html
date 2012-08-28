@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Mail::SpamAssassin::Plugin::Hashcash - perform hashcash verification tests</title>
+<link rev="made" href="mailto:" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#user_settings">USER SETTINGS</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Mail::SpamAssassin::Plugin::Hashcash - perform hashcash verification tests</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+  loadplugin     Mail::SpamAssassin::Plugin::Hashcash</pre>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>Hashcash is a payment system for email where CPU cycles used as the
+basis for an e-cash system.  This plugin makes it possible to use valid
+hashcash tokens added by mail programs as a bonus for messages.</p>
+<p>
+</p>
+<hr />
+<h1><a name="user_settings">USER SETTINGS</a></h1>
+<dl>
+<dt><strong><a name="item_use_hashcash__7b_1__7c_0__7d__28default_3a_1_29">use_hashcash { 1 | 0 }   (default: 1)</a></strong><br />
+</dt>
+<dd>
+Whether to use hashcash, if it is available.
+</dd>
+<p></p>
+<dt><strong><a name="item_hashcash_accept_add_40ress_2ecom__2e_2e_2e">hashcash_accept <a href="mailto:add@ress.com">add@ress.com</a> ...</a></strong><br />
+</dt>
+<dd>
+Used to specify addresses that we accept HashCash tokens for.  You should set
+it to match all the addresses that you may receive mail at.
+</dd>
+<dd>
+<p>Like whitelist and blacklist entries, the addresses are file-glob-style
+patterns, so <code>friend@somewhere.com</code>, <code>*@isp.com</code>, or <code>*.domain.net</code> will all
+work.  Specifically, <code>*</code> and <code>?</code> are allowed, but all other metacharacters
+are not.  Regular expressions are not used for security reasons.</p>
+</dd>
+<dd>
+<p>The sequence <code>%u</code> is replaced with the current user's username, which
+is useful for ISPs or multi-user domains.</p>
+</dd>
+<dd>
+<p>Multiple addresses per line, separated by spaces, is OK.  Multiple
+<code>hashcash_accept</code> lines is also OK.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_file">hashcash_doublespend_path /path/to/file   (default: ~/.spamassassin/hashcash_seen)</a></strong><br />
+</dt>
+<dd>
+Path for HashCash double-spend database.  HashCash tokens are only usable once,
+so their use is tracked in this database to avoid providing a loophole.
+</dd>
+<dd>
+<p>By default, each user has their own, in their <code>~/.spamassassin</code> directory with
+mode 0700/0600.  Note that once a token is 'spent' it is written to this file,
+and double-spending of a hashcash token makes it invalid, so this is not
+suitable for sharing between multiple users.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_hashcash_doublespend_file_mode">hashcash_doublespend_file_mode            (default: 0700)</a></strong><br />
+</dt>
+<dd>
+The file mode bits used for the HashCash double-spend database file.
+</dd>
+<dd>
+<p>Make sure you specify this using the 'x' mode bits set, as it may also be used
+to create directories.  However, if a file is created, the resulting file will
+not have any execute bits set (the umask is set to 111).</p>
+</dd>
+<p></p></dl>
+
+</body>
+
+</html>

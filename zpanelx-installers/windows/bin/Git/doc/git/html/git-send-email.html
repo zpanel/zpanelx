@@ -1,0 +1,704 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 7.0.2" />
+<style type="text/css">
+/* Debug borders */
+p, li, dt, dd, div, pre, h1, h2, h3, h4, h5, h6 {
+/*
+  border: 1px solid red;
+*/
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a { color: blue; }
+a:visited { color: fuchsia; }
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
+tt {
+  color: navy;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  font-family: sans-serif;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  border-bottom: 2px solid silver;
+  padding-top: 0.5em;
+}
+
+div.sectionbody {
+  font-family: serif;
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+span#author {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+span#email {
+}
+span#revision {
+  font-family: sans-serif;
+}
+
+div#footer {
+  font-family: sans-serif;
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+div#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+div#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+div#preamble,
+div.tableblock, div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-right: 10%;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock > div.content {
+  padding-left: 2.0em;
+}
+div.quoteblock .attribution {
+  text-align: right;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 2px solid silver;
+}
+
+div.exampleblock > div.content {
+  border-left: 2px solid silver;
+  padding: 0.5em;
+}
+
+div.verseblock div.content {
+  white-space: pre;
+}
+
+div.imageblock div.content { padding-left: 0; }
+div.imageblock img { border: 1px solid silver; }
+span.image img { border-style: none; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: italic;
+}
+dd > *:first-child {
+  margin-top: 0;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.olist2 {
+  list-style-type: lower-alpha;
+}
+
+div.tableblock > table {
+  border-color: #527bbd;
+  border-width: 3px;
+}
+thead {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+tfoot {
+  font-weight: bold;
+}
+
+div.hlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+td.hlist1 {
+  vertical-align: top;
+  font-style: italic;
+  padding-right: 0.8em;
+}
+td.hlist2 {
+  vertical-align: top;
+}
+
+@media print {
+  div#footer-badges { display: none; }
+}
+include::./stylesheets/xhtml11-manpage.css[]
+/* Workarounds for IE6's broken and incomplete CSS2. */
+
+div.sidebar-content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+div.sidebar-title, div.image-title {
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 0.0em;
+  margin-bottom: 0.5em;
+}
+
+div.listingblock div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock-content {
+  padding-left: 2.0em;
+}
+
+div.exampleblock-content {
+  border-left: 2px solid silver;
+  padding-left: 0.5em;
+}
+</style>
+<title>git-send-email(1)</title>
+</head>
+<body>
+<div id="header">
+<h1>
+git-send-email(1) Manual Page
+</h1>
+<h2>NAME</h2>
+<div class="sectionbody">
+<p>git-send-email -
+   Send a collection of patches as emails
+</p>
+</div>
+</div>
+<h2>SYNOPSIS</h2>
+<div class="sectionbody">
+<p><em>git-send-email</em> [options] &lt;file|directory&gt; [&#8230; file|directory]</p>
+</div>
+<h2>DESCRIPTION</h2>
+<div class="sectionbody">
+<p>Takes the patches given on the command line and emails them out.</p>
+<p>The header of the email is configurable by command line options.  If not
+specified on the command line, the user will be prompted with a ReadLine
+enabled interface to provide the necessary information.</p>
+</div>
+<h2>OPTIONS</h2>
+<div class="sectionbody">
+<p>The options available are:</p>
+<dl>
+<dt>
+--bcc
+</dt>
+<dd>
+<p>
+        Specify a "Bcc:" value for each email.
+</p>
+<p>The --bcc option must be repeated for each user you want on the bcc list.</p>
+</dd>
+<dt>
+--cc
+</dt>
+<dd>
+<p>
+        Specify a starting "Cc:" value for each email.
+</p>
+<p>The --cc option must be repeated for each user you want on the cc list.</p>
+</dd>
+<dt>
+--cc-cmd
+</dt>
+<dd>
+<p>
+        Specify a command to execute once per patch file which
+        should generate patch file specific "Cc:" entries.
+        Output of this command must be single email address per line.
+        Default is the value of <em>sendemail.cccmd</em> configuration value.
+</p>
+</dd>
+<dt>
+--chain-reply-to
+</dt>
+<dt>
+--no-chain-reply-to
+</dt>
+<dd>
+<p>
+        If this is set, each email will be sent as a reply to the previous
+        email sent.  If disabled with "--no-chain-reply-to", all emails after
+        the first will be sent as replies to the first email sent.  When using
+        this, it is recommended that the first file given be an overview of the
+        entire patch series.
+        Default is the value of the <em>sendemail.chainreplyto</em> configuration
+        value; if that is unspecified, default to --chain-reply-to.
+</p>
+</dd>
+<dt>
+--compose
+</dt>
+<dd>
+<p>
+        Use $GIT_EDITOR, core.editor, $VISUAL, or $EDITOR to edit an
+        introductory message for the patch series.
+</p>
+</dd>
+<dt>
+--from
+</dt>
+<dd>
+<p>
+        Specify the sender of the emails.  This will default to
+        the value GIT_COMMITTER_IDENT, as returned by "git-var -l".
+        The user will still be prompted to confirm this entry.
+</p>
+</dd>
+<dt>
+--in-reply-to
+</dt>
+<dd>
+<p>
+        Specify the contents of the first In-Reply-To header.
+        Subsequent emails will refer to the previous email
+        instead of this if --chain-reply-to is set (the default)
+        Only necessary if --compose is also set.  If --compose
+        is not set, this will be prompted for.
+</p>
+</dd>
+<dt>
+--signed-off-by-cc
+</dt>
+<dt>
+--no-signed-off-by-cc
+</dt>
+<dd>
+<p>
+        If this is set, add emails found in Signed-off-by: or Cc: lines to the
+        cc list.
+        Default is the value of <em>sendemail.signedoffcc</em> configuration value;
+        if that is unspecified, default to --signed-off-by-cc.
+</p>
+</dd>
+<dt>
+--quiet
+</dt>
+<dd>
+<p>
+        Make git-send-email less verbose.  One line per email should be
+        all that is output.
+</p>
+</dd>
+<dt>
+--identity
+</dt>
+<dd>
+<p>
+        A configuration identity. When given, causes values in the
+        <em>sendemail.&lt;identity&gt;</em> subsection to take precedence over
+        values in the <em>sendemail</em> section. The default identity is
+        the value of <em>sendemail.identity</em>.
+</p>
+</dd>
+<dt>
+--smtp-server
+</dt>
+<dd>
+<p>
+        If set, specifies the outgoing SMTP server to use (e.g.
+        <tt>smtp.example.com</tt> or a raw IP address).  Alternatively it can
+        specify a full pathname of a sendmail-like program instead;
+        the program must support the <tt>-i</tt> option.  Default value can
+        be specified by the <em>sendemail.smtpserver</em> configuration
+        option; the built-in default is <tt>/usr/sbin/sendmail</tt> or
+        <tt>/usr/lib/sendmail</tt> if such program is available, or
+        <tt>localhost</tt> otherwise.
+</p>
+</dd>
+<dt>
+--smtp-server-port
+</dt>
+<dd>
+<p>
+        Specifies a port different from the default port (SMTP
+        servers typically listen to smtp port 25 and ssmtp port
+        465).
+</p>
+</dd>
+<dt>
+--smtp-user
+</dt>
+<dd>
+<p>
+        Username for SMTP-AUTH. In place of this option, the following
+        configuration variables can be specified:
+</p>
+<ul>
+<li>
+<p>
+sendemail.smtpuser
+</p>
+</li>
+<li>
+<p>
+sendemail.&lt;identity&gt;.smtpuser (see sendemail.identity).
+</p>
+</li>
+</ul>
+<p>However, --smtp-user always overrides these variables.</p>
+<p>If a username is not specified (with --smtp-user or a
+configuration variable), then authentication is not attempted.</p>
+</dd>
+<dt>
+--smtp-pass
+</dt>
+<dd>
+<p>
+        Password for SMTP-AUTH. The argument is optional: If no
+        argument is specified, then the empty string is used as
+        the password.
+</p>
+<p>In place of this option, the following configuration variables
+can be specified:</p>
+<ul>
+<li>
+<p>
+sendemail.smtppass
+</p>
+</li>
+<li>
+<p>
+sendemail.&lt;identity&gt;.smtppass (see sendemail.identity).
+</p>
+</li>
+</ul>
+<p>However, --smtp-pass always overrides these variables.</p>
+<p>Furthermore, passwords need not be specified in configuration files
+or on the command line. If a username has been specified (with
+--smtp-user or a configuration variable), but no password has been
+specified (with --smtp-pass or a configuration variable), then the
+user is prompted for a password while the input is masked for privacy.</p>
+</dd>
+<dt>
+--smtp-ssl
+</dt>
+<dd>
+<p>
+        If set, connects to the SMTP server using SSL.
+        Default is the value of the <em>sendemail.smtpssl</em> configuration value;
+        if that is unspecified, does not use SSL.
+</p>
+</dd>
+<dt>
+--subject
+</dt>
+<dd>
+<p>
+        Specify the initial subject of the email thread.
+        Only necessary if --compose is also set.  If --compose
+        is not set, this will be prompted for.
+</p>
+</dd>
+<dt>
+--suppress-from
+</dt>
+<dt>
+--no-suppress-from
+</dt>
+<dd>
+<p>
+        If this is set, do not add the From: address to the cc: list.
+        Default is the value of <em>sendemail.suppressfrom</em> configuration value;
+        if that is unspecified, default to --no-suppress-from.
+</p>
+</dd>
+<dt>
+--suppress-cc
+</dt>
+<dd>
+<p>
+        Specify an additional category of recipients to suppress the
+        auto-cc of.  <em>self</em> will avoid including the sender, <em>author</em> will
+        avoid including the patch author, <em>cc</em> will avoid including anyone
+        mentioned in Cc lines in the patch, <em>sob</em> will avoid including
+        anyone mentioned in Signed-off-by lines, and <em>cccmd</em> will avoid
+        running the --cc-cmd.  <em>all</em> will suppress all auto cc values.
+        Default is the value of <em>sendemail.suppresscc</em> configuration value;
+        if that is unspecified, default to <em>self</em> if --suppress-from is
+        specified, as well as <em>sob</em> if --no-signed-off-cc is specified.
+</p>
+</dd>
+<dt>
+--thread
+</dt>
+<dt>
+--no-thread
+</dt>
+<dd>
+<p>
+        If this is set, the In-Reply-To header will be set on each email sent.
+        If disabled with "--no-thread", no emails will have the In-Reply-To
+        header set.
+        Default is the value of the <em>sendemail.thread</em> configuration value;
+        if that is unspecified, default to --thread.
+</p>
+</dd>
+<dt>
+--dry-run
+</dt>
+<dd>
+<p>
+        Do everything except actually send the emails.
+</p>
+</dd>
+<dt>
+--envelope-sender
+</dt>
+<dd>
+<p>
+        Specify the envelope sender used to send the emails.
+        This is useful if your default address is not the address that is
+        subscribed to a list. If you use the sendmail binary, you must have
+        suitable privileges for the -f parameter.
+</p>
+</dd>
+<dt>
+--to
+</dt>
+<dd>
+<p>
+        Specify the primary recipient of the emails generated.
+        Generally, this will be the upstream maintainer of the
+        project involved.
+        Default is the value of the <em>sendemail.to</em> configuration value;
+        if that is unspecified, this will be prompted for.
+</p>
+<p>The --to option must be repeated for each user you want on the to list.</p>
+</dd>
+</dl>
+</div>
+<h2>CONFIGURATION</h2>
+<div class="sectionbody">
+<dl>
+<dt>
+sendemail.identity
+</dt>
+<dd>
+<p>
+        The default configuration identity. When specified,
+        <em>sendemail.&lt;identity&gt;.&lt;item&gt;</em> will have higher precedence than
+        <em>sendemail.&lt;item&gt;</em>. This is useful to declare multiple SMTP
+        identities and to hoist sensitive authentication information
+        out of the repository and into the global configuration file.
+</p>
+</dd>
+<dt>
+sendemail.aliasesfile
+</dt>
+<dd>
+<p>
+        To avoid typing long email addresses, point this to one or more
+        email aliases files.  You must also supply <em>sendemail.aliasfiletype</em>.
+</p>
+</dd>
+<dt>
+sendemail.aliasfiletype
+</dt>
+<dd>
+<p>
+        Format of the file(s) specified in sendemail.aliasesfile. Must be
+        one of <em>mutt</em>, <em>mailrc</em>, <em>pine</em>, or <em>gnus</em>.
+</p>
+</dd>
+<dt>
+sendemail.to
+</dt>
+<dd>
+<p>
+        Email address (or alias) to always send to.
+</p>
+</dd>
+<dt>
+sendemail.cccmd
+</dt>
+<dd>
+<p>
+        Command to execute to generate per patch file specific "Cc:"s.
+</p>
+</dd>
+<dt>
+sendemail.bcc
+</dt>
+<dd>
+<p>
+        Email address (or alias) to always bcc.
+</p>
+</dd>
+<dt>
+sendemail.chainreplyto
+</dt>
+<dd>
+<p>
+        Boolean value specifying the default to the <em>--chain_reply_to</em>
+        parameter.
+</p>
+</dd>
+<dt>
+sendemail.smtpserver
+</dt>
+<dd>
+<p>
+        Default SMTP server to use.
+</p>
+</dd>
+<dt>
+sendemail.smtpserverport
+</dt>
+<dd>
+<p>
+        Default SMTP server port to use.
+</p>
+</dd>
+<dt>
+sendemail.smtpuser
+</dt>
+<dd>
+<p>
+        Default SMTP-AUTH username.
+</p>
+</dd>
+<dt>
+sendemail.smtppass
+</dt>
+<dd>
+<p>
+        Default SMTP-AUTH password.
+</p>
+</dd>
+<dt>
+sendemail.smtpssl
+</dt>
+<dd>
+<p>
+        Boolean value specifying the default to the <em>--smtp-ssl</em> parameter.
+</p>
+</dd>
+</dl>
+</div>
+<h2>Author</h2>
+<div class="sectionbody">
+<p>Written by Ryan Anderson &lt;ryan@michonline.com&gt;</p>
+<p>git-send-email is originally based upon
+send_lots_of_email.pl by Greg Kroah-Hartman.</p>
+</div>
+<h2>Documentation</h2>
+<div class="sectionbody">
+<p>Documentation by Ryan Anderson</p>
+</div>
+<h2>GIT</h2>
+<div class="sectionbody">
+<p>Part of the <a href="git.html">git(1)</a> suite</p>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 08-Jun-2008 22:47:00 UTC
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>RelayCountry - add message metadata indicating the country code of each relay</title>
+<link rev="made" href="mailto:" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#requirement">REQUIREMENT</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>RelayCountry - add message metadata indicating the country code of each relay</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+  loadplugin     Mail::SpamAssassin::Plugin::RelayCountry</pre>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>By the RelayCountry plugin attempts to determine the domain country
+codes of each relay used in the delivery path of messages and add that
+information to the message metadata as ``X-Relay-Countries'', or 
+the <code>_RELAYCOUNTRY_</code> header markup.</p>
+<p>
+</p>
+<hr />
+<h1><a name="requirement">REQUIREMENT</a></h1>
+<p>This plugin requires the IP::Country module from CPAN.</p>
+
+</body>
+
+</html>

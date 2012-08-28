@@ -1,0 +1,1286 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 7.0.2" />
+<style type="text/css">
+/* Debug borders */
+p, li, dt, dd, div, pre, h1, h2, h3, h4, h5, h6 {
+/*
+  border: 1px solid red;
+*/
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a { color: blue; }
+a:visited { color: fuchsia; }
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
+tt {
+  color: navy;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  font-family: sans-serif;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  border-bottom: 2px solid silver;
+  padding-top: 0.5em;
+}
+
+div.sectionbody {
+  font-family: serif;
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+span#author {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+span#email {
+}
+span#revision {
+  font-family: sans-serif;
+}
+
+div#footer {
+  font-family: sans-serif;
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+div#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+div#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+div#preamble,
+div.tableblock, div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-right: 10%;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock > div.content {
+  padding-left: 2.0em;
+}
+div.quoteblock .attribution {
+  text-align: right;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 2px solid silver;
+}
+
+div.exampleblock > div.content {
+  border-left: 2px solid silver;
+  padding: 0.5em;
+}
+
+div.verseblock div.content {
+  white-space: pre;
+}
+
+div.imageblock div.content { padding-left: 0; }
+div.imageblock img { border: 1px solid silver; }
+span.image img { border-style: none; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: italic;
+}
+dd > *:first-child {
+  margin-top: 0;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.olist2 {
+  list-style-type: lower-alpha;
+}
+
+div.tableblock > table {
+  border-color: #527bbd;
+  border-width: 3px;
+}
+thead {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+tfoot {
+  font-weight: bold;
+}
+
+div.hlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+td.hlist1 {
+  vertical-align: top;
+  font-style: italic;
+  padding-right: 0.8em;
+}
+td.hlist2 {
+  vertical-align: top;
+}
+
+@media print {
+  div#footer-badges { display: none; }
+}
+include::./stylesheets/xhtml11-manpage.css[]
+/* Workarounds for IE6's broken and incomplete CSS2. */
+
+div.sidebar-content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+div.sidebar-title, div.image-title {
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 0.0em;
+  margin-bottom: 0.5em;
+}
+
+div.listingblock div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock-content {
+  padding-left: 2.0em;
+}
+
+div.exampleblock-content {
+  border-left: 2px solid silver;
+  padding-left: 0.5em;
+}
+</style>
+<title>git-rev-list(1)</title>
+</head>
+<body>
+<div id="header">
+<h1>
+git-rev-list(1) Manual Page
+</h1>
+<h2>NAME</h2>
+<div class="sectionbody">
+<p>git-rev-list -
+   Lists commit objects in reverse chronological order
+</p>
+</div>
+</div>
+<h2>SYNOPSIS</h2>
+<div class="sectionbody">
+<div class="verseblock">
+<div class="content"><em>git-rev-list</em> [ --max-count=number ]
+             [ --skip=number ]
+             [ --max-age=timestamp ]
+             [ --min-age=timestamp ]
+             [ --sparse ]
+             [ --no-merges ]
+             [ --first-parent ]
+             [ --remove-empty ]
+             [ --full-history ]
+             [ --not ]
+             [ --all ]
+             [ --branches ]
+             [ --tags ]
+             [ --remotes ]
+             [ --stdin ]
+             [ --quiet ]
+             [ --topo-order ]
+             [ --parents ]
+             [ --timestamp ]
+             [ --left-right ]
+             [ --cherry-pick ]
+             [ --encoding[=&lt;encoding&gt;] ]
+             [ --(author|committer|grep)=&lt;pattern&gt; ]
+             [ --regexp-ignore-case | \-i ]
+             [ --extended-regexp | \-E ]
+             [ --fixed-strings | \-F ]
+             [ --date={local|relative|default|iso|rfc|short} ]
+             [ [--objects | --objects-edge] [ --unpacked ] ]
+             [ --pretty | --header ]
+             [ --bisect ]
+             [ --bisect-vars ]
+             [ --bisect-all ]
+             [ --merge ]
+             [ --reverse ]
+             [ --walk-reflogs ]
+             [ --no-walk ] [ --do-walk ]
+             &lt;commit&gt;&#8230; [ -- &lt;paths&gt;&#8230; ]</div></div>
+</div>
+<h2>DESCRIPTION</h2>
+<div class="sectionbody">
+<p>Lists commit objects in reverse chronological order starting at the
+given commit(s), taking ancestry relationship into account.  This is
+useful to produce human-readable log output.</p>
+<p>Commits which are stated with a preceding <em>&#94;</em> cause listing to
+stop at that point. Their parents are implied. Thus the following
+command:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>        $ git-rev-list foo bar ^baz</tt></pre>
+</div></div>
+<p>means "list all the commits which are included in <em>foo</em> and <em>bar</em>, but
+not in <em>baz</em>".</p>
+<p>A special notation "<em>&lt;commit1&gt;</em>..<em>&lt;commit2&gt;</em>" can be used as a
+short-hand for "&#94;<em>&lt;commit1&gt;</em> <em>&lt;commit2&gt;</em>". For example, either of
+the following may be used interchangeably:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>        $ git-rev-list origin..HEAD
+        $ git-rev-list HEAD ^origin</tt></pre>
+</div></div>
+<p>Another special notation is "<em>&lt;commit1&gt;</em>&#8230;<em>&lt;commit2&gt;</em>" which is useful
+for merges.  The resulting set of commits is the symmetric difference
+between the two operands.  The following two commands are equivalent:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>        $ git-rev-list A B --not $(git-merge-base --all A B)
+        $ git-rev-list A...B</tt></pre>
+</div></div>
+<p><a href="git-rev-list.html">git-rev-list(1)</a> is a very essential git program, since it
+provides the ability to build and traverse commit ancestry graphs. For
+this reason, it has a lot of different options that enables it to be
+used by commands as different as <a href="git-bisect.html">git-bisect(1)</a> and
+<a href="git-repack.html">git-repack(1)</a>.</p>
+</div>
+<h2>OPTIONS</h2>
+<div class="sectionbody">
+<h3>Commit Formatting</h3>
+<p>Using these options, <a href="git-rev-list.html">git-rev-list(1)</a> will act similar to the
+more specialized family of commit log tools: <a href="git-log.html">git-log(1)</a>,
+<a href="git-show.html">git-show(1)</a>, and <a href="git-whatchanged.html">git-whatchanged(1)</a></p>
+<dl>
+<dt>
+--pretty[=<em>&lt;format&gt;</em>]
+</dt>
+<dd>
+<p>
+        Pretty-print the contents of the commit logs in a given format,
+        where <em>&lt;format&gt;</em> can be one of <em>oneline</em>, <em>short</em>, <em>medium</em>,
+        <em>full</em>, <em>fuller</em>, <em>email</em>, <em>raw</em> and <em>format:&lt;string&gt;</em>.
+        When omitted, the format defaults to <em>medium</em>.
+</p>
+<p>Note: you can specify the default pretty format in the repository
+configuration (see <a href="git-config.html">git-config(1)</a>).</p>
+</dd>
+<dt>
+--abbrev-commit
+</dt>
+<dd>
+<p>
+        Instead of showing the full 40-byte hexadecimal commit object
+        name, show only handful hexdigits prefix.  Non default number of
+        digits can be specified with "--abbrev=&lt;n&gt;" (which also modifies
+        diff output, if it is displayed).
+</p>
+<p>This should make "--pretty=oneline" a whole lot more readable for
+people using 80-column terminals.</p>
+</dd>
+<dt>
+--encoding[=&lt;encoding&gt;]
+</dt>
+<dd>
+<p>
+        The commit objects record the encoding used for the log message
+        in their encoding header; this option can be used to tell the
+        command to re-code the commit log message in the encoding
+        preferred by the user.  For non plumbing commands this
+        defaults to UTF-8.
+</p>
+</dd>
+<dt>
+--relative-date
+</dt>
+<dd>
+<p>
+        Synonym for <tt>--date=relative</tt>.
+</p>
+</dd>
+<dt>
+--date={relative,local,default,iso,rfc,short}
+</dt>
+<dd>
+<p>
+        Only takes effect for dates shown in human-readable format, such
+        as when using "--pretty". <tt>log.date</tt> config variable sets a default
+        value for log command's --date option.
+</p>
+<p><tt>--date=relative</tt> shows dates relative to the current time,
+e.g. "2 hours ago".</p>
+<p><tt>--date=local</tt> shows timestamps in user's local timezone.</p>
+<p><tt>--date=iso</tt> (or <tt>--date=iso8601</tt>) shows timestamps in ISO 8601 format.</p>
+<p><tt>--date=rfc</tt> (or <tt>--date=rfc2822</tt>) shows timestamps in RFC 2822
+format, often found in E-mail messages.</p>
+<p><tt>--date=short</tt> shows only date but not time, in <tt>YYYY-MM-DD</tt> format.</p>
+<p><tt>--date=default</tt> shows timestamps in the original timezone
+(either committer's or author's).</p>
+</dd>
+<dt>
+--header
+</dt>
+<dd>
+<p>
+        Print the contents of the commit in raw-format; each record is
+        separated with a NUL character.
+</p>
+</dd>
+<dt>
+--parents
+</dt>
+<dd>
+<p>
+        Print the parents of the commit.
+</p>
+</dd>
+<dt>
+--timestamp
+</dt>
+<dd>
+<p>
+        Print the raw commit timestamp.
+</p>
+</dd>
+<dt>
+--left-right
+</dt>
+<dd>
+<p>
+        Mark which side of a symmetric diff a commit is reachable from.
+        Commits from the left side are prefixed with <tt>&lt;</tt> and those from
+        the right with <tt>&gt;</tt>.  If combined with <tt>--boundary</tt>, those
+        commits are prefixed with <tt>-</tt>.
+</p>
+<p>For example, if you have this topology:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>             y---b---b  branch B
+            / \ /
+           /   .
+          /   / \
+         o---x---a---a  branch A</tt></pre>
+</div></div>
+<p>you would get an output line this:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>        $ git rev-list --left-right --boundary --pretty=oneline A...B
+
+        &gt;bbbbbbb... 3rd on b
+        &gt;bbbbbbb... 2nd on b
+        &lt;aaaaaaa... 3rd on a
+        &lt;aaaaaaa... 2nd on a
+        -yyyyyyy... 1st on b
+        -xxxxxxx... 1st on a</tt></pre>
+</div></div>
+</dd>
+<dt>
+--graph
+</dt>
+<dd>
+<p>
+        Draw a text-based graphical representation of the commit history
+        on the left hand side of the output.  This may cause extra lines
+        to be printed in between commits, in order for the graph history
+        to be drawn properly.
+</p>
+<p>This implies the <em>--topo-order</em> option by default, but the
+<em>--date-order</em> option may also be specified.</p>
+</dd>
+</dl>
+<h3>Diff Formatting</h3>
+<p>Below are listed options that control the formatting of diff output.
+Some of them are specific to <a href="git-rev-list.html">git-rev-list(1)</a>, however other diff
+options may be given. See <a href="git-diff-files.html">git-diff-files(1)</a> for more options.</p>
+<dl>
+<dt>
+-c
+</dt>
+<dd>
+<p>
+        This flag changes the way a merge commit is displayed.  It shows
+        the differences from each of the parents to the merge result
+        simultaneously instead of showing pairwise diff between a parent
+        and the result one at a time. Furthermore, it lists only files
+        which were modified from all parents.
+</p>
+</dd>
+<dt>
+--cc
+</dt>
+<dd>
+<p>
+        This flag implies the <em>-c</em> options and further compresses the
+        patch output by omitting hunks that show differences from only
+        one parent, or show the same change from all but one parent for
+        an Octopus merge.
+</p>
+</dd>
+<dt>
+-r
+</dt>
+<dd>
+<p>
+        Show recursive diffs.
+</p>
+</dd>
+<dt>
+-t
+</dt>
+<dd>
+<p>
+        Show the tree objects in the diff output. This implies <em>-r</em>.
+</p>
+</dd>
+</dl>
+<h3>Commit Limiting</h3>
+<p>Besides specifying a range of commits that should be listed using the
+special notations explained in the description, additional commit
+limiting may be applied.</p>
+<dl>
+<dt>
+-n <em>number</em>
+</dt>
+<dt>
+--max-count=<em>number</em>
+</dt>
+<dd>
+<p>
+        Limit the number of commits output.
+</p>
+</dd>
+<dt>
+--skip=<em>number</em>
+</dt>
+<dd>
+<p>
+        Skip <em>number</em> commits before starting to show the commit output.
+</p>
+</dd>
+<dt>
+--since=<em>date</em>
+</dt>
+<dt>
+--after=<em>date</em>
+</dt>
+<dd>
+<p>
+        Show commits more recent than a specific date.
+</p>
+</dd>
+<dt>
+--until=<em>date</em>
+</dt>
+<dt>
+--before=<em>date</em>
+</dt>
+<dd>
+<p>
+        Show commits older than a specific date.
+</p>
+</dd>
+<dt>
+--max-age=<em>timestamp</em>
+</dt>
+<dt>
+--min-age=<em>timestamp</em>
+</dt>
+<dd>
+<p>
+        Limit the commits output to specified time range.
+</p>
+</dd>
+<dt>
+--author=<em>pattern</em>
+</dt>
+<dt>
+--committer=<em>pattern</em>
+</dt>
+<dd>
+<p>
+        Limit the commits output to ones with author/committer
+        header lines that match the specified pattern (regular expression).
+</p>
+</dd>
+<dt>
+--grep=<em>pattern</em>
+</dt>
+<dd>
+<p>
+        Limit the commits output to ones with log message that
+        matches the specified pattern (regular expression).
+</p>
+</dd>
+<dt>
+-i
+</dt>
+<dt>
+--regexp-ignore-case
+</dt>
+<dd>
+<p>
+        Match the regexp limiting patterns without regard to letters case.
+</p>
+</dd>
+<dt>
+-E
+</dt>
+<dt>
+--extended-regexp
+</dt>
+<dd>
+<p>
+        Consider the limiting patterns to be extended regular expressions
+        instead of the default basic regular expressions.
+</p>
+</dd>
+<dt>
+-F
+</dt>
+<dt>
+--fixed-strings
+</dt>
+<dd>
+<p>
+        Consider the limiting patterns to be fixed strings (don't interpret
+        pattern as a regular expression).
+</p>
+</dd>
+<dt>
+--remove-empty
+</dt>
+<dd>
+<p>
+        Stop when a given path disappears from the tree.
+</p>
+</dd>
+<dt>
+--full-history
+</dt>
+<dd>
+<p>
+        Show also parts of history irrelevant to current state of a given
+        path. This turns off history simplification, which removed merges
+        which didn't change anything at all at some child. It will still actually
+        simplify away merges that didn't change anything at all into either
+        child.
+</p>
+</dd>
+<dt>
+--no-merges
+</dt>
+<dd>
+<p>
+        Do not print commits with more than one parent.
+</p>
+</dd>
+<dt>
+--first-parent
+</dt>
+<dd>
+<p>
+        Follow only the first parent commit upon seeing a merge
+        commit.  This option can give a better overview when
+        viewing the evolution of a particular topic branch,
+        because merges into a topic branch tend to be only about
+        adjusting to updated upstream from time to time, and
+        this option allows you to ignore the individual commits
+        brought in to your history by such a merge.
+</p>
+</dd>
+<dt>
+--not
+</dt>
+<dd>
+<p>
+        Reverses the meaning of the <em>&#94;</em> prefix (or lack thereof)
+        for all following revision specifiers, up to the next <em>--not</em>.
+</p>
+</dd>
+<dt>
+--all
+</dt>
+<dd>
+<p>
+        Pretend as if all the refs in <tt>$GIT_DIR/refs/</tt> are listed on the
+        command line as <em>&lt;commit&gt;</em>.
+</p>
+</dd>
+<dt>
+--stdin
+</dt>
+<dd>
+<p>
+        In addition to the <em>&lt;commit&gt;</em> listed on the command
+        line, read them from the standard input.
+</p>
+</dd>
+<dt>
+--quiet
+</dt>
+<dd>
+<p>
+        Don't print anything to standard output.  This form
+        is primarily meant to allow the caller to
+        test the exit status to see if a range of objects is fully
+        connected (or not).  It is faster than redirecting stdout
+        to /dev/null as the output does not have to be formatted.
+</p>
+</dd>
+<dt>
+--cherry-pick
+</dt>
+<dd>
+<p>
+        Omit any commit that introduces the same change as
+        another commit on the "other side" when the set of
+        commits are limited with symmetric difference.<br />
+For example, if you have two branches, <tt>A</tt> and <tt>B</tt>, a usual way
+to list all commits on only one side of them is with
+<tt>--left-right</tt>, like the example above in the description of
+that option.  It however shows the commits that were cherry-picked
+from the other branch (for example, "3rd on b" may be cherry-picked
+from branch A).  With this option, such pairs of commits are
+excluded from the output.
+</p>
+</dd>
+<dt>
+-g
+</dt>
+<dt>
+--walk-reflogs
+</dt>
+<dd>
+<p>
+        Instead of walking the commit ancestry chain, walk
+        reflog entries from the most recent one to older ones.
+        When this option is used you cannot specify commits to
+        exclude (that is, <em>&#94;commit</em>, <em>commit1..commit2</em>,
+        nor <em>commit1&#8230;commit2</em> notations cannot be used).<br />
+With <em>--pretty</em> format other than oneline (for obvious reasons),
+this causes the output to have two extra lines of information
+taken from the reflog.  By default, <em>commit@{Nth}</em> notation is
+used in the output.  When the starting commit is specified as
+instead.  Under <em>--pretty=oneline</em>, the commit message is
+prefixed with this information on the same line.
+</p>
+<p>Cannot be combined with <em>--reverse</em>.
+See also <a href="git-reflog.html">git-reflog(1)</a>.</p>
+</dd>
+<dt>
+--merge
+</dt>
+<dd>
+<p>
+        After a failed merge, show refs that touch files having a
+        conflict and don't exist on all heads to merge.
+</p>
+</dd>
+<dt>
+--boundary
+</dt>
+<dd>
+<p>
+        Output uninteresting commits at the boundary, which are usually
+        not shown.
+</p>
+</dd>
+<dt>
+--dense
+</dt>
+<dt>
+--sparse
+</dt>
+<dd>
+<p>
+When optional paths are given, the default behaviour (<em>--dense</em>) is to
+only output commits that changes at least one of them, and also ignore
+merges that do not touch the given paths.
+</p>
+<p>Use the <em>--sparse</em> flag to makes the command output all eligible commits
+(still subject to count and age limitation), but apply merge
+simplification nevertheless.</p>
+</dd>
+<dt>
+--bisect
+</dt>
+<dd>
+<p>
+Limit output to the one commit object which is roughly halfway between
+the included and excluded commits. Thus, if
+</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>        $ git-rev-list --bisect foo ^bar ^baz</tt></pre>
+</div></div>
+<p>outputs <em>midpoint</em>, the output of the two commands</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>        $ git-rev-list foo ^midpoint
+        $ git-rev-list midpoint ^bar ^baz</tt></pre>
+</div></div>
+<p>would be of roughly the same length.  Finding the change which
+introduces a regression is thus reduced to a binary search: repeatedly
+generate and test new 'midpoint's until the commit chain is of length
+one.</p>
+</dd>
+<dt>
+--bisect-vars
+</dt>
+<dd>
+<p>
+This calculates the same as <tt>--bisect</tt>, but outputs text ready
+to be eval'ed by the shell. These lines will assign the name of
+the midpoint revision to the variable <tt>bisect_rev</tt>, and the
+expected number of commits to be tested after <tt>bisect_rev</tt> is
+tested to <tt>bisect_nr</tt>, the expected number of commits to be
+tested if <tt>bisect_rev</tt> turns out to be good to <tt>bisect_good</tt>,
+the expected number of commits to be tested if <tt>bisect_rev</tt>
+turns out to be bad to <tt>bisect_bad</tt>, and the number of commits
+we are bisecting right now to <tt>bisect_all</tt>.
+</p>
+</dd>
+<dt>
+--bisect-all
+</dt>
+<dd>
+<p>
+This outputs all the commit objects between the included and excluded
+commits, ordered by their distance to the included and excluded
+commits. The farthest from them is displayed first. (This is the only
+one displayed by <tt>--bisect</tt>.)
+</p>
+<p>This is useful because it makes it easy to choose a good commit to
+test when you want to avoid to test some of them for some reason (they
+may not compile for example).</p>
+<p>This option can be used along with <tt>--bisect-vars</tt>, in this case,
+after all the sorted commit objects, there will be the same text as if
+<tt>--bisect-vars</tt> had been used alone.</p>
+</dd>
+</dl>
+<h3>Commit Ordering</h3>
+<p>By default, the commits are shown in reverse chronological order.</p>
+<dl>
+<dt>
+--topo-order
+</dt>
+<dd>
+<p>
+        This option makes them appear in topological order (i.e.
+        descendant commits are shown before their parents).
+</p>
+</dd>
+<dt>
+--date-order
+</dt>
+<dd>
+<p>
+        This option is similar to <em>--topo-order</em> in the sense that no
+        parent comes before all of its children, but otherwise things
+        are still ordered in the commit timestamp order.
+</p>
+</dd>
+<dt>
+--reverse
+</dt>
+<dd>
+<p>
+        Output the commits in reverse order.
+        Cannot be combined with <em>--walk-reflogs</em>.
+</p>
+</dd>
+</dl>
+<h3>Object Traversal</h3>
+<p>These options are mostly targeted for packing of git repositories.</p>
+<dl>
+<dt>
+--objects
+</dt>
+<dd>
+<p>
+        Print the object IDs of any object referenced by the listed
+        commits.  <em>--objects foo ^bar</em> thus means "send me
+        all object IDs which I need to download if I have the commit
+        object <em>bar</em>, but not <em>foo</em>".
+</p>
+</dd>
+<dt>
+--objects-edge
+</dt>
+<dd>
+<p>
+        Similar to <em>--objects</em>, but also print the IDs of excluded
+        commits prefixed with a "-" character.  This is used by
+        <a href="git-pack-objects.html">git-pack-objects(1)</a> to build "thin" pack, which records
+        objects in deltified form based on objects contained in these
+        excluded commits to reduce network traffic.
+</p>
+</dd>
+<dt>
+--unpacked
+</dt>
+<dd>
+<p>
+        Only useful with <em>--objects</em>; print the object IDs that are not
+        in packs.
+</p>
+</dd>
+<dt>
+--no-walk
+</dt>
+<dd>
+<p>
+        Only show the given revs, but do not traverse their ancestors.
+</p>
+</dd>
+<dt>
+--do-walk
+</dt>
+<dd>
+<p>
+        Overrides a previous --no-walk.
+</p>
+</dd>
+</dl>
+</div>
+<h2>PRETTY FORMATS</h2>
+<div class="sectionbody">
+<p>If the commit is a merge, and if the pretty-format
+is not <em>oneline</em>, <em>email</em> or <em>raw</em>, an additional line is
+inserted before the <em>Author:</em> line.  This line begins with
+"Merge: " and the sha1s of ancestral commits are printed,
+separated by spaces.  Note that the listed commits may not
+necessarily be the list of the <strong>direct</strong> parent commits if you
+have limited your view of history: for example, if you are
+only interested in changes related to a certain directory or
+file.</p>
+<p>Here are some additional details for each format:</p>
+<ul>
+<li>
+<p>
+<em>oneline</em>
+</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>&lt;sha1&gt; &lt;title line&gt;</tt></pre>
+</div></div>
+<p>This is designed to be as compact as possible.</p>
+</li>
+<li>
+<p>
+<em>short</em>
+</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>commit &lt;sha1&gt;
+Author: &lt;author&gt;</tt></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>&lt;title line&gt;</tt></pre>
+</div></div>
+</li>
+<li>
+<p>
+<em>medium</em>
+</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>commit &lt;sha1&gt;
+Author: &lt;author&gt;
+Date: &lt;date&gt;</tt></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>&lt;title line&gt;</tt></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>&lt;full commit message&gt;</tt></pre>
+</div></div>
+</li>
+<li>
+<p>
+<em>full</em>
+</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>commit &lt;sha1&gt;
+Author: &lt;author&gt;
+Commit: &lt;committer&gt;</tt></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>&lt;title line&gt;</tt></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>&lt;full commit message&gt;</tt></pre>
+</div></div>
+</li>
+<li>
+<p>
+<em>fuller</em>
+</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>commit &lt;sha1&gt;
+Author: &lt;author&gt;
+AuthorDate: &lt;date &amp; time&gt;
+Commit: &lt;committer&gt;
+CommitDate: &lt;date &amp; time&gt;</tt></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>&lt;title line&gt;</tt></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>&lt;full commit message&gt;</tt></pre>
+</div></div>
+</li>
+<li>
+<p>
+<em>email</em>
+</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>From &lt;sha1&gt; &lt;date&gt;
+From: &lt;author&gt;
+Date: &lt;date &amp; time&gt;
+Subject: [PATCH] &lt;title line&gt;</tt></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>&lt;full commit message&gt;</tt></pre>
+</div></div>
+</li>
+<li>
+<p>
+<em>raw</em>
+</p>
+<p>The <em>raw</em> format shows the entire commit exactly as
+stored in the commit object.  Notably, the SHA1s are
+displayed in full, regardless of whether --abbrev or
+--no-abbrev are used, and <em>parents</em> information show the
+true parent commits, without taking grafts nor history
+simplification into account.</p>
+</li>
+<li>
+<p>
+<em>format:</em>
+</p>
+<p>The <em>format:</em> format allows you to specify which information
+you want to show. It works a little bit like printf format,
+with the notable exception that you get a newline with <em>%n</em>
+instead of <em>\n</em>.</p>
+<p>E.g, <em>format:"The author of %h was %an, %ar%nThe title was &gt;&gt;%s&lt;&lt;%n"</em>
+would show something like this:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>The author of fe6e0ee was Junio C Hamano, 23 hours ago
+The title was &gt;&gt;t4119: test autocomputing -p&lt;n&gt; for traditional diff input.&lt;&lt;
+</tt></pre>
+</div></div>
+<p>The placeholders are:</p>
+<ul>
+<li>
+<p>
+<em>%H</em>: commit hash
+</p>
+</li>
+<li>
+<p>
+<em>%h</em>: abbreviated commit hash
+</p>
+</li>
+<li>
+<p>
+<em>%T</em>: tree hash
+</p>
+</li>
+<li>
+<p>
+<em>%t</em>: abbreviated tree hash
+</p>
+</li>
+<li>
+<p>
+<em>%P</em>: parent hashes
+</p>
+</li>
+<li>
+<p>
+<em>%p</em>: abbreviated parent hashes
+</p>
+</li>
+<li>
+<p>
+<em>%an</em>: author name
+</p>
+</li>
+<li>
+<p>
+<em>%ae</em>: author email
+</p>
+</li>
+<li>
+<p>
+<em>%ad</em>: author date
+</p>
+</li>
+<li>
+<p>
+<em>%aD</em>: author date, RFC2822 style
+</p>
+</li>
+<li>
+<p>
+<em>%ar</em>: author date, relative
+</p>
+</li>
+<li>
+<p>
+<em>%at</em>: author date, UNIX timestamp
+</p>
+</li>
+<li>
+<p>
+<em>%ai</em>: author date, ISO 8601 format
+</p>
+</li>
+<li>
+<p>
+<em>%cn</em>: committer name
+</p>
+</li>
+<li>
+<p>
+<em>%ce</em>: committer email
+</p>
+</li>
+<li>
+<p>
+<em>%cd</em>: committer date
+</p>
+</li>
+<li>
+<p>
+<em>%cD</em>: committer date, RFC2822 style
+</p>
+</li>
+<li>
+<p>
+<em>%cr</em>: committer date, relative
+</p>
+</li>
+<li>
+<p>
+<em>%ct</em>: committer date, UNIX timestamp
+</p>
+</li>
+<li>
+<p>
+<em>%ci</em>: committer date, ISO 8601 format
+</p>
+</li>
+<li>
+<p>
+<em>%e</em>: encoding
+</p>
+</li>
+<li>
+<p>
+<em>%s</em>: subject
+</p>
+</li>
+<li>
+<p>
+<em>%b</em>: body
+</p>
+</li>
+<li>
+<p>
+<em>%Cred</em>: switch color to red
+</p>
+</li>
+<li>
+<p>
+<em>%Cgreen</em>: switch color to green
+</p>
+</li>
+<li>
+<p>
+<em>%Cblue</em>: switch color to blue
+</p>
+</li>
+<li>
+<p>
+<em>%Creset</em>: reset color
+</p>
+</li>
+<li>
+<p>
+<em>%m</em>: left, right or boundary mark
+</p>
+</li>
+<li>
+<p>
+<em>%n</em>: newline
+</p>
+</li>
+<li>
+<p>
+<em>%x00</em>: print a byte from a hex code
+</p>
+</li>
+</ul>
+</li>
+<li>
+<p>
+<em>tformat:</em>
+</p>
+<p>The <em>tformat:</em> format works exactly like <em>format:</em>, except that it
+provides "terminator" semantics instead of "separator" semantics. In
+other words, each commit has the message terminator character (usually a
+newline) appended, rather than a separator placed between entries.
+This means that the final entry of a single-line format will be properly
+terminated with a new line, just as the "oneline" format does.
+For example:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git log -2 --pretty=format:%h 4da45bef \
+  | perl -pe '$_ .= " -- NO NEWLINE\n" unless /\n/'
+4da45be
+7134973 -- NO NEWLINE
+
+$ git log -2 --pretty=tformat:%h 4da45bef \
+  | perl -pe '$_ .= " -- NO NEWLINE\n" unless /\n/'
+4da45be
+7134973</tt></pre>
+</div></div>
+</li>
+</ul>
+</div>
+<h2>Author</h2>
+<div class="sectionbody">
+<p>Written by Linus Torvalds &lt;torvalds@osdl.org&gt;</p>
+</div>
+<h2>Documentation</h2>
+<div class="sectionbody">
+<p>Documentation by David Greaves, Junio C Hamano, Jonas Fonseca
+and the git-list &lt;git@vger.kernel.org&gt;.</p>
+</div>
+<h2>GIT</h2>
+<div class="sectionbody">
+<p>Part of the <a href="git.html">git(1)</a> suite</p>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 13-Jun-2008 10:02:43 UTC
+</div>
+</div>
+</body>
+</html>

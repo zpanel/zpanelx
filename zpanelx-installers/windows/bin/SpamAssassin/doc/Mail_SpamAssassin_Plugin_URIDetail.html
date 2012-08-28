@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>URIDetail - test URIs using detailed URI information</title>
+<link rev="made" href="mailto:" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#rule_definitions_and_privileged_settings">RULE DEFINITIONS AND PRIVILEGED SETTINGS</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>URIDetail - test URIs using detailed URI information</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>This plugin creates a new rule test type, known as ``uri_detail''.  These
+rules apply to all URIs found in the message.</p>
+<pre>
+  loadplugin    Mail::SpamAssassin::Plugin::URIDetail</pre>
+<p>
+</p>
+<hr />
+<h1><a name="rule_definitions_and_privileged_settings">RULE DEFINITIONS AND PRIVILEGED SETTINGS</a></h1>
+<p>The format for defining a rule is as follows:</p>
+<pre>
+  uri_detail SYMBOLIC_TEST_NAME key1 =~ /value1/ key2 !~ /value2/ ...</pre>
+<p>Supported keys are:</p>
+<p><code>raw</code> is the raw URI prior to any cleaning
+(e.g. ``http://spamassassin.apache%2Eorg/'').</p>
+<p><code>type</code> is the <code>tag(s)</code> which referenced the raw_uri.  <em>parsed</em> is a
+faked type which specifies that the raw_uri was parsed from the
+rendered text.</p>
+<p><code>cleaned</code> is a list including the raw URI and various cleaned
+versions of the raw URI (http://spamassassin.apache%2Eorg/,
+<a href="http://spamassassin.apache.org/).">http://spamassassin.apache.org/).</a></p>
+<p><code>text</code> is the anchor <code>text(s)</code> (text between &lt;a&gt; and &lt;/a&gt;) that
+linked to the raw URI.</p>
+<p><code>domain</code> is the <code>domain(s)</code> found in the cleaned URIs.</p>
+<p>Example rule for matching a URI where the raw URI matches ``%2Ebar'',
+the domain ``bar.com'' is found, and the type is ``a'' (an anchor tag).</p>
+<pre>
+  uri_detail TEST1 raw =~ /%2Ebar/ domain =~ /^bar\.com$/ type =~ /^a$/</pre>
+<p>Example rule to look for suspicious ``https'' links:</p>
+<pre>
+  uri_detail FAKE_HTTPS text =~ /\bhttps:/ cleaned !~ /\bhttps:/</pre>
+<p>Regular expressions should be delimited by slashes.</p>
+
+</body>
+
+</html>

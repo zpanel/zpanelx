@@ -1,0 +1,64 @@
+# This is the right place to customize your installation of SpamAssassin.
+#
+# See 'perldoc Mail::SpamAssassin::Conf' for details of what can be
+# tweaked.
+#
+# This file was installed during the installation of SpamAssassin 3.2.0,
+# and contains plugin loading commands for the new plugins added in that
+# release.  It will not be overwritten during future SpamAssassin installs,
+# so you can modify it to enable some disabled-by-default plugins below,
+# if you so wish.
+#
+# There are now multiple files read to enable plugins in the
+# /etc/mail/spamassassin directory; previously only one, "init.pre" was
+# read.  Now both "init.pre", "v310.pre", and any other files ending in
+# ".pre" will be read.  As future releases are made, new plugins will be
+# added to new files, named according to the release they're added in.
+###########################################################################
+
+# Check - Provides main check functionality
+#
+loadplugin Mail::SpamAssassin::Plugin::Check
+
+# HTTPSMismatch - find URI mismatches between href and anchor text
+#
+loadplugin Mail::SpamAssassin::Plugin::HTTPSMismatch
+
+# URIDetail - test URIs using detailed URI information
+#
+loadplugin Mail::SpamAssassin::Plugin::URIDetail
+
+# Shortcircuit - stop evaluation early if high-accuracy rules fire
+# 
+loadplugin Mail::SpamAssassin::Plugin::Shortcircuit
+
+# Plugins which used to be EvalTests.pm
+# broken out into separate plugins
+loadplugin Mail::SpamAssassin::Plugin::Bayes
+loadplugin Mail::SpamAssassin::Plugin::BodyEval
+loadplugin Mail::SpamAssassin::Plugin::DNSEval
+loadplugin Mail::SpamAssassin::Plugin::HTMLEval
+loadplugin Mail::SpamAssassin::Plugin::HeaderEval
+loadplugin Mail::SpamAssassin::Plugin::MIMEEval
+loadplugin Mail::SpamAssassin::Plugin::RelayEval
+loadplugin Mail::SpamAssassin::Plugin::URIEval
+loadplugin Mail::SpamAssassin::Plugin::WLBLEval
+
+# VBounce - anti-bounce-message rules, see rules/20_vbounce.cf
+#
+loadplugin Mail::SpamAssassin::Plugin::VBounce
+
+# Rule2XSBody - speedup by compilation of ruleset to native code
+#
+# loadplugin Mail::SpamAssassin::Plugin::Rule2XSBody
+
+# ASN - Look up the Autonomous System Number of the connecting IP
+# and create a header containing ASN data for bayes tokenization.
+# See plugin's POD docs for usage info.
+#
+# loadplugin Mail::SpamAssassin::Plugin::ASN
+
+# ImageInfo - rules to match metadata of image attachments
+#
+loadplugin Mail::SpamAssassin::Plugin::ImageInfo
+

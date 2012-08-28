@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>C&lt;razor-agent.conf&gt; - Configuration file for Razor Agents</title>
+<link rev="made" href="mailto:" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#attributes">ATTRIBUTES</a></li>
+	<li><a href="#authors">AUTHORS</a></li>
+	<li><a href="#see_also">SEE ALSO</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p><code>razor-agent.conf</code> - Configuration file for Razor Agents</p>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p><code>razor-agent.conf</code> is a configuration file read by the razor agents,
+which include razor-check(1), razor-admin(1), razor-report(1), and
+razor-revoke(1). The format is ``attribute = value'' pairs, one pair per
+line. Lines that begin with `#' are treated as comments.</p>
+<p>
+</p>
+<hr />
+<h1><a name="attributes">ATTRIBUTES</a></h1>
+<p>Following attributes can be specified:</p>
+<dl>
+<dt><strong><a name="item_razorhome"><strong>razorhome</strong></a></strong><br />
+</dt>
+<dd>
+Directory where Razor Agents look for files.  All files in <code>razor-agent.conf</code>
+without a full path will be relative to <a href="#item_razorhome"><code>razorhome</code></a>.
+The default is <code>/etc/razor/</code> for root, and <code>~/.razor/</code> for every other 
+user.  If <a href="#item_razorhome"><code>razorhome</code></a> does not exist, it will be created.
+</dd>
+<p></p>
+<dt><strong><a name="item_logfile"><strong>logfile</strong></a></strong><br />
+</dt>
+<dd>
+Log file for the Razor Agents.  The default is <code>razor-agent.log</code>.
+</dd>
+<p></p>
+<dt><strong><a name="item_debuglevel"><strong>debuglevel</strong></a></strong><br />
+</dt>
+<dd>
+Controls the amount of messages written to logfile.  It is an integer between
+0 and 20.  For Example, a value of <code>1</code> logs only startup
+and error messages, <code>5</code> includes every transaction with the server, 
+and <code>14</code> is extremely verbose information intended for debugging use only.
+NOTE: <code>15</code> and higher create debug files on your filesystem -- do not use unless you
+know what you are doing.
+The default is <code>5</code>.
+</dd>
+<p></p>
+<dt><strong><a name="item_identity"><strong>identity</strong></a></strong><br />
+</dt>
+<dd>
+Specify an identify file to use for storing a newly registered identity
+during razor-admin(1).  For razor-report(1) and razor-revoke(1), 
+use this identity when authenticating with Razor Servers.
+If not specified, <code>&lt;razorhome&gt;/identity-&lt;user&gt;</code> is used.
+</dd>
+<p></p>
+<dt><strong><a name="item_listfile_nomination"><strong>listfile_nomination</strong></a></strong><br />
+</dt>
+<dd>
+File where Razor Nomination Servers are listed, in order of closest
+TCP ping time.  Nomination Servers are used by razor-report(1) and razor-revoke(1).
+This file is created automatically.
+The default is <code>servers.nomination.lst</code>.
+</dd>
+<p></p>
+<dt><strong><a name="item_listfile_catalogue"><strong>listfile_catalogue</strong></a></strong><br />
+</dt>
+<dd>
+File where Razor Catalogue Servers are listed, in order of closest
+TCP ping time.  Catalogue Servers are used by razor-check(1).
+This file is created automatically.
+The default is <code>servers.catalogue.lst</code>.
+</dd>
+<p></p>
+<dt><strong><a name="item_listfile_discovery"><strong>listfile_discovery</strong></a></strong><br />
+</dt>
+<dd>
+File where Razor Discovery Servers are listed, in random order.
+This file is created automatically using DNS.
+The default is <code>servers.discovery.lst</code>.
+</dd>
+<p></p>
+<dt><strong><a name="item_rediscovery_wait_dns"><strong>rediscovery_wait_dns</strong></a></strong><br />
+</dt>
+<dd>
+Max time in seconds Razor Agents will wait before computing a new 
+<a href="#item_listfile_discovery"><code>listfile_discovery</code></a> using DNS.
+The default is <code>604800</code>, which is 7 days.
+</dd>
+<p></p>
+<dt><strong><a name="item_rediscovery_wait"><strong>rediscovery_wait</strong></a></strong><br />
+</dt>
+<dd>
+Max time in seconds Razor Agents will wait before computing a new 
+<a href="#item_listfile_nomination"><code>listfile_nomination</code></a> and a new <a href="#item_listfile_catalogue"><code>listfile_catalogue</code></a>.  
+The default is <code>172800</code>, which is 2 days.
+</dd>
+<p></p>
+<dt><strong><a name="item_turn_off_discovery"><strong>turn_off_discovery</strong></a></strong><br />
+</dt>
+<dd>
+Turns off closest host discovery.  When set to 1, <a href="#item_listfile_catalogue"><code>listfile_catalogue</code></a>
+and <a href="#item_listfile_nomination"><code>listfile_nomination</code></a> will not be updated and <a href="#item_listfile_discovery"><code>listfile_discovery</code></a>
+is not read or updated.  The default is <code>0</code>.
+</dd>
+<p></p>
+<dt><strong><a name="item_ignorelist"><strong>ignorelist</strong></a></strong><br />
+</dt>
+<dd>
+Automatically ignore mailing list posts.  If set to <code>0</code>, mailing
+list posts will be handled like all other mail.
+The default is <code>0</code>.
+</dd>
+<p></p>
+<dt><strong><a name="item_whitelist"><strong>whitelist</strong></a></strong><br />
+</dt>
+<dd>
+Name of whitelist file. Razor Agents can consult a whitelist of addresses 
+and SHA1 hashes before checking a mail with Razor Servers.
+If the address/hash is found on the whitelist, the mail is marked `not spam', 
+without checking against the server. The format of the whitelist can be found in 
+razor-whitelist(5) manpage.  The default is <code>razor-whitelist</code>.
+</dd>
+<p></p>
+<dt><strong><a name="item_min_cf"><strong>min_cf</strong></a></strong><br />
+</dt>
+<dd>
+When checking spam, the server optionally returns a spam confidence value
+ranging from 0 (not confident) to 100 (absolutely or 100% confident).
+To be considered spam, the server's spam confidence value must be greater 
+than or equal to <a href="#item_min_cf"><code>min_cf</code></a>.  <a href="#item_min_cf"><code>min_cf</code></a> can be a number or an expression containing 
+ac, the average confidence published by a Razor Server.  Examples: 0, 60,
+100, ac, ac + 10, ac - 20.  If an expression evaluates to less than 0 it
+becomes 0, likewise those greater than 100 become 100.
+The default is <code>ac</code>.
+</dd>
+<p></p>
+<dt><strong><a name="item_report_headers"><strong>report_headers</strong></a></strong><br />
+</dt>
+<dd>
+When reporting spam, the entire email (headers and body) is sent to 
+a Razor Nomination Server.  When set to <code>0</code>, all the headers are 
+removed except headers beginning with <code>Content-</code> before sending, 
+and a special header beginning with <code>X-Razor2</code> is added to note this action.  
+The default is <code>1</code>.
+</dd>
+<p></p></dl>
+<p>
+</p>
+<hr />
+<h1><a name="authors">AUTHORS</a></h1>
+<p>Vipul Ved Prakash, &lt;<a href="mailto:mail@vipul.net">mail@vipul.net</a>&gt; and Chad Norwood &lt;<a href="mailto:chad@samo.org">chad@samo.org</a>&gt;</p>
+<p>
+</p>
+<hr />
+<h1><a name="see_also">SEE ALSO</a></h1>
+<p>razor-agents(1), razor-check(1), razor-admin(1), 
+razor-report(1), razor-revoke(1), razor-whitelist(5)</p>
+
+</body>
+
+</html>

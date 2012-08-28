@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Mail::SpamAssassin::Plugin::AutoLearnThreshold - threshold-based discriminator for Bayes auto-learning</title>
+<link rev="made" href="mailto:" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#user_options">USER OPTIONS</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Mail::SpamAssassin::Plugin::AutoLearnThreshold - threshold-based discriminator for Bayes auto-learning</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+  loadplugin     Mail::SpamAssassin::Plugin::AutoLearnThreshold</pre>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>This plugin implements the threshold-based auto-learning discriminator
+for SpamAssassin's Bayes subsystem.  Auto-learning is a mechanism
+whereby high-scoring mails (or low-scoring mails, for non-spam) are fed
+into its learning systems without user intervention, during scanning.</p>
+<p>Note that certain tests are ignored when determining whether a message
+should be trained upon:</p>
+<ul>
+<li><strong><a name="item_rules_with_tflags_set_to__27learn_27__28the_bayesi">rules with tflags set to 'learn' (the Bayesian rules)</a></strong><br />
+</li>
+<li><strong><a name="item_rules_with_tflags_set_to__27userconf_27__28user_co">rules with tflags set to 'userconf' (user configuration)</a></strong><br />
+</li>
+<li><strong><a name="item_rules_with_tflags_set_to__27noautolearn_27">rules with tflags set to 'noautolearn'</a></strong><br />
+</li>
+</ul>
+<p>Also note that auto-learning occurs using scores from either scoreset 0
+or 1, depending on what scoreset is used during message check.  It is
+likely that the message check and auto-learn scores will be different.</p>
+<p>
+</p>
+<hr />
+<h1><a name="user_options">USER OPTIONS</a></h1>
+<p>The following configuration settings are used to control auto-learning:</p>
+<dl>
+<dt><strong><a name="item_nn">bayes_auto_learn_threshold_nonspam n.nn   (default: 0.1)</a></strong><br />
+</dt>
+<dd>
+The score threshold below which a mail has to score, to be fed into
+SpamAssassin's learning systems automatically as a non-spam message.
+</dd>
+<p></p>
+<dt><strong>bayes_auto_learn_threshold_spam n.nn      (default: 12.0)</strong><br />
+</dt>
+<dd>
+The score threshold above which a mail has to score, to be fed into
+SpamAssassin's learning systems automatically as a spam message.
+</dd>
+<dd>
+<p>Note: SpamAssassin requires at least 3 points from the header, and 3
+points from the body to auto-learn as spam.  Therefore, the minimum
+working value for this option is 6.</p>
+</dd>
+<p></p></dl>
+
+</body>
+
+</html>

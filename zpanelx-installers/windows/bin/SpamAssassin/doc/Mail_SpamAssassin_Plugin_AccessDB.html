@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Mail::SpamAssassin::Plugin::AccessDB - check message against Access Database</title>
+<link rev="made" href="mailto:" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Mail::SpamAssassin::Plugin::AccessDB - check message against Access Database</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+  loadplugin     Mail::SpamAssassin::Plugin::AccessDB</pre>
+<pre>
+  header   ACCESSDB  eval:check_access_database('/etc/mail/access.db')
+  describe ACCESSDB  Message would have been caught by accessdb
+  tflags   ACCESSDB  userconf
+  score    ACCESSDB  2</pre>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>Many MTAs support access databases, such as Sendmail, Postfix, etc.
+This plugin does similar checks to see whether a message would have
+been flagged.</p>
+<p>The rule returns false if an entry isn't found, or the entry has a RHS of
+<em>OK</em> or <em>SKIP</em>.</p>
+<p>The rule returns true if an entry exists and has a RHS of <em>REJECT</em>, <em>ERROR</em>,
+or <em>DISCARD</em>.</p>
+<p>Note: only the first word (split on non-word characters) of the RHS
+is checked, so <code>error:5.7.1:...</code> means <code>ERROR</code>.</p>
+<p><strong>AccessDB Pointers:</strong></p>
+<pre>
+  <a href="http://www.faqs.org/docs/securing/chap22sec178.html">http://www.faqs.org/docs/securing/chap22sec178.html</a>
+  <a href="http://www.postfix.org/access.5.html">http://www.postfix.org/access.5.html</a></pre>
+
+</body>
+
+</html>

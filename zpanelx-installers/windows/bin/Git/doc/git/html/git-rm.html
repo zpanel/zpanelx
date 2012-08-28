@@ -1,0 +1,440 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 7.0.2" />
+<style type="text/css">
+/* Debug borders */
+p, li, dt, dd, div, pre, h1, h2, h3, h4, h5, h6 {
+/*
+  border: 1px solid red;
+*/
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a { color: blue; }
+a:visited { color: fuchsia; }
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
+tt {
+  color: navy;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  font-family: sans-serif;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  border-bottom: 2px solid silver;
+  padding-top: 0.5em;
+}
+
+div.sectionbody {
+  font-family: serif;
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+span#author {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+span#email {
+}
+span#revision {
+  font-family: sans-serif;
+}
+
+div#footer {
+  font-family: sans-serif;
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+div#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+div#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+div#preamble,
+div.tableblock, div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-right: 10%;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock > div.content {
+  padding-left: 2.0em;
+}
+div.quoteblock .attribution {
+  text-align: right;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 2px solid silver;
+}
+
+div.exampleblock > div.content {
+  border-left: 2px solid silver;
+  padding: 0.5em;
+}
+
+div.verseblock div.content {
+  white-space: pre;
+}
+
+div.imageblock div.content { padding-left: 0; }
+div.imageblock img { border: 1px solid silver; }
+span.image img { border-style: none; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: italic;
+}
+dd > *:first-child {
+  margin-top: 0;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.olist2 {
+  list-style-type: lower-alpha;
+}
+
+div.tableblock > table {
+  border-color: #527bbd;
+  border-width: 3px;
+}
+thead {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+tfoot {
+  font-weight: bold;
+}
+
+div.hlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+td.hlist1 {
+  vertical-align: top;
+  font-style: italic;
+  padding-right: 0.8em;
+}
+td.hlist2 {
+  vertical-align: top;
+}
+
+@media print {
+  div#footer-badges { display: none; }
+}
+include::./stylesheets/xhtml11-manpage.css[]
+/* Workarounds for IE6's broken and incomplete CSS2. */
+
+div.sidebar-content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+div.sidebar-title, div.image-title {
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 0.0em;
+  margin-bottom: 0.5em;
+}
+
+div.listingblock div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock-content {
+  padding-left: 2.0em;
+}
+
+div.exampleblock-content {
+  border-left: 2px solid silver;
+  padding-left: 0.5em;
+}
+</style>
+<title>git-rm(1)</title>
+</head>
+<body>
+<div id="header">
+<h1>
+git-rm(1) Manual Page
+</h1>
+<h2>NAME</h2>
+<div class="sectionbody">
+<p>git-rm -
+   Remove files from the working tree and from the index
+</p>
+</div>
+</div>
+<h2>SYNOPSIS</h2>
+<div class="sectionbody">
+<p><em>git-rm</em> [-f] [-n] [-r] [--cached] [--ignore-unmatch] [--quiet] [--] &lt;file&gt;&#8230;</p>
+</div>
+<h2>DESCRIPTION</h2>
+<div class="sectionbody">
+<p>Remove files from the index, or from the working tree and the index.
+<tt>git rm</tt> will not remove a file from just your working directory.
+(There is no option to remove a file only from the work tree
+and yet keep it in the index; use <tt>/bin/rm</tt> if you want to do that.)
+The files being removed have to be identical to the tip of the branch,
+and no updates to their contents can be staged in the index,
+though that default behavior can be overridden with the <tt>-f</tt> option.
+When <em>--cached</em> is given, the staged content has to
+match either the tip of the branch or the file on disk,
+allowing the file to be removed from just the index.</p>
+</div>
+<h2>OPTIONS</h2>
+<div class="sectionbody">
+<dl>
+<dt>
+&lt;file&gt;&#8230;
+</dt>
+<dd>
+<p>
+        Files to remove.  Fileglobs (e.g. <tt>*.c</tt>) can be given to
+        remove all matching files.  If you want git to expand
+        file glob characters, you may need to shell-escape them.
+        A leading directory name
+        (e.g. <tt>dir</tt> to remove <tt>dir/file1</tt> and <tt>dir/file2</tt>) can be
+        given to remove all files in the directory, and recursively
+        all sub-directories,
+        but this requires the <tt>-r</tt> option to be explicitly given.
+</p>
+</dd>
+<dt>
+-f
+</dt>
+<dd>
+<p>
+        Override the up-to-date check.
+</p>
+</dd>
+<dt>
+-n
+</dt>
+<dt>
+--dry-run
+</dt>
+<dd>
+<p>
+        Don't actually remove any file(s).  Instead, just show
+        if they exist in the index and would otherwise be removed
+        by the command.
+</p>
+</dd>
+<dt>
+-r
+</dt>
+<dd>
+<p>
+        Allow recursive removal when a leading directory name is
+        given.
+</p>
+</dd>
+<dt>
+--
+</dt>
+<dd>
+<p>
+        This option can be used to separate command-line options from
+        the list of files, (useful when filenames might be mistaken
+        for command-line options).
+</p>
+</dd>
+<dt>
+--cached
+</dt>
+<dd>
+<p>
+        Use this option to unstage and remove paths only from the index.
+        Working tree files, whether modified or not, will be
+        left alone.
+</p>
+</dd>
+<dt>
+--ignore-unmatch
+</dt>
+<dd>
+<p>
+        Exit with a zero status even if no files matched.
+</p>
+</dd>
+<dt>
+-q
+</dt>
+<dt>
+--quiet
+</dt>
+<dd>
+<p>
+        git-rm normally outputs one line (in the form of an "rm" command)
+        for each file removed. This option suppresses that output.
+</p>
+</dd>
+</dl>
+</div>
+<h2>DISCUSSION</h2>
+<div class="sectionbody">
+<p>The &lt;file&gt; list given to the command can be exact pathnames,
+file glob patterns, or leading directory names.  The command
+removes only the paths that are known to git.  Giving the name of
+a file that you have not told git about does not remove that file.</p>
+<p>File globbing matches across directory boundaries.  Thus, given
+two directories <tt>d</tt> and <tt>d2</tt>, there is a difference between
+using <tt>git rm 'd*'</tt> and <tt>git rm 'd/*'</tt>, as the former will
+also remove all of directory <tt>d2</tt>.</p>
+</div>
+<h2>EXAMPLES</h2>
+<div class="sectionbody">
+<dl>
+<dt>
+git-rm Documentation/\*.txt
+</dt>
+<dd>
+<p>
+        Removes all <tt>*.txt</tt> files from the index that are under the
+        <tt>Documentation</tt> directory and any of its subdirectories.
+</p>
+<p>Note that the asterisk <tt>*</tt> is quoted from the shell in this
+example; this lets git, and not the shell, expand the pathnames
+of files and subdirectories under the <tt>Documentation/</tt> directory.</p>
+</dd>
+<dt>
+git-rm -f git-*.sh
+</dt>
+<dd>
+<p>
+        Because this example lets the shell expand the asterisk
+        (i.e. you are listing the files explicitly), it
+        does not remove <tt>subdir/git-foo.sh</tt>.
+</p>
+</dd>
+</dl>
+</div>
+<h2>SEE ALSO</h2>
+<div class="sectionbody">
+<p><a href="git-add.html">git-add(1)</a></p>
+</div>
+<h2>Author</h2>
+<div class="sectionbody">
+<p>Written by Linus Torvalds &lt;torvalds@osdl.org&gt;</p>
+</div>
+<h2>Documentation</h2>
+<div class="sectionbody">
+<p>Documentation by Junio C Hamano and the git-list &lt;git@vger.kernel.org&gt;.</p>
+</div>
+<h2>GIT</h2>
+<div class="sectionbody">
+<p>Part of the <a href="git.html">git(1)</a> suite</p>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 08-Jun-2008 22:47:00 UTC
+</div>
+</div>
+</body>
+</html>

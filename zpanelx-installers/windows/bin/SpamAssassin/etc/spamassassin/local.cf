@@ -1,0 +1,74 @@
+# This is the right place to customize your installation of SpamAssassin.
+#
+# See 'manual\Mail_SpamAssassin_Conf.html' in SAproxy folder
+# for details of what can be tweaked.
+#
+###########################################################################
+
+required_score      6.3
+bayes_auto_learn 1
+use_bayes 1
+ok_locales all
+report_safe 1
+rewrite_header Subject *****SPAM*****
+
+dns_available yes
+
+# If the score is smaller that this, email will be automatically
+# learned as nonspam. The threshold can be negative.
+bayes_auto_learn_threshold_nonspam 0.05
+
+# If the score is larger than this, email will be automatically
+# learned as spam.
+bayes_auto_learn_threshold_spam 11.0
+# Timeout settings for various online tests (sec).
+# These parameters affect the time spent on these online tests.
+rbl_timeout  20
+dcc_timeout  10
+
+# Uncomment and edit the line below to cover the trusted networks
+# (and only trusted networks), such as the network of your ISP.
+# This will prevent any hosts on this network from being
+# unnecessarily checked against the blacklists.
+#
+# trusted_networks  152.3.  35.8.
+
+score DCC_CHECK  0 3.6 0 4.0
+score RAZOR2_CHECK  0 2.5 0 2.5
+score NO_DNS_FOR_FROM  0
+score UNPARSEABLE_RELAY 0
+score RCVD_IN_NJABL_PROXY 0 (1.0) 0 (1.0)
+score RCVD_IN_NJABL_RELAY 0 2.0 0 2.0
+score RCVD_IN_NJABL_SPAM 0 (1.0) 0 (1.0)
+score RCVD_IN_SORBS_MISC 0 1.0 0 1.0
+score RCVD_IN_SORBS_HTTP 0 1.0 0 1.0
+score RCVD_IN_SORBS_SMTP 0 (1.0) 0 (1.0)
+
+# Below is the report template
+#
+#      ......................................................................
+clear_report_template
+report This mail is probably spam. The original message
+report has been attached intact in RFC 822 format.
+report 
+report Content preview:  _PREVIEW_
+report 
+report Content analysis details:   (_HITS_ points, _REQD_ required)
+report 
+report _SUMMARY_
+
+# Unsafe-for-viewing message report template.
+#
+#             ......................................................................
+clear_unsafe_report_template
+unsafe_report The original message was not completely plain text and may be unsafe to
+unsafe_report open with some email clients; in particular, it may contain a virus
+unsafe_report or confirm that your address can receive spam.  If you wish to view
+unsafe_report it, it may be safer to save it to a file and open it with an editor.
+
+#
+# Additional local configuration, see files
+#  10_local_dnsbl.cf
+#  10_local_tests.cf
+#  10_local_ignore.cf
+#

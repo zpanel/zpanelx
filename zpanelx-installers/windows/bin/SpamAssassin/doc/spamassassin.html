@@ -1,0 +1,402 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>spamassassin - simple front-end filtering script for SpamAssassin</title>
+<link rev="made" href="mailto:" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#options">OPTIONS</a></li>
+	<li><a href="#see_also">SEE ALSO</a></li>
+	<li><a href="#prerequisites">PREREQUISITES</a></li>
+	<li><a href="#bugs">BUGS</a></li>
+	<li><a href="#authors">AUTHORS</a></li>
+	<li><a href="#copyright">COPYRIGHT</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<hr />
+<h1><a name="name">NAME</a></h1>
+<p>spamassassin - simple front-end filtering script for SpamAssassin</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p><strong>spamassassin</strong> [options] [ &lt; <em>mailmessage</em> | <em>path</em> ... ]</p>
+<p><strong>spamassassin</strong> <strong>-d</strong> [ &lt; <em>mailmessage</em> | <em>path</em> ... ]</p>
+<p><strong>spamassassin</strong> <strong>-r</strong> [ &lt; <em>mailmessage</em> | <em>path</em> ... ]</p>
+<p><strong>spamassassin</strong> <strong>-k</strong> [ &lt; <em>mailmessage</em> | <em>path</em> ... ]</p>
+<p><strong>spamassassin</strong> <strong>-W</strong>|<strong>-R</strong> [ &lt; <em>mailmessage</em> | <em>path</em> ... ]</p>
+<p>Options:</p>
+<pre>
+ -L, --local                       Local tests only (no online tests)
+ -r, --report                      Report message as spam
+ -k, --revoke                      Revoke message as spam
+ -d, --remove-markup               Remove spam reports from a message
+ -C path, --configpath=path, --config-file=path
+                                   Path to standard configuration dir
+ -p prefs, --prefspath=file, --prefs-file=file
+                                   Set user preferences file
+ --siteconfigpath=path             Path for site configs
+                                   (def: /etc/mail/spamassassin)
+ --cf='config line'                Additional line of configuration
+ -x, --nocreate-prefs              Don't create user preferences file
+ -e, --exit-code                   Exit with a non-zero exit code if the
+                                   tested message was spam
+ --mbox                            read in messages in mbox format
+ --mbx                             read in messages in UW mbx format
+ -t, --test-mode                   Pipe message through and add extra
+                                   report to the bottom
+ --lint                            Lint the rule set: report syntax errors
+ -W, --add-to-whitelist            Add addresses in mail to persistent address whitelist
+ --add-to-blacklist                Add addresses in mail to persistent address blacklist
+ -R, --remove-from-whitelist       Remove all addresses found in mail from
+                                   persistent address list
+ --add-addr-to-whitelist=addr      Add addr to persistent address whitelist
+ --add-addr-to-blacklist=addr      Add addr to persistent address blacklist
+ --remove-addr-from-whitelist=addr Remove addr from persistent address list
+ --ipv4only, --ipv4-only, --ipv4   Disable attempted use of ipv6 for DNS
+ --progress                        Print progress bar
+ -D, --debug [area=n,...]          Print debugging messages
+ -V, --version                     Print version
+ -h, --help                        Print usage message</pre>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>spamassassin is a simple front-end filter for SpamAssassin.</p>
+<p>Using the SpamAssassin rule base, it uses a wide range of heuristic
+tests on mail headers and body text to identify ``spam'', also known as
+unsolicited bulk email.  Once identified, the mail is then tagged as
+spam for later filtering using the user's own mail user-agent
+application.</p>
+<p>The default tagging operations that take place are detailed in <a href="#tagging">TAGGING</a>.</p>
+<p>By default, <code>message(s)</code> are read in from STDIN (&lt; <em>mailmessage</em>), or
+from specified files and directories (<em>path</em> ...)  STDIN and files
+are assumed to be in <em>file</em> format, with a single message per file.
+Directories are assumed to be in a format where each file in the directory
+contains only one message (directories are not recursed and filenames
+containing whitespace or beginning with ``.'' or ``,'' are skipped).
+The options <em>--mbox</em> and <em>--mbx</em> can override the assumed format,
+see the appropriate OPTION information below.</p>
+<p>Please note that SpamAssassin is not designed to scan large
+messages. Don't feed messages larger than about 500 KB to
+SpamAssassin, as this will consume a huge amount of memory.</p>
+<p>
+</p>
+<hr />
+<h1><a name="options">OPTIONS</a></h1>
+<dl>
+<dt><strong><a name="item__2de_2c__2d_2derror_2dcode_2c__2d_2dexit_2dcode"><strong>-e</strong>, <strong>--error-code</strong>, <strong>--exit-code</strong></a></strong><br />
+</dt>
+<dd>
+Exit with a non-zero error code, if the message is determined to be
+spam.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dh_2c__2d_2dhelp"><strong>-h</strong>, <strong>--help</strong></a></strong><br />
+</dt>
+<dd>
+Print help message and exit.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dv_2c__2d_2dversion"><strong>-V</strong>, <strong>--version</strong></a></strong><br />
+</dt>
+<dd>
+Print version and exit.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dt_2c__2d_2dtest_2dmode"><strong>-t</strong>, <strong>--test-mode</strong></a></strong><br />
+</dt>
+<dd>
+Test mode.  Pipe message through and add extra report.  Note that the report
+text assumes that the message is spam, since in normal use it is only visible
+in this case.  Pay attention to the score instead.
+</dd>
+<dd>
+<p>If you run this with <strong>-d</strong>, the message will first have SpamAssassin
+markup removed before being tested.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item__2dr_2c__2d_2dreport"><strong>-r</strong>, <strong>--report</strong></a></strong><br />
+</dt>
+<dd>
+Report this message as manually-verified spam.  This will submit the mail
+message read from STDIN to various spam-blocker databases.  Currently,
+these are the Distributed Checksum Clearinghouse
+<code>http://www.rhyolite.com/anti-spam/dcc/</code>, Pyzor
+<code>http://pyzor.sourceforge.net/</code>, Vipul's Razor
+<code>http://razor.sourceforge.net/</code>, and SpamCop <code>http://www.spamcop.net/</code>.
+</dd>
+<dd>
+<p>If the message contains SpamAssassin markup, the markup will be stripped
+out automatically before submission.  The support modules for DCC, Pyzor,
+and Razor must be installed for spam to be reported to each service.
+SpamCop reports will have greater effect if you register and set the
+<code>spamcop_to_address</code> option.</p>
+</dd>
+<dd>
+<p>The message will also be submitted to SpamAssassin's learning systems;
+currently this is the internal Bayesian statistical-filtering system (the
+BAYES rules).  (Note that if you <em>only</em> want to perform statistical
+learning, and do not want to report mail to third-parties, you should use
+the <code>sa-learn</code> command directly instead.)</p>
+</dd>
+<p></p>
+<dt><strong><a name="item__2dk_2c__2d_2drevoke"><strong>-k</strong>, <strong>--revoke</strong></a></strong><br />
+</dt>
+<dd>
+Revoke this message.  This will revoke the mail message read from STDIN from
+various spam-blocker databases.  Currently, these are Vipul's Razor.
+</dd>
+<dd>
+<p>Revocation support for the Distributed Checksum Clearinghouse, Pyzor, and
+SpamCop is not currently available.</p>
+</dd>
+<dd>
+<p>If the message contains SpamAssassin markup, the markup will be stripped
+out automatically before submission.  The support modules for Razor must
+be installed for spam to be revoked from the service.</p>
+</dd>
+<dd>
+<p>The message will also be submitted as 'ham' (non-spam) to SpamAssassin's
+learning systems; currently this is the internal Bayesian
+statistical-filtering system (the BAYES rules).  (Note that if you <em>only</em>
+want to perform statistical learning, and do not want to report mail to
+third-parties, you should use the <code>sa-learn</code> command directly instead.)</p>
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dlint"><strong>--lint</strong></a></strong><br />
+</dt>
+<dd>
+Syntax check (lint) the rule set and configuration files, reporting
+typos and rules that do not compile correctly.  Exits with 0 if there
+are no errors, or greater than 0 if any errors are found.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dw_2c__2d_2dadd_2dto_2dwhitelist"><strong>-W</strong>, <strong>--add-to-whitelist</strong></a></strong><br />
+</dt>
+<dd>
+Add all email addresses, in the headers and body of the mail message read
+from STDIN, to a persistent address whitelist.  Note that you must be running
+<code>spamassassin</code> or <code>spamd</code> with a persistent address list plugin enabled for
+this to work.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dadd_2dto_2dblacklist"><strong>--add-to-blacklist</strong></a></strong><br />
+</dt>
+<dd>
+Add all email addresses, in the headers and body of the mail message read
+from STDIN, to the persistent address blacklist.  Note that you must be
+running <code>spamassassin</code> or <code>spamd</code> with a persistent address list plugin
+enabled for this to work.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dr_2c__2d_2dremove_2dfrom_2dwhitelist"><strong>-R</strong>, <strong>--remove-from-whitelist</strong></a></strong><br />
+</dt>
+<dd>
+Remove all email addresses, in the headers and body of the mail message read
+from STDIN, from a persistent address list. STDIN must contain a full email
+message, so to remove a single address you should use
+<strong>--remove-addr-from-whitelist</strong> instead.
+</dd>
+<dd>
+<p>Note that you must be running <code>spamassassin</code> or <code>spamd</code> with a persistent
+address list plugin enabled for this to work.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dadd_2daddr_2dto_2dwhitelist"><strong>--add-addr-to-whitelist</strong></a></strong><br />
+</dt>
+<dd>
+Add the named email address to a persistent address whitelist.  Note that you
+must be running <code>spamassassin</code> or <code>spamd</code> with a persistent address list
+plugin enabled for this to work.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dadd_2daddr_2dto_2dblacklist"><strong>--add-addr-to-blacklist</strong></a></strong><br />
+</dt>
+<dd>
+Add the named email address to a persistent address blacklist.  Note that you
+must be running <code>spamassassin</code> or <code>spamd</code> with a persistent address list
+plugin enabled for this to work.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dremove_2daddr_2dfrom_2dwhitelist"><strong>--remove-addr-from-whitelist</strong></a></strong><br />
+</dt>
+<dd>
+Remove the named email address from a persistent address whitelist.  Note that
+you must be running <code>spamassassin</code> or <code>spamd</code> with a persistent address
+list plugin enabled for this to work.
+</dd>
+<p></p>
+<dt><strong><a name="item___2d_2dipv4only_2c__2d_2dipv4_2donly_2c__2d_2dipv4"><strong> --ipv4only</strong>, <strong>--ipv4-only</strong>, <strong>--ipv4</strong></a></strong><br />
+</dt>
+<dd>
+Do not use IPv6 for DNS tests. Normally, SpamAssassin will try to detect if
+IPv6 is available, using only IPv4 if it is not. Use if the existing tests
+for IPv6 availablity produce incorrect results or crashes.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dl_2c__2d_2dlocal"><strong>-L</strong>, <strong>--local</strong></a></strong><br />
+</dt>
+<dd>
+Do only the ''local'' tests, ones that do not require an internet connection to
+operate.  Normally, SpamAssassin will try to detect whether you are connected
+to the net before doing these tests anyway, but for faster checks you may wish
+to use this.
+</dd>
+<dd>
+<p>Note that SpamAssassin's network rules are run in parallel.  This can cause
+overhead in terms of the number of file descriptors required if <strong>--local</strong> is
+not used; it is recommended that the minimum limit on fds be raised to at least
+256 for safety.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item__2dd_2c__2d_2dremove_2dmarkup"><strong>-d</strong>, <strong>--remove-markup</strong></a></strong><br />
+</dt>
+<dd>
+Remove SpamAssassin markup (the ``SpamAssassin results'' report, X-Spam-Status
+headers, etc.) from the mail message.  The resulting message, which will be
+more or less identical to the original, pre-SpamAssassin input, will be output
+to STDOUT.
+</dd>
+<dd>
+<p>(Note: the message will not be exactly identical; some headers will be
+reformatted due to some features of the Mail::Internet package, but the body
+text will be.)</p>
+</dd>
+<p></p>
+<dt><strong><a name="item__2dc_path_2c__2d_2dconfigpath_3dpath_2c__2d_2dconf"><strong>-C</strong> <em>path</em>, <strong>--configpath</strong>=<em>path</em>, <strong>--config-file</strong>=<em>path</em></a></strong><br />
+</dt>
+<dd>
+Use the specified path for locating the distributed configuration files.
+Ignore the default directories (usually <code>/usr/share/spamassassin</code> or similar).
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dsiteconfigpath_3dpath"><strong>--siteconfigpath</strong>=<em>path</em></a></strong><br />
+</dt>
+<dd>
+Use the specified path for locating site-specific configuration files.  Ignore
+the default directories (usually <code>/etc/mail/spamassassin</code> or similar).
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dcf_3d_27config_line_27"><strong>--cf='config line'</strong></a></strong><br />
+</dt>
+<dd>
+Add additional lines of configuration directly from the command-line, parsed
+after the configuration files are read.   Multiple <strong>--cf</strong> arguments can be
+used, and each will be considered a separate line of configuration.  For
+example:
+</dd>
+<dd>
+<pre>
+        spamassassin -t --cf=&quot;body NEWRULE /text/&quot; --cf=&quot;score NEWRULE 3.0&quot;</pre>
+</dd>
+<p></p>
+<dt><strong><a name="item__2dp_prefs_2c__2d_2dprefspath_3dprefs_2c__2d_2dpre"><strong>-p</strong> <em>prefs</em>, <strong>--prefspath</strong>=<em>prefs</em>, <strong>--prefs-file</strong>=<em>prefs</em></a></strong><br />
+</dt>
+<dd>
+Read user score preferences from <em>prefs</em> (usually <code>$HOME/.spamassassin/user_prefs</code>).
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dprogress"><strong>--progress</strong></a></strong><br />
+</dt>
+<dd>
+Prints a progress bar (to STDERR) showing the current progress.  This option
+will only be useful if you are redirecting STDOUT (and not STDERR).  In the
+case where no valid terminal is found this option will behave very much like
+the --showdots option in other SpamAssassin programs.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dd__5barea_2c_2e_2e_2e_5d_2c__2d_2ddebug__5barea"><strong>-D</strong> [<em>area,...</em>], <strong>--debug</strong> [<em>area,...</em>]</a></strong><br />
+</dt>
+<dd>
+Produce debugging output. If no areas are listed, all debugging information is
+printed. Diagnostic output can also be enabled for each area individually;
+<em>area</em> is the area of the code to instrument. For example, to produce
+diagnostic output on bayes, learn, and dns, use:
+</dd>
+<dd>
+<pre>
+        spamassassin -D bayes,learn,dns</pre>
+</dd>
+<dd>
+<p>Higher priority informational messages that are suitable for logging in normal
+circumstances are available with an area of ``info''.</p>
+</dd>
+<dd>
+<p>For more information about which areas (also known as channels) are available,
+please see the documentation at:</p>
+</dd>
+<dd>
+<pre>
+        C&lt;<a href="http://wiki.apache.org/spamassassin/DebugChannels&gt">http://wiki.apache.org/spamassassin/DebugChannels&gt</a>;</pre>
+</dd>
+<p></p>
+<dt><strong><a name="item__2dx_2c__2d_2dnocreate_2dprefs"><strong>-x</strong>, <strong>--nocreate-prefs</strong></a></strong><br />
+</dt>
+<dd>
+Disable creation of user preferences file.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dmbox"><strong>--mbox</strong></a></strong><br />
+</dt>
+<dd>
+Specify that the input <code>message(s)</code> are in mbox format.  mbox is a standard
+Unix message folder format.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dmbx"><strong>--mbx</strong></a></strong><br />
+</dt>
+<dd>
+Specify that the input <code>message(s)</code> are in UW .mbx format.  mbx is
+the mailbox format used within the University of Washington's IMAP
+implementation; see <code>http://www.washington.edu/imap/</code>.
+</dd>
+<p></p></dl>
+<p>
+</p>
+<hr />
+<h1><a name="see_also">SEE ALSO</a></h1>
+<p>sa-learn(1)
+<code>spamd(1)</code>
+<code>spamc(1)</code>
+Mail::SpamAssassin::Conf(3)
+Mail::SpamAssassin(3)</p>
+<p>
+</p>
+<hr />
+<h1><a name="prerequisites">PREREQUISITES</a></h1>
+<p><code>Mail::SpamAssassin</code></p>
+<p>
+</p>
+<hr />
+<h1><a name="bugs">BUGS</a></h1>
+<p>See &lt;http://issues.apache.org/SpamAssassin/&gt;</p>
+<p>
+</p>
+<hr />
+<h1><a name="authors">AUTHORS</a></h1>
+<p>The <code>SpamAssassin(tm)</code> Project &lt;http://spamassassin.apache.org/&gt;</p>
+<p>
+</p>
+<hr />
+<h1><a name="copyright">COPYRIGHT</a></h1>
+<p>SpamAssassin is distributed under the Apache License, Version 2.0, as
+described in the file <code>LICENSE</code> included with the distribution.</p>
+
+</body>
+
+</html>

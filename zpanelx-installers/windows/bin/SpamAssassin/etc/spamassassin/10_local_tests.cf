@@ -1,0 +1,44 @@
+# Additional tests
+#
+###########################################################################
+
+# Donation-based tests are disabled by default
+score RCVD_IN_BL_SPAMCOP_NET 0
+
+# These two tests may cause lots of false positives
+# because of poorly configured mail servers
+score TVD_RCVD_IP 0.001
+score TVD_RCVD_IP4 0.001
+score RDNS_NONE 0.001
+
+# A few examples of custom tests
+# (See http://www.regular-expressions.info/ for a tutorial
+# about regular expressions.
+# See http://www.rulesemporium.com/ for actual rules.)
+#
+# The message contains "nice lady":
+# body NICE_LADY	/nice lady/
+# describe NICE_LADY	Talks about a nice lady
+# score NICE_LADY	1.0
+#
+# The message mentions about NASDAQ, OTC, Bulletin Board or Pink Sheets, case insensitively:
+# body OTCBBPK		/NASDAQ|OTC|Bulletin Board|Pink Sheets/i
+# describe OTCBBPK	Refers to NASDAQ, OTC, Bulletin Board or Pink Sheets
+# score OTCBBPK		1.0
+#
+
+rawbody SINGLE_CR   /\r/
+describe SINGLE_CR  Invalid e-mail: contains single <CR> (x0D) characters
+score SINGLE_CR     3.0
+
+header UNSENT       exists:X-Unsent
+describe UNSENT     Message has X-Unsent header
+score UNSENT        3.0
+
+body __NIGERIAN_BODY_100  /\bI am .{0,60}(?:father|husband|wife|widow|daughter|son|brother|sister|head|general|president|minister|chairman|director|attorney|member)\b/i
+body __NIGERIAN_BODY_101  /\b(?:Nigeria|Lagos|Africa|Liberia|Zimbabwe|Cameroon|Benin)/i
+body __NIGERIAN_BODY_102  /(?:\$|US|USD)(?:[0-9.]+(?:m|\s*million)|[0-9,.]{6,}000)/i
+body __NIGERIAN_BODY_103  /\b(?:confiden(?:tial|ce)|sec(?:ret[^a]|recy|urity)|urgen)/i
+meta NIGERIAN_BODY100     (__NIGERIAN_BODY_100 + __NIGERIAN_BODY_101 + __NIGERIAN_BODY_102 + __NIGERIAN_BODY_103) > 2
+describe NIGERIAN_BODY100 Looks like Nigerian Scam (custom test)
+score NIGERIAN_BODY100    4.0

@@ -1,0 +1,518 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 7.0.2" />
+<style type="text/css">
+/* Debug borders */
+p, li, dt, dd, div, pre, h1, h2, h3, h4, h5, h6 {
+/*
+  border: 1px solid red;
+*/
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a { color: blue; }
+a:visited { color: fuchsia; }
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
+tt {
+  color: navy;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  font-family: sans-serif;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  border-bottom: 2px solid silver;
+  padding-top: 0.5em;
+}
+
+div.sectionbody {
+  font-family: serif;
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+span#author {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+span#email {
+}
+span#revision {
+  font-family: sans-serif;
+}
+
+div#footer {
+  font-family: sans-serif;
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+div#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+div#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+div#preamble,
+div.tableblock, div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-right: 10%;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock > div.content {
+  padding-left: 2.0em;
+}
+div.quoteblock .attribution {
+  text-align: right;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 2px solid silver;
+}
+
+div.exampleblock > div.content {
+  border-left: 2px solid silver;
+  padding: 0.5em;
+}
+
+div.verseblock div.content {
+  white-space: pre;
+}
+
+div.imageblock div.content { padding-left: 0; }
+div.imageblock img { border: 1px solid silver; }
+span.image img { border-style: none; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: italic;
+}
+dd > *:first-child {
+  margin-top: 0;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.olist2 {
+  list-style-type: lower-alpha;
+}
+
+div.tableblock > table {
+  border-color: #527bbd;
+  border-width: 3px;
+}
+thead {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+tfoot {
+  font-weight: bold;
+}
+
+div.hlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+td.hlist1 {
+  vertical-align: top;
+  font-style: italic;
+  padding-right: 0.8em;
+}
+td.hlist2 {
+  vertical-align: top;
+}
+
+@media print {
+  div#footer-badges { display: none; }
+}
+include::./stylesheets/xhtml11-manpage.css[]
+/* Workarounds for IE6's broken and incomplete CSS2. */
+
+div.sidebar-content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+div.sidebar-title, div.image-title {
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 0.0em;
+  margin-bottom: 0.5em;
+}
+
+div.listingblock div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock-content {
+  padding-left: 2.0em;
+}
+
+div.exampleblock-content {
+  border-left: 2px solid silver;
+  padding-left: 0.5em;
+}
+</style>
+<title>git-bisect(1)</title>
+</head>
+<body>
+<div id="header">
+<h1>
+git-bisect(1) Manual Page
+</h1>
+<h2>NAME</h2>
+<div class="sectionbody">
+<p>git-bisect -
+   Find the change that introduced a bug by binary search
+</p>
+</div>
+</div>
+<h2>SYNOPSIS</h2>
+<div class="sectionbody">
+<p><em>git bisect</em> &lt;subcommand&gt; &lt;options&gt;</p>
+</div>
+<h2>DESCRIPTION</h2>
+<div class="sectionbody">
+<p>The command takes various subcommands, and different options depending
+on the subcommand:</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>git bisect help
+git bisect start [&lt;bad&gt; [&lt;good&gt;...]] [--] [&lt;paths&gt;...]
+git bisect bad [&lt;rev&gt;]
+git bisect good [&lt;rev&gt;...]
+git bisect skip [&lt;rev&gt;...]
+git bisect reset [&lt;branch&gt;]
+git bisect visualize
+git bisect replay &lt;logfile&gt;
+git bisect log
+git bisect run &lt;cmd&gt;...</tt></pre>
+</div></div>
+<p>This command uses <em>git-rev-list --bisect</em> option to help drive the
+binary search process to find which change introduced a bug, given an
+old "good" commit object name and a later "bad" commit object name.</p>
+<h3>Getting help</h3>
+<p>Use "git bisect" to get a short usage description, and "git bisect
+help" or "git bisect -h" to get a long usage description.</p>
+<h3>Basic bisect commands: start, bad, good</h3>
+<p>The way you use it is:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git bisect start
+$ git bisect bad                 # Current version is bad
+$ git bisect good v2.6.13-rc2    # v2.6.13-rc2 was the last version
+                                 # tested that was good</tt></pre>
+</div></div>
+<p>When you give at least one bad and one good versions, it will bisect
+the revision tree and say something like:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>Bisecting: 675 revisions left to test after this</tt></pre>
+</div></div>
+<p>and check out the state in the middle. Now, compile that kernel, and
+boot it. Now, let's say that this booted kernel works fine, then just
+do</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git bisect good                       # this one is good</tt></pre>
+</div></div>
+<p>which will now say</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>Bisecting: 337 revisions left to test after this</tt></pre>
+</div></div>
+<p>and you continue along, compiling that one, testing it, and depending
+on whether it is good or bad, you say "git bisect good" or "git bisect
+bad", and ask for the next bisection.</p>
+<p>Until you have no more left, and you'll have been left with the first
+bad kernel rev in "refs/bisect/bad".</p>
+<h3>Bisect reset</h3>
+<p>Oh, and then after you want to reset to the original head, do a</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git bisect reset</tt></pre>
+</div></div>
+<p>to get back to the original branch, instead of being on the bisection
+commit ("git bisect start" will do that for you too, actually: it will
+reset the bisection state).</p>
+<h3>Bisect visualize</h3>
+<p>During the bisection process, you can say</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git bisect visualize</tt></pre>
+</div></div>
+<p>to see the currently remaining suspects in <tt>gitk</tt>.  <tt>visualize</tt> is a bit
+too long to type and <tt>view</tt> is provided as a synonym.</p>
+<p>If <tt>DISPLAY</tt> environment variable is not set, <tt>git log</tt> is used
+instead.  You can even give command line options such as <tt>-p</tt> and
+<tt>--stat</tt>.</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git bisect view --stat</tt></pre>
+</div></div>
+<h3>Bisect log and bisect replay</h3>
+<p>The good/bad input is logged, and</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git bisect log</tt></pre>
+</div></div>
+<p>shows what you have done so far. You can truncate its output somewhere
+and save it in a file, and run</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git bisect replay that-file</tt></pre>
+</div></div>
+<p>if you find later you made a mistake telling good/bad about a
+revision.</p>
+<h3>Avoiding to test a commit</h3>
+<p>If in a middle of bisect session, you know what the bisect suggested
+to try next is not a good one to test (e.g. the change the commit
+introduces is known not to work in your environment and you know it
+does not have anything to do with the bug you are chasing), you may
+want to find a near-by commit and try that instead.</p>
+<p>It goes something like this:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git bisect good/bad                   # previous round was good/bad.
+Bisecting: 337 revisions left to test after this
+$ git bisect visualize                  # oops, that is uninteresting.
+$ git reset --hard HEAD~3               # try 3 revs before what
+                                        # was suggested</tt></pre>
+</div></div>
+<p>Then compile and test the one you chose to try. After that, tell
+bisect what the result was as usual.</p>
+<h3>Bisect skip</h3>
+<p>Instead of choosing by yourself a nearby commit, you may just want git
+to do it for you using:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git bisect skip                 # Current version cannot be tested</tt></pre>
+</div></div>
+<p>But computing the commit to test may be slower afterwards and git may
+eventually not be able to tell the first bad among a bad and one or
+more "skip"ped commits.</p>
+<h3>Cutting down bisection by giving more parameters to bisect start</h3>
+<p>You can further cut down the number of trials if you know what part of
+the tree is involved in the problem you are tracking down, by giving
+paths parameters when you say <tt>bisect start</tt>, like this:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git bisect start -- arch/i386 include/asm-i386</tt></pre>
+</div></div>
+<p>If you know beforehand more than one good commits, you can narrow the
+bisect space down without doing the whole tree checkout every time you
+give good commits. You give the bad revision immediately after <tt>start</tt>
+and then you give all the good revisions you have:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git bisect start v2.6.20-rc6 v2.6.20-rc4 v2.6.20-rc1 --
+                   # v2.6.20-rc6 is bad
+                   # v2.6.20-rc4 and v2.6.20-rc1 are good</tt></pre>
+</div></div>
+<h3>Bisect run</h3>
+<p>If you have a script that can tell if the current source code is good
+or bad, you can automatically bisect using:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git bisect run my_script</tt></pre>
+</div></div>
+<p>Note that the "run" script (<tt>my_script</tt> in the above example) should
+exit with code 0 in case the current source code is good.  Exit with a
+code between 1 and 127 (inclusive), except 125, if the current
+source code is bad.</p>
+<p>Any other exit code will abort the automatic bisect process. (A
+program that does "exit(-1)" leaves $? = 255, see exit(3) manual page,
+the value is chopped with "&amp; 0377".)</p>
+<p>The special exit code 125 should be used when the current source code
+cannot be tested. If the "run" script exits with this code, the current
+revision will be skipped, see <tt>git bisect skip</tt> above.</p>
+<p>You may often find that during bisect you want to have near-constant
+tweaks (e.g., s/#define DEBUG 0/#define DEBUG 1/ in a header file, or
+"revision that does not have this commit needs this patch applied to
+work around other problem this bisection is not interested in")
+applied to the revision being tested.</p>
+<p>To cope with such a situation, after the inner git-bisect finds the
+next revision to test, with the "run" script, you can apply that tweak
+before compiling, run the real test, and after the test decides if the
+revision (possibly with the needed tweaks) passed the test, rewind the
+tree to the pristine state.  Finally the "run" script can exit with
+the status of the real test to let "git bisect run" command loop to
+know the outcome.</p>
+</div>
+<h2>EXAMPLES</h2>
+<div class="sectionbody">
+<ul>
+<li>
+<p>
+Automatically bisect a broken build between v1.2 and HEAD:
+</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git bisect start HEAD v1.2 --      # HEAD is bad, v1.2 is good
+$ git bisect run make                # "make" builds the app</tt></pre>
+</div></div>
+</li>
+<li>
+<p>
+Automatically bisect a broken test suite:
+</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ cat ~/test.sh
+#!/bin/sh
+make || exit 125                   # this "skip"s broken builds
+make test                          # "make test" runs the test suite
+$ git bisect start v1.3 v1.1 --    # v1.3 is bad, v1.1 is good
+$ git bisect run ~/test.sh</tt></pre>
+</div></div>
+<p>Here we use a "test.sh" custom script. In this script, if "make"
+fails, we "skip" the current commit.</p>
+<p>It's safer to use a custom script outside the repo to prevent
+interactions between the bisect, make and test processes and the
+script.</p>
+<p>And "make test" should "exit 0", if the test suite passes, and
+"exit 1" (for example) otherwise.</p>
+</li>
+<li>
+<p>
+Automatically bisect a broken test case:
+</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ cat ~/test.sh
+#!/bin/sh
+make || exit 125                     # this "skip"s broken builds
+~/check_test_case.sh                 # does the test case passes ?
+$ git bisect start HEAD HEAD~10 --   # culprit is among the last 10
+$ git bisect run ~/test.sh</tt></pre>
+</div></div>
+<p>Here "check_test_case.sh" should "exit 0", if the test case passes,
+and "exit 1" (for example) otherwise.</p>
+<p>It's safer if both "test.sh" and "check_test_case.sh" scripts are
+outside the repo to prevent interactions between the bisect, make and
+test processes and the scripts.</p>
+</li>
+</ul>
+</div>
+<h2>Author</h2>
+<div class="sectionbody">
+<p>Written by Linus Torvalds &lt;torvalds@osdl.org&gt;</p>
+</div>
+<h2>Documentation</h2>
+<div class="sectionbody">
+<p>Documentation by Junio C Hamano and the git-list &lt;git@vger.kernel.org&gt;.</p>
+</div>
+<h2>GIT</h2>
+<div class="sectionbody">
+<p>Part of the <a href="git.html">git(1)</a> suite</p>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 15-Jun-2008 05:10:05 UTC
+</div>
+</div>
+</body>
+</html>

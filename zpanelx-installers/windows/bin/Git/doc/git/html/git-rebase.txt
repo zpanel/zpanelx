@@ -1,0 +1,409 @@
+git-rebase(1)
+=============
+
+NAME
+----
+git-rebase - Forward-port local commits to the updated upstream head
+
+SYNOPSIS
+--------
+[verse]
+'git-rebase' [-i | --interactive] [-v | --verbose] [-m | --merge]
+	[-s <strategy> | --strategy=<strategy>]
+	[-C<n>] [ --whitespace=<option>] [-p | --preserve-merges]
+	[--onto <newbase>] <upstream> [<branch>]
+'git-rebase' --continue | --skip | --abort
+
+DESCRIPTION
+-----------
+If <branch> is specified, git-rebase will perform an automatic
+`git checkout <branch>` before doing anything else.  Otherwise
+it remains on the current branch.
+
+All changes made by commits in the current branch but that are not
+in <upstream> are saved to a temporary area.  This is the same set
+of commits that would be shown by `git log <upstream>..HEAD`.
+
+The current branch is reset to <upstream>, or <newbase> if the
+--onto option was supplied.  This has the exact same effect as
+`git reset --hard <upstream>` (or <newbase>).
+
+The commits that were previously saved into the temporary area are
+then reapplied to the current branch, one by one, in order. Note that
+any commits in HEAD which introduce the same textual changes as a commit
+in HEAD..<upstream> are omitted (i.e., a patch already accepted upstream
+with a different commit message or timestamp will be skipped).
+
+It is possible that a merge failure will prevent this process from being
+completely automatic.  You will have to resolve any such merge failure
+and run `git rebase --continue`.  Another option is to bypass the commit
+that caused the merge failure with `git rebase --skip`.  To restore the
+original <branch> and remove the .dotest working files, use the command
+`git rebase --abort` instead.
+
+Assume the following history exists and the current branch is "topic":
+
+------------
+          A---B---C topic
+         /
+    D---E---F---G master
+------------
+
+From this point, the result of either of the following commands:
+
+
+    git-rebase master
+    git-rebase master topic
+
+would be:
+
+------------
+                  A'--B'--C' topic
+                 /
+    D---E---F---G master
+------------
+
+The latter form is just a short-hand of `git checkout topic`
+followed by `git rebase master`.
+
+If the upstream branch already contains a change you have made (e.g.,
+because you mailed a patch which was applied upstream), then that commit
+will be skipped. For example, running `git-rebase master` on the
+following history (in which A' and A introduce the same set of changes,
+but have different committer information):
+
+------------
+          A---B---C topic
+         /
+    D---E---A'---F master
+------------
+
+will result in:
+
+------------
+                   B'---C' topic
+                  /
+    D---E---A'---F master
+------------
+
+Here is how you would transplant a topic branch based on one
+branch to another, to pretend that you forked the topic branch
+from the latter branch, using `rebase --onto`.
+
+First let's assume your 'topic' is based on branch 'next'.
+For example feature developed in 'topic' depends on some
+functionality which is found in 'next'.
+
+------------
+    o---o---o---o---o  master
+         \
+          o---o---o---o---o  next
+                           \
+                            o---o---o  topic
+------------
+
+We would want to make 'topic' forked from branch 'master',
+for example because the functionality 'topic' branch depend on
+got merged into more stable 'master' branch, like this:
+
+------------
+    o---o---o---o---o  master
+        |            \
+        |             o'--o'--o'  topic
+         \
+          o---o---o---o---o  next
+------------
+
+We can get this using the following command:
+
+    git-rebase --onto master next topic
+
+
+Another example of --onto option is to rebase part of a
+branch.  If we have the following situation:
+
+------------
+                            H---I---J topicB
+                           /
+                  E---F---G  topicA
+                 /
+    A---B---C---D  master
+------------
+
+then the command
+
+    git-rebase --onto master topicA topicB
+
+would result in:
+
+------------
+                 H'--I'--J'  topicB
+                /
+                | E---F---G  topicA
+                |/
+    A---B---C---D  master
+------------
+
+This is useful when topicB does not depend on topicA.
+
+A range of commits could also be removed with rebase.  If we have
+the following situation:
+
+------------
+    E---F---G---H---I---J  topicA
+------------
+
+then the command
+
+    git-rebase --onto topicA~5 topicA~3 topicA
+
+would result in the removal of commits F and G:
+
+------------
+    E---H'---I'---J'  topicA
+------------
+
+This is useful if F and G were flawed in some way, or should not be
+part of topicA.  Note that the argument to --onto and the <upstream>
+parameter can be any valid commit-ish.
+
+In case of conflict, git-rebase will stop at the first problematic commit
+and leave conflict markers in the tree.  You can use git diff to locate
+the markers (<<<<<<) and make edits to resolve the conflict.  For each
+file you edit, you need to tell git that the conflict has been resolved,
+typically this would be done with
+
+
+    git add <filename>
+
+
+After resolving the conflict manually and updating the index with the
+desired resolution, you can continue the rebasing process with
+
+
+    git rebase --continue
+
+
+Alternatively, you can undo the git-rebase with
+
+
+    git rebase --abort
+
+OPTIONS
+-------
+<newbase>::
+	Starting point at which to create the new commits. If the
+	--onto option is not specified, the starting point is
+	<upstream>.  May be any valid commit, and not just an
+	existing branch name.
+
+<upstream>::
+	Upstream branch to compare against.  May be any valid commit,
+	not just an existing branch name.
+
+<branch>::
+	Working branch; defaults to HEAD.
+
+--continue::
+	Restart the rebasing process after having resolved a merge conflict.
+
+--abort::
+	Restore the original branch and abort the rebase operation.
+
+--skip::
+	Restart the rebasing process by skipping the current patch.
+
+-m::
+--merge::
+	Use merging strategies to rebase.  When the recursive (default) merge
+	strategy is used, this allows rebase to be aware of renames on the
+	upstream side.
+
+-s <strategy>::
+--strategy=<strategy>::
+	Use the given merge strategy; can be supplied more than
+	once to specify them in the order they should be tried.
+	If there is no `-s` option, a built-in list of strategies
+	is used instead (`git-merge-recursive` when merging a single
+	head, `git-merge-octopus` otherwise).  This implies --merge.
+
+-v::
+--verbose::
+	Display a diffstat of what changed upstream since the last rebase.
+
+-C<n>::
+	Ensure at least <n> lines of surrounding context match before
+	and after each change.  When fewer lines of surrounding
+	context exist they all must match.  By default no context is
+	ever ignored.
+
+--whitespace=<nowarn|warn|error|error-all|strip>::
+	This flag is passed to the `git-apply` program
+	(see linkgit:git-apply[1]) that applies the patch.
+
+-i::
+--interactive::
+	Make a list of the commits which are about to be rebased.  Let the
+	user edit that list before rebasing.  This mode can also be used to
+	split commits (see SPLITTING COMMITS below).
+
+-p::
+--preserve-merges::
+	Instead of ignoring merges, try to recreate them.  This option
+	only works in interactive mode.
+
+include::merge-strategies.txt[]
+
+NOTES
+-----
+When you rebase a branch, you are changing its history in a way that
+will cause problems for anyone who already has a copy of the branch
+in their repository and tries to pull updates from you.  You should
+understand the implications of using 'git rebase' on a repository that
+you share.
+
+When the git rebase command is run, it will first execute a "pre-rebase"
+hook if one exists.  You can use this hook to do sanity checks and
+reject the rebase if it isn't appropriate.  Please see the template
+pre-rebase hook script for an example.
+
+Upon completion, <branch> will be the current branch.
+
+INTERACTIVE MODE
+----------------
+
+Rebasing interactively means that you have a chance to edit the commits
+which are rebased.  You can reorder the commits, and you can
+remove them (weeding out bad or otherwise unwanted patches).
+
+The interactive mode is meant for this type of workflow:
+
+1. have a wonderful idea
+2. hack on the code
+3. prepare a series for submission
+4. submit
+
+where point 2. consists of several instances of
+
+a. regular use
+ 1. finish something worthy of a commit
+ 2. commit
+b. independent fixup
+ 1. realize that something does not work
+ 2. fix that
+ 3. commit it
+
+Sometimes the thing fixed in b.2. cannot be amended to the not-quite
+perfect commit it fixes, because that commit is buried deeply in a
+patch series.  That is exactly what interactive rebase is for: use it
+after plenty of "a"s and "b"s, by rearranging and editing
+commits, and squashing multiple commits into one.
+
+Start it with the last commit you want to retain as-is:
+
+	git rebase -i <after-this-commit>
+
+An editor will be fired up with all the commits in your current branch
+(ignoring merge commits), which come after the given commit.  You can
+reorder the commits in this list to your heart's content, and you can
+remove them.  The list looks more or less like this:
+
+-------------------------------------------
+pick deadbee The oneline of this commit
+pick fa1afe1 The oneline of the next commit
+...
+-------------------------------------------
+
+The oneline descriptions are purely for your pleasure; `git-rebase` will
+not look at them but at the commit names ("deadbee" and "fa1afe1" in this
+example), so do not delete or edit the names.
+
+By replacing the command "pick" with the command "edit", you can tell
+`git-rebase` to stop after applying that commit, so that you can edit
+the files and/or the commit message, amend the commit, and continue
+rebasing.
+
+If you want to fold two or more commits into one, replace the command
+"pick" with "squash" for the second and subsequent commit.  If the
+commits had different authors, it will attribute the squashed commit to
+the author of the first commit.
+
+In both cases, or when a "pick" does not succeed (because of merge
+errors), the loop will stop to let you fix things, and you can continue
+the loop with `git rebase --continue`.
+
+For example, if you want to reorder the last 5 commits, such that what
+was HEAD~4 becomes the new HEAD. To achieve that, you would call
+`git-rebase` like this:
+
+----------------------
+$ git rebase -i HEAD~5
+----------------------
+
+And move the first patch to the end of the list.
+
+You might want to preserve merges, if you have a history like this:
+
+------------------
+           X
+            \
+         A---M---B
+        /
+---o---O---P---Q
+------------------
+
+Suppose you want to rebase the side branch starting at "A" to "Q". Make
+sure that the current HEAD is "B", and call
+
+-----------------------------
+$ git rebase -i -p --onto Q O
+-----------------------------
+
+
+SPLITTING COMMITS
+-----------------
+
+In interactive mode, you can mark commits with the action "edit".  However,
+this does not necessarily mean that 'git rebase' expects the result of this
+edit to be exactly one commit.  Indeed, you can undo the commit, or you can
+add other commits.  This can be used to split a commit into two:
+
+- Start an interactive rebase with 'git rebase -i <commit>^', where
+  <commit> is the commit you want to split.  In fact, any commit range
+  will do, as long as it contains that commit.
+
+- Mark the commit you want to split with the action "edit".
+
+- When it comes to editing that commit, execute 'git reset HEAD^'.  The
+  effect is that the HEAD is rewound by one, and the index follows suit.
+  However, the working tree stays the same.
+
+- Now add the changes to the index that you want to have in the first
+  commit.  You can use linkgit:git-add[1] (possibly interactively) and/or
+  linkgit:git-gui[1] to do that.
+
+- Commit the now-current index with whatever commit message is appropriate
+  now.
+
+- Repeat the last two steps until your working tree is clean.
+
+- Continue the rebase with 'git rebase --continue'.
+
+If you are not absolutely sure that the intermediate revisions are
+consistent (they compile, pass the testsuite, etc.) you should use
+linkgit:git-stash[1] to stash away the not-yet-committed changes
+after each commit, test, and amend the commit if fixes are necessary.
+
+
+Authors
+------
+Written by Junio C Hamano <junkio@cox.net> and
+Johannes E. Schindelin <johannes.schindelin@gmx.de>
+
+Documentation
+--------------
+Documentation by Junio C Hamano and the git-list <git@vger.kernel.org>.
+
+GIT
+---
+Part of the linkgit:git[1] suite

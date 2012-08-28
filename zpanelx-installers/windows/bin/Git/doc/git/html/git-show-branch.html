@@ -1,0 +1,534 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 7.0.2" />
+<style type="text/css">
+/* Debug borders */
+p, li, dt, dd, div, pre, h1, h2, h3, h4, h5, h6 {
+/*
+  border: 1px solid red;
+*/
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a { color: blue; }
+a:visited { color: fuchsia; }
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
+tt {
+  color: navy;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  font-family: sans-serif;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  border-bottom: 2px solid silver;
+  padding-top: 0.5em;
+}
+
+div.sectionbody {
+  font-family: serif;
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+span#author {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+span#email {
+}
+span#revision {
+  font-family: sans-serif;
+}
+
+div#footer {
+  font-family: sans-serif;
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+div#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+div#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+div#preamble,
+div.tableblock, div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-right: 10%;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock > div.content {
+  padding-left: 2.0em;
+}
+div.quoteblock .attribution {
+  text-align: right;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 2px solid silver;
+}
+
+div.exampleblock > div.content {
+  border-left: 2px solid silver;
+  padding: 0.5em;
+}
+
+div.verseblock div.content {
+  white-space: pre;
+}
+
+div.imageblock div.content { padding-left: 0; }
+div.imageblock img { border: 1px solid silver; }
+span.image img { border-style: none; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: italic;
+}
+dd > *:first-child {
+  margin-top: 0;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.olist2 {
+  list-style-type: lower-alpha;
+}
+
+div.tableblock > table {
+  border-color: #527bbd;
+  border-width: 3px;
+}
+thead {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+tfoot {
+  font-weight: bold;
+}
+
+div.hlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+td.hlist1 {
+  vertical-align: top;
+  font-style: italic;
+  padding-right: 0.8em;
+}
+td.hlist2 {
+  vertical-align: top;
+}
+
+@media print {
+  div#footer-badges { display: none; }
+}
+include::./stylesheets/xhtml11-manpage.css[]
+/* Workarounds for IE6's broken and incomplete CSS2. */
+
+div.sidebar-content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+div.sidebar-title, div.image-title {
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 0.0em;
+  margin-bottom: 0.5em;
+}
+
+div.listingblock div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock-content {
+  padding-left: 2.0em;
+}
+
+div.exampleblock-content {
+  border-left: 2px solid silver;
+  padding-left: 0.5em;
+}
+</style>
+<title>git-show-branch(1)</title>
+</head>
+<body>
+<div id="header">
+<h1>
+git-show-branch(1) Manual Page
+</h1>
+<h2>NAME</h2>
+<div class="sectionbody">
+<p>git-show-branch -
+   Show branches and their commits
+</p>
+</div>
+</div>
+<h2>SYNOPSIS</h2>
+<div class="sectionbody">
+<div class="verseblock">
+<div class="content"><em>git-show-branch</em> [--all] [--remotes] [--topo-order] [--current]
+                [--more=&lt;n&gt; | --list | --independent | --merge-base]
+                [--no-name | --sha1-name] [--topics] [&lt;rev&gt; | &lt;glob&gt;]&#8230;
+<em>git-show-branch</em> (-g|--reflog)[=&lt;n&gt;[,&lt;base&gt;]] [--list] [&lt;ref&gt;]</div></div>
+</div>
+<h2>DESCRIPTION</h2>
+<div class="sectionbody">
+<p>Shows the commit ancestry graph starting from the commits named
+with &lt;rev&gt;s or &lt;globs&gt;s (or all refs under $GIT_DIR/refs/heads
+and/or $GIT_DIR/refs/tags) semi-visually.</p>
+<p>It cannot show more than 29 branches and commits at a time.</p>
+<p>It uses <tt>showbranch.default</tt> multi-valued configuration items if
+no &lt;rev&gt; nor &lt;glob&gt; is given on the command line.</p>
+</div>
+<h2>OPTIONS</h2>
+<div class="sectionbody">
+<dl>
+<dt>
+&lt;rev&gt;
+</dt>
+<dd>
+<p>
+        Arbitrary extended SHA1 expression (see <tt>git-rev-parse</tt>)
+        that typically names a branch HEAD or a tag.
+</p>
+</dd>
+<dt>
+&lt;glob&gt;
+</dt>
+<dd>
+<p>
+        A glob pattern that matches branch or tag names under
+        $GIT_DIR/refs.  For example, if you have many topic
+        branches under $GIT_DIR/refs/heads/topic, giving
+        <tt>topic/*</tt> would show all of them.
+</p>
+</dd>
+<dt>
+-r
+</dt>
+<dt>
+--remotes
+</dt>
+<dd>
+<p>
+        Show the remote-tracking branches.
+</p>
+</dd>
+<dt>
+-a
+</dt>
+<dt>
+--all
+</dt>
+<dd>
+<p>
+        Show both remote-tracking branches and local branches.
+</p>
+</dd>
+<dt>
+--current
+</dt>
+<dd>
+<p>
+        With this option, the command includes the current
+        branch to the list of revs to be shown when it is not
+        given on the command line.
+</p>
+</dd>
+<dt>
+--topo-order
+</dt>
+<dd>
+<p>
+        By default, the branches and their commits are shown in
+        reverse chronological order.  This option makes them
+        appear in topological order (i.e., descendant commits
+        are shown before their parents).
+</p>
+</dd>
+<dt>
+--sparse
+</dt>
+<dd>
+<p>
+        By default, the output omits merges that are reachable
+        from only one tip being shown.  This option makes them
+        visible.
+</p>
+</dd>
+<dt>
+--more=&lt;n&gt;
+</dt>
+<dd>
+<p>
+        Usually the command stops output upon showing the commit
+        that is the common ancestor of all the branches.  This
+        flag tells the command to go &lt;n&gt; more common commits
+        beyond that.  When &lt;n&gt; is negative, display only the
+        &lt;reference&gt;s given, without showing the commit ancestry
+        tree.
+</p>
+</dd>
+<dt>
+--list
+</dt>
+<dd>
+<p>
+        Synonym to <tt>--more=-1</tt>
+</p>
+</dd>
+<dt>
+--merge-base
+</dt>
+<dd>
+<p>
+        Instead of showing the commit list, just act like the
+        <em>git-merge-base -a</em> command, except that it can accept
+        more than two heads.
+</p>
+</dd>
+<dt>
+--independent
+</dt>
+<dd>
+<p>
+        Among the &lt;reference&gt;s given, display only the ones that
+        cannot be reached from any other &lt;reference&gt;.
+</p>
+</dd>
+<dt>
+--no-name
+</dt>
+<dd>
+<p>
+        Do not show naming strings for each commit.
+</p>
+</dd>
+<dt>
+--sha1-name
+</dt>
+<dd>
+<p>
+        Instead of naming the commits using the path to reach
+        them from heads (e.g. "master~2" to mean the grandparent
+        of "master"), name them with the unique prefix of their
+        object names.
+</p>
+</dd>
+<dt>
+--topics
+</dt>
+<dd>
+<p>
+        Shows only commits that are NOT on the first branch given.
+        This helps track topic branches by hiding any commit that
+        is already in the main line of development.  When given
+        "git show-branch --topics master topic1 topic2", this
+        will show the revisions given by "git rev-list &#94;master
+        topic1 topic2"
+</p>
+</dd>
+<dt>
+--reflog[=&lt;n&gt;[,&lt;base&gt;]] [&lt;ref&gt;]
+</dt>
+<dd>
+<p>
+        Shows &lt;n&gt; most recent ref-log entries for the given
+        ref.  If &lt;base&gt; is given, &lt;n&gt; entries going back from
+        that entry.  &lt;base&gt; can be specified as count or date.
+        <tt>-g</tt> can be used as a short-hand for this option.  When
+        no explicit &lt;ref&gt; parameter is given, it defaults to the
+        current branch (or <tt>HEAD</tt> if it is detached).
+</p>
+</dd>
+</dl>
+<p>Note that --more, --list, --independent and --merge-base options
+are mutually exclusive.</p>
+</div>
+<h2>OUTPUT</h2>
+<div class="sectionbody">
+<p>Given N &lt;references&gt;, the first N lines are the one-line
+description from their commit message.  The branch head that is
+pointed at by $GIT_DIR/HEAD is prefixed with an asterisk <tt>*</tt>
+character while other heads are prefixed with a <tt>!</tt> character.</p>
+<p>Following these N lines, one-line log for each commit is
+displayed, indented N places.  If a commit is on the I-th
+branch, the I-th indentation character shows a <tt>+</tt> sign;
+otherwise it shows a space.  Merge commits are denoted by
+a <tt>-</tt> sign.  Each commit shows a short name that
+can be used as an extended SHA1 to name that commit.</p>
+<p>The following example shows three branches, "master", "fixes"
+and "mhf":</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git show-branch master fixes mhf
+* [master] Add 'git show-branch'.
+ ! [fixes] Introduce "reset type" flag to "git reset"
+  ! [mhf] Allow "+remote:local" refspec to cause --force when fetching.
+---
+  + [mhf] Allow "+remote:local" refspec to cause --force when fetching.
+  + [mhf~1] Use git-octopus when pulling more than one heads.
+ +  [fixes] Introduce "reset type" flag to "git reset"
+  + [mhf~2] "git fetch --force".
+  + [mhf~3] Use .git/remote/origin, not .git/branches/origin.
+  + [mhf~4] Make "git pull" and "git fetch" default to origin
+  + [mhf~5] Infamous 'octopus merge'
+  + [mhf~6] Retire git-parse-remote.
+  + [mhf~7] Multi-head fetch.
+  + [mhf~8] Start adding the $GIT_DIR/remotes/ support.
+*++ [master] Add 'git show-branch'.</tt></pre>
+</div></div>
+<p>These three branches all forked from a common commit, [master],
+whose commit message is "Add <em>git show-branch</em>.  "fixes" branch
+adds one commit <em>Introduce "reset type"</em>.  "mhf" branch has many
+other commits.  The current branch is "master".</p>
+</div>
+<h2>EXAMPLE</h2>
+<div class="sectionbody">
+<p>If you keep your primary branches immediately under
+<tt>$GIT_DIR/refs/heads</tt>, and topic branches in subdirectories of
+it, having the following in the configuration file may help:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>[showbranch]
+        default = --topo-order
+        default = heads/*
+</tt></pre>
+</div></div>
+<p>With this, <tt>git show-branch</tt> without extra parameters would show
+only the primary branches.  In addition, if you happen to be on
+your topic branch, it is shown as well.</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git show-branch --reflog='10,1 hour ago' --list master</tt></pre>
+</div></div>
+<p>shows 10 reflog entries going back from the tip as of 1 hour ago.
+Without <tt>--list</tt>, the output also shows how these tips are
+topologically related with each other.</p>
+</div>
+<h2>Author</h2>
+<div class="sectionbody">
+<p>Written by Junio C Hamano &lt;junkio@cox.net&gt;</p>
+</div>
+<h2>Documentation</h2>
+<div class="sectionbody">
+<p>Documentation by Junio C Hamano.</p>
+</div>
+<h2>GIT</h2>
+<div class="sectionbody">
+<p>Part of the <a href="git.html">git(1)</a> suite</p>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 08-Jun-2008 22:47:01 UTC
+</div>
+</div>
+</body>
+</html>

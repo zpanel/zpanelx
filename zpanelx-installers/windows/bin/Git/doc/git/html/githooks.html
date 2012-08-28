@@ -1,0 +1,533 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 7.0.2" />
+<style type="text/css">
+/* Debug borders */
+p, li, dt, dd, div, pre, h1, h2, h3, h4, h5, h6 {
+/*
+  border: 1px solid red;
+*/
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a { color: blue; }
+a:visited { color: fuchsia; }
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
+tt {
+  color: navy;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  font-family: sans-serif;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  border-bottom: 2px solid silver;
+  padding-top: 0.5em;
+}
+
+div.sectionbody {
+  font-family: serif;
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+span#author {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+span#email {
+}
+span#revision {
+  font-family: sans-serif;
+}
+
+div#footer {
+  font-family: sans-serif;
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+div#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+div#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+div#preamble,
+div.tableblock, div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-right: 10%;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock > div.content {
+  padding-left: 2.0em;
+}
+div.quoteblock .attribution {
+  text-align: right;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 2px solid silver;
+}
+
+div.exampleblock > div.content {
+  border-left: 2px solid silver;
+  padding: 0.5em;
+}
+
+div.verseblock div.content {
+  white-space: pre;
+}
+
+div.imageblock div.content { padding-left: 0; }
+div.imageblock img { border: 1px solid silver; }
+span.image img { border-style: none; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: italic;
+}
+dd > *:first-child {
+  margin-top: 0;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.olist2 {
+  list-style-type: lower-alpha;
+}
+
+div.tableblock > table {
+  border-color: #527bbd;
+  border-width: 3px;
+}
+thead {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+tfoot {
+  font-weight: bold;
+}
+
+div.hlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+td.hlist1 {
+  vertical-align: top;
+  font-style: italic;
+  padding-right: 0.8em;
+}
+td.hlist2 {
+  vertical-align: top;
+}
+
+@media print {
+  div#footer-badges { display: none; }
+}
+include::./stylesheets/xhtml11-manpage.css[]
+/* Workarounds for IE6's broken and incomplete CSS2. */
+
+div.sidebar-content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+div.sidebar-title, div.image-title {
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 0.0em;
+  margin-bottom: 0.5em;
+}
+
+div.listingblock div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock-content {
+  padding-left: 2.0em;
+}
+
+div.exampleblock-content {
+  border-left: 2px solid silver;
+  padding-left: 0.5em;
+}
+</style>
+<title>githooks(5)</title>
+</head>
+<body>
+<div id="header">
+<h1>
+githooks(5) Manual Page
+</h1>
+<h2>NAME</h2>
+<div class="sectionbody">
+<p>githooks -
+   Hooks used by git
+</p>
+</div>
+</div>
+<h2>SYNOPSIS</h2>
+<div class="sectionbody">
+<p>$GIT_DIR/hooks/*</p>
+</div>
+<h2>DESCRIPTION</h2>
+<div class="sectionbody">
+<p>Hooks are little scripts you can place in <tt>$GIT_DIR/hooks</tt>
+directory to trigger action at certain points.  When
+<tt>git-init</tt> is run, a handful example hooks are copied in the
+<tt>hooks</tt> directory of the new repository, but by default they are
+all disabled.  To enable a hook, rename it by removing its <tt>.sample</tt>
+suffix.</p>
+<p>This document describes the currently defined hooks.</p>
+</div>
+<h2>applypatch-msg</h2>
+<div class="sectionbody">
+<p>This hook is invoked by <tt>git-am</tt> script.  It takes a single
+parameter, the name of the file that holds the proposed commit
+log message.  Exiting with non-zero status causes
+<tt>git-am</tt> to abort before applying the patch.</p>
+<p>The hook is allowed to edit the message file in place, and can
+be used to normalize the message into some project standard
+format (if the project has one). It can also be used to refuse
+the commit after inspecting the message file.</p>
+<p>The default <em>applypatch-msg</em> hook, when enabled, runs the
+<em>commit-msg</em> hook, if the latter is enabled.</p>
+</div>
+<h2>pre-applypatch</h2>
+<div class="sectionbody">
+<p>This hook is invoked by <tt>git-am</tt>.  It takes no parameter, and is
+invoked after the patch is applied, but before a commit is made.</p>
+<p>If it exits with non-zero status, then the working tree will not be
+committed after applying the patch.</p>
+<p>It can be used to inspect the current working tree and refuse to
+make a commit if it does not pass certain test.</p>
+<p>The default <em>pre-applypatch</em> hook, when enabled, runs the
+<em>pre-commit</em> hook, if the latter is enabled.</p>
+</div>
+<h2>post-applypatch</h2>
+<div class="sectionbody">
+<p>This hook is invoked by <tt>git-am</tt>.  It takes no parameter,
+and is invoked after the patch is applied and a commit is made.</p>
+<p>This hook is meant primarily for notification, and cannot affect
+the outcome of <tt>git-am</tt>.</p>
+</div>
+<h2>pre-commit</h2>
+<div class="sectionbody">
+<p>This hook is invoked by <tt>git-commit</tt>, and can be bypassed
+with <tt>--no-verify</tt> option.  It takes no parameter, and is
+invoked before obtaining the proposed commit log message and
+making a commit.  Exiting with non-zero status from this script
+causes the <tt>git-commit</tt> to abort.</p>
+<p>The default <em>pre-commit</em> hook, when enabled, catches introduction
+of lines with trailing whitespaces and aborts the commit when
+such a line is found.</p>
+<p>All the <tt>git-commit</tt> hooks are invoked with the environment
+variable <tt>GIT_EDITOR=:</tt> if the command will not bring up an editor
+to modify the commit message.</p>
+</div>
+<h2>prepare-commit-msg</h2>
+<div class="sectionbody">
+<p>This hook is invoked by <tt>git-commit</tt> right after preparing the
+default log message, and before the editor is started.</p>
+<p>It takes one to three parameters.  The first is the name of the file
+that the commit log message.  The second is the source of the commit
+message, and can be: <tt>message</tt> (if a <tt>\-m</tt> or <tt>\-F</tt> option was
+given); <tt>template</tt> (if a <tt>\-t</tt> option was given or the
+configuration option <tt>commit.template</tt> is set); <tt>merge</tt> (if the
+commit is a merge or a <tt>.git/MERGE_MSG</tt> file exists); <tt>squash</tt>
+(if a <tt>.git/SQUASH_MSG</tt> file exists); or <tt>commit</tt>, followed by
+a commit SHA1 (if a <tt>\-c</tt>, <tt>\-C</tt> or <tt>--amend</tt> option was given).</p>
+<p>If the exit status is non-zero, <tt>git-commit</tt> will abort.</p>
+<p>The purpose of the hook is to edit the message file in place, and
+it is not suppressed by the <tt>--no-verify</tt> option.  A non-zero exit
+means a failure of the hook and aborts the commit.  It should not
+be used as replacement for pre-commit hook.</p>
+<p>The sample <tt>prepare-commit-msg</tt> hook that comes with git comments
+out the <tt>Conflicts:</tt> part of a merge's commit message.</p>
+</div>
+<h2>commit-msg</h2>
+<div class="sectionbody">
+<p>This hook is invoked by <tt>git-commit</tt>, and can be bypassed
+with <tt>--no-verify</tt> option.  It takes a single parameter, the
+name of the file that holds the proposed commit log message.
+Exiting with non-zero status causes the <tt>git-commit</tt> to
+abort.</p>
+<p>The hook is allowed to edit the message file in place, and can
+be used to normalize the message into some project standard
+format (if the project has one). It can also be used to refuse
+the commit after inspecting the message file.</p>
+<p>The default <em>commit-msg</em> hook, when enabled, detects duplicate
+"Signed-off-by" lines, and aborts the commit if one is found.</p>
+</div>
+<h2>post-commit</h2>
+<div class="sectionbody">
+<p>This hook is invoked by <tt>git-commit</tt>.  It takes no
+parameter, and is invoked after a commit is made.</p>
+<p>This hook is meant primarily for notification, and cannot affect
+the outcome of <tt>git-commit</tt>.</p>
+</div>
+<h2>post-checkout</h2>
+<div class="sectionbody">
+<p>This hook is invoked when a <tt>git-checkout</tt> is run after having updated the
+worktree.  The hook is given three parameters: the ref of the previous HEAD,
+the ref of the new HEAD (which may or may not have changed), and a flag
+indicating whether the checkout was a branch checkout (changing branches,
+flag=1) or a file checkout (retrieving a file from the index, flag=0).
+This hook cannot affect the outcome of <tt>git-checkout</tt>.</p>
+<p>This hook can be used to perform repository validity checks, auto-display
+differences from the previous HEAD if different, or set working dir metadata
+properties.</p>
+</div>
+<h2>post-merge</h2>
+<div class="sectionbody">
+<p>This hook is invoked by <tt>git-merge</tt>, which happens when a <tt>git pull</tt>
+is done on a local repository.  The hook takes a single parameter, a status
+flag specifying whether or not the merge being done was a squash merge.
+This hook cannot affect the outcome of <tt>git-merge</tt> and is not executed,
+if the merge failed due to conflicts.</p>
+<p>This hook can be used in conjunction with a corresponding pre-commit hook to
+save and restore any form of metadata associated with the working tree
+(eg: permissions/ownership, ACLS, etc).  See contrib/hooks/setgitperms.perl
+for an example of how to do this.</p>
+</div>
+<h2><a id="pre-receive"></a>pre-receive</h2>
+<div class="sectionbody">
+<p>This hook is invoked by <tt>git-receive-pack</tt> on the remote repository,
+which happens when a <tt>git push</tt> is done on a local repository.
+Just before starting to update refs on the remote repository, the
+pre-receive hook is invoked.  Its exit status determines the success
+or failure of the update.</p>
+<p>This hook executes once for the receive operation. It takes no
+arguments, but for each ref to be updated it receives on standard
+input a line of the format:</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>&lt;old-value&gt; SP &lt;new-value&gt; SP &lt;ref-name&gt; LF</tt></pre>
+</div></div>
+<p>where <tt>&lt;old-value&gt;</tt> is the old object name stored in the ref,
+<tt>&lt;new-value&gt;</tt> is the new object name to be stored in the ref and
+<tt>&lt;ref-name&gt;</tt> is the full name of the ref.
+When creating a new ref, <tt>&lt;old-value&gt;</tt> is 40 <tt>0</tt>.</p>
+<p>If the hook exits with non-zero status, none of the refs will be
+updated. If the hook exits with zero, updating of individual refs can
+still be prevented by the <a href="#update"><em>update</em></a> hook.</p>
+<p>Both standard output and standard error output are forwarded to
+<tt>git-send-pack</tt> on the other end, so you can simply <tt>echo</tt> messages
+for the user.</p>
+</div>
+<h2><a id="update"></a>update</h2>
+<div class="sectionbody">
+<p>This hook is invoked by <tt>git-receive-pack</tt> on the remote repository,
+which happens when a <tt>git push</tt> is done on a local repository.
+Just before updating the ref on the remote repository, the update hook
+is invoked.  Its exit status determines the success or failure of
+the ref update.</p>
+<p>The hook executes once for each ref to be updated, and takes
+three parameters:</p>
+<ul>
+<li>
+<p>
+the name of the ref being updated,
+</p>
+</li>
+<li>
+<p>
+the old object name stored in the ref,
+</p>
+</li>
+<li>
+<p>
+and the new objectname to be stored in the ref.
+</p>
+</li>
+</ul>
+<p>A zero exit from the update hook allows the ref to be updated.
+Exiting with a non-zero status prevents <tt>git-receive-pack</tt>
+from updating that ref.</p>
+<p>This hook can be used to prevent <em>forced</em> update on certain refs by
+making sure that the object name is a commit object that is a
+descendant of the commit object named by the old object name.
+That is, to enforce a "fast forward only" policy.</p>
+<p>It could also be used to log the old..new status.  However, it
+does not know the entire set of branches, so it would end up
+firing one e-mail per ref when used naively, though.  The
+<a href="#post-receive"><em>post-receive</em></a> hook is more suited to that.</p>
+<p>Another use suggested on the mailing list is to use this hook to
+implement access control which is finer grained than the one
+based on filesystem group.</p>
+<p>Both standard output and standard error output are forwarded to
+<tt>git-send-pack</tt> on the other end, so you can simply <tt>echo</tt> messages
+for the user.</p>
+<p>The default <em>update</em> hook, when enabled--and with
+<tt>hooks.allowunannotated</tt> config option turned on--prevents
+unannotated tags to be pushed.</p>
+</div>
+<h2><a id="post-receive"></a>post-receive</h2>
+<div class="sectionbody">
+<p>This hook is invoked by <tt>git-receive-pack</tt> on the remote repository,
+which happens when a <tt>git push</tt> is done on a local repository.
+It executes on the remote repository once after all the refs have
+been updated.</p>
+<p>This hook executes once for the receive operation.  It takes no
+arguments, but gets the same information as the
+<a href="#pre-receive"><em>pre-receive</em></a>
+hook does on its standard input.</p>
+<p>This hook does not affect the outcome of <tt>git-receive-pack</tt>, as it
+is called after the real work is done.</p>
+<p>This supersedes the <a href="#post-update"><em>post-update</em></a> hook in that it gets
+both old and new values of all the refs in addition to their
+names.</p>
+<p>Both standard output and standard error output are forwarded to
+<tt>git-send-pack</tt> on the other end, so you can simply <tt>echo</tt> messages
+for the user.</p>
+<p>The default <em>post-receive</em> hook is empty, but there is
+a sample script <tt>post-receive-email</tt> provided in the <tt>contrib/hooks</tt>
+directory in git distribution, which implements sending commit
+emails.</p>
+</div>
+<h2><a id="post-update"></a>post-update</h2>
+<div class="sectionbody">
+<p>This hook is invoked by <tt>git-receive-pack</tt> on the remote repository,
+which happens when a <tt>git push</tt> is done on a local repository.
+It executes on the remote repository once after all the refs have
+been updated.</p>
+<p>It takes a variable number of parameters, each of which is the
+name of ref that was actually updated.</p>
+<p>This hook is meant primarily for notification, and cannot affect
+the outcome of <tt>git-receive-pack</tt>.</p>
+<p>The <em>post-update</em> hook can tell what are the heads that were pushed,
+but it does not know what their original and updated values are,
+so it is a poor place to do log old..new. The
+<a href="#post-receive"><em>post-receive</em></a> hook does get both original and
+updated values of the refs. You might consider it instead if you need
+them.</p>
+<p>When enabled, the default <em>post-update</em> hook runs
+<tt>git-update-server-info</tt> to keep the information used by dumb
+transports (e.g., HTTP) up-to-date.  If you are publishing
+a git repository that is accessible via HTTP, you should
+probably enable this hook.</p>
+<p>Both standard output and standard error output are forwarded to
+<tt>git-send-pack</tt> on the other end, so you can simply <tt>echo</tt> messages
+for the user.</p>
+</div>
+<h2>pre-auto-gc</h2>
+<div class="sectionbody">
+<p>This hook is invoked by <tt>git-gc --auto</tt>. It takes no parameter, and
+exiting with non-zero status from this script causes the <tt>git-gc --auto</tt>
+to abort.</p>
+</div>
+<h2>GIT</h2>
+<div class="sectionbody">
+<p>Part of the <a href="git.html">git(1)</a> suite</p>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 25-Jun-2008 08:07:17 UTC
+</div>
+</div>
+</body>
+</html>

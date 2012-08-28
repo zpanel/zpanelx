@@ -1,0 +1,571 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 7.0.2" />
+<style type="text/css">
+/* Debug borders */
+p, li, dt, dd, div, pre, h1, h2, h3, h4, h5, h6 {
+/*
+  border: 1px solid red;
+*/
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a { color: blue; }
+a:visited { color: fuchsia; }
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
+tt {
+  color: navy;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  font-family: sans-serif;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  border-bottom: 2px solid silver;
+  padding-top: 0.5em;
+}
+
+div.sectionbody {
+  font-family: serif;
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+span#author {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+span#email {
+}
+span#revision {
+  font-family: sans-serif;
+}
+
+div#footer {
+  font-family: sans-serif;
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+div#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+div#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+div#preamble,
+div.tableblock, div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-right: 10%;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock > div.content {
+  padding-left: 2.0em;
+}
+div.quoteblock .attribution {
+  text-align: right;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 2px solid silver;
+}
+
+div.exampleblock > div.content {
+  border-left: 2px solid silver;
+  padding: 0.5em;
+}
+
+div.verseblock div.content {
+  white-space: pre;
+}
+
+div.imageblock div.content { padding-left: 0; }
+div.imageblock img { border: 1px solid silver; }
+span.image img { border-style: none; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: italic;
+}
+dd > *:first-child {
+  margin-top: 0;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.olist2 {
+  list-style-type: lower-alpha;
+}
+
+div.tableblock > table {
+  border-color: #527bbd;
+  border-width: 3px;
+}
+thead {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+tfoot {
+  font-weight: bold;
+}
+
+div.hlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+td.hlist1 {
+  vertical-align: top;
+  font-style: italic;
+  padding-right: 0.8em;
+}
+td.hlist2 {
+  vertical-align: top;
+}
+
+@media print {
+  div#footer-badges { display: none; }
+}
+/* Workarounds for IE6's broken and incomplete CSS2. */
+
+div.sidebar-content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+div.sidebar-title, div.image-title {
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 0.0em;
+  margin-bottom: 0.5em;
+}
+
+div.listingblock div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock-content {
+  padding-left: 2.0em;
+}
+
+div.exampleblock-content {
+  border-left: 2px solid silver;
+  padding-left: 0.5em;
+}
+</style>
+<title>run-command API</title>
+</head>
+<body>
+<div id="header">
+<h1>run-command API</h1>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<p>The run-command API offers a versatile tool to run sub-processes with
+redirected input and output as well as with a modified environment
+and an alternate current directory.</p>
+<p>A similar API offers the capability to run a function asynchronously,
+which is primarily used to capture the output that the function
+produces in the caller in order to process it.</p>
+</div>
+</div>
+<h2>Functions</h2>
+<div class="sectionbody">
+<dl>
+<dt>
+<tt>start_command</tt>
+</dt>
+<dd>
+<p>
+        Start a sub-process. Takes a pointer to a <tt>struct child_process</tt>
+        that specifies the details and returns pipe FDs (if requested).
+        See below for details.
+</p>
+</dd>
+<dt>
+<tt>finish_command</tt>
+</dt>
+<dd>
+<p>
+        Wait for the completion of a sub-process that was started with
+        start_command().
+</p>
+</dd>
+<dt>
+<tt>run_command</tt>
+</dt>
+<dd>
+<p>
+        A convenience function that encapsulates a sequence of
+        start_command() followed by finish_command(). Takes a pointer
+        to a <tt>struct child_process</tt> that specifies the details.
+</p>
+</dd>
+<dt>
+<tt>run_command_v_opt</tt>, <tt>run_command_v_opt_dir</tt>, <tt>run_command_v_opt_cd_env</tt>
+</dt>
+<dd>
+<p>
+        Convenience functions that encapsulate a sequence of
+        start_command() followed by finish_command(). The argument argv
+        specifies the program and its arguments. The argument opt is zero
+        or more of the flags <tt>RUN_COMMAND_NO_STDIN</tt>, <tt>RUN_GIT_CMD</tt>, or
+        <tt>RUN_COMMAND_STDOUT_TO_STDERR</tt> that correspond to the members
+        .no_stdin, .git_cmd, .stdout_to_stderr of <tt>struct child_process</tt>.
+        The argument dir corresponds the member .dir. The argument env
+        corresponds to the member .env.
+</p>
+</dd>
+<dt>
+<tt>start_async</tt>
+</dt>
+<dd>
+<p>
+        Run a function asynchronously. Takes a pointer to a <tt>struct
+        async</tt> that specifies the details and returns a pipe FD
+        from which the caller reads. See below for details.
+</p>
+</dd>
+<dt>
+<tt>finish_async</tt>
+</dt>
+<dd>
+<p>
+        Wait for the completion of an asynchronous function that was
+        started with start_async().
+</p>
+</dd>
+</dl>
+</div>
+<h2>Data structures</h2>
+<div class="sectionbody">
+<ul>
+<li>
+<p>
+<tt>struct child_process</tt>
+</p>
+</li>
+</ul>
+<p>This describes the arguments, redirections, and environment of a
+command to run in a sub-process.</p>
+<p>The caller:</p>
+<ol>
+<li>
+<p>
+allocates and clears (memset(&amp;chld, 0, sizeof(chld));) a
+   struct child_process variable;
+</p>
+</li>
+<li>
+<p>
+initializes the members;
+</p>
+</li>
+<li>
+<p>
+calls start_command();
+</p>
+</li>
+<li>
+<p>
+processes the data;
+</p>
+</li>
+<li>
+<p>
+closes file descriptors (if necessary; see below);
+</p>
+</li>
+<li>
+<p>
+calls finish_command().
+</p>
+</li>
+</ol>
+<p>The .argv member is set up as an array of string pointers (NULL
+terminated), of which .argv[0] is the program name to run (usually
+without a path). If the command to run is a git command, set argv[0] to
+the command name without the <em>git-</em> prefix and set .git_cmd = 1.</p>
+<p>The members .in, .out, .err are used to redirect stdin, stdout,
+stderr as follows:</p>
+<ol>
+<li>
+<p>
+Specify 0 to request no special redirection. No new file descriptor
+  is allocated. The child process simply inherits the channel from the
+  parent.
+</p>
+</li>
+<li>
+<p>
+Specify -1 to have a pipe allocated; start_command() replaces -1
+  by the pipe FD in the following way:
+</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>.in: Returns the writable pipe end into which the caller writes;
+        the readable end of the pipe becomes the child's stdin.</tt></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>.out, .err: Returns the readable pipe end from which the caller
+        reads; the writable end of the pipe end becomes child's
+        stdout/stderr.</tt></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>The caller of start_command() must close the so returned FDs
+after it has completed reading from/writing to it!</tt></pre>
+</div></div>
+</li>
+<li>
+<p>
+Specify a file descriptor &gt; 0 to be used by the child:
+</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>.in: The FD must be readable; it becomes child's stdin.
+.out: The FD must be writable; it becomes child's stdout.
+.err &gt; 0 is not supported.</tt></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>The specified FD is closed by start_command(), even if it fails to
+run the sub-process!</tt></pre>
+</div></div>
+</li>
+<li>
+<p>
+Special forms of redirection are available by setting these members
+  to 1:
+</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>.no_stdin, .no_stdout, .no_stderr: The respective channel is
+        redirected to /dev/null.</tt></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>.stdout_to_stderr: stdout of the child is redirected to its
+        stderr. This happens after stderr is itself redirected.
+        So stdout will follow stderr to wherever it is
+        redirected.</tt></pre>
+</div></div>
+</li>
+</ol>
+<p>To modify the environment of the sub-process, specify an array of
+string pointers (NULL terminated) in .env:</p>
+<ol>
+<li>
+<p>
+If the string is of the form "VAR=value", i.e. it contains <em>=</em>
+  the variable is added to the child process's environment.
+</p>
+</li>
+<li>
+<p>
+If the string does not contain <em>=</em>, it names an environment
+  variable that will be removed from the child process's environment.
+</p>
+</li>
+</ol>
+<p>To specify a new initial working directory for the sub-process,
+specify it in the .dir member.</p>
+<ul>
+<li>
+<p>
+<tt>struct async</tt>
+</p>
+</li>
+</ul>
+<p>This describes a function to run asynchronously, whose purpose is
+to produce output that the caller reads.</p>
+<p>The caller:</p>
+<ol>
+<li>
+<p>
+allocates and clears (memset(&amp;asy, 0, sizeof(asy));) a
+   struct async variable;
+</p>
+</li>
+<li>
+<p>
+initializes .proc and .data;
+</p>
+</li>
+<li>
+<p>
+calls start_async();
+</p>
+</li>
+<li>
+<p>
+processes the data by reading from the fd in .out;
+</p>
+</li>
+<li>
+<p>
+closes .out;
+</p>
+</li>
+<li>
+<p>
+calls finish_async().
+</p>
+</li>
+</ol>
+<p>The function pointer in .proc has the following signature:</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>int proc(int fd, void *data);</tt></pre>
+</div></div>
+<ol>
+<li>
+<p>
+fd specifies a writable file descriptor to which the function must
+  write the data that it produces. The function <strong>must</strong> close this
+  descriptor before it returns.
+</p>
+</li>
+<li>
+<p>
+data is the value that the caller has specified in the .data member
+  of struct async.
+</p>
+</li>
+<li>
+<p>
+The return value of the function is 0 on success and non-zero
+  on failure. If the function indicates failure, finish_async() will
+  report failure as well.
+</p>
+</li>
+</ol>
+<p>There are serious restrictions on what the asynchronous function can do
+because this facility is implemented by a pipe to a forked process on
+UNIX, but by a thread in the same address space on Windows:</p>
+<ol>
+<li>
+<p>
+It cannot change the program's state (global variables, environment,
+  etc.) in a way that the caller notices; in other words, .out is the
+  only communication channel to the caller.
+</p>
+</li>
+<li>
+<p>
+It must not change the program's state that the caller of the
+  facility also uses.
+</p>
+</li>
+</ol>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 18-Jun-2008 03:17:08 UTC
+</div>
+</div>
+</body>
+</html>

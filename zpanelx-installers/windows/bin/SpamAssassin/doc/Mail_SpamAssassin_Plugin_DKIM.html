@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Mail::SpamAssassin::Plugin::DKIM - perform DKIM verification tests</title>
+<link rev="made" href="mailto:" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#see_also">SEE ALSO</a></li>
+	<li><a href="#user_settings">USER SETTINGS</a></li>
+	<li><a href="#administrator_settings">ADMINISTRATOR SETTINGS</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Mail::SpamAssassin::Plugin::DKIM - perform DKIM verification tests</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+ loadplugin Mail::SpamAssassin::Plugin::DKIM [/path/to/DKIM.pm]</pre>
+<pre>
+ full DOMAINKEY_DOMAIN eval:check_dkim_verified()</pre>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>This SpamAssassin plugin implements DKIM lookups as described by the current
+draft specs: draft-ietf-dkim-base-10, as well as DomainKeys lookups, as
+described in draft-delany-domainkeys-base-06, thanks to the support for both
+types of signatures by newer versions of module Mail::DKIM (0.22 or later).</p>
+<p>It requires the <code>Mail::DKIM</code> CPAN module to operate. Many thanks to Jason Long
+for that module.</p>
+<p>Note that if <code>Mail::DKIM</code> version 0.20 or later is installed, this plugin will
+also perform Domain Key lookups on DomainKey-Signature headers.</p>
+<p>
+</p>
+<hr />
+<h1><a name="see_also">SEE ALSO</a></h1>
+<p><code>Mail::DKIM</code>, <code>Mail::SpamAssassin::Plugin</code></p>
+<pre>
+  <a href="http://jason.long.name/dkimproxy/">http://jason.long.name/dkimproxy/</a></pre>
+<p>
+</p>
+<hr />
+<h1><a name="user_settings">USER SETTINGS</a></h1>
+<dl>
+<dt><strong><a name="item_whitelist_from_dkim_add_40ress_2ecom__5bidentity_5">whitelist_from_dkim <a href="mailto:add@ress.com">add@ress.com</a> [identity]</a></strong><br />
+</dt>
+<dd>
+Use this to supplement the whitelist_from addresses with a check to make sure
+the message has been signed by a Domain Keys Identified Mail (DKIM) signature
+that can be verified against the From: domain's DKIM public key.
+</dd>
+<dd>
+<p>In order to support optional identities, only one whitelist entry is allowed
+per line, exactly like <code>whitelist_from_rcvd</code>.  Multiple <code>whitelist_from_dkim</code>
+lines are allowed.  File-glob style meta characters are allowed for the From:
+address, just like with <code>whitelist_from_rcvd</code>.  The optional identity
+parameter must match from the right-most side, also like in
+<code>whitelist_from_rcvd</code>.</p>
+</dd>
+<dd>
+<p>If no identity parameter is specified the domain of the address parameter
+specified will be used instead.</p>
+</dd>
+<dd>
+<p>The From: address is obtained from a signed part of the message (ie. the
+``From:'' header), not from envelope data that is possible to forge.</p>
+</dd>
+<dd>
+<p>Since this whitelist requires an DKIM check to be made, network tests must be
+enabled.</p>
+</dd>
+<dd>
+<p>Examples:</p>
+</dd>
+<dd>
+<pre>
+  whitelist_from_dkim joe@example.com
+  whitelist_from_dkim *@corp.example.com</pre>
+</dd>
+<dd>
+<pre>
+  whitelist_from_dkim jane@example.net  example.org
+  whitelist_from_dkim dick@example.net  richard@example.net</pre>
+</dd>
+<p></p>
+<dt><strong><a name="item_def_whitelist_from_dkim_add_40ress_2ecom__5bidenti">def_whitelist_from_dkim <a href="mailto:add@ress.com">add@ress.com</a> [identity]</a></strong><br />
+</dt>
+<dd>
+Same as <code>whitelist_from_dkim</code>, but used for the default whitelist entries
+in the SpamAssassin distribution.  The whitelist score is lower, because
+these are often targets for spammer spoofing.
+</dd>
+<p></p></dl>
+<p>
+</p>
+<hr />
+<h1><a name="administrator_settings">ADMINISTRATOR SETTINGS</a></h1>
+<dl>
+<dt><strong><a name="item_n">dkim_timeout n             (default: 5)</a></strong><br />
+</dt>
+<dd>
+How many seconds to wait for a DKIM query to complete, before
+scanning continues without the DKIM result.
+</dd>
+</dl>
+
+</body>
+
+</html>

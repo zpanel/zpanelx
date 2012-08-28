@@ -1,0 +1,208 @@
+git-clone(1)
+============
+
+NAME
+----
+git-clone - Clone a repository into a new directory
+
+
+SYNOPSIS
+--------
+[verse]
+'git-clone' [--template=<template_directory>]
+	  [-l] [-s] [--no-hardlinks] [-q] [-n] [--bare]
+	  [-o <name>] [-u <upload-pack>] [--reference <repository>]
+	  [--depth <depth>] [--] <repository> [<directory>]
+
+DESCRIPTION
+-----------
+
+Clones a repository into a newly created directory, creates
+remote-tracking branches for each branch in the cloned repository
+(visible using `git branch -r`), and creates and checks out an initial
+branch equal to the cloned repository's currently active branch.
+
+After the clone, a plain `git fetch` without arguments will update
+all the remote-tracking branches, and a `git pull` without
+arguments will in addition merge the remote master branch into the
+current master branch, if any.
+
+This default configuration is achieved by creating references to
+the remote branch heads under `$GIT_DIR/refs/remotes/origin` and
+by initializing `remote.origin.url` and `remote.origin.fetch`
+configuration variables.
+
+
+OPTIONS
+-------
+--local::
+-l::
+	When the repository to clone from is on a local machine,
+	this flag bypasses normal "git aware" transport
+	mechanism and clones the repository by making a copy of
+	HEAD and everything under objects and refs directories.
+	The files under `.git/objects/` directory are hardlinked
+	to save space when possible.  This is now the default when
+	the source repository is specified with `/path/to/repo`
+	syntax, so it essentially is a no-op option.  To force
+	copying instead of hardlinking (which may be desirable
+	if you are trying to make a back-up of your repository),
+	but still avoid the usual "git aware" transport
+	mechanism, `--no-hardlinks` can be used.
+
+--no-hardlinks::
+	Optimize the cloning process from a repository on a
+	local filesystem by copying files under `.git/objects`
+	directory.
+
+--shared::
+-s::
+	When the repository to clone is on the local machine,
+	instead of using hard links, automatically setup
+	.git/objects/info/alternates to share the objects
+	with the source repository.  The resulting repository
+	starts out without any object of its own.
++
+*NOTE*: this is a possibly dangerous operation; do *not* use
+it unless you understand what it does. If you clone your
+repository using this option and then delete branches (or use any
+other git command that makes any existing commit unreferenced) in the
+source repository, some objects may become unreferenced (or dangling).
+These objects may be removed by normal git operations (such as git-commit[1])
+which automatically call git-gc[1]. If these objects are removed and
+were referenced by the cloned repository, then the cloned repository
+will become corrupt.
+
+
+
+--reference <repository>::
+	If the reference repository is on the local machine
+	automatically setup .git/objects/info/alternates to
+	obtain objects from the reference repository.  Using
+	an already existing repository as an alternate will
+	require fewer objects to be copied from the repository
+	being cloned, reducing network and local storage costs.
++
+*NOTE*: see NOTE to --shared option.
+
+--quiet::
+-q::
+	Operate quietly.  This flag is passed to "rsync" and
+	"git-fetch-pack" commands when given.
+
+--no-checkout::
+-n::
+	No checkout of HEAD is performed after the clone is complete.
+
+--bare::
+	Make a 'bare' GIT repository.  That is, instead of
+	creating `<directory>` and placing the administrative
+	files in `<directory>/.git`, make the `<directory>`
+	itself the `$GIT_DIR`. This obviously implies the `-n`
+	because there is nowhere to check out the working tree.
+	Also the branch heads at the remote are copied directly
+	to corresponding local branch heads, without mapping
+	them to `refs/remotes/origin/`.  When this option is
+	used, neither remote-tracking branches nor the related
+	configuration variables are created.
+
+--origin <name>::
+-o <name>::
+	Instead of using the remote name 'origin' to keep track
+	of the upstream repository, use <name> instead.
+
+--upload-pack <upload-pack>::
+-u <upload-pack>::
+	When given, and the repository to clone from is handled
+	by 'git-fetch-pack', '--exec=<upload-pack>' is passed to
+	the command to specify non-default path for the command
+	run on the other end.
+
+--template=<template_directory>::
+	Specify the directory from which templates will be used;
+	if unset the templates are taken from the installation
+	defined default, typically `/usr/share/git-core/templates`.
+
+--depth <depth>::
+	Create a 'shallow' clone with a history truncated to the
+	specified number of revisions.  A shallow repository has a
+	number of limitations (you cannot clone or fetch from
+	it, nor push from nor into it), but is adequate if you
+	are only interested in the recent history of a large project
+	with a long history, and would want to send in fixes
+	as patches.
+
+<repository>::
+	The (possibly remote) repository to clone from.  See the
+	<<URLS,URLS>> section below for more information on specifying
+	repositories.
+
+<directory>::
+	The name of a new directory to clone into.  The "humanish"
+	part of the source repository is used if no directory is
+	explicitly given ("repo" for "/path/to/repo.git" and "foo"
+	for "host.xz:foo/.git").  Cloning into an existing directory
+	is not allowed.
+
+:git-clone: 1
+include::urls.txt[]
+
+Examples
+--------
+
+Clone from upstream::
++
+------------
+$ git clone git://git.kernel.org/pub/scm/.../linux-2.6 my2.6
+$ cd my2.6
+$ make
+------------
+
+
+Make a local clone that borrows from the current directory, without checking things out::
++
+------------
+$ git clone -l -s -n . ../copy
+$ cd ../copy
+$ git show-branch
+------------
+
+
+Clone from upstream while borrowing from an existing local directory::
++
+------------
+$ git clone --reference my2.6 \
+	git://git.kernel.org/pub/scm/.../linux-2.7 \
+	my2.7
+$ cd my2.7
+------------
+
+
+Create a bare repository to publish your changes to the public::
++
+------------
+$ git clone --bare -l /home/proj/.git /pub/scm/proj.git
+------------
+
+
+Create a repository on the kernel.org machine that borrows from Linus::
++
+------------
+$ git clone --bare -l -s /pub/scm/.../torvalds/linux-2.6.git \
+    /pub/scm/.../me/subsys-2.6.git
+------------
+
+
+Author
+------
+Written by Linus Torvalds <torvalds@osdl.org>
+
+
+Documentation
+--------------
+Documentation by Junio C Hamano and the git-list <git@vger.kernel.org>.
+
+
+GIT
+---
+Part of the linkgit:git[1] suite

@@ -1,0 +1,2226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Mail::SpamAssassin::Conf - SpamAssassin configuration file</title>
+<link rev="made" href="mailto:" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#file_format">FILE FORMAT</a></li>
+	<li><a href="#user_preferences">USER PREFERENCES</a></li>
+	<ul>
+
+		<li><a href="#scoring_options">SCORING OPTIONS</a></li>
+		<li><a href="#whitelist_and_blacklist_options">WHITELIST AND BLACKLIST OPTIONS</a></li>
+		<li><a href="#basic_message_tagging_options">BASIC MESSAGE TAGGING OPTIONS</a></li>
+		<li><a href="#language_options">LANGUAGE OPTIONS</a></li>
+		<li><a href="#network_test_options">NETWORK TEST OPTIONS</a></li>
+		<li><a href="#learning_options">LEARNING OPTIONS</a></li>
+		<li><a href="#miscellaneous_options">MISCELLANEOUS OPTIONS</a></li>
+	</ul>
+
+	<li><a href="#rule_definitions_and_privileged_settings">RULE DEFINITIONS AND PRIVILEGED SETTINGS</a></li>
+	<li><a href="#administrator_settings">ADMINISTRATOR SETTINGS</a></li>
+	<li><a href="#preprocessing_options">PREPROCESSING OPTIONS</a></li>
+	<li><a href="#template_tags">TEMPLATE TAGS</a></li>
+	<ul>
+
+		<li><a href="#hammytokens_spammytokens_tag_format">HAMMYTOKENS/SPAMMYTOKENS TAG FORMAT</a></li>
+	</ul>
+
+	<li><a href="#locali_sz_ation">LOCALI[SZ]ATION</a></li>
+	<li><a href="#see_also">SEE ALSO</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Mail::SpamAssassin::Conf - SpamAssassin configuration file</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+  # a comment</pre>
+<pre>
+  rewrite_header Subject          *****SPAM*****</pre>
+<pre>
+  full PARA_A_2_C_OF_1618         /Paragraph .a.{0,10}2.{0,10}C. of S. 1618/i
+  describe PARA_A_2_C_OF_1618     Claims compliance with senate bill 1618</pre>
+<pre>
+  header FROM_HAS_MIXED_NUMS      From =~ /\d+[a-z]+\d+\S*@/i
+  describe FROM_HAS_MIXED_NUMS    From: contains numbers mixed in with letters</pre>
+<pre>
+  score A_HREF_TO_REMOVE          2.0</pre>
+<pre>
+  lang es describe FROM_FORGED_HOTMAIL Forzado From: simula ser de hotmail.com</pre>
+<pre>
+  lang pt_BR report O programa detetor de Spam ZOE [...]</pre>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>SpamAssassin is configured using traditional UNIX-style configuration files,
+loaded from the <code>/usr/share/spamassassin</code> and <code>/etc/mail/spamassassin</code>
+directories.</p>
+<p>The following web page lists the most important configuration settings
+used to configure SpamAssassin; novices are encouraged to read it first:</p>
+<pre>
+  <a href="http://wiki.apache.org/spamassassin/ImportantInitialConfigItems">http://wiki.apache.org/spamassassin/ImportantInitialConfigItems</a></pre>
+<p>
+</p>
+<hr />
+<h1><a name="file_format">FILE FORMAT</a></h1>
+<p>The <code>#</code> character starts a comment, which continues until end of line.
+<strong>NOTE:</strong> if the <code>#</code> character is to be used as part of a rule or
+configuration option, it must be escaped with a backslash.  i.e.: <code>\#</code></p>
+<p>Whitespace in the files is not significant, but please note that starting a
+line with whitespace is deprecated, as we reserve its use for multi-line rule
+definitions, at some point in the future.</p>
+<p>Currently, each rule or configuration setting must fit on one-line; multi-line
+settings are not supported yet.</p>
+<p>File and directory paths can use <code>~</code> to refer to the user's home
+directory, but no other shell-style path extensions such as globing or
+<code>~user/</code> are supported.</p>
+<p>Where appropriate below, default values are listed in parentheses.</p>
+<p>
+</p>
+<hr />
+<h1><a name="user_preferences">USER PREFERENCES</a></h1>
+<p>The following options can be used in both site-wide (<code>local.cf</code>) and
+user-specific (<code>user_prefs</code>) configuration files to customize how
+SpamAssassin handles incoming email messages.</p>
+<p>
+</p>
+<h2><a name="scoring_options">SCORING OPTIONS</a></h2>
+<dl>
+<dt><strong><a name="item_nn">required_score n.nn (default: 5)</a></strong><br />
+</dt>
+<dd>
+Set the score required before a mail is considered spam.  <code>n.nn</code> can
+be an integer or a real number.  5.0 is the default setting, and is
+quite aggressive; it would be suitable for a single-user setup, but if
+you're an ISP installing SpamAssassin, you should probably set the
+default to be more conservative, like 8.0 or 10.0.  It is not
+recommended to automatically delete or discard messages marked as
+spam, as your users <strong>will</strong> complain, but if you choose to do so, only
+delete messages with an exceptionally high score such as 15.0 or
+higher. This option was previously known as <code>required_hits</code> and that
+name is still accepted, but is deprecated.
+</dd>
+<p></p>
+<dt><strong><a name="item_score_symbolic_test_name_n_2enn__5b_n_2enn_n_2enn_">score SYMBOLIC_TEST_NAME n.nn [ n.nn n.nn n.nn ]</a></strong><br />
+</dt>
+<dd>
+Assign scores (the number of points for a hit) to a given test.
+Scores can be positive or negative real numbers or integers.
+<a href="#item_symbolic_test_name"><code>SYMBOLIC_TEST_NAME</code></a> is the symbolic name used by SpamAssassin for
+that test; for example, 'FROM_ENDS_IN_NUMS'.
+</dd>
+<dd>
+<p>If only one valid score is listed, then that score is always used
+for a test.</p>
+</dd>
+<dd>
+<p>If four valid scores are listed, then the score that is used depends
+on how SpamAssassin is being used. The first score is used when
+both Bayes and network tests are disabled (score set 0). The second
+score is used when Bayes is disabled, but network tests are enabled
+(score set 1). The third score is used when Bayes is enabled and
+network tests are disabled (score set 2). The fourth score is used
+when Bayes is enabled and network tests are enabled (score set 3).</p>
+</dd>
+<dd>
+<p>Setting a rule's score to 0 will disable that rule from running.</p>
+</dd>
+<dd>
+<p>If any of the score values are surrounded by parenthesis '()', then
+all of the scores in the line are considered to be relative to the
+already set score.  ie: '(3)' means increase the score for this
+rule by 3 points in all score sets.  '(3) (0) (3) (0)' means increase
+the score for this rule by 3 in score sets 0 and 2 only.</p>
+</dd>
+<dd>
+<p>If no score is given for a test by the end of the configuration, a
+default score is assigned: a score of 1.0 is used for all tests,
+except those who names begin with 'T_' (this is used to indicate a
+rule in testing) which receive 0.01.</p>
+</dd>
+<dd>
+<p>Note that test names which begin with '__' are indirect rules used
+to compose meta-match rules and can also act as prerequisites to
+other rules.  They are not scored or listed in the 'tests hit'
+reports, but assigning a score of 0 to an indirect rule will disable
+it from running.</p>
+</dd>
+<p></p></dl>
+<p>
+</p>
+<h2><a name="whitelist_and_blacklist_options">WHITELIST AND BLACKLIST OPTIONS</a></h2>
+<dl>
+<dt><strong><a name="item_whitelist_from_add_40ress_2ecom">whitelist_from <a href="mailto:add@ress.com">add@ress.com</a></a></strong><br />
+</dt>
+<dd>
+Used to whitelist sender addresses which send mail that is often tagged
+(incorrectly) as spam.
+</dd>
+<dd>
+<p>Use of this setting is not recommended, since it blindly trusts the message,
+which is routinely and easily forged by spammers and phish senders. The
+recommended solution is to instead use <code>whitelist_auth</code> or other authenticated
+whitelisting methods, or <code>whitelist_from_rcvd</code>.</p>
+</dd>
+<dd>
+<p>Whitelist and blacklist addresses are now file-glob-style patterns, so
+<code>friend@somewhere.com</code>, <code>*@isp.com</code>, or <code>*.domain.net</code> will all work.
+Specifically, <code>*</code> and <code>?</code> are allowed, but all other metacharacters are not.
+Regular expressions are not used for security reasons.</p>
+</dd>
+<dd>
+<p>Multiple addresses per line, separated by spaces, is OK.  Multiple
+<code>whitelist_from</code> lines is also OK.</p>
+</dd>
+<dd>
+<p>The headers checked for whitelist addresses are as follows: if <code>Resent-From</code>
+is set, use that; otherwise check all addresses taken from the following
+set of headers:</p>
+</dd>
+<dd>
+<pre>
+        Envelope-Sender
+        Resent-Sender
+        X-Envelope-From
+        From</pre>
+</dd>
+<dd>
+<p>In addition, the ``envelope sender'' data, taken from the SMTP envelope data
+where this is available, is looked up.  See <code>envelope_sender_header</code>.</p>
+</dd>
+<dd>
+<p>e.g.</p>
+</dd>
+<dd>
+<pre>
+  whitelist_from joe@example.com fred@example.com
+  whitelist_from *@example.com</pre>
+</dd>
+<p></p>
+<dt><strong><a name="item_unwhitelist_from_add_40ress_2ecom">unwhitelist_from <a href="mailto:add@ress.com">add@ress.com</a></a></strong><br />
+</dt>
+<dd>
+Used to override a default whitelist_from entry, so for example a distribution
+whitelist_from can be overridden in a local.cf file, or an individual user can
+override a whitelist_from entry in their own <code>user_prefs</code> file.
+The specified email address has to match exactly the address previously
+used in a whitelist_from line.
+</dd>
+<dd>
+<p>e.g.</p>
+</dd>
+<dd>
+<pre>
+  unwhitelist_from joe@example.com fred@example.com
+  unwhitelist_from *@example.com</pre>
+</dd>
+<p></p>
+<dt><strong><a name="item_whitelist_from_rcvd_addr_40lists_2esourceforge_2en">whitelist_from_rcvd <a href="mailto:addr@lists.sourceforge.net">addr@lists.sourceforge.net</a> sourceforge.net</a></strong><br />
+</dt>
+<dd>
+Use this to supplement the whitelist_from addresses with a check against the
+Received headers. The first parameter is the address to whitelist, and the
+second is a string to match the relay's rDNS.
+</dd>
+<dd>
+<p>This string is matched against the reverse DNS lookup used during the handover
+from the internet to your internal network's mail exchangers.  It can
+either be the full hostname, or the domain component of that hostname.  In
+other words, if the host that connected to your MX had an IP address that
+mapped to 'sendinghost.spamassassin.org', you should specify
+<code>sendinghost.spamassassin.org</code> or just <code>spamassassin.org</code> here.</p>
+</dd>
+<dd>
+<p>Note that this requires that <code>internal_networks</code> be correct.  For simple cases,
+it will be, but for a complex network you may get better results by setting that
+parameter.</p>
+</dd>
+<dd>
+<p>e.g.</p>
+</dd>
+<dd>
+<pre>
+  whitelist_from_rcvd joe@example.com  example.com
+  whitelist_from_rcvd *@axkit.org      sergeant.org</pre>
+</dd>
+<p></p>
+<dt><strong><a name="item_def_whitelist_from_rcvd_addr_40lists_2esourceforge">def_whitelist_from_rcvd <a href="mailto:addr@lists.sourceforge.net">addr@lists.sourceforge.net</a> sourceforge.net</a></strong><br />
+</dt>
+<dd>
+Same as <code>whitelist_from_rcvd</code>, but used for the default whitelist entries
+in the SpamAssassin distribution.  The whitelist score is lower, because
+these are often targets for spammer spoofing.
+</dd>
+<p></p>
+<dt><strong><a name="item_whitelist_allows_relays_add_40ress_2ecom">whitelist_allows_relays <a href="mailto:add@ress.com">add@ress.com</a></a></strong><br />
+</dt>
+<dd>
+Specify addresses which are in <code>whitelist_from_rcvd</code> that sometimes
+send through a mail relay other than the listed ones. By default mail
+with a From address that is in <code>whitelist_from_rcvd</code> that does not match
+the relay will trigger a forgery rule. Including the address in
+<code>whitelist_allows_relay</code> prevents that.
+</dd>
+<dd>
+<p>Whitelist and blacklist addresses are now file-glob-style patterns, so
+<code>friend@somewhere.com</code>, <code>*@isp.com</code>, or <code>*.domain.net</code> will all work.
+Specifically, <code>*</code> and <code>?</code> are allowed, but all other metacharacters are not.
+Regular expressions are not used for security reasons.</p>
+</dd>
+<dd>
+<p>Multiple addresses per line, separated by spaces, is OK.  Multiple
+<code>whitelist_allows_relays</code> lines is also OK.</p>
+</dd>
+<dd>
+<p>The specified email address does not have to match exactly the address
+previously used in a whitelist_from_rcvd line as it is compared to the
+address in the header.</p>
+</dd>
+<dd>
+<p>e.g.</p>
+</dd>
+<dd>
+<pre>
+  whitelist_allows_relays joe@example.com fred@example.com
+  whitelist_allows_relays *@example.com</pre>
+</dd>
+<p></p>
+<dt><strong><a name="item_unwhitelist_from_rcvd_add_40ress_2ecom">unwhitelist_from_rcvd <a href="mailto:add@ress.com">add@ress.com</a></a></strong><br />
+</dt>
+<dd>
+Used to override a default whitelist_from_rcvd entry, so for example a
+distribution whitelist_from_rcvd can be overridden in a local.cf file,
+or an individual user can override a whitelist_from_rcvd entry in
+their own <code>user_prefs</code> file.
+</dd>
+<dd>
+<p>The specified email address has to match exactly the address previously
+used in a whitelist_from_rcvd line.</p>
+</dd>
+<dd>
+<p>e.g.</p>
+</dd>
+<dd>
+<pre>
+  unwhitelist_from_rcvd joe@example.com fred@example.com
+  unwhitelist_from_rcvd *@axkit.org</pre>
+</dd>
+<p></p>
+<dt><strong><a name="item_blacklist_from_add_40ress_2ecom">blacklist_from <a href="mailto:add@ress.com">add@ress.com</a></a></strong><br />
+</dt>
+<dd>
+Used to specify addresses which send mail that is often tagged (incorrectly) as
+non-spam, but which the user doesn't want.  Same format as <code>whitelist_from</code>.
+</dd>
+<p></p>
+<dt><strong><a name="item_unblacklist_from_add_40ress_2ecom">unblacklist_from <a href="mailto:add@ress.com">add@ress.com</a></a></strong><br />
+</dt>
+<dd>
+Used to override a default blacklist_from entry, so for example a
+distribution blacklist_from can be overridden in a local.cf file, or
+an individual user can override a blacklist_from entry in their own
+<code>user_prefs</code> file. The specified email address has to match exactly
+the address previously used in a blacklist_from line.
+</dd>
+<dd>
+<p>e.g.</p>
+</dd>
+<dd>
+<pre>
+  unblacklist_from joe@example.com fred@example.com
+  unblacklist_from *@spammer.com</pre>
+</dd>
+<p></p>
+<dt><strong><a name="item_whitelist_to_add_40ress_2ecom">whitelist_to <a href="mailto:add@ress.com">add@ress.com</a></a></strong><br />
+</dt>
+<dd>
+If the given address appears as a recipient in the message headers
+(Resent-To, To, Cc, obvious envelope recipient, etc.) the mail will
+be whitelisted.  Useful if you're deploying SpamAssassin system-wide,
+and don't want some users to have their mail filtered.  Same format
+as <code>whitelist_from</code>.
+</dd>
+<dd>
+<p>There are three levels of To-whitelisting, <code>whitelist_to</code>, <code>more_spam_to</code>
+and <code>all_spam_to</code>.  Users in the first level may still get some spammish
+mails blocked, but users in <code>all_spam_to</code> should never get mail blocked.</p>
+</dd>
+<dd>
+<p>The headers checked for whitelist addresses are as follows: if <code>Resent-To</code> or
+<code>Resent-Cc</code> are set, use those; otherwise check all addresses taken from the
+following set of headers:</p>
+</dd>
+<dd>
+<pre>
+        To
+        Cc
+        Apparently-To
+        Delivered-To
+        Envelope-Recipients
+        Apparently-Resent-To
+        X-Envelope-To
+        Envelope-To
+        X-Delivered-To
+        X-Original-To
+        X-Rcpt-To
+        X-Real-To</pre>
+</dd>
+<p></p>
+<dt><strong><a name="item_more_spam_to_add_40ress_2ecom">more_spam_to <a href="mailto:add@ress.com">add@ress.com</a></a></strong><br />
+</dt>
+<dd>
+See above.
+</dd>
+<p></p>
+<dt><strong><a name="item_all_spam_to_add_40ress_2ecom">all_spam_to <a href="mailto:add@ress.com">add@ress.com</a></a></strong><br />
+</dt>
+<dd>
+See above.
+</dd>
+<p></p>
+<dt><strong><a name="item_blacklist_to_add_40ress_2ecom">blacklist_to <a href="mailto:add@ress.com">add@ress.com</a></a></strong><br />
+</dt>
+<dd>
+If the given address appears as a recipient in the message headers
+(Resent-To, To, Cc, obvious envelope recipient, etc.) the mail will
+be blacklisted.  Same format as <code>blacklist_from</code>.
+</dd>
+<p></p>
+<dt><strong><a name="item_whitelist_auth_add_40ress_2ecom">whitelist_auth <a href="mailto:add@ress.com">add@ress.com</a></a></strong><br />
+</dt>
+<dd>
+Used to specify addresses which send mail that is often tagged (incorrectly) as
+spam.  This is different from <code>whitelist_from</code> and <code>whitelist_from_rcvd</code> in
+that it first verifies that the message was sent by an authorized sender for
+the address, before whitelisting.
+</dd>
+<dd>
+<p>Authorization is performed using one of the installed sender-authorization
+schemes: SPF (using <code>Mail::SpamAssassin::Plugins::SPF</code>), Domain Keys (using
+<code>Mail::SpamAssassin::Plugins::DomainKeys</code>), or DKIM (using
+<code>Mail::SpamAssassin::Plugins::DKIM</code>).  Note that those plugins must be active,
+and working, for this to operate.</p>
+</dd>
+<dd>
+<p>Using <code>whitelist_auth</code> is roughly equivalent to specifying duplicate
+<code>whitelist_from_spf</code>, <code>whitelist_from_dk</code>, and <code>whitelist_from_dkim</code> lines
+for each of the addresses specified.</p>
+</dd>
+<dd>
+<p>e.g.</p>
+</dd>
+<dd>
+<pre>
+  whitelist_auth joe@example.com fred@example.com
+  whitelist_auth *@example.com</pre>
+</dd>
+<p></p>
+<dt><strong><a name="item_def_whitelist_auth_add_40ress_2ecom">def_whitelist_auth <a href="mailto:add@ress.com">add@ress.com</a></a></strong><br />
+</dt>
+<dd>
+Same as <code>whitelist_auth</code>, but used for the default whitelist entries
+in the SpamAssassin distribution.  The whitelist score is lower, because
+these are often targets for spammer spoofing.
+</dd>
+<p></p>
+<dt><strong><a name="item_unwhitelist_auth_add_40ress_2ecom">unwhitelist_auth <a href="mailto:add@ress.com">add@ress.com</a></a></strong><br />
+</dt>
+<dd>
+Used to override a <code>whitelist_auth</code> entry. The specified email address has to
+match exactly the address previously used in a <code>whitelist_auth</code> line.
+</dd>
+<dd>
+<p>e.g.</p>
+</dd>
+<dd>
+<pre>
+  unwhitelist_auth joe@example.com fred@example.com
+  unwhitelist_auth *@example.com</pre>
+</dd>
+<p></p></dl>
+<p>
+</p>
+<h2><a name="basic_message_tagging_options">BASIC MESSAGE TAGGING OPTIONS</a></h2>
+<dl>
+<dt><strong><a name="item_rewrite_header__7b_subject__7c_from__7c_to__7d_str">rewrite_header { subject | from | to } STRING</a></strong><br />
+</dt>
+<dd>
+By default, suspected spam messages will not have the <code>Subject</code>,
+<code>From</code> or <code>To</code> lines tagged to indicate spam. By setting this option,
+the header will be tagged with <code>STRING</code> to indicate that a message is
+spam. For the From or To headers, this will take the form of an RFC 2822
+comment following the address in parantheses. For the Subject header,
+this will be prepended to the original subject. Note that you should
+only use the _REQD_ and _SCORE_ tags when rewriting the Subject header
+if <a href="#item_report_safe"><code>report_safe</code></a> is 0. Otherwise, you may not be able to remove
+the SpamAssassin markup via the normal methods.  More information
+about tags is explained below in the <strong>TEMPLATE TAGS</strong> section.
+</dd>
+<dd>
+<p>Parentheses are not permitted in STRING if rewriting the From or To headers.
+(They will be converted to square brackets.)</p>
+</dd>
+<dd>
+<p>If <code>rewrite_header subject</code> is used, but the message being rewritten
+does not already contain a <code>Subject</code> header, one will be created.</p>
+</dd>
+<dd>
+<p>A null value for <code>STRING</code> will remove any existing rewrite for the specified
+header.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_add_header__7b_spam__7c_ham__7c_all__7d_header_nam">add_header { spam | ham | all } header_name string</a></strong><br />
+</dt>
+<dd>
+Customized headers can be added to the specified type of messages (spam,
+ham, or ``all'' to add to either).  All headers begin with <code>X-Spam-</code>
+(so a <code>header_name</code> Foo will generate a header called X-Spam-Foo).
+header_name is restricted to the character set [A-Za-z0-9_-].
+</dd>
+<dd>
+<p><code>string</code> can contain tags as explained below in the <strong>TEMPLATE TAGS</strong> section.
+You can also use <code>\n</code> and <code>\t</code> in the header to add newlines and tabulators
+as desired.  A backslash has to be written as \\, any other escaped chars will
+be silently removed.</p>
+</dd>
+<dd>
+<p>All headers will be folded if fold_headers is set to <code>1</code>. Note: Manually
+adding newlines via <code>\n</code> disables any further automatic wrapping (ie:
+long header lines are possible). The lines will still be properly folded
+(marked as continuing) though.</p>
+</dd>
+<dd>
+<p>You can customize existing headers with <strong>add_header</strong> (only the specified
+subset of messages will be changed).</p>
+</dd>
+<dd>
+<p>See also <a href="#item_clear_headers"><code>clear_headers</code></a> for removing headers.</p>
+</dd>
+<dd>
+<p>Here are some examples (these are the defaults, note that Checker-Version can
+not be changed or removed):</p>
+</dd>
+<dd>
+<pre>
+  add_header spam Flag _YESNOCAPS_
+  add_header all Status _YESNO_, score=_SCORE_ required=_REQD_ tests=_TESTS_ autolearn=_AUTOLEARN_ version=_VERSION_
+  add_header all Level _STARS(*)_
+  add_header all Checker-Version SpamAssassin _VERSION_ (_SUBVERSION_) on _HOSTNAME_</pre>
+</dd>
+<p></p>
+<dt><strong><a name="item_remove_header__7b_spam__7c_ham__7c_all__7d_header_">remove_header { spam | ham | all } header_name</a></strong><br />
+</dt>
+<dd>
+Headers can be removed from the specified type of messages (spam, ham,
+or ``all'' to remove from either).  All headers begin with <code>X-Spam-</code>
+(so <code>header_name</code> will be appended to <code>X-Spam-</code>).
+</dd>
+<dd>
+<p>See also <a href="#item_clear_headers"><code>clear_headers</code></a> for removing all the headers at once.</p>
+</dd>
+<dd>
+<p>Note that <strong>X-Spam-Checker-Version</strong> is not removable because the version
+information is needed by mail administrators and developers to debug
+problems.  Without at least one header, it might not even be possible to
+determine that SpamAssassin is running.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_clear_headers">clear_headers</a></strong><br />
+</dt>
+<dd>
+Clear the list of headers to be added to messages.  You may use this
+before any <strong>add_header</strong> options to prevent the default headers from being
+added to the message.
+</dd>
+<dd>
+<p>Note that <strong>X-Spam-Checker-Version</strong> is not removable because the version
+information is needed by mail administrators and developers to debug
+problems.  Without at least one header, it might not even be possible to
+determine that SpamAssassin is running.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_report_safe">report_safe ( 0 | 1 | 2 )	(default: 1)</a></strong><br />
+</dt>
+<dd>
+if this option is set to 1, if an incoming message is tagged as spam,
+instead of modifying the original message, SpamAssassin will create a
+new report message and attach the original message as a message/rfc822
+MIME part (ensuring the original message is completely preserved, not
+easily opened, and easier to recover).
+</dd>
+<dd>
+<p>If this option is set to 2, then original messages will be attached with
+a content type of text/plain instead of message/rfc822.  This setting
+may be required for safety reasons on certain broken mail clients that
+automatically load attachments without any action by the user.  This
+setting may also make it somewhat more difficult to extract or view the
+original message.</p>
+</dd>
+<dd>
+<p>If this option is set to 0, incoming spam is only modified by adding
+some <code>X-Spam-</code> headers and no changes will be made to the body.  In
+addition, a header named <strong>X-Spam-Report</strong> will be added to spam.  You
+can use the <strong>remove_header</strong> option to remove that header after setting
+<strong>report_safe</strong> to 0.</p>
+</dd>
+<dd>
+<p>See <strong>report_safe_copy_headers</strong> if you want to copy headers from
+the original mail into tagged messages.</p>
+</dd>
+<p></p></dl>
+<p>
+</p>
+<h2><a name="language_options">LANGUAGE OPTIONS</a></h2>
+<dl>
+<dt><strong><a name="item_ok_locales_xx__5b_yy_zz__2e_2e_2e__5d__28default_3">ok_locales xx [ yy zz ... ]		(default: all)</a></strong><br />
+</dt>
+<dd>
+This option is used to specify which locales are considered OK for
+incoming mail.  Mail using the <strong>character sets</strong> that are allowed by
+this option will not be marked as possibly being spam in a foreign
+language.
+</dd>
+<dd>
+<p>If you receive lots of spam in foreign languages, and never get any non-spam in
+these languages, this may help.  Note that all ISO-8859-* character sets, and
+Windows code page character sets, are always permitted by default.</p>
+</dd>
+<dd>
+<p>Set this to <code>all</code> to allow all character sets.  This is the default.</p>
+</dd>
+<dd>
+<p>The rules <code>CHARSET_FARAWAY</code>, <code>CHARSET_FARAWAY_BODY</code>, and
+<code>CHARSET_FARAWAY_HEADERS</code> are triggered based on how this is set.</p>
+</dd>
+<dd>
+<p>Examples:</p>
+</dd>
+<dd>
+<pre>
+  ok_locales all         (allow all locales)
+  ok_locales en          (only allow English)
+  ok_locales en ja zh    (allow English, Japanese, and Chinese)</pre>
+</dd>
+<dd>
+<p>Note: if there are multiple ok_locales lines, only the last one is used.</p>
+</dd>
+<dd>
+<p>Select the locales to allow from the list below:</p>
+</dd>
+<dl>
+<dt><strong><a name="item_en__2d_western_character_sets_in_general">en	- Western character sets in general</a></strong><br />
+</dt>
+<dt><strong><a name="item_ja__2d_japanese_character_sets">ja	- Japanese character sets</a></strong><br />
+</dt>
+<dt><strong><a name="item_ko__2d_korean_character_sets">ko	- Korean character sets</a></strong><br />
+</dt>
+<dt><strong><a name="item_ru__2d_cyrillic_character_sets">ru	- Cyrillic character sets</a></strong><br />
+</dt>
+<dt><strong><a name="item_th__2d_thai_character_sets">th	- Thai character sets</a></strong><br />
+</dt>
+<dt><strong><a name="item_chinese">zh	- Chinese (both simplified and traditional) character sets</a></strong><br />
+</dt>
+</dl>
+<dt><strong><a name="item_normalize_charset">normalize_charset ( 0 | 1)        (default: 0)</a></strong><br />
+</dt>
+<dd>
+Whether to detect character sets and normalize message content to
+Unicode.  Requires the Encode::Detect module, HTML::Parser version
+3.46 or later, and Perl 5.8.5 or later.
+</dd>
+<p></p></dl>
+<p>
+</p>
+<h2><a name="network_test_options">NETWORK TEST OPTIONS</a></h2>
+<dl>
+<dt><strong><a name="item_trusted_networks_ip_2eadd_2ere_2ess_5b_2fmask_5d__">trusted_networks ip.add.re.ss[/mask] ...   (default: none)</a></strong><br />
+</dt>
+<dd>
+What networks or hosts are 'trusted' in your setup.  <strong>Trusted</strong> in this case
+means that relay hosts on these networks are considered to not be potentially
+operated by spammers, open relays, or open proxies.  A trusted host could
+conceivably relay spam, but will not originate it, and will not forge header
+data. DNS blacklist checks will never query for hosts on these networks.
+</dd>
+<dd>
+<p>See <code>http://wiki.apache.org/spamassassin/TrustPath</code> for more information.</p>
+</dd>
+<dd>
+<p>MXes for your <code>domain(s)</code> and internal relays should <strong>also</strong> be specified using
+the <code>internal_networks</code> setting. When there are 'trusted' hosts that
+are not MXes or internal relays for your <code>domain(s)</code> they should <strong>only</strong> be
+specified in <code>trusted_networks</code>.</p>
+</dd>
+<dd>
+<p>If a <code>/mask</code> is specified, it's considered a CIDR-style 'netmask', specified
+in bits.  If it is not specified, but less than 4 octets are specified with a
+trailing dot, that's considered a mask to allow all addresses in the remaining
+octets.  If a mask is not specified, and there is not trailing dot, then just
+the single IP address specified is used, as if the mask was <code>/32</code>.</p>
+</dd>
+<dd>
+<p>If a network or host address is prefaced by a <code>!</code> the network or host will be
+excluded (or included) in a first listed match fashion.</p>
+</dd>
+<dd>
+<p>Note: 127/8 is always included in trusted_networks, regardless of your config.</p>
+</dd>
+<dd>
+<p>Examples:</p>
+</dd>
+<dd>
+<pre>
+   trusted_networks 192.168/16            # all in 192.168.*.*
+   trusted_networks 212.17.35.15          # just that host
+   trusted_networks !10.0.1.5 10.0.1/24   # all in 10.0.1.* but not 10.0.1.5</pre>
+</dd>
+<dd>
+<p>This operates additively, so a <code>trusted_networks</code> line after another one
+will result in all those networks becoming trusted.  To clear out the
+existing entries, use <a href="#item_clear_trusted_networks"><code>clear_trusted_networks</code></a>.</p>
+</dd>
+<dd>
+<p>If <code>trusted_networks</code> is not set and <code>internal_networks</code> is, the value
+of <code>internal_networks</code> will be used for this parameter.</p>
+</dd>
+<dd>
+<p>If neither <code>trusted_networks</code> or <code>internal_networks</code> is set, a basic
+inference algorithm is applied.  This works as follows:</p>
+</dd>
+<ul>
+<li></li>
+If the 'from' host has an IP address in a private (RFC 1918) network range,
+then it's trusted
+<p></p>
+<li></li>
+If there are authentication tokens in the received header, and
+the previous host was trusted, then this host is also trusted
+<p></p>
+<li></li>
+Otherwise this host, and all further hosts, are consider untrusted.
+<p></p></ul>
+<dt><strong><a name="item_clear_trusted_networks">clear_trusted_networks</a></strong><br />
+</dt>
+<dd>
+Empty the list of trusted networks.
+</dd>
+<p></p>
+<dt><strong><a name="item_internal_networks_ip_2eadd_2ere_2ess_5b_2fmask_5d_">internal_networks ip.add.re.ss[/mask] ...   (default: none)</a></strong><br />
+</dt>
+<dd>
+What networks or hosts are 'internal' in your setup.   <strong>Internal</strong> means
+that relay hosts on these networks are considered to be MXes for your
+domain(s), or internal relays.  This uses the same format as
+<code>trusted_networks</code>, above.
+</dd>
+<dd>
+<p>This value is used when checking 'dial-up' or dynamic IP address
+blocklists, in order to detect direct-to-MX spamming.</p>
+</dd>
+<dd>
+<p>Trusted relays that accept mail directly from dial-up connections should
+not be listed in <code>internal_networks</code>. List them only in
+<code>trusted_networks</code>.</p>
+</dd>
+<dd>
+<p>If <code>trusted_networks</code> is set and <code>internal_networks</code> is not, the value
+of <code>trusted_networks</code> will be used for this parameter.</p>
+</dd>
+<dd>
+<p>If neither <code>trusted_networks</code> or <code>internal_networks</code> is set, no addresses
+will be considered local; in other words, any relays past the machine where
+SpamAssassin is running will be considered external.</p>
+</dd>
+<dd>
+<p>Every entry in <code>internal_networks</code> must appear in <code>trusted_networks</code>; in
+other words, <code>internal_networks</code> is always a subset of the trusted set.</p>
+</dd>
+<dd>
+<p>Note: 127/8 is always included in internal_networks, regardless of your config.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_clear_internal_networks">clear_internal_networks</a></strong><br />
+</dt>
+<dd>
+Empty the list of internal networks.
+</dd>
+<p></p>
+<dt><strong><a name="item_msa_networks_ip_2eadd_2ere_2ess_5b_2fmask_5d__2e_2">msa_networks ip.add.re.ss[/mask] ...   (default: none)</a></strong><br />
+</dt>
+<dd>
+The networks or hosts are acting as MSAs in your setup.  <strong>MSA</strong> means
+that the relay hosts on these networks accept mail from your own users
+and authenticates them appropriately.  These relays will never accept
+mail from hosts that aren't authenticated in some way.  Examples of
+authentication include, IP lists, SMTP AUTH, POP-before-SMTP, etc.
+</dd>
+<dd>
+<p>All relays found in the message headers after the MSA relay will take
+on the same trusted and internal classifcations as the MSA relay itself,
+as defined by your <em>trusted_networks</em> and <em>internal_networks</em> configuration.</p>
+</dd>
+<dd>
+<p>For example, if the MSA relay is trusted and internal so will all of the
+relays that precede it.</p>
+</dd>
+<dd>
+<p>When using msa_networks to identify an MSA it is recommended that you treat
+that MSA as both trusted and internal.  When an MSA is not included in
+msa_networks you should treat the MSA as trusted but not internal, however
+if the MSA is also acting as an MX or intermediate relay you must always
+treat it as both trusted and internal and ensure that the MSA includes
+visible auth tokens in its Received header to identify submission clients.</p>
+</dd>
+<dd>
+<p><strong>Warning:</strong> Never include an MSA that also acts as an MX (or is also an
+intermediate relay for an MX) or otherwise accepts mail from
+non-authenticated users in msa_networks.  Doing so will result in unknown
+external relays being trusted.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_clear_msa_networks">clear_msa_networks</a></strong><br />
+</dt>
+<dd>
+Empty the list of msa networks.
+</dd>
+<p></p>
+<dt><strong><a name="item_always_trust_envelope_sender">always_trust_envelope_sender ( 0 | 1 )   (default: 0)</a></strong><br />
+</dt>
+<dd>
+Trust the envelope sender even if the message has been passed through one or
+more trusted relays.  See also <code>envelope_sender_header</code>.
+</dd>
+<p></p>
+<dt><strong><a name="item_skip_rbl_checks">skip_rbl_checks ( 0 | 1 )   (default: 0)</a></strong><br />
+</dt>
+<dd>
+By default, SpamAssassin will run RBL checks.  If your ISP already does this
+for you, set this to 1.
+</dd>
+<p></p>
+<dt><strong><a name="item_dns_available__7b_yes__7c_test_5b_3a_name1_name2_2">dns_available { yes | test[: name1 name2...] | no }   (default: test)</a></strong><br />
+</dt>
+<dd>
+By default, SpamAssassin will query some default hosts on the internet to
+attempt to check if DNS is working or not. The problem is that it can
+introduce some delay if your network connection is down, and in some cases it
+can wrongly guess that DNS is unavailable because the test connections failed.
+SpamAssassin includes a default set of 13 servers, among which 3 are picked
+randomly.
+</dd>
+<dd>
+<p>You can however specify your own list by specifying</p>
+</dd>
+<dd>
+<pre>
+  dns_available test: domain1.tld domain2.tld domain3.tld</pre>
+</dd>
+<dd>
+<p>Please note, the DNS test queries for NS records.</p>
+</dd>
+<dd>
+<p>SpamAssassin's network rules are run in parallel.  This can cause overhead in
+terms of the number of file descriptors required; it is recommended that the
+minimum limit on file descriptors be raised to at least 256 for safety.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_n">dns_test_interval n   (default: 600 seconds)</a></strong><br />
+</dt>
+<dd>
+If dns_available is set to 'test' (which is the default), the dns_test_interval
+time in number of seconds will tell SpamAssassin how often to retest for working DNS.
+</dd>
+<p></p></dl>
+<p>
+</p>
+<h2><a name="learning_options">LEARNING OPTIONS</a></h2>
+<dl>
+<dt><strong><a name="item_use_bayes">use_bayes ( 0 | 1 )		(default: 1)</a></strong><br />
+</dt>
+<dd>
+Whether to use the naive-Bayesian-style classifier built into
+SpamAssassin.  This is a master on/off switch for all Bayes-related
+operations.
+</dd>
+<p></p>
+<dt><strong><a name="item_use_bayes_rules">use_bayes_rules ( 0 | 1 )		(default: 1)</a></strong><br />
+</dt>
+<dd>
+Whether to use rules using the naive-Bayesian-style classifier built
+into SpamAssassin.  This allows you to disable the rules while leaving
+auto and manual learning enabled.
+</dd>
+<p></p>
+<dt><strong><a name="item_bayes_auto_learn">bayes_auto_learn ( 0 | 1 )      (default: 1)</a></strong><br />
+</dt>
+<dd>
+Whether SpamAssassin should automatically feed high-scoring mails (or
+low-scoring mails, for non-spam) into its learning systems.  The only
+learning system supported currently is a naive-Bayesian-style classifier.
+</dd>
+<dd>
+<p>See the documentation for the
+<code>Mail::SpamAssassin::Plugin::AutoLearnThreshold</code> plugin module
+for details on how Bayes auto-learning is implemented by default.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_bayes_ignore_header_header_name">bayes_ignore_header header_name</a></strong><br />
+</dt>
+<dd>
+If you receive mail filtered by upstream mail systems, like
+a spam-filtering ISP or mailing list, and that service adds
+new headers (as most of them do), these headers may provide
+inappropriate cues to the Bayesian classifier, allowing it
+to take a ``short cut''. To avoid this, list the headers using this
+setting.  Example:
+</dd>
+<dd>
+<pre>
+        bayes_ignore_header X-Upstream-Spamfilter
+        bayes_ignore_header X-Upstream-SomethingElse</pre>
+</dd>
+<p></p>
+<dt><strong><a name="item_bayes_ignore_from_add_40ress_2ecom">bayes_ignore_from <a href="mailto:add@ress.com">add@ress.com</a></a></strong><br />
+</dt>
+<dd>
+Bayesian classification and autolearning will not be performed on mail
+from the listed addresses.  Program <code>sa-learn</code> will also ignore the
+listed addresses if it is invoked using the <code>--use-ignores</code> option.
+One or more addresses can be listed, see <code>whitelist_from</code>.
+</dd>
+<dd>
+<p>Spam messages from certain senders may contain many words that
+frequently occur in ham.  For example, one might read messages from a
+preferred bookstore but also get unwanted spam messages from other
+bookstores.  If the unwanted messages are learned as spam then any
+messages discussing books, including the preferred bookstore and
+antiquarian messages would be in danger of being marked as spam.  The
+addresses of the annoying bookstores would be listed.  (Assuming they
+were halfway legitimate and didn't send you mail through myriad
+affiliates.)</p>
+</dd>
+<dd>
+<p>Those who have pieces of spam in legitimate messages or otherwise
+receive ham messages containing potentially spammy words might fear
+that some spam messages might be in danger of being marked as ham.
+The addresses of the spam mailing lists, correspondents, etc.  would
+be listed.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_bayes_ignore_to_add_40ress_2ecom">bayes_ignore_to <a href="mailto:add@ress.com">add@ress.com</a></a></strong><br />
+</dt>
+<dd>
+Bayesian classification and autolearning will not be performed on mail
+to the listed addresses.  See <code>bayes_ignore_from</code> for details.
+</dd>
+<p></p>
+<dt><strong><a name="item_bayes_min_ham_num">bayes_min_ham_num			(Default: 200)</a></strong><br />
+</dt>
+<dt><strong><a name="item_bayes_min_spam_num">bayes_min_spam_num		(Default: 200)</a></strong><br />
+</dt>
+<dd>
+To be accurate, the Bayes system does not activate until a certain number of
+ham (non-spam) and spam have been learned.  The default is 200 of each ham and
+spam, but you can tune these up or down with these two settings.
+</dd>
+<p></p>
+<dt><strong><a name="item_bayes_learn_during_report">bayes_learn_during_report         (Default: 1)</a></strong><br />
+</dt>
+<dd>
+The Bayes system will, by default, learn any reported messages
+(<code>spamassassin -r</code>) as spam.  If you do not want this to happen, set
+this option to 0.
+</dd>
+<p></p>
+<dt><strong><a name="item_bayes_sql_override_username">bayes_sql_override_username</a></strong><br />
+</dt>
+<dd>
+Used by BayesStore::SQL storage implementation.
+</dd>
+<dd>
+<p>If this options is set the BayesStore::SQL module will override the set
+username with the value given.  This could be useful for implementing global or
+group bayes databases.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_bayes_use_hapaxes">bayes_use_hapaxes		(default: 1)</a></strong><br />
+</dt>
+<dd>
+Should the Bayesian classifier use hapaxes (words/tokens that occur only
+once) when classifying?  This produces significantly better hit-rates, but
+increases database size by about a factor of 8 to 10.
+</dd>
+<p></p>
+<dt><strong><a name="item_bayes_journal_max_size">bayes_journal_max_size		(default: 102400)</a></strong><br />
+</dt>
+<dd>
+SpamAssassin will opportunistically sync the journal and the database.
+It will do so once a day, but will sync more often if the journal file
+size goes above this setting, in bytes.  If set to 0, opportunistic
+syncing will not occur.
+</dd>
+<p></p>
+<dt><strong><a name="item_bayes_expiry_max_db_size">bayes_expiry_max_db_size		(default: 150000)</a></strong><br />
+</dt>
+<dd>
+What should be the maximum size of the Bayes tokens database?  When expiry
+occurs, the Bayes system will keep either 75% of the maximum value, or
+100,000 tokens, whichever has a larger value.  150,000 tokens is roughly
+equivalent to a 8Mb database file.
+</dd>
+<p></p>
+<dt><strong><a name="item_bayes_auto_expire">bayes_auto_expire       		(default: 1)</a></strong><br />
+</dt>
+<dd>
+If enabled, the Bayes system will try to automatically expire old tokens
+from the database.  Auto-expiry occurs when the number of tokens in the
+database surpasses the bayes_expiry_max_db_size value.
+</dd>
+<p></p>
+<dt><strong><a name="item_bayes_learn_to_journal">bayes_learn_to_journal  	(default: 0)</a></strong><br />
+</dt>
+<dd>
+If this option is set, whenever SpamAssassin does Bayes learning, it
+will put the information into the journal instead of directly into the
+database.  This lowers contention for locking the database to execute
+an update, but will also cause more access to the journal and cause a
+delay before the updates are actually committed to the Bayes database.
+</dd>
+<p></p></dl>
+<p>
+</p>
+<h2><a name="miscellaneous_options">MISCELLANEOUS OPTIONS</a></h2>
+<dl>
+<dt><strong><a name="item_lock_method_type">lock_method type</a></strong><br />
+</dt>
+<dd>
+Select the file-locking method used to protect database files on-disk. By
+default, SpamAssassin uses an NFS-safe locking method on UNIX; however, if you
+are sure that the database files you'll be using for Bayes and AWL storage will
+never be accessed over NFS, a non-NFS-safe locking system can be selected.
+</dd>
+<dd>
+<p>This will be quite a bit faster, but may risk file corruption if the files are
+ever accessed by multiple clients at once, and one or more of them is accessing
+them through an NFS filesystem.</p>
+</dd>
+<dd>
+<p>Note that different platforms require different locking systems.</p>
+</dd>
+<dd>
+<p>The supported locking systems for <code>type</code> are as follows:</p>
+</dd>
+<dl>
+<dt><strong><a name="item_nfssafe__2d_an_nfs_2dsafe_locking_system"><em>nfssafe</em> - an NFS-safe locking system</a></strong><br />
+</dt>
+<dt><strong><a name="item_flock"><em>flock</em> - simple UNIX <code>flock()</code> locking</a></strong><br />
+</dt>
+<dt><strong><a name="item_sysopen"><em>win32</em> - Win32 locking using <code>sysopen (..., O_CREAT|O_EXCL)</code>.</a></strong><br />
+</dt>
+</dl>
+<p>nfssafe and flock are only available on UNIX, and win32 is only available
+on Windows.  By default, SpamAssassin will choose either nfssafe or
+win32 depending on the platform in use.</p>
+<dt><strong><a name="item_fold_headers">fold_headers ( 0 | 1 )        (default: 1)</a></strong><br />
+</dt>
+<dd>
+By default,  headers added by SpamAssassin will be whitespace folded.
+In other words, they will be broken up into multiple lines instead of
+one very long one and each other line will have a tabulator prepended
+to mark it as a continuation of the preceding one.
+</dd>
+<dd>
+<p>The automatic wrapping can be disabled here.  Note that this can generate very
+long lines.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_report_safe_copy_headers_header_name__2e_2e_2e">report_safe_copy_headers header_name ...</a></strong><br />
+</dt>
+<dd>
+If using <a href="#item_report_safe"><code>report_safe</code></a>, a few of the headers from the original message
+are copied into the wrapper header (From, To, Cc, Subject, Date, etc.)
+If you want to have other headers copied as well, you can add them
+using this option.  You can specify multiple headers on the same line,
+separated by spaces, or you can just use multiple lines.
+</dd>
+<p></p>
+<dt><strong><a name="item_envelope_sender_header_name_2dof_2dheader">envelope_sender_header Name-Of-Header</a></strong><br />
+</dt>
+<dd>
+SpamAssassin will attempt to discover the address used in the 'MAIL FROM:'
+phase of the SMTP transaction that delivered this message, if this data has
+been made available by the SMTP server.  This is used in the <code>EnvelopeFrom</code>
+pseudo-header, and for various rules such as SPF checking.
+</dd>
+<dd>
+<p>By default, various MTAs will use different headers, such as the following:</p>
+</dd>
+<dd>
+<pre>
+    X-Envelope-From
+    Envelope-Sender
+    X-Sender
+    Return-Path</pre>
+</dd>
+<dd>
+<p>SpamAssassin will attempt to use these, if some heuristics (such as the header
+placement in the message, or the absence of fetchmail signatures) appear to
+indicate that they are safe to use.  However, it may choose the wrong headers
+in some mailserver configurations.  (More discussion of this can be found
+in bug 2142 and bug 4747 in the SpamAssassin BugZilla.)</p>
+</dd>
+<dd>
+<p>To avoid this heuristic failure, the <code>envelope_sender_header</code> setting may be
+helpful.  Name the header that your MTA adds to messages containing the address
+used at the MAIL FROM step of the SMTP transaction.</p>
+</dd>
+<dd>
+<p>If the header in question contains <code>&lt;</code> or <code>&gt;</code> characters at the start
+and end of the email address in the right-hand side, as in the SMTP
+transaction, these will be stripped.</p>
+</dd>
+<dd>
+<p>If the header is not found in a message, or if it's value does not contain an
+<code>@</code> sign, SpamAssassin will issue a warning in the logs and fall back to its
+default heuristics.</p>
+</dd>
+<dd>
+<p>(Note for MTA developers: we would prefer if the use of a single header be
+avoided in future, since that precludes 'downstream' spam scanning.
+<code>http://wiki.apache.org/spamassassin/EnvelopeSenderInReceived</code> details a
+better proposal, storing the envelope sender at each hop in the <code>Received</code>
+header.)</p>
+</dd>
+<dd>
+<p>example:</p>
+</dd>
+<dd>
+<pre>
+    envelope_sender_header X-SA-Exim-Mail-From</pre>
+</dd>
+<p></p>
+<dt><strong><a name="item_describe_symbolic_test_name_description__2e_2e_2e">describe SYMBOLIC_TEST_NAME description ...</a></strong><br />
+</dt>
+<dd>
+Used to describe a test.  This text is shown to users in the detailed report.
+</dd>
+<dd>
+<p>Note that test names which begin with '__' are reserved for meta-match
+sub-rules, and are not scored or listed in the 'tests hit' reports.</p>
+</dd>
+<dd>
+<p>Also note that by convention, rule descriptions should be limited in
+length to no more than 50 characters.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_charset">report_charset CHARSET		(default: unset)</a></strong><br />
+</dt>
+<dd>
+Set the MIME Content-Type charset used for the text/plain report which
+is attached to spam mail messages.
+</dd>
+<p></p>
+<dt><strong><a name="item_report__2e_2e_2esome_text_for_a_report_2e_2e_2e">report ...some text for a report...</a></strong><br />
+</dt>
+<dd>
+Set the report template which is attached to spam mail messages.  See the
+<code>10_default_prefs.cf</code> configuration file in <code>/usr/share/spamassassin</code> for an
+example.
+</dd>
+<dd>
+<p>If you change this, try to keep it under 78 columns. Each <code>report</code>
+line appends to the existing template, so use <a href="#item_clear_report_template"><code>clear_report_template</code></a>
+to restart.</p>
+</dd>
+<dd>
+<p>Tags can be included as explained above.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_clear_report_template">clear_report_template</a></strong><br />
+</dt>
+<dd>
+Clear the report template.
+</dd>
+<p></p>
+<dt><strong><a name="item_report_contact__2e_2e_2etext_of_contact_address_2e">report_contact ...text of contact address...</a></strong><br />
+</dt>
+<dd>
+Set what _CONTACTADDRESS_ is replaced with in the above report text.
+By default, this is 'the administrator of that system', since the hostname
+of the system the scanner is running on is also included.
+</dd>
+<p></p>
+<dt><strong><a name="item_report_hostname__2e_2e_2ehostname_to_use_2e_2e_2e">report_hostname ...hostname to use...</a></strong><br />
+</dt>
+<dd>
+Set what _HOSTNAME_ is replaced with in the above report text.
+By default, this is determined dynamically as whatever the host running
+SpamAssassin calls itself.
+</dd>
+<p></p>
+<dt><strong><a name="item_unsafe_report__2e_2e_2esome_text_for_a_report_2e_2">unsafe_report ...some text for a report...</a></strong><br />
+</dt>
+<dd>
+Set the report template which is attached to spam mail messages which contain a
+non-text/plain part.  See the <code>10_default_prefs.cf</code> configuration file in
+<code>/usr/share/spamassassin</code> for an example.
+</dd>
+<dd>
+<p>Each <code>unsafe-report</code> line appends to the existing template, so use
+<a href="#item_clear_unsafe_report_template"><code>clear_unsafe_report_template</code></a> to restart.</p>
+</dd>
+<dd>
+<p>Tags can be used in this template (see above for details).</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_clear_unsafe_report_template">clear_unsafe_report_template</a></strong><br />
+</dt>
+<dd>
+Clear the unsafe_report template.
+</dd>
+<p></p></dl>
+<p>
+</p>
+<hr />
+<h1><a name="rule_definitions_and_privileged_settings">RULE DEFINITIONS AND PRIVILEGED SETTINGS</a></h1>
+<p>These settings differ from the ones above, in that they are considered
+'privileged'.  Only users running <code>spamassassin</code> from their procmailrc's or
+forward files, or sysadmins editing a file in <code>/etc/mail/spamassassin</code>, can
+use them.   <code>spamd</code> users cannot use them in their <code>user_prefs</code> files, for
+security and efficiency reasons, unless <a href="#item_allow_user_rules"><code>allow_user_rules</code></a> is enabled (and
+then, they may only add rules from below).</p>
+<dl>
+<dt><strong><a name="item_allow_user_rules">allow_user_rules ( 0 | 1 )		(default: 0)</a></strong><br />
+</dt>
+<dd>
+This setting allows users to create rules (and only rules) in their
+<code>user_prefs</code> files for use with <code>spamd</code>. It defaults to off, because
+this could be a severe security hole. It may be possible for users to
+gain root level access if <code>spamd</code> is run as root. It is NOT a good
+idea, unless you have some other way of ensuring that users' tests are
+safe. Don't use this unless you are certain you know what you are
+doing. Furthermore, this option causes spamassassin to recompile all
+the tests each time it processes a message for a user with a rule in
+his/her <code>user_prefs</code> file, which could have a significant effect on
+server load. It is not recommended.
+</dd>
+<dd>
+<p>Note that it is not currently possible to use <a href="#item_allow_user_rules"><code>allow_user_rules</code></a> to modify an
+existing system rule from a <code>user_prefs</code> file with <code>spamd</code>.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_redirector_pattern__2fpattern_2fmodifiers">redirector_pattern	/pattern/modifiers</a></strong><br />
+</dt>
+<dd>
+A regex pattern that matches both the redirector site portion, and
+the target site portion of a URI.
+</dd>
+<dd>
+<p>Note: The target URI portion must be surrounded in parentheses and
+      no other part of the pattern may create a backreference.</p>
+</dd>
+<dd>
+<p>Example: <a href="http://chkpt.zdnet.com/chkpt/whatever/spammer.domain/yo/dude">http://chkpt.zdnet.com/chkpt/whatever/spammer.domain/yo/dude</a></p>
+</dd>
+<dd>
+<pre>
+  redirector_pattern    /^https?:\/\/(?:opt\.)?chkpt\.zdnet\.com\/chkpt\/\w+\/(.*)$/i</pre>
+</dd>
+<p></p>
+<dt><strong><a name="item_header_symbolic_test_name_header_op__2fpattern_2fm">header SYMBOLIC_TEST_NAME header op /pattern/modifiers	[if-unset: STRING]</a></strong><br />
+</dt>
+<dd>
+Define a test.  <a href="#item_symbolic_test_name"><code>SYMBOLIC_TEST_NAME</code></a> is a symbolic test name, such as
+'FROM_ENDS_IN_NUMS'.  <code>header</code> is the name of a mail header, such as
+'Subject', 'To', etc.
+</dd>
+<dd>
+<p>Appending <code>:raw</code> to the header name will inhibit decoding of quoted-printable
+or base-64 encoded strings.</p>
+</dd>
+<dd>
+<p>Appending <code>:addr</code> to the header name will cause everything except
+the first email address to be removed from the header.  For example,
+all of the following will result in ``example@foo'':</p>
+</dd>
+<dl>
+<dt><strong><a name="item_example_40foo">example@foo</a></strong><br />
+</dt>
+<dt><strong><a name="item_foo">example@foo (Foo Blah)</a></strong><br />
+</dt>
+<dt><strong><a name="item_example_40foo_2c_example_40bar">example@foo, example@bar</a></strong><br />
+</dt>
+<dt><strong>display: example@foo (Foo Blah), example@bar ;</strong><br />
+</dt>
+<dt><strong><a name="item_foo_blah__3cexample_40foo_3e">Foo Blah &lt;example@foo&gt;</a></strong><br />
+</dt>
+<dt><strong><a name="item__22foo_blah_22__3cexample_40foo_3e">``Foo Blah'' &lt;example@foo&gt;</a></strong><br />
+</dt>
+<dt><strong><a name="item__22_27foo_blah_27_22__3cexample_40foo_3e">``'Foo Blah''' &lt;example@foo&gt;</a></strong><br />
+</dt>
+</dl>
+<p>Appending <code>:name</code> to the header name will cause everything except
+the first real name to be removed from the header.  For example,
+all of the following will result in ``Foo Blah''</p>
+<dl>
+<dt><strong>example@foo (Foo Blah)</strong><br />
+</dt>
+<dt><strong>example@foo (Foo Blah), example@bar</strong><br />
+</dt>
+<dt><strong>display: example@foo (Foo Blah), example@bar ;</strong><br />
+</dt>
+<dt><strong>Foo Blah &lt;example@foo&gt;</strong><br />
+</dt>
+<dt><strong>``Foo Blah'' &lt;example@foo&gt;</strong><br />
+</dt>
+<dt><strong>``'Foo Blah''' &lt;example@foo&gt;</strong><br />
+</dt>
+</dl>
+<p>There are several special pseudo-headers that can be specified:</p>
+<dl>
+<dt><strong><a name="item_all_can_be_used_to_mean_the_text_of_all_the_messag"><code>ALL</code> can be used to mean the text of all the message's headers.</a></strong><br />
+</dt>
+<dt><strong><a name="item_tocc_can_be_used_to_mean_the_contents_of_both_the_"><code>ToCc</code> can be used to mean the contents of both the 'To' and 'Cc'
+headers.</a></strong><br />
+</dt>
+<dt><strong><a name="item_envelopefrom_is_the_address_used_in_the__27mail_fr"><code>EnvelopeFrom</code> is the address used in the 'MAIL FROM:' phase of the SMTP
+transaction that delivered this message, if this data has been made available
+by the SMTP server.  See <code>envelope_sender_header</code> for more information
+on how to set this.</a></strong><br />
+</dt>
+<dt><strong><a name="item_messageid_is_a_symbol_meaning_all_message_2did_27s"><code>MESSAGEID</code> is a symbol meaning all Message-Id's found in the message;
+some mailing list software moves the real 'Message-Id' to 'Resent-Message-Id'
+or 'X-Message-Id', then uses its own one in the 'Message-Id' header.  The value
+returned for this symbol is the text from all 3 headers, separated by newlines.</a></strong><br />
+</dt>
+<dt><strong><a name="item_x_2dspam_2drelays_2duntrusted_2c_x_2dspam_2drelays"><code>X-Spam-Relays-Untrusted</code>, <code>X-Spam-Relays-Trusted</code>,
+<code>X-Spam-Relays-Internal</code> and <code>X-Spam-Relays-External</code> represent a portable,
+pre-parsed representation of the message's network path, as recorded in the
+Received headers, divided into 'trusted' vs 'untrusted' and 'internal' vs
+'external' sets.  See <code>http://wiki.apache.org/spamassassin/TrustedRelays</code> for
+more details.</a></strong><br />
+</dt>
+</dl>
+<p><code>op</code> is either <code>=~</code> (contains regular expression) or <code>!~</code> (does not contain
+regular expression), and <code>pattern</code> is a valid Perl regular expression, with
+<code>modifiers</code> as regexp modifiers in the usual style.   Note that multi-line
+rules are not supported, even if you use <code>x</code> as a modifier.  Also note that
+the <code>#</code> character must be escaped (<code>\#</code>) or else it will be considered to be
+the start of a comment and not part of the regexp.</p>
+<p>If the <code>[if-unset: STRING]</code> tag is present, then <code>STRING</code> will
+be used if the header is not found in the mail message.</p>
+<p>Test names must not start with a number, and must contain only
+alphanumerics and underscores.  It is suggested that lower-case characters
+not be used, and names have a length of no more than 22 characters,
+as an informal convention.  Dashes are not allowed.</p>
+<p>Note that test names which begin with '__' are reserved for meta-match
+sub-rules, and are not scored or listed in the 'tests hit' reports.
+Test names which begin with 'T_' are reserved for tests which are
+undergoing QA, and these are given a very low score.</p>
+<p>If you add or modify a test, please be sure to run a sanity check afterwards
+by running <code>spamassassin --lint</code>.  This will avoid confusing error
+messages, or other tests being skipped as a side-effect.</p>
+<dt><strong><a name="item_header_symbolic_test_name_exists_3aname_of_header">header SYMBOLIC_TEST_NAME exists:name_of_header</a></strong><br />
+</dt>
+<dd>
+Define a header existence test.  <code>name_of_header</code> is the name of a
+header to test for existence.  This is just a very simple version of
+the above header tests.
+</dd>
+<p></p>
+<dt><strong><a name="item_name_of_eval_method">header SYMBOLIC_TEST_NAME eval:name_of_eval_method([arguments])</a></strong><br />
+</dt>
+<dd>
+Define a header eval test.  <a href="#item_name_of_eval_method"><code>name_of_eval_method</code></a> is the name of
+a method on the <code>Mail::SpamAssassin::EvalTests</code> object.  <code>arguments</code>
+are optional arguments to the function call.
+</dd>
+<p></p>
+<dt><strong><a name="item_check_rbl">header SYMBOLIC_TEST_NAME eval:check_rbl('set', 'zone' [, 'sub-test'])</a></strong><br />
+</dt>
+<dd>
+Check a DNSBL (a DNS blacklist or whitelist).  This will retrieve Received:
+headers from the message, extract the IP addresses, select which ones are
+'untrusted' based on the <code>trusted_networks</code> logic, and query that DNSBL
+zone.  There's a few things to note:
+</dd>
+<dl>
+<dt><strong><a name="item_duplicated_or_private_ips">duplicated or private IPs</a></strong><br />
+</dt>
+<dd>
+Duplicated IPs are only queried once and reserved IPs are not queried.
+Private IPs are those listed in
+&lt;http://www.iana.org/assignments/ipv4-address-space&gt;,
+&lt;http://duxcw.com/faq/network/privip.htm&gt;,
+&lt;http://duxcw.com/faq/network/autoip.htm&gt;, or
+&lt;ftp://ftp.rfc-editor.org/in-notes/rfc3330.txt&gt; as private.
+</dd>
+<p></p>
+<dt><strong><a name="item_the__27set_27_argument">the 'set' argument</a></strong><br />
+</dt>
+<dd>
+This is used as a 'zone ID'.  If you want to look up a multiple-meaning zone
+like NJABL or SORBS, you can then query the results from that zone using it;
+but all <a href="#item_check_rbl_sub"><code>check_rbl_sub()</code></a> calls must use that zone ID.
+</dd>
+<dd>
+<p>Also, if more than one IP address gets a DNSBL hit for a particular rule, it
+does not affect the score because rules only trigger once per message.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_the__27zone_27_argument">the 'zone' argument</a></strong><br />
+</dt>
+<dd>
+This is the root zone of the DNSBL, ending in a period.
+</dd>
+<p></p>
+<dt><strong><a name="item_the__27sub_2dtest_27_argument">the 'sub-test' argument</a></strong><br />
+</dt>
+<dd>
+This optional argument behaves the same as the sub-test argument in
+<a href="#item_check_rbl_sub"><code>check_rbl_sub()</code></a> below.
+</dd>
+<p></p>
+<dt><strong><a name="item_selecting_all_ips_except_for_the_originating_one">selecting all IPs except for the originating one</a></strong><br />
+</dt>
+<dd>
+This is accomplished by placing '-notfirsthop' at the end of the set name.
+This is useful for querying against DNS lists which list dialup IP
+addresses; the first hop may be a dialup, but as long as there is at least
+one more hop, via their outgoing SMTP server, that's legitimate, and so
+should not gain points.  If there is only one hop, that will be queried
+anyway, as it should be relaying via its outgoing SMTP server instead of
+sending directly to your MX (mail exchange).
+</dd>
+<p></p>
+<dt><strong><a name="item_selecting_ips_by_whether_they_are_trusted">selecting IPs by whether they are trusted</a></strong><br />
+</dt>
+<dd>
+When checking a 'nice' DNSBL (a DNS whitelist), you cannot trust the IP
+addresses in Received headers that were not added by trusted relays.  To
+test the first IP address that can be trusted, place '-firsttrusted' at the
+end of the set name.  That should test the IP address of the relay that
+connected to the most remote trusted relay.
+</dd>
+<dd>
+<p>Note that this requires that SpamAssassin know which relays are trusted.  For
+simple cases, SpamAssassin can make a good estimate.  For complex cases, you
+may get better results by setting <code>trusted_networks</code> manually.</p>
+</dd>
+<dd>
+<p>In addition, you can test all untrusted IP addresses by placing '-untrusted'
+at the end of the set name.   Important note -- this does NOT include the 
+IP address from the most recent 'untrusted line', as used in '-firsttrusted'
+above.  That's because we're talking about the trustworthiness of the
+IP address data, not the source header line, here; and in the case of 
+the most recent header (the 'firsttrusted'), that data can be trusted.
+See the Wiki page at <code>http://wiki.apache.org/spamassassin/TrustedRelays</code>
+for more information on this.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_selecting_just_the_last_external_ip">Selecting just the last external IP</a></strong><br />
+</dt>
+<dd>
+By using '-lastexternal' at the end of the set name, you can select only
+the external host that connected to your internal network, or at least
+the last external host with a public IP.
+</dd>
+<p></p></dl>
+<dt><strong><a name="item_check_rbl_txt">header SYMBOLIC_TEST_NAME eval:check_rbl_txt('set', 'zone')</a></strong><br />
+</dt>
+<dd>
+Same as check_rbl(), except querying using IN TXT instead of IN A records.
+If the zone supports it, it will result in a line of text describing
+why the IP is listed, typically a hyperlink to a database entry.
+</dd>
+<p></p>
+<dt><strong><a name="item_check_rbl_sub">header SYMBOLIC_TEST_NAME eval:check_rbl_sub('set', 'sub-test')</a></strong><br />
+</dt>
+<dd>
+Create a sub-test for 'set'.  If you want to look up a multi-meaning zone
+like relays.osirusoft.com, you can then query the results from that zone
+using the zone ID from the original query.  The sub-test may either be an
+IPv4 dotted address for RBLs that return multiple A records or a
+non-negative decimal number to specify a bitmask for RBLs that return a
+single A record containing a bitmask of results, a SenderBase test
+beginning with ``sb:'', or (if none of the preceding options seem to fit) a
+regular expression.
+</dd>
+<dd>
+<p>Note: the set name must be exactly the same for as the main query rule,
+including selections like '-notfirsthop' appearing at the end of the set
+name.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_body_symbolic_test_name__2fpattern_2fmodifiers">body SYMBOLIC_TEST_NAME /pattern/modifiers</a></strong><br />
+</dt>
+<dd>
+Define a body pattern test.  <code>pattern</code> is a Perl regular expression.  Note:
+as per the header tests, <code>#</code> must be escaped (<code>\#</code>) or else it is considered
+the beginning of a comment.
+</dd>
+<dd>
+<p>The 'body' in this case is the textual parts of the message body;
+any non-text MIME parts are stripped, and the message decoded from
+Quoted-Printable or Base-64-encoded format if necessary.  The message
+Subject header is considered part of the body and becomes the first
+paragraph when running the rules.  All HTML tags and line breaks will
+be removed before matching.</p>
+</dd>
+<p></p>
+<dt><strong>body SYMBOLIC_TEST_NAME eval:name_of_eval_method([args])</strong><br />
+</dt>
+<dd>
+Define a body eval test.  See above.
+</dd>
+<p></p>
+<dt><strong><a name="item_uri_symbolic_test_name__2fpattern_2fmodifiers">uri SYMBOLIC_TEST_NAME /pattern/modifiers</a></strong><br />
+</dt>
+<dd>
+Define a uri pattern test.  <code>pattern</code> is a Perl regular expression.  Note: as
+per the header tests, <code>#</code> must be escaped (<code>\#</code>) or else it is considered
+the beginning of a comment.
+</dd>
+<dd>
+<p>The 'uri' in this case is a list of all the URIs in the body of the email,
+and the test will be run on each and every one of those URIs, adjusting the
+score if a match is found. Use this test instead of one of the body tests
+when you need to match a URI, as it is more accurately bound to the start/end
+points of the URI, and will also be faster.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_rawbody_symbolic_test_name__2fpattern_2fmodifiers">rawbody SYMBOLIC_TEST_NAME /pattern/modifiers</a></strong><br />
+</dt>
+<dd>
+Define a raw-body pattern test.  <code>pattern</code> is a Perl regular expression.
+Note: as per the header tests, <code>#</code> must be escaped (<code>\#</code>) or else it is
+considered the beginning of a comment.
+</dd>
+<dd>
+<p>The 'raw body' of a message is the raw data inside all textual parts.
+The text will be decoded from base64 or quoted-printable encoding,
+but HTML tags and line breaks will still be present.   The pattern
+will be applied line-by-line.</p>
+</dd>
+<p></p>
+<dt><strong>rawbody SYMBOLIC_TEST_NAME eval:name_of_eval_method([args])</strong><br />
+</dt>
+<dd>
+Define a raw-body eval test.  See above.
+</dd>
+<p></p>
+<dt><strong><a name="item_full_symbolic_test_name__2fpattern_2fmodifiers">full SYMBOLIC_TEST_NAME /pattern/modifiers</a></strong><br />
+</dt>
+<dd>
+Define a full message pattern test.  <code>pattern</code> is a Perl regular expression.
+Note: as per the header tests, <code>#</code> must be escaped (<code>\#</code>) or else it is
+considered the beginning of a comment.
+</dd>
+<dd>
+<p>The full message is the pristine message headers plus the pristine message
+body, including all MIME data such as images, other attachments, MIME
+boundaries, etc.</p>
+</dd>
+<p></p>
+<dt><strong>full SYMBOLIC_TEST_NAME eval:name_of_eval_method([args])</strong><br />
+</dt>
+<dd>
+Define a full message eval test.  See above.
+</dd>
+<p></p>
+<dt><strong><a name="item_meta_symbolic_test_name_boolean_expression">meta SYMBOLIC_TEST_NAME boolean expression</a></strong><br />
+</dt>
+<dd>
+Define a boolean expression test in terms of other tests that have
+been hit or not hit.  For example:
+</dd>
+<dd>
+<p>meta META1        TEST1 &amp;&amp; !(TEST2 || TEST3)</p>
+</dd>
+<dd>
+<p>Note that English language operators (``and'', ``or'') will be treated as
+rule names, and that there is no <code>XOR</code> operator.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_meta_symbolic_test_name_boolean_arithmetic_express">meta SYMBOLIC_TEST_NAME boolean arithmetic expression</a></strong><br />
+</dt>
+<dd>
+Can also define a boolean arithmetic expression in terms of other
+tests, with an unhit test having the value ``0'' and a hit test having a
+nonzero value.  The value of a hit meta test is that of its arithmetic
+expression.  The value of a hit eval test is that returned by its
+method.  The value of a hit header, body, rawbody, uri, or full test
+which has the ``multiple'' tflag is the number of times the test hit.
+The value of any other type of hit test is ``1''.
+</dd>
+<dd>
+<p>For example:</p>
+</dd>
+<dd>
+<p>meta META2        (3 * TEST1 - 2 * TEST2) &gt; 0</p>
+</dd>
+<dd>
+<p>Note that Perl builtins and functions, like <code>abs()</code>, <strong>can't</strong> be
+used, and will be treated as rule names.</p>
+</dd>
+<dd>
+<p>If you want to define a meta-rule, but do not want its individual sub-rules to
+count towards the final score unless the entire meta-rule matches, give the
+sub-rules names that start with '__' (two underscores).  SpamAssassin will
+ignore these for scoring.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_tflags_symbolic_test_name__5b__7bnet_7cnice_7clear">tflags SYMBOLIC_TEST_NAME [ {net|nice|learn|userconf|noautolearn|multiple} ]</a></strong><br />
+</dt>
+<dd>
+Used to set flags on a test.  These flags are used in the
+score-determination back end system for details of the test's
+behaviour.  Please see <a href="#item_bayes_auto_learn"><code>bayes_auto_learn</code></a> for more information
+about tflag interaction with those systems. The following flags
+can be set:
+</dd>
+<dl>
+<dt><strong><a name="item_net">net</a></strong><br />
+</dt>
+<dd>
+The test is a network test, and will not be run in the mass checking system
+or if <strong>-L</strong> is used, therefore its score should not be modified.
+</dd>
+<p></p>
+<dt><strong><a name="item_nice">nice</a></strong><br />
+</dt>
+<dd>
+The test is intended to compensate for common false positives, and should be
+assigned a negative score.
+</dd>
+<p></p>
+<dt><strong><a name="item_userconf">userconf</a></strong><br />
+</dt>
+<dd>
+The test requires user configuration before it can be used (like language-
+specific tests).
+</dd>
+<p></p>
+<dt><strong><a name="item_learn">learn</a></strong><br />
+</dt>
+<dd>
+The test requires training before it can be used.
+</dd>
+<p></p>
+<dt><strong><a name="item_noautolearn">noautolearn</a></strong><br />
+</dt>
+<dd>
+The test will explicitly be ignored when calculating the score for
+learning systems.
+</dd>
+<p></p>
+<dt><strong><a name="item_multiple">multiple</a></strong><br />
+</dt>
+<dd>
+The test will be evaluated multiple times, for use with meta rules.
+Only affects header, body, rawbody, uri, and full tests.
+</dd>
+<p></p></dl>
+<dt><strong><a name="item_priority_symbolic_test_name_n">priority SYMBOLIC_TEST_NAME n</a></strong><br />
+</dt>
+<dd>
+Assign a specific priority to a test.  All tests, except for DNS and Meta
+tests, are run in increasing priority value order (negative priority values
+are run before positive priority values). The default test priority is 0
+(zero).
+</dd>
+<dd>
+<p>The values &lt;-99999999999999&gt; and &lt;-99999999999998&gt; have a special meaning
+internally, and should not be used.</p>
+</dd>
+<p></p></dl>
+<p>
+</p>
+<hr />
+<h1><a name="administrator_settings">ADMINISTRATOR SETTINGS</a></h1>
+<p>These settings differ from the ones above, in that they are considered 'more
+privileged' -- even more than the ones in the <strong>PRIVILEGED SETTINGS</strong> section.
+No matter what <a href="#item_allow_user_rules"><code>allow_user_rules</code></a> is set to, these can never be set from a
+user's <code>user_prefs</code> file when spamc/spamd is being used.  However, all
+settings can be used by local programs run directly by the user.</p>
+<dl>
+<dt><strong><a name="item_version_tag_string">version_tag string</a></strong><br />
+</dt>
+<dd>
+This tag is appended to the SA version in the X-Spam-Status header. You should
+include it when modify your ruleset, especially if you plan to distribute it.
+A good choice for <em>string</em> is your last name or your initials followed by a
+number which you increase with each change.
+</dd>
+<dd>
+<p>The version_tag will be lowercased, and any non-alphanumeric or period
+character will be replaced by an underscore.</p>
+</dd>
+<dd>
+<p>e.g.</p>
+</dd>
+<dd>
+<pre>
+  version_tag myrules1    # version=2.41-myrules1</pre>
+</dd>
+<p></p>
+<dt><strong><a name="item_symbolic_test_name">test SYMBOLIC_TEST_NAME (ok|fail) Some string to test against</a></strong><br />
+</dt>
+<dd>
+Define a regression testing string. You can have more than one regression test
+string per symbolic test name. Simply specify a string that you wish the test
+to match.
+</dd>
+<dd>
+<p>These tests are only run as part of the test suite - they should not affect the
+general running of SpamAssassin.</p>
+</dd>
+<p></p>
+<dt><strong>rbl_timeout n		(default: 15)</strong><br />
+</dt>
+<dd>
+All DNS queries are made at the beginning of a check and we try to read the
+results at the end.  This value specifies the maximum period of time to wait
+for an DNS query.  If most of the DNS queries have succeeded for a particular
+message, then SpamAssassin will not wait for the full period to avoid wasting
+time on unresponsive server(s).  For the default 15 second timeout, here is a
+chart of queries remaining versus the effective timeout in seconds:
+</dd>
+<dd>
+<pre>
+  queries left    100%  90%  80%  70%  60%  50%  40%  30%  20%  10%  0%
+  timeout          15   15   14   14   13   11   10    8    5    3   0</pre>
+</dd>
+<dd>
+<p>In addition, whenever the effective timeout is lowered due to additional query
+results returning, the remaining queries are always given at least one more
+second before timing out, but the wait time will never exceed rbl_timeout.</p>
+</dd>
+<dd>
+<p>For example, if 20 queries are made at the beginning of a message check and 16
+queries have returned (leaving 20%), the remaining 4 queries must finish
+within 5 seconds of the beginning of the check or they will be timed out.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_util_rb_tld_tld1_tld2__2e_2e_2e">util_rb_tld tld1 tld2 ...</a></strong><br />
+</dt>
+<dd>
+This option allows the addition of new TLDs to the RegistrarBoundaries code.
+Updates to the list usually happen when new versions of SpamAssassin are
+released, but sometimes it's necessary to add in new TLDs faster than a
+release can occur.  TLDs include things like com, net, org, etc.
+</dd>
+<p></p>
+<dt><strong><a name="item_util_rb_2tld_2tld_2d1_2etld_2tld_2d2_2etld__2e_2e_">util_rb_2tld 2tld-1.tld 2tld-2.tld ...</a></strong><br />
+</dt>
+<dd>
+This option allows the addition of new 2nd-level TLDs (2TLD) to the
+RegistrarBoundaries code.  Updates to the list usually happen when new
+versions of SpamAssassin are released, but sometimes it's necessary to add in
+new 2TLDs faster than a release can occur.  2TLDs include things like co.uk,
+fed.us, etc.
+</dd>
+<p></p>
+<dt><strong><a name="item_filename">bayes_path /path/filename	(default: ~/.spamassassin/bayes)</a></strong><br />
+</dt>
+<dd>
+This is the directory and filename for Bayes databases.  Several databases
+will be created, with this as the base directory and filename, with <code>_toks</code>,
+<code>_seen</code>, etc. appended to the base.  The default setting results in files
+called <code>~/.spamassassin/bayes_seen</code>, <code>~/.spamassassin/bayes_toks</code>, etc.
+</dd>
+<dd>
+<p>By default, each user has their own in their <code>~/.spamassassin</code> directory with
+mode 0700/0600.  For system-wide SpamAssassin use, you may want to reduce disk
+space usage by sharing this across all users.  However, Bayes appears to be
+more effective with individual user databases.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_bayes_file_mode">bayes_file_mode		(default: 0700)</a></strong><br />
+</dt>
+<dd>
+The file mode bits used for the Bayesian filtering database files.
+</dd>
+<dd>
+<p>Make sure you specify this using the 'x' mode bits set, as it may also be used
+to create directories.  However, if a file is created, the resulting file will
+not have any execute bits set (the umask is set to 111).</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_bayes_store_module_name_3a_3aof_3a_3abayesstore_3a">bayes_store_module Name::Of::BayesStore::Module</a></strong><br />
+</dt>
+<dd>
+If this option is set, the module given will be used as an alternate
+to the default bayes storage mechanism.  It must conform to the
+published storage specification (see
+Mail::SpamAssassin::BayesStore). For example, set this to
+Mail::SpamAssassin::BayesStore::SQL to use the generic SQL storage
+module.
+</dd>
+<p></p>
+<dt><strong><a name="item_bayes_sql_dsn_dbi_3a_3adatabasetype_3adatabasename">bayes_sql_dsn DBI::databasetype:databasename:hostname:port</a></strong><br />
+</dt>
+<dd>
+Used for BayesStore::SQL storage implementation.
+</dd>
+<dd>
+<p>This option give the connect string used to connect to the SQL based Bayes storage.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_bayes_sql_username">bayes_sql_username</a></strong><br />
+</dt>
+<dd>
+Used by BayesStore::SQL storage implementation.
+</dd>
+<dd>
+<p>This option gives the username used by the above DSN.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_bayes_sql_password">bayes_sql_password</a></strong><br />
+</dt>
+<dd>
+Used by BayesStore::SQL storage implementation.
+</dd>
+<dd>
+<p>This option gives the password used by the above DSN.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_bayes_sql_username_authorized">bayes_sql_username_authorized ( 0 | 1 )  (default: 0)</a></strong><br />
+</dt>
+<dd>
+Whether to call the services_authorized_for_username plugin hook in BayesSQL.
+If the hook does not determine that the user is allowed to use bayes or is
+invalid then then database will not be initialized.
+</dd>
+<dd>
+<p>NOTE: By default the user is considered invalid until a plugin returns
+a true value.  If you enable this, but do not have a proper plugin
+loaded, all users will turn up as invalid.</p>
+</dd>
+<dd>
+<p>The username passed into the plugin can be affected by the
+bayes_sql_override_username config option.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_user_scores_dsn_dbi_3adatabasetype_3adatabasename_">user_scores_dsn DBI:databasetype:databasename:hostname:port</a></strong><br />
+</dt>
+<dd>
+If you load user scores from an SQL database, this will set the DSN
+used to connect.  Example: <code>DBI:mysql:spamassassin:localhost</code>
+</dd>
+<dd>
+<p>If you load user scores from an LDAP directory, this will set the DSN used to
+connect. You have to write the DSN as an LDAP URL, the components being the
+host and port to connect to, the base DN for the seasrch, the scope of the
+search (base, one or sub), the single attribute being the multivalued attribute
+used to hold the configuration data (space separated pairs of key and value,
+just as in a file) and finally the filter being the expression used to filter
+out the wanted username. Note that the filter expression is being used in a
+sprintf statement with the username as the only parameter, thus is can hold a
+single __USERNAME__ expression. This will be replaced with the username.</p>
+</dd>
+<dd>
+<p>Example: <code>ldap://localhost:389/dc=koehntopp,dc=de?spamassassinconfig?uid=__USERNAME__</code></p>
+</dd>
+<p></p>
+<dt><strong><a name="item_user_scores_sql_username_username">user_scores_sql_username username</a></strong><br />
+</dt>
+<dd>
+The authorized username to connect to the above DSN.
+</dd>
+<p></p>
+<dt><strong><a name="item_user_scores_sql_password_password">user_scores_sql_password password</a></strong><br />
+</dt>
+<dd>
+The password for the database username, for the above DSN.
+</dd>
+<p></p>
+<dt><strong><a name="item_user_scores_sql_custom_query_query">user_scores_sql_custom_query query</a></strong><br />
+</dt>
+<dd>
+This option gives you the ability to create a custom SQL query to
+retrieve user scores and preferences.  In order to work correctly your
+query should return two values, the preference name and value, in that
+order.  In addition, there are several ``variables'' that you can use
+as part of your query, these variables will be substituted for the
+current values right before the query is run.  The current allowed
+variables are:
+</dd>
+<dl>
+<dt><strong><a name="item__table_">_TABLE_</a></strong><br />
+</dt>
+<dd>
+The name of the table where user scores and preferences are stored. Currently
+hardcoded to userpref, to change this value you need to create a new custom
+query with the new table name.
+</dd>
+<p></p>
+<dt><strong><a name="item__username_">_USERNAME_</a></strong><br />
+</dt>
+<dd>
+The current user's username.
+</dd>
+<p></p>
+<dt><strong><a name="item__mailbox_">_MAILBOX_</a></strong><br />
+</dt>
+<dd>
+The portion before the @ as derived from the current user's username.
+</dd>
+<p></p>
+<dt><strong><a name="item__domain_">_DOMAIN_</a></strong><br />
+</dt>
+<dd>
+The portion after the @ as derived from the current user's username, this
+value may be null.
+</dd>
+<p></p></dl>
+<p>The query must be one one continuous line in order to parse correctly.</p>
+<p>Here are several example queries, please note that these are broken up
+for easy reading, in your config it should be one continuous line.</p>
+<dl>
+<dt><strong><a name="item_current_default_query_3a">Current default query:</a></strong><br />
+</dt>
+<dd>
+<code>SELECT preference, value FROM _TABLE_ WHERE username = _USERNAME_ OR username = '@GLOBAL' ORDER BY username ASC</code>
+</dd>
+<p></p>
+<dt><strong><a name="item_use_global_and_then_domain_level_defaults_3a">Use global and then domain level defaults:</a></strong><br />
+</dt>
+<dd>
+<code>SELECT preference, value FROM _TABLE_ WHERE username = _USERNAME_ OR username = '@GLOBAL' OR username = '@~'||_DOMAIN_ ORDER BY username ASC</code>
+</dd>
+<p></p>
+<dt><strong><a name="item_maybe_global_prefs_should_override_user_prefs_3a">Maybe global prefs should override user prefs:</a></strong><br />
+</dt>
+<dd>
+<code>SELECT preference, value FROM _TABLE_ WHERE username = _USERNAME_ OR username = '@GLOBAL' ORDER BY username DESC</code>
+</dd>
+<p></p></dl>
+<dt><strong><a name="item_user_scores_ldap_username">user_scores_ldap_username</a></strong><br />
+</dt>
+<dd>
+This is the Bind DN used to connect to the LDAP server.
+</dd>
+<dd>
+<p>Example: <code>cn=master,dc=koehntopp,dc=de</code></p>
+</dd>
+<p></p>
+<dt><strong><a name="item_user_scores_ldap_password">user_scores_ldap_password</a></strong><br />
+</dt>
+<dd>
+This is the password used to connect to the LDAP server.
+</dd>
+<p></p>
+<dt><strong><a name="item_loadplugin_pluginmodulename__5b_2fpath_2fmodule_2e">loadplugin PluginModuleName [/path/module.pm]</a></strong><br />
+</dt>
+<dd>
+Load a SpamAssassin plugin module.  The <code>PluginModuleName</code> is the perl module
+name, used to create the plugin object itself.
+</dd>
+<dd>
+<p><code>/path/to/module.pm</code> is the file to load, containing the module's perl code;
+if it's specified as a relative path, it's considered to be relative to the
+current configuration file.  If it is omitted, the module will be loaded
+using perl's search path (the <code>@INC</code> array).</p>
+</dd>
+<dd>
+<p>See <code>Mail::SpamAssassin::Plugin</code> for more details on writing plugins.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_tryplugin_pluginmodulename__5b_2fpath_2fmodule_2ep">tryplugin PluginModuleName [/path/module.pm]</a></strong><br />
+</dt>
+<dd>
+Same as <code>loadplugin</code>, but silently ignored if the .pm file cannot be found in
+the filesystem.
+</dd>
+<p></p></dl>
+<p>
+</p>
+<hr />
+<h1><a name="preprocessing_options">PREPROCESSING OPTIONS</a></h1>
+<dl>
+<dt><strong><a name="item_include_filename">include filename</a></strong><br />
+</dt>
+<dd>
+Include configuration lines from <a href="#item_filename"><code>filename</code></a>.   Relative paths are considered
+relative to the current configuration file or user preferences file.
+</dd>
+<p></p>
+<dt><strong><a name="item_if">if (conditional perl expression)</a></strong><br />
+</dt>
+<dd>
+Used to support conditional interpretation of the configuration
+file. Lines between this and a corresponding <a href="#item_else"><code>else</code></a> or <code>endif</code> line,
+will be ignored unless the conditional expression evaluates as true
+(in the perl sense; that is, defined and non-0).
+</dd>
+<dd>
+<p>The conditional accepts a limited subset of perl for security -- just enough to
+perform basic arithmetic comparisons.  The following input is accepted:</p>
+</dd>
+<dl>
+<dt><strong><a name="item_numbers_2c_whitespace_2c_arithmetic_operations_and">numbers, whitespace, arithmetic operations and grouping</a></strong><br />
+</dt>
+<dd>
+Namely these characters and ranges:
+</dd>
+<dd>
+<pre>
+  ( ) - + * / _ . , &lt; = &gt; ! ~ 0-9 whitespace</pre>
+</dd>
+<p></p>
+<dt><strong><a name="item_version">version</a></strong><br />
+</dt>
+<dd>
+This will be replaced with the version number of the currently-running
+SpamAssassin engine.  Note: The version used is in the internal SpamAssassin
+version format which is <code>x.yyyzzz</code>, where x is major version, y is minor
+version, and z is maintenance version.  So 3.0.0 is <code>3.000000</code>, and 3.4.80 is
+<code>3.004080</code>.
+</dd>
+<p></p>
+<dt><strong><a name="item_plugin"><code>plugin(Name::Of::Plugin)</code></a></strong><br />
+</dt>
+<dd>
+This is a function call that returns <code>1</code> if the plugin named
+<code>Name::Of::Plugin</code> is loaded, or <code>undef</code> otherwise.
+</dd>
+<p></p></dl>
+<p>If the end of a configuration file is reached while still inside a
+<a href="#item_if"><code>if</code></a> scope, a warning will be issued, but parsing will restart on
+the next file.</p>
+<p>For example:</p>
+<pre>
+        if (version &gt; 3.000000)
+          header MY_FOO ...
+        endif</pre>
+<pre>
+        loadplugin MyPlugin plugintest.pm</pre>
+<pre>
+        if plugin (MyPlugin)
+          header MY_PLUGIN_FOO  eval:check_for_foo()
+          score  MY_PLUGIN_FOO  0.1
+        endif</pre>
+<dt><strong><a name="item_ifplugin_pluginmodulename">ifplugin PluginModuleName</a></strong><br />
+</dt>
+<dd>
+An alias for <a href="#item_plugin"><code>if plugin(PluginModuleName)</code></a>.
+</dd>
+<p></p>
+<dt><strong><a name="item_else">else</a></strong><br />
+</dt>
+<dd>
+Used to support conditional interpretation of the configuration
+file. Lines between this and a corresponding <code>endif</code> line,
+will be ignored unless the conditional expression evaluates as false
+(in the perl sense; that is, not defined and 0).
+</dd>
+<p></p>
+<dt><strong><a name="item_require_version_n_2ennnnnn">require_version n.nnnnnn</a></strong><br />
+</dt>
+<dd>
+Indicates that the entire file, from this line on, requires a certain
+version of SpamAssassin to run.  If a different (older or newer) version
+of SpamAssassin tries to read the configuration from this file, it will
+output a warning instead, and ignore it.
+</dd>
+<dd>
+<p>Note: The version used is in the internal SpamAssassin version format which is
+<code>x.yyyzzz</code>, where x is major version, y is minor version, and z is maintenance
+version.  So 3.0.0 is <code>3.000000</code>, and 3.4.80 is <code>3.004080</code>.</p>
+</dd>
+<p></p></dl>
+<p>
+</p>
+<hr />
+<h1><a name="template_tags">TEMPLATE TAGS</a></h1>
+<p>The following <code>tags</code> can be used as placeholders in certain options.
+They will be replaced by the corresponding value when they are used.</p>
+<p>Some tags can take an argument (in parentheses). The argument is
+optional, and the default is shown below.</p>
+<pre>
+ _YESNOCAPS_       &quot;YES&quot;/&quot;NO&quot; for is/isn't spam
+ _YESNO_           &quot;Yes&quot;/&quot;No&quot; for is/isn't spam
+ _SCORE(PAD)_      message score, if PAD is included and is either spaces or
+                   zeroes, then pad scores with that many spaces or zeroes
+                   (default, none)  ie: _SCORE(0)_ makes 2.4 become 02.4,
+                   _SCORE(00)_ is 002.4.  12.3 would be 12.3 and 012.3
+                   respectively.
+ _REQD_            message threshold
+ _VERSION_         version (eg. 3.0.0 or 3.1.0-r26142-foo1)
+ _SUBVERSION_      sub-version/code revision date (eg. 2004-01-10)
+ _HOSTNAME_        hostname of the machine the mail was processed on
+ _REMOTEHOSTNAME_  hostname of the machine the mail was sent from, only
+                   available with spamd
+ _REMOTEHOSTADDR_  ip address of the machine the mail was sent from, only
+                   available with spamd
+ _BAYES_           bayes score
+ _TOKENSUMMARY_    number of new, neutral, spammy, and hammy tokens found
+ _BAYESTC_         number of new tokens found
+ _BAYESTCLEARNED_  number of seen tokens found
+ _BAYESTCSPAMMY_   number of spammy tokens found
+ _BAYESTCHAMMY_    number of hammy tokens found
+ _HAMMYTOKENS(N)_  the N most significant hammy tokens (default, 5)
+ _SPAMMYTOKENS(N)_ the N most significant spammy tokens (default, 5)
+ _DATE_            rfc-2822 date of scan
+ _STARS(*)_        one &quot;*&quot; (use any character) for each full score point
+                   (note: limited to 50 'stars')
+ _RELAYSTRUSTED_   relays used and deemed to be trusted (see the 
+                   'X-Spam-Relays-Trusted' pseudo-header)
+ _RELAYSUNTRUSTED_ relays used that can not be trusted (see the 
+                   'X-Spam-Relays-Untrusted' pseudo-header)
+ _RELAYSINTERNAL_  relays used and deemed to be internal (see the 
+                   'X-Spam-Relays-Internal' pseudo-header)
+ _RELAYSEXTERNAL_  relays used and deemed to be external (see the 
+                   'X-Spam-Relays-External' pseudo-header)
+ _LASTEXTERNALIP_  IP address of client in the external-to-internal
+                   SMTP handover
+ _LASTEXTERNALRDNS_ reverse-DNS of client in the external-to-internal
+                   SMTP handover
+ _LASTEXTERNALHELO_ HELO string used by client in the external-to-internal
+                   SMTP handover
+ _AUTOLEARN_       autolearn status (&quot;ham&quot;, &quot;no&quot;, &quot;spam&quot;, &quot;disabled&quot;,
+                   &quot;failed&quot;, &quot;unavailable&quot;)
+ _AUTOLEARNSCORE_  portion of message score used by autolearn
+ _TESTS(,)_        tests hit separated by &quot;,&quot; (or other separator)
+ _TESTSSCORES(,)_  as above, except with scores appended (eg. AWL=-3.0,...)
+ _SUBTESTS(,)_     subtests (start with &quot;__&quot;) hit separated by &quot;,&quot;
+                   (or other separator)
+ _DCCB_            DCC's &quot;Brand&quot;
+ _DCCR_            DCC's results
+ _PYZOR_           Pyzor results
+ _RBL_             full results for positive RBL queries in DNS URI format
+ _LANGUAGES_       possible languages of mail
+ _PREVIEW_         content preview
+ _REPORT_          terse report of tests hit (for header reports)
+ _SUMMARY_         summary of tests hit for standard report (for body reports)
+ _CONTACTADDRESS_  contents of the 'report_contact' setting
+ _HEADER(NAME)_    includes the value of a message header.  value is the same
+                   as is found for header rules (see elsewhere in this doc)</pre>
+<p>If a tag reference uses the name of a tag which is not in this list or defined
+by a loaded plugin, the reference will be left intact and not replaced by any
+value.</p>
+<p>The <code>HAMMYTOKENS</code> and <code>SPAMMYTOKENS</code> tags have an optional second argument
+which specifies a format.  See the <strong>HAMMYTOKENS/SPAMMYTOKENS TAG FORMAT</strong>
+section, below, for details.</p>
+<p>
+</p>
+<h2><a name="hammytokens_spammytokens_tag_format">HAMMYTOKENS/SPAMMYTOKENS TAG FORMAT</a></h2>
+<p>The <code>HAMMYTOKENS</code> and <code>SPAMMYTOKENS</code> tags have an optional second argument
+which specifies a format: <code>_SPAMMYTOKENS(N,FMT)_</code>, <code>_HAMMYTOKENS(N,FMT)_</code>
+The following formats are available:</p>
+<dl>
+<dt><strong><a name="item_short">short</a></strong><br />
+</dt>
+<dd>
+Only the tokens themselves are listed.
+<em>For example, preference file entry:</em>
+</dd>
+<dd>
+<p><code>add_header all Spammy _SPAMMYTOKENS(2,short)_</code></p>
+</dd>
+<dd>
+<p><em>Results in message header:</em></p>
+</dd>
+<dd>
+<p><code>X-Spam-Spammy: remove.php, UD:jpg</code></p>
+</dd>
+<dd>
+<p>Indicating that the top two spammy tokens found are <code>remove.php</code>
+and <code>UD:jpg</code>.  (The token itself follows the last colon, the
+text before the colon indicates something about the token.
+<code>UD</code> means the token looks like it might be part of a domain name.)</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_compact">compact</a></strong><br />
+</dt>
+<dd>
+The token probability, an abbreviated declassification distance (see
+example), and the token are listed.
+<em>For example, preference file entry:</em>
+</dd>
+<dd>
+<p><code>add_header all Spammy _SPAMMYTOKENS(2,compact)_</code></p>
+</dd>
+<dd>
+<p><em>Results in message header:</em></p>
+</dd>
+<dd>
+<p><code>0.989-6--remove.php, 0.988-+--UD:jpg</code></p>
+</dd>
+<dd>
+<p>Indicating that the probabilities of the top two tokens are 0.989 and
+0.988, respectively.  The first token has a declassification distance
+of 6, meaning that if the token had appeared in at least 6 more ham
+messages it would not be considered spammy.  The <code>+</code> for the second
+token indicates a declassification distance greater than 9.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_long">long</a></strong><br />
+</dt>
+<dd>
+Probability, declassification distance, number of times seen in a ham
+message, number of times seen in a spam message, age and the token are
+listed.
+</dd>
+<dd>
+<p><em>For example, preference file entry:</em></p>
+</dd>
+<dd>
+<p><code>add_header all Spammy _SPAMMYTOKENS(2,long)_</code></p>
+</dd>
+<dd>
+<p><em>Results in message header:</em></p>
+</dd>
+<dd>
+<p><code>X-Spam-Spammy: 0.989-6--0h-4s--4d--remove.php, 0.988-33--2h-25s--1d--UD:jpg</code></p>
+</dd>
+<dd>
+<p>In addition to the information provided by the compact option,
+the long option shows that the first token appeared in zero
+ham messages and four spam messages, and that it was last
+seen four days ago.  The second token appeared in two ham messages,
+25 spam messages and was last seen one day ago.
+(Unlike the <a href="#item_compact"><code>compact</code></a> option, the long option shows declassification
+distances that are greater than 9.)</p>
+</dd>
+<p></p></dl>
+<p>
+</p>
+<hr />
+<h1><a name="locali_sz_ation">LOCALI[SZ]ATION</a></h1>
+<p>A line starting with the text <code>lang xx</code> will only be interpreted
+if the user is in that locale, allowing test descriptions and
+templates to be set for that language.</p>
+<p>The locales string should specify either both the language and country, e.g.
+<code>lang pt_BR</code>, or just the language, e.g. <code>lang de</code>.</p>
+<p>
+</p>
+<hr />
+<h1><a name="see_also">SEE ALSO</a></h1>
+<p><code>Mail::SpamAssassin</code>
+<code>spamassassin</code>
+<code>spamd</code></p>
+
+</body>
+
+</html>

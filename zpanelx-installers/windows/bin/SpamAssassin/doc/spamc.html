@@ -1,0 +1,400 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>spamc - client for spamd</title>
+<link rev="made" href="mailto:" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#options">OPTIONS</a></li>
+	<li><a href="#configuration_file">CONFIGURATION FILE</a></li>
+	<li><a href="#exit_codes">EXIT CODES</a></li>
+	<li><a href="#see_also">SEE ALSO</a></li>
+	<li><a href="#prerequisites">PREREQUISITES</a></li>
+	<li><a href="#authors">AUTHORS</a></li>
+	<li><a href="#copyright">COPYRIGHT</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<hr />
+<h1><a name="name">NAME</a></h1>
+<p>spamc - client for spamd</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<dl>
+<dt><strong><a name="item_spamc__5boptions_5d__3c_message">spamc [options] &lt; message</a></strong><br />
+</dt>
+</dl>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>Spamc is the client half of the spamc/spamd pair.  It should be used in place
+of <code>spamassassin</code> in scripts to process mail.  It will read the mail from
+STDIN, and spool it to its connection to spamd, then read the result back and
+print it to STDOUT.  Spamc has extremely low overhead in loading, so it should
+be much faster to load than the whole spamassassin program.</p>
+<p>See the <em>README</em> file in the <em>spamd</em> directory of the SpamAssassin
+distribution for more details.</p>
+<p>
+</p>
+<hr />
+<h1><a name="options">OPTIONS</a></h1>
+<p>All options detailed below can be passed as command line arguments, or be
+contained in a configuration file, as described in the <strong>CONFIGURATION FILE</strong>
+section below.</p>
+<p>Note that the long options, a la <code>--long-options</code>, are new as of
+SpamAssassin 3.2.0, and were not available in earlier versions.</p>
+<dl>
+<dt><strong><a name="item__2db_2c__2d_2dbsmtp"><strong>-B</strong>, <strong>--bsmtp</strong></a></strong><br />
+</dt>
+<dd>
+Assume input is a single BSMTP-formatted message. In other words, spamc will
+pull out everything between the DATA line and the lone-dot line to feed to
+spamd, and will place the spamd output back in the same envelope (thus, any
+SIZE extension in your BSMTP file will cause many problems).
+</dd>
+<p></p>
+<dt><strong><a name="item__2dc_2c__2d_2dcheck"><strong>-c</strong>, <strong>--check</strong></a></strong><br />
+</dt>
+<dd>
+Just check if the message is spam or not.  Set process exitcode to 1 if
+message is spam, 0 if not spam or processing failure occurs.  Will print
+score/threshold to stdout (as ints) or 0/0 if there was an error.
+Combining <strong>-c</strong> and <strong>-E</strong> is a no-op, since <strong>-c</strong> implies the behaviour
+of <strong>-E</strong>.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dd_host_5b_2chost2_5d_2c__2d_2ddest_3dhost_5b_2c"><strong>-d</strong> <em>host[,host2]</em>, <strong>--dest</strong>=<em>host[,host2]</em></a></strong><br />
+</dt>
+<dd>
+In TCP/IP mode, connect to spamd server on given host (default: localhost).
+Several hosts can be specified if separated by commas.
+</dd>
+<dd>
+<p>If <em>host</em> resolves to multiple addresses, then spamc will fail-over to the 
+other addresses, if the first one cannot be connected to.  It will first try
+all addresses of one host before it tries the next one in the list.
+Note that this fail-over behaviour is incompatible with <strong>-x</strong>; if that
+switch is used, fail-over will not occur.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item__2de_command__5bargs_5d_2c__2d_2dpipe_2dto_command"><strong>-e</strong> <em>command</em> <em>[args]</em>, <strong>--pipe-to</strong> <em>command</em> <em>[args]</em></a></strong><br />
+</dt>
+<dd>
+Instead of writing to stdout, pipe the output to <em>command</em>'s standard input.
+Note that there is a very slight chance mail will be lost here, because if the
+fork-and-exec fails there's no place to put the mail message.
+</dd>
+<dd>
+<p>Note that this must be the LAST command line option, as everything after the
+<strong>-e</strong> is taken as arguments to the command (it's like <em>rxvt</em> or <em>xterm</em>).</p>
+</dd>
+<dd>
+<p>This option is not supported on Win32 platforms.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item__2de_2c__2d_2dexitcode"><strong>-E</strong>, <strong>--exitcode</strong></a></strong><br />
+</dt>
+<dd>
+Filter according to the other options, but set the process exitcode to 1 if
+message is spam, 0 if not spam or processing failure occurs.
+</dd>
+<p></p>
+<dt><strong><a name="item__2df__2fpath_2fto_2ffile_2c__2d_2dconfig_3dpath"><strong>-F</strong> <em>/path/to/file</em>, <strong>--config</strong>=<em>path</em></a></strong><br />
+</dt>
+<dd>
+Specify a configuration file to read additional command-line flags from.
+See <strong>CONFIGURATION FILE</strong> below.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dh_2c__2d_2dhelp"><strong>-h</strong>, <strong>--help</strong></a></strong><br />
+</dt>
+<dd>
+Print this help message and terminate without action.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dh_2c__2d_2drandomize"><strong>-H</strong>, <strong>--randomize</strong></a></strong><br />
+</dt>
+<dd>
+For TCP/IP sockets, randomize the IP addresses returned for the hosts given
+by the <strong>-d</strong> switch. This provides for a simple kind of load balancing.  It
+will try only three times though.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dl_2c__2d_2dlog_2dto_2dstderr"><strong>-l</strong>, <strong>--log-to-stderr</strong></a></strong><br />
+</dt>
+<dd>
+Send log messages to stderr, instead of to the syslog.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dl_learn_type_2c__2d_2dlearntype_3dtype"><strong>-L</strong> <em>learn type</em>, <strong>--learntype</strong>=<em>type</em></a></strong><br />
+</dt>
+<dd>
+Send message to spamd for learning.  The <code>learn type</code> can be either spam,
+ham or forget.  The exitcode for spamc will be set to 5 if the message
+was learned, or 6 if it was already learned.
+</dd>
+<dd>
+<p>Note that the <code>spamd</code> must run with the <code>--allow-tell</code> option for
+this to work.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item__2dc_report_type_2c__2d_2dreporttype_3dtype"><strong>-C</strong> <em>report type</em>, <strong>--reporttype</strong>=<em>type</em></a></strong><br />
+</dt>
+<dd>
+Report or revoke a message to one of the configured collaborative filtering
+databases.  The <code>report type</code> can be either report or revoke.
+</dd>
+<dd>
+<p>Note that the <code>spamd</code> must run with the <code>--allow-tell</code> option for
+this to work.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item__2dp_port_2c__2d_2dport_3dport"><strong>-p</strong> <em>port</em>, <strong>--port</strong>=<em>port</em></a></strong><br />
+</dt>
+<dd>
+In TCP/IP mode, connect to spamd server listening on given port 
+(default: 783).
+</dd>
+<p></p>
+<dt><strong><a name="item__2dr_2c__2d_2dfull_2dspam"><strong>-r</strong>, <strong>--full-spam</strong></a></strong><br />
+</dt>
+<dd>
+Just output the SpamAssassin report text to stdout, if the message is
+spam.  If the message is ham (non-spam), nothing will be printed.  The
+first line of the output is the message score and the threshold, in
+this format:
+</dd>
+<dd>
+<pre>
+        score/threshold</pre>
+</dd>
+<p></p>
+<dt><strong><a name="item__2dr_2c__2d_2dfull"><strong>-R</strong>, <strong>--full</strong></a></strong><br />
+</dt>
+<dd>
+Just output the SpamAssassin report text to stdout, for all messages.
+See <strong>-r</strong> for details of the output format used.
+</dd>
+<p></p>
+<dt><strong><a name="item__2ds_max_size_2c__2d_2dmax_2dsize_3dmax_size"><strong>-s</strong> <em>max_size</em>, <strong>--max-size</strong>=<em>max_size</em></a></strong><br />
+</dt>
+<dd>
+Set the maximum message size which will be sent to spamd -- any bigger than
+this threshold and the message will be returned unprocessed (default: 500 KB).
+If spamc gets handed a message bigger than this, it won't be passed to spamd.
+The maximum message size is 256 MB.
+</dd>
+<dd>
+<p>The size is specified in bytes, as a positive integer greater than 0.
+For example, <strong>-s 500000</strong>.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dconnect_2dretries_3dretries"><strong>--connect-retries</strong>=<em>retries</em></a></strong><br />
+</dt>
+<dd>
+Retry connecting to spamd <em>retries</em> times.  The default is 3 times.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dretry_2dsleep_3dsleep"><strong>--retry-sleep</strong>=<em>sleep</em></a></strong><br />
+</dt>
+<dd>
+Sleep for <em>sleep</em> seconds between attempts to connect to spamd.
+The default is 1 second.
+</dd>
+<p></p>
+<dt><strong><a name="item__2ds_2c__2d_2dssl_2c__2d_2dssl_3dsslversion"><strong>-S</strong>, <strong>--ssl</strong>, <strong>--ssl</strong>=<em>sslversion</em></a></strong><br />
+</dt>
+<dd>
+If spamc was built with support for SSL, encrypt data to and from the
+spamd process with SSL; spamd must support SSL as well.
+<em>sslversion</em> specifies the SSL protocol version to use, one of
+<code>sslv2</code>, <code>sslv3</code>, <code>tlsv1</code>, or <code>sslv23</code>. The default, <code>sslv23</code>, causes
+spamc to use a SSLv2 hello handshake then negotiate use of SSLv3 or TLSv1
+protocol if the spamd server can accept it.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dt_timeout_2c__2d_2dtimeout_3dtimeout"><strong>-t</strong> <em>timeout</em>, <strong>--timeout</strong>=<em>timeout</em></a></strong><br />
+</dt>
+<dd>
+Set the timeout for spamc-to-spamd communications (default: 600, 0 disables).
+If spamd takes longer than this many seconds to reply to a message, spamc 
+will abort the connection and treat this as a failure to connect; in other 
+words the message will be returned unprocessed.
+</dd>
+<p></p>
+<dt><strong><a name="item__2du_username_2c__2d_2dusername_3dusername"><strong>-u</strong> <em>username</em>, <strong>--username</strong>=<em>username</em></a></strong><br />
+</dt>
+<dd>
+To have spamd use per-user-config files, run spamc as the user whose config
+files spamd should load; by default the effective user-ID is sent to spamd.  If
+you're running spamc as some other user, though, (eg. root, mail, nobody,
+cyrus, etc.) then you may use this flag to override the default.
+</dd>
+<p></p>
+<dt><strong><a name="item__2du_socketpath_2c__2d_2dsocket_3dpath"><strong>-U</strong> <em>socketpath</em>, <strong>--socket</strong>=<em>path</em></a></strong><br />
+</dt>
+<dd>
+Connect to <code>spamd</code> via UNIX domain socket <em>socketpath</em> instead of a
+TCP/IP connection.
+</dd>
+<dd>
+<p>This option is not supported on Win32 platforms.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item__2dv_2c__2d_2dversion"><strong>-V</strong>, <strong>--version</strong></a></strong><br />
+</dt>
+<dd>
+Report the version of this <code>spamc</code> client.  If built with SSL support,
+an additional line will be included noting this, like so:
+</dd>
+<dd>
+<pre>
+  SpamAssassin Client version 3.0.0-rc4
+    compiled with SSL support (OpenSSL 0.9.7d 17 Mar 2004)</pre>
+</dd>
+<p></p>
+<dt><strong><a name="item__2dx_2c__2d_2dno_2dsafe_2dfallback"><strong>-x</strong>, <strong>--no-safe-fallback</strong></a></strong><br />
+</dt>
+<dd>
+Disables the 'safe fallback' error-recovery method, which passes through the
+unaltered message if an error occurs.  Instead, exit with an error code, and
+let the MTA queue up the mails for a retry later.  See also <a href="#exit_codes">EXIT CODES</a>.
+</dd>
+<dd>
+<p>This also disables the TCP fail-over behaviour from <strong>-d</strong>.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item__2dy_2c__2d_2dtests"><strong>-y</strong>, <strong>--tests</strong></a></strong><br />
+</dt>
+<dd>
+Just output the names of the tests hit to stdout, on one line, separated
+by commas.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dk"><strong>-K</strong></a></strong><br />
+</dt>
+<dd>
+Perform a keep-alive check of spamd, instead of a full message check.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dz"><strong>-z</strong></a></strong><br />
+</dt>
+<dd>
+Use gzip compression to compress the mail message sent to <code>spamd</code>. This is
+useful for long-distance use of spamc over the internet. Note that this relies
+on <code>zlib</code> being installed on the <code>spamc</code> client side, and the
+<code>Compress::Zlib</code> perl module on the server side; an error will be returned
+otherwise.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dheaders"><strong>--headers</strong></a></strong><br />
+</dt>
+<dd>
+Perform a scan, but instead of allowing any part of the message (header and
+body) to be rewritten, limit rewriting to only the message headers. This is
+much more efficient in bandwidth usage, since the response message transmitted
+back from the spamd server will not include the body.
+</dd>
+<dd>
+<p>Note that this only makes sense if you are using <code>report_safe 0</code> in the
+scanning configuration on the remote end; with <code>report_safe 1</code>, it is
+likely to result in corrupt messages.</p>
+</dd>
+<p></p></dl>
+<p>
+</p>
+<hr />
+<h1><a name="configuration_file">CONFIGURATION FILE</a></h1>
+<p>The above command-line switches can also be loaded from a configuration
+file.</p>
+<p>The format of the file is similar to the SpamAssassin rules files; blank lines
+and lines beginning with <code>#</code> are ignored.  Any space-separated words are
+considered additions to the command line, and are prepended. Newlines are
+treated as equivalent to spaces. Existing command line switches will override
+any settings in the configuration file.</p>
+<p>If the <strong>-F</strong> switch is specified, that file will be used.  Otherwise,
+<code>spamc</code> will attempt to load spamc.conf in <code>SYSCONFDIR</code> (default:
+/etc/mail/spamassassin). If that file doesn't exist, and the <strong>-F</strong>
+switch is not specified, no configuration file will be read.</p>
+<p>Example:</p>
+<pre>
+    # spamc global configuration file 
+    
+    # connect to &quot;server.example.com&quot;, port 783
+    -d server.example.com
+    -p 783</pre>
+<pre>
+    # max message size for scanning = 350k
+    -s 350000</pre>
+<p>
+</p>
+<hr />
+<h1><a name="exit_codes">EXIT CODES</a></h1>
+<p>By default, spamc will use the 'safe fallback' error recovery method.  That 
+means, it will always exit with an exit code if <code>0</code>, even if an error was 
+encountered.  If any error occurrs, it will simply pass through the unaltered 
+message.</p>
+<p>The <strong>-c</strong> and <strong>-E</strong> options modify this; instead, spamc will use an exit code
+of <code>1</code> if the message is determined to be spam.</p>
+<p>If the <code>-x</code> option is specified, 'safe fallback' will be disabled, and certain
+error conditions related to communication between spamc and spamd will result 
+in an error code.  The exit codes used are as follows:</p>
+<pre>
+    EX_USAGE        64  command line usage error
+    EX_DATAERR      65  data format error       
+    EX_NOINPUT      66  cannot open input
+    EX_NOUSER       67  addressee unknown
+    EX_NOHOST       68  host name unknown
+    EX_UNAVAILABLE  69  service unavailable
+    EX_SOFTWARE     70  internal software error
+    EX_OSERR        71  system error (e.g., can't fork)
+    EX_OSFILE       72  critical OS file missing
+    EX_CANTCREAT    73  can't create (user) output file
+    EX_IOERR        74  input/output error
+    EX_TEMPFAIL     75  temp failure; user is invited to retry
+    EX_PROTOCOL     76  remote error in protocol
+    EX_NOPERM       77  permission denied
+    EX_CONFIG       78  configuration error</pre>
+<p>
+</p>
+<hr />
+<h1><a name="see_also">SEE ALSO</a></h1>
+<p><code>spamd(1)</code>
+<code>spamassassin(1)</code>
+Mail::SpamAssassin(3)</p>
+<p>
+</p>
+<hr />
+<h1><a name="prerequisites">PREREQUISITES</a></h1>
+<p><code>Mail::SpamAssassin</code></p>
+<p>
+</p>
+<hr />
+<h1><a name="authors">AUTHORS</a></h1>
+<p>The <code>SpamAssassin(tm)</code> Project &lt;http://spamassassin.apache.org/&gt;</p>
+<p>
+</p>
+<hr />
+<h1><a name="copyright">COPYRIGHT</a></h1>
+<p>SpamAssassin is distributed under the Apache License, Version 2.0, as
+described in the file <code>LICENSE</code> included with the distribution.</p>
+
+</body>
+
+</html>

@@ -1,0 +1,625 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 7.0.2" />
+<style type="text/css">
+/* Debug borders */
+p, li, dt, dd, div, pre, h1, h2, h3, h4, h5, h6 {
+/*
+  border: 1px solid red;
+*/
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a { color: blue; }
+a:visited { color: fuchsia; }
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
+tt {
+  color: navy;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  font-family: sans-serif;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  border-bottom: 2px solid silver;
+  padding-top: 0.5em;
+}
+
+div.sectionbody {
+  font-family: serif;
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+span#author {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+span#email {
+}
+span#revision {
+  font-family: sans-serif;
+}
+
+div#footer {
+  font-family: sans-serif;
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+div#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+div#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+div#preamble,
+div.tableblock, div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-right: 10%;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock > div.content {
+  padding-left: 2.0em;
+}
+div.quoteblock .attribution {
+  text-align: right;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 2px solid silver;
+}
+
+div.exampleblock > div.content {
+  border-left: 2px solid silver;
+  padding: 0.5em;
+}
+
+div.verseblock div.content {
+  white-space: pre;
+}
+
+div.imageblock div.content { padding-left: 0; }
+div.imageblock img { border: 1px solid silver; }
+span.image img { border-style: none; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: italic;
+}
+dd > *:first-child {
+  margin-top: 0;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.olist2 {
+  list-style-type: lower-alpha;
+}
+
+div.tableblock > table {
+  border-color: #527bbd;
+  border-width: 3px;
+}
+thead {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+tfoot {
+  font-weight: bold;
+}
+
+div.hlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+td.hlist1 {
+  vertical-align: top;
+  font-style: italic;
+  padding-right: 0.8em;
+}
+td.hlist2 {
+  vertical-align: top;
+}
+
+@media print {
+  div#footer-badges { display: none; }
+}
+/* Workarounds for IE6's broken and incomplete CSS2. */
+
+div.sidebar-content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+div.sidebar-title, div.image-title {
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 0.0em;
+  margin-bottom: 0.5em;
+}
+
+div.listingblock div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock-content {
+  padding-left: 2.0em;
+}
+
+div.exampleblock-content {
+  border-left: 2px solid silver;
+  padding-left: 0.5em;
+}
+</style>
+<title>parse-options API</title>
+</head>
+<body>
+<div id="header">
+<h1>parse-options API</h1>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<p>The parse-options API is used to parse and massage options in git
+and to provide a usage help with consistent look.</p>
+</div>
+</div>
+<h2>Basics</h2>
+<div class="sectionbody">
+<p>The argument vector <tt>argv[]</tt> may usually contain mandatory or optional
+<em>non-option arguments</em>, e.g. a filename or a branch, and <em>options</em>.
+Options are optional arguments that start with a dash and
+that allow to change the behavior of a command.</p>
+<ul>
+<li>
+<p>
+There are basically three types of options:
+  <em>boolean</em> options,
+  options with (mandatory) <em>arguments</em> and
+  options with <em>optional arguments</em>
+  (i.e. a boolean option that can be adjusted).
+</p>
+</li>
+<li>
+<p>
+There are basically two forms of options:
+  <em>Short options</em> consist of one dash (<tt>-</tt>) and one alphanumeric
+  character.
+  <em>Long options</em> begin with two dashes (<tt>--</tt>) and some
+  alphanumeric characters.
+</p>
+</li>
+<li>
+<p>
+Options are case-sensitive.
+  Please define <em>lower-case long options</em> only.
+</p>
+</li>
+</ul>
+<p>The parse-options API allows:</p>
+<ul>
+<li>
+<p>
+<em>sticked</em> and <em>separate form</em> of options with arguments.
+  <tt>-oArg</tt> is sticked, <tt>-o Arg</tt> is separate form.
+  <tt>--option=Arg</tt> is sticked, <tt>--option Arg</tt> is separate form.
+</p>
+</li>
+<li>
+<p>
+Long options may be <em>abbreviated</em>, as long as the abbreviation
+  is unambiguous.
+</p>
+</li>
+<li>
+<p>
+Short options may be bundled, e.g. <tt>-a -b</tt> can be specified as <tt>-ab</tt>.
+</p>
+</li>
+<li>
+<p>
+Boolean long options can be <em>negated</em> (or <em>unset</em>) by prepending
+  <tt>no-</tt>, e.g. <tt>--no-abbrev</tt> instead of <tt>--abbrev</tt>.
+</p>
+</li>
+<li>
+<p>
+Options and non-option arguments can clearly be separated using the <tt>--</tt>
+  option, e.g. <tt>-a -b --option -- --this-is-a-file</tt> indicates that
+  <tt>--this-is-a-file</tt> must not be processed as an option.
+</p>
+</li>
+</ul>
+</div>
+<h2>Steps to parse options</h2>
+<div class="sectionbody">
+<ol>
+<li>
+<p>
+<tt>#include "parse-options.h"</tt>
+</p>
+</li>
+<li>
+<p>
+define a NULL-terminated
+  <tt>static const char * const builtin_foo_usage[]</tt> array
+  containing alternative usage strings
+</p>
+</li>
+<li>
+<p>
+define <tt>builtin_foo_options</tt> array as described below
+  in section <em>Data Structure</em>.
+</p>
+</li>
+<li>
+<p>
+in <tt>cmd_foo(int argc, const char **argv, const char *prefix)</tt>
+  call
+</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>argc = parse_options(argc, argv, builtin_foo_options, builtin_foo_usage, flags);</tt></pre>
+</div></div>
+<p><tt>parse_options()</tt> will filter out the processed options of <tt>argv[]</tt> and leave the
+non-option arguments in <tt>argv[]</tt>.
+<tt>argc</tt> is updated appropriately because of the assignment.</p>
+<p>Flags are the bitwise-or of:</p>
+<dl>
+<dt>
+<tt>PARSE_OPT_KEEP_DASHDASH</tt>
+</dt>
+<dd>
+<p>
+        Keep the <tt>--</tt> that usually separates options from
+        non-option arguments.
+</p>
+</dd>
+<dt>
+<tt>PARSE_OPT_STOP_AT_NON_OPTION</tt>
+</dt>
+<dd>
+<p>
+        Usually the whole argument vector is massaged and reordered.
+        Using this flag, processing is stopped at the first non-option
+        argument.
+</p>
+</dd>
+</dl>
+</li>
+</ol>
+</div>
+<h2>Data Structure</h2>
+<div class="sectionbody">
+<p>The main data structure is an array of the <tt>option</tt> struct,
+say <tt>static struct option builtin_add_options[]</tt>.
+There are some macros to easily define options:</p>
+<dl>
+<dt>
+<tt>OPT__ABBREV(&amp;int_var)</tt>
+</dt>
+<dd>
+<p>
+        Add <tt>--abbrev[=&lt;n&gt;]</tt>.
+</p>
+</dd>
+<dt>
+<tt>OPT__DRY_RUN(&amp;int_var)</tt>
+</dt>
+<dd>
+<p>
+        Add <tt>-n, --dry-run</tt>.
+</p>
+</dd>
+<dt>
+<tt>OPT__QUIET(&amp;int_var)</tt>
+</dt>
+<dd>
+<p>
+        Add <tt>-q, --quiet</tt>.
+</p>
+</dd>
+<dt>
+<tt>OPT__VERBOSE(&amp;int_var)</tt>
+</dt>
+<dd>
+<p>
+        Add <tt>-v, --verbose</tt>.
+</p>
+</dd>
+<dt>
+<tt>OPT_GROUP(description)</tt>
+</dt>
+<dd>
+<p>
+        Start an option group. <tt>description</tt> is a short string that
+        describes the group or an empty string.
+        Start the description with an upper-case letter.
+</p>
+</dd>
+<dt>
+<tt>OPT_BOOLEAN(short, long, &amp;int_var, description)</tt>
+</dt>
+<dd>
+<p>
+        Introduce a boolean option.
+        <tt>int_var</tt> is incremented on each use.
+</p>
+</dd>
+<dt>
+<tt>OPT_BIT(short, long, &amp;int_var, description, mask)</tt>
+</dt>
+<dd>
+<p>
+        Introduce a boolean option.
+        If used, <tt>int_var</tt> is bitwise-ored with <tt>mask</tt>.
+</p>
+</dd>
+<dt>
+<tt>OPT_SET_INT(short, long, &amp;int_var, description, integer)</tt>
+</dt>
+<dd>
+<p>
+        Introduce a boolean option.
+        If used, set <tt>int_var</tt> to <tt>integer</tt>.
+</p>
+</dd>
+<dt>
+<tt>OPT_SET_PTR(short, long, &amp;ptr_var, description, ptr)</tt>
+</dt>
+<dd>
+<p>
+        Introduce a boolean option.
+        If used, set <tt>ptr_var</tt> to <tt>ptr</tt>.
+</p>
+</dd>
+<dt>
+<tt>OPT_STRING(short, long, &amp;str_var, arg_str, description)</tt>
+</dt>
+<dd>
+<p>
+        Introduce an option with string argument.
+        The string argument is put into <tt>str_var</tt>.
+</p>
+</dd>
+<dt>
+<tt>OPT_INTEGER(short, long, &amp;int_var, description)</tt>
+</dt>
+<dd>
+<p>
+        Introduce an option with integer argument.
+        The integer is put into <tt>int_var</tt>.
+</p>
+</dd>
+<dt>
+<tt>OPT_DATE(short, long, &amp;int_var, description)</tt>
+</dt>
+<dd>
+<p>
+        Introduce an option with date argument, see <tt>approxidate()</tt>.
+        The timestamp is put into <tt>int_var</tt>.
+</p>
+</dd>
+<dt>
+<tt>OPT_CALLBACK(short, long, &amp;var, arg_str, description, func_ptr)</tt>
+</dt>
+<dd>
+<p>
+        Introduce an option with argument.
+        The argument will be fed into the function given by <tt>func_ptr</tt>
+        and the result will be put into <tt>var</tt>.
+        See <em>Option Callbacks</em> below for a more elaborate description.
+</p>
+</dd>
+<dt>
+<tt>OPT_ARGUMENT(long, description)</tt>
+</dt>
+<dd>
+<p>
+        Introduce a long-option argument that will be kept in <tt>argv[]</tt>.
+</p>
+</dd>
+</dl>
+<p>The last element of the array must be <tt>OPT_END()</tt>.</p>
+<p>If not stated otherwise, interpret the arguments as follows:</p>
+<ul>
+<li>
+<p>
+<tt>short</tt> is a character for the short option
+  (e.g. <tt>'e'</tt> for <tt>-e</tt>, use <tt>0</tt> to omit),
+</p>
+</li>
+<li>
+<p>
+<tt>long</tt> is a string for the long option
+  (e.g. <tt>"example"</tt> for <tt>--example</tt>, use <tt>NULL</tt> to omit),
+</p>
+</li>
+<li>
+<p>
+<tt>int_var</tt> is an integer variable,
+</p>
+</li>
+<li>
+<p>
+<tt>str_var</tt> is a string variable (<tt>char *</tt>),
+</p>
+</li>
+<li>
+<p>
+<tt>arg_str</tt> is the string that is shown as argument
+  (e.g. <tt>"branch"</tt> will result in <tt>&lt;branch&gt;</tt>).
+  If set to <tt>NULL</tt>, three dots (<tt>&#8230;</tt>) will be displayed.
+</p>
+</li>
+<li>
+<p>
+<tt>description</tt> is a short string to describe the effect of the option.
+  It shall begin with a lower-case letter and a full stop (<tt>.</tt>) shall be
+  omitted at the end.
+</p>
+</li>
+</ul>
+</div>
+<h2>Option Callbacks</h2>
+<div class="sectionbody">
+<p>The function must be defined in this form:</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>int func(const struct option *opt, const char *arg, int unset)</tt></pre>
+</div></div>
+<p>The callback mechanism is as follows:</p>
+<ul>
+<li>
+<p>
+Inside <tt>funct</tt>, the only interesting member of the structure
+  given by <tt>opt</tt> is the void pointer <tt>opt-&gt;value</tt>.
+  <tt>*opt-&gt;value</tt> will be the value that is saved into <tt>var</tt>, if you
+  use <tt>OPT_CALLBACK()</tt>.
+  For example, do <tt>*(unsigned long *)opt-&gt;value = 42;</tt> to get 42
+  into an <tt>unsigned long</tt> variable.
+</p>
+</li>
+<li>
+<p>
+Return value <tt>0</tt> indicates success and non-zero return
+  value will invoke <tt>usage_with_options()</tt> and, thus, die.
+</p>
+</li>
+<li>
+<p>
+If the user negates the option, <tt>arg</tt> is <tt>NULL</tt> and <tt>unset</tt> is 1.
+</p>
+</li>
+</ul>
+</div>
+<h2>Sophisticated option parsing</h2>
+<div class="sectionbody">
+<p>If you need, for example, option callbacks with optional arguments
+or without arguments at all, or if you need other special cases,
+that are not handled by the macros above, you need to specify the
+members of the <tt>option</tt> structure manually.</p>
+<p>This is not covered in this document, but well documented
+in <tt>parse-options.h</tt> itself.</p>
+</div>
+<h2>Examples</h2>
+<div class="sectionbody">
+<p>See <tt>test-parse-options.c</tt> and
+<tt>builtin-add.c</tt>,
+<tt>builtin-clone.c</tt>,
+<tt>builtin-commit.c</tt>,
+<tt>builtin-fetch.c</tt>,
+<tt>builtin-fsck.c</tt>,
+<tt>builtin-rm.c</tt>
+for real-world examples.</p>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 23-Jun-2008 07:13:38 UTC
+</div>
+</div>
+</body>
+</html>

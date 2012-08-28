@@ -1,0 +1,726 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 7.0.2" />
+<style type="text/css">
+/* Debug borders */
+p, li, dt, dd, div, pre, h1, h2, h3, h4, h5, h6 {
+/*
+  border: 1px solid red;
+*/
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a { color: blue; }
+a:visited { color: fuchsia; }
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
+tt {
+  color: navy;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  font-family: sans-serif;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  border-bottom: 2px solid silver;
+  padding-top: 0.5em;
+}
+
+div.sectionbody {
+  font-family: serif;
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+span#author {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+span#email {
+}
+span#revision {
+  font-family: sans-serif;
+}
+
+div#footer {
+  font-family: sans-serif;
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+div#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+div#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+div#preamble,
+div.tableblock, div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-right: 10%;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock > div.content {
+  padding-left: 2.0em;
+}
+div.quoteblock .attribution {
+  text-align: right;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 2px solid silver;
+}
+
+div.exampleblock > div.content {
+  border-left: 2px solid silver;
+  padding: 0.5em;
+}
+
+div.verseblock div.content {
+  white-space: pre;
+}
+
+div.imageblock div.content { padding-left: 0; }
+div.imageblock img { border: 1px solid silver; }
+span.image img { border-style: none; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: italic;
+}
+dd > *:first-child {
+  margin-top: 0;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.olist2 {
+  list-style-type: lower-alpha;
+}
+
+div.tableblock > table {
+  border-color: #527bbd;
+  border-width: 3px;
+}
+thead {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+tfoot {
+  font-weight: bold;
+}
+
+div.hlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+td.hlist1 {
+  vertical-align: top;
+  font-style: italic;
+  padding-right: 0.8em;
+}
+td.hlist2 {
+  vertical-align: top;
+}
+
+@media print {
+  div#footer-badges { display: none; }
+}
+include::./stylesheets/xhtml11-manpage.css[]
+/* Workarounds for IE6's broken and incomplete CSS2. */
+
+div.sidebar-content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+div.sidebar-title, div.image-title {
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 0.0em;
+  margin-bottom: 0.5em;
+}
+
+div.listingblock div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock-content {
+  padding-left: 2.0em;
+}
+
+div.exampleblock-content {
+  border-left: 2px solid silver;
+  padding-left: 0.5em;
+}
+</style>
+<title>git-read-tree(1)</title>
+</head>
+<body>
+<div id="header">
+<h1>
+git-read-tree(1) Manual Page
+</h1>
+<h2>NAME</h2>
+<div class="sectionbody">
+<p>git-read-tree -
+   Reads tree information into the index
+</p>
+</div>
+</div>
+<h2>SYNOPSIS</h2>
+<div class="sectionbody">
+<p><em>git-read-tree</em> (&lt;tree-ish&gt; | [[-m [--trivial] [--aggressive] | --reset | --prefix=&lt;prefix&gt;] [-u | -i]] [--exclude-per-directory=&lt;gitignore&gt;] [--index-output=&lt;file&gt;] &lt;tree-ish1&gt; [&lt;tree-ish2&gt; [&lt;tree-ish3&gt;]])</p>
+</div>
+<h2>DESCRIPTION</h2>
+<div class="sectionbody">
+<p>Reads the tree information given by &lt;tree-ish&gt; into the index,
+but does not actually <strong>update</strong> any of the files it "caches". (see:
+<a href="git-checkout-index.html">git-checkout-index(1)</a>)</p>
+<p>Optionally, it can merge a tree into the index, perform a
+fast-forward (i.e. 2-way) merge, or a 3-way merge, with the <tt>-m</tt>
+flag.  When used with <tt>-m</tt>, the <tt>-u</tt> flag causes it to also update
+the files in the work tree with the result of the merge.</p>
+<p>Trivial merges are done by <tt>git-read-tree</tt> itself.  Only conflicting paths
+will be in unmerged state when <tt>git-read-tree</tt> returns.</p>
+</div>
+<h2>OPTIONS</h2>
+<div class="sectionbody">
+<dl>
+<dt>
+-m
+</dt>
+<dd>
+<p>
+        Perform a merge, not just a read.  The command will
+        refuse to run if your index file has unmerged entries,
+        indicating that you have not finished previous merge you
+        started.
+</p>
+</dd>
+<dt>
+--reset
+</dt>
+<dd>
+<p>
+        Same as -m, except that unmerged entries are discarded
+        instead of failing.
+</p>
+</dd>
+<dt>
+-u
+</dt>
+<dd>
+<p>
+        After a successful merge, update the files in the work
+        tree with the result of the merge.
+</p>
+</dd>
+<dt>
+-i
+</dt>
+<dd>
+<p>
+        Usually a merge requires the index file as well as the
+        files in the working tree are up to date with the
+        current head commit, in order not to lose local
+        changes.  This flag disables the check with the working
+        tree and is meant to be used when creating a merge of
+        trees that are not directly related to the current
+        working tree status into a temporary index file.
+</p>
+</dd>
+<dt>
+-v
+</dt>
+<dd>
+<p>
+        Show the progress of checking files out.
+</p>
+</dd>
+<dt>
+--trivial
+</dt>
+<dd>
+<p>
+        Restrict three-way merge by <tt>git-read-tree</tt> to happen
+        only if there is no file-level merging required, instead
+        of resolving merge for trivial cases and leaving
+        conflicting files unresolved in the index.
+</p>
+</dd>
+<dt>
+--aggressive
+</dt>
+<dd>
+<p>
+        Usually a three-way merge by <tt>git-read-tree</tt> resolves
+        the merge for really trivial cases and leaves other
+        cases unresolved in the index, so that Porcelains can
+        implement different merge policies.  This flag makes the
+        command to resolve a few more cases internally:
+</p>
+<ul>
+<li>
+<p>
+when one side removes a path and the other side leaves the path
+  unmodified.  The resolution is to remove that path.
+</p>
+</li>
+<li>
+<p>
+when both sides remove a path.  The resolution is to remove that path.
+</p>
+</li>
+<li>
+<p>
+when both sides adds a path identically.  The resolution
+  is to add that path.
+</p>
+</li>
+</ul>
+</dd>
+<dt>
+--prefix=&lt;prefix&gt;/
+</dt>
+<dd>
+<p>
+        Keep the current index contents, and read the contents
+        of named tree-ish under directory at <tt>&lt;prefix&gt;</tt>.  The
+        original index file cannot have anything at the path
+        <tt>&lt;prefix&gt;</tt> itself, and have nothing in <tt>&lt;prefix&gt;/</tt>
+        directory.  Note that the <tt>&lt;prefix&gt;/</tt> value must end
+        with a slash.
+</p>
+</dd>
+<dt>
+--exclude-per-directory=&lt;gitignore&gt;
+</dt>
+<dd>
+<p>
+        When running the command with <tt>-u</tt> and <tt>-m</tt> options, the
+        merge result may need to overwrite paths that are not
+        tracked in the current branch.  The command usually
+        refuses to proceed with the merge to avoid losing such a
+        path.  However this safety valve sometimes gets in the
+        way.  For example, it often happens that the other
+        branch added a file that used to be a generated file in
+        your branch, and the safety valve triggers when you try
+        to switch to that branch after you ran <tt>make</tt> but before
+        running <tt>make clean</tt> to remove the generated file.  This
+        option tells the command to read per-directory exclude
+        file (usually <em>.gitignore</em>) and allows such an untracked
+        but explicitly ignored file to be overwritten.
+</p>
+</dd>
+<dt>
+--index-output=&lt;file&gt;
+</dt>
+<dd>
+<p>
+        Instead of writing the results out to <tt>$GIT_INDEX_FILE</tt>,
+        write the resulting index in the named file.  While the
+        command is operating, the original index file is locked
+        with the same mechanism as usual.  The file must allow
+        to be rename(2)ed into from a temporary file that is
+        created next to the usual index file; typically this
+        means it needs to be on the same filesystem as the index
+        file itself, and you need write permission to the
+        directories the index file and index output file are
+        located in.
+</p>
+</dd>
+<dt>
+&lt;tree-ish#&gt;
+</dt>
+<dd>
+<p>
+        The id of the tree object(s) to be read/merged.
+</p>
+</dd>
+</dl>
+</div>
+<h2>Merging</h2>
+<div class="sectionbody">
+<p>If <tt>-m</tt> is specified, <tt>git-read-tree</tt> can perform 3 kinds of
+merge, a single tree merge if only 1 tree is given, a
+fast-forward merge with 2 trees, or a 3-way merge if 3 trees are
+provided.</p>
+<h3>Single Tree Merge</h3>
+<p>If only 1 tree is specified, git-read-tree operates as if the user did not
+specify <tt>-m</tt>, except that if the original index has an entry for a
+given pathname, and the contents of the path matches with the tree
+being read, the stat info from the index is used. (In other words, the
+index's stat()s take precedence over the merged tree's).</p>
+<p>That means that if you do a <tt>git-read-tree -m &lt;newtree&gt;</tt> followed by a
+<tt>git-checkout-index -f -u -a</tt>, the <tt>git-checkout-index</tt> only checks out
+the stuff that really changed.</p>
+<p>This is used to avoid unnecessary false hits when <tt>git-diff-files</tt> is
+run after <tt>git-read-tree</tt>.</p>
+<h3>Two Tree Merge</h3>
+<p>Typically, this is invoked as <tt>git-read-tree -m $H $M</tt>, where $H
+is the head commit of the current repository, and $M is the head
+of a foreign tree, which is simply ahead of $H (i.e. we are in a
+fast forward situation).</p>
+<p>When two trees are specified, the user is telling git-read-tree
+the following:</p>
+<ol>
+<li>
+<p>
+The current index and work tree is derived from $H, but
+        the user may have local changes in them since $H;
+</p>
+</li>
+<li>
+<p>
+The user wants to fast-forward to $M.
+</p>
+</li>
+</ol>
+<p>In this case, the <tt>git-read-tree -m $H $M</tt> command makes sure
+that no local change is lost as the result of this "merge".
+Here are the "carry forward" rules:</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>  I (index)           H        M        Result
+ -------------------------------------------------------
+0 nothing             nothing  nothing  (does not happen)
+1 nothing             nothing  exists   use M
+2 nothing             exists   nothing  remove path from index
+3 nothing             exists   exists   use M</tt></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>  clean I==H  I==M
+ ------------------
+4 yes   N/A   N/A     nothing  nothing  keep index
+5 no    N/A   N/A     nothing  nothing  keep index</tt></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>6 yes   N/A   yes     nothing  exists   keep index
+7 no    N/A   yes     nothing  exists   keep index
+8 yes   N/A   no      nothing  exists   fail
+9 no    N/A   no      nothing  exists   fail</tt></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>10 yes   yes   N/A     exists   nothing  remove path from index
+11 no    yes   N/A     exists   nothing  fail
+12 yes   no    N/A     exists   nothing  fail
+13 no    no    N/A     exists   nothing  fail</tt></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>   clean (H=M)
+  ------
+14 yes                 exists   exists   keep index
+15 no                  exists   exists   keep index</tt></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>   clean I==H  I==M (H!=M)
+  ------------------
+16 yes   no    no      exists   exists   fail
+17 no    no    no      exists   exists   fail
+18 yes   no    yes     exists   exists   keep index
+19 no    no    yes     exists   exists   keep index
+20 yes   yes   no      exists   exists   use M
+21 no    yes   no      exists   exists   fail</tt></pre>
+</div></div>
+<p>In all "keep index" cases, the index entry stays as in the
+original index file.  If the entry were not up to date,
+git-read-tree keeps the copy in the work tree intact when
+operating under the -u flag.</p>
+<p>When this form of git-read-tree returns successfully, you can
+see what "local changes" you made are carried forward by running
+<tt>git-diff-index --cached $M</tt>.  Note that this does not
+necessarily match <tt>git-diff-index --cached $H</tt> would have
+produced before such a two tree merge.  This is because of cases
+18 and 19 --- if you already had the changes in $M (e.g. maybe
+you picked it up via e-mail in a patch form), <tt>git-diff-index
+--cached $H</tt> would have told you about the change before this
+merge, but it would not show in <tt>git-diff-index --cached $M</tt>
+output after two-tree merge.</p>
+<h3>3-Way Merge</h3>
+<p>Each "index" entry has two bits worth of "stage" state. stage 0 is the
+normal one, and is the only one you'd see in any kind of normal use.</p>
+<p>However, when you do <tt>git-read-tree</tt> with three trees, the "stage"
+starts out at 1.</p>
+<p>This means that you can do</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git-read-tree -m &lt;tree1&gt; &lt;tree2&gt; &lt;tree3&gt;</tt></pre>
+</div></div>
+<p>and you will end up with an index with all of the &lt;tree1&gt; entries in
+"stage1", all of the &lt;tree2&gt; entries in "stage2" and all of the
+&lt;tree3&gt; entries in "stage3".  When performing a merge of another
+branch into the current branch, we use the common ancestor tree
+as &lt;tree1&gt;, the current branch head as &lt;tree2&gt;, and the other
+branch head as &lt;tree3&gt;.</p>
+<p>Furthermore, <tt>git-read-tree</tt> has special-case logic that says: if you see
+a file that matches in all respects in the following states, it
+"collapses" back to "stage0":</p>
+<ul>
+<li>
+<p>
+stage 2 and 3 are the same; take one or the other (it makes no
+     difference - the same work has been done on our branch in
+     stage 2 and their branch in stage 3)
+</p>
+</li>
+<li>
+<p>
+stage 1 and stage 2 are the same and stage 3 is different; take
+     stage 3 (our branch in stage 2 did not do anything since the
+     ancestor in stage 1 while their branch in stage 3 worked on
+     it)
+</p>
+</li>
+<li>
+<p>
+stage 1 and stage 3 are the same and stage 2 is different take
+     stage 2 (we did something while they did nothing)
+</p>
+</li>
+</ul>
+<p>The <tt>git-write-tree</tt> command refuses to write a nonsensical tree, and it
+will complain about unmerged entries if it sees a single entry that is not
+stage 0.</p>
+<p>OK, this all sounds like a collection of totally nonsensical rules,
+but it's actually exactly what you want in order to do a fast
+merge. The different stages represent the "result tree" (stage 0, aka
+"merged"), the original tree (stage 1, aka "orig"), and the two trees
+you are trying to merge (stage 2 and 3 respectively).</p>
+<p>The order of stages 1, 2 and 3 (hence the order of three
+&lt;tree-ish&gt; command line arguments) are significant when you
+start a 3-way merge with an index file that is already
+populated.  Here is an outline of how the algorithm works:</p>
+<ul>
+<li>
+<p>
+if a file exists in identical format in all three trees, it will
+  automatically collapse to "merged" state by git-read-tree.
+</p>
+</li>
+<li>
+<p>
+a file that has _any_ difference what-so-ever in the three trees
+  will stay as separate entries in the index. It's up to "porcelain
+  policy" to determine how to remove the non-0 stages, and insert a
+  merged version.
+</p>
+</li>
+<li>
+<p>
+the index file saves and restores with all this information, so you
+  can merge things incrementally, but as long as it has entries in
+  stages 1/2/3 (i.e., "unmerged entries") you can't write the result. So
+  now the merge algorithm ends up being really simple:
+</p>
+<ul>
+<li>
+<p>
+you walk the index in order, and ignore all entries of stage 0,
+    since they've already been done.
+</p>
+</li>
+<li>
+<p>
+if you find a "stage1", but no matching "stage2" or "stage3", you
+    know it's been removed from both trees (it only existed in the
+    original tree), and you remove that entry.
+</p>
+</li>
+<li>
+<p>
+if you find a matching "stage2" and "stage3" tree, you remove one
+    of them, and turn the other into a "stage0" entry. Remove any
+    matching "stage1" entry if it exists too.  .. all the normal
+    trivial rules ..
+</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>You would normally use <tt>git-merge-index</tt> with supplied
+<tt>git-merge-one-file</tt> to do this last step.  The script updates
+the files in the working tree as it merges each path and at the
+end of a successful merge.</p>
+<p>When you start a 3-way merge with an index file that is already
+populated, it is assumed that it represents the state of the
+files in your work tree, and you can even have files with
+changes unrecorded in the index file.  It is further assumed
+that this state is "derived" from the stage 2 tree.  The 3-way
+merge refuses to run if it finds an entry in the original index
+file that does not match stage 2.</p>
+<p>This is done to prevent you from losing your work-in-progress
+changes, and mixing your random changes in an unrelated merge
+commit.  To illustrate, suppose you start from what has been
+committed last to your repository:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ JC=`git-rev-parse --verify "HEAD^0"`
+$ git-checkout-index -f -u -a $JC</tt></pre>
+</div></div>
+<p>You do random edits, without running git-update-index.  And then
+you notice that the tip of your "upstream" tree has advanced
+since you pulled from him:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git-fetch git://.... linus
+$ LT=`cat .git/FETCH_HEAD`</tt></pre>
+</div></div>
+<p>Your work tree is still based on your HEAD ($JC), but you have
+some edits since.  Three-way merge makes sure that you have not
+added or modified index entries since $JC, and if you haven't,
+then does the right thing.  So with the following sequence:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>$ git-read-tree -m -u `git-merge-base $JC $LT` $JC $LT
+$ git-merge-index git-merge-one-file -a
+$ echo "Merge with Linus" | \
+  git-commit-tree `git-write-tree` -p $JC -p $LT</tt></pre>
+</div></div>
+<p>what you would commit is a pure merge between $JC and $LT without
+your work-in-progress changes, and your work tree would be
+updated to the result of the merge.</p>
+<p>However, if you have local changes in the working tree that
+would be overwritten by this merge,<tt>git-read-tree</tt> will refuse
+to run to prevent your changes from being lost.</p>
+<p>In other words, there is no need to worry about what exists only
+in the working tree.  When you have local changes in a part of
+the project that is not involved in the merge, your changes do
+not interfere with the merge, and are kept intact.  When they
+<strong>do</strong> interfere, the merge does not even start (<tt>git-read-tree</tt>
+complains loudly and fails without modifying anything).  In such
+a case, you can simply continue doing what you were in the
+middle of doing, and when your working tree is ready (i.e. you
+have finished your work-in-progress), attempt the merge again.</p>
+</div>
+<h2>SEE ALSO</h2>
+<div class="sectionbody">
+<p><a href="git-write-tree.html">git-write-tree(1)</a>; <a href="git-ls-files.html">git-ls-files(1)</a>;
+<a href="gitignore.html">gitignore(5)</a></p>
+</div>
+<h2>Author</h2>
+<div class="sectionbody">
+<p>Written by Linus Torvalds &lt;torvalds@osdl.org&gt;</p>
+</div>
+<h2>Documentation</h2>
+<div class="sectionbody">
+<p>Documentation by David Greaves, Junio C Hamano and the git-list &lt;git@vger.kernel.org&gt;.</p>
+</div>
+<h2>GIT</h2>
+<div class="sectionbody">
+<p>Part of the <a href="git.html">git(1)</a> suite</p>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 10-Jun-2008 04:10:01 UTC
+</div>
+</div>
+</body>
+</html>

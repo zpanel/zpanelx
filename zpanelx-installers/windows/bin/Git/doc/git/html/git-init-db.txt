@@ -1,0 +1,18 @@
+git-init-db(1)
+==============
+
+NAME
+----
+git-init-db - Creates an empty git repository
+
+
+SYNOPSIS
+--------
+'git-init-db' [-q | --quiet] [--template=<template_directory>] [--shared[=<permissions>]]
+
+
+DESCRIPTION
+-----------
+
+This is a synonym for linkgit:git-init[1].  Please refer to the
+documentation of that command.
