@@ -1,3 +1,4 @@
+USE zpanel_roundcube;
 CREATE TABLE [dbo].[cache] (
 	[cache_id] [int] IDENTITY (1, 1) NOT NULL ,
 	[user_id] [int] NOT NULL ,
