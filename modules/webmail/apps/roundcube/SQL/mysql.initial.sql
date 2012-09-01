@@ -1,9 +1,6 @@
--- Roundcube Webmail initial database structure
+CREATE DATABASE `zpanel_roundcube` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-
-/*!40014  SET FOREIGN_KEY_CHECKS=0 */;
-
--- Table structure for table `session`
+USE zpanel_roundcube;
 
 CREATE TABLE `session` (
  `sess_id` varchar(128) NOT NULL,

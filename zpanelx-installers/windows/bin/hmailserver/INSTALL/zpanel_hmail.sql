@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost:3306
--- Généré le: Ven 03 Août 2012 à 14:01
+-- Généré le: Jeu 30 Août 2012 à 15:47
 -- Version du serveur: 5.5.21
 -- Version de PHP: 5.3.10
 
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 --
 -- Structure de la table `hm_accounts`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_accounts` (
@@ -58,21 +58,14 @@ CREATE TABLE IF NOT EXISTS `hm_accounts` (
   UNIQUE KEY `accountid` (`accountid`),
   UNIQUE KEY `accountaddress` (`accountaddress`),
   KEY `idx_hm_accounts` (`accountaddress`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Contenu de la table `hm_accounts`
---
-
-INSERT INTO `hm_accounts` (`accountid`, `accountdomainid`, `accountadminlevel`, `accountaddress`, `accountpassword`, `accountactive`, `accountisad`, `accountaddomain`, `accountadusername`, `accountmaxsize`, `accountvacationmessageon`, `accountvacationmessage`, `accountvacationsubject`, `accountpwencryption`, `accountforwardenabled`, `accountforwardaddress`, `accountforwardkeeporiginal`, `accountenablesignature`, `accountsignatureplaintext`, `accountsignaturehtml`, `accountlastlogontime`, `accountvacationexpires`, `accountvacationexpiredate`, `accountpersonfirstname`, `accountpersonlastname`) VALUES
-(1, 1, 0, 'postmaster@localhost.com', 'afbf269297a7c2064e924cee28afb991613b8e00b22bb2dc0fd83be88a564f1e7569c4', 1, 0, '', '', 1, 0, '', '', 3, 0, '', 0, 0, '', '', '2012-08-01 23:51:25', 0, '2008-02-10 00:00:00', '', '');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
 -- Structure de la table `hm_acl`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_acl` (
@@ -92,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `hm_acl` (
 --
 -- Structure de la table `hm_aliases`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_aliases` (
@@ -112,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `hm_aliases` (
 --
 -- Structure de la table `hm_blocked_attachments`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_blocked_attachments` (
@@ -147,7 +140,7 @@ INSERT INTO `hm_blocked_attachments` (`baid`, `bawildcard`, `badescription`) VAL
 --
 -- Structure de la table `hm_dbversion`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_dbversion` (
@@ -166,7 +159,7 @@ INSERT INTO `hm_dbversion` (`value`) VALUES
 --
 -- Structure de la table `hm_distributionlists`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_distributionlists` (
@@ -188,7 +181,7 @@ CREATE TABLE IF NOT EXISTS `hm_distributionlists` (
 --
 -- Structure de la table `hm_distributionlistsrecipients`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_distributionlistsrecipients` (
@@ -205,7 +198,7 @@ CREATE TABLE IF NOT EXISTS `hm_distributionlistsrecipients` (
 --
 -- Structure de la table `hm_dnsbl`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_dnsbl` (
@@ -232,7 +225,7 @@ INSERT INTO `hm_dnsbl` (`sblid`, `sblactive`, `sbldnshost`, `sblresult`, `sblrej
 --
 -- Structure de la table `hm_domains`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_domains` (
@@ -263,21 +256,14 @@ CREATE TABLE IF NOT EXISTS `hm_domains` (
   UNIQUE KEY `domainid` (`domainid`),
   UNIQUE KEY `domainname` (`domainname`),
   KEY `idx_hm_domains` (`domainname`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Contenu de la table `hm_domains`
---
-
-INSERT INTO `hm_domains` (`domainid`, `domainname`, `domainactive`, `domainpostmaster`, `domainmaxsize`, `domainaddomain`, `domainmaxmessagesize`, `domainuseplusaddressing`, `domainplusaddressingchar`, `domainantispamoptions`, `domainenablesignature`, `domainsignaturemethod`, `domainsignatureplaintext`, `domainsignaturehtml`, `domainaddsignaturestoreplies`, `domainaddsignaturestolocalemail`, `domainmaxnoofaccounts`, `domainmaxnoofaliases`, `domainmaxnoofdistributionlists`, `domainlimitationsenabled`, `domainmaxaccountsize`, `domaindkimselector`, `domaindkimprivatekeyfile`) VALUES
-(1, 'localhost.com', 1, '', 0, '', 0, 0, '', 0, 0, 1, '', '', 0, 0, 0, 0, 0, 0, 0, '', '');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
 -- Structure de la table `hm_domain_aliases`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_domain_aliases` (
@@ -293,7 +279,7 @@ CREATE TABLE IF NOT EXISTS `hm_domain_aliases` (
 --
 -- Structure de la table `hm_fetchaccounts`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_fetchaccounts` (
@@ -325,7 +311,7 @@ CREATE TABLE IF NOT EXISTS `hm_fetchaccounts` (
 --
 -- Structure de la table `hm_fetchaccounts_uids`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_fetchaccounts_uids` (
@@ -343,7 +329,7 @@ CREATE TABLE IF NOT EXISTS `hm_fetchaccounts_uids` (
 --
 -- Structure de la table `hm_greylisting_triplets`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_greylisting_triplets` (
@@ -367,7 +353,7 @@ CREATE TABLE IF NOT EXISTS `hm_greylisting_triplets` (
 --
 -- Structure de la table `hm_greylisting_whiteaddresses`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_greylisting_whiteaddresses` (
@@ -383,7 +369,7 @@ CREATE TABLE IF NOT EXISTS `hm_greylisting_whiteaddresses` (
 --
 -- Structure de la table `hm_groups`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_groups` (
@@ -398,7 +384,7 @@ CREATE TABLE IF NOT EXISTS `hm_groups` (
 --
 -- Structure de la table `hm_group_members`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_group_members` (
@@ -414,7 +400,7 @@ CREATE TABLE IF NOT EXISTS `hm_group_members` (
 --
 -- Structure de la table `hm_imapfolders`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_imapfolders` (
@@ -429,24 +415,14 @@ CREATE TABLE IF NOT EXISTS `hm_imapfolders` (
   UNIQUE KEY `folderid` (`folderid`),
   UNIQUE KEY `idx_hm_imapfolders_unique` (`folderaccountid`,`folderparentid`,`foldername`),
   KEY `idx_hm_imapfolders` (`folderaccountid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
-
---
--- Contenu de la table `hm_imapfolders`
---
-
-INSERT INTO `hm_imapfolders` (`folderid`, `folderaccountid`, `folderparentid`, `foldername`, `folderissubscribed`, `foldercreationtime`, `foldercurrentuid`) VALUES
-(1, 1, -1, 'INBOX', 1, '2012-08-01 21:09:16', 4),
-(2, 1, 1, 'Sent', 1, '2012-08-01 21:52:36', 0),
-(3, 1, 1, 'Trash', 1, '2012-08-01 21:52:36', 0),
-(4, 1, 1, 'Drafts', 1, '2012-08-01 21:52:36', 0);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
 -- Structure de la table `hm_incoming_relays`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_incoming_relays` (
@@ -465,7 +441,7 @@ CREATE TABLE IF NOT EXISTS `hm_incoming_relays` (
 --
 -- Structure de la table `hm_logon_failures`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_logon_failures` (
@@ -481,7 +457,7 @@ CREATE TABLE IF NOT EXISTS `hm_logon_failures` (
 --
 -- Structure de la table `hm_messagerecipients`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_messagerecipients` (
@@ -493,22 +469,14 @@ CREATE TABLE IF NOT EXISTS `hm_messagerecipients` (
   PRIMARY KEY (`recipientid`),
   UNIQUE KEY `recipientid` (`recipientid`),
   KEY `idx_hm_messagerecipients` (`recipientmessageid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
-
---
--- Contenu de la table `hm_messagerecipients`
---
-
-INSERT INTO `hm_messagerecipients` (`recipientid`, `recipientmessageid`, `recipientaddress`, `recipientlocalaccountid`, `recipientoriginaladdress`) VALUES
-(6, 5, 'localhost', 0, 'localhost'),
-(8, 8, 'localhost', 0, 'localhost');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
 -- Structure de la table `hm_messages`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_messages` (
@@ -529,26 +497,14 @@ CREATE TABLE IF NOT EXISTS `hm_messages` (
   UNIQUE KEY `messageid` (`messageid`),
   KEY `idx_hm_messages` (`messageaccountid`,`messagefolderid`),
   KEY `idx_hm_messages_type` (`messagetype`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
-
---
--- Contenu de la table `hm_messages`
---
-
-INSERT INTO `hm_messages` (`messageid`, `messageaccountid`, `messagefolderid`, `messagefilename`, `messagetype`, `messagefrom`, `messagesize`, `messagecurnooftries`, `messagenexttrytime`, `messageflags`, `messagecreatetime`, `messagelocked`, `messageuid`) VALUES
-(2, 1, 1, 'c:\\zpanel\\bin\\hmailserver\\Data\\localhost.localhost\\postmaster\\43\\{43EA8D08-D850-4C2C-9D19-4162D8C01483}.eml', 2, 'postmaster@localhost.localhost', 488, 0, '1901-01-01 00:00:00', 64, '2012-08-01 21:42:09', 0, 1),
-(3, 1, 1, 'c:\\zpanel\\bin\\hmailserver\\Data\\localhost.localhost\\postmaster\\3A\\{3A5E1C99-6050-4BD4-A851-697E4A889BAE}.eml', 2, '', 772, 0, '1901-01-01 00:00:00', 0, '2012-08-01 21:42:11', 1, 2),
-(5, 0, 0, 'c:\\zpanel\\bin\\hmailserver\\Data\\{C28CC4C0-64BC-45D7-A20A-0683716105A2}.eml', 1, 'postmaster@localhost.com', 682, 1, '2012-08-02 00:51:26', 96, '2012-08-01 23:51:26', 0, 0),
-(6, 1, 1, 'c:\\zpanel\\bin\\hmailserver\\Data\\localhost.com\\postmaster\\41\\{41928626-4AAE-4640-A77F-285920167F0D}.eml', 2, 'postmaster@localhost.com', 682, 0, '1901-01-01 00:00:00', 96, '2012-08-01 23:51:26', 0, 3),
-(7, 1, 1, 'c:\\zpanel\\bin\\hmailserver\\Data\\localhost.com\\postmaster\\E5\\{E54316D7-D49F-4EC6-9364-4E671CA7118D}.eml', 2, '', 760, 0, '1901-01-01 00:00:00', 32, '2012-08-01 23:51:27', 1, 4),
-(8, 0, 0, 'c:\\zpanel\\bin\\hmailserver\\Data\\{B592A359-F34B-450E-84BE-448BEC84596F}.eml', 1, '', 760, 1, '2012-08-02 00:52:26', 32, '2012-08-01 23:51:27', 0, 0);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
 -- Structure de la table `hm_message_metadata`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_message_metadata` (
@@ -571,7 +527,7 @@ CREATE TABLE IF NOT EXISTS `hm_message_metadata` (
 --
 -- Structure de la table `hm_routeaddresses`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_routeaddresses` (
@@ -587,7 +543,7 @@ CREATE TABLE IF NOT EXISTS `hm_routeaddresses` (
 --
 -- Structure de la table `hm_routes`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_routes` (
@@ -614,7 +570,7 @@ CREATE TABLE IF NOT EXISTS `hm_routes` (
 --
 -- Structure de la table `hm_rules`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_rules` (
@@ -634,7 +590,7 @@ CREATE TABLE IF NOT EXISTS `hm_rules` (
 --
 -- Structure de la table `hm_rule_actions`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_rule_actions` (
@@ -663,7 +619,7 @@ CREATE TABLE IF NOT EXISTS `hm_rule_actions` (
 --
 -- Structure de la table `hm_rule_criterias`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_rule_criterias` (
@@ -684,7 +640,7 @@ CREATE TABLE IF NOT EXISTS `hm_rule_criterias` (
 --
 -- Structure de la table `hm_securityranges`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_securityranges` (
@@ -701,22 +657,22 @@ CREATE TABLE IF NOT EXISTS `hm_securityranges` (
   PRIMARY KEY (`rangeid`),
   UNIQUE KEY `rangeid` (`rangeid`),
   UNIQUE KEY `rangename` (`rangename`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Contenu de la table `hm_securityranges`
 --
 
 INSERT INTO `hm_securityranges` (`rangeid`, `rangepriorityid`, `rangelowerip1`, `rangelowerip2`, `rangeupperip1`, `rangeupperip2`, `rangeoptions`, `rangename`, `rangeexpires`, `rangeexpirestime`) VALUES
-(4, 15, 2130706433, NULL, 2130706433, NULL, 71627, 'My computer', 0, '2001-01-01 00:00:00'),
-(5, 10, 0, NULL, 4294967295, NULL, 96203, 'Internet', 0, '2001-01-01 00:00:00');
+(1, 10, 0, NULL, 4294967295, NULL, 96203, 'Internet', 0, '2001-01-01 00:00:00'),
+(2, 15, 2130706433, NULL, 2130706433, NULL, 71627, 'My computer', 0, '2001-01-01 00:00:00');
 
 -- --------------------------------------------------------
 
 --
 -- Structure de la table `hm_servermessages`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_servermessages` (
@@ -745,7 +701,7 @@ INSERT INTO `hm_servermessages` (`smid`, `smname`, `smtext`) VALUES
 --
 -- Structure de la table `hm_settings`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_settings` (
@@ -756,7 +712,7 @@ CREATE TABLE IF NOT EXISTS `hm_settings` (
   PRIMARY KEY (`settingid`),
   UNIQUE KEY `settingid` (`settingid`),
   UNIQUE KEY `settingname` (`settingname`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=107 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=104 ;
 
 --
 -- Contenu de la table `hm_settings`
@@ -771,109 +727,108 @@ INSERT INTO `hm_settings` (`settingid`, `settingname`, `settingstring`, `setting
 (6, 'allowmailfromnull', '', 1),
 (7, 'logging', '', 0),
 (8, 'logdevice', '', 0),
-(11, 'smtpnoofretries', '', 4),
-(12, 'smtpminutesbetweenretries', '', 60),
-(13, 'protocolimap', '', 1),
-(14, 'protocolsmtp', '', 1),
-(15, 'protocolpop3', '', 1),
-(16, 'welcomeimap', '', 0),
-(17, 'welcomepop3', '', 0),
-(18, 'welcomesmtp', '', 0),
-(19, 'smtprelayer', '', 0),
-(20, 'maxdelivertythreads', '', 10),
-(21, 'logformat', '', 0),
-(22, 'avclamwinenable', '', 0),
-(23, 'avclamwinexec', '', 0),
-(24, 'avclamwindb', '', 0),
-(25, 'avnotifysender', '', 0),
-(26, 'avnotifyreceiver', '', 0),
-(27, 'avaction', '', 0),
-(28, 'sendstatistics', '', 0),
-(29, 'hostname', '', 0),
-(30, 'smtprelayerusername', '', 0),
-(31, 'smtprelayerpassword', '', 0),
-(32, 'usesmtprelayerauthentication', '', 0),
-(33, 'smtprelayerport', '', 25),
-(34, 'usecustomvirusscanner', '', 0),
-(35, 'customvirusscannerexecutable', '', 0),
-(36, 'customviursscannerreturnvalue', '', 0),
-(37, 'usespf', '', 0),
-(38, 'usemxchecks', '', 0),
-(39, 'usescriptserver', '', 0),
-(40, 'scriptlanguage', 'VBScript', 0),
-(41, 'maxmessagesize', '', 20480),
-(42, 'usecache', '', 1),
-(43, 'domaincachettl', '', 60),
-(44, 'accountcachettl', '', 60),
-(45, 'awstatsenabled', '', 0),
-(46, 'rulelooplimit', '', 5),
-(47, 'backupoptions', '', 0),
-(48, 'backupdestination', '', 0),
-(49, 'defaultdomain', '', 0),
-(50, 'avmaxmsgsize', '', 0),
-(51, 'smtpdeliverybindtoip', '', 0),
-(52, 'enableimapquota', '', 1),
-(53, 'enableimapidle', '', 1),
-(54, 'enableimapacl', '', 1),
-(55, 'maximapconnections', '', 0),
-(56, 'enableimapsort', '', 1),
-(57, 'workerthreadpriority', '', 0),
-(58, 'ascheckhostinhelo', '', 0),
-(59, 'tcpipthreads', '', 15),
-(60, 'smtpallowincorrectlineendings', '', 1),
-(61, 'usegreylisting', '', 0),
-(62, 'greylistinginitialdelay', '', 30),
-(63, 'greylistinginitialdelete', '', 24),
-(64, 'greylistingfinaldelete', '', 864),
-(65, 'antispamaddheaderspam', '', 1),
-(66, 'antispamaddheaderreason', '', 1),
-(67, 'antispamprependsubject', '', 0),
-(68, 'antispamprependsubjecttext', '[SPAM]', 0),
-(69, 'enableattachmentblocking', '', 0),
-(70, 'maxsmtprecipientsinbatch', '', 100),
-(71, 'disconnectinvalidclients', '', 0),
-(72, 'maximumincorrectcommands', '', 100),
-(73, 'aliascachettl', '', 60),
-(74, 'distributionlistcachettl', '', 60),
-(75, 'smtprelayerusessl', '', 0),
-(76, 'adddeliveredtoheader', '', 0),
-(77, 'groupcachettl', '', 60),
-(78, 'imappublicfoldername', '#Public', 0),
-(79, 'antispamenabled', '', 0),
-(80, 'usespfscore', '', 3),
-(81, 'ascheckhostinheloscore', '', 2),
-(82, 'usemxchecksscore', '', 2),
-(83, 'spammarkthreshold', '', 5),
-(84, 'spamdeletethreshold', '', 20),
-(85, 'spamassassinenabled', '', 1),
-(86, 'spamassassinscore', '', 5),
-(87, 'spamassassinmergescore', '', 0),
-(88, 'spamassassinhost', '127.0.0.1', 0),
-(89, 'spamassassinport', '', 783),
-(90, 'antispammaxsize', '', 1024),
-(91, 'ASDKIMVerificationEnabled', '', 0),
-(92, 'ASDKIMVerificationFailureScore', '', 5),
-(93, 'AutoBanOnLogonFailureEnabled', '', 1),
-(94, 'MaxInvalidLogonAttempts', '', 3),
-(95, 'LogonAttemptsWithinMinutes', '', 30),
-(96, 'AutoBanMinutes', '', 60),
-(97, 'IMAPHierarchyDelimiter', '.', 0),
-(98, 'MaxNumberOfAsynchronousTasks', '', 15),
-(99, 'MessageIndexing', '', 0),
-(100, 'BypassGreylistingOnSPFSuccess', '', 1),
-(101, 'BypassGreylistingOnMailFromMX', '', 0),
-(102, 'EnableWhitelisting', '', 1),
-(103, 'MaxNumberOfMXHosts', '', 15),
-(104, 'ClamAVEnabled', '', 0),
-(105, 'ClamAVHost', 'localhost', 0),
-(106, 'ClamAVPort', '', 3310);
+(9, 'smtpnoofretries', '', 4),
+(10, 'smtpminutesbetweenretries', '', 60),
+(11, 'protocolimap', '', 1),
+(12, 'protocolsmtp', '', 1),
+(13, 'protocolpop3', '', 1),
+(14, 'welcomeimap', '', 0),
+(15, 'welcomepop3', '', 0),
+(16, 'welcomesmtp', '', 0),
+(17, 'smtprelayer', '', 0),
+(18, 'maxdelivertythreads', '', 10),
+(19, 'logformat', '', 0),
+(20, 'avclamwinenable', '', 0),
+(21, 'avclamwinexec', '', 0),
+(22, 'avclamwindb', '', 0),
+(23, 'avnotifysender', '', 0),
+(24, 'avnotifyreceiver', '', 0),
+(25, 'avaction', '', 0),
+(26, 'sendstatistics', '', 0),
+(27, 'hostname', '', 0),
+(28, 'smtprelayerusername', '', 0),
+(29, 'smtprelayerpassword', '', 0),
+(30, 'usesmtprelayerauthentication', '', 0),
+(31, 'smtprelayerport', '', 25),
+(32, 'usecustomvirusscanner', '', 0),
+(33, 'customvirusscannerexecutable', '', 0),
+(34, 'customviursscannerreturnvalue', '', 0),
+(35, 'usespf', '', 0),
+(36, 'usemxchecks', '', 0),
+(37, 'usescriptserver', '', 0),
+(38, 'scriptlanguage', 'VBScript', 0),
+(39, 'maxmessagesize', '', 20480),
+(40, 'usecache', '', 1),
+(41, 'domaincachettl', '', 60),
+(42, 'accountcachettl', '', 60),
+(43, 'awstatsenabled', '', 0),
+(44, 'rulelooplimit', '', 5),
+(45, 'backupoptions', '', 0),
+(46, 'backupdestination', '', 0),
+(47, 'defaultdomain', '', 0),
+(48, 'avmaxmsgsize', '', 0),
+(49, 'smtpdeliverybindtoip', '', 0),
+(50, 'enableimapquota', '', 1),
+(51, 'enableimapidle', '', 1),
+(52, 'enableimapacl', '', 1),
+(53, 'maximapconnections', '', 0),
+(54, 'enableimapsort', '', 1),
+(55, 'workerthreadpriority', '', 0),
+(56, 'ascheckhostinhelo', '', 0),
+(57, 'tcpipthreads', '', 15),
+(58, 'smtpallowincorrectlineendings', '', 1),
+(59, 'usegreylisting', '', 0),
+(60, 'greylistinginitialdelay', '', 30),
+(61, 'greylistinginitialdelete', '', 24),
+(62, 'greylistingfinaldelete', '', 864),
+(63, 'antispamaddheaderspam', '', 1),
+(64, 'antispamaddheaderreason', '', 1),
+(65, 'antispamprependsubject', '', 0),
+(66, 'antispamprependsubjecttext', '[SPAM]', 0),
+(67, 'enableattachmentblocking', '', 0),
+(68, 'maxsmtprecipientsinbatch', '', 100),
+(69, 'disconnectinvalidclients', '', 0),
+(70, 'maximumincorrectcommands', '', 100),
+(71, 'aliascachettl', '', 60),
+(72, 'distributionlistcachettl', '', 60),
+(73, 'smtprelayerusessl', '', 0),
+(74, 'adddeliveredtoheader', '', 0),
+(75, 'groupcachettl', '', 60),
+(76, 'imappublicfoldername', '#Public', 0),
+(77, 'antispamenabled', '', 0),
+(78, 'usespfscore', '', 3),
+(79, 'ascheckhostinheloscore', '', 2),
+(80, 'usemxchecksscore', '', 2),
+(81, 'spammarkthreshold', '', 5),
+(82, 'spamdeletethreshold', '', 20),
+(83, 'spamassassinenabled', '', 0),
+(84, 'spamassassinscore', '', 5),
+(85, 'spamassassinmergescore', '', 0),
+(86, 'spamassassinhost', '127.0.0.1', 0),
+(87, 'spamassassinport', '', 783),
+(88, 'antispammaxsize', '', 1024),
+(89, 'ASDKIMVerificationEnabled', '', 0),
+(90, 'ASDKIMVerificationFailureScore', '', 5),
+(91, 'AutoBanOnLogonFailureEnabled', '', 1),
+(92, 'MaxInvalidLogonAttempts', '', 3),
+(93, 'LogonAttemptsWithinMinutes', '', 30),
+(94, 'AutoBanMinutes', '', 60),
+(95, 'IMAPHierarchyDelimiter', '.', 0),
+(96, 'MaxNumberOfAsynchronousTasks', '', 15),
+(97, 'MessageIndexing', '', 0),
+(98, 'BypassGreylistingOnSPFSuccess', '', 1),
+(99, 'BypassGreylistingOnMailFromMX', '', 0),
+(100, 'MaxNumberOfMXHosts', '', 15),
+(101, 'ClamAVEnabled', '', 0),
+(102, 'ClamAVHost', 'localhost', 0),
+(103, 'ClamAVPort', '', 3310);
 
 -- --------------------------------------------------------
 
 --
 -- Structure de la table `hm_sslcertificates`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_sslcertificates` (
@@ -890,7 +845,7 @@ CREATE TABLE IF NOT EXISTS `hm_sslcertificates` (
 --
 -- Structure de la table `hm_surblservers`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_surblservers` (
@@ -915,7 +870,7 @@ INSERT INTO `hm_surblservers` (`surblid`, `surblactive`, `surblhost`, `surblreje
 --
 -- Structure de la table `hm_tcpipports`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_tcpipports` (
@@ -944,7 +899,7 @@ INSERT INTO `hm_tcpipports` (`portid`, `portprotocol`, `portnumber`, `portaddres
 --
 -- Structure de la table `hm_whitelist`
 --
--- Création: Ven 03 Août 2012 à 13:14
+-- Création: Jeu 30 Août 2012 à 15:47
 --
 
 CREATE TABLE IF NOT EXISTS `hm_whitelist` (
