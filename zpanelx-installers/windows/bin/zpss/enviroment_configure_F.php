@@ -35,8 +35,25 @@ $sql = "FLUSH PRIVILEGES;";
 $resault = @mysql_query($sql, $db) or die(mysql_error());
 
 // Create system.php file for database access:-
-$db_settings_file = fopen("F:/zpanel/panel/modules/webmail/apps/roundcube/config/db.inc.php", "w");
+$db_settings_file = fopen("F:/zpanel/panel/cnf/db.php", "w");
 fwrite($db_settings_file, "<?php
+/**
+ * Database configuration file.
+ * @package zpanelx
+ * @subpackage core -> config
+ * @author Bobby Allen (ballen@zpanelcp.com)
+ * @copyright ZPanel Project (http://www.zpanelcp.com/)
+ * @link http://www.zpanelcp.com/
+ * @license GPL (http://www.gnu.org/licenses/gpl.html)
+ **/
+\$host = \"localhost\";
+\$dbname = \"zpanel_core\";
+\$user = \"root\";
+\$pass = \"" . $p1 . "\";
+?>");
+fclose($db_settings_file);
+$roundcube_config = fopen("F:/zpanel/panel/modules/webmail/apps/roundcube/config/db.inc.php", "w");
+fwrite($roundcube_config, "<?php
 \$rcmail_config = array();
 \$rcmail_config['db_dsnw'] = 'mysql://webmail:" . $p3 . "@localhost/zpanel_roundcube';
 \$rcmail_config['db_dsnr'] = '';
@@ -54,7 +71,7 @@ fwrite($db_settings_file, "<?php
 \$rcmail_config['db_sequence_cache'] = 'cache_ids';
 \$rcmail_config['db_sequence_messages'] = 'message_ids';
 ");
-fclose($db_settings_file);
+fclose($roundcube_config);
 
 // Now we connect with the correct username and password as we just reset it...
 $hostname_db = "localhost";
@@ -64,8 +81,6 @@ $db = mysql_pconnect($hostname_db, $username_db, $password_db) or trigger_error(
 
 // Create databases (zpanel_core, zpanel_roundcube and zpanel_hmail)
 fwrite(STDOUT, "Creating databases...\r");
-$sql = "CREATE DATABASE `zpanel_roundcube` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;";
-$resault = @mysql_query($sql, $db) or die(mysql_error());
 $sql = "CREATE DATABASE `zpanel_hmail` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;";
 $resault = @mysql_query($sql, $db) or die(mysql_error());
 $sql = 'CREATE DATABASE IF NOT EXISTS `zpanel_atmail`';
@@ -80,9 +95,10 @@ $sql = "GRANT ALL PRIVILEGES ON `zpanel_atmail` . * TO 'webmail'@'localhost'";
 $resault = @mysql_query($sql, $db) or die(mysql_error());
 $sql = "GRANT ALL PRIVILEGES ON `zpanel_AfterLogic` . * TO 'webmail'@'localhost'";
 $resault = @mysql_query($sql, $db) or die(mysql_error());
+$sql = "GRANT ALL PRIVILEGES ON `zpanel_roundcube` . * TO 'webmail'@'localhost'";
+$resault = @mysql_query($sql, $db) or die(mysql_error());
 $sql = "SET PASSWORD FOR `webmail`@`localhost`=PASSWORD('" . $p3 . "')";
 $resault = @mysql_query($sql, $db) or die(mysql_error());
-$sql = "GRANT ALL PRIVILEGES ON `zpanel_roundcube` . * TO 'webmail'@'localhost'";
 
 // SQL script executor...
 
@@ -114,25 +130,10 @@ function GetServerIPFromZWS() {
         return "127.0.0.1";
     }
 }
-
-// Insert Roundcube inital SQL into the zpanel_roundcube database.
-mysql_select_db('zpanel_roundcube', $db);
-$sqlFileToExecute = "F:/zpanel/panel/modules/webmail/apps/roundcube/SQL/mysql.initial.sql";
-$res = RunSQL($sqlFileToExecute);
-
 // Insert hMailServer inital SQL into the zpanel_hmail database.
-mysql_select_db('zpanel_hmail', $db);
-$sqlFileToExecute = "F:/zpanel/bin/hmailserver/INSTALL/zpanel_hmail.sql";
-$res = RunSQL($sqlFileToExecute);
-
-mysql_select_db('zpanel_afterlogic', $db);
-$sqlFileToExecute = "F:/zpanel/panel/modules/webmail/install/zpanel_afterlogic.sql";
-$res = RunSQL($sqlFileToExecute);
-
-mysql_select_db('zpanel_atmail', $db);
-$sqlFileToExecute = "F:/zpanel/panel/modules/webmail/install/zpanel_atmail.sql";
-$res = RunSQL($sqlFileToExecute);
-
+exec("mysql -h localhost -u root -p" . $p1 . " zpanel_hmail < F:\zpanel\bin\hmailserver\INSTALL\zpanel_hmail.sql");
+exec("mysql -h localhost -u root -p" . $p1 . " zpanel_afterlogic < F:\zpanel\panel\modules\webmail\install\zpanel_afterlogic.sql");
+exec("mysql -h localhost -u root -p" . $p1 . " zpanel_atmail < F:\zpanel\panel\modules\webmail\install\zpanel_atmail.sql");
 
 // Set database back to ZPanel core to continue with the install.
 @mysql_select_db('zpanel_core', $db);
@@ -217,42 +218,10 @@ fclose($db_settings_file);
 
 fwrite(STDOUT, "\r
 ################################################################\r
-# YOUR ZPANEL SERVER LOGIN DETAILS                             #\r
+#                 CONFIGURATION PLEASE WAIT                    #\r
 ################################################################\r
-\r
-\r
-Your new MySQL 'root' password is: " . $p1 . "\r
-\r
-Your new AfterLogic adminpanel 'mailadmin' password is: 080e5a52\r
-\r
-URL: http://" . $location . "/modules/webmail/apps/AfterLogic/adminpanel/\r
-Your new ZPanel details are as follows:-\r
-\r
-URL: http://" . $location . "/\r
-Username: zadmin\r
-Password: " . $p2 . "\r
-\r
-These details can also be found in F:\zpanel\login_details.txt\r
-\r
-Thank you for installing ZPanel!\r\r");
+\r\r");
 
-// Now we add a static route so the server admin can instantly access the control panel, and reboot Apache so VHOST is activated.
-exec("F:/zpanel/bin/zpss/setroute.exe " . $location . "");
-
-// Add the password details to a file in F:\zpanel
-$db_settings_file = fopen("F:/zpanel/login_details.txt", "w");
-fwrite($db_settings_file, "MySQL Root Password: " .$p1. "\r\n");
-fwrite($db_settings_file, "\r\n");
-fwrite($db_settings_file, "Your new AfterLogic adminpanel 'mailadmin' password is: " .$p2. "\r\n");
-fwrite($db_settings_file, "\r\n");
-fwrite($db_settings_file, "URL: http://" . $location . "/modules/webmail/apps/AfterLogic/adminpanel/\r\n");
-fwrite($db_settings_file, "\r\n");
-fwrite($db_settings_file, "ZPanel URL: http://" .$location. "\r\n");
-fwrite($db_settings_file, "\r\n");
-fwrite($db_settings_file, "ZPanel account: zadmin\r\n");
-fwrite($db_settings_file, "\r\n");
-fwrite($db_settings_file, "ZPanel password: " .$p2. "");
-fclose($db_settings_file);
 $afterLogicsettings = @fopen("F:/zpanel/panel/modules/webmail/apps/AfterLogic/data/settings/settings.xml", "w");
 fwrite($afterLogicsettings, "<?xml version=\"1.0\" encoding=\"utf-8\"?>
 <Settings xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">
@@ -1432,10 +1401,8 @@ fclose($hastymail_config_file);
 fwrite($hastymail_config_file2, "".$data."");
 fclose($hastymail_config_file2);
     }
-$newmailconfig = @fopen("F:/zpanel/panel/modules/webmail/apps/squirrelmail/config/config.php", "w");	
-fwrite($newmailconfig, "USE zpanel_hmail;
-
-INSERT INTO  `zpanel_hmail`.`hm_domains` (
+$newmailconfig = @fopen("F:/zpanel/panel/modules/webmail/install/newmail.sql", "w");
+fwrite($newmailconfig, "INSERT INTO  `zpanel_hmail`.`hm_domains` (
 
 `domainid` ,
 `domainname` ,
@@ -1463,8 +1430,7 @@ INSERT INTO  `zpanel_hmail`.`hm_domains` (
 )
 VALUES (
 '1',  '" . $location . "',  '1',  '',  '0',  '',  '0',  '0',  '',  '0',  '0',  '1',  '',  '',  '0',  '0',  '0',  '0',  '0',  '0',  '0',  '',  ''
-)
-
+);
 INSERT INTO  `zpanel_hmail`.`hm_accounts` (
 
 `accountid` ,
@@ -1494,9 +1460,48 @@ INSERT INTO  `zpanel_hmail`.`hm_accounts` (
 `accountpersonlastname`
 )
 VALUES (
-'1',  '1',  '0',  'postmaster@" . $location . "',  '926022ea67d7a36c679178bf396a622d993f9254888cfa5259dffb7bb39cca3781ae45',  '1',  '0',  '',  '',  '100',  '0',  '',  '',  '3',  '0',  '',  '0',  '0',  '',  '',  '2012-08-27 21:49:15',  '0',  '2012-08-27 21:49:15',  '',  ''
+'1',  '1',  '0',  'postmaster@" . $location . "',  'c3a9bed20fd16fdf8cf66325072db6670544ea4fe112d6e0fcede711677976038be112',  '1',  '0',  '',  '',  '100',  '0',  '',  '',  '3',  '0',  '',  '0',  '0',  '',  '',  '2012-08-27 21:49:15',  '0',  '2012-08-27 21:49:15',  '',  ''
 )
 ");
 fclose($newmailconfig);
+exec("mysql -h localhost -u root -p" . $p1 . " zpanel_hmail < F:/zpanel/panel/modules/webmail/install/newmail.sql");
+fwrite(STDOUT, "\r
+################################################################\r
+# YOUR ZPANEL SERVER LOGIN DETAILS                             #\r
+################################################################\r
+\r
+\r
+Your new MySQL 'root' password is: " . $p1 . "\r
+\r
+Your new AfterLogic adminpanel 'mailadmin' password is: " . $p2 . "\r
+\r
+URL: http://" . $location . "/modules/webmail/apps/AfterLogic/adminpanel/\r
+Your new ZPanel details are as follows:-\r
+\r
+URL: http://" . $location . "/\r
+Username: zadmin\r
+Password: " . $p2 . "\r
+\r
+These details can also be found in F:\zpanel\login_details.txt\r
+\r
+Thank you for installing ZPanel!\r\r");
+
+// Now we add a static route so the server admin can instantly access the control panel, and reboot Apache so VHOST is activated.
+exec("F:/zpanel/bin/zpss/setroute.exe " . $location . "");
+
+// Add the password details to a file in F:\zpanel
+$db_settings_file = fopen("F:/zpanel/login_details.txt", "w");
+fwrite($db_settings_file, "MySQL Root Password: " .$p1. "\r\n");
+fwrite($db_settings_file, "\r\n");
+fwrite($db_settings_file, "Your new AfterLogic adminpanel 'mailadmin' password is: " .$p2. "\r\n");
+fwrite($db_settings_file, "\r\n");
+fwrite($db_settings_file, "URL: http://" . $location . "/modules/webmail/apps/AfterLogic/adminpanel/\r\n");
+fwrite($db_settings_file, "\r\n");
+fwrite($db_settings_file, "ZPanel URL: http://" .$location. "\r\n");
+fwrite($db_settings_file, "\r\n");
+fwrite($db_settings_file, "ZPanel account: zadmin\r\n");
+fwrite($db_settings_file, "\r\n");
+fwrite($db_settings_file, "ZPanel password: " .$p2. "");
+fclose($db_settings_file);
 
 ?>

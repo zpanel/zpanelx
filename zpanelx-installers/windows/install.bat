@@ -174,6 +174,9 @@ echo Starting hMailServer
 net stop hMailServer
 net start hMailServer
 
+echo Installing GIT for Windows...
+C:\zpanel\bin\Git\install\Git-1.5.6.1-preview20080701.exe /DIR="C:\zpanel\bin\Git" /VERYSILENT
+
 echo Installing BIND9.9...
 reg import C:\zpanel\bin\bind\bin\bind.reg
 net start | find "named"
@@ -398,6 +401,9 @@ D:\zpanel\bin\hmailserver\INSTALL\hMailServer-5.4-B1942.exe /DIR="D:\zpanel\bin\
 echo Starting hMailServer
 net stop hMailServer
 net start hMailServer
+
+echo Installing GIT for Windows...
+D:\zpanel\bin\Git\install\Git-1.5.6.1-preview20080701.exe /DIR="D:\zpanel\bin\Git" /VERYSILENT
 
 echo Installing BIND9.9...
 reg import D:\zpanel\bin\bind\bin\bind.reg
@@ -625,6 +631,9 @@ echo Starting hMailServer
 net stop hMailServer
 net start hMailServer
 
+echo Installing GIT for Windows...
+E:\zpanel\bin\Git\install\Git-1.5.6.1-preview20080701.exe /DIR="E:\zpanel\bin\Git" /VERYSILENT
+
 echo Installing BIND9.9...
 reg import E:\zpanel\bin\bind\bin\bind.reg
 net start | find "named"
@@ -851,6 +860,9 @@ echo Starting hMailServer
 net stop hMailServer
 net start hMailServer
 
+echo Installing GIT for Windows...
+F:\zpanel\bin\Git\install\Git-1.5.6.1-preview20080701.exe /DIR="F:\zpanel\bin\Git" /VERYSILENT
+
 echo Installing BIND9.9...
 reg import F:\zpanel\bin\bind\bin\bind.reg
 net start | find "named"
@@ -1076,6 +1088,9 @@ G:\zpanel\bin\hmailserver\INSTALL\hMailServer-5.4-B1942.exe /DIR="G:\zpanel\bin\
 echo Starting hMailServer
 net stop hMailServer
 net start hMailServer
+
+echo Installing GIT for Windows...
+G:\zpanel\bin\Git\install\Git-1.5.6.1-preview20080701.exe /DIR="G:\zpanel\bin\Git" /VERYSILENT
 
 echo Installing BIND9.9...
 reg import G:\zpanel\bin\bind\bin\bind.reg
