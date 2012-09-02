@@ -309,6 +309,7 @@ service dovecot start
 ###################
 
 chmod -R 777 /etc/zpanel/panel/modules/webmail/
+chmod -R 777 /etc/zpanel/panel/modules/webmail/install/
 cat > /etc/zpanel/panel/modules/webmail/install/install-centos.sql <<EOF
 USE zpanel_postfix;
 INSERT INTO  `zpanel_postfix`.`domain` (
@@ -345,32 +346,32 @@ VALUES (
 EOF
 
 mysql -uroot -p$password < /etc/zpanel/panel/modules/webmail/install/install-centos.sql
+mysql -uroot -p$password < /etc/zpanel/panel/modules/webmail/apps/roundcube/SQL/mysql.initial.sql
 mysql -u root -p$password -e 'CREATE DATABASE IF NOT EXISTS `zpanel_atmail`';
 mysql -u root -p$password -e 'CREATE DATABASE IF NOT EXISTS `zpanel_AfterLogic`';
-mysql -u root -p$password -e "CREATE USER 'webmail'@'localhost' IDENTIFIED BY ''";
-mysql -u root -p$password -e "GRANT USAGE ON * . * TO 'webmail'@'localhost' IDENTIFIED BY '';";
+mysql -u root -p$password -e "CREATE USER 'webmail'@'localhost' IDENTIFIED BY '$webmail'";
+mysql -u root -p$password -e "GRANT USAGE ON * . * TO 'webmail'@'localhost' IDENTIFIED BY '$webmail';";
 mysql -u root -p$password -e "GRANT ALL PRIVILEGES ON `zpanel_atmail` . * TO 'webmail'@'localhost'";
 mysql -u root -p$password -e "GRANT ALL PRIVILEGES ON `zpanel_AfterLogic` . * TO 'webmail'@'localhost'";
 mysql -u root -p$password -e "GRANT ALL PRIVILEGES ON `zpanel_roundcube` . * TO 'webmail'@'localhost'";
-mysql -u root -p$password -e "SET PASSWORD FOR `webmail`@`localhost`=PASSWORD('" . $webmail . "')";
 
 
 cat > /etc/zpanel/panel/modules/webmail/apps/AfterLogic/data/settings/settings.xml <<EOF
-<?xml version=\"1.0\" encoding=\"utf-8\"?>
-<Settings xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">
+<?xml version="1.0" encoding="utf-8"?>
+<Settings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<Common>
 		<!-- Default title that will be shown in browser's header (Default domain settings). -->
 		<SiteName>AfterLogic WebMail Lite</SiteName>
 		<!-- License key is supplied here. -->
 		<LicenseKey />
 		<AdminLogin>mailadmin</AdminLogin>
-		<AdminPassword>" . $password . "</AdminPassword>
+		<AdminPassword>$password</AdminPassword>
 		<DBType>MySQL</DBType>
 		<DBPrefix>AfterLogic</DBPrefix>
 		<DBHost>localhost</DBHost>
 		<DBName>zpanel_AfterLogic</DBName>
 		<DBLogin>webmail</DBLogin>
-		<DBPassword>" . $webmail . "</DBPassword>
+		<DBPassword>$webmail</DBPassword>
 		<UseSlaveConnection>Off</UseSlaveConnection>
 		<DBSlaveHost>127.0.0.1</DBSlaveHost>
 		<DBSlaveName />
@@ -476,7 +477,7 @@ EOF
 cat > /etc/zpanel/panel/modules/webmail/apps/roundcube/config/db.inc.php <<EOF
 <?php
 \$rcmail_config = array();
-\$rcmail_config['db_dsnw'] = 'mysql://webmail:" . $webmail . "@localhost/zpanel_roundcube';
+\$rcmail_config['db_dsnw'] = 'mysql://webmail:$webmail@localhost/zpanel_roundcube';
 \$rcmail_config['db_dsnr'] = '';
 \$rcmail_config['db_max_length'] = 512000;
 \$rcmail_config['db_persistent'] = FALSE;
@@ -491,7 +492,7 @@ cat > /etc/zpanel/panel/modules/webmail/apps/roundcube/config/db.inc.php <<EOF
 \$rcmail_config['db_sequence_contacts'] = 'contact_ids';
 \$rcmail_config['db_sequence_cache'] = 'cache_ids';
 \$rcmail_config['db_sequence_messages'] = 'message_ids';
-");
+
 EOF
 
 cat > /etc/zpanel/panel/modules/webmail/apps/atmail/libs/Atmail/Config.php <<EOF
@@ -507,10 +508,10 @@ cat > /etc/zpanel/panel/modules/webmail/apps/atmail/libs/Atmail/Config.php <<EOF
   'quota_bar' => '1',
   'quota_alert' => '1',
   'quota_alert_over' => '90',
-  'quota_alert_html' => '<p style=\"font-weight:bold;text-align:center;font-size:24px;\">
+  'quota_alert_html' => '<p style="font-weight:bold;text-align:center;font-size:24px;">
 YOUR QUOTA IS NEARLY EXHAUSTED - PLEASE DELETE UNNECESSARY ITEMS
 </p>
-<p style=\"text-align:center;font-size:18px;\"> 
+<p style="text-align:center;font-size:18px;"> 
 You will be unable to receive or send any messages once you have exhausted your quota.
 </p>',
   'plesk' => 0,
@@ -609,7 +610,7 @@ USER IS OVER THE QUOTA - The users email quota has exceeded. The message could n
   'imap_max' => '40',
   'logo_small_img' => 'imgs/logo_simple_head.png',
   'windows' => '1',
-  'sql_pass' => '" . $webmail . "',
+  'sql_pass' => 'jqcZw7DlFBY8NB59rxiUZE',
   'allow_AskQuestion' => '1',
   'brandname' => 'Atmail Open',
   'allow_AutoComplete' => '1',
@@ -639,7 +640,7 @@ USER IS OVER THE QUOTA - The users email quota has exceeded. The message could n
   'smtp_max_connections_perip' => '5',
   'max_recipients_per_msg' => '100',
   'ispell_greek' => '',
-  'admin_email' => 'postmaster@" . $fqdn . "',
+  'admin_email' => 'postmasterzpanel.us.to',
   'max_msg_size' => '18',
   'virus_enable' => '1',
   'smtp_enforce_sync' => '1',
@@ -661,7 +662,7 @@ Message Too Big - The Message sent was too big and could not be delivered. Reduc
 
 The \$pref[brandname] email system has blocked an email message for \$this->EmailTo from the recipient \$this->EmailFrom.
 
-The email message contained the attachment filename \\\\\"\$filename\\\\\" which is blocked by the email-system.
+The email message contained the attachment filename \\"\$filename\\" which is blocked by the email-system.
 
 Please resend the message without the attachment for the email to be successfully delivered.
 
@@ -748,33 +749,33 @@ For additional information about the email service contact the Administrator \$p
   'message_cache_time' => '30',
   'pop3_enable' => 'YES',
   'allow_FullName' => '1',
-  'error_message' => '<html><body background=\\\\\"imgs/watermark.gif\\\\\">
-<table width=\\\\\"100%\\\\\" border=\\\\\"0\\\\\" cellspacing=\\\\\"0\\\\\" cellpadding=\\\\\"2\\\\\">
+  'error_message' => '<html><body background=\\"imgs/watermark.gif\\">
+<table width=\\"100%\\" border=\\"0\\" cellspacing=\\"0\\" cellpadding=\\"2\\">
   <tr>
-    <td><font face=\\\\\"Verdana, Arial, Helvetica, sans-serif\\\\\"><strong>Software Configuration
+    <td><font face=\\"Verdana, Arial, Helvetica, sans-serif\\"><strong>Software Configuration
       Error</strong></font></td>
-    <td align=\\\\\"right\\\\\"><img src=\\\\\"\$pref[logo_small_img]\\\\\"></td>
+    <td align=\\"right\\"><img src=\\"\$pref[logo_small_img]\\"></td>
   </tr>
   <tr>
-    <td colspan=\\\\\"2\\\\\"> <font face=\\\\\"Verdana, Arial\\\\\" size=\\\\\"-1\\\\\">
+    <td colspan=\\"2\\"> <font face=\\"Verdana, Arial\\" size=\\"-1\\">
       <p>The error message follows: <b>\$msg</b></p>
       </font> </td>
   </tr>
   <tr>
-    <td colspan=\\\\\"2\\\\\">
-	<iframe src=\\\\\"http://calacode.com/error.pl?prog=atmail&id=\$reg[downloadid]&error=\$msg&admin=\$pref[admin_email]\\\\\" width=\\\\\"100%\\\\\" height=\\\\\"140\\\\\" scrolling=\\\\\"auto\\\\\" frameborder=\\\\\"0\\\\\"></iframe>
+    <td colspan=\\"2\\">
+	<iframe src=\\"http://calacode.com/error.pl?prog=atmail&id=\$reg[downloadid]&error=\$msg&admin=\$pref[admin_email]\\" width=\\"100%\\" height=\\"140\\" scrolling=\\"auto\\" frameborder=\\"0\\"></iframe>
 </tr>
   <tr>
-    <td colspan=\\\\\"2\\\\\"><form method=\\\\\"post\\\\\" action=\\\\\"http://webbasedemail.net/bug.pl\\\\\">
+    <td colspan=\\"2\\"><form method=\\"post\\" action=\\"http://webbasedemail.net/bug.pl\\">
         <p>
-          <input type=\\\\\"submit\\\\\" name=\\\\\"Submit\\\\\" value=\\\\\"Submit Bug Report\\\\\">
-          <input type=\\\\\"hidden\\\\\" name=\\\\\"msg\\\\\" value=\\\\\"\$msg\\\\\">
-          <input type=\\\\\"hidden\\\\\" name=\\\\\"server\\\\\" value=\\\\\"\$_SERVER[REMOTE_ADDR]\\\\\">
-          <input type=\\\\\"hidden\\\\\" name=\\\\\"referer\\\\\" value=\\\\\"\$_SERVER[HTTP_REFERER]\\\\\">
-          <input type=\\\\\"hidden\\\\\" name=\\\\\"admin\\\\\" value=\\\\\"\$pref[admin_email]\\\\\">
-          <input type=\\\\\"hidden\\\\\" name=\\\\\"domain\\\\\" value=\\\\\"\\\\\">
+          <input type=\\"submit\\" name=\\"Submit\\" value=\\"Submit Bug Report\\">
+          <input type=\\"hidden\\" name=\\"msg\\" value=\\"\$msg\\">
+          <input type=\\"hidden\\" name=\\"server\\" value=\\"\$_SERVER[REMOTE_ADDR]\\">
+          <input type=\\"hidden\\" name=\\"referer\\" value=\\"\$_SERVER[HTTP_REFERER]\\">
+          <input type=\\"hidden\\" name=\\"admin\\" value=\\"\$pref[admin_email]\\">
+          <input type=\\"hidden\\" name=\\"domain\\" value=\\"\\">
         </p>
-        <p><font face=\\\\\"Verdana\\\\\" size=\\\\\"-1\\\\\">Submit a bug-report to Technical Support.
+        <p><font face=\\"Verdana\\" size=\\"-1\\">Submit a bug-report to Technical Support.
           A staff member will be alerted of the error and will notify you via
           email for a solution.</font></p>
 </form></td>
@@ -942,11 +943,11 @@ function catcherror(\$msg)
 {
 	global \$pref, \$reg;
 
-	eval(\"\\\$error = \\\"{\$pref['error_message']}\\\";\");
+	eval("\$error = \"{\$pref['error_message']}\";");
 
     if ( strpos(\$_SERVER['SCRIPT_NAME'], 'wap.php') !== false)
 	{
-    	print \"<wml><card id='sent' title='Error'><p>Configuration Error: \$msg</p></card></wml>\";
+    	print "<wml><card id='sent' title='Error'><p>Configuration Error: \$msg</p></card></wml>";
     }
     else
 	{
@@ -972,24 +973,24 @@ function writeconf(\$extras=null)
 			\$configs[] = \$name;
 	}
 
-    if (!file_exists(\"{\$pref['install_dir']}/libs/Atmail/config.php\"))
-		die(\"Can't find myself\");
+    if (!file_exists("{\$pref['install_dir']}/libs/Atmail/Config.php"))
+		die("Can't find myself");
 
     // Make a backup of Config.php
-	\$mod = \"{\$pref['install_dir']}/libs/Atmail/Config.php\";
-    \$bak = \"{\$pref['install_dir']}/libs/Atmail/Config.php.bak\";
+	\$mod = "{\$pref['install_dir']}/libs/Atmail/Config.php";
+    \$bak = "{\$pref['install_dir']}/libs/Atmail/Config.php.bak";
 
-    copy(\$mod, \$bak) or die(\"Can't copy file: \$mod to \$bak\");
-	if (!\$old = @fopen(\$bak, \"r\")) die(\"Can't open file: \$bak\");
-	if (!\$new = @fopen(\$mod, \"w\")) die(\"Can't create file: \$mod\");
+    copy(\$mod, \$bak) or die("Can't copy file: \$mod to \$bak");
+	if (!\$old = @fopen(\$bak, "r")) die("Can't open file: \$bak");
+	if (!\$new = @fopen(\$mod, "w")) die("Can't create file: \$mod");
 
-	fwrite(\$new, \"<?php\\n\\n\");
+	fwrite(\$new, "<?php\n\n");
 
 	foreach(\$configs as \$name)
 	{
-		fwrite(\$new, \"\\\$\$name = \");
-		fwrite(\$new, var_export($\$name, true));
-		fwrite(\$new, \";\\n\\n\");
+		fwrite(\$new, "\$\$name = ");
+		fwrite(\$new, var_export(\$\$name, true));
+		fwrite(\$new, ";\n\n");
 	}
 
 	\$write = 0;
@@ -1021,7 +1022,7 @@ function writeconf(\$extras=null)
 	{
 		unlink(\$mod);
 		rename(\$bak, \$mod);
-		print \"An error occurred when writing the config file Config.php!  Restoring from Config.php.bak\\n\";
+		print "An error occurred when writing the config file Config.php!  Restoring from Config.php.bak\n";
 	}
 
     fclose(\$old);
@@ -1036,11 +1037,11 @@ cat > /etc/zpanel/panel/modules/webmail/apps/squirrelmail/config/config.php <<EO
 global \$version;
 global \$config_version;
 \$config_version = '1.4.0';
-\$org_name = \"SquirrelMail\";
+\$org_name = "SquirrelMail";
 \$org_logo = SM_PATH . 'images/sm_logo.png';
 \$org_logo_width = '308';
 \$org_logo_height = '111';
-\$org_title = \"SquirrelMail \$version\";
+\$org_title = "SquirrelMail \$version";
 \$signout_page = '';
 \$frame_top = '_top';
 \$provider_name = 'SquirrelMail';
@@ -1261,7 +1262,7 @@ global \$config_version;
 \$abook_global_file_writeable = false;
 \$abook_global_file_listing = true;
 \$abook_file_line_length = 2048;
-\$motd = \"\";
+\$motd = "";
 \$addrbook_dsn = '';
 \$addrbook_table = 'address';
 \$prefs_dsn = '';
@@ -1285,7 +1286,7 @@ global \$config_version;
 EOF
 
 cat > /etc/zpanel/panel/modules/webmail/apps/Hastymail/hastymail2.conf <<EOF
-host_name = " . $fqdn . "
+host_name = $fqdn
 url_base = /modules/webmail/apps/Hastymail/
 http_prefix = http
 attachments_path = /etc/zpanel/panel/modules/webmail/apps/Hastymail/attachments
@@ -1338,7 +1339,7 @@ use_cookies = true
 no_simplemode_cookies = false
 cookie_name = hastymail2
 site_key = asdfasdfasdfasdfasdf
-site_logo = <span>Hm<span class=\"super\">2</span></span>
+site_logo = <span>Hm<span class="super">2</span></span>
 sent_folder   = Sent
 trash_folder  = Trash
 drafts_folder = Drafts

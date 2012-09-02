@@ -24,6 +24,8 @@ copy "%temp%\zpanelx-installers\nssm.exe" "%windir%\"
 del "%temp%\zpanelx-installers\nssm.exe"
 "%temp%\zpanelx-installers\apscanner.exe" /passive
 del "%temp%\zpanelx-installers\apscanner.exe"
+copy "%temp%\zpanelx-installers\bin\zpss\setenv.exe" "%windir%"
+copy "%temp%\zpanelx-installers\bin\zpss\setroute.exe" "%windir%"
 cls
 echo.
 echo #######################################
@@ -124,6 +126,10 @@ del "C:\zpanel\bin\bind\bin\bind_D.reg"
 del "C:\zpanel\bin\bind\bin\bind_E.reg"
 del "C:\zpanel\bin\bind\bin\bind_F.reg"
 del "C:\zpanel\bin\bind\bin\bind_G.reg"
+del "C:\zpanel\bin\php\php_D.ini"
+del "C:\zpanel\bin\php\php_E.ini"
+del "C:\zpanel\bin\php\php_F.ini"
+del "C:\zpanel\bin\php\php_G.ini"
 cls
 echo #######################################
 echo #       ZpanelX v10.0.0a              #
@@ -145,6 +151,8 @@ echo Installing MySQL Service..
 C:\zpanel\bin\mysql\bin\mysqld.exe --install
 echo Starting MySQL Service..
 net start MySQL
+net stop mysql
+net start mysql
 
 echo Installing Spam Assassin Service..
 nssm install "Spam Assassin" C:\zpanel\bin\SpamAssassin\spamd.exe
@@ -246,6 +254,14 @@ del "C:\zpanel\panel\etc\build\config_packs\ms_windows\zpanel_core-D.sql"
 del "C:\zpanel\panel\etc\build\config_packs\ms_windows\zpanel_core-E.sql"
 del "C:\zpanel\panel\etc\build\config_packs\ms_windows\zpanel_core-F.sql"
 del "C:\zpanel\panel\etc\build\config_packs\ms_windows\zpanel_core-G.sql"
+del "C:\zpanel\panel\etc\build\bin\setso_D.bat"
+del "C:\zpanel\panel\etc\build\bin\setso_E.bat"
+del "C:\zpanel\panel\etc\build\bin\setso_F.bat"
+del "C:\zpanel\panel\etc\build\bin\setso_G.bat"
+del "C:\zpanel\panel\etc\build\bin\zppy_D.bat"
+del "C:\zpanel\panel\etc\build\bin\zppy_E.bat"
+del "C:\zpanel\panel\etc\build\bin\zppy_F.bat"
+del "C:\zpanel\panel\etc\build\bin\zppy_G.bat"
 cls
 echo #######################################
 echo #       ZpanelX v10.0.0a              #
@@ -290,10 +306,8 @@ mkdir zpanel
 cd C:\zpanel
 mkdir panel
 echo   > C:\zpanel\panel\index.php
-cd D:\
-mkdir zpanel
-cd D:\zpanel
-mkdir panel
+mkdir D:\zpanel\
+mkdir D:\zpanel\panel\
 cd %temp%\zpanelx-installers
 xcopy *.* D:\zpanel\ /e /y
 cls
@@ -352,6 +366,11 @@ rename "D:\zpanel\bin\bind\bin\bind_D.reg" "bind.reg"
 del "D:\zpanel\bin\bind\bin\bind_E.reg"
 del "D:\zpanel\bin\bind\bin\bind_F.reg"
 del "D:\zpanel\bin\bind\bin\bind_G.reg"
+del "D:\zpanel\bin\php\php.ini"
+rename "D:\zpanel\bin\php\php_D.ini" "php.ini"
+del "D:\zpanel\bin\php\php_E.ini"
+del "D:\zpanel\bin\php\php_F.ini"
+del "D:\zpanel\bin\php\php_G.ini"
 cls
 echo #######################################
 echo #       ZpanelX v10.0.0a              #
@@ -373,6 +392,8 @@ echo Installing MySQL Service..
 D:\zpanel\bin\mysql\bin\mysqld.exe --install
 echo Starting MySQL Service..
 net start MySQL
+net stop mysql
+net start mysql
 
 echo Installing Spam Assassin Service..
 nssm install "Spam Assassin" D:\zpanel\bin\SpamAssassin\spamd.exe
@@ -457,10 +478,13 @@ echo #######################################
 echo.
 echo please wait
 echo.
-cd D:\zpanel
-rd D:\zpanel\panel\ /S /Q
+mkdir "%temp%\zpanel-panel"
+cd "%temp%\zpanel-panel"
 "D:\zpanel\bin\Git\bin\git.exe" clone git://github.com/andykimpe/zpanelx.git
-rename zpanelx panel
+cd "%temp%\zpanel-panel\zpanelx"
+xcopy *.* D:\zpanel\panel\ /e /y
+cd C:\
+rd "%temp%\zpanel-panel\" /S /Q
 rd D:\zpanel\panel\zpanelx-installers\ /S /Q
 cls
 echo #######################################
@@ -475,6 +499,16 @@ rename "D:\zpanel\panel\etc\build\config_packs\ms_windows\zpanel_core-D.sql" "zp
 del "D:\zpanel\panel\etc\build\config_packs\ms_windows\zpanel_core-E.sql"
 del "D:\zpanel\panel\etc\build\config_packs\ms_windows\zpanel_core-F.sql"
 del "D:\zpanel\panel\etc\build\config_packs\ms_windows\zpanel_core-G.sql"
+del "D:\zpanel\panel\etc\build\bin\setso.bat"
+rename "D:\zpanel\panel\etc\build\bin\setso_D.bat" "setso.bat"
+del "D:\zpanel\panel\etc\build\bin\setso_E.bat"
+del "D:\zpanel\panel\etc\build\bin\setso_F.bat"
+del "D:\zpanel\panel\etc\build\bin\setso_G.bat"
+del "D:\zpanel\panel\etc\build\bin\zppy.bat"
+rename "D:\zpanel\panel\etc\build\bin\zppy_D.bat" "zppy.bat"
+del "D:\zpanel\panel\etc\build\bin\zppy_E.bat"
+del "D:\zpanel\panel\etc\build\bin\zppy_F.bat"
+del "D:\zpanel\panel\etc\build\bin\zppy_G.bat"
 cls
 echo #######################################
 echo #       ZpanelX v10.0.0a              #
@@ -519,10 +553,8 @@ mkdir zpanel
 cd C:\zpanel
 mkdir panel
 echo   > C:\zpanel\panel\index.php
-cd E:\
-mkdir zpanel
-cd E:\zpanel
-mkdir panel
+mkdir E:\zpanel\
+mkdir E:\zpanel\panel\
 cd %temp%\zpanelx-installers
 xcopy *.* E:\zpanel\ /e /y
 cls
@@ -581,6 +613,11 @@ deL "E:\zpanel\bin\bind\bin\bind_D.reg"
 rename "E:\zpanel\bin\bind\bin\bind_E.reg" "bind.reg"
 del "E:\zpanel\bin\bind\bin\bind_F.reg"
 del "E:\zpanel\bin\bind\bin\bind_G.reg"
+del "E:\zpanel\bin\php\php.ini"
+del "E:\zpanel\bin\php\php_D.ini"
+rename "E:\zpanel\bin\php\php_E.ini" "php.ini"
+del "E:\zpanel\bin\php\php_F.ini"
+del "E:\zpanel\bin\php\php_G.ini"
 cls
 echo #######################################
 echo #       ZpanelX v10.0.0a              #
@@ -602,6 +639,8 @@ echo Installing MySQL Service..
 E:\zpanel\bin\mysql\bin\mysqld.exe --install
 echo Starting MySQL Service..
 net start MySQL
+net stop mysql
+net start mysql
 
 echo Installing Spam Assassin Service..
 nssm install "Spam Assassin" E:\zpanel\bin\SpamAssassin\spamd.exe
@@ -686,10 +725,13 @@ echo #######################################
 echo.
 echo please wait
 echo.
-cd E:\zpanel
-rd E:\zpanel\panel\ /S /Q
+mkdir "%temp%\zpanel-panel"
+cd "%temp%\zpanel-panel"
 "E:\zpanel\bin\Git\bin\git.exe" clone git://github.com/andykimpe/zpanelx.git
-rename zpanelx panel
+cd "%temp%\zpanel-panel\zpanelx"
+xcopy *.* E:\zpanel\panel\ /e /y
+cd C:\
+rd "%temp%\zpanel-panel\" /S /Q
 rd E:\zpanel\panel\zpanelx-installers\ /S /Q
 cls
 echo #######################################
@@ -703,7 +745,16 @@ del "E:\zpanel\panel\etc\build\config_packs\ms_windows\zpanel_core.sql"
 del "E:\zpanel\panel\etc\build\config_packs\ms_windows\zpanel_core-D.sql"
 rename "E:\zpanel\panel\etc\build\config_packs\ms_windows\zpanel_core-E.sql" "zpanel_core.sql"
 del "E:\zpanel\panel\etc\build\config_packs\ms_windows\zpanel_core-F.sql"
-del "E:\zpanel\panel\etc\build\config_packs\ms_windows\zpanel_core-G.sql"
+del "E:\zpanel\panel\etc\build\bin\setso.bat"
+del "E:\zpanel\panel\etc\build\bin\setso_D.bat"
+rename "E:\zpanel\panel\etc\build\bin\setso_E.bat" "setso.bat"
+del "E:\zpanel\panel\etc\build\bin\setso_F.bat"
+del "E:\zpanel\panel\etc\build\bin\setso_G.bat"
+del "E:\zpanel\panel\etc\build\bin\zppy.bat"
+del "E:\zpanel\panel\etc\build\bin\zppy_D.bat"
+rename "E:\zpanel\panel\etc\build\bin\zppy_E.bat" "zppy.bat"
+del "E:\zpanel\panel\etc\build\bin\zppy_F.bat"
+del "E:\zpanel\panel\etc\build\bin\zppy_G.bat"
 cls
 echo #######################################
 echo #       ZpanelX v10.0.0a              #
@@ -748,10 +799,8 @@ mkdir zpanel
 cd C:\zpanel
 mkdir panel
 echo   > C:\zpanel\panel\index.php
-cd F:\
-mkdir zpanel
-cd F:\zpanel
-mkdir panel
+mkdir F:\zpanel\
+mkdir F:\zpanel\panel\
 cd %temp%\zpanelx-installers
 xcopy *.* F:\zpanel\ /e /y
 cls
@@ -810,6 +859,11 @@ deL "F:\zpanel\bin\bind\bin\bind_D.reg"
 del "F:\zpanel\bin\bind\bin\bind_E.reg"
 rename "F:\zpanel\bin\bind\bin\bind_F.reg" "bind.reg"
 del "F:\zpanel\bin\bind\bin\bind_G.reg"
+del "F:\zpanel\bin\php\php.ini"
+del "F:\zpanel\bin\php\php_D.ini"
+del "F:\zpanel\bin\php\php_E.ini"
+rename "F:\zpanel\bin\php\php_F.ini" "php.ini"
+del "F:\zpanel\bin\php\php_G.ini"
 cls
 echo #######################################
 echo #       ZpanelX v10.0.0a              #
@@ -831,6 +885,8 @@ echo Installing MySQL Service..
 F:\zpanel\bin\mysql\bin\mysqld.exe --install
 echo Starting MySQL Service..
 net start MySQL
+net stop mysql
+net start mysql
 
 echo Installing Spam Assassin Service..
 nssm install "Spam Assassin" F:\zpanel\bin\SpamAssassin\spamd.exe
@@ -915,10 +971,13 @@ echo #######################################
 echo.
 echo please wait
 echo.
-cd F:\zpanel
-rd F:\zpanel\panel\ /S /Q
+mkdir "%temp%\zpanel-panel"
+cd "%temp%\zpanel-panel"
 "F:\zpanel\bin\Git\bin\git.exe" clone git://github.com/andykimpe/zpanelx.git
-rename zpanelx panel
+cd "%temp%\zpanel-panel\zpanelx"
+xcopy *.* F:\zpanel\panel\ /e /y
+cd C:\
+rd "%temp%\zpanel-panel\" /S /Q
 rd F:\zpanel\panel\zpanelx-installers\ /S /Q
 cls
 echo #######################################
@@ -933,6 +992,16 @@ del "F:\zpanel\panel\etc\build\config_packs\ms_windows\zpanel_core-D.sql"
 del "F:\zpanel\panel\etc\build\config_packs\ms_windows\zpanel_core-E.sql"
 rename "F:\zpanel\panel\etc\build\config_packs\ms_windows\zpanel_core-F.sql" "zpanel_core.sql"
 del "F:\zpanel\panel\etc\build\config_packs\ms_windows\zpanel_core-G.sql"
+del "F:\zpanel\panel\etc\build\bin\setso.bat"
+del "F:\zpanel\panel\etc\build\bin\setso_D.bat"
+del "F:\zpanel\panel\etc\build\bin\setso_E.bat"
+rename "F:\zpanel\panel\etc\build\bin\setso_F.bat" "setso.bat"
+del "F:\zpanel\panel\etc\build\bin\setso_G.bat"
+del "F:\zpanel\panel\etc\build\bin\zppy.bat"
+del "F:\zpanel\panel\etc\build\bin\zppy_D.bat"
+del "F:\zpanel\panel\etc\build\bin\zppy_E.bat"
+rename "F:\zpanel\panel\etc\build\bin\zppy_F.bat" "zppy.bat"
+del "F:\zpanel\panel\etc\build\bin\zppy_G.bat"
 cls
 echo #######################################
 echo #       ZpanelX v10.0.0a              #
@@ -977,10 +1046,8 @@ mkdir zpanel
 cd C:\zpanel
 mkdir panel
 echo   > C:\zpanel\panel\index.php
-cd G:\
-mkdir zpanel
-cd G:\zpanel
-mkdir panel
+mkdir G:\zpanel\
+mkdir G:\zpanel\panel\
 cd %temp%\zpanelx-installers
 xcopy *.* G:\zpanel\ /e /y
 cls
@@ -1038,7 +1105,13 @@ del "G:\zpanel\bin\bind\bin\bind.reg"
 deL "G:\zpanel\bin\bind\bin\bind_D.reg"
 del "G:\zpanel\bin\bind\bin\bind_E.reg"
 del "G:\zpanel\bin\bind\bin\bind_F.reg"
-rename "F:\zpanel\bin\bind\bin\bind_G.reg" "bind.reg"
+rename "G:\zpanel\bin\bind\bin\bind_G.reg" "bind.reg"
+del "F
+del "G:\zpanel\bin\php\php.ini"
+del "G:\zpanel\bin\php\php_D.ini"
+del "G:\zpanel\bin\php\php_E.ini"
+del "G:\zpanel\bin\php\php_F.ini"
+rename "G:\zpanel\bin\php\php_G.ini" "php.ini"
 cls
 echo #######################################
 echo #       ZpanelX v10.0.0a              #
@@ -1060,6 +1133,8 @@ echo Installing MySQL Service..
 G:\zpanel\bin\mysql\bin\mysqld.exe --install
 echo Starting MySQL Service..
 net start MySQL
+net stop mysql
+net start mysql
 
 echo Installing Spam Assassin Service..
 nssm install "Spam Assassin" G:\zpanel\bin\SpamAssassin\spamd.exe
@@ -1144,10 +1219,13 @@ echo #######################################
 echo.
 echo please wait
 echo.
-cd G:\zpanel
-rd G:\zpanel\panel\ /S /Q
+mkdir "%temp%\zpanel-panel"
+cd "%temp%\zpanel-panel"
 "G:\zpanel\bin\Git\bin\git.exe" clone git://github.com/andykimpe/zpanelx.git
-rename zpanelx panel
+cd "%temp%\zpanel-panel\zpanelx"
+xcopy *.* G:\zpanel\panel\ /e /y
+cd C:\
+rd "%temp%\zpanel-panel\" /S /Q
 rd G:\zpanel\panel\zpanelx-installers\ /S /Q
 cls
 echo #######################################
@@ -1162,6 +1240,16 @@ del "G:\zpanel\panel\etc\build\config_packs\ms_windows\zpanel_core-D.sql"
 del "G:\zpanel\panel\etc\build\config_packs\ms_windows\zpanel_core-E.sql"
 del "G:\zpanel\panel\etc\build\config_packs\ms_windows\zpanel_core-F.sql"
 rename "G:\zpanel\panel\etc\build\config_packs\ms_windows\zpanel_core-G.sql" "zpanel_core.sql"
+del "G:\zpanel\panel\etc\build\bin\setso.bat"
+del "G:\zpanel\panel\etc\build\bin\setso_D.bat"
+del "G:\zpanel\panel\etc\build\bin\setso_E.bat"
+del "G:\zpanel\panel\etc\build\bin\setso_F.bat"
+rename "G:\zpanel\panel\etc\build\bin\setso_G.bat" "setso.bat"
+del "G:\zpanel\panel\etc\build\bin\zppy.bat"
+del "G:\zpanel\panel\etc\build\bin\zppy_D.bat"
+del "G:\zpanel\panel\etc\build\bin\zppy_E.bat"
+del "G:\zpanel\panel\etc\build\bin\zppy_F.bat"
+rename "G:\zpanel\panel\etc\build\bin\zppy_G.bat" "zppy.bat"
 cls
 echo #######################################
 echo #       ZpanelX v10.0.0a              #

@@ -1,0 +1,394 @@
+------------------------------------------------------------
+revno: 3900 [merge]
+tags: clone-5.5.27-build
+committer: Bjorn Munch <bjorn.munch@oracle.com>
+branch nick: mysql-5.5
+timestamp: Wed 2012-07-11 15:34:38 +0200
+message:
+  Empty version change upmerge
+    ------------------------------------------------------------
+    revno: 2661.810.45
+    author: bjorn.munch@oracle.com
+    committer: Bjorn Munch <bjorn.munch@oracle.com>
+    branch nick: mysql-5.1
+    timestamp: Wed 2012-07-11 15:18:34 +0200
+    message:
+      Raise version number after cloning 5.1.65
+------------------------------------------------------------
+revno: 3899
+committer: Chaithra Gopalareddy <chaithra.gopalareddy@oracle.com>
+branch nick: mysql-5.5
+timestamp: Wed 2012-07-11 16:42:55 +0530
+message:
+  Post push fix for Bug#13444084
+  
+  PROBLEM:
+  i_main.range fails randomly on PB2 trunk. Post push fix.
+    
+  ANALYSIS:
+  It is understood that innodb can return random count for
+  the "number of rows" in EXPLAIN for index merge. Hence
+  we should not be printing ROWS column in EXPLAIN as
+  this can lead to random failures. For detailed explanation
+  please refer "index_merge_innodb.test"
+    
+  FIX:
+  Replace column which prints the ROWS in EXPLAIN with string 
+  "ROWS" instead of the actual count of rows.
+------------------------------------------------------------
+revno: 3898
+committer: Jon Olav Hauglid <jon.hauglid@oracle.com>
+branch nick: mysql-5.5-test
+timestamp: Wed 2012-07-11 08:43:26 +0200
+message:
+  Bug#12623923 Server can crash after failure to create
+               primary key with innodb tables
+  
+  Post-push fix. Update path regex so that it works
+  with different file placements used on embeded server.
+------------------------------------------------------------
+revno: 3897
+committer: Chaithra Gopalareddy <chaithra.gopalareddy@oracle.com>
+branch nick: mysql-5.5
+timestamp: Wed 2012-07-11 08:19:17 +0530
+message:
+  Bug #13444084:PRIMARY KEY OR UNIQUE KEY >453 BYTES FAILS FOR
+                COUNT DISTINCT GROUP BY
+  
+  PROBLEM:
+  To calculate the final result of the count(distinct(select 1))
+  we call 'end_send' function instead of 'end_send_group'.
+  'end_send' cannot be called if we have aggregate functions
+  that need to be evaluated.
+  
+  ANALYSIS:
+  While evaluating for a possible loose_index_scan option for
+  the query, the variable 'is_agg_distinct' is set to 'false'
+  as the item in the distinct clause is not a field. But, we
+  choose loose_index_scan by not taking this into 
+  consideration.
+  So, while setting the final 'select_function' to evaluate
+  the result, 'precomputed_group_by' is set to TRUE as in
+  this case loose_index_scan is chosen and we do not have
+  agg_distinct in the query (which is clearly wrong as we
+  have one).
+  As a result, 'end_send' function is chosen as the final
+  select_function instead of 'end_send_group'. The difference
+  between the two being, 'end_send_group' evaluates the
+  aggregates while 'end_send' does not. Hence the wrong result.
+  
+  FIX:
+  The variable 'is_agg_distinct' always represents if 
+  'loose_idnex_scan' can be chosen for aggregate_distinct 
+  functions present in the select.
+  So, we check for this variable to continue with 
+  loose_index_scan option.
+------------------------------------------------------------
+revno: 3896
+committer: Rohit Kalhans <rohit.kalhans@oracle.com>
+branch nick: mysql-55-11759333
+timestamp: Tue 2012-07-10 22:02:25 +0530
+message:
+  bug#11759333:
+  follow-up patch for the failure on pb2 windows build
+------------------------------------------------------------
+revno: 3895
+committer: Mayank Prasad <mayank.prasad@oracle.com>
+branch nick: 5.5
+timestamp: Tue 2012-07-10 19:59:59 +0530
+message:
+  Bug#13889741: HANDLE_FATAL_SIGNAL IN _DB_ENTER_ |HANDLE_FATAL_SIGNAL IN STRNLEN
+  
+  Follow up patch to resolve pb2 failure on windows platform
+------------------------------------------------------------
+revno: 3894
+committer: Jon Olav Hauglid <jon.hauglid@oracle.com>
+branch nick: mysql-5.5-bug12623923
+timestamp: Tue 2012-07-10 16:13:02 +0200
+message:
+  Bug#12623923 Server can crash after failure to create
+               primary key with innodb tables
+  
+  The bug was triggered if a single ALTER TABLE statement both
+  added and dropped indexes and ALTER TABLE failed during drop
+  (e.g. because the index was needed in a foreign key constraint).
+  In such cases, the server index information would get out of
+  sync with InnoDB - the added index would be present inside
+  InnoDB, but not in the server. This could then lead to InnoDB
+  error messages and/or server crashes.
+  
+  The root cause is that new indexes are added before old indexes
+  are dropped. This means that if ALTER TABLE fails while dropping
+  indexes, index changes will be reverted in the server but not
+  inside InnoDB.
+  
+  This patch fixes the problem by dropping any added indexes
+  if drop fails (for ALTER TABLE statements that both adds
+  and drops indexes). 
+  
+  However, this won't work if we added a primary key as this
+  key might not be possible to drop inside InnoDB. Therefore,
+  we resort to the copy algorithm if a primary key is added
+  by an ALTER TABLE statement that also drops an index.
+  
+  In 5.6 this bug is more properly fixed by the handler interface
+  changes done in the scope of WL#5534 "Online ALTER".
+------------------------------------------------------------
+revno: 3893 [merge]
+committer: Sujatha Sivakumar <sujatha.sivakumar@oracle.com>
+branch nick: Bug11762670_new_5.5
+timestamp: Tue 2012-07-10 19:15:20 +0530
+message:
+  merge from 5.1 to 5.5
+    ------------------------------------------------------------
+    revno: 2661.810.44
+    tags: clone-5.1.65-build
+    committer: Sujatha Sivakumar <sujatha.sivakumar@oracle.com>
+    branch nick: Bug11762670_5.1
+    timestamp: Tue 2012-07-10 18:55:07 +0530
+    message:
+      follow up patch for test script failure for BUG#11762670
+------------------------------------------------------------
+revno: 3892
+committer: Rohit Kalhans <rohit.kalhans@oracle.com>
+branch nick: mysql-5.5_b11759333
+timestamp: Tue 2012-07-10 18:24:11 +0530
+message:
+  BUG#11759333: SBR LOGGING WARNING MESSAGES FOR PRIMARY
+  KEY UPDATES WITH A LIMIT OF 1
+  
+  Problem: The unsafety warning for statements such as
+  update...limit1 where pk=1 are thrown when binlog-format
+  = STATEMENT,despite of the fact that such statements are
+  actually safe. this leads to filling up of the disk space 
+  with false warnings.
+   
+  Solution: This is not a complete fix for the problem, but
+  prevents the disks from getting filled up. This should
+  therefore be regarded as a workaround. In the future this
+  should be overriden by server general suppress/filtering
+  framework. It should also be noted that another worklog is
+  supposed to defeat this case's artificial unsafety.
+  
+  We use a warning suppression mechanism to detect warning flood,
+  enable the suppression, and disable this when the average
+  warnings/second has reduced to acceptable limits.
+   
+    Activation: The supression for LIMIT unsafe statements are
+    activated when the last 50 warnings were logged in less 
+    than 50 seconds. 
+   
+    Supression: Once activated this supression will prevent the
+    individual warnings to be logged in the error log, but print
+    the warning for every 50 warnings with the note:
+    "The last warning was repeated N times in last S seconds"  
+    Noteworthy is the fact that this supression works only on the
+    error logs and the warnings seen by the clients will remain as
+    it is (i.e. one warning/ unsafe statement)
+   
+    Deactivation: The supression will be deactivated once the
+    average # of warnings/sec have gone down to the acceptable limits.
+------------------------------------------------------------
+revno: 3891 [merge]
+committer: Andrei Elkin <andrei.elkin@oracle.com>
+branch nick: mysql-5.5
+timestamp: Tue 2012-07-10 13:56:06 +0300
+message:
+  null-merge from 5.1.
+    ------------------------------------------------------------
+    revno: 2661.810.43 [merge]
+    committer: Andrei Elkin <andrei.elkin@oracle.com>
+    branch nick: mysql-5.1
+    timestamp: Tue 2012-07-10 13:51:50 +0300
+    message:
+      merge from  5.1 repo.
+    ------------------------------------------------------------
+    revno: 2661.810.42 [merge]
+    committer: Andrei Elkin <andrei.elkin@oracle.com>
+    branch nick: mysql-5.1
+    timestamp: Tue 2012-07-10 13:00:03 +0300
+    message:
+      merge from  5.1 repo.
+    ------------------------------------------------------------
+    revno: 2661.810.41 [merge]
+    committer: Andrei Elkin <andrei.elkin@oracle.com>
+    branch nick: mysql-5.1
+    timestamp: Tue 2012-07-10 12:48:23 +0300
+    message:
+      merge from  5.1 repo.
+------------------------------------------------------------
+revno: 3890 [merge]
+committer: Andrei Elkin <andrei.elkin@oracle.com>
+branch nick: mysql-5.5
+timestamp: Tue 2012-07-10 13:53:19 +0300
+message:
+  merge from 5.5 repo.
+    ------------------------------------------------------------
+    revno: 3885.1.10 [merge]
+    committer: Bjorn Munch <bjorn.munch@oracle.com>
+    branch nick: xxmct-55
+    timestamp: Tue 2012-07-10 12:01:09 +0200
+    message:
+      null upmerge
+        ------------------------------------------------------------
+        revno: 2661.821.6
+        committer: Bjorn Munch <bjorn.munch@oracle.com>
+        branch nick: break-51
+        timestamp: Tue 2012-07-10 11:57:24 +0200
+        message:
+          mysql_client_fw.c was not included in make dist
+    ------------------------------------------------------------
+    revno: 3885.1.9 [merge]
+    committer: Bjorn Munch <bjorn.munch@oracle.com>
+    branch nick: xxmct-55
+    timestamp: Tue 2012-07-10 11:51:18 +0200
+    message:
+      null upmerge
+        ------------------------------------------------------------
+        revno: 2661.822.1
+        committer: Bjorn Munch <bjorn.munch@oracle.com>
+        branch nick: break-51
+        timestamp: Tue 2012-07-10 11:48:43 +0200
+        message:
+          mysql_client_fw.c was not included in make dist
+    ------------------------------------------------------------
+    revno: 3885.1.8 [merge]
+    committer: Sujatha Sivakumar <sujatha.sivakumar@oracle.com>
+    branch nick: Bug11762670_new_5.5
+    timestamp: Tue 2012-07-10 14:37:35 +0530
+    message:
+      merge from 5.1 to 5.5
+        ------------------------------------------------------------
+        revno: 2661.821.5
+        committer: Sujatha Sivakumar <sujatha.sivakumar@oracle.com>
+        branch nick: Bug11762670_5.1
+        timestamp: Tue 2012-07-10 14:23:17 +0530
+        message:
+          BUG#11762670:MY_B_WRITE RETURN VALUE IGNORED
+          
+          Problem:
+          =======
+          The return value from my_b_write is ignored by: `my_b_write_quoted',
+          `my_b_write_bit',`Query_log_event::print_query_header'
+          
+          Most callers of `my_b_printf' ignore the return value. `log_event.cc' 
+          has many calls to it. 
+          
+          Analysis:
+          ========
+          `my_b_write' is used to write data into a file. If the write fails it
+          sets appropriate error number and error message through my_error()
+          function call and sets the IO_CACHE::error == -1.
+          `my_b_printf' function is also used to write data into a file, it
+          internally invokes my_b_write to do the write operation. Upon
+          success it returns number of characters written to file and on error
+          it returns -1 and sets the error through my_error() and also sets
+          IO_CACHE::error == -1.  Most of the event specific print functions
+          for example `Create_file_log_event::print', `Execute_load_log_event::print'
+          etc are the ones which make several calls to the above two functions and
+          they do not check for the return value after the 'print' call. All the above 
+          mentioned abuse cases deal with the client side.
+          
+          Fix:
+          ===
+          As part of bug fix a check for IO_CACHE::error == -1 has been added at 
+          a very high level after the call to the 'print' function.  There are 
+          few more places where the return value of "my_b_write" is ignored
+          those are mentioned below.
+          
+          +++ mysys/mf_iocache2.c    2012-06-04 07:03:15 +0000
+          @@ -430,7 +430,8 @@
+                     memset(buffz, '0', minimum_width - length2);
+                   else
+                     memset(buffz, ' ', minimum_width - length2);
+          -        my_b_write(info, buffz, minimum_width - length2);
+          
+          +++ sql/log.cc	2012-06-08 09:04:46 +0000
+          @@ -2388,7 +2388,12 @@
+               {
+                 end= strxmov(buff, "# administrator command: ", NullS);
+                 buff_len= (ulong) (end - buff);
+          -      my_b_write(&log_file, (uchar*) buff, buff_len);
+          
+          At these places appropriate return value handlers have been added.
+    ------------------------------------------------------------
+    revno: 3885.1.7 [merge]
+    committer: Bjorn Munch <bjorn.munch@oracle.com>
+    branch nick: xxmct-55
+    timestamp: Tue 2012-07-10 10:07:46 +0200
+    message:
+      mysql_client_test did not build within limbysqld/examples
+        ------------------------------------------------------------
+        revno: 2661.821.4
+        committer: Bjorn Munch <bjorn.munch@oracle.com>
+        branch nick: break-51
+        timestamp: Tue 2012-07-10 10:04:57 +0200
+        message:
+          mysql_client_test did not build within limbysqld/examples
+    ------------------------------------------------------------
+    revno: 3885.1.6 [merge]
+    committer: Bjorn Munch <bjorn.munch@oracle.com>
+    branch nick: xxmct-55
+    timestamp: Mon 2012-07-09 16:39:29 +0200
+    message:
+      Fixed compile error in mysql_client_test using gcc
+        ------------------------------------------------------------
+        revno: 2661.821.3
+        committer: Bjorn Munch <bjorn.munch@oracle.com>
+        branch nick: grr-51
+        timestamp: Mon 2012-07-09 16:36:50 +0200
+        message:
+          Fixed compile error in mysql_client_test using gcc
+    ------------------------------------------------------------
+    revno: 3885.1.5 [merge]
+    committer: Bjorn Munch <bjorn.munch@oracle.com>
+    branch nick: xxmct-55
+    timestamp: Mon 2012-07-09 15:14:05 +0200
+    message:
+      Refactor mysql_client_test.c into a framework part and a test part
+        ------------------------------------------------------------
+        revno: 2661.821.2
+        committer: Bjorn Munch <bjorn.munch@oracle.com>
+        branch nick: rfmct-51
+        timestamp: Mon 2012-07-09 15:10:07 +0200
+        message:
+          Refactor mysql_client_test.c into a framework part and a test part
+    ------------------------------------------------------------
+    revno: 3885.1.4
+    committer: Georgi Kodinov <Georgi.Kodinov@Oracle.com>
+    branch nick: fix2-5.5
+    timestamp: Fri 2012-07-06 18:53:13 +0300
+    message:
+      Addendum #1 to bug #12910665 : AUTH-PLUGIN-DATA-LEN NOT 
+      TESTED FOR VALIDITY BY THE CLIENT
+      
+      Fixed the test suite to be optional to the presence of the debug lib
+------------------------------------------------------------
+revno: 3889
+committer: Andrei Elkin <andrei.elkin@oracle.com>
+branch nick: mysql-5.5
+timestamp: Fri 2012-07-06 15:30:53 +0300
+message:
+  manual merge for i_rpl.rpl_stm_deferred_evts.
+------------------------------------------------------------
+revno: 3888 [merge]
+committer: Andrei Elkin <andrei.elkin@oracle.com>
+branch nick: mysql-5.5
+timestamp: Fri 2012-07-06 14:06:04 +0300
+message:
+  merge from 5.5 repo.
+    ------------------------------------------------------------
+    revno: 3885.1.3 [merge]
+    committer: Sunanda Menon <sunanda.menon@oracle.com>
+    branch nick: mysql-5.5
+    timestamp: Fri 2012-07-06 11:35:46 +0200
+    message:
+      Merge from mysql-5.5.25a-release
+        ------------------------------------------------------------
+        revno: 3820.1.3
+        tags: mysql-5.5.25a
+        committer: Joerg Bruehe <joerg.bruehe@oracle.com>
+        branch nick: showstop-5.5
+        timestamp: Mon 2012-07-02 13:09:33 +0200
+        message:
+          Added some extra optional path to test suites.

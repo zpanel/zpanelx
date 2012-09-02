@@ -53,7 +53,7 @@ my $cwd = cwd();
 my $basedir;
 
 my $socket  = '/tmp/mysql.sock';
-my $version = '5.5.21';
+my $version = '5.5.27';
 
 sub which
 {
