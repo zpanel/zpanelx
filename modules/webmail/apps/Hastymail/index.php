@@ -26,7 +26,7 @@
 ----------------------------------------------------------------*/
 
 /* configuration file */
-$hm2_config = '/etc/zpanel/panel/modules/webmail/apps/Hastymail/hastymail2.rc';
+$hm2_config = '/zpanel/panel/modules/webmail/apps/Hastymail/hastymail2.rc';
 
 /* include file prefix. This should be left blank unless you want to use an
    absolute path for file includes. In that case it should be set to a
