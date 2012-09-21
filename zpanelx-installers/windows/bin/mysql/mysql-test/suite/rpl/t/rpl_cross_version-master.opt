@@ -1,2 +1,0 @@
---replicate-same-server-id --relay-log=slave-relay-bin
---force-restart
