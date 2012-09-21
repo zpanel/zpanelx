@@ -822,7 +822,7 @@ class module_controller {
 															NULL,
 															NULL,
 															" . time() . ")");															
-											
+
         $sql->execute();
         $sql = $zdbh->prepare("INSERT INTO x_dns (dn_acc_fk,
 															dn_name_vc,
@@ -869,7 +869,7 @@ class module_controller {
 															NULL,
 															NULL,
 															" . time() . ")");
-															
+
 		        $sql->execute();
         $sql = $zdbh->prepare("INSERT INTO x_dns (dn_acc_fk,
 															dn_name_vc,
@@ -893,7 +893,7 @@ class module_controller {
 															NULL,
 															NULL,
 															" . time() . ")");													
-															
+
         $sql->execute();
         $sql = $zdbh->prepare("INSERT INTO x_dns (dn_acc_fk,
 															dn_name_vc,
@@ -1277,7 +1277,7 @@ class module_controller {
                             return FALSE;
                         }
 					} elseif ($type[$id] == "DKIM") {	
-						
+
                     } elseif ($type[$id] == "TXT") {
                         
                     } elseif ($type[$id] == "SPF") {
@@ -1342,14 +1342,14 @@ class module_controller {
                     if ($delete['new_' . $id] == "false" && !fs_director::CheckForEmptyValue($type['new_' . $id])) {
                         //HOSTNAME
                         if (isset($hostName['new_' . $id]) && !fs_director::CheckForEmptyValue($hostName['new_' . $id]) && $hostName['new_' . $id] != "@") {
-							
+
 							//Check that hostname does not already exist.
 							$hostname = $zdbh->query("SELECT * FROM x_dns WHERE dn_host_vc='" . $hostName['new_' . $id] . "' AND dn_vhost_fk=" . $domainID . " AND dn_deleted_ts IS NULL")->Fetch();
 							if ($hostname){
 								self::$hostname_error = TRUE;
 								return FALSE;
 							}
-							
+
                             if ($type['new_' . $id] != "SRV") {
                                 if (!self::IsValidDomainName($hostName['new_' . $id])) {
                                     return FALSE;
@@ -1376,11 +1376,11 @@ class module_controller {
                                     return FALSE;
                                 }
 							} elseif ($type['new_' . $id] == "DKIM") {	
-								
+
                             } elseif ($type['new_' . $id] == "TXT") {
                                 
                             } elseif ($type['new_' . $id] == "SPF") {
-							
+
 							} elseif ($type['new_' . $id] == "NS")  {
                                 
                             } else {
@@ -1593,7 +1593,7 @@ class module_controller {
                     $sql = $zdbh->prepare("SELECT * FROM x_dns WHERE dn_vhost_fk=" . $domainID . " AND dn_deleted_ts IS NULL ORDER BY dn_type_vc");
                     $sql->execute();
                     $domain = $zdbh->query("SELECT dn_name_vc FROM x_dns WHERE dn_vhost_fk=" . $domainID . " AND dn_deleted_ts IS NULL")->Fetch();
-					
+
 
                     $zonecheck_file = (ctrl_options::GetOption('temp_dir')) . $domain['dn_name_vc'] . ".txt";
                     $checkline = "$" . "TTL 86400" . fs_filehandler::NewLine();
@@ -1653,9 +1653,9 @@ class module_controller {
 					}
 				}
 			}
-	
+
 	}
-	
+
 
 
 }
