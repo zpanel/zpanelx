@@ -15,6 +15,7 @@ class ctrl_auth {
     /**
      * Checks that the server has a valid session for the user if not it will redirect to the login screen.
      * @author Bobby Allen (ballen@zpanelcp.com)
+     * @global db_driver $zdbh The ZPX database handle.
      * return bool
      */
     static function RequireUser() {
@@ -24,8 +25,13 @@ class ctrl_auth {
                 self::Authenticate($_COOKIE['zUser'], $_COOKIE['zPass'], false, true);
             }
             runtime_hook::Execute('OnRequireUserLogin');
-            $theme = $zdbh->query("SELECT ac_usertheme_vc, ac_usercss_vc FROM x_accounts WHERE ac_user_vc = 'zadmin'")->fetch();
-            include 'etc/styles/' . $theme['ac_usertheme_vc'] . '/login.ztml';
+            $sqlQuery = "SELECT ac_usertheme_vc, ac_usercss_vc FROM 
+                         x_accounts WHERE 
+                         ac_user_vc = :zadmin";
+            $bindArray = array(':zadmin' => 'zadmin');
+            $zdbh->bindQuery($sqlQuery, $bindArray);
+            $themeRow = $zdbh->returnRow();
+            include 'etc/styles/' . $themeRow['ac_usertheme_vc'] . '/login.ztml';
             exit;
         }
         return true;
@@ -65,7 +71,7 @@ class ctrl_auth {
     /**
      * The main authentication mechanism, checks username and password against the database and logs the user in on a successful authenitcation request.
      * @author Bobby Allen (ballen@zpanelcp.com)
-     * @global obj $zdbh The ZPX database handle.
+     * @global db_driver $zdbh The ZPX database handle.
      * @param string $username The username to use to authenticate with.
      * @param string $password The password to use to authenticate with.
      * @param bool $rememberme Remember the password for 30 days? (true/false)
@@ -74,17 +80,30 @@ class ctrl_auth {
      */
     static function Authenticate($username, $password, $rememberme = false, $iscookie = false) {
         global $zdbh;
-        $rows = $zdbh->query("select * from x_accounts where ac_user_vc = '$username' AND ac_pass_vc = '$password' AND ac_enabled_in = 1 AND ac_deleted_ts IS NULL")->fetch();
-        if ($rows) {
-            ctrl_auth::SetUserSession($rows['ac_id_pk']);
-            $log_logon = $zdbh->prepare("UPDATE x_accounts SET ac_lastlogon_ts=" . time() . " WHERE ac_id_pk=" . $rows['ac_id_pk'] . "");
+        $sqlString = "SELECT * FROM 
+                      x_accounts WHERE 
+                      ac_user_vc = :username AND 
+                      ac_pass_vc = :password AND 
+                      ac_enabled_in = 1 AND 
+                      ac_deleted_ts IS NULL";
+
+        $bindArray = array(':username' => $username,
+            ':password' => $password
+        );
+
+        $zdbh->bindQuery($sqlString, $bindArray);
+        $row = $zdbh->returnRow();
+
+        if ($row) {
+            ctrl_auth::SetUserSession($row['ac_id_pk']);
+            $log_logon = $zdbh->prepare("UPDATE x_accounts SET ac_lastlogon_ts=" . time() . " WHERE ac_id_pk=" . $row['ac_id_pk'] . "");
             $log_logon->execute();
             if ($rememberme) {
                 setcookie("zUser", $username, time() + 60 * 60 * 24 * 30, "/");
                 setcookie("zPass", $password, time() + 60 * 60 * 24 * 30, "/");
             }
             runtime_hook::Execute('OnGoodUserLogin');
-            return $rows['ac_id_pk'];
+            return $row['ac_id_pk'];
         } else {
             runtime_hook::Execute('OnBadUserLogin');
             return false;

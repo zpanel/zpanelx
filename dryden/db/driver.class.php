@@ -12,6 +12,63 @@
  */
 class db_driver extends PDO {
 
+    /**
+     *
+     * @var \PDOStatement 
+     */
+    private $_prepared = null;
+
+    /**
+     *
+     * @var \PDOStatement 
+     */
+    private $_executed = null;
+
+    /**
+     *
+     * @var array 
+     */
+    private $_result = null;
+
+    /**
+     * 
+     * @param type $prepared
+     */
+    private function setPrepared($prepared) {
+        $this->_prepared = $prepared;
+    }
+
+    /**
+     * 
+     * @param type $executed
+     */
+    private function setExecuted($executed) {
+        $this->_executed = $executed;
+    }
+
+    /**
+     * 
+     * @return \PDOStatement
+     */
+    private function getPrepared() {
+        return $this->_prepared;
+    }
+
+    /**
+     * 
+     * @return \PDOStatement
+     */
+    private function getExecuted() {
+        return $this->_executed;
+    }
+
+    /**
+     * 
+     * @param String $dsn
+     * @param String $username
+     * @param String $password
+     * @param $driver_options [optional]
+     */
     public function __construct($dsn, $username = null, $password = null, $driver_options = null) {
         parent::__construct($dsn, $username, $password, $driver_options);
     }
@@ -35,16 +92,26 @@ class db_driver extends PDO {
             }
             </style>";
 
+    /**
+     * 
+     * @param String $exception
+     * @return String
+     */
     private function cleanexpmessage($exception) {
         $res = strstr($exception, "]: ", false);
-        $res = str_replace(']: ', '', $res);
-        $res = strstr($res, 'Stack', true);
+        $res1 = str_replace(']: ', '', $res);
+        $res2 = strstr($res1, 'Stack', true);
         $stack = strstr($exception, 'Stack trace:', false);
-        $stack = strstr($stack, '}', true);
-        $stack = str_replace("Stack trace:", "", $stack);
-        return $res . $stack . "}";
+        $stack1 = strstr($stack, '}', true);
+        $stack2 = str_replace("Stack trace:", "", $stack1);
+        return $res2 . $stack2 . "}";
     }
 
+    /**
+     * 
+     * @param String $query
+     * @return type
+     */
     public function query($query) {
         try {
             $result = parent::query($query);
@@ -61,7 +128,13 @@ class db_driver extends PDO {
         }
     }
 
-    function exec($query) {
+    /**
+     * 
+     * @param String $query
+     * @deprecated since version 10.0.1
+     * @return type
+     */
+    public function exec($query) {
         try {
             $result = parent::exec($query);
             return($result);
@@ -77,7 +150,34 @@ class db_driver extends PDO {
         }
     }
 
-    function prepare($query, $driver_options = array()) {
+    /**
+     * The main query function using bind variables for SQL injection protection.
+     * Returns an array of results.
+     * @author Kevin Andrews (kandrews@zpanelcp.com)
+     * @param String $sqlString
+     * @param Array $bindArray
+     * @param Array $driver_options [optional]
+     * @return \PDOStatement
+     */
+    public function bindQuery($sqlString, array $bindArray, $driver_options = array()) {
+        $sqlPrepare = $this->prepare($sqlString, $driver_options);
+        $this->setPrepared($sqlPrepare);
+
+        $this->bindParams($sqlPrepare, $bindArray);
+
+        $sqlPrepare->execute();
+        $this->setExecuted($sqlPrepare);
+
+        return $sqlPrepare;
+    }
+
+    /**
+     * 
+     * @param String $query
+     * @param Array $driver_options
+     * @return type
+     */
+    public function prepare($query, $driver_options = array()) {
         try {
             $result = parent::prepare($query, $driver_options);
             return($result);
@@ -91,6 +191,43 @@ class db_driver extends PDO {
             }
             die($error_html);
         }
+    }
+
+    /**
+     * Binding an array of bind variable pairs to a prepared sql statement.
+     * @author Kevin Andrews (kandrews@zpanelcp.com)
+     * @param PDOStatement $sqlPrepare
+     * @param array $bindArray
+     * @return \PDOStatement
+     */
+    public function bindParams(PDOStatement $sqlPrepare, array $bindArray) {
+        foreach ($bindArray as $bindKey => &$bindValue) {
+            $sqlPrepare->bindParam($bindKey, $bindValue);
+        }
+    }
+
+    /**
+     * Returns the first result or next result if previously called.
+     * @return array
+     */
+    public function returnRow() {
+        return $this->getExecuted()->fetch();
+    }
+
+    /**
+     * Returns a multidimensional array of results.
+     * @return array
+     */
+    public function returnRows() {
+        return $this->getExecuted()->fetchAll();
+    }
+
+    /**
+     * Returns the rows affected by any query.
+     * @return int
+     */
+    public function returnResult() {
+        return $this->getExecuted()->rowCount();
     }
 
 }
