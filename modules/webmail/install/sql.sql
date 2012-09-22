@@ -1,0 +1,1 @@
+UPDATE `zpanel_core`.`x_profiles` SET `ud_language_vc` = 'French' WHERE `x_profiles`.`ud_id_pk` =1;
