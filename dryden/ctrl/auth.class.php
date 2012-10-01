@@ -25,13 +25,8 @@ class ctrl_auth {
                 self::Authenticate($_COOKIE['zUser'], $_COOKIE['zPass'], false, true);
             }
             runtime_hook::Execute('OnRequireUserLogin');
-            $sqlQuery = "SELECT ac_usertheme_vc, ac_usercss_vc FROM 
-                         x_accounts WHERE 
-                         ac_user_vc = :zadmin";
-            $bindArray = array(':zadmin' => 'zadmin');
-            $zdbh->bindQuery($sqlQuery, $bindArray);
-            $themeRow = $zdbh->returnRow();
-            include 'etc/styles/' . $themeRow['ac_usertheme_vc'] . '/login.ztml';
+            $theme = ctrl_options::GetSystemOption('theme_default');
+            include 'etc/styles/' . $theme . '/login.ztml';
             exit;
         }
         return true;
