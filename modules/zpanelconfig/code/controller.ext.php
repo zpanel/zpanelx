@@ -38,7 +38,15 @@ class module_controller {
             $res = array();
             $sql->execute();
             while ($rowsettings = $sql->fetch()) {
-                if (ctrl_options::CheckForPredefinedOptions($rowsettings['so_defvalues_tx'])) {
+                //Custom function if options is changing from every zpanelx installation
+                if(strpos($rowsettings['so_defvalues_tx'], "zCustom") !== false){
+                    $custom = str_replace("zCustom", "", $rowsettings['so_defvalues_tx']);
+                    if(method_exists(__CLASS__, $custom)){
+                        $fieldhtml = ctrl_options::OuputSettingMenuField($rowsettings['so_name_vc'], self::$custom(), $rowsettings['so_value_tx']);
+                    } else{
+                        $fieldhtml = ctrl_options::OutputSettingTextArea($rowsettings['so_name_vc'], $rowsettings['so_value_tx']);
+                    }
+                }else if (ctrl_options::CheckForPredefinedOptions($rowsettings['so_defvalues_tx'])) {
                     $fieldhtml = ctrl_options::OuputSettingMenuField($rowsettings['so_name_vc'], $rowsettings['so_defvalues_tx'], $rowsettings['so_value_tx']);
                 } else {
                     $fieldhtml = ctrl_options::OutputSettingTextArea($rowsettings['so_name_vc'], $rowsettings['so_value_tx']);
@@ -55,52 +63,50 @@ class module_controller {
         }
     }
 
-    static function getLastRunTime() {
-        $time = ctrl_options::GetSystemOption('daemon_lastrun');
-        if ($time != '0') {
-            return date(ctrl_options::GetSystemOption('zpanel_df'), $time);
+    static function getLastRunTime(){
+        $time = ctrl_options::GetOption('daemon_lastrun');
+        if ($time != '0'){
+            return date(ctrl_options::GetOption('zpanel_df'), $time);
+        } else {
+            return false;
+        }
+    }
+    
+    static function getNextRunTime(){
+        $time = ctrl_options::GetOption('daemon_lastrun');
+        if ($time != '0'){
+            $new_time = $time + ctrl_options::GetOption('daemon_run_interval');
+            return date(ctrl_options::GetOption('zpanel_df'), $new_time);
         } else {
             return false;
         }
     }
 
-    static function getNextRunTime() {
-        $time = ctrl_options::GetSystemOption('daemon_lastrun');
-        if ($time != '0') {
-            $new_time = $time + ctrl_options::GetSystemOption('daemon_run_interval');
-            return date(ctrl_options::GetSystemOption('zpanel_df'), $new_time);
+    static function getLastDayRunTime(){
+        $time = ctrl_options::GetOption('daemon_dayrun');
+        if ($time != '0'){
+            return date(ctrl_options::GetOption('zpanel_df'), $time);
         } else {
             return false;
         }
     }
-
-    static function getLastDayRunTime() {
-        $time = ctrl_options::GetSystemOption('daemon_dayrun');
-        if ($time != '0') {
-            return date(ctrl_options::GetSystemOption('zpanel_df'), $time);
+    static function getLastWeekRunTime(){
+        $time = ctrl_options::GetOption('daemon_weekrun');
+        if ($time != '0'){
+            return date(ctrl_options::GetOption('zpanel_df'), $time);
         } else {
             return false;
         }
     }
-
-    static function getLastWeekRunTime() {
-        $time = ctrl_options::GetSystemOption('daemon_weekrun');
-        if ($time != '0') {
-            return date(ctrl_options::GetSystemOption('zpanel_df'), $time);
+    static function getLastMonthRunTime(){
+        $time = ctrl_options::GetOption('daemon_monthrun');
+        if ($time != '0'){
+            return date(ctrl_options::GetOption('zpanel_df'), $time);
         } else {
             return false;
         }
     }
-
-    static function getLastMonthRunTime() {
-        $time = ctrl_options::GetSystemOption('daemon_monthrun');
-        if ($time != '0') {
-            return date(ctrl_options::GetSystemOption('zpanel_df'), $time);
-        } else {
-            return false;
-        }
-    }
-
+    
     static function doUpdateConfig() {
         global $zdbh;
         global $controller;
@@ -111,8 +117,7 @@ class module_controller {
             $sql->execute();
             while ($row = $sql->fetch()) {
                 if (!fs_director::CheckForEmptyValue($controller->GetControllerRequest('FORM', $row['so_name_vc']))) {
-                    $updatesql = $zdbh->prepare("UPDATE x_settings SET so_value_tx = :value WHERE so_name_vc = '" . $row['so_name_vc'] . "'");
-                    $updatesql->bindParam(':value', $controller->GetControllerRequest('FORM', $row['so_name_vc']));
+                    $updatesql = $zdbh->prepare("UPDATE x_settings SET so_value_tx = '" . $controller->GetControllerRequest('FORM', $row['so_name_vc']) . "' WHERE so_name_vc = '" . $row['so_name_vc'] . "'");
                     $updatesql->execute();
                 }
             }
@@ -124,7 +129,7 @@ class module_controller {
         global $zdbh;
         global $controller;
         $formvars = $controller->GetAllControllerRequests('FORM');
-        if (isset($formvars['inForceFull'])) {
+        if (isset($formvars['inForceFull'])){
             $sql = $zdbh->prepare("UPDATE x_settings set so_value_tx = '0' WHERE so_name_vc = 'daemon_lastrun'");
             $sql->execute();
             $sql = $zdbh->prepare("UPDATE x_settings set so_value_tx = '0' WHERE so_name_vc = 'daemon_dayrun'");
@@ -132,9 +137,9 @@ class module_controller {
             $sql = $zdbh->prepare("UPDATE x_settings set so_value_tx = '0' WHERE so_name_vc = 'daemon_weekrun'");
             $sql->execute();
             $sql = $zdbh->prepare("UPDATE x_settings set so_value_tx = '0' WHERE so_name_vc = 'daemon_monthrun'");
-            $sql->execute();
+            $sql->execute();            
         }
-        if (isset($formvars['inRunDaemon'])) {
+        if (isset($formvars['inRunDaemon'])){
             
         }
         self::$ok = true;
@@ -161,6 +166,16 @@ class module_controller {
         global $controller;
         $module_icon = "./modules/" . $controller->GetControllerRequest('URL', 'module') . "/assets/icon.png";
         return $module_icon;
+    }
+
+    static function ListThemes() {
+        $themes = ui_template::ListAvaliableTemeplates();
+        $list = array();
+        foreach ($themes as $theme){
+            $list[] = $theme['name'];
+        }
+        $list = implode("|", $list);
+        return $list;
     }
 
 }
