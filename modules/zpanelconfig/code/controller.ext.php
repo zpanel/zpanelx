@@ -38,7 +38,15 @@ class module_controller {
             $res = array();
             $sql->execute();
             while ($rowsettings = $sql->fetch()) {
-                if (ctrl_options::CheckForPredefinedOptions($rowsettings['so_defvalues_tx'])) {
+                //Custom function if options is changing from every zpanelx installation
+                if(strpos($rowsettings['so_defvalues_tx'], "zCustom") !== false){
+                    $custom = str_replace("zCustom", "", $rowsettings['so_defvalues_tx']);
+                    if(method_exists(__CLASS__, $custom)){
+                        $fieldhtml = ctrl_options::OuputSettingMenuField($rowsettings['so_name_vc'], self::$custom(), $rowsettings['so_value_tx']);
+                    } else{
+                        $fieldhtml = ctrl_options::OutputSettingTextArea($rowsettings['so_name_vc'], $rowsettings['so_value_tx']);
+                    }
+                }else if (ctrl_options::CheckForPredefinedOptions($rowsettings['so_defvalues_tx'])) {
                     $fieldhtml = ctrl_options::OuputSettingMenuField($rowsettings['so_name_vc'], $rowsettings['so_defvalues_tx'], $rowsettings['so_value_tx']);
                 } else {
                     $fieldhtml = ctrl_options::OutputSettingTextArea($rowsettings['so_name_vc'], $rowsettings['so_value_tx']);
@@ -158,6 +166,16 @@ class module_controller {
         global $controller;
         $module_icon = "./modules/" . $controller->GetControllerRequest('URL', 'module') . "/assets/icon.png";
         return $module_icon;
+    }
+
+    static function ListThemes() {
+        $themes = ui_template::ListAvaliableTemeplates();
+        $list = array();
+        foreach ($themes as $theme){
+            $list[] = $theme['name'];
+        }
+        $list = implode("|", $list);
+        return $list;
     }
 
 }
