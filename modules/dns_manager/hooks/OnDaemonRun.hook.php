@@ -151,7 +151,7 @@ echo fs_filehandler::NewLine() . "START DNS Manager Hook" . fs_filehandler::NewL
         // Slave named configuration
         if (!fs_director::CheckForEmptyValue($named_slave_file))
         {
-          $slaveline .= "zone \"$domain\" IN {"   . fs_filehandler::NewLine()
+          $slaveline .= "zone \"ns2.$domain\" IN {"   . fs_filehandler::NewLine()
                      . '	type slave;'           . fs_filehandler::NewLine()
                      . '	masters { ' . ctrl_options::GetOption('server_ip') . '; };' . fs_filehandler::NewLine()
                      . "	file \"C:\zpanel\configs\bind\zones\\$domain.txt\";" . fs_filehandler::NewLine()
