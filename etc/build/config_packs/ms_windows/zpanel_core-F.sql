@@ -732,6 +732,10 @@ insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx
 insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx`,`so_defvalues_tx`,`so_desc_tx`,`so_module_vc`,`so_usereditable_en`) values (115,'password_minlength','Min Password Length','6',NULL,'Minimum length required for new passwords','ZPanel Config','true');
 insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx`,`so_defvalues_tx`,`so_desc_tx`,`so_module_vc`,`so_usereditable_en`) values (116,'cron_reload','Cron Reload',NULL,NULL,'Cron reload command for apache user in Linux Only','Cron Config','true');
 insert  into `x_settings`(`so_name_vc`,`so_cleanname_vc`,`so_value_tx`,`so_defvalues_tx`,`so_desc_tx`,`so_module_vc`,`so_usereditable_en`) values ('named_conf_slave','Named Slave Config','named.conf.slave',NULL,'Named Slave Configuration File. Won\'t be output if blank.','DNS Config','true');
+UPDATE  `zpanel_core`.`x_settings` SET  `so_value_tx` =  '86400' WHERE  `x_settings`.`so_id_pk` =59;
+UPDATE  `zpanel_core`.`x_settings` SET  `so_value_tx` =  '3600' WHERE  `x_settings`.`so_id_pk` =60;
+UPDATE  `zpanel_core`.`x_settings` SET  `so_value_tx` =  '3600000' WHERE  `x_settings`.`so_id_pk` =61;
+
 /*Table structure for table `x_translations` */
 
 DROP TABLE IF EXISTS `x_translations`;
