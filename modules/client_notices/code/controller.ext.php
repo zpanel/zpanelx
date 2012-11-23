@@ -33,7 +33,7 @@ class module_controller {
 
     static function getModuleIcon() {
         global $controller;
-        $module_icon = "modules/" . $controller->GetControllerRequest('URL', 'module') . "/assets/icon.png";
+        $module_icon = 'modules/' . $controller->GetControllerRequest('URL', 'module') . '/assets/icon.png';
         return $module_icon;
     }
 
@@ -42,10 +42,7 @@ class module_controller {
      */
     static function ExectuteUpdateNotice($uid, $notice) {
         global $zdbh;
-        $sql = $zdbh->prepare("
-            UPDATE x_accounts
-            SET ac_notice_tx = :notice
-            WHERE ac_id_pk = :uid");
+        $sql = $zdbh->prepare('UPDATE x_accounts SET ac_notice_tx = :notice WHERE ac_id_pk = :uid');
         $sql->bindParam(':notice', $notice);
         $sql->bindParam(':uid', $uid);
         $sql->execute();
@@ -55,7 +52,7 @@ class module_controller {
     static function ExecuteShowNotice($rid) {
         global $zdbh;
         //$result = $zdbh->query("SELECT ac_notice_tx FROM x_accounts WHERE ac_id_pk = :rid")->Fetch();
-        $sql = $zdbh->prepare("SELECT ac_notice_tx FROM x_accounts WHERE ac_id_pk = :rid");
+        $sql = $zdbh->prepare('SELECT ac_notice_tx FROM x_accounts WHERE ac_id_pk = :rid');
         $sql->bindParam(':rid', $rid);
         $sql->execute();
         $result = $sql->fetch();
@@ -86,7 +83,7 @@ class module_controller {
         $currentuser = ctrl_users::GetUserDetail();
         $formvars = $controller->GetAllControllerRequests('FORM');
         self::ExectuteUpdateNotice($currentuser['userid'], $formvars['inNotice']);
-        header("location: ./?module=" . $controller->GetCurrentModule() . "&saved=true");
+        header('location: ./?module=' . $controller->GetCurrentModule() . '&amp;saved=true');
         exit;
     }
     

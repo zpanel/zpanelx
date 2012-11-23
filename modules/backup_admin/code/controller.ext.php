@@ -33,7 +33,7 @@ class module_controller {
         $currentuser = ctrl_users::GetUserDetail();
         $moduleName = ui_module::GetModuleName();
         
-        $sql = "SELECT * FROM x_settings WHERE so_module_vc=:module AND so_usereditable_en = 'true' ORDER BY so_cleanname_vc";
+        $sql = 'SELECT * FROM x_settings WHERE so_module_vc=:module AND so_usereditable_en = "true" ORDER BY so_cleanname_vc';
         $numrows = $zdbh->prepare($sql);
         $numrows->bindParam(':module', $moduleName);
         $numrows->execute();
@@ -67,7 +67,7 @@ class module_controller {
         global $controller;
         runtime_csfr::Protect();
         $moduleName = ui_module::GetModuleName();
-        $sql = "SELECT * FROM x_settings WHERE so_module_vc=:module AND so_usereditable_en = 'true'";
+        $sql = 'SELECT * FROM x_settings WHERE so_module_vc=:module AND so_usereditable_en = "true"';
         $numrows = $zdbh->prepare($sql);
         $numrows->bindParam(':module', $moduleName);
         $numrows->execute();
@@ -79,7 +79,7 @@ class module_controller {
                 if (!fs_director::CheckForEmptyValue($controller->GetControllerRequest('FORM', $row['so_name_vc']))) {
                     $value = $controller->GetControllerRequest('FORM', $row['so_name_vc']);
                     $name = $row['so_name_vc'];
-                    $updatesql = $zdbh->prepare("UPDATE x_settings SET so_value_tx = :value WHERE so_name_vc = :name");
+                    $updatesql = $zdbh->prepare('UPDATE x_settings SET so_value_tx = :value WHERE so_name_vc = :name');
                     $updatesql->bindParam(':value', $value);
                     $updatesql->bindParam(':name', $name);
                     $updatesql->execute();
@@ -91,7 +91,7 @@ class module_controller {
 
     static function getResult() {
         if (!fs_director::CheckForEmptyValue(self::$ok)) {
-            return ui_sysmessage::shout(ui_language::translate("Changes to your settings have been saved successfully!"));
+            return ui_sysmessage::shout(ui_language::translate('Changes to your settings have been saved successfully!'));
         }
         return;
     }
@@ -112,10 +112,9 @@ class module_controller {
 
     static function getModuleIcon() {
         global $controller;
-        $module_icon = "./modules/" . $controller->GetControllerRequest('URL', 'module') . "/assets/icon.png";
+        $module_icon = './modules/' . $controller->GetControllerRequest('URL', 'module') . '/assets/icon.png';
         return $module_icon;
     }
-
 }
 
 ?>
