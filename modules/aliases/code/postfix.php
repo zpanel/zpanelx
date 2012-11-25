@@ -29,22 +29,22 @@ include('cnf/db.php');
 $z_db_user = $user;
 $z_db_pass = $pass;
 try {
-    $mail_db = new db_driver("mysql:host=localhost;dbname=" . $mailserver_db . "", $z_db_user, $z_db_pass);
+    $mail_db = new db_driver('mysql:host=localhost;dbname=' . $mailserver_db, $z_db_user, $z_db_pass);
 } catch (PDOException $e) {
     
 }
 
 // Deleting Postfix Alias
 if (!fs_director::CheckForEmptyValue(self::$delete)) {
-    //$result = $mail_db->query("SELECT address FROM alias WHERE address='" . $rowalias['al_address_vc'] . "'")->Fetch();
+    //$result = $mail_db->query('SELECT address FROM alias WHERE address="' . $rowalias['al_address_vc'] . '"')->Fetch();
     
     $bindArray = NULL;
     $bindArray = array(':aliasname' => $rowalias['al_address_vc']);
-    $sqlStatment = $mail_db->bindQuery("SELECT address FROM alias WHERE address=:aliasname", $bindArray);
+    $sqlStatment = $mail_db->bindQuery('SELECT address FROM alias WHERE address=:aliasname', $bindArray);
     $result = $mail_db->returnRow();
     
     if ($result) {
-        $sqlStatment = "DELETE FROM alias WHERE address=:address";
+        $sqlStatment = 'DELETE FROM alias WHERE address=:address';
         $sql = $mail_db->prepare($sqlStatment);
         $sql->bindParam(':address', $rowalias['al_address_vc']);
         $sql->execute();
@@ -53,26 +53,16 @@ if (!fs_director::CheckForEmptyValue(self::$delete)) {
 
 // Adding Postfix Alias
 if (!fs_director::CheckForEmptyValue(self::$create)) {
-    //$result = $mail_db->query("SELECT address FROM alias WHERE address='" . $fulladdress . "'")->Fetch();
+    //$result = $mail_db->query('SELECT address FROM alias WHERE address="' . $fulladdress . '"')->Fetch();
     
     $bindArray = NULL;
     $bindArray = array(':address' => $fulladdress);
-    $sqlStatment = $mail_db->bindQuery("SELECT address FROM alias WHERE address=:address", $bindArray);
+    $sqlStatment = $mail_db->bindQuery('SELECT address FROM alias WHERE address=:address', $bindArray);
     $result = $mail_db->returnRow();
     
     if (!$result) {
-        $sqlStatment2 = "INSERT INTO alias  (address,
-										 	goto,
-										 	domain,
-											created,
-										 	modified,
-										 	active) VALUES (
-										 	:fulladdress,
-										 	:destination,
-										 	:domain,
-										 	NOW(),
-										 	NOW(),
-										 	'1')";
+        $sqlStatment2 = 'INSERT INTO alias (address,goto,domain,created,modified,active)
+                         VALUES (:fulladdress,:destination,:domain,NOW(),NOW(),"1")';
         $sql = $mail_db->prepare($sqlStatment2);
         $sql->bindParam(':domain', $domain);
         $sql->bindParam(':fulladdress', $fulladdress);

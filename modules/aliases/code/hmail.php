@@ -29,21 +29,21 @@ include('cnf/db.php');
 $z_db_user = $user;
 $z_db_pass = $pass;
 try {
-    $mail_db = new db_driver("mysql:host=localhost;dbname=" . $mailserver_db . "", $z_db_user, $z_db_pass);
+    $mail_db = new db_driver('mysql:host=localhost;dbname=' . $mailserver_db, $z_db_user, $z_db_pass);
 } catch (PDOException $e) {
     
 }
 
 // Deleting hMail Alias
 if (!fs_director::CheckForEmptyValue(self::$delete)) {
-    //$result = $mail_db->query("SELECT aliasname FROM hm_aliases WHERE aliasname='" . $rowalias['al_address_vc'] . "'")->Fetch();
+    //$result = $mail_db->query('SELECT aliasname FROM hm_aliases WHERE aliasname="' . $rowalias['al_address_vc'] . '"')->Fetch();
     $bindArray = NULL;
     $bindArray = array(':aliasname' => $rowalias['al_address_vc']);
-    $sqlStatment = $mail_db->bindQuery("SELECT aliasname FROM hm_aliases WHERE aliasname=:aliasname", $bindArray);
+    $sqlStatment = $mail_db->bindQuery('SELECT aliasname FROM hm_aliases WHERE aliasname=:aliasname', $bindArray);
     $result = $mail_db->returnRow();
     
     if ($result) {
-        $sqlStatment = "DELETE FROM hm_aliases WHERE aliasname=:aliasname";
+        $sqlStatment = 'DELETE FROM hm_aliases WHERE aliasname=:aliasname';
         $sql = $mail_db->prepare($sqlStatment);
         $sql->bindParam(':aliasname', $rowalias['al_address_vc']);
         $sql->execute();
@@ -52,21 +52,15 @@ if (!fs_director::CheckForEmptyValue(self::$delete)) {
 
 // Adding hMail Alias
 if (!fs_director::CheckForEmptyValue(self::$create)) {
-    //$result = $mail_db->query("SELECT domainid FROM hm_domains WHERE domainname='" . $domain . "'")->Fetch();
+    //$result = $mail_db->query('SELECT domainid FROM hm_domains WHERE domainname="' . $domain . '"')->Fetch();
     $bindArray = NULL;
     $bindArray = array(':domain' => $domain);
-    $sqlStatment = $mail_db->bindQuery("SELECT domainid FROM hm_domains WHERE domainname=:domain", $bindArray);
+    $sqlStatment = $mail_db->bindQuery('SELECT domainid FROM hm_domains WHERE domainname=:domain', $bindArray);
     $result = $mail_db->returnRow();
     
     if ($result) {
-        $sqlStatment = "INSERT INTO hm_aliases (aliasdomainid,
-										aliasname,
-										aliasvalue,
-										aliasactive) VALUES (
-									 	:domainID,
-									 	:fulladdress,
-									 	:destination,
-									 	'1')";
+        $sqlStatment = 'INSERT INTO hm_aliases (aliasdomainid,aliasname,aliasvalue,aliasactive) 
+                                        VALUES (:domainID,:fulladdress,:destination,"1")';
         $sql = $mail_db->prepare($sqlStatment);
         $sql->bindParam(':domainID', $result['domainid']);
         $sql->bindParam(':fulladdress', $fulladdress);

@@ -38,38 +38,38 @@ class module_controller {
         global $zdbh;
         global $controller;
         $currentuser = ctrl_users::GetUserDetail();
-        $line = "<h2>" . ui_language::translate("Current Cron Tasks") . "</h2>";
-        $sql = "SELECT COUNT(*) FROM x_cronjobs WHERE ct_acc_fk=:userid AND ct_deleted_ts IS NULL";       
+        $line = '<h2>' . ui_language::translate('Current Cron Tasks') . '</h2>';
+        $sql = 'SELECT COUNT(*) FROM x_cronjobs WHERE ct_acc_fk=:userid AND ct_deleted_ts IS NULL';       
         $numrows = $zdbh->prepare($sql);
         $numrows->bindParam(':userid', $currentuser['userid']);
         
         if ($numrows->execute()) {
             if ($numrows->fetchColumn() <> 0) {
 
-                $sql = $zdbh->prepare("SELECT * FROM x_cronjobs WHERE ct_acc_fk=:userid AND ct_deleted_ts IS NULL");
+                $sql = $zdbh->prepare('SELECT * FROM x_cronjobs WHERE ct_acc_fk=:userid AND ct_deleted_ts IS NULL');
                 $sql->bindParam(':userid', $currentuser['userid']);
                 $sql->execute();
-                $line .= "<form action=\"./?module=cron&action=DeleteCron\" method=\"post\">";
-                $line .= "<table class=\"zgrid\">";
-                $line .= "<tr>";
-                $line .= "<th>" . ui_language::translate("Script") . "</th>";
-                $line .= "<th>" . ui_language::translate("Timing") . "</th>";
-                $line .= "<th>" . ui_language::translate("Description") . "</th>";
-                $line .= "<th></th>";
-                $line .= "</tr>";
+                $line .= '<form action="./?module=cron&amp;action=DeleteCron" method="post">';
+                $line .= '<table class="zgrid">';
+                $line .= '<tr>';
+                $line .= '<th>' . ui_language::translate('Script') . '</th>';
+                $line .= '<th>' . ui_language::translate('Timing') . '</th>';
+                $line .= '<th>' . ui_language::translate('Description') . '</th>';
+                $line .= '<th></th>';
+                $line .= '</tr>';
                 while ($rowcrons = $sql->fetch()) {
-                    $line .= "<tr>";
-                    $line .= "<td>" . $rowcrons['ct_script_vc'] . "</td>";
-                    $line .= "<td>" . ui_language::translate(self::TranslateTiming($rowcrons['ct_timing_vc'])) . "</td>";
-                    $line .= "<td>" . $rowcrons['ct_description_tx'] . "</td>";
-                    $line .= "<td><button class=\"fg-button ui-state-default ui-corner-all\" type=\"submit\" name=\"inDelete_" . $rowcrons['ct_id_pk'] . "\" id=\"button\" value=\"inDelete_" . $rowcrons['ct_id_pk'] . "\">" . ui_language::translate("Delete") . "</button></td>";
-                    $line .= "</tr>";
+                    $line .= '<tr>';
+                    $line .= '<td>' . $rowcrons['ct_script_vc'] . '</td>';
+                    $line .= '<td>' . ui_language::translate(self::TranslateTiming($rowcrons['ct_timing_vc'])) . '</td>';
+                    $line .= '<td>' . $rowcrons['ct_description_tx'] . '</td>';
+                    $line .= '<td><button class="fg-button ui-state-default ui-corner-all" type="submit" name="inDelete_' . $rowcrons['ct_id_pk'] . '" id="button" value="inDelete_' . $rowcrons['ct_id_pk'] . '">' . ui_language::translate('Delete') . '</button></td>';
+                    $line .= '</tr>';
                 }
-                $line .= "</table>";
+                $line .= '</table>';
                 $line .= runtime_csfr::Token();
-                $line .= "</form>";
+                $line .= '</form>';
             } else {
-                $line .= ui_language::translate("You currently do not have any tasks setup.");
+                $line .= ui_language::translate('You currently do not have any tasks setup.');
             }
             return $line;
         }

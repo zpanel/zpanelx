@@ -36,10 +36,10 @@ class module_controller {
         $username = $currentuser['username'];
         $res = array();
         $dirFiles = array();
-        $backupdir = ctrl_options::GetSystemOption('hosted_dir') . $username . "/backups/";
+        $backupdir = ctrl_options::GetSystemOption('hosted_dir') . $username . '/backups/';
         if ($handle = opendir($backupdir)) {
             while (false !== ($file = readdir($handle))) {
-                if ($file != "." && $file != ".." && stristr($file, "_") && substr($file, -4) == ".zip") {
+                if ($file != '.' && $file != '..' && stristr($file, '_') && substr($file, -4) == '.zip') {
                     $dirFiles[] = $file;
                 }
             }
@@ -49,7 +49,7 @@ class module_controller {
             sort($dirFiles);
             foreach ($dirFiles as $file) {
                 $filesize = fs_director::ShowHumanFileSize(filesize($backupdir . $file));
-                $filedate = date("F d Y H:i:s", filemtime($backupdir . $file));
+                $filedate = date('F d Y H:i:s', filemtime($backupdir . $file));
                 array_push($res, array('backupfile' => substr($file, 0, -4),
                     'created' => $filedate,
                     'filesize' => $filesize));
@@ -69,11 +69,11 @@ class module_controller {
 
     static function CheckHasData($userid) {
         $currentuser = ctrl_users::GetUserDetail($userid);
-        $datafolder = ctrl_options::GetSystemOption('hosted_dir') . $currentuser['username'] . "/public_html/";
+        $datafolder = ctrl_options::GetSystemOption('hosted_dir') . $currentuser['username'] . '/public_html/';
         $dirFiles = array();
         if ($handle = opendir($datafolder)) {
             while (false !== ($file = readdir($handle))) {
-                if ($file != "." && $file != "..") {
+                if ($file != '.' && $file != '..') {
                     $dirFiles[] = $file;
                 }
             }
@@ -110,20 +110,20 @@ class module_controller {
 
     static function ExecuteDeleteBackup($username, $file) {
         runtime_hook::Execute('OnBeforeDeleteBackup');
-        $backup_file_to_delete = ctrl_options::GetSystemOption('hosted_dir') . $username . "/backups/" . $file . ".zip";
+        $backup_file_to_delete = ctrl_options::GetSystemOption('hosted_dir') . $username . '/backups/' . $file . '.zip';
         unlink($backup_file_to_delete);
         runtime_hook::Execute('OnAfterDeleteBackup');
     }
 
     static function ExecuteCreateBackupDirectory($username) {
-        $backupdir = ctrl_options::GetSystemOption('hosted_dir') . $username . "/backups/";
+        $backupdir = ctrl_options::GetSystemOption('hosted_dir') . $username . '/backups/';
         if (!is_dir($backupdir)) {
             fs_director::CreateDirectory($backupdir);
         }
     }
 
     static function CheckPurgeDate() {
-        if (strtolower(ctrl_options::GetSystemOption('purge_bu')) == "true") {
+        if (strtolower(ctrl_options::GetSystemOption('purge_bu')) == 'true') {
             return ctrl_options::GetSystemOption('purge_date');
         } else {
             return false;
@@ -173,7 +173,7 @@ class module_controller {
     static function GetFileLocation() {
         global $controller;
         $currentuser = ctrl_users::GetUserDetail();
-        $filelocation = $currentuser['username'] . "/backups/";
+        $filelocation = $currentuser['username'] . '/backups/';
         return $filelocation;
     }
 
@@ -186,7 +186,7 @@ class module_controller {
 
     static function GetDiskAllowed() {
         global $controller;
-        if (strtolower(ctrl_options::GetSystemOption('disk_bu')) == "true")
+        if (strtolower(ctrl_options::GetSystemOption('disk_bu')) == 'true')
             return true;
         return false;
     }
@@ -204,8 +204,8 @@ class module_controller {
 
     static function GetBUOption($name) {
         global $zdbh;
-       // $result = $zdbh->query("SELECT bus_value_tx FROM x_backup_settings WHERE bus_name_vc = '$name'")->Fetch();
-        $sql = $zdbh->prepare("SELECT bus_value_tx FROM x_backup_settings WHERE bus_name_vc = :name");
+       // $result = $zdbh->query('SELECT bus_value_tx FROM x_backup_settings WHERE bus_name_vc = "$name"')->Fetch();
+        $sql = $zdbh->prepare('SELECT bus_value_tx FROM x_backup_settings WHERE bus_name_vc = :name');
         $sql->bindParam(':name', $name);
         $sql->execute();
         $result = $sql->fetch();
@@ -223,7 +223,7 @@ class module_controller {
 
     static function getModuleIcon() {
         global $controller;
-        $module_icon = "modules/" . $controller->GetControllerRequest('URL', 'module') . "/assets/icon.png";
+        $module_icon = 'modules/' . $controller->GetControllerRequest('URL', 'module') . '/assets/icon.png';
         return $module_icon;
     }
 
@@ -234,19 +234,19 @@ class module_controller {
 
     static function getModulePath() {
         global $controller;
-        $module_path = "modules/" . $controller->GetControllerRequest('URL', 'module') . "/";
+        $module_path = 'modules/' . $controller->GetControllerRequest('URL', 'module') . '/';
         return $module_path;
     }
 
     static function getResult() {
         if (!fs_director::CheckForEmptyValue(self::$filenotexist)) {
-            return ui_sysmessage::shout("There was an error saving your backup!", "zannounceerror");
+            return ui_sysmessage::shout('There was an error saving your backup!', 'zannounceerror');
         }
         if (!fs_director::CheckForEmptyValue(self::$deleteok)) {
-            return ui_sysmessage::shout("Backup deleted successfully!", "zannounceok");
+            return ui_sysmessage::shout('Backup deleted successfully!', 'zannounceok');
         }
         if (!fs_director::CheckForEmptyValue(self::$backupok)) {
-            return ui_sysmessage::shout("Backup completed successfully!", "zannounceok");
+            return ui_sysmessage::shout('Backup completed successfully!', 'zannounceok');
         }
         return;
     }

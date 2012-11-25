@@ -24,7 +24,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-if (isset($_GET['file']) && $_GET['file'] != "" && file_exists($_GET['file']) && !strpos($_GET['file'], '/')) {
+#if (isset($_GET['file']) && $_GET['file'] != '' && file_exists($_GET['file']) && !strpos($_GET['file'], '/')) {
+if (!empty($_GET['file']) && file_exists($_GET['file']) && !strpos($_GET['file'], '/')) {
     $filename = $_GET['file'];
 
     // required for IE, otherwise Content-disposition is ignored
@@ -34,23 +35,23 @@ if (isset($_GET['file']) && $_GET['file'] != "" && file_exists($_GET['file']) &&
 
     /*
       header($_SERVER['SERVER_PROTOCOL'].' 200 OK');
-      header("Content-Type: application/zip");
-      header("Content-Transfer-Encoding: Binary");
-      header("Content-Length: ".filesize($filename));
-      header("Content-Disposition: attachment; filename=\"".basename($filename)."\"");
+      header('Content-Type: application/zip');
+      header('Content-Transfer-Encoding: Binary');
+      header('Content-Length: '.filesize($filename));
+      header('Content-Disposition: attachment; filename="'.basename($filename).'"');
       readfile($filename);
       exit;
      */
 
     header($_SERVER['SERVER_PROTOCOL'] . ' 200 OK');
-    header("Pragma: public");
-    header("Expires: 0");
-    header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-    header("Cache-Control: private", false); // required for certain browsers
-    header("Content-Type: application/zip");
-    header("Content-Disposition: attachment; filename=" . basename($filename) . "");
-    header("Content-Transfer-Encoding: binary");
-    header("Content-Length: " . filesize($filename) . "");
+    header('Pragma: public');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+    header('Cache-Control: private', false); // required for certain browsers
+    header('Content-Type: application/zip');
+    header('Content-Disposition: attachment; filename=' . basename($filename));
+    header('Content-Transfer-Encoding: binary');
+    header('Content-Length: ' . filesize($filename));
     readfile_chunked($filename);
     //unlink($filename);
     exit();
