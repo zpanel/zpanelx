@@ -1,19 +1,16 @@
 <?php
+
 /* vim: set expandtab sw=4 ts=4 sts=4: */
 /**
- * CSV export code
- *
- * @package PhpMyAdmin-Export
- * @subpackage CSV
+ * @package phpMyAdmin-Export-CSV
  */
-if (! defined('PHPMYADMIN')) {
+if (!defined('PHPMYADMIN')) {
     exit;
 }
 
 /**
  * Set of functions used to build CSV dumps of tables
  */
-
 if (isset($plugin_list)) {
     $plugin_list['csv'] = array(
         'text' => __('CSV'),
@@ -30,26 +27,37 @@ if (isset($plugin_list)) {
             array('type' => 'bool', 'name' => 'columns', 'text' => __('Put columns names in the first row')),
             array('type' => 'hidden', 'name' => 'structure_or_data'),
             array('type' => 'end_group'),
-            ),
+        ),
         'options_text' => __('Options'),
-        );
+    );
 } else {
+
+    /**
+     * Outputs comment
+     *
+     * @param   string      Text of comment
+     *
+     * @return  bool        Whether it suceeded
+     */
+    function PMA_exportComment($text) {
+        return TRUE;
+    }
 
     /**
      * Outputs export footer
      *
-     * @return  bool        Whether it succeeded
+     * @return  bool        Whether it suceeded
      *
      * @access  public
      */
     function PMA_exportFooter() {
-        return true;
+        return TRUE;
     }
 
     /**
      * Outputs export header
      *
-     * @return  bool        Whether it succeeded
+     * @return  bool        Whether it suceeded
      *
      * @access  public
      */
@@ -62,82 +70,86 @@ if (isset($plugin_list)) {
 
         // Here we just prepare some values for export
         if ($what == 'excel') {
-            $csv_terminated      = "\015\012";
-            switch($GLOBALS['excel_edition']) {
-            case 'win':
-                // as tested on Windows with Excel 2002 and Excel 2007
-                $csv_separator = ';';
-                break;
-            case 'mac_excel2003':
-                $csv_separator = ';';
-                break;
-            case 'mac_excel2008':
-                $csv_separator = ',';
-                break;
+            $csv_terminated = "\015\012";
+            switch ($GLOBALS['excel_edition']) {
+                case 'win':
+                    // as tested on Windows with Excel 2002 and Excel 2007
+                    $csv_separator = ';';
+                    break;
+                case 'mac_excel2003':
+                    $csv_separator = ';';
+                    break;
+                case 'mac_excel2008':
+                    $csv_separator = ',';
+                    break;
             }
-            $csv_enclosed           = '"';
-            $csv_escaped            = '"';
+            $csv_enclosed = '"';
+            $csv_escaped = '"';
             if (isset($GLOBALS['excel_columns'])) {
                 $GLOBALS['csv_columns'] = 'yes';
             }
         } else {
             if (empty($csv_terminated) || strtolower($csv_terminated) == 'auto') {
-                $csv_terminated  = $GLOBALS['crlf'];
+                $csv_terminated = $GLOBALS['crlf'];
             } else {
-                $csv_terminated  = str_replace('\\r', "\015", $csv_terminated);
-                $csv_terminated  = str_replace('\\n', "\012", $csv_terminated);
-                $csv_terminated  = str_replace('\\t', "\011", $csv_terminated);
+                $csv_terminated = str_replace('\\r', "\015", $csv_terminated);
+                $csv_terminated = str_replace('\\n', "\012", $csv_terminated);
+                $csv_terminated = str_replace('\\t', "\011", $csv_terminated);
             } // end if
-            $csv_separator          = str_replace('\\t', "\011", $csv_separator);
+            $csv_separator = str_replace('\\t', "\011", $csv_separator);
         }
-        return true;
+        return TRUE;
     }
 
     /**
      * Outputs database header
      *
-     * @param string  $db Database name
-     * @return  bool        Whether it succeeded
+     * @param   string      Database name
+     *
+     * @return  bool        Whether it suceeded
      *
      * @access  public
      */
     function PMA_exportDBHeader($db) {
-        return true;
+        return TRUE;
     }
 
     /**
      * Outputs database footer
      *
-     * @param string  $db Database name
-     * @return  bool        Whether it succeeded
+     * @param   string      Database name
+     *
+     * @return  bool        Whether it suceeded
      *
      * @access  public
      */
     function PMA_exportDBFooter($db) {
-        return true;
+        return TRUE;
     }
 
     /**
-     * Outputs CREATE DATABASE statement
+     * Outputs create database database
      *
-     * @param string  $db Database name
-     * @return  bool        Whether it succeeded
+     * @param   string      Database name
+     *
+     * @return  bool        Whether it suceeded
      *
      * @access  public
      */
     function PMA_exportDBCreate($db) {
-        return true;
+        return TRUE;
     }
 
     /**
      * Outputs the content of a table in CSV format
      *
-     * @param string  $db         database name
-     * @param string  $table      table name
-     * @param string  $crlf       the end of line sequence
-     * @param string  $error_url  the url to go back in case of error
-     * @param string  $sql_query  SQL query for obtaining data
-     * @return  bool        Whether it succeeded
+     * @param   string      the database name
+     * @param   string      the table name
+     * @param   string      the end of line sequence
+     * @param   string      the url to go back in case of error
+     * @param   string      SQL query for obtaining data
+     *
+     * @return  bool        Whether it suceeded
      *
      * @access  public
      */
@@ -149,8 +161,8 @@ if (isset($plugin_list)) {
         global $csv_escaped;
 
         // Gets the data from the database
-        $result      = PMA_DBI_query($sql_query, null, PMA_DBI_QUERY_UNBUFFERED);
-        $fields_cnt  = PMA_DBI_num_fields($result);
+        $result = PMA_DBI_query($sql_query, null, PMA_DBI_QUERY_UNBUFFERED);
+        $fields_cnt = PMA_DBI_num_fields($result);
 
         // If required, get fields name at the first line
         if (isset($GLOBALS['csv_columns'])) {
@@ -160,17 +172,16 @@ if (isset($plugin_list)) {
                     $schema_insert .= stripslashes(PMA_DBI_field_name($result, $i));
                 } else {
                     $schema_insert .= $csv_enclosed
-                                   . str_replace($csv_enclosed, $csv_escaped . $csv_enclosed, stripslashes(PMA_DBI_field_name($result, $i)))
-                                   . $csv_enclosed;
+                            . str_replace($csv_enclosed, $csv_escaped . $csv_enclosed, stripslashes(PMA_DBI_field_name($result, $i)))
+                            . $csv_enclosed;
                 }
-                $schema_insert     .= $csv_separator;
+                $schema_insert .= $csv_separator;
             } // end for
-            $schema_insert  =trim(substr($schema_insert, 0, -1));
+            $schema_insert = trim(substr($schema_insert, 0, -1));
             if (!PMA_exportOutputHandler($schema_insert . $csv_terminated)) {
-                return false;
+                return FALSE;
             }
         } // end if
-
         // Format the data
         while ($row = PMA_DBI_fetch_row($result)) {
             $schema_insert = '';
@@ -180,7 +191,7 @@ if (isset($plugin_list)) {
                 } elseif ($row[$j] == '0' || $row[$j] != '') {
                     // always enclose fields
                     if ($what == 'excel') {
-                        $row[$j]       = preg_replace("/\015(\012)?/", "\012", $row[$j]);
+                        $row[$j] = preg_replace("/\015(\012)?/", "\012", $row[$j]);
                     }
                     // remove CRLF characters within field
                     if (isset($GLOBALS[$what . '_removeCRLF']) && $GLOBALS[$what . '_removeCRLF']) {
@@ -190,33 +201,35 @@ if (isset($plugin_list)) {
                         $schema_insert .= $row[$j];
                     } else {
                         // also double the escape string if found in the data
-                        if ($csv_escaped != $csv_enclosed) {
+                        if ('csv' == $what) {
                             $schema_insert .= $csv_enclosed
-                                       . str_replace($csv_enclosed, $csv_escaped . $csv_enclosed, str_replace($csv_escaped, $csv_escaped . $csv_escaped, $row[$j]))
-                                       . $csv_enclosed;
+                                    . str_replace($csv_enclosed, $csv_escaped . $csv_enclosed, str_replace($csv_escaped, $csv_escaped . $csv_escaped, $row[$j]))
+                                    . $csv_enclosed;
                         } else {
-                            // avoid a problem when escape string equals enclose
+                            // for excel, avoid a problem when a field contains
+                            // double quotes
                             $schema_insert .= $csv_enclosed
-                                       . str_replace($csv_enclosed, $csv_escaped . $csv_enclosed, $row[$j])
-                                       . $csv_enclosed;
+                                    . str_replace($csv_enclosed, $csv_escaped . $csv_enclosed, $row[$j])
+                                    . $csv_enclosed;
                         }
                     }
                 } else {
                     $schema_insert .= '';
                 }
-                if ($j < $fields_cnt-1) {
+                if ($j < $fields_cnt - 1) {
                     $schema_insert .= $csv_separator;
                 }
             } // end for
 
             if (!PMA_exportOutputHandler($schema_insert . $csv_terminated)) {
-                return false;
+                return FALSE;
             }
         } // end while
         PMA_DBI_free_result($result);
 
-        return true;
-    } // end of the 'PMA_getTableCsv()' function
+        return TRUE;
+    }
 
+// end of the 'PMA_getTableCsv()' function
 }
 ?>

@@ -1,12 +1,12 @@
 <?php
+
 /* vim: set expandtab sw=4 ts=4 sts=4: */
 /**
- * Set of functions used to build CSV dumps of tables for excel
+ * Set of functions used to build CSV dumps of tables
  *
- * @package PhpMyAdmin-Export
- * @subpackage CSV-Excel
+ * @package phpMyAdmin-Export-CSV
  */
-if (! defined('PHPMYADMIN')) {
+if (!defined('PHPMYADMIN')) {
     exit;
 }
 
@@ -33,11 +33,11 @@ if (isset($plugin_list)) {
                 'text' => __('Excel edition:')),
             array('type' => 'hidden', 'name' => 'structure_or_data'),
             array('type' => 'end_group'),
-            ),
+        ),
         'options_text' => __('Options'),
-        );
+    );
 } else {
     /* Everything rest is coded in csv plugin */
-    include './libraries/export/csv.php';
+    require './libraries/export/csv.php';
 }
 ?>

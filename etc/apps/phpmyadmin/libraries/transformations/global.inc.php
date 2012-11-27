@@ -1,4 +1,5 @@
 <?php
+
 /* vim: set expandtab sw=4 ts=4 sts=4: */
 /**
  * GLOBAL Plugin function.
@@ -19,24 +20,21 @@
  *
  * Please provide a comment for your function, what it does and what parameters are available.
  *
- * @package PhpMyAdmin-Transformation
+ * @package phpMyAdmin-Transformation
  */
 
 /**
  *
  */
-function PMA_transformation_global_plain($buffer, $options = array(), $meta = '')
-{
+function PMA_transformation_global_plain($buffer, $options = array(), $meta = '') {
     return htmlspecialchars($buffer);
 }
 
-function PMA_transformation_global_html($buffer, $options = array(), $meta = '')
-{
+function PMA_transformation_global_html($buffer, $options = array(), $meta = '') {
     return $buffer;
 }
 
-function PMA_transformation_global_html_replace($buffer, $options = array(), $meta = '')
-{
+function PMA_transformation_global_html_replace($buffer, $options = array(), $meta = '') {
     if (!isset($options['string'])) {
         $options['string'] = '';
     }

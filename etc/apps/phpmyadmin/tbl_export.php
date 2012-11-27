@@ -1,18 +1,16 @@
 <?php
+
 /* vim: set expandtab sw=4 ts=4 sts=4: */
 /**
  *
- * @package PhpMyAdmin
+ * @package phpMyAdmin
  */
-
 /**
  *
  */
 require_once './libraries/common.inc.php';
 
 $GLOBALS['js_include'][] = 'export.js';
-$GLOBALS['js_include'][] = 'codemirror/lib/codemirror.js';
-$GLOBALS['js_include'][] = 'codemirror/mode/mysql/mysql.js';
 
 /**
  * Gets tables informations and displays top links
@@ -28,28 +26,40 @@ $export_page_title = __('View dump (schema) of table');
 // When we have some query, we need to remove LIMIT from that and possibly
 // generate WHERE clause (if we are asked to export specific rows)
 
-if (! empty($sql_query)) {
+if (!empty($sql_query)) {
     // Parse query so we can work with tokens
     $parsed_sql = PMA_SQP_parse($sql_query);
     $analyzed_sql = PMA_SQP_analyze($parsed_sql);
 
     // Need to generate WHERE clause?
     if (isset($where_clause)) {
+        // Yes => rebuild query from scratch; this doesn't work with nested
+        // selects :-(
+        $sql_query = 'SELECT ';
 
-        $temp_sql_array = explode("where", strtolower($sql_query));
+        if (isset($analyzed_sql[0]['queryflags']['distinct'])) {
+            $sql_query .= ' DISTINCT ';
+        }
 
-        // The fields which is going to select will be remain
-        // as it is regardless of the where clause(s).
-        // EX :- The part "SELECT `id`, `name` FROM `customers`"
-        // will be remain same when representing the resulted rows
-        // from the following query,
-        // "SELECT `id`, `name` FROM `customers` WHERE id NOT IN
-        //  ( SELECT id FROM companies WHERE name LIKE '%u%')"
-        $sql_query = $temp_sql_array[0];
+        $sql_query .= $analyzed_sql[0]['select_expr_clause'];
 
-        // Append the where clause using the primary key of each row
-        if (is_array($where_clause) && (count($where_clause) > 0)) {
-            $sql_query .= ' WHERE (' . implode(') OR (', $where_clause) . ')';
+        if (!empty($analyzed_sql[0]['from_clause'])) {
+            $sql_query .= ' FROM ' . $analyzed_sql[0]['from_clause'];
+        }
+
+        $wheres = array();
+
+        if (isset($where_clause) && is_array($where_clause)
+                && count($where_clause) > 0) {
+            $wheres[] = '(' . implode(') OR (', $where_clause) . ')';
+        }
+
+        if (!empty($analyzed_sql[0]['where_clause'])) {
+            $wheres[] = $analyzed_sql[0]['where_clause'];
+        }
+
+        if (count($wheres) > 0) {
+            $sql_query .= ' WHERE (' . implode(') AND (', $wheres) . ')';
         }
 
         if (!empty($analyzed_sql[0]['group_by_clause'])) {

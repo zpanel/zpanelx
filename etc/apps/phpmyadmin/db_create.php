@@ -1,21 +1,19 @@
 <?php
+
 /* vim: set expandtab sw=4 ts=4 sts=4: */
 /**
  *
- * @package PhpMyAdmin
+ * @package phpMyAdmin
  */
-
 /**
  * Gets some core libraries
  */
 require_once './libraries/common.inc.php';
 $GLOBALS['js_include'][] = 'functions.js';
-$GLOBALS['js_include'][] = 'jquery/jquery-ui-1.8.16.custom.js';
+$GLOBALS['js_include'][] = 'jquery/jquery-ui-1.8.custom.js';
 
 require_once './libraries/mysql_charsets.lib.php';
-if (!PMA_DRIZZLE) {
-    include_once './libraries/replication.inc.php';
-}
+require './libraries/replication.inc.php';
 require './libraries/build_html_for_db.lib.php';
 
 PMA_checkParameters(array('new_db'));
@@ -41,7 +39,7 @@ $sql_query .= ';';
 
 $result = PMA_DBI_try_query($sql_query);
 
-if (! $result) {
+if (!$result) {
     $message = PMA_Message::rawError(PMA_DBI_getError());
     // avoid displaying the not-created db name in header or navi panel
     $GLOBALS['db'] = '';
@@ -51,11 +49,11 @@ if (! $result) {
      * If in an Ajax request, just display the message with {@link PMA_ajaxResponse}
      */
     if ($GLOBALS['is_ajax_request'] == true) {
-        PMA_ajaxResponse($message, false);
+        PMA_ajaxResponse($message, FALSE);
     }
 
-    include_once './libraries/header.inc.php';
-    include_once './main.php';
+    require_once './libraries/header.inc.php';
+    require_once './main.php';
 } else {
     $message = PMA_Message::success(__('Database %1$s has been created.'));
     $message->addParam($new_db);
@@ -69,16 +67,16 @@ if (! $result) {
         /**
          * String containing the SQL Query formatted in pretty HTML
          * @global array $GLOBALS['extra_data']
-         * @name $extra_data
+         * @name $extra_data 
          */
-        $extra_data['sql_query'] = PMA_showMessage(null, $sql_query, 'success');
+        $extra_data['sql_query'] = PMA_showMessage(NULL, $sql_query, 'success');
 
         //Construct the html for the new database, so that it can be appended to the list of databases on server_databases.php
 
         /**
          * Build the array to be passed to {@link PMA_generate_common_url} to generate the links
          * @global array $GLOBALS['db_url_params']
-         * @name $db_url_params
+         * @name $db_url_params 
          */
         $db_url_params['db'] = $new_db;
 
@@ -97,7 +95,7 @@ if (! $result) {
         }
 
         // $dbstats comes from the create table dialog
-        if (! empty($dbstats)) {
+        if (!empty($dbstats)) {
             $current = array(
                 'SCHEMA_NAME' => $new_db,
                 'DEFAULT_COLLATION_NAME' => $db_collation_for_ajax,
@@ -125,7 +123,7 @@ if (! $result) {
         PMA_ajaxResponse($message, true, $extra_data);
     }
 
-    include_once './libraries/header.inc.php';
-    include_once './' . $cfg['DefaultTabDatabase'];
+    require_once './libraries/header.inc.php';
+    require_once './' . $cfg['DefaultTabDatabase'];
 }
 ?>

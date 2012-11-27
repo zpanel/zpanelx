@@ -1,10 +1,10 @@
 <?php
+
 /**
  * Enter description here...
- * @package PhpMyAdmin
+ * @package phpMyAdmin
  *
  */
-
 /**
  * Database listing.
  */
@@ -15,10 +15,10 @@ require_once './libraries/List_Database.class.php';
  *
  *
  *
- * @package PhpMyAdmin
+ * @package phpMyAdmin
  */
-class PMA
-{
+class PMA {
+
     /**
      * Holds database list
      *
@@ -44,12 +44,8 @@ class PMA
      * magic access to protected/inaccessible members/properties
      *
      * @see http://php.net/language.oop5.overloading
-     *
-     * @param string $param
-     * @return mixed
      */
-    public function __get($param)
-    {
+    public function __get($param) {
         switch ($param) {
             case 'databases' :
                 return $this->getDatabaseList();
@@ -69,12 +65,8 @@ class PMA
      * magic access to protected/inaccessible members/properties
      *
      * @see http://php.net/language.oop5.overloading
-     *
-     * @param string $param
-     * @param mixed  $value
      */
-    public function __set($param, $value)
-    {
+    public function __set($param, $value) {
         switch ($param) {
             case 'userlink' :
                 $this->userlink = $value;
@@ -88,15 +80,20 @@ class PMA
     /**
      * Accessor to PMA::$databases
      *
+     * @uses    PMA::$databases
+     * @uses    PMA::$userlink
+     * @uses    PMA::$controllink
+     * @uses    PMA_List_Database
      * @return PMA_List_Databases
      */
-    public function getDatabaseList()
-    {
+    public function getDatabaseList() {
         if (null === $this->databases) {
             $this->databases = new PMA_List_Database($this->userlink, $this->controllink);
         }
 
         return $this->databases;
     }
+
 }
+
 ?>
