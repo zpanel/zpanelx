@@ -561,10 +561,12 @@ DROP TABLE IF EXISTS `x_profiles`;
 CREATE TABLE `x_profiles` (
   `ud_id_pk` int(6) unsigned NOT NULL AUTO_INCREMENT,
   `ud_user_fk` int(6) DEFAULT NULL,
+  `ud_companyname_vc` varchar(100) DEFAULT NULL,
   `ud_fullname_vc` varchar(100) DEFAULT NULL,
   `ud_language_vc` varchar(10) DEFAULT 'en',
   `ud_group_fk` int(6) DEFAULT NULL,
   `ud_package_fk` int(6) DEFAULT NULL,
+  `ud_ssl_vc`  int(3) DEFAULT 'NO',
   `ud_address_tx` text,
   `ud_postcode_vc` varchar(20) DEFAULT NULL,
   `ud_phone_vc` varchar(20) DEFAULT NULL,
@@ -574,7 +576,7 @@ CREATE TABLE `x_profiles` (
 
 /*Data for the table `x_profiles` */
 
-insert  into `x_profiles`(`ud_id_pk`,`ud_user_fk`,`ud_fullname_vc`,`ud_language_vc`,`ud_group_fk`,`ud_package_fk`,`ud_address_tx`,`ud_postcode_vc`,`ud_phone_vc`,`ud_created_ts`) values (1,1,'Default Zadmin','en',1,1,'1 Example Road,\r\nIpswich,\r\nSuffolk','IP9 2HL','+44(1473) 000 000',0);
+insert  into `x_profiles`(`ud_id_pk`,`ud_user_fk`,`ud_companyname_vc`,`ud_fullname_vc`,`ud_language_vc`,`ud_group_fk`,`ud_package_fk`,`ud_ssl_vc`,`ud_address_tx`,`ud_postcode_vc`,`ud_phone_vc`,`ud_created_ts`) values (1,1,'Default Zadmin','en',1,1,'1 Example Road,\r\nIpswich,\r\nSuffolk','IP9 2HL','+44(1473) 000 000',0);
 
 /*Table structure for table `x_quotas` */
 
@@ -731,6 +733,7 @@ insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx
 insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx`,`so_defvalues_tx`,`so_desc_tx`,`so_module_vc`,`so_usereditable_en`) values (115,'password_minlength','Min Password Length','6',NULL,'Minimum length required for new passwords','ZPanel Config','true');
 insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx`,`so_defvalues_tx`,`so_desc_tx`,`so_module_vc`,`so_usereditable_en`) values (116,'cron_reload','Cron Reload','crontab -u apache /var/spool/cron/apache',NULL,'Cron reload command for apache user in Linux Only','Cron Config','true');
 insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx`,`so_defvalues_tx`,`so_desc_tx`,`so_module_vc`,`so_usereditable_en`) values (117,'login_csfr','Remote Login Forms','false','false|true','Disables CSFR protection on the login form to enable remote login forms.','ZPanel Config','true');
+
 
 /*Table structure for table `x_translations` */
 
