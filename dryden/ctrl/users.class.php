@@ -46,6 +46,7 @@ class ctrl_users {
         $userdetail->addItemValue('usertheme', $dbvals['ac_usertheme_vc']);
         $userdetail->addItemValue('usercss', $dbvals['ac_usercss_vc']);
         $userdetail->addItemValue('lastlogon', $dbvals['ac_lastlogon_ts']);
+        $userdetail->addItemValue('companyname', $dbvals['ud_companyname_vc']);
         $userdetail->addItemValue('fullname', $dbvals['ud_fullname_vc']);
         $userdetail->addItemValue('packagename', $dbvals['pk_name_vc']);
         $userdetail->addItemValue('usergroup', $dbvals['ug_name_vc']);
@@ -53,6 +54,7 @@ class ctrl_users {
         $userdetail->addItemValue('address', $dbvals['ud_address_tx']);
         $userdetail->addItemValue('postcode', $dbvals['ud_postcode_vc']);
         $userdetail->addItemValue('phone', $dbvals['ud_phone_vc']);
+        $userdetail->addItemValue('ssl', $dbvals['ud_ssl_vc']);
         $userdetail->addItemValue('language', $dbvals['ud_language_vc']);
         $userdetail->addItemValue('diskquota', $dbvals['qt_diskspace_bi']);
         $userdetail->addItemValue('bandwidthquota', $dbvals['qt_bandwidth_bi']);
