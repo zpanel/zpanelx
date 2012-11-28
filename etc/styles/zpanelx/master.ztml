@@ -125,7 +125,11 @@
                                                         	<tr>
                                                                 <td nowrap="nowrap" colspan="2"><a href="./index.php" title="<: Home :>"><img src="<# ui_tpl_assetfolderpath #>/images/home.png" border="0"></a><a href="./?module=my_account" title="<: My Account :>"><img src="<# ui_tpl_assetfolderpath #>/images/account.png" border="0"></a><a href="./?module=password_assistant" title="<: Change Password :>"><img src="<# ui_tpl_assetfolderpath #>/images/pass.png" border="0"></a><a href="./?logout" title="<: Log Out :>"><img src="<# ui_tpl_assetfolderpath #>/images/logout.png" border="0"></a></td>
                                                             </tr>
-                                                        	<tr>
+                                                          <tr>
+                                                                <td nowrap="nowrap"><img class="raquo"  src="<# ui_tpl_assetfolderpath #>/images/blank.png" border="0"> <strong><: Companyname :>:</strong></td>
+                                                                <td nowrap="nowrap"><span class="Side_Info"><# ui_tpl_companyname #></span></td>
+                                                            </tr>
+                                                            <tr>
                                                                 <td nowrap="nowrap"><img class="raquo"  src="<# ui_tpl_assetfolderpath #>/images/blank.png" border="0"> <strong><: Username :>:</strong></td>
                                                                 <td nowrap="nowrap"><span class="Side_Info"><# ui_tpl_username #></span></td>
                                                             </tr>
@@ -140,6 +144,10 @@
                                                             <tr>
                                                                 <td nowrap="nowrap"><img class="raquo"  src="<# ui_tpl_assetfolderpath #>/images/blank.png" border="0"> <strong><: Package name :>:</strong></td>
                                                                 <td nowrap="nowrap"><span class="Side_Info"><# ui_tpl_packagename #></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td nowrap="nowrap"><img class="raquo"  src="<# ui_tpl_assetfolderpath #>/images/blank.png" border="0"> <strong><: SSL Enabled :>:</strong></td>
+                                                                <td nowrap="nowrap"><span class="Side_Info"><# ui_tpl_ssl #></span></td>
                                                             </tr>
                                                             <tr>
                                                                 <td nowrap="nowrap"><img class="raquo"  src="<# ui_tpl_assetfolderpath #>/images/blank.png" border="0"> <strong><: Account type :>:</strong></td>

@@ -46,8 +46,10 @@ class ctrl_users {
         $userdetail->addItemValue('usertheme', $dbvals['ac_usertheme_vc']);
         $userdetail->addItemValue('usercss', $dbvals['ac_usercss_vc']);
         $userdetail->addItemValue('lastlogon', $dbvals['ac_lastlogon_ts']);
+        $userdetail->addItemValue('companyname', $dbvals['ud_companyname_vc']);
         $userdetail->addItemValue('fullname', $dbvals['ud_fullname_vc']);
         $userdetail->addItemValue('packagename', $dbvals['pk_name_vc']);
+        $userdetail->addItemValue('ssl', $dbvals['ud_ssl_vc']);
         $userdetail->addItemValue('usergroup', $dbvals['ug_name_vc']);
         $userdetail->addItemValue('usergroupid', $dbvals['ac_group_fk']);
         $userdetail->addItemValue('address', $dbvals['ud_address_tx']);
