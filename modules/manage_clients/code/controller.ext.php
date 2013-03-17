@@ -42,7 +42,8 @@ class module_controller {
     static $clientid;
     static $clientpkgid;
     static $resetform;
-
+    static $already_mail_exists;
+    
     /**
      * The 'worker' methods.
      */
@@ -609,6 +610,17 @@ class module_controller {
         }
         // Check for invalid characters in the email and that it exists...
         if (!fs_director::CheckForEmptyValue($email)) {
+            // check if email exist
+            $sql = "SELECT COUNT(*) FROM x_accounts WHERE UPPER(ac_email_vc)=:email ";
+            $numrows = $zdbh->prepare($sql);
+
+            $numrows->bindParam(':email', $email);
+            if ($numrows->execute()) {
+                if ($numrows->fetchColumn() <> 0) {
+                self::$already_mail_exists = true;
+                return false;
+                }
+            }
             if (!self::IsValidEmail($email)) {
                 self::$bademail = true;
                 return false;
@@ -1039,6 +1051,9 @@ class module_controller {
         if (!fs_director::CheckForEmptyValue(self::$ok)) {
             return ui_sysmessage::shout(ui_language::translate("Changes to your client(s) have been saved successfully!"), "zannounceok");
         }
+        if (!fs_director::CheckForEmptyValue(self::$already_mail_exists)) {
+        return ui_sysmessage::shout(ui_language::translate("A customer is already using this email address."), "zannounceerror");
+		}
         return;
     }
 
