@@ -114,8 +114,8 @@
                                                                     <td id="login"><strong>Password:</strong></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td><input name="inUsername" type="text" id="inUsername" maxlength="20" /></td>
-                                                                    <td><input name="inPassword" type="password" id="inPassword" /></td>
+                                                                    <td><input name="inUsername" type="text" size="30" id="inUsername" maxlength="30" /></td>
+                                                                    <td><input name="inPassword" type="password" size="30" id="inPassword" /></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td id="lightblue"></td>
