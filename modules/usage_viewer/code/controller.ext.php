@@ -45,14 +45,13 @@ class module_controller {
     static $forwarders;
     static $forwardersquota;
     static $distlists;
-    static $distrobutionlistsquota;
+    static $distlistsquota;
 
     private function check_pChart($display) {
         return (file_exists('etc/lib/pChart2/class/pData.class.php')) ? $display : 'pChart Library Not Found.';
     }
 
     static function getUsage() {
-//        return (file_exists('etc/lib/pChart2/class/pData.class.php')) ? self::DisplayUsagepChart() : 'pChart Library Not Found.';
         return self::check_pChart(self::DisplayUsagepChart());
     }
 
@@ -126,41 +125,34 @@ class module_controller {
         self::$forwardersquota = empty_as_0($currentuser['forwardersquota']);
         self::$forwarders = ctrl_users::GetQuotaUsages('forwarders', $currentuser['userid']);
 
-        self::$distrobutionlistsquota = $currentuser['distrobutionlistsquota'];
+        self::$distlistsquota = $currentuser['distlistsquota'];
         self::$distlists = empty_as_0(ctrl_users::GetQuotaUsages('distlists', $currentuser['userid']));
 
-        $total = self::$diskquota;
+        $maximum = self::$diskquota;
         $used = self::$diskspace;
-        if ($total == 0) {
-            $free = 100000000;
-            $freeLabel = ui_language::translate('Unlimited');
+        if ($maximum == 0) {
+            $free = disk_free_space('/var'); //hard disk space, should work on linux and windows
+            $freeLabel = fs_director::ShowHumanFileSize($free) . ' (' . ui_language::translate('Server disk') . ')';
         } else {
-            $free = $total - $used;
-            if ($free < 0) {
-                $free = 0;
-            }
+            $free = max($maximum - $used, 0);
             $freeLabel = fs_director::ShowHumanFileSize($free);
         }
         $usedLabel = fs_director::ShowHumanFileSize($used);
 
-        function pbar($used, $quota) {
-            if ($quota == 0)
-                return '[' . ui_language::translate('Unlimited') . ']'; //Quota are disabled
-            if ($used == $quota)
-                return '<img src="etc/lib/pChart2/zpanel/zProgress.php?percent=100"/>';
-            return '<img src="etc/lib/pChart2/zpanel/zProgress.php?percent=' . round($used / $quota * 100, 0) . '"/>';
-        }
-
         function build_row_usage($name, $used, $quota, $human = false) {
-            return ($quota == 0 ) ? '<tr>' .
-                    '<th nowrap="nowrap">' . ui_language::translate($name) . ':</th>' .
-                    '<td nowrap="nowrap">' . (($human) ? fs_director::ShowHumanFileSize($used) : $used) . '</td>' .
-                    '<td> (' . ui_language::translate('Unlimited') . ')</td>' .
-                    '</tr>' : '<tr>' .
-                    '<th nowrap="nowrap">' . ui_language::translate($name) . ':</th>' .
-                    '<td nowrap="nowrap">' . (($human) ? fs_director::ShowHumanFileSize($used) : $used) . ' / ' . (($human) ? fs_director::ShowHumanFileSize($quota) : $quota) . '</td>' .
-                    '<td>' . pBar($used, $quota) . '</td>' .
-                    '</tr>';
+            $res = '<tr>'
+                 . '<th nowrap="nowrap">' . ui_language::translate($name) . ':</th>'
+                 . '<td nowrap="nowrap">' . (($human) ? fs_director::ShowHumanFileSize($used) : $used);
+            
+            if ($quota < 0 ) {
+                $res .= '</td>' .
+                        '<td style="text-align:center">&#8734; ' . ui_language::translate('Unlimited') . ' &#8734;</td>';
+            } else {
+                $res .= ' / ' . (($human) ? fs_director::ShowHumanFileSize($quota) : $quota) . '</td>'
+                       .'<td><img src="etc/lib/pChart2/zpanel/zProgress.php?percent='
+                       . (($quota == 0 or $used == $quota) ? 100 : round($used / $quota * 100, 0)) . '"/>';
+            }
+            return $res . '</td></tr>';
         }
 
         $line =
@@ -178,8 +170,8 @@ class module_controller {
                 '<td align="left" valign="top">' .
                 '<h2>' . ui_language::translate('Package Usage Total') . '</h2>' .
                 '<table class="zgrid" border="0" cellspacing="0" cellpadding="0">' .
-                build_row_usage('Disk space', self::$diskspace, self::$diskquota, true) .
-                build_row_usage('Bandwidth', self::$bandwidth, self::$bandwidthquota, true) .
+                build_row_usage('Disk space', self::$diskspace, (self::$diskquota == 0) ? -1 : self::$diskquota, true) .
+                build_row_usage('Bandwidth', self::$bandwidth, (self::$bandwidthquota == 0) ? -1 : self::$bandwidthquota, true) .
                 build_row_usage('Domains', self::$domains, self::$domainsquota) .
                 build_row_usage('Sub-domains', self::$subdomains, self::$subdomainsquota) .
                 build_row_usage('Parked domains', self::$parkeddomains, self::$parkeddomainsquota) .
@@ -187,7 +179,7 @@ class module_controller {
                 build_row_usage('MySQL&reg databases', self::$mysql, self::$mysqlquota) .
                 build_row_usage('Mailboxes', self::$mailboxes, self::$mailboxquota) .
                 build_row_usage('Mail forwarders', self::$forwarders, self::$forwardersquota) .
-                build_row_usage('Distribution lists', self::$distlists, self::$distrobutionlistsquota) .
+                build_row_usage('Distribution lists', self::$distlists, self::$distlistsquota) .
                 '</table>' .
                 '</td>' .
                 '</tr>' .
@@ -196,13 +188,19 @@ class module_controller {
         return $line;
     }
 
-    private function DisplayChart($name, $used, $total) {
-        $free = $total - $used;
-        return '<h2>' . ui_language::translate($name) . '</h2>' .
-                '<img src="etc/lib/pChart2/zpanel/z3DPie.php?score=' . $free . '::' . $used .
-                '&amp;imagesize=240::190&amp;chartsize=120::90&amp;radius=100' .
-                '&amp;labels=Free: ' . $free . '::Used: ' . $used .
-                '&amp;legendfont=verdana&amp;legendfontsize=8&amp;legendsize=10::160"/>';
+    private function DisplayChart($name, $used, $maximum) {
+        if ($maximum < 0) { //-1 = unlimited
+            $res = '<img src="'. ui_tpl_assetfolderpath::Template().'images/unlimited.png" alt="'.ui_language::translate('Unlimited').'"/>'
+                 . '<br><span class="zlegend">' . ui_language::translate('Used') . ': ' . $used . '</span>';
+        } else {
+            $free = max($maximum - $used, 0);
+            $res =  '<img src="etc/lib/pChart2/zpanel/z3DPie.php?score=' . $free . '::' . $used
+                  . '&amp;imagesize=240::190&amp;chartsize=120::90&amp;radius=100'
+                  . '&amp;labels=Free: ' . $free . '::Used: ' . $used
+                  . '&amp;legendfont=verdana&amp;legendfontsize=8&amp;legendsize=10::160"'
+                  . ' alt="'.ui_language::translate('Pie chart').'"/>';
+        }
+        return '<h2>' . ui_language::translate($name) . '</h2>' . $res;
     }
 
     static function DisplayDomainsUsagepChart() {
@@ -234,11 +232,10 @@ class module_controller {
     }
 
     static function DisplayDistListUsagepChart() {
-        return self::DisplayChart('Distribution List Usage', self::$distlists, self::$distrobutionlistsquota);
+        return self::DisplayChart('Distribution List Usage', self::$distlists, self::$distlistsquota);
     }
 
     static function DisplaypBar($total, $quota) {
-        global $controller;
         $currentuser = ctrl_users::GetUserDetail();
         $typequota = $currentuser[$quota];
         $type = ctrl_users::GetQuotaUsages($total, $currentuser['userid']);
