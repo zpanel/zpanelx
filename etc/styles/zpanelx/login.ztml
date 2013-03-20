@@ -97,13 +97,13 @@
                                                                 echo "You have been logged out successfully!";
                                                             }
                                                             if (isset($_GET['sessionIssue'])) {
-                                                                echo 'ZPanel has detected an issue please login again! If the problem perisits disable session secuirty.';
+                                                                echo 'ZPanel has detected an issue please login again! If the problem persists disable session security.';
                                                             }
                                                             if (isset($_GET['passwordreset'])) {
                                                                 echo "If your email address matched the one on your account your password has now been reset!";
                                                             }
                                                             if(runtime_sessionsecurity::checkProxy()){
-                                                                echo 'It seems you are running behind a proxy or on a webserver, if any problems occure disabling session secuirty';
+                                                                echo 'It seems you are running behind a proxy or on a webserver, if the problem persists disable session security';
                                                             }
                                                             ?></font>&nbsp;
                                                     </td>
