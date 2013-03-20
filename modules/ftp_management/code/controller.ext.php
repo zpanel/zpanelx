@@ -54,7 +54,7 @@ class module_controller {
                 $res[] = array('id' => $rowclients['ft_id_pk'],
                                'directory' => runtime_xss::xssClean($rowclients['ft_directory_vc']),
                                'access' => runtime_xss::xssClean($rowclients['ft_access_vc']),
-                               'password' => runtime_xss::xssClean($rowclients['ft_password_vc']),
+                               'password' => md5(runtime_xss::xssClean($rowclients['ft_password_vc'])),
                                'username' => runtime_xss::xssClean($rowclients['ft_user_vc']));
             }
             return $res;
