@@ -17,8 +17,9 @@ function DeleteAliasForDeletedClient() {
     }
 
     // Include mail server specific file here.
-    if (file_exists("modules/aliases/hooks/" . ctrl_options::GetSystemOption('mailserver_php') . "")) {
-        include("modules/aliases/hooks/" . ctrl_options::GetSystemOption('mailserver_php') . "");
+    $modulename = 'modules/aliases/hooks/' . ctrl_options::GetSystemOption('mailserver_php');
+    if (file_exists($modulename)) {
+        include($modulename);
     }
 
     foreach ($deletedclients as $deletedclient) {

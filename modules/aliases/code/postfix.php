@@ -25,20 +25,15 @@
  *
  */
 $mailserver_db = ctrl_options::GetSystemOption('mailserver_db');
-include('cnf/db.php');
-$z_db_user = $user;
-$z_db_pass = $pass;
+include('cnf/db.php'); //contains $host, $user and $pass
 try {
-    $mail_db = new db_driver("mysql:host=" . $host . ";dbname=" . $mailserver_db . "", $z_db_user, $z_db_pass);
+    $mail_db = new db_driver("mysql:host=" . $host . ";dbname=" . $mailserver_db, $user, $pass);
 } catch (PDOException $e) {
     
 }
 
 // Deleting Postfix Alias
 if (!fs_director::CheckForEmptyValue(self::$delete)) {
-    //$result = $mail_db->query("SELECT address FROM alias WHERE address='" . $rowalias['al_address_vc'] . "'")->Fetch();
-
-    $bindArray = NULL;
     $bindArray = array(':aliasname' => $rowalias['al_address_vc']);
     $sqlStatment = $mail_db->bindQuery("SELECT address FROM alias WHERE address=:aliasname", $bindArray);
     $result = $mail_db->returnRow();
@@ -53,26 +48,13 @@ if (!fs_director::CheckForEmptyValue(self::$delete)) {
 
 // Adding Postfix Alias
 if (!fs_director::CheckForEmptyValue(self::$create)) {
-    //$result = $mail_db->query("SELECT address FROM alias WHERE address='" . $fulladdress . "'")->Fetch();
-
-    $bindArray = NULL;
     $bindArray = array(':address' => $fulladdress);
     $sqlStatment = $mail_db->bindQuery("SELECT address FROM alias WHERE address=:address", $bindArray);
     $result = $mail_db->returnRow();
 
     if (!$result) {
-        $sqlStatment2 = "INSERT INTO alias  (address,
-										 	goto,
-										 	domain,
-											created,
-										 	modified,
-										 	active) VALUES (
-										 	:fulladdress,
-										 	:destination,
-										 	:domain,
-										 	NOW(),
-										 	NOW(),
-										 	'1')";
+        $sqlStatment2 = 'INSERT INTO alias (address,goto,domain,created,modified,active)'
+                       .'VALUES (:fulladdress,:destination,:domain,NOW(),NOW(),"1")';
         $sql = $mail_db->prepare($sqlStatment2);
         $sql->bindParam(':domain', $domain);
         $sql->bindParam(':fulladdress', $fulladdress);

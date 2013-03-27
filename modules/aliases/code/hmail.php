@@ -25,11 +25,9 @@
  *
  */
 $mailserver_db = ctrl_options::GetSystemOption('mailserver_db');
-include('cnf/db.php');
-$z_db_user = $user;
-$z_db_pass = $pass;
+include('cnf/db.php'); //contains $host, $user and $pass
 try {
-    $mail_db = new db_driver("mysql:host=" . $host . ";dbname=" . $mailserver_db . "", $z_db_user, $z_db_pass);
+    $mail_db = new db_driver("mysql:host=" . $host . ";dbname=" . $mailserver_db , $user, $pass);
 } catch (PDOException $e) {
     
 }
