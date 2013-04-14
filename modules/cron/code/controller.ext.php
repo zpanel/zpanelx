@@ -104,6 +104,11 @@ class module_controller {
         $line .= "<option value=\"0 0,12 * * *\">" . ui_language::translate("Every 12 hours") . "</option>";
         $line .= "<option value=\"0 0 * * *\">" . ui_language::translate("Every 1 day") . "</option>";
         $line .= "<option value=\"0 0 * * 0\">" . ui_language::translate("Every week") . "</option>";
+     
+        // Added Monthly and Yearly crons by Flectron ( http://forums.zpanelcp.com/member.php?28051-flectron )
+    	$line .= "<option value=\"0 0 1 * *\">" . ui_language::translate("Every month") . "</option>";
+		$line .= "<option value=\"0 0 1 1 *\">" . ui_language::translate("Every year") . "</option>";
+        
         $line .= "</select></td>";
         $line .= "</tr>";
         $line .= "<tr>";
@@ -331,6 +336,15 @@ class module_controller {
         if ($timing == "0 0 * * 0") {
             $retval = "Every week";
         }
+     
+        // Added Monthly and Yearly crons by Flectron ( http://forums.zpanelcp.com/member.php?28051-flectron )
+    	if ($timing == "0 0 1 * *") {
+            $retval = "Every month";
+        }
+        if ($timing == "0 0 1 1 *") {
+            $retval = "Every year";
+        }
+        
         return $retval;
     }
 
