@@ -19,44 +19,16 @@ class sys_bandwidth {
      * @return int Total amount of bandwidth used (bytes)
      */
     static function CalculateFromApacheLog($logfile) {
-        $bandwidthfile = file($logfile);
-        $logdata = implode("", $bandwidthfile);
-        $logdata = preg_replace("/(\n|\r|\t)/", "\n", $logdata);
-        $records = preg_split("/([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)/", $logdata, -1, PREG_SPLIT_DELIM_CAPTURE);
-        $sizerecs = sizeof($records);
-        $j = 0;
-        $i = 1;
-        $arb = array();
-        $recordnum = 0;
-        while ($i < $sizerecs) {
-            $ip = $records[$i];
-            $all = @$records[$i + 1];
-            preg_match("/\[(.+)\]/", $all, $match);
-            $access_time = @$match[1];
-            $all = @str_replace($match[1], "", $all);
-            preg_match("/\"GET (.[^\"]+)/", $all, $match);
-            $http = @$match[1];
-            $link = explode(" ", $http);
-            $all = @str_replace("\"GET $match[1]\"", "", $all);
-            preg_match("/([0-9]{3})/", $all, $match);
-            $success_code = @$match[1];
-            $all = @str_replace($match[1], "", $all);
-            preg_match("/\"(.[^\"]+)/", $all, $match);
-            $ref = @$match[1];
-            $all = @str_replace("\"$match[1]\"", "", $all);
-            preg_match("/\"(.[^\"]+)/", $all, $match);
-            $browser = @$match[1];
-            $all = @str_replace("\"$match[1]\"", "", $all);
-            preg_match("/([0-9]+\b)/", $all, $match);
-            $bytes = @$match[1];
-            $all = @str_replace($match[1], "", $all);
-            $arb[$j] = @$arb[$j] + $bytes;
-            $i++;
-            $recordnum++;
+        $lines = file($logfile);
+        $total = 0;
+        foreach($lines as $line) {
+            preg_match('>.+ .+\[.+\] ".+ .* HTTP/.*" [0-9]{3} ([0-9]+\b)>', $line, $match);
+            if (isset($match[1])) {
+                $total +=  $match[1];
+            }
         }
-        return @$arb[$j];
+        return $total;
     }
-
 }
 
 ?>
