@@ -3,7 +3,7 @@
 /**
  *
  * ZPanel - A Cross-Platform Open-Source Web Hosting Control panel.
- * 
+ *
  * @package ZPanel
  * @version $Id$
  * @author Bobby Allen - ballen@zpanelcp.com
@@ -24,7 +24,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-class module_controller {
+class module_controller
+{
 
     static $error;
     static $noexists;
@@ -34,15 +35,16 @@ class module_controller {
     static $blank;
     static $ok;
 
-    static function getCrons() {
+    static function getCrons()
+    {
         global $zdbh;
         global $controller;
         $currentuser = ctrl_users::GetUserDetail();
         $line = "<h2>" . ui_language::translate("Current Cron Tasks") . "</h2>";
-        $sql = "SELECT COUNT(*) FROM x_cronjobs WHERE ct_acc_fk=:userid AND ct_deleted_ts IS NULL";       
+        $sql = "SELECT COUNT(*) FROM x_cronjobs WHERE ct_acc_fk=:userid AND ct_deleted_ts IS NULL";
         $numrows = $zdbh->prepare($sql);
         $numrows->bindParam(':userid', $currentuser['userid']);
-        
+
         if ($numrows->execute()) {
             if ($numrows->fetchColumn() <> 0) {
 
@@ -75,7 +77,8 @@ class module_controller {
         }
     }
 
-    static function getCreateCron() {
+    static function getCreateCron()
+    {
         global $zdbh;
         global $controller;
         $currentuser = ctrl_users::GetUserDetail();
@@ -104,6 +107,7 @@ class module_controller {
         $line .= "<option value=\"0 0,12 * * *\">" . ui_language::translate("Every 12 hours") . "</option>";
         $line .= "<option value=\"0 0 * * *\">" . ui_language::translate("Every 1 day") . "</option>";
         $line .= "<option value=\"0 0 * * 0\">" . ui_language::translate("Every week") . "</option>";
+        $line .="<option value=\"0 0 1 * *\">" . ui_language::translate("Every month") . "</option>";
         $line .= "</select></td>";
         $line .= "</tr>";
         $line .= "<tr>";
@@ -118,13 +122,13 @@ class module_controller {
         return $line;
     }
 
-    static function doCreateCron() {
+    static function doCreateCron()
+    {
         global $zdbh;
         global $controller;
         runtime_csfr::Protect();
         $currentuser = ctrl_users::GetUserDetail();
         if (fs_director::CheckForEmptyValue(self::CheckCronForErrors())) {
-
             // If the user submitted a 'new' request then we will simply add the cron task to the database...
             $sql = $zdbh->prepare("INSERT INTO x_cronjobs (ct_acc_fk, ct_script_vc, ct_description_tx, ct_timing_vc, ct_fullpath_vc, ct_created_ts) VALUES (:userid, :script, :desc, :timing, :fullpath, " . time() . ")");
             $sql->bindParam(':userid', $controller->GetControllerRequest('FORM', 'inUserID'));
@@ -142,7 +146,8 @@ class module_controller {
         return;
     }
 
-    static function doDeleteCron() {
+    static function doDeleteCron()
+    {
         global $zdbh;
         global $controller;
         runtime_csfr::Protect();
@@ -150,7 +155,6 @@ class module_controller {
         $sql = "SELECT COUNT(*) FROM x_cronjobs WHERE ct_acc_fk=:userid AND ct_deleted_ts IS NULL";
         $numrows = $zdbh->prepare($sql);
         $numrows->bindParam(':userid', $currentuser['userid']);
-        
         if ($numrows->execute()) {
             if ($numrows->fetchColumn() <> 0) {
                 $sql = $zdbh->prepare("SELECT * FROM x_cronjobs WHERE ct_acc_fk=:userid AND ct_deleted_ts IS NULL");
@@ -173,7 +177,8 @@ class module_controller {
         return;
     }
 
-    static function CheckCronForErrors() {
+    static function CheckCronForErrors()
+    {
         global $zdbh;
         global $controller;
         $retval = FALSE;
@@ -195,6 +200,9 @@ class module_controller {
         // Check to see if creating system cron file was successful...
         if (!is_file(ctrl_options::GetSystemOption('cron_file'))) {
             self::$cronnoexists = TRUE;
+            var_dump( 'here boss' );
+            var_dump( ctrl_options::GetSystemOption( 'cron_file' ) );
+            var_dump( is_file( ctrl_options::GetSystemOption( 'cron_file' ) ) );
             $retval = TRUE;
         }
         // Check to makesystem cron file is writable...
@@ -207,19 +215,19 @@ class module_controller {
         $numrows = $zdbh->prepare($sql);
         $numrows->bindParam(':userid', $currentuser['userid']);
         $numrows->bindParam(':inScript', $controller->GetControllerRequest('FORM', 'inScript'));
-        
         if ($numrows->execute()) {
             if ($numrows->fetchColumn() <> 0) {
                 self::$alreadyexists = TRUE;
                 $retval = TRUE;
             }
         }
-
         return $retval;
     }
 
-    static function WriteCronFile() {
+    static function WriteCronFile()
+    {
         global $zdbh;
+        $currentuser = ctrl_users::GetUserDetail();
         $line = "";
         $sql = "SELECT * FROM x_cronjobs WHERE ct_deleted_ts IS NULL";
         $numrows = $zdbh->query($sql);
@@ -233,35 +241,39 @@ class module_controller {
             $line .= "#################################################################################" . fs_filehandler::NewLine();
             $line .= "# WE DO NOT RECOMMEND YOU MODIFY THIS FILE DIRECTLY, PLEASE USE ZPANEL INSTEAD!  " . fs_filehandler::NewLine();
             $line .= "#################################################################################" . fs_filehandler::NewLine();
-
             if (sys_versions::ShowOSPlatformVersion() == "Windows") {
                 $line .= "# Cron Debug infomation can be found in this file here:-                        " . fs_filehandler::NewLine();
                 $line .= "# C:\WINDOWS\System32\crontab.txt                                                " . fs_filehandler::NewLine();
                 $line .= "#################################################################################" . fs_filehandler::NewLine();
-                $line .= "" . ctrl_options::GetSystemOption('daemon_timing') . " " . ctrl_options::GetSystemOption('php_exer') . " " . ctrl_options::GetSystemOption('daemon_exer') . "" . fs_filehandler::NewLine();
+                $line .= "" . ctrl_options::GetSystemOption('daemon_timing') . " " . ctrl_options::GetSystemOption('php_exer') . " -d suhosin.executor.funclacklist=\"passthru, show_source, shell_exec, system, pcntl_exec, popen, pclose, proc_open, proc_nice, proc_terminate, proc_get_status, proc_close, leak, apache_child_terminate, posix_kill, posix_mkfifo, posix_setpgid, posix_setsid, posix_setuid, escapeshellcmd, escapeshellarg, exec\" -d open_basedir=\"" . ctrl_options::GetSystemOption('hosted_dir') . $currentuser['username'] . "/" . ctrl_options::GetSystemOption('openbase_seperator') . ctrl_options::GetSystemOption('openbase_temp') . "\" " . ctrl_options::GetSystemOption('daemon_exer') . "" . fs_filehandler::NewLine();
                 $line .= "#################################################################################" . fs_filehandler::NewLine();
             }
-
             $line .= "# DO NOT MANUALLY REMOVE ANY OF THE CRON ENTRIES FROM THIS FILE, USE ZPANEL      " . fs_filehandler::NewLine();
             $line .= "# INSTEAD! THE ABOVE ENTRIES ARE USED FOR ZPANEL TASKS, DO NOT REMOVE THEM!      " . fs_filehandler::NewLine();
             $line .= "#################################################################################" . fs_filehandler::NewLine();
             while ($rowcron = $sql->fetch()) {
-                //$rowclient = $zdbh->query("SELECT * FROM x_accounts WHERE ac_id_pk=:userid AND ac_deleted_ts IS NULL")->fetch();
                 $fetchRows = $zdbh->prepare("SELECT * FROM x_accounts WHERE ac_id_pk=:userid AND ac_deleted_ts IS NULL");
                 $fetchRows->bindParam(':userid', $rowcron['ct_acc_fk']);
                 $fetchRows->execute();
                 $rowclient = $fetchRows->fetch();
-                
                 if ($rowclient && $rowclient['ac_enabled_in'] <> 0) {
                     $line .= "# CRON ID: " . $rowcron['ct_id_pk'] . "" . fs_filehandler::NewLine();
-                    $line .= "" . $rowcron['ct_timing_vc'] . " " . ctrl_options::GetSystemOption('php_exer') . " " . $rowcron['ct_fullpath_vc'] . "" . fs_filehandler::NewLine();
+                    $line .= "" . $rowcron['ct_timing_vc'] . " " . ctrl_options::GetSystemOption('php_exer') . " -d suhosin.executor.funclacklist=\"passthru, show_source, shell_exec, system, pcntl_exec, popen, pclose, proc_open, proc_nice, proc_terminate, proc_get_status, proc_close, leak, apache_child_terminate, posix_kill, posix_mkfifo, posix_setpgid, posix_setsid, posix_setuid, escapeshellcmd, escapeshellarg, exec\" -d open_basedir=\"" . ctrl_options::GetSystemOption('hosted_dir') . $currentuser['username'] . "/" . ctrl_options::GetSystemOption('openbase_seperator') . ctrl_options::GetSystemOption('openbase_temp') . "\" " . $rowcron['ct_fullpath_vc'] . "" . fs_filehandler::NewLine();
                     $line .= "# END CRON ID: " . $rowcron['ct_id_pk'] . "" . fs_filehandler::NewLine();
                 }
             }
 
             if (fs_filehandler::UpdateFile(ctrl_options::GetSystemOption('cron_file'), 0644, $line)) {
                 if (sys_versions::ShowOSPlatformVersion() != "Windows") {
-                    system(ctrl_options::GetSystemOption('zsudo') . " " . ctrl_options::GetSystemOption('cron_reload'));
+                    $returnValue = ctrl_system::systemCommand(
+                            ctrl_options::GetSystemOption( 'zsudo' ), array(
+                        ctrl_options::GetSystemOption( 'cron_reload_command' ),
+                        ctrl_options::GetSystemOption( 'cron_reload_flag' ),
+                        ctrl_options::GetSystemOption( 'cron_reload_user' ),
+                        ctrl_options::GetSystemOption( 'cron_reload_path' ),
+                    ) );
+
+                    var_dump( $returnValue );
                 }
                 return true;
             } else {
@@ -275,7 +287,6 @@ class module_controller {
             $line .= "#################################################################################" . fs_filehandler::NewLine();
             $line .= "# WE DO NOT RECOMMEND YOU MODIFY THIS FILE DIRECTLY, PLEASE USE ZPANEL INSTEAD!  " . fs_filehandler::NewLine();
             $line .= "#################################################################################" . fs_filehandler::NewLine();
-
             if (sys_versions::ShowOSPlatformVersion() == "Windows") {
                 $line .= "# Cron Debug infomation can be found in this file here:-                        " . fs_filehandler::NewLine();
                 $line .= "# C:\WINDOWS\System32\crontab.txt                                                " . fs_filehandler::NewLine();
@@ -283,13 +294,19 @@ class module_controller {
                 $line .= "" . ctrl_options::GetSystemOption('daemon_timing') . " " . ctrl_options::GetSystemOption('php_exer') . " " . ctrl_options::GetSystemOption('daemon_exer') . "" . fs_filehandler::NewLine();
                 $line .= "#################################################################################" . fs_filehandler::NewLine();
             }
-
             $line .= "# DO NOT MANUALLY REMOVE ANY OF THE CRON ENTRIES FROM THIS FILE, USE ZPANEL      " . fs_filehandler::NewLine();
             $line .= "# INSTEAD! THE ABOVE ENTRIES ARE USED FOR ZPANEL TASKS, DO NOT REMOVE THEM!      " . fs_filehandler::NewLine();
             $line .= "#################################################################################" . fs_filehandler::NewLine();
             if (fs_filehandler::UpdateFile(ctrl_options::GetSystemOption('cron_file'), 0644, $line)) {
                 if (sys_versions::ShowOSPlatformVersion() != "Windows") {
-                    system(ctrl_options::GetSystemOption('zsudo') . " " . ctrl_options::GetSystemOption('cron_reload'));
+                    $returnValue = ctrl_system::systemCommand(
+                            ctrl_options::GetSystemOption( 'zsudo' ), array(
+                        ctrl_options::GetSystemOption( 'cron_reload_command' ),
+                        ctrl_options::GetSystemOption( 'cron_reload_flag' ),
+                        ctrl_options::GetSystemOption( 'cron_reload_user' ),
+                        ctrl_options::GetSystemOption( 'cron_reload_path' ),
+                    ) );
+                    var_dump( $returnValue );
                 }
                 return true;
             } else {
@@ -298,7 +315,8 @@ class module_controller {
         }
     }
 
-    static function TranslateTiming($timing) {
+    static function TranslateTiming($timing)
+    {
         $timing = trim($timing);
         $retval = NULL;
         if ($timing == "* * * * *") {
@@ -331,10 +349,14 @@ class module_controller {
         if ($timing == "0 0 * * 0") {
             $retval = "Every week";
         }
+        if ($timing == "0 0 1 * *") {
+            $retval = "Every month";
+        }
         return $retval;
     }
 
-    static function getResult() {
+    static function getResult()
+    {
         if (!fs_director::CheckForEmptyValue(self::$blank)) {
             return ui_sysmessage::shout(ui_language::translate("You need to specify a valid location for your script."), "zannounceerror");
         }
@@ -359,22 +381,26 @@ class module_controller {
         return;
     }
 
-    static function getCSFR_Tag() {
+    static function getCSFR_Tag()
+    {
         return runtime_csfr::Token();
     }
 
-    static function getModuleName() {
+    static function getModuleName()
+    {
         $module_name = ui_language::translate(ui_module::GetModuleName());
         return $module_name;
     }
 
-    static function getModuleIcon() {
+    static function getModuleIcon()
+    {
         global $controller;
         $module_icon = "modules/" . $controller->GetControllerRequest('URL', 'module') . "/assets/icon.png";
         return $module_icon;
     }
 
-    static function getModuleDesc() {
+    static function getModuleDesc()
+    {
         $message = ui_language::translate(ui_module::GetModuleDescription());
         return $message;
     }

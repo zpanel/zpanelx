@@ -15,7 +15,7 @@ class ui_template {
     /**
      * Returns the name (folder name) of the template that should be used for the current user.
      * @author Bobby Allen (ballen@zpanelcp.com)
-     * @return string The tempalte name.
+     * @return string The template name.
      */
     static function GetUserTemplate() {
         $user = ctrl_users::GetUserDetail();
@@ -33,7 +33,7 @@ class ui_template {
      * @author Bobby Allen (ballen@zpanelcp.com)
      * @return array 
      */
-    static function ListAvaliableTemeplates() {
+    static function ListAvaliableTemplates() {
         $allstyles = array();
         $handle = @opendir(ctrl_options::GetSystemOption('zpanel_root') . "etc/styles");
         $chkdir = ctrl_options::GetSystemOption('zpanel_root') . "etc/styles/";

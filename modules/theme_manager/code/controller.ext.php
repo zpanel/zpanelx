@@ -40,7 +40,7 @@ class module_controller {
     /**
      * The 'worker' methods.
      */
-    static function ExectuteUpdateTheme($uid, $theme) {
+    static function ExecuteUpdateTheme($uid, $theme) {
         global $zdbh;
         $sql = $zdbh->prepare("
             UPDATE x_accounts
@@ -54,7 +54,7 @@ class module_controller {
         return true;
     }
 
-    static function ExectuteUpdateCSS($uid, $css) {
+    static function ExecuteUpdateCSS($uid, $css) {
         global $zdbh;
         $sql = $zdbh->prepare("
             UPDATE x_accounts
@@ -86,8 +86,8 @@ class module_controller {
         }
     }
 
-    static function ExectuteStylesList() {
-        return ui_template::ListAvaliableTemeplates();
+    static function ExecuteStylesList() {
+        return ui_template::ListAvaliableTemplates();
     }
 
     static function ExecuteCSSList() {
@@ -116,7 +116,7 @@ class module_controller {
 
     static function getSelectThemeMenu() {
         $html = "";
-        foreach (self::ExectuteStylesList() as $theme) {
+        foreach (self::ExecuteStylesList() as $theme) {
             if ($theme['name'] != self::getCurrentTheme()) {
                 $html .="<option value = \"" . $theme['name'] . "\">" . $theme['name'] . "</option>\n";
             } else {
@@ -151,11 +151,11 @@ class module_controller {
         runtime_csfr::Protect();
         $currentuser = ctrl_users::GetUserDetail();
         $formvars = $controller->GetAllControllerRequests('FORM');
-        self::ExectuteUpdateTheme($currentuser['userid'], $formvars['inTheme']);
+        self::ExecuteUpdateTheme($currentuser['userid'], $formvars['inTheme']);
         if (count(self::ExecuteCSSList($formvars['inTheme'])) > 1) {
             header("location: ./?module=" . $controller->GetCurrentModule() . "&selectcss=true");
         } else {
-            self::ExectuteUpdateCSS($currentuser['userid'], "");
+            self::ExecuteUpdateCSS($currentuser['userid'], "");
             header("location: ./?module=" . $controller->GetCurrentModule() . "&saved=true");
         }
         exit;
@@ -166,7 +166,7 @@ class module_controller {
         runtime_csfr::Protect();
         $currentuser = ctrl_users::GetUserDetail();
         $formvars = $controller->GetAllControllerRequests('FORM');
-        self::ExectuteUpdateCSS($currentuser['userid'], $formvars['inCSS']);
+        self::ExecuteUpdateCSS($currentuser['userid'], $formvars['inCSS']);
         header("location: ./?module=" . $controller->GetCurrentModule() . "&saved=true");
         exit;
     }

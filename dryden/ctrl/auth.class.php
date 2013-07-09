@@ -22,7 +22,16 @@ class ctrl_auth {
         global $zdbh;
         if (!isset($_SESSION['zpuid'])) {
             if (isset($_COOKIE['zUser'])) {
-                self::Authenticate($_COOKIE['zUser'], $_COOKIE['zPass'], false, true);
+                if(isset($_COOKIE['zSec'])){
+                    if($_COOKIE['zSec'] == false){
+                        $secure = false;
+                    }else{
+                        $secure = true;
+                    }   
+                }else{
+                    $secure = true;
+                }
+                self::Authenticate($_COOKIE['zUser'], $_COOKIE['zPass'], false, true, $secure);
             }
             runtime_hook::Execute('OnRequireUserLogin');
             $sqlQuery = "SELECT ac_usertheme_vc, ac_usercss_vc FROM 
@@ -43,15 +52,22 @@ class ctrl_auth {
      * @param int $zpuid The ZPanel user account ID to set the session as.
      * @return bool 
      */
-    static function SetUserSession($zpuid = 0) {
+    static function SetUserSession($zpuid = 0, $sessionSecuirty) {
         if (isset($zpuid)) {
             $_SESSION['zpuid'] = $zpuid;
-            
-            //Disabled till zpanel 10.0.3
-            //Implamentation of session security 
-            //runtime_sessionsecurity::setCookie();
-            //runtime_sessionsecurity::setUserIP();
-            //runtime_sessionsecurity::setUserAgent();           
+            if($sessionSecuirty){
+                //Implamentation of session security 
+                runtime_sessionsecurity::setCookie();
+                runtime_sessionsecurity::setUserIP();
+                runtime_sessionsecurity::setUserAgent();
+                runtime_sessionsecurity::setSessionSecurityEnabled(true);
+            }else{
+                //Implamentation of session security but set it as off 
+                runtime_sessionsecurity::setCookie();
+                runtime_sessionsecurity::setUserIP();
+                runtime_sessionsecurity::setUserAgent();
+                runtime_sessionsecurity::setSessionSecurityEnabled(false);
+            }
             
             return true;
         } else {
@@ -85,7 +101,7 @@ class ctrl_auth {
      * @param bool $checkingcookie The authentication request has come from a set cookie.
      * @return mixed Returns 'false' if the authentication fails otherwise will return the user ID. 
      */
-    static function Authenticate($username, $password, $rememberme = false, $iscookie = false) {
+    static function Authenticate($username, $password, $rememberme = false, $iscookie = false, $sessionSecuirty) {
         global $zdbh;
         $sqlString = "SELECT * FROM 
                       x_accounts WHERE 
@@ -105,12 +121,13 @@ class ctrl_auth {
             //Disabled till zpanel 10.0.3
             //runtime_sessionsecurity::sessionRegen();
             
-            ctrl_auth::SetUserSession($row['ac_id_pk']);
+            ctrl_auth::SetUserSession($row['ac_id_pk'], $sessionSecuirty);
             $log_logon = $zdbh->prepare("UPDATE x_accounts SET ac_lastlogon_ts=" . time() . " WHERE ac_id_pk=" . $row['ac_id_pk'] . "");
             $log_logon->execute();
             if ($rememberme) {
                 setcookie("zUser", $username, time() + 60 * 60 * 24 * 30, "/");
                 setcookie("zPass", $password, time() + 60 * 60 * 24 * 30, "/");
+                //setcookie("zSec", $sessionSecuirty, time() + 60 * 60 * 24 * 30, "/");
             }
             
             runtime_hook::Execute('OnGoodUserLogin');
@@ -129,8 +146,8 @@ class ctrl_auth {
     static function KillSession() {
         runtime_hook::Execute('OnUserLogout');
         $_SESSION['zpuid'] = null;
-        //Disabled till zpanel 10.0.3
-        //unset($_COOKIE['zUserSaltCookie']);
+        
+        unset($_COOKIE['zUserSaltCookie']);
         
         return true;
     }
@@ -145,6 +162,7 @@ class ctrl_auth {
         setcookie("zPass", '', time() - 3600, "/");
         unset($_COOKIE['zUser']);
         unset($_COOKIE['zPass']);
+        unset($_COOKIE['zSec']);
         return true;
     }
 

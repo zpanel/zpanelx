@@ -33,6 +33,7 @@ CREATE TABLE `x_accounts` (
   `ac_notice_tx` text,
   `ac_resethash_tx` text,
   `ac_passsalt_vc` varchar(22) DEFAULT NULL,
+  `ac_catorder_vc` varchar(255) DEFAULT NULL,
   `ac_created_ts` int(30) DEFAULT NULL,
   `ac_deleted_ts` int(30) DEFAULT NULL,
   PRIMARY KEY (`ac_id_pk`)
@@ -402,22 +403,6 @@ insert  into `x_modules`(`mo_id_pk`,`mo_category_fk`,`mo_name_vc`,`mo_version_in
 insert  into `x_modules`(`mo_id_pk`,`mo_category_fk`,`mo_name_vc`,`mo_version_in`,`mo_folder_vc`,`mo_type_en`,`mo_desc_tx`,`mo_installed_ts`,`mo_enabled_en`,`mo_updatever_vc`,`mo_updateurl_tx`) values (46,7,'Theme Manager',100,'theme_manager','user','Enables the reseller to set themes configurations for their clients.',0,'true','',NULL);
 insert  into `x_modules`(`mo_id_pk`,`mo_category_fk`,`mo_name_vc`,`mo_version_in`,`mo_folder_vc`,`mo_type_en`,`mo_desc_tx`,`mo_installed_ts`,`mo_enabled_en`,`mo_updatever_vc`,`mo_updateurl_tx`) values (47,3,'Webalizer Stats',100,'webalizer_stats','user','You can view many statistics such as visitor infomation, bandwidth used, referal infomation and most viewed pages etc. Web stats are based on Domains and sub-domains so to view web stats for a particular domain or subdomain use the drop-down menu to select the domain or sub-domain you want to view web stats for.',0,'true','',NULL);
 
-/*Table structure for table `x_mysql` */
-
-DROP TABLE IF EXISTS `x_mysql`;
-
-CREATE TABLE `x_mysql` (
-  `my_id_pk` int(6) unsigned NOT NULL AUTO_INCREMENT,
-  `my_acc_fk` int(6) DEFAULT NULL,
-  `my_name_vc` varchar(40) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
-  `my_usedspace_bi` bigint(50) DEFAULT '0',
-  `my_created_ts` int(30) DEFAULT NULL,
-  `my_deleted_ts` int(30) DEFAULT NULL,
-  PRIMARY KEY (`my_id_pk`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-/*Data for the table `x_mysql` */
-
 /*Table structure for table `x_mysql_databases` */
 
 DROP TABLE IF EXISTS `x_mysql_databases`;
@@ -679,7 +664,7 @@ insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx
 insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx`,`so_defvalues_tx`,`so_desc_tx`,`so_module_vc`,`so_usereditable_en`) values (24,'disable_hostsen','Disable auto HOSTS file entry','false','true|false','Disable Host Entries','ZPanel Config','false');
 insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx`,`so_defvalues_tx`,`so_desc_tx`,`so_module_vc`,`so_usereditable_en`) values (25,'latestzpversion','Cached version of latest zpanel version','10.0.0',NULL,'This is used for caching the latest version of ZPanel.','ZPanel Config','false');
 insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx`,`so_defvalues_tx`,`so_desc_tx`,`so_module_vc`,`so_usereditable_en`) values (26,'logmode','Debug logging mode','db','db|file|email','The default mode to log all errors in.','ZPanel Config','true');
-insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx`,`so_defvalues_tx`,`so_desc_tx`,`so_module_vc`,`so_usereditable_en`) values (27,'logfile','ZPanel Log file','/etc/zpanel/logs/zpanel.log',NULL,'If logging is set to \'file\' mode this is the path to the log file that is to be used by ZPanel.','ZPanel Config','true');
+insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx`,`so_defvalues_tx`,`so_desc_tx`,`so_module_vc`,`so_usereditable_en`) values (27,'logfile','ZPanel Log file','/var/zpanel/logs/zpanel.log',NULL,'If logging is set to \'file\' mode this is the path to the log file that is to be used by ZPanel.','ZPanel Config','true');
 insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx`,`so_defvalues_tx`,`so_desc_tx`,`so_module_vc`,`so_usereditable_en`) values (28,'apikey','XMWS API Key','ee8795c8c53bfdb3b2cc595186b68912',NULL,'The secret API key for the server.','ZPanel Config','false');
 insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx`,`so_defvalues_tx`,`so_desc_tx`,`so_module_vc`,`so_usereditable_en`) values (29,'email_from_address','From Address','zpanel@localhost',NULL,'The email address to appear in the From field of emails sent by ZPanel.','ZPanel Config','true');
 insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx`,`so_defvalues_tx`,`so_desc_tx`,`so_module_vc`,`so_usereditable_en`) values (30,'email_from_name','From Name','ZPanel Server',NULL,'The name to appear in the From field of emails sent by ZPanel.','ZPanel Config','true');
@@ -766,8 +751,11 @@ insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx
 insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx`,`so_defvalues_tx`,`so_desc_tx`,`so_module_vc`,`so_usereditable_en`) values (113,'daemon_run_interval','Number of seconds between each daemon execution','300',NULL,'The total number of seconds between each daemon run (default 300 = 5 mins)','ZPanel Config','false');
 insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx`,`so_defvalues_tx`,`so_desc_tx`,`so_module_vc`,`so_usereditable_en`) values (114,'debug_mode','ZPanel Debug Mode','dev','dev|prod','Whether or not to show PHP debug errors,warnings and notices','ZPanel Config','true');
 insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx`,`so_defvalues_tx`,`so_desc_tx`,`so_module_vc`,`so_usereditable_en`) values (115,'password_minlength','Min Password Length','6',NULL,'Minimum length required for new passwords','ZPanel Config','true');
-insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx`,`so_defvalues_tx`,`so_desc_tx`,`so_module_vc`,`so_usereditable_en`) values (116,'cron_reload','Cron Reload','crontab -u apache /var/spool/cron/apache',NULL,'Cron reload command for apache user in Linux Only','Cron Config','true');
-insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx`,`so_defvalues_tx`,`so_desc_tx`,`so_module_vc`,`so_usereditable_en`) values (117,'login_csfr','Remote Login Forms','false','false|true','Disables CSFR protection on the login form to enable remote login forms.','ZPanel Config','true');
+insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx`,`so_defvalues_tx`,`so_desc_tx`,`so_module_vc`,`so_usereditable_en`) values (116,'cron_reload_command','Cron Reload Command','crontab',NULL,'Crontab binary in Linux Only','Cron Config','true');
+insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx`,`so_defvalues_tx`,`so_desc_tx`,`so_module_vc`,`so_usereditable_en`) values (117,'cron_reload_path','Cron Reload Path','/var/spool/cron/apache',NULL,'Cron reload path in Linux Only','Cron Config','true');
+insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx`,`so_defvalues_tx`,`so_desc_tx`,`so_module_vc`,`so_usereditable_en`) values (118,'cron_reload_flag','Cron Reload Flags','-u',NULL,'Cron reload command flags in Linux Only','Cron Config','true');
+insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx`,`so_defvalues_tx`,`so_desc_tx`,`so_module_vc`,`so_usereditable_en`) values (119,'cron_reload_user','Cron Reload User','apache',NULL,'Cron reload apache user in Linux','Cron Config','true');
+insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx`,`so_defvalues_tx`,`so_desc_tx`,`so_module_vc`,`so_usereditable_en`) values (120,'login_csfr','Remote Login Forms','false','false|true','Disables CSFR protection on the login form to enable remote login forms.','ZPanel Config','true');
 
 
 /*Table structure for table `x_translations` */
