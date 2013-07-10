@@ -45,8 +45,8 @@ class module_controller {
     /* Load DNS CSS and JS files */
     static function getInit() {
         global $controller;
-        $line = "<link rel=\"stylesheet\" type=\"text/css\" href=\"modules/" . $controller->GetControllerRequest('URL', 'module') . "/assets/dns.css\">";
-        $line .= "<script type=\"text/javascript\" src=\"modules/" . $controller->GetControllerRequest('URL', 'module') . "/assets/dns.js\"></script>";
+        $line = '<link rel="stylesheet" type="text/css" href="modules/' . $controller->GetControllerRequest('URL', 'module') . '/assets/dns.css">';
+        $line .= '<script type="text/javascript" src="modules/' . $controller->GetControllerRequest('URL', 'module') . '/assets/dns.js"></script>';
         return $line;
     }
 
@@ -1542,7 +1542,8 @@ $line .='
 
 
                 $content_grabbed = ob_get_contents();
-                ob_end_clean();var_dump($retval);
+                ob_end_clean();
+                //var_dump($retval);
                 unlink($zonecheck_file);
                 if ($retval == 0) {
                     //Syntax check passed.

@@ -1,1 +1,0 @@
-chmod -R 744 /var/spool/cron/
