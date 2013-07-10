@@ -22,19 +22,17 @@
 
 $forms = array();
 $forms['Features']['General'] = array(
-    'AjaxEnable',
     'VersionCheck',
     'NaturalOrder',
     'InitialSlidersState',
-    'ErrorIconic',
     'LoginCookieValidity',
-    'ReplaceHelpImg',
     'Servers/1/only_db', // saves to Server/only_db
     'Servers/1/hide_db', // saves to Server/hide_db
     'SkipLockedTables',
     'DisableMultiTableMaintenance',
     'MaxDbList',
     'MaxTableList',
+    'NumRecentTables',
     'ShowHint');
 $forms['Features']['Text_fields'] = array(
     'CharEditing',
@@ -51,10 +49,13 @@ $forms['Features']['Page_titles'] = array(
     'TitleDatabase',
     'TitleServer');
 $forms['Features']['Warnings'] = array(
+    'ServerLibraryDifference_DisableWarning',
     'PmaNoRelation_DisableWarning',
     'SuhosinDisableWarning',
-    'McryptDisableWarning');
-// settings from this form are treated specially, see prefs_forms.php and user_preferences.lib.php
+    'McryptDisableWarning',
+    'ReservedWordDisableWarning');
+// settings from this form are treated specially,
+// see prefs_forms.php and user_preferences.lib.php
 $forms['Features']['Developer'] = array(
     'Error_Handler/display',
     'Error_Handler/gather',
@@ -64,46 +65,46 @@ $forms['Sql_queries']['Sql_queries'] = array(
     'Confirm',
     'QueryHistoryMax',
     'IgnoreMultiSubmitErrors',
-    'VerboseMultiSubmit',
     'MaxCharactersInDisplayedSQL',
     'EditInWindow',
     //'QueryWindowWidth', // overridden in theme
     //'QueryWindowHeight',
     'QueryWindowDefTab',
-    'RetainQueryBox');
+    'RetainQueryBox',
+    'CodemirrorEnable');
 $forms['Sql_queries']['Sql_box'] = array(
     'SQLQuery/Edit',
     'SQLQuery/Explain',
     'SQLQuery/ShowAsPHP',
     'SQLQuery/Validate',
     'SQLQuery/Refresh');
-$forms['Left_frame']['Left_frame'] = array(
-    'LeftFrameLight',
-    'LeftDisplayLogo',
-    'LeftLogoLink',
-    'LeftLogoLinkWindow',
-    'LeftPointerEnable',
-    'LeftRecentTable');
-$forms['Left_frame']['Left_databases'] = array(
-    'DisplayDatabasesList',
-    'LeftFrameDBTree',
-    'LeftFrameDBSeparator',
-    'ShowTooltipAliasDB');
-$forms['Left_frame']['Left_tables'] = array(
-    'LeftDisplayTableFilterMinimum',
-    'LeftDefaultTabTable',
-    'LeftFrameTableSeparator',
-    'LeftFrameTableLevel',
-    'ShowTooltip',
-    'ShowTooltipAliasTB');
-$forms['Main_frame']['Startup'] = array(
-    'MainPageIconic',
-    'ShowCreateDb' => ':group',
-        'SuggestDBName',
-        ':group:end',
+$forms['Navi_panel']['Navi_panel'] = array(
+    'NavigationDisplayLogo',
+    'NavigationLogoLink',
+    'NavigationLogoLinkWindow',
+    'NavigationTreePointerEnable',
+    'MaxNavigationItems',
+    'NavigationTreeEnableGrouping',
+    'NavigationTreeDisplayItemFilterMinimum');
+$forms['Navi_panel']['Navi_databases'] = array(
+    'NavigationTreeDisplayDbFilterMinimum',
+    'NavigationTreeDbSeparator');
+$forms['Navi_panel']['Navi_tables'] = array(
+    'NavigationTreeDefaultTabTable',
+    'NavigationTreeTableSeparator',
+    'NavigationTreeTableLevel',
+    'ShowTooltip');
+$forms['Main_panel']['Startup'] = array(
+    'ShowCreateDb',
     'ShowStats',
     'ShowServerInfo');
-$forms['Main_frame']['Browse'] = array(
+$forms['Main_panel']['DbStructure'] = array(
+    'ShowDbStructureCreation',
+    'ShowDbStructureLastUpdate',
+    'ShowDbStructureLastCheck');
+$forms['Main_panel']['TableStructure'] = array(
+    'HideStructureActions');
+$forms['Main_panel']['Browse'] = array(
     'NavigationBarIconic',
     'PropertiesIconic',
     'ShowAll',
@@ -112,6 +113,7 @@ $forms['Main_frame']['Browse'] = array(
     'DisplayBinaryAsHex',
     'BrowsePointerEnable',
     'BrowseMarkerEnable',
+    'GridEditing',
     'SaveCellsAtOnce',
     'ShowDisplayDirection',
     'RepeatCells',
@@ -119,15 +121,14 @@ $forms['Main_frame']['Browse'] = array(
     'RowActionLinks',
     'DefaultDisplay',
     'RememberSorting');
-$forms['Main_frame']['Edit'] = array(
+$forms['Main_panel']['Edit'] = array(
     'ProtectBinary',
     'ShowFunctionFields',
     'ShowFieldTypesInDataEditView',
     'InsertRows',
     'ForeignKeyDropdownOrder',
     'ForeignKeyMaxLimit');
-$forms['Main_frame']['Tabs'] = array(
-    'LightTabs',
+$forms['Main_panel']['Tabs'] = array(
     'DefaultTabServer',
     'DefaultTabDatabase',
     'DefaultTabTable');
@@ -156,7 +157,7 @@ $forms['Import']['Csv'] = array(
         'Import/ldi_escaped',
         'Import/ldi_local_option');
 $forms['Import']['Open_Document'] = array(
-    ':group:' . __('Open Document Spreadsheet'),
+    ':group:' . __('OpenDocument Spreadsheet'),
         'Import/ods_col_names',
         'Import/ods_empty_rows',
         'Import/ods_recognize_percentages',
@@ -248,11 +249,11 @@ $forms['Export']['Microsoft_Office'] = array(
         'Export/htmlword_null',
         'Export/htmlword_columns');
 $forms['Export']['Open_Document'] = array(
-    ':group:' . __('Open Document Spreadsheet'),
+    ':group:' . __('OpenDocument Spreadsheet'),
         'Export/ods_columns',
         'Export/ods_null',
         ':group:end',
-    ':group:' . __('Open Document Text'),
+    ':group:' . __('OpenDocument Text'),
         'Export/odt_structure_or_data',
         ':group:' . __('Structure'),
             'Export/odt_relation',

@@ -178,7 +178,7 @@ div.readtext
 {
   min-height: 200px;
   padding-bottom: 2em;
-  background: url(images/watermark.gif) no-repeat center;
+  background: url(images/watermark.gif?v=4094.9288) no-repeat center;
 }
 
 #license .sysname
@@ -196,6 +196,46 @@ div.readtext
 #license .links
 {
   margin-top: 1.5em;
+}
+
+.skinselection
+{
+  display: block;
+  white-space: nowrap;
+  margin: 0.3em 0;
+}
+
+.skinselection span
+{
+  display: inline-block;
+  vertical-align: middle;
+  padding-right: 1em;
+}
+
+.skinselection .skinname
+{
+  font-weight: bold;
+}
+
+.skinselection .skinlicense,
+.skinselection .skinlicense a
+{
+  color: #999;
+  font-style: italic;
+  text-decoration: none;
+}
+
+.skinselection .skinlicense a:hover
+{
+  text-decoration: underline;
+}
+
+img.skinthumbnail
+{
+  width: 64px;
+  height: 64px;
+  border: 1px solid #999;
+  background: #fff;
 }
 
 #pluginlist

@@ -27,7 +27,7 @@ require_once './libraries/js_escape.lib.php';
 $js_messages['strNoDropDatabases'] = $cfg['AllowUserDropDatabase'] ? '' : __('"DROP DATABASE" statements are disabled.');
 
 /* For confirmations */
-$js_messages['strDoYouReally'] = __('Do you really want to ');
+$js_messages['strDoYouReally'] = __('Do you really want to execute "%s"?');
 $js_messages['strDropDatabaseStrongWarning'] = __('You are about to DESTROY a complete database!');
 $js_messages['strDropTableStrongWarning'] = __('You are about to DESTROY a complete table!');
 $js_messages['strTruncateTableStrongWarning'] = __('You are about to TRUNCATE a complete table!');
@@ -36,20 +36,16 @@ $js_messages['strDeletingTrackingData'] = __('Deleting tracking data');
 $js_messages['strDroppingPrimaryKeyIndex'] = __('Dropping Primary Key/Index');
 $js_messages['strOperationTakesLongTime'] = __('This operation could take a long time. Proceed anyway?');
 
-/* For blobstreaming */
-$js_messages['strBLOBRepositoryDisableStrongWarning'] = __('You are about to DISABLE a BLOB Repository!');
-$js_messages['strBLOBRepositoryDisableAreYouSure'] = sprintf(__('Are you sure you want to disable all BLOB references for database %s?'), PMA_escapeJsString($GLOBALS['db']));
-
 /* For indexes */
 $js_messages['strFormEmpty'] = __('Missing value in the form!');
 $js_messages['strNotNumber'] = __('This is not a number!');
 $js_messages['strAddIndex'] = __('Add Index');
 $js_messages['strEditIndex'] = __('Edit Index');
-$js_messages['strAddToIndex'] = __('Add %d column(s) to index');
+$js_messages['strAddToIndex'] = __('Add %s column(s) to index');
 
 /* Charts */
-/* l10n: Default description for the y-Axis of Charts */
-$js_messages['strTotalCount'] = __('Total count');
+/* l10n: Default label for the y-Axis of Charts */
+$js_messages['strYValues'] = __('Y Values');
 
 /* For server_privileges.js */
 $js_messages['strHostEmpty'] = __('The host name is empty!');
@@ -73,22 +69,11 @@ $js_messages['strTotal'] = __('Total');
 /* l10n: Other, small valued, queries */
 $js_messages['strOther'] = __('Other');
 /* l10n: Thousands separator */
-$js_messages['strThousandsSeperator'] = __(',');
+$js_messages['strThousandsSeparator'] = __(',');
 /* l10n: Decimal separator */
-$js_messages['strDecimalSeperator'] = __('.');
+$js_messages['strDecimalSeparator'] = __('.');
 
-$js_messages['strChartKBSent'] = __('KiB sent since last refresh');
-$js_messages['strChartKBReceived'] = __('KiB received since last refresh');
-$js_messages['strChartServerTraffic'] = __('Server traffic (in KiB)');
-$js_messages['strChartConnections'] = __('Connections since last refresh');
-$js_messages['strChartProcesses'] = __('Processes');
 $js_messages['strChartConnectionsTitle'] = __('Connections / Processes');
-/* l10n: Questions is the name of a MySQL Status variable */
-$js_messages['strChartIssuedQueries'] = __('Questions since last refresh');
-/* l10n: Questions is the name of a MySQL Status variable */
-$js_messages['strChartIssuedQueriesTitle'] = __('Questions (executed statements by the server)');
-
-$js_messages['strChartQueryPie'] = __('Query statistics');
 
 /* server status monitor */
 $js_messages['strIncompatibleMonitorConfig'] = __('Local monitor configuration incompatible');
@@ -101,8 +86,6 @@ $js_messages['strQueryCacheUsed'] = __('Query cache used');
 $js_messages['strSystemCPUUsage'] = __('System CPU Usage');
 $js_messages['strSystemMemory'] = __('System memory');
 $js_messages['strSystemSwap'] = __('System swap');
-$js_messages['strMiB'] = __('MiB');
-$js_messages['strKiB'] = __('KiB');
 
 $js_messages['strAverageLoad'] = __('Average load');
 $js_messages['strTotalMemory'] = __('Total memory');
@@ -184,7 +167,7 @@ $js_messages['strJumpToTable'] = __('Jump to Log table');
 $js_messages['strNoDataFoundTitle'] = __('No data found');
 $js_messages['strNoDataFound'] = __('Log analysed, but no data found in this time span.');
 
-$js_messages['strAnalyzing'] = __('Analyzing...');
+$js_messages['strAnalyzing'] = __('Analyzing…');
 $js_messages['strExplainOutput'] = __('Explain output');
 $js_messages['strStatus'] = __('Status');
 $js_messages['strTime'] = __('Time');
@@ -212,7 +195,7 @@ $js_messages['strReloadPage'] = __('Reload page');
 $js_messages['strAffectedRows'] = __('Affected rows:');
 
 $js_messages['strFailedParsingConfig'] = __('Failed parsing config file. It doesn\'t seem to be valid JSON code.');
-$js_messages['strFailedBuildingGrid'] = __('Failed building chart grid with imported config. Resetting to default config...');
+$js_messages['strFailedBuildingGrid'] = __('Failed building chart grid with imported config. Resetting to default config…');
 $js_messages['strImport'] = __('Import');
 $js_messages['strImportDialogTitle'] = __('Import monitor configuration');
 $js_messages['strImportDialogMessage'] = __('Please select the file you want to import');
@@ -239,6 +222,9 @@ $js_messages['strCancel'] = __('Cancel');
 $js_messages['strLoading'] = __('Loading');
 $js_messages['strProcessingRequest'] = __('Processing Request');
 $js_messages['strErrorProcessingRequest'] = __('Error in Processing Request');
+$js_messages['strErrorCode'] = __('Error code: %s');
+$js_messages['strErrorText'] = __('Error text: %s');
+$js_messages['strNoDatabasesSelected'] = __('No databases selected.');
 $js_messages['strDroppingColumn'] = __('Dropping Column');
 $js_messages['strAddingPrimaryKey'] = __('Adding Primary Key');
 $js_messages['strOK'] = __('OK');
@@ -257,6 +243,9 @@ $js_messages['strNo'] = __('No');
 $js_messages['strInsertTable'] = __('Insert Table');
 $js_messages['strHideIndexes'] = __('Hide indexes');
 $js_messages['strShowIndexes'] = __('Show indexes');
+$js_messages['strForeignKeyCheck'] = __('Foreign key check:');
+$js_messages['strForeignKeyCheckEnabled'] = __('(Enabled)');
+$js_messages['strForeignKeyCheckDisabled'] = __('(Disabled)');
 
 /* For db_search.js */
 $js_messages['strSearching'] = __('Searching');
@@ -303,7 +292,7 @@ $js_messages['strDisplayHelp'] = '<ul><li>'
     . '</li><li>'
     . __('To zoom in, select a section of the plot with the mouse.')
     . '</li><li>'
-    . __('Click reset zoom link to come back to original state.')
+    . __('Click reset zoom button to come back to original state.')
     . '</li><li>'
     . __('Click a data point to view and possibly edit the data row.')
     . '</li><li>'
@@ -342,6 +331,7 @@ $js_messages['strLeavingDesigner'] = __('You haven\'t saved the changes in the l
 
 /* Visual query builder (js/pmd/move.js) */
 $js_messages['strAddOption'] = __('Add an option for column ');
+$js_messages['strObjectsCreated'] = __('%d object(s) created');
 
 /* For makegrid.js (column reordering, show/hide column, grid editing) */
 $js_messages['strCellEditHint'] = __('Press escape to cancel editing');
@@ -349,11 +339,26 @@ $js_messages['strSaveCellWarning'] = __('You have edited some data and they have
 $js_messages['strColOrderHint'] = __('Drag to reorder');
 $js_messages['strSortHint'] = __('Click to sort');
 $js_messages['strColMarkHint'] = __('Click to mark/unmark');
+$js_messages['strColNameCopyHint'] = __('Double-click to copy column name');
 $js_messages['strColVisibHint'] = __('Click the drop-down arrow<br />to toggle column\'s visibility');
 $js_messages['strShowAllCol'] = __('Show all');
 $js_messages['strAlertNonUnique'] = __('This table does not contain a unique column. Features related to the grid edit, checkbox, Edit, Copy and Delete links may not work after saving.');
-$js_messages['strGridEditFeatureHint'] = __('You can also edit most columns<br />by clicking directly on their content.');
+
+// this approach does not work when the parameter is changed via user prefs
+switch ($GLOBALS['cfg']['GridEditing']) {
+case 'double-click':
+    $js_messages['strGridEditFeatureHint'] = __('You can also edit most values<br />by double-clicking directly on them.');
+    break;
+case 'click':
+    $js_messages['strGridEditFeatureHint'] = __('You can also edit most values<br />by clicking directly on them.');
+    break;
+default:
+    break;
+}
 $js_messages['strGoToLink'] = __('Go to link');
+$js_messages['strColNameCopyTitle'] = __('Copy column name');
+$js_messages['strColNameCopyText'] = __('Right-click the column name to copy it to your clipboard.');
+$js_messages['strShowDataRowLink'] = __('Show data row(s)');
 
 /* password generation */
 $js_messages['strGeneratePassword'] = __('Generate password');
@@ -362,6 +367,13 @@ $js_messages['strChangePassword'] = __('Change Password');
 
 /* navigation tabs */
 $js_messages['strMore'] = __('More');
+
+/* navigation panel */
+$js_messages['strShowPanel'] = __('Show Panel');
+$js_messages['strHidePanel'] = __('Hide Panel');
+
+/* microhistory */
+$js_messages['strInvalidPage'] = __('The requested page was not found in the history, it may have expired.');
 
 /* update */
 $js_messages['strNewerVersion'] = __('A newer version of phpMyAdmin is available and you should consider upgrading. The newest version is %s, released on %s.');
@@ -399,7 +411,8 @@ PMA_printJsValue(
 );
 /* l10n: Display text for current month link in calendar */
 PMA_printJsValue("$.datepicker.regional['']['currentText']", __('Today'));
-PMA_printJsValue("$.datepicker.regional['']['monthNames']",
+PMA_printJsValue(
+    "$.datepicker.regional['']['monthNames']",
     array(
         __('January'),
         __('February'),
@@ -412,8 +425,11 @@ PMA_printJsValue("$.datepicker.regional['']['monthNames']",
         __('September'),
         __('October'),
         __('November'),
-        __('December')));
-PMA_printJsValue("$.datepicker.regional['']['monthNamesShort']",
+        __('December')
+    )
+);
+PMA_printJsValue(
+    "$.datepicker.regional['']['monthNamesShort']",
     array(
 /* l10n: Short month name */
         __('Jan'),
@@ -438,8 +454,11 @@ PMA_printJsValue("$.datepicker.regional['']['monthNamesShort']",
 /* l10n: Short month name */
         __('Nov'),
 /* l10n: Short month name */
-        __('Dec')));
-PMA_printJsValue("$.datepicker.regional['']['dayNames']",
+        __('Dec')
+    )
+);
+PMA_printJsValue(
+    "$.datepicker.regional['']['dayNames']",
     array(
         __('Sunday'),
         __('Monday'),
@@ -447,8 +466,11 @@ PMA_printJsValue("$.datepicker.regional['']['dayNames']",
         __('Wednesday'),
         __('Thursday'),
         __('Friday'),
-        __('Saturday')));
-PMA_printJsValue("$.datepicker.regional['']['dayNamesShort']",
+        __('Saturday')
+    )
+);
+PMA_printJsValue(
+    "$.datepicker.regional['']['dayNamesShort']",
     array(
 /* l10n: Short week day name */
         __('Sun'),
@@ -463,8 +485,11 @@ PMA_printJsValue("$.datepicker.regional['']['dayNamesShort']",
 /* l10n: Short week day name */
         __('Fri'),
 /* l10n: Short week day name */
-        __('Sat')));
-PMA_printJsValue("$.datepicker.regional['']['dayNamesMin']",
+        __('Sat')
+    )
+);
+PMA_printJsValue(
+    "$.datepicker.regional['']['dayNamesMin']",
     array(
 /* l10n: Minimal week day name */
         __('Su'),
@@ -479,7 +504,9 @@ PMA_printJsValue("$.datepicker.regional['']['dayNamesMin']",
 /* l10n: Minimal week day name */
         __('Fr'),
 /* l10n: Minimal week day name */
-        __('Sa')));
+        __('Sa')
+    )
+);
 /* l10n: Column header for week of the year in calendar */
 PMA_printJsValue("$.datepicker.regional['']['weekHeader']", __('Wk'));
 

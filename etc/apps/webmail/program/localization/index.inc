@@ -18,9 +18,6 @@
  +-----------------------------------------------------------------------+
  | Author: Thomas Bruederli <roundcube@gmail.com>                        |
  +-----------------------------------------------------------------------+
-
- $Id$
-
 */
 
 // langage codes according to ISO 639-1
@@ -100,6 +97,7 @@ $rcube_languages = array(
   'uk_UA' => 'Ukrainian (Українська)',
   'vi_VN' => 'Vietnamese (Tiếng Việt)',
   'cy_GB' => 'Welsh (Cymraeg)',
+  'fy_NL' => 'West Frisian (Frysk)',
 );
 
 $rcube_language_aliases = array(
@@ -139,6 +137,8 @@ $rcube_language_aliases = array(
   'no' => 'nn_NO',
   'ms' => 'ms_MY',
   'mr' => 'mr_IN',
+  'ml' => 'ml_IN',
+  'ml_ML' => 'ml_IN',
   'pl' => 'pl_PL',
   'tw' => 'zh_TW',
   'si' => 'si_LK',

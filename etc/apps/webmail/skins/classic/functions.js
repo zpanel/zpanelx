@@ -28,11 +28,6 @@ function rcube_init_settings_tabs()
   $('a', tab).removeAttr('onclick').click(function() { return false; });
 }
 
-function rcube_show_advanced(visible)
-{
-  $('tr.advanced').css('display', (visible ? (bw.ie ? 'block' : 'table-row') : 'none'));
-}
-
 // Fieldsets-to-tabs converter
 // Warning: don't place "caller" <script> inside page element (id)
 function rcube_init_tabs(id, current)
@@ -360,7 +355,7 @@ spellmenu: function(show)
 
     for (i in rcmail.env.spell_langs) {
       li = $('<li>');
-      link = $('<a href="#">').text(rcmail.env.spell_langs[i])
+      link = $('<a href="#"></a>').text(rcmail.env.spell_langs[i])
         .addClass('active').data('lang', i)
         .click(function() {
           rcmail.spellcheck_lang_set($(this).data('lang'));
@@ -496,17 +491,26 @@ init_compose_form: function()
 
   div.style.top = (parseInt(headers_div.offsetHeight, 10) + 3) + 'px';
   $(window).resize();
+
+  // fixes contacts-table position when there's more than one addressbook
+  $('#contacts-table').css('top', $('#directorylist').height() + 24 + 'px');
+
+  // contacts search submit
+  $('#quicksearchbox').keydown(function(e) {
+    if (rcube_event.get_keycode(e) == 13)
+      rcmail.command('search');
+  });
 },
 
 resize_compose_body: function()
 {
-  var div = $('#compose-div .boxlistcontent'), w = div.width(), h = div.height();
-  w -= 8;  // 2 x 3px padding + 2 x 1px border
-  h -= 4;
+  var div = $('#compose-div .boxlistcontent'),
+    w = div.width() - 2, h = div.height(),
+    x = bw.ie || bw.opera ? 4 : 0;
 
-  $('#compose-body_tbl').width((w+6)+'px').height('');
-  $('#compose-body_ifr').width((w+6)+'px').height((h-54)+'px');
-  $('#compose-body').width(w+'px').height(h+'px');
+  $('#compose-body_tbl').width((w+3)+'px').height('');
+  $('#compose-body_ifr').width((w+3)+'px').height((h-54)+'px');
+  $('#compose-body').width((w-x)+'px').height(h+'px');
   $('#googie_edit_layer').height(h+'px');
 },
 
@@ -530,7 +534,7 @@ show_header_form: function(id)
   if ((row = document.getElementById('compose-' + id))) {
     var div = document.getElementById('compose-div'),
       headers_div = document.getElementById('compose-headers-div');
-    row.style.display = (document.all && !window.opera) ? 'block' : 'table-row';
+    $(row).show();
     div.style.top = (parseInt(headers_div.offsetHeight, 10) + 3) + 'px';
     this.resize_compose_body();
   }
@@ -550,11 +554,11 @@ hide_header_form: function(id)
   for (var i=0; i<links.length; i++)
     if (links[i].style.display != 'none')
       for (var j=i+1; j<links.length; j++)
-	    if (links[j].style.display != 'none')
+        if (links[j].style.display != 'none')
           if ((ns = this.next_sibling(links[i]))) {
-	        ns.style.display = '';
-	        break;
-	      }
+            ns.style.display = '';
+            break;
+          }
 
   document.getElementById('_' + id).value = '';
 
@@ -630,8 +634,13 @@ function rcmail_scroller(list, top, bottom)
 function iframe_events()
 {
   // this==iframe
-  var doc = this.contentDocument ? this.contentDocument : this.contentWindow ? this.contentWindow.document : null;
-  rcube_event.add_listener({ element: doc, object:rcmail_ui, method:'body_mouseup', event:'mouseup' });
+  try {
+    var doc = this.contentDocument ? this.contentDocument : this.contentWindow ? this.contentWindow.document : null;
+    rcube_event.add_listener({ element: doc, object:rcmail_ui, method:'body_mouseup', event:'mouseup' });
+  }
+  catch (e) {
+    // catch possible "Permission denied" error in IE
+  };
 };
 
 // Abbreviate mailbox names to fit width of the container
@@ -640,7 +649,7 @@ function rcube_render_mailboxlist()
   var list = $('#mailboxlist > li a, #mailboxlist ul:visible > li a');
 
   // it's too slow with really big number of folders, especially on IE
-  if (list.length > 500 * (bw.ie ? 0.2 : 1))
+  if (list.length > (bw.ie ? 25 : 100))
     return;
 
   list.each(function(){

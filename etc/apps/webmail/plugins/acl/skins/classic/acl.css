@@ -47,12 +47,12 @@
 
 #acltable tbody td.partial
 {
-  background: url(images/partial.png) center no-repeat;
+  background: url(images/partial.png?v=05d7.389) center no-repeat;
 }
 
 #acltable tbody td.enabled
 {
-  background: url(images/enabled.png) center no-repeat;
+  background: url(images/enabled.png?v=9d9a.674) center no-repeat;
 }
 
 #acltable tr.selected td

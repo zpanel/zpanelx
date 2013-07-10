@@ -18,9 +18,6 @@
  | Author: Thomas Bruederli <roundcube@gmail.com>                        |
  | Author: Aleksander Machniak <machniak@kolabsys.com>                   |
  +-----------------------------------------------------------------------+
-
- $Id$
-
 */
 
 /**
@@ -33,14 +30,20 @@ function rcmail_import_form($attrib)
 
   $attrib += array('id' => "rcmImportForm");
 
-  $writable_books = $RCMAIL->get_address_sources(true);
+  $writable_books = $RCMAIL->get_address_sources(true, true);
 
-  $upload = new html_inputfield(array('type' => 'file', 'name' => '_file', 'id' => 'rcmimportfile', 'size' => 40));
+  $upload = new html_inputfield(array(
+    'type' => 'file',
+    'name' => '_file[]',
+    'id' => 'rcmimportfile',
+    'size' => 40,
+    'multiple' => 'multiple',
+  ));
   $form = html::p(null, html::label('rcmimportfile', rcube_label('importfromfile')) . $upload->show());
 
   // addressbook selector
   if (count($writable_books) > 1) {
-    $select = new html_select(array('name' => '_target', 'id' => 'rcmimporttarget'));
+    $select = new html_select(array('name' => '_target', 'id' => 'rcmimporttarget', 'is_escaped' => true));
 
     foreach ($writable_books as $book)
         $select->add($book['name'], $book['id']);
@@ -61,7 +64,7 @@ function rcmail_import_form($attrib)
   $OUTPUT->add_label('selectimportfile','importwait');
   $OUTPUT->add_gui_object('importform', $attrib['id']);
 
-  $out = html::p(null, Q(rcube_label('importtext'), 'show'));
+  $out = html::p(null, Q(rcube_label('importdesc'), 'show'));
 
   $out .= $OUTPUT->form_tag(array(
       'action' => $RCMAIL->url('import'),
@@ -85,7 +88,7 @@ function rcmail_import_confirm($attrib)
 
   $content = html::p(null, rcube_label(array(
       'name' => 'importconfirm',
-      'nr' => $IMORT_STATS->inserted,
+      'nr' => $IMPORT_STATS->inserted,
       'vars' => $vars,
     )) . ($IMPORT_STATS->names ? ':' : '.'));
 
@@ -95,7 +98,7 @@ function rcmail_import_confirm($attrib)
   if ($IMPORT_STATS->skipped) {
       $content .= html::p(null, rcube_label(array(
           'name' => 'importconfirmskipped',
-          'nr' => $IMORT_STATS->skipped,
+          'nr' => $IMPORT_STATS->skipped,
           'vars' => $vars,
         )) . ':');
       $content .= html::p('em', join(', ', array_map('Q', $IMPORT_STATS->skipped_names)));
@@ -135,88 +138,136 @@ function rcmail_import_buttons($attrib)
 
 $importstep = 'rcmail_import_form';
 
-if ($_FILES['_file']['tmp_name'] && is_uploaded_file($_FILES['_file']['tmp_name'])) {
-  $replace = (bool)get_input_value('_replace', RCUBE_INPUT_GPC);
-  $target = get_input_value('_target', RCUBE_INPUT_GPC);
-  $CONTACTS = $RCMAIL->get_address_book($target, true);
+if (is_array($_FILES['_file'])) {
+    $replace  = (bool)get_input_value('_replace', RCUBE_INPUT_GPC);
+    $target   = get_input_value('_target', RCUBE_INPUT_GPC);
 
-  // let rcube_vcard do the hard work :-)
-  $vcard_o = new rcube_vcard();
-  $vcard_o->extend_fieldmap($CONTACTS->vcard_map);
+    $vcards       = array();
+    $upload_error = null;
 
-  $vcards = $vcard_o->import(file_get_contents($_FILES['_file']['tmp_name']));
+    $CONTACTS = $RCMAIL->get_address_book($target, true);
 
-  // no vcards detected
-  if (!count($vcards)) {
-    $OUTPUT->show_message('importerror', 'error');
-  }
-  else if ($CONTACTS->readonly) {
-    $OUTPUT->show_message('addresswriterror', 'error');
-  }
-  else {
-    $IMPORT_STATS = new stdClass;
-    $IMPORT_STATS->names = array();
-    $IMPORT_STATS->skipped_names = array();
-    $IMPORT_STATS->count = count($vcards);
-    $IMPORT_STATS->inserted = $IMPORT_STATS->skipped = $IMPORT_STATS->nomail = $IMPORT_STATS->errors = 0;
+    if ($CONTACTS->readonly) {
+        $OUTPUT->show_message('addresswriterror', 'error');
+    }
+    else {
+        foreach ((array)$_FILES['_file']['tmp_name'] as $i => $filepath) {
+            // Process uploaded file if there is no error
+            $err = $_FILES['_file']['error'][$i];
 
-    if ($replace)
-      $CONTACTS->delete_all();
+            if ($err) {
+                $upload_error = $err;
+            }
+            else {
+                $file_content = file_get_contents($filepath);
 
-    foreach ($vcards as $vcard) {
-      $email    = $vcard->email[0];
-      $a_record = $vcard->get_assoc();
+                // let rcube_vcard do the hard work :-)
+                $vcard_o = new rcube_vcard();
+                $vcard_o->extend_fieldmap($CONTACTS->vcard_map);
+                $v_list = $vcard_o->import($file_content);
 
-      // skip entries without an e-mail address or invalid
-      if (empty($email) || !$CONTACTS->validate($a_record, true)) {
-        $IMPORT_STATS->nomail++;
-        continue;
-      }
+                if (!empty($v_list)) {
+                    $vcards = array_merge($vcards, $v_list);
+                    continue;
+                }
 
-      // We're using UTF8 internally
-      $email = rcube_idn_to_utf8($email);
+                // no vCards found, try CSV
+                $csv = new rcube_csv2vcard($_SESSION['language']);
+                $csv->import($file_content);
+                $v_list = $csv->export();
 
-      if (!$replace && $email) {
-        // compare e-mail address
-        $existing = $CONTACTS->search('email', $email, 1, false);
-        if (!$existing->count && $vcard->displayname) {  // compare display name
-          $existing = $CONTACTS->search('name', $vcard->displayname, 1, false);
+                if (!empty($v_list)) {
+                    $vcards = array_merge($vcards, $v_list);
+                }
+            }
         }
-        if ($existing->count) {
-          $IMPORT_STATS->skipped++;
-          $IMPORT_STATS->skipped_names[] = $vcard->displayname ? $vcard->displayname : $email;
-          continue;
-        }
-      }
-
-      $a_record['vcard'] = $vcard->export();
-
-      $plugin = $RCMAIL->plugins->exec_hook('contact_create', array('record' => $a_record, 'source' => null));
-      $a_record = $plugin['record'];
-
-      // insert record and send response
-      if (!$plugin['abort'])
-        $success = $CONTACTS->insert($a_record);
-      else
-        $success = $plugin['result'];
-
-      if ($success) {
-        $IMPORT_STATS->inserted++;
-        $IMPORT_STATS->names[] = $vcard->displayname ? $vcard->displayname : $email;
-      } else {
-        $IMPORT_STATS->errors++;
-      }
     }
 
-    $importstep = 'rcmail_import_confirm';
-  }
-}
-else if ($err = $_FILES['_file']['error']) {
-  if ($err == UPLOAD_ERR_INI_SIZE || $err == UPLOAD_ERR_FORM_SIZE) {
-    $OUTPUT->show_message('filesizeerror', 'error', array('size' => show_bytes(parse_bytes(ini_get('upload_max_filesize')))));
-  } else {
-    $OUTPUT->show_message('fileuploaderror', 'error');
-  }
+    // no vcards detected
+    if (!count($vcards)) {
+        if ($upload_error == UPLOAD_ERR_INI_SIZE || $err == UPLOAD_ERR_FORM_SIZE) {
+            $OUTPUT->show_message('filesizeerror', 'error', array('size' => show_bytes(parse_bytes(ini_get('upload_max_filesize')))));
+        }
+        else if ($upload_error) {
+            $OUTPUT->show_message('fileuploaderror', 'error');
+        }
+        else {
+            $OUTPUT->show_message('importformaterror', 'error');
+        }
+    }
+    else {
+        $IMPORT_STATS = new stdClass;
+        $IMPORT_STATS->names = array();
+        $IMPORT_STATS->skipped_names = array();
+        $IMPORT_STATS->count = count($vcards);
+        $IMPORT_STATS->inserted = $IMPORT_STATS->skipped = $IMPORT_STATS->invalid = $IMPORT_STATS->errors = 0;
+
+        if ($replace) {
+            $CONTACTS->delete_all();
+        }
+
+        foreach ($vcards as $vcard) {
+            $a_record = $vcard->get_assoc();
+
+            // Generate contact's display name (must be before validation), the same we do in save.inc
+            if (empty($a_record['name'])) {
+                $a_record['name'] = rcube_addressbook::compose_display_name($a_record, true);
+                // Reset it if equals to email address (from compose_display_name())
+                if ($a_record['name'] == $a_record['email'][0]) {
+                    $a_record['name'] = '';
+                }
+            }
+
+            // skip invalid (incomplete) entries
+            if (!$CONTACTS->validate($a_record, true)) {
+                $IMPORT_STATS->invalid++;
+                continue;
+            }
+
+            // We're using UTF8 internally
+            $email = $vcard->email[0];
+            $email = rcube_idn_to_utf8($email);
+
+            if (!$replace) {
+                $existing = null;
+                // compare e-mail address
+                if ($email) {
+                    $existing = $CONTACTS->search('email', $email, 1, false);
+                }
+                // compare display name if email not found
+                if ((!$existing || !$existing->count) && $vcard->displayname) {
+                    $existing = $CONTACTS->search('name', $vcard->displayname, 1, false);
+                }
+                if ($existing && $existing->count) {
+                    $IMPORT_STATS->skipped++;
+                    $IMPORT_STATS->skipped_names[] = $vcard->displayname ? $vcard->displayname : $email;
+                    continue;
+                }
+            }
+
+            $a_record['vcard'] = $vcard->export();
+
+            $plugin = $RCMAIL->plugins->exec_hook('contact_create',
+                array('record' => $a_record, 'source' => null));
+            $a_record = $plugin['record'];
+
+            // insert record and send response
+            if (!$plugin['abort'])
+                $success = $CONTACTS->insert($a_record);
+            else
+                $success = $plugin['result'];
+
+            if ($success) {
+                $IMPORT_STATS->inserted++;
+                $IMPORT_STATS->names[] = $a_record['name'] ? $a_record['name'] : $email;
+            }
+            else {
+                $IMPORT_STATS->errors++;
+            }
+        }
+
+        $importstep = 'rcmail_import_confirm';
+    }
 }
 
 

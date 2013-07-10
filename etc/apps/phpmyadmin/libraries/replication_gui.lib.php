@@ -41,6 +41,8 @@ function PMA_replication_db_multibox()
  * prints out code for changing master
  *
  * @param String $submitname - submit button name
+ *
+ * @return void
  */
 
 function PMA_replication_gui_changemaster($submitname)
@@ -73,7 +75,8 @@ function PMA_replication_gui_changemaster($submitname)
     echo ' </fieldset>';
     echo ' <fieldset id="fieldset_user_privtable_footer" class="tblFooters">';
     echo '    <input type="hidden" name="sr_take_action" value="true" />';
-    echo '     <input type="submit" name="' . $submitname . '" id="confslave_submit" value="' . __('Go') . '" />';
+    echo '     <input type="hidden" name="' . $submitname . '" value="1" />';
+    echo '     <input type="submit" id="confslave_submit" value="' . __('Go') . '" />';
     echo ' </fieldset>';
     echo '</form>';
 }
@@ -84,6 +87,8 @@ function PMA_replication_gui_changemaster($submitname)
  * @param string  $type   either master or slave
  * @param boolean $hidden if true, then default style is set to hidden, default value false
  * @param boolen  $title  if true, then title is displayed, default true
+ *
+ * @return void
  */
 function PMA_replication_print_status_table($type, $hidden = false, $title = true)
 {
@@ -143,7 +148,16 @@ function PMA_replication_print_status_table($type, $hidden = false, $title = tru
         } else {
             echo '<span>';
         }
-        echo ${"server_{$type}_replication"}[0][$variable];
+        // allow wrapping long table lists into multiple lines
+        static $variables_wrap = array(
+            'Replicate_Do_DB', 'Replicate_Ignore_DB',
+            'Replicate_Do_Table', 'Replicate_Ignore_Table',
+            'Replicate_Wild_Do_Table', 'Replicate_Wild_Ignore_Table');
+        if (in_array($variable, $variables_wrap)) {
+            echo str_replace(',', ', ', ${"server_{$type}_replication"}[0][$variable]);
+        } else {
+            echo ${"server_{$type}_replication"}[0][$variable];
+        }
         echo '</span>';
 
         echo '  </td>';
@@ -163,6 +177,8 @@ function PMA_replication_print_status_table($type, $hidden = false, $title = tru
  * Prints table with slave users connected to this master
  *
  * @param boolean $hidden - if true, then default style is set to hidden, default value false
+ *
+ * @return void
  */
 function PMA_replication_print_slaves_table($hidden = false)
 {
@@ -202,7 +218,7 @@ function PMA_replication_print_slaves_table($hidden = false)
 /**
  * get the correct username and hostname lengths for this MySQL server
  *
- * @return  array   username length, hostname length
+ * @return array   username length, hostname length
  */
 
 function PMA_replication_get_username_hostname_length()
@@ -230,6 +246,8 @@ function PMA_replication_get_username_hostname_length()
 
 /**
  * Print code to add a replication slave user to the master
+ *
+ * @return void
  */
 function PMA_replication_gui_master_addslaveuser()
 {
@@ -334,7 +352,9 @@ function PMA_replication_gui_master_addslaveuser()
         . (isset($GLOBALS['hostname']) ? $GLOBALS['hostname'] : '')
         . '" title="' . __('Host')
         . '" onchange="pred_hostname.value = \'userdefined\';" />'
-        . PMA_showHint(__('When Host table is used, this field is ignored and values stored in Host table are used instead.'))
+        . PMA_Util::showHint(
+            __('When Host table is used, this field is ignored and values stored in Host table are used instead.')
+        )
         . '</div>'
         . '<div class="item">'
         . '<label for="select_pred_password">'
@@ -345,7 +365,7 @@ function PMA_replication_gui_master_addslaveuser()
         . __('Password') . '"'
         . '            onchange="if (this.value == \'none\') { pma_pw.value = \'\'; pma_pw2.value = \'\'; } else if (this.value == \'userdefined\') { pma_pw.focus(); pma_pw.select(); }">'
         . '        <option value="none"';
-    if (isset($GLOBALS['username']) && $mode != 'change') {
+    if (isset($GLOBALS['username'])) {
         echo '  selected="selected"';
     }
     echo '>' . __('No Password') . '</option>'
@@ -366,13 +386,14 @@ function PMA_replication_gui_master_addslaveuser()
         . '    ' . __('Generate Password') . ':'
         . '</label>'
         . '<span class="options">'
-        . '    <input type="button" id="button_generate_password" value="' . __('Generate') . '" onclick="suggestPassword(this.form)" />'
+        . '    <input type="button" class="button" id="button_generate_password" value="' . __('Generate') . '" onclick="suggestPassword(this.form)" />'
         . '</span>'
         . '<input type="text" name="generated_pw" id="generated_pw" />'
         . '</div>'
         . '</fieldset>';
     echo '<fieldset id="fieldset_user_privtable_footer" class="tblFooters">'
-        . '    <input type="submit" name="adduser_submit" id="adduser_submit" value="' . __('Go') . '" />'
+        . '    <input type="hidden" name="adduser_submit" value="1" />'
+        . '    <input type="submit" id="adduser_submit" value="' . __('Go') . '" />'
         . '</fieldset>';
     echo '</form>';
     echo '</div>';

@@ -13,6 +13,12 @@
 /*  border: 1px solid #cccccc; */
 }
 
+.extwin #messagetoolbar
+{
+  top: 5px;
+  left: 20px;
+}
+
 #messagetoolbar a,
 #messagetoolbar select
 {
@@ -30,7 +36,7 @@
   padding: 0;
   margin: 0 5px;
   overflow: hidden;
-  background: url(images/mail_toolbar.png) 0 0 no-repeat transparent;
+  background: url(images/mail_toolbar.png?v=1594.36649) 0 0 no-repeat transparent;
   opacity: 0.99; /* this is needed to make buttons appear correctly in Chrome */
 }
 
@@ -175,7 +181,7 @@
 
 #messagemenu li a
 {
-  background: url(images/messageactions.png) no-repeat 7px 0;
+  background: url(images/messageactions.png?v=e5b9.2211) no-repeat 7px 0;
   background-position: 7px 20px;
 }
 
@@ -207,7 +213,7 @@
 #markmessagemenu li a,
 #compose-attachments li a
 {
-  background: url(images/messageicons.png) no-repeat;
+  background: url(images/messageicons.png?v=9df0.3673) no-repeat;
 }
 
 #markmessagemenu li a.readlink
@@ -249,7 +255,7 @@
   top: 0;
   left: 0;
   bottom: 0;
-  width: 195px;
+  width: 160px;
 }
 
 #mailrightcontainer
@@ -299,7 +305,6 @@
   bottom: 0px;
   border: 1px solid #999999;
   background-color: #F9F9F9;
-  overflow: hidden;
 }
 
 #messagecontframe
@@ -359,7 +364,6 @@
   bottom: 0;
   border: 1px solid #999;
   background-color: #F9F9F9;
-  overflow: hidden;
 }
 
 #mailboxlist
@@ -380,7 +384,7 @@
   display: block;
   position: relative;
   font-size: 11px;
-  background: url(images/icons/folders.png) 5px 0 no-repeat;
+  background: url(images/icons/folders.png?v=87af.4822) 5px 0 no-repeat;
   border-bottom: 1px solid #EBEBEB;
 }
 
@@ -407,12 +411,12 @@
 
 #mailboxlist li div.collapsed
 {
-  background: url(images/icons/collapsed.png) bottom right no-repeat;
+  background: url(images/icons/collapsed.png?v=45aa.97) bottom right no-repeat;
 }
 
 #mailboxlist li div.expanded
 {
-  background: url(images/icons/expanded.png) bottom right no-repeat;
+  background: url(images/icons/expanded.png?v=f647.107) bottom right no-repeat;
 }
 
 #mailboxlist li.inbox
@@ -532,7 +536,7 @@
   margin-top: 4px;
   margin-right: 2px;
   overflow: hidden;
-  background: url(images/mail_footer.png) 0 0 no-repeat transparent;
+  background: url(images/mail_footer.png?v=819f.977) 0 0 no-repeat transparent;
   opacity: 0.99; /* this is needed to make buttons appear correctly in Chrome */
 }
 
@@ -643,7 +647,7 @@ body.messagelist
   vertical-align: middle;
   border-bottom: 1px solid #999999;
   color: #333333;
-  background: url(images/listheader.gif) top left repeat-x #CCC;
+  background: url(images/listheader.gif?v=ab42.314) top left repeat-x #CCC;
   font-size: 11px;
   font-weight: bold;
 }
@@ -656,12 +660,12 @@ body.messagelist
 
 #messagelist thead tr td.sortedASC a
 {
-  background: url(images/icons/sort.gif) right 0 no-repeat;
+  background: url(images/icons/sort.gif?v=92aa.144) right 0 no-repeat;
 }
 
 #messagelist thead tr td.sortedDESC a
 {
-  background: url(images/icons/sort.gif) right -14px no-repeat;
+  background: url(images/icons/sort.gif?v=92aa.144) right -14px no-repeat;
 }
 
 #messagelist thead tr td a
@@ -758,7 +762,7 @@ body.messagelist
   vertical-align: middle;
   height: 17px;
   width: 15px;
-  background: url(images/messageicons.png) center no-repeat;
+  background: url(images/messageicons.png?v=9df0.3673) center no-repeat;
 }
 
 #messagelist tr td.attachment span.attachment
@@ -1007,7 +1011,7 @@ td span.branch div.tree
 {
   height: 17px;
   width: 15px;
-  background: url(images/tree.gif) 0px 0px no-repeat;
+  background: url(images/tree.gif?v=9b73.92) 0px 0px no-repeat;
 }
 
 td span.branch div.l1
@@ -1041,6 +1045,11 @@ td span.branch div.l3
   z-index: 1;
 }
 
+.extwin #messageframe
+{
+	left: 0;
+}
+
 div.messageheaderbox
 {
   margin: -14px 8px 0px 8px;
@@ -1059,6 +1068,17 @@ table.headers-table
   width: auto;
   margin: 6px 8px;
   background-color: #F4F4F4;
+}
+
+#messagebody table.headers-table
+{
+  margin: 16px 6px 6px 6px;
+}
+
+div.message-partheaders + div.message-part
+{
+  border-top: 0;
+  padding-top: 4px;
 }
 
 table.headers-table tr td
@@ -1099,7 +1119,7 @@ table.headers-table tr td.header span
   min-height: 16px;
   list-style-image: none;
   list-style-type: none;
-  background: url(images/icons/attachment.png) 4px 2px no-repeat #DFDFDF;
+  background: url(images/icons/attachment.png?v=08f7.518) 4px 2px no-repeat #DFDFDF;
 }
 
 #messageframe #attachment-list
@@ -1245,7 +1265,66 @@ div.message-htmlpart div.rcmBody
   color: #333333;
 }
 
-#messageviewlink
+#messagebody fieldset.image-attachment {
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 1em 0 1em;
+}
+
+#messagebody fieldset.image-attachment p > img
+{
+  max-width: 80%;
+}
+
+#messagebody legend.image-filename
+{
+  color: #999;
+  font-size: 0.9em;
+}
+
+#messagebody p.image-attachment
+{
+  margin: 0 1em;
+  padding: 1em;
+  border-top: 1px solid #ccc;
+}
+
+#messagebody p.image-attachment a.image-link
+{
+  float: left;
+  margin-right: 2em;
+  min-width: 160px;
+  min-height: 60px;
+  text-align: center;
+}
+
+#messagebody p.image-attachment .image-filename
+{
+  display: block;
+  font-weight: bold;
+  line-height: 1.6em;
+}
+
+#messagebody p.image-attachment .image-filesize
+{
+  font-size: 11px;
+  padding-right: 1em;
+}
+
+#messagebody p.image-attachment .attachment-links a
+{
+  margin-right: 0.6em;
+  color: #cc0000;
+  font-size: 11px;
+  text-decoration: none;
+}
+
+#messagebody p.image-attachment .attachment-links a:hover
+{
+  text-decoration: underline;
+}
+
+#openextwinlink
 {
   position: absolute;
   top: 8px;
@@ -1253,6 +1332,12 @@ div.message-htmlpart div.rcmBody
   width: 15px;
   height: 15px;
   border: 0;
+}
+
+#compose-headers #openextwinlink
+{
+	top: 4px;
+	right: 2px;
 }
 
 #full-headers
@@ -1278,12 +1363,12 @@ div.more-headers
 
 div.show-headers
 {
-  background: url(images/icons/down_small.gif) no-repeat center;
+  background: url(images/icons/down_small.gif?v=f368.105) no-repeat center;
 }
 
 div.hide-headers
 {
-  background: url(images/icons/up_small.gif) no-repeat center;
+  background: url(images/icons/up_small.gif?v=c56c.106) no-repeat center;
 }
 
 #headers-source
@@ -1307,7 +1392,7 @@ div.hide-headers
 {
   position: absolute;
   top: 0;
-  left: 185px;
+  left: 205px;
   right: 0;
   bottom: 0;
   margin: 0;
@@ -1317,16 +1402,20 @@ div.hide-headers
 {
   position: absolute;
   top: 85px;
+  right: 0;
+  left: 0;
   bottom: 0;
   margin: 0;
-  width: 100%;
 }
 
-#compose-div .boxfooter
+#compose-body-div
 {
-  height: 22px;
-  background: none;
-  border-top: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 175px;
+  border: 1px solid #999;
 }
 
 #compose-div .boxlistcontent
@@ -1344,15 +1433,12 @@ div.hide-headers
   margin: 0;
   font-size: 9pt;
   font-family: monospace;
-  border: 1px solid #999;
   resize: none;
+  border: none;
+  outline: none;
 }
 
-#compose-body_tbl
-{
-  border: 1px solid #999;
-}
-
+#compose-body_tbl,
 #compose-body_tbl td
 {
   border: none;
@@ -1419,9 +1505,10 @@ input.from_address
 #compose-editorfooter
 {
   position: absolute;
-  right: 0;
+  right: 5px;
   bottom: 0;
   text-align: right;
+  line-height: 20px;
 }
 
 #compose-editorfooter label
@@ -1434,9 +1521,20 @@ input.from_address
 #compose-buttons
 {
   position: absolute;
+  left: 5px;
+  bottom: 1px;
+  width: auto;
+}
+
+#compose-contacts
+{
+  position: absolute;
+  top: 0;
   left: 0;
   bottom: 0;
-  width: auto;
+  width: 195px;
+  border: 1px solid #999;
+  background-color: #F9F9F9;
 }
 
 #compose-attachments
@@ -1444,10 +1542,18 @@ input.from_address
   position: absolute;
   top: 0;
   left: 0;
+  right: 0;
   bottom: 0;
-  width: 175px;
   border: 1px solid #999;
   background-color: #F9F9F9;
+}
+
+#compose-attachments.droptarget.hover
+{
+  background-color: #F0F0EE;
+  box-shadow: 0 0 5px 0 #999;
+  -moz-box-shadow: 0 0 5px 0 #999;
+  -o-box-shadow: 0 0 5px 0 #999;
 }
 
 #compose-attachments ul
@@ -1528,4 +1634,113 @@ input.from_address
   top: 3px;
   right: 6px;
   z-index: 101;
+}
+
+/* addressbook in compose - copy from addressbook.css */
+
+#directorylist
+{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: #FFFFFF;
+}
+
+#directorylist li
+{
+  display: block;
+  font-size: 11px;
+  background: url(images/icons/folders.png?v=87af.4822) 5px -108px no-repeat;
+  border-bottom: 1px solid #EBEBEB;
+  white-space: nowrap;
+}
+
+#directorylist li a
+{
+  cursor: default;
+  display: block;
+  padding-left: 25px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  text-decoration: none;
+  white-space: nowrap;
+  height: 15px;
+}
+
+#directorylist li.selected
+{
+  background-color: #929292;
+  border-bottom: 1px solid #898989;
+}
+
+#directorylist li.selected a
+{
+  color: #FFF;
+  font-weight: bold;
+}
+
+#contacts-table
+{
+  width: 100%;
+  table-layout: fixed;
+}
+
+#contacts-table tbody td
+{
+  cursor: default;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+}
+
+#abookcountbar
+{
+  margin-top: 4px;
+  margin-left: 4px;
+  position: absolute;
+  margin-right: 5px;
+  right: 0;
+}
+
+#abookactions
+{
+  position: absolute;
+  text-underline: none;
+}
+
+#abookactions a
+{
+  font-weight: bold;
+  line-height: 22px;
+  height: 22px;
+  width: auto;
+  margin: 0;
+  padding-left: 5px;
+  padding-right: 5px;
+  text-shadow: 1px 1px white;
+  background: url(images/icons/groupactions.png?v=ace6.1092) no-repeat right -70px;
+}
+
+#abookactions a.disabled
+{
+  color: #999;
+}
+
+#compose-contacts #quicksearchbar
+{
+  top: 2px;
+  left: 7px;
+}
+
+#compose-contacts #directorylist
+{
+  width: 100%;
+  top: 23px;
+  position: absolute;
+  border-top: 1px solid #eee;
+}
+
+#compose-contacts #contacts-table
+{
+  top: 45px;
+  position: absolute;
 }

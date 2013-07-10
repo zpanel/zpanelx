@@ -11,13 +11,15 @@
  * for formatting. Takes variable number of arguments.
  * Based on PMA_sanitize from sanitize.lib.php.
  *
- * @param  string  $lang_key  key in $GLOBALS WITHOUT 'strSetup' prefix
- * @param  mixed   $args,...  arguments for sprintf
+ * @param string $lang_key key in $GLOBALS WITHOUT 'strSetup' prefix
+ * @param mixed  $args,... arguments for sprintf
+ *
  * @return string
  */
 function PMA_lang($lang_key, $args = null)
 {
-    $message = isset($GLOBALS["strConfig$lang_key"]) ? $GLOBALS["strConfig$lang_key"] : $lang_key;
+    $message = isset($GLOBALS["strConfig$lang_key"])
+        ? $GLOBALS["strConfig$lang_key"] : $lang_key;
 
     $message = PMA_sanitize($message);
 
@@ -36,6 +38,7 @@ function PMA_lang($lang_key, $args = null)
  * @param string $canonical_path
  * @param string $type  'name', 'desc' or 'cmt'
  * @param mixed  $default
+ *
  * @return string
  */
 function PMA_lang_name($canonical_path, $type = 'name', $default = 'key')
@@ -43,7 +46,8 @@ function PMA_lang_name($canonical_path, $type = 'name', $default = 'key')
     $lang_key = str_replace(
         array('Servers/1/', '/'),
         array('Servers/', '_'),
-        $canonical_path) . '_' . $type;
+        $canonical_path
+    ) . '_' . $type;
     return isset($GLOBALS["strConfig$lang_key"])
         ? ($type == 'desc' ? PMA_lang($lang_key) : $GLOBALS["strConfig$lang_key"])
         : ($default == 'key' ? $lang_key : $default);

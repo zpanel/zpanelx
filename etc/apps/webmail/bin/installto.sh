@@ -17,9 +17,6 @@
  +-----------------------------------------------------------------------+
  | Author: Thomas Bruederli <roundcube@gmail.com>                        |
  +-----------------------------------------------------------------------+
-
- $Id$
-
 */
 
 define('INSTALL_PATH', realpath(dirname(__FILE__) . '/..') . '/' );
@@ -29,17 +26,17 @@ require_once INSTALL_PATH . 'program/include/clisetup.php';
 $target_dir = unslashify($_SERVER['argv'][1]);
 
 if (empty($target_dir) || !is_dir(realpath($target_dir)))
-  die("Invalid target: not a directory\nUsage: installto.sh <TARGET>\n");
+  rcube::raise_error("Invalid target: not a directory\nUsage: installto.sh <TARGET>", false, true);
 
 // read version from iniset.php
 $iniset = @file_get_contents($target_dir . '/program/include/iniset.php');
 if (!preg_match('/define\(.RCMAIL_VERSION.,\s*.([0-9.]+[a-z-]*)/', $iniset, $m))
-  die("No valid Roundcube installation found at $target_dir\n");
+  rcube::raise_error("No valid Roundcube installation found at $target_dir", false, true);
 
 $oldversion = $m[1];
 
-if (version_compare($oldversion, RCMAIL_VERSION, '>='))
-  die("Installation at target location is up-to-date!\n");
+if (version_compare(version_parse($oldversion), version_parse(RCMAIL_VERSION), '>='))
+  rcube::raise_error("Installation at target location is up-to-date!", false, true);
 
 echo "Upgrading from $oldversion. Do you want to continue? (y/N)\n";
 $input = trim(fgets(STDIN));

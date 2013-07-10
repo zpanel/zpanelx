@@ -20,13 +20,13 @@ class rcube_sql_password
             $sql = 'SELECT update_passwd(%c, %u)';
 
         if ($dsn = $rcmail->config->get('password_db_dsn')) {
-	        // #1486067: enable new_link option
-	        if (is_array($dsn) && empty($dsn['new_link']))
-	            $dsn['new_link'] = true;
-    	    else if (!is_array($dsn) && !preg_match('/\?new_link=true/', $dsn))
-	            $dsn .= '?new_link=true';
+            // #1486067: enable new_link option
+            if (is_array($dsn) && empty($dsn['new_link']))
+                $dsn['new_link'] = true;
+            else if (!is_array($dsn) && !preg_match('/\?new_link=true/', $dsn))
+                $dsn .= '?new_link=true';
 
-            $db = new rcube_mdb2($dsn, '', FALSE);
+            $db = rcube_db::factory($dsn, '', false);
             $db->set_debug((bool)$rcmail->config->get('sql_debug'));
             $db->db_connect('w');
         }
@@ -40,22 +40,47 @@ class rcube_sql_password
         // crypted password
         if (strpos($sql, '%c') !== FALSE) {
             $salt = '';
-            if (CRYPT_MD5) {
-                // Always use eight salt characters for MD5 (#1488136)
-    	        $len = 8;
-            } else if (CRYPT_STD_DES) {
-        	    $len = 2;
-            } else {
-        	    return PASSWORD_CRYPT_ERROR;
+
+            if (!($crypt_hash = $rcmail->config->get('password_crypt_hash')))
+            {
+                if (CRYPT_MD5)
+                    $crypt_hash = 'md5';
+                else if (CRYPT_STD_DES)
+                    $crypt_hash = 'des';
+            }
+
+            switch ($crypt_hash)
+            {
+            case 'md5':
+                $len = 8;
+                $salt_hashindicator = '$1$';
+                break;
+            case 'des':
+                $len = 2;
+                break;
+            case 'blowfish':
+                $len = 22;
+                $salt_hashindicator = '$2a$';
+                break;
+            case 'sha256':
+                $len = 16;
+                $salt_hashindicator = '$5$';
+                break;
+            case 'sha512':
+                $len = 16;
+                $salt_hashindicator = '$6$';
+                break;
+            default:
+                return PASSWORD_CRYPT_ERROR;
             }
 
             //Restrict the character set used as salt (#1488136)
             $seedchars = './0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
             for ($i = 0; $i < $len ; $i++) {
-    	        $salt .= $seedchars[rand(0, 63)];
+                $salt .= $seedchars[rand(0, 63)];
             }
 
-            $sql = str_replace('%c',  $db->quote(crypt($passwd, CRYPT_MD5 ? '$1$'.$salt.'$' : $salt)), $sql);
+            $sql = str_replace('%c',  $db->quote(crypt($passwd, $salt_hashindicator ? $salt_hashindicator .$salt.'$' : $salt)), $sql);
         }
 
         // dovecotpw
@@ -91,30 +116,30 @@ class rcube_sql_password
 
         // hashed passwords
         if (preg_match('/%[n|q]/', $sql)) {
-    	    if (!extension_loaded('hash')) {
-	            raise_error(array(
-	                'code' => 600,
-		            'type' => 'php',
-		            'file' => __FILE__, 'line' => __LINE__,
-    		        'message' => "Password plugin: 'hash' extension not loaded!"
-	    	    ), true, false);
+            if (!extension_loaded('hash')) {
+                raise_error(array(
+                    'code' => 600,
+                    'type' => 'php',
+                    'file' => __FILE__, 'line' => __LINE__,
+                    'message' => "Password plugin: 'hash' extension not loaded!"
+                ), true, false);
 
-	            return PASSWORD_ERROR;
-    	    }
+                return PASSWORD_ERROR;
+            }
 
-	        if (!($hash_algo = strtolower($rcmail->config->get('password_hash_algorithm'))))
+            if (!($hash_algo = strtolower($rcmail->config->get('password_hash_algorithm'))))
                 $hash_algo = 'sha1';
 
-    	    $hash_passwd = hash($hash_algo, $passwd);
+            $hash_passwd = hash($hash_algo, $passwd);
             $hash_curpass = hash($hash_algo, $curpass);
 
-	        if ($rcmail->config->get('password_hash_base64')) {
+            if ($rcmail->config->get('password_hash_base64')) {
                 $hash_passwd = base64_encode(pack('H*', $hash_passwd));
                 $hash_curpass = base64_encode(pack('H*', $hash_curpass));
             }
 
-    	    $sql = str_replace('%n', $db->quote($hash_passwd, 'text'), $sql);
-	        $sql = str_replace('%q', $db->quote($hash_curpass, 'text'), $sql);
+            $sql = str_replace('%n', $db->quote($hash_passwd, 'text'), $sql);
+            $sql = str_replace('%q', $db->quote($hash_curpass, 'text'), $sql);
         }
 
         // Handle clear text passwords securely (#1487034)
@@ -158,16 +183,16 @@ class rcube_sql_password
         $res = $db->query($sql, $sql_vars);
 
         if (!$db->is_error()) {
-	        if (strtolower(substr(trim($query),0,6))=='select') {
-    	        if ($result = $db->fetch_array($res))
-		            return PASSWORD_SUCCESS;
-    	    } else {
+            if (strtolower(substr(trim($sql),0,6)) == 'select') {
+                if ($result = $db->fetch_array($res))
+                    return PASSWORD_SUCCESS;
+            } else {
                 // This is the good case: 1 row updated
-    	        if ($db->affected_rows($res) == 1)
-	                return PASSWORD_SUCCESS;
+                if ($db->affected_rows($res) == 1)
+                    return PASSWORD_SUCCESS;
                 // @TODO: Some queries don't affect any rows
                 // Should we assume a success if there was no error?
-	        }
+            }
         }
 
         return PASSWORD_ERROR;

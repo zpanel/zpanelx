@@ -17,9 +17,6 @@
  +-----------------------------------------------------------------------+
  | Author: Thomas Bruederli <roundcube@gmail.com>                        |
  +-----------------------------------------------------------------------+
-
- $Id$
-
 */
 
 define('IDENTITIES_LEVEL', intval($RCMAIL->config->get('identities_level', 0)));
@@ -36,11 +33,7 @@ function rcmail_identity_frame($attrib)
   if (!$attrib['id'])
     $attrib['id'] = 'rcmIdentityFrame';
 
-  $attrib['name'] = $attrib['id'];
-
-  $OUTPUT->set_env('contentframe', $attrib['name']);
-
-  return html::iframe($attrib);
+  return $OUTPUT->frame($attrib, true);
   }
 
 $OUTPUT->add_handler('identityframe', 'rcmail_identity_frame');

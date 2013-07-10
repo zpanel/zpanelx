@@ -1,6 +1,7 @@
 <?php
 /* vim: set expandtab sw=4 ts=4 sts=4: */
 /**
+ * Common includes for the database level views
  *
  * @package PhpMyAdmin
  */
@@ -11,10 +12,9 @@ if (! defined('PHPMYADMIN')) {
 /**
  * Gets some core libraries
  */
-require_once './libraries/common.inc.php';
 require_once './libraries/bookmark.lib.php';
 
-PMA_checkParameters(array('db'));
+PMA_Util::checkParameters(array('db'));
 
 $is_show_stats = $cfg['ShowStats'];
 
@@ -26,7 +26,7 @@ if ($db_is_information_schema) {
 /**
  * Defines the urls to return to in case of error in a sql statement
  */
-$err_url_0 = 'main.php?' . PMA_generate_common_url();
+$err_url_0 = 'index.php?' . PMA_generate_common_url();
 $err_url   = $cfg['DefaultTabDatabase'] . '?' . PMA_generate_common_url($db);
 
 
@@ -46,8 +46,20 @@ if (! isset($is_db) || ! $is_db) {
         }
     }
     // Not a valid db name -> back to the welcome page
+    $uri = $cfg['PmaAbsoluteUri'] . 'index.php?'
+        . PMA_generate_common_url('', '', '&')
+        . (isset($message) ? '&message=' . urlencode($message) : '') . '&reload=1';
     if (! strlen($db) || ! $is_db) {
-        PMA_sendHeaderLocation($cfg['PmaAbsoluteUri'] . 'main.php?' . PMA_generate_common_url('', '', '&') . (isset($message) ? '&message=' . urlencode($message) : '') . '&reload=1');
+        $response = PMA_Response::getInstance();
+        if ($response->isAjax()) {
+            $response->isSuccess(false);
+            $response->addJSON(
+                'message',
+                PMA_Message::error(__('No databases selected.'))
+            );
+        } else {
+            PMA_sendHeaderLocation($uri);
+        }
         exit;
     }
 } // end if (ensures db exists)
@@ -55,12 +67,17 @@ if (! isset($is_db) || ! $is_db) {
 /**
  * Changes database charset if requested by the user
  */
-if (isset($submitcollation) && !empty($db_collation)) {
-    list($db_charset) = explode('_', $db_collation);
-    $sql_query        = 'ALTER DATABASE ' . PMA_backquote($db) . ' DEFAULT' . PMA_generateCharsetQueryPart($db_collation);
+if (isset($_REQUEST['submitcollation'])
+    && isset($_REQUEST['db_collation'])
+    && ! empty($_REQUEST['db_collation'])
+) {
+    list($db_charset) = explode('_', $_REQUEST['db_collation']);
+    $sql_query        = 'ALTER DATABASE '
+        . PMA_Util::backquote($db)
+        . ' DEFAULT' . PMA_generateCharsetQueryPart($_REQUEST['db_collation']);
     $result           = PMA_DBI_query($sql_query);
     $message          = PMA_Message::success();
-    unset($db_charset, $db_collation);
+    unset($db_charset);
 
     /**
      * If we are in an Ajax request, let us stop the execution here. Necessary for
@@ -68,11 +85,12 @@ if (isset($submitcollation) && !empty($db_collation)) {
      * other pages, we might have to move this to a different location.
      */
     if ( $GLOBALS['is_ajax_request'] == true) {
-        PMA_ajaxResponse($message, $message->isSuccess());
-    };
+        $response = PMA_Response::getInstance();
+        $response->isSuccess($message->isSuccess());
+        $response->addJSON('message', $message);
+        exit;
+    }
 }
-
-require_once './libraries/header.inc.php';
 
 /**
  * Set parameters for links

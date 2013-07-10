@@ -17,9 +17,6 @@
  +-----------------------------------------------------------------------+
  | Author: Thomas Bruederli <roundcube@gmail.com>                        |
  +-----------------------------------------------------------------------+
-
- $Id$
-
 */
 
 // only process ajax requests
@@ -41,7 +38,7 @@ if ($RCMAIL->action=='moveto' && !empty($_POST['_uid']) && strlen($_POST['_targe
 
     if (!$moved) {
         // send error message
-	    if ($_POST['_from'] != 'show')
+        if ($_POST['_from'] != 'show')
             $OUTPUT->command('list_mailbox');
         rcmail_display_server_error('errormoving');
         $OUTPUT->send();
@@ -62,7 +59,7 @@ else if ($RCMAIL->action=='delete' && !empty($_POST['_uid'])) {
 
     if (!$del) {
         // send error message
-	    if ($_POST['_from'] != 'show')
+        if ($_POST['_from'] != 'show')
             $OUTPUT->command('list_mailbox');
         rcmail_display_server_error('errordeleting');
         $OUTPUT->send();
@@ -76,6 +73,8 @@ else if ($RCMAIL->action=='delete' && !empty($_POST['_uid'])) {
 }
 // unknown action or missing query param
 else {
+    $OUTPUT->show_message('internalerror', 'error');
+    $OUTPUT->send();
     exit;
 }
 
@@ -114,6 +113,7 @@ else
   $OUTPUT->set_env('messagecount', $msg_count);
   $OUTPUT->set_env('current_page', $page);
   $OUTPUT->set_env('pagecount', $pages);
+  $OUTPUT->set_env('exists', $RCMAIL->storage->count($mbox, 'EXISTS', true));
 
   // update mailboxlist
   $mbox = $RCMAIL->storage->get_folder();
@@ -147,5 +147,3 @@ else
 
 // send response
 $OUTPUT->send();
-
-

@@ -3,16 +3,12 @@
          backupGlobals="false"
          backupStaticAttributes="false"
          strict="true"
+         colors="true"
          verbose="true">
 
     <selenium>
         <browser name="Firefox on localhost"
                  browser="*firefox"
-                 host="127.0.0.1"
-                 port="4444"
-                 timeout="30000"/>
-        <browser name="Google Chrome on localhost"
-                 browser="googlechrome"
                  host="127.0.0.1"
                  port="4444"
                  timeout="30000"/>
@@ -48,3 +44,4 @@
     </logging>
 
 </phpunit>
+

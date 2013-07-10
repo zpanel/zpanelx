@@ -67,8 +67,8 @@ $cfg['SuhosinDisableWarning'] = true;
 /*
  * Directories for saving/loading files from server
  */
-$cfg['UploadDir'] = '../tmp/';
-$cfg['SaveDir'] = '../tmp/';
+$cfg['UploadDir'] = 'etc/zpanel/panel/etc/tmp/';
+$cfg['SaveDir'] = 'etc/zpanel/panel/etc/tmp/';
 
 /**
  * Defines whether a user should be displayed a "show all (records)"

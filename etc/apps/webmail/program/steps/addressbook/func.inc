@@ -17,9 +17,6 @@
  +-----------------------------------------------------------------------+
  | Author: Thomas Bruederli <roundcube@gmail.com>                        |
  +-----------------------------------------------------------------------+
-
- $Id$
-
 */
 
 $SEARCH_MODS_DEFAULT = array('name'=>1, 'firstname'=>1, 'surname'=>1, 'email'=>1, '*'=>1);
@@ -29,7 +26,7 @@ $CONTACT_COLTYPES = array(
   'name'         => array('type' => 'text', 'size' => 40, 'maxlength' => 50, 'limit' => 1, 'label' => rcube_label('name'), 'category' => 'main'),
   'firstname'    => array('type' => 'text', 'size' => 19, 'maxlength' => 50, 'limit' => 1, 'label' => rcube_label('firstname'), 'category' => 'main'),
   'surname'      => array('type' => 'text', 'size' => 19, 'maxlength' => 50, 'limit' => 1, 'label' => rcube_label('surname'), 'category' => 'main'),
-  'email'        => array('type' => 'text', 'size' => 40, 'maxlength' => 50, 'label' => rcube_label('email'), 'subtypes' => array('home','work','other'), 'category' => 'main'),
+  'email'        => array('type' => 'text', 'size' => 40, 'maxlength' => 254, 'label' => rcube_label('email'), 'subtypes' => array('home','work','other'), 'category' => 'main'),
   'middlename'   => array('type' => 'text', 'size' => 19, 'maxlength' => 50, 'limit' => 1, 'label' => rcube_label('middlename'), 'category' => 'main'),
   'prefix'       => array('type' => 'text', 'size' => 8,  'maxlength' => 20, 'limit' => 1, 'label' => rcube_label('nameprefix'), 'category' => 'main'),
   'suffix'       => array('type' => 'text', 'size' => 8,  'maxlength' => 20, 'limit' => 1, 'label' => rcube_label('namesuffix'), 'category' => 'main'),
@@ -66,12 +63,6 @@ if (!$RCMAIL->action && !$OUTPUT->ajax_call) {
     // add list of address sources to client env
     $js_list = $RCMAIL->get_address_sources();
 
-    $source = get_input_value('_source', RCUBE_INPUT_GPC);
-
-    // use first directory by default
-    if (!strlen($source) || !isset($js_list[$source]))
-        $source = $js_list[key($js_list)]['id'];
-
     // count all/writeable sources
     $writeable = 0;
     $count = 0;
@@ -90,13 +81,22 @@ if (!$RCMAIL->action && !$OUTPUT->ajax_call) {
     $OUTPUT->set_env('search_mods', $search_mods);
     $OUTPUT->set_env('address_sources', $js_list);
     $OUTPUT->set_env('writable_source', $writeable);
+    $OUTPUT->set_env('compose_extwin', $RCMAIL->config->get('compose_extwin',false));
 
     $OUTPUT->set_pagetitle(rcube_label('addressbook'));
     $_SESSION['addressbooks_count'] = $count;
     $_SESSION['addressbooks_count_writeable'] = $writeable;
 
-    if (!strlen($source))
-      $source = strval(key($js_list));
+    // select address book
+    $source = get_input_value('_source', RCUBE_INPUT_GPC);
+
+    // use first directory by default
+    if (!strlen($source) || !isset($js_list[$source])) {
+        $source = $RCMAIL->config->get('default_addressbook');
+        if (!strlen($source) || !isset($js_list[$source])) {
+            $source = strval(key($js_list));
+        }
+    }
 
     $CONTACTS = rcmail_contact_source($source, true);
 }
@@ -160,17 +160,6 @@ function rcmail_contact_source($source=null, $init_env=false, $writable=false)
 }
 
 
-function rcmail_default_source($writable=false)
-{
-    global $RCMAIL;
-
-    // get list of address sources
-    $first = reset($RCMAIL->get_address_sources($writable));
-
-    // use first directory by default
-    return $first['id'];
-}
-
 function rcmail_set_sourcename($abook)
 {
     global $OUTPUT;
@@ -178,10 +167,10 @@ function rcmail_set_sourcename($abook)
     // get address book name (for display)
     if ($abook && $_SESSION['addressbooks_count'] > 1) {
         $name = $abook->get_name();
-        if (!$name && $source == 0) {
+        if (!$name) {
             $name = rcube_label('personaladrbook');
         }
-        $OUTPUT->set_env('sourcename', $name);
+        $OUTPUT->set_env('sourcename', html_entity_decode($name, ENT_COMPAT, 'UTF-8'));
     }
 }
 
@@ -203,7 +192,7 @@ function rcmail_directory_list($attrib)
             'rel' => '%s',
             'onclick' => "return ".JS_OBJECT_NAME.".command('list','%s',this)"), '%s'));
 
-    $sources = (array) $OUTPUT->env['address_sources'];
+    $sources = (array) $OUTPUT->get_env('address_sources');
     reset($sources);
 
     // currently selected source
@@ -222,12 +211,13 @@ function rcmail_directory_list($attrib)
         if ($source['class_name'])
             $class_name .= ' ' . $source['class_name'];
 
+        $name = !empty($source['name']) ? $source['name'] : $id;
         $out .= sprintf($line_templ,
             html_identifier($id),
             $class_name,
             Q(rcmail_url(null, array('_source' => $id))),
             $source['id'],
-            $js_id, (!empty($source['name']) ? Q($source['name']) : Q($id)));
+            $js_id, $name);
 
         $groupdata = array('out' => $out, 'jsdata' => $jsdata, 'source' => $id);
         if ($source['groups'])
@@ -368,12 +358,7 @@ function rcmail_contact_frame($attrib)
     if (!$attrib['id'])
         $attrib['id'] = 'rcmcontactframe';
 
-    $attrib['name'] = $attrib['id'];
-
-    $OUTPUT->set_env('contentframe', $attrib['name']);
-    $OUTPUT->set_env('blankpage', $attrib['src'] ? $OUTPUT->abs_url($attrib['src']) : 'program/blank.gif');
-
-    return html::iframe($attrib);
+    return $OUTPUT->frame($attrib, true);
 }
 
 
@@ -713,11 +698,15 @@ function rcmail_contact_photo($attrib)
     if ($result = $CONTACTS->get_result())
         $record = $result->first();
 
-    $photo_img = $attrib['placeholder'] ? $CONFIG['skin_path'] . $attrib['placeholder'] : 'program/blank.gif';
+    $photo_img = $attrib['placeholder'] ? $CONFIG['skin_path'] . $attrib['placeholder'] : 'program/resources/blank.gif';
     $RCMAIL->output->set_env('photo_placeholder', $photo_img);
     unset($attrib['placeholder']);
 
-    if (preg_match('!^https?://!i', $record['photo']))
+    $plugin = $RCMAIL->plugins->exec_hook('contact_photo', array('record' => $record, 'data' => $record['photo']));
+
+    if ($plugin['url'])
+        $photo_img = $plugin['url'];
+    else if (preg_match('!^https?://!i', $record['photo']))
         $photo_img = $record['photo'];
     else if ($record['photo'])
         $photo_img = $RCMAIL->url(array('_action' => 'photo', '_cid' => $record['ID'], '_source' => $SOURCE_ID));
@@ -744,30 +733,12 @@ function rcmail_format_date_col($val)
 }
 
 
-function rcmail_contact_key($row, $sort_col)
-{
-    $key = $row[$sort_col] . ':' . $row['sourceid'];
-
-    // add email to a key to not skip contacts with the same name (#1488375)
-    if (!empty($row['email'])) {
-         if (is_array($row['email'])) {
-             $key .= ':' . implode(':', $row['email']);
-         }
-         else {
-             $key .= ':' . $row['email'];
-         }
-     }
-
-     return $key;
-}
-
-
 /**
  * Returns contact ID(s) and source(s) from GET/POST data
  *
  * @return array List of contact IDs per-source
  */
-function rcmail_get_cids()
+function rcmail_get_cids($filter = null)
 {
     // contact ID (or comma-separated list of IDs) is provided in two
     // forms. If _source is an empty string then the ID is a string
@@ -775,6 +746,10 @@ function rcmail_get_cids()
 
     $cid    = get_input_value('_cid', RCUBE_INPUT_GPC);
     $source = (string) get_input_value('_source', RCUBE_INPUT_GPC);
+
+    if (is_array($cid)) {
+        return $cid;
+    }
 
     if (!preg_match('/^[a-zA-Z0-9\+\/=_-]+(,[a-zA-Z0-9\+\/=_-]+)*$/', $cid)) {
         return array();
@@ -786,23 +761,28 @@ function rcmail_get_cids()
 
     // create per-source contact IDs array
     foreach ($cid as $id) {
-        // if _source is not specified we'll find it from decoded ID
+        // extract source ID from contact ID (it's there in search mode)
+        // see #1488959 and #1488862 for reference
         if (!$got_source) {
             if ($sep = strrpos($id, '-')) {
                 $contact_id = substr($id, 0, $sep);
-                $source_id  = substr($id, $sep+1);
+                $source_id  = (string) substr($id, $sep+1);
                 if (strlen($source_id)) {
-                    $result[(string)$source_id][] = $contact_id;
+                    $result[$source_id][] = $contact_id;
                 }
             }
         }
         else {
+            if (substr($id, -($got_source+1)) === "-$source") {
+                $id = substr($id, 0, -($got_source+1));
+            }
             $result[$source][] = $id;
         }
     }
 
-    return $result;
+    return $filter !== null ? $result[$filter] : $result;
 }
+
 
 // register UI objects
 $OUTPUT->add_handlers(array(

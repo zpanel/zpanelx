@@ -1,19 +1,25 @@
 <?php
 /* vim: set expandtab sw=4 ts=4 sts=4: */
 /**
+ * The PBXT storage engine
+ *
  * @package PhpMyAdmin-Engines
  */
+if (! defined('PHPMYADMIN')) {
+    exit;
+}
 
 /**
- * the MyISAM storage engine
+ * The PBXT storage engine
+ *
  * @package PhpMyAdmin-Engines
  */
 class PMA_StorageEngine_pbxt extends PMA_StorageEngine
 {
     /**
-     * returns array with variable names dedicated to PBXT storage engine
+     * Returns array with variable names dedicated to PBXT storage engine
      *
-     * @return  array   variable names
+     * @return array   variable names
      */
     function getVariables()
     {
@@ -85,18 +91,18 @@ class PMA_StorageEngine_pbxt extends PMA_StorageEngine
      * returns the pbxt engine specific handling for
      * PMA_ENGINE_DETAILS_TYPE_SIZE variables.
      *
-     * @param   string   $formatted_size   the size expression (for example 8MB)
+     * @param string $formatted_size the size expression (for example 8MB)
      *
      * @return string the formatted value and its unit
      */
     function resolveTypeSize($formatted_size)
     {
         if (preg_match('/^[0-9]+[a-zA-Z]+$/', $formatted_size)) {
-            $value = PMA_extractValueFromFormattedSize($formatted_size);
+            $value = PMA_Util::extractValueFromFormattedSize($formatted_size);
         } else {
             $value = $formatted_size;
         }
-        return PMA_formatByteDown($value);
+        return PMA_Util::formatByteDown($value);
     }
 
     //--------------------
@@ -127,7 +133,6 @@ class PMA_StorageEngine_pbxt extends PMA_StorageEngine
         . '<h3>' . __('Related Links') . '</h3>' . "\n"
         . '<ul>' . "\n"
         . '<li><a href="' . PMA_linkURL('http://pbxt.blogspot.com/') . '" target="_blank">' . __('The PrimeBase XT Blog by Paul McCullagh') . '</a></li>' . "\n"
-        . '<li><a href="' . PMA_linkURL('http://www.blobstreaming.org/') . '" target="_blank">' . __('The PrimeBase Media Streaming (PBMS) home page') . '</a></li>' . "\n"
         . '</ul>' . "\n";
 
         return $output;

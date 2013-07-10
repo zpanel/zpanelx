@@ -6,17 +6,14 @@
  */
 
 /**
- * Don't display the page heading
- * @ignore
- */
-define('PMA_DISPLAY_HEADING', 0);
-
-/**
  * Gets some core libraries and displays a top message if required
  */
 require_once './libraries/common.inc.php';
-require_once './libraries/header.inc.php';
 require_once './libraries/transformations.lib.php';
+
+$response = PMA_Response::getInstance();
+$header   = $response->getHeader();
+$header->disableMenu();
 
 $types = PMA_getAvailableMIMEtypes();
 ?>
@@ -34,13 +31,8 @@ foreach ($types['mimetype'] as $key => $mimetype) {
 }
 ?>
 <br />
-<i>(<?php echo __('MIME types printed in italics do not have a separate transformation function'); ?>)</i>
-
-<br />
-<br />
-<br />
 <h2><?php echo __('Available transformations'); ?></h2>
-<table border="0" width="90%">
+<table width="90%">
 <thead>
 <tr>
     <th><?php echo __('Browser transformation'); ?></th>
@@ -64,9 +56,3 @@ foreach ($types['transformation'] as $key => $transform) {
 </tbody>
 </table>
 
-<?php
-/**
- * Displays the footer
- */
-require './libraries/footer.inc.php';
-?>

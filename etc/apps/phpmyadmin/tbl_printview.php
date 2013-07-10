@@ -1,6 +1,7 @@
 <?php
 /* vim: set expandtab sw=4 ts=4 sts=4: */
 /**
+ * Print view for table
  *
  * @package PhpMyAdmin
  */
@@ -8,17 +9,12 @@
 /**
  *
  */
-require_once './libraries/common.inc.php';
+require_once 'libraries/common.inc.php';
 
-require './libraries/tbl_common.php';
+$response = PMA_Response::getInstance();
+$response->getHeader()->enablePrintView();
 
-/**
- * Gets the variables sent or posted to this script, then displays headers
- */
-$print_view = true;
-if (! isset($selected_tbl)) {
-    include_once './libraries/header.inc.php';
-}
+require 'libraries/tbl_common.inc.php';
 
 // Check parameters
 
@@ -29,8 +25,8 @@ if (! isset($the_tables) || ! is_array($the_tables)) {
 /**
  * Gets the relations settings
  */
-require_once './libraries/transformations.lib.php';
-require_once './libraries/Index.class.php';
+require_once 'libraries/transformations.lib.php';
+require_once 'libraries/Index.class.php';
 
 $cfgRelation = PMA_getRelationsParam();
 
@@ -61,15 +57,13 @@ if (isset($selected_tbl) && is_array($selected_tbl)) {
 $multi_tables     = (count($the_tables) > 1);
 
 if ($multi_tables) {
-    if (empty($GLOBALS['is_header_sent'])) {
-        include_once './libraries/header.inc.php';
-    }
     $tbl_list     = '';
     foreach ($the_tables as $key => $table) {
         $tbl_list .= (empty($tbl_list) ? '' : ', ')
-                  . PMA_backquote($table);
+                  . PMA_Util::backquote($table);
     }
-    echo '<strong>'.  __('Showing tables') . ': ' . htmlspecialchars($tbl_list) . '</strong>' . "\n";
+    echo '<strong>'.  __('Showing tables') . ': '
+        . htmlspecialchars($tbl_list) . '</strong>' . "\n";
     echo '<hr />' . "\n";
 } // end if
 
@@ -107,8 +101,10 @@ foreach ($the_tables as $key => $table) {
     // in MySQL 4.0.25 and 5.0.21, http://bugs.mysql.com/20910).
 
     $show_create_table = PMA_DBI_fetch_value(
-        'SHOW CREATE TABLE ' . PMA_backquote($db) . '.' . PMA_backquote($table),
-        0, 1);
+        'SHOW CREATE TABLE ' . PMA_Util::backquote($db) . '.'
+        . PMA_Util::backquote($table),
+        0, 1
+    );
     $analyzed_sql = PMA_SQP_analyze(PMA_SQP_parse($show_create_table));
 
     // Check if we can use Relations
@@ -121,23 +117,20 @@ foreach ($the_tables as $key => $table) {
      * Displays the comments of the table if MySQL >= 3.23
      */
     if (!empty($show_comment)) {
-        echo __('Table comments') . ': ' . htmlspecialchars($show_comment) . '<br /><br />';
+        echo __('Table comments') . ': '
+            . htmlspecialchars($show_comment) . '<br /><br />';
     }
 
     /**
      * Displays the table structure
      */
-    ?>
-
-<!-- TABLE INFORMATIONS -->
-<table style="width: 100%;">
-<thead>
-<tr>
-    <th><?php echo __('Column'); ?></th>
-    <th><?php echo __('Type'); ?></th>
-    <th><?php echo __('Null'); ?></th>
-    <th><?php echo __('Default'); ?></th>
-    <?php
+    echo '<table style="width: 100%;">';
+    echo '<thead>';
+    echo '<tr>';
+    echo '<th>' . __('Column') . '</th>';
+    echo '<th>' . __('Type') . '</th>';
+    echo '<th>' . __('Null') . '</th>';
+    echo '<th>' . __('Default') . '</th>';
     if ($have_rel) {
         echo '<th>' . __('Links to') . '</th>' . "\n";
     }
@@ -145,15 +138,13 @@ foreach ($the_tables as $key => $table) {
     if ($cfgRelation['mimework']) {
         echo '    <th>MIME</th>' . "\n";
     }
-    ?>
-</tr>
-</thead>
-<tbody>
-    <?php
+    echo '</tr>';
+    echo '</thead>';
+    echo '<tbody>';
     foreach ($columns as $row) {
-        $extracted_fieldspec = PMA_extractFieldSpec($row['Type']);
-        $type             = $extracted_fieldspec['print_type'];
-        $attribute     = $extracted_fieldspec['attribute'];
+        $extracted_columnspec = PMA_Util::extractColumnSpec($row['Type']);
+        $type = $extracted_columnspec['print_type'];
+        $attribute = $extracted_columnspec['attribute'];
 
         if (! isset($row['Default'])) {
             if ($row['Null'] != ''  && $row['Null'] != 'NO') {
@@ -173,10 +164,14 @@ foreach ($the_tables as $key => $table) {
          * but based on SHOW CREATE TABLE because information_schema
          * cannot be trusted in this case (MySQL bug)
          */
-        if (!empty($analyzed_sql[0]['create_table_fields'][$field_name]['type']) && $analyzed_sql[0]['create_table_fields'][$field_name]['type'] == 'TIMESTAMP' && $analyzed_sql[0]['create_table_fields'][$field_name]['timestamp_not_null']) {
+        if (! empty($analyzed_sql[0]['create_table_fields'][$field_name]['type'])
+            && $analyzed_sql[0]['create_table_fields'][$field_name]['type'] == 'TIMESTAMP'
+            && $analyzed_sql[0]['create_table_fields'][$field_name]['timestamp_not_null']
+        ) {
             $row['Null'] = '';
         }
 
+        echo "\n";
         echo '<tr><td>';
 
         if (isset($pk_array[$row['Field']])) {
@@ -184,16 +179,25 @@ foreach ($the_tables as $key => $table) {
         } else {
             echo '    ' . $field_name . "\n";
         }
-    ?>
-    </td>
-    <td><?php echo $type; ?><bdo dir="ltr"></bdo></td>
-    <td><?php echo (($row['Null'] == '' || $row['Null'] == 'NO') ? __('No') : __('Yes')); ?>&nbsp;</td>
-    <td><?php if (isset($row['Default'])) { echo $row['Default']; } ?>&nbsp;</td>
-    <?php
+        echo '</td>';
+        echo '<td>' . $type. '<bdo dir="ltr"></bdo></td>';
+        echo '<td>';
+        echo (($row['Null'] == '' || $row['Null'] == 'NO')
+            ? __('No')
+            : __('Yes'));
+        echo '&nbsp;</td>';
+        echo '<td>';
+        if (isset($row['Default'])) {
+            echo $row['Default'];
+        }
+        echo '&nbsp;</td>';
         if ($have_rel) {
             echo '    <td>';
             if (isset($res_rel[$field_name])) {
-                echo htmlspecialchars($res_rel[$field_name]['foreign_table'] . ' -> ' . $res_rel[$field_name]['foreign_field']);
+                echo htmlspecialchars(
+                    $res_rel[$field_name]['foreign_table']
+                    . ' -> ' . $res_rel[$field_name]['foreign_field']
+                );
             }
             echo '&nbsp;</td>' . "\n";
         }
@@ -208,18 +212,16 @@ foreach ($the_tables as $key => $table) {
 
             echo '    <td>';
             if (isset($mime_map[$field_name])) {
-                echo htmlspecialchars(str_replace('_', '/', $mime_map[$field_name]['mimetype']));
+                echo htmlspecialchars(
+                    str_replace('_', '/', $mime_map[$field_name]['mimetype'])
+                );
             }
             echo '&nbsp;</td>' . "\n";
         }
-    ?>
-</tr>
-        <?php
+        echo '</tr>';
     } // end foreach
-    ?>
-</tbody>
-</table>
-    <?php
+    echo '</tbody>';
+    echo '</table>';
     if (! $tbl_is_view && !PMA_is_system_schema($db)) {
         /**
          * Displays indexes
@@ -232,7 +234,9 @@ foreach ($the_tables as $key => $table) {
          */
         if ($cfg['ShowStats']) {
             $nonisam     = false;
-            if (isset($showtable['Type']) && !preg_match('@ISAM|HEAP@i', $showtable['Type'])) {
+            if (isset($showtable['Type'])
+                && ! preg_match('@ISAM|HEAP@i', $showtable['Type'])
+            ) {
                 $nonisam = true;
             }
             if ($nonisam == false) {
@@ -240,93 +244,111 @@ foreach ($the_tables as $key => $table) {
 
                 $mergetable = PMA_Table::isMerge($db, $table);
 
-                list($data_size, $data_unit)         = PMA_formatByteDown($showtable['Data_length']);
+                list($data_size, $data_unit) = PMA_Util::formatByteDown(
+                    $showtable['Data_length']
+                );
                 if ($mergetable == false) {
-                    list($index_size, $index_unit)   = PMA_formatByteDown($showtable['Index_length']);
+                    list($index_size, $index_unit)
+                        = PMA_Util::formatByteDown(
+                            $showtable['Index_length']
+                        );
                 }
                 if (isset($showtable['Data_free']) && $showtable['Data_free'] > 0) {
-                    list($free_size, $free_unit)     = PMA_formatByteDown($showtable['Data_free']);
-                    list($effect_size, $effect_unit) = PMA_formatByteDown($showtable['Data_length'] + $showtable['Index_length'] - $showtable['Data_free']);
+                    list($free_size, $free_unit)
+                        = PMA_Util::formatByteDown(
+                            $showtable['Data_free']
+                        );
+                    list($effect_size, $effect_unit)
+                        = PMA_Util::formatByteDown(
+                            $showtable['Data_length'] + $showtable['Index_length']
+                            - $showtable['Data_free']
+                        );
                 } else {
                     unset($free_size);
                     unset($free_unit);
-                    list($effect_size, $effect_unit) = PMA_formatByteDown($showtable['Data_length'] + $showtable['Index_length']);
+                    list($effect_size, $effect_unit)
+                        = PMA_Util::formatByteDown(
+                            $showtable['Data_length'] + $showtable['Index_length']
+                        );
                 }
-                list($tot_size, $tot_unit)           = PMA_formatByteDown($showtable['Data_length'] + $showtable['Index_length']);
+                list($tot_size, $tot_unit) = PMA_Util::formatByteDown(
+                    $showtable['Data_length'] + $showtable['Index_length']
+                );
                 if ($num_rows > 0) {
-                    list($avg_size, $avg_unit)       = PMA_formatByteDown(($showtable['Data_length'] + $showtable['Index_length']) / $showtable['Rows'], 6, 1);
+                    list($avg_size, $avg_unit)
+                        = PMA_Util::formatByteDown(
+                            ($showtable['Data_length'] + $showtable['Index_length'])
+                            / $showtable['Rows'],
+                            6,
+                            1
+                        );
                 }
 
                 // Displays them
-                ?>
-    <br /><br />
+                echo '<br /><br />';
 
-    <table border="0" cellspacing="0" cellpadding="0" class="noborder">
-    <tr>
+                echo '<table cellspacing="0" cellpadding="0">';
+                echo "\n";
+                echo '<tr>';
 
-        <!-- Space usage -->
-        <td valign="top">
-            <big><?php echo __('Space usage') . ':'; ?></big>
-            <table width="100%">
-            <tr>
-                <td style="padding-right: 10px"><?php echo __('Data'); ?></td>
-                <td align="right"><?php echo $data_size; ?></td>
-                <td><?php echo $data_unit; ?></td>
-            </tr>
-                <?php
+                // Space usage
+                echo '<td class="vtop">';
+                echo '<big>' . __('Space usage') . ':</big>';
+                echo '<table width="100%">';
+                echo '<tr>';
+                echo '<td style="padding-right: 10px">' . __('Data') . '</td>';
+                echo '<td class="right">' . $data_size . '</td>';
+                echo '<td>' . $data_unit . '</td>';
+                echo '</tr>';
                 if (isset($index_size)) {
                     echo "\n";
-                    ?>
-            <tr>
-                <td style="padding-right: 10px"><?php echo __('Index'); ?></td>
-                <td align="right"><?php echo $index_size; ?></td>
-                <td><?php echo $index_unit; ?></td>
-            </tr>
-                    <?php
+                    echo '<tr>';
+                    echo '<td style="padding-right: 10px">' . __('Index') . '</td>';
+                    echo '<td class="right">' . $index_size . '</td>';
+                    echo '<td>' . $index_unit. '</td>';
+                    echo '</tr>';
                 }
                 if (isset($free_size)) {
                     echo "\n";
-                    ?>
-            <tr style="color: #bb0000">
-                <td style="padding-right: 10px"><?php echo __('Overhead'); ?></td>
-                <td align="right"><?php echo $free_size; ?></td>
-                <td><?php echo $free_unit; ?></td>
-            </tr>
-            <tr>
-                <td style="padding-right: 10px"><?php echo __('Effective'); ?></td>
-                <td align="right"><?php echo $effect_size; ?></td>
-                <td><?php echo $effect_unit; ?></td>
-            </tr>
-                    <?php
+                    echo '<tr style="color: #bb0000">';
+                    echo '<td style="padding-right: 10px">';
+                    echo __('Overhead');
+                    echo '</td>';
+                    echo '<td class="right">' . $free_size . '</td>';
+                    echo '<td>' . $free_unit . '</td>';
+                    echo '</tr>';
+                    echo '<tr>';
+                    echo '<td style="padding-right: 10px">';
+                    echo __('Effective');
+                    echo '</td>';
+                    echo '<td class="right">' . $effect_size . '</td>';
+                    echo '<td>' . $effect_unit . '</td>';
+                    echo '</tr>';
                 }
                 if (isset($tot_size) && $mergetable == false) {
                     echo "\n";
-                    ?>
-            <tr>
-                <td style="padding-right: 10px"><?php echo __('Total'); ?></td>
-                <td align="right"><?php echo $tot_size; ?></td>
-                <td><?php echo $tot_unit; ?></td>
-            </tr>
-                    <?php
+                    echo '<tr>';
+                    echo '<td style="padding-right: 10px">' . __('Total') . '</td>';
+                    echo '<td class="right">' . $tot_size . '</td>';
+                    echo '<td>' . $tot_unit . '</td>';
+                    echo '</tr>';
                 }
                 echo "\n";
-                ?>
-            </table>
-        </td>
+                echo '</table>';
+                echo '</td>';
 
-        <td width="20">&nbsp;</td>
+                echo '<td width="20">&nbsp;</td>';
 
-        <!-- Rows Statistic -->
-        <td valign="top">
-            <big><?php echo __('Row Statistics') . ':'; ?></big>
-            <table width="100%">
-                <?php
+                // Rows Statistic
+                echo "\n";
+                echo '<td class="vtop">';
+                echo '<big>' . __('Row Statistics') . ':</big>';
+                echo '<table width="100%">';
                 if (isset($showtable['Row_format'])) {
-                    ?>
-            <tr>
-                <td><?php echo __('Format'); ?></td>
-                <td align="<?php echo $cell_align_left; ?>">
-                    <?php
+                    echo "\n";
+                    echo '<tr>';
+                    echo '<td>' . __('Format') . '</td>';
+                    echo '<td class="' . $cell_align_left . '">';
                     if ($showtable['Row_format'] == 'Fixed') {
                         echo __('static');
                     } elseif ($showtable['Row_format'] == 'Dynamic') {
@@ -334,89 +356,93 @@ foreach ($the_tables as $key => $table) {
                     } else {
                         echo $showtable['Row_format'];
                     }
-                    ?>
-                </td>
-            </tr>
-                    <?php
+                    echo '</td>';
+                    echo '</tr>';
                 }
                 if (isset($showtable['Rows'])) {
-                    ?>
-            <tr>
-                <td><?php echo __('Rows'); ?></td>
-                <td align="right">
-                    <?php echo PMA_formatNumber($showtable['Rows'], 0) . "\n"; ?>
-                </td>
-            </tr>
-                    <?php
+                    echo "\n";
+                    echo '<tr>';
+                    echo '<td>' . __('Rows') . '</td>';
+                    echo '<td class="right">';
+                    echo PMA_Util::formatNumber($showtable['Rows'], 0);
+                    echo '</td>';
+                    echo '</tr>';
                 }
-                if (isset($showtable['Avg_row_length']) && $showtable['Avg_row_length'] > 0) {
-                    ?>
-            <tr>
-                <td><?php echo __('Row length'); ?>&nbsp;&oslash;</td>
-                <td>
-                    <?php echo PMA_formatNumber($showtable['Avg_row_length'], 0) . "\n"; ?>
-                </td>
-            </tr>
-                    <?php
+                if (isset($showtable['Avg_row_length'])
+                    && $showtable['Avg_row_length'] > 0
+                ) {
+                    echo "\n";
+                    echo '<tr>';
+                    echo '<td>' . __('Row length') . '&nbsp;&oslash;</td>';
+                    echo '<td>';
+                    echo PMA_Util::formatNumber(
+                        $showtable['Avg_row_length'], 0
+                    );
+                    echo '</td>';
+                    echo '</tr>';
                 }
-                if (isset($showtable['Data_length']) && $showtable['Rows'] > 0 && $mergetable == false) {
-                    ?>
-            <tr>
-                <td><?php echo __('Row size'); ?>&nbsp;&oslash;</td>
-                <td align="right">
-                    <?php echo $avg_size . ' ' . $avg_unit . "\n"; ?>
-                </td>
-            </tr>
-                    <?php
+                if (isset($showtable['Data_length'])
+                    && $showtable['Rows'] > 0
+                    && $mergetable == false
+                ) {
+                    echo "\n";
+                    echo '<tr>';
+                    echo '<td>' . __('Row size') . '&nbsp;&oslash;</td>';
+                    echo '<td class="right">';
+                    echo $avg_size . ' ' . $avg_unit;
+                    echo '</td>';
+                    echo '</tr>';
                 }
                 if (isset($showtable['Auto_increment'])) {
-                    ?>
-            <tr>
-                <td><?php echo __('Next autoindex'); ?></td>
-                <td align="right">
-                    <?php echo PMA_formatNumber($showtable['Auto_increment'], 0) . "\n"; ?>
-                </td>
-            </tr>
-                    <?php
+                    echo "\n";
+                    echo '<tr>';
+                    echo '<td>' . __('Next autoindex'). ' </td>';
+                    echo '<td class="right">';
+                    echo PMA_Util::formatNumber(
+                        $showtable['Auto_increment'], 0
+                    );
+                    echo '</td>';
+                    echo '</tr>';
                 }
                 if (isset($showtable['Create_time'])) {
-                    ?>
-            <tr>
-                <td><?php echo __('Creation'); ?></td>
-                <td align="right">
-                    <?php echo PMA_localisedDate(strtotime($showtable['Create_time'])) . "\n"; ?>
-                </td>
-            </tr>
-                    <?php
+                    echo "\n";
+                    echo '<tr>';
+                    echo '<td>' . __('Creation') . '</td>';
+                    echo '<td class="right">';
+                    echo PMA_Util::localisedDate(
+                        strtotime($showtable['Create_time'])
+                    );
+                    echo '</td>';
+                    echo '</tr>';
                 }
                 if (isset($showtable['Update_time'])) {
-                    ?>
-            <tr>
-                <td><?php echo __('Last update'); ?></td>
-                <td align="right">
-                    <?php echo PMA_localisedDate(strtotime($showtable['Update_time'])) . "\n"; ?>
-                </td>
-            </tr>
-                    <?php
+                    echo "\n";
+                    echo '<tr>';
+                    echo '<td>' . __('Last update') . '</td>';
+                    echo '<td class="right">';
+                    echo PMA_Util::localisedDate(
+                        strtotime($showtable['Update_time'])
+                    );
+                    echo '</td>';
+                    echo '</tr>';
                 }
                 if (isset($showtable['Check_time'])) {
-                    ?>
-            <tr>
-                <td><?php echo __('Last check'); ?></td>
-                <td align="right">
-                    <?php echo PMA_localisedDate(strtotime($showtable['Check_time'])) . "\n"; ?>
-                </td>
-            </tr>
-                    <?php
+                    echo "\n";
+                    echo '<tr>';
+                    echo '<td>' . __('Last check') . '</td>';
+                    echo '<td class="right">';
+                    echo PMA_Util::localisedDate(
+                        strtotime($showtable['Check_time'])
+                    );
+                    echo '</td>';
+                    echo '</tr>';
                 }
-                ?>
 
-            </table>
-        </td>
-    </tr>
-    </table>
-
-                <?php
+                echo "\n";
+                echo '</table>';
+                echo '</td>';
+                echo '</tr>';
+                echo '</table>';
             } // end if ($nonisam == false)
         } // end if ($cfg['ShowStats'])
     }
@@ -431,9 +457,7 @@ foreach ($the_tables as $key => $table) {
 /**
  * Displays the footer
  */
-PMA_printButton();
+echo PMA_Util::getButton();
 
 echo "<div id='PMA_disable_floating_menubar'></div>\n";
-
-require './libraries/footer.inc.php';
 ?>

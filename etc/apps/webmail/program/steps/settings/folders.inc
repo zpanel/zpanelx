@@ -18,9 +18,6 @@
  | Author: Thomas Bruederli <roundcube@gmail.com>                        |
  | Author: Aleksander Machniak <alec@alec.pl>                            |
  +-----------------------------------------------------------------------+
-
- $Id$
-
 */
 
 // WARNING: folder names in UI are encoded with RCMAIL_CHARSET
@@ -47,8 +44,8 @@ if ($RCMAIL->action == 'subscribe')
 
         if ($result) {
             // Handle subscription of protected folder (#1487656)
-            if ($CONFIG['protect_default_folders'] == true
-                && in_array($mbox, $CONFIG['default_folders'])
+            if ($RCMAIL->config->get('protect_default_folders')
+                && in_array($mbox, (array)$RCMAIL->config->get('default_folders'))
             ) {
                 $OUTPUT->command('disable_subscription', $mbox);
             }
@@ -87,6 +84,11 @@ else if ($RCMAIL->action == 'delete-folder')
         }
         else {
             $deleted = $plugin['result'];
+        }
+
+        // #1488692: update session
+        if ($deleted && $_SESSION['mbox'] === $mbox) {
+            $RCMAIL->session->remove('mbox');
         }
     }
 
@@ -297,40 +299,44 @@ function rcube_subscription_form($attrib)
 
         $disabled = (($protected && $subscribed) || $noselect);
 
-        // check if the folder is a namespace prefix, then disable subscription option on it
-        if (!$disabled && $folder['virtual'] && $folder['level'] == 0 && !empty($namespace)) {
-            $fname = $folder['id'] . $delimiter;
-            foreach ($namespace as $ns) {
-                if (is_array($ns)) {
-                    foreach ($ns as $item) {
-                        if ($item[0] === $fname) {
-                            $disabled = true;
-                            break 2;
+        // Below we will disable subscription option for "virtual" folders
+        // according to namespaces, but only if they aren't already subscribed.
+        // User should be able to unsubscribe from the folder
+        // even if it doesn't exists or is not accessible (OTRS:1000059)
+        if (!$subscribed && !$disabled && !empty($namespace) && $folder['virtual']) {
+            // check if the folder is a namespace prefix, then disable subscription option on it
+            if (!$disabled && $folder['level'] == 0) {
+                $fname = $folder['id'] . $delimiter;
+                foreach ($namespace as $ns) {
+                    if (is_array($ns)) {
+                        foreach ($ns as $item) {
+                            if ($item[0] === $fname) {
+                                $disabled = true;
+                                break 2;
+                            }
                         }
                     }
                 }
             }
-        }
-        // check if the folder is an other users virtual-root folder, then disable subscription option on it
-        if (!$disabled && $folder['virtual'] && $folder['level'] == 1
-            && !empty($namespace) && !empty($namespace['other'])
-        ) {
-            $parts = explode($delimiter, $folder['id']);
-            $fname = $parts[0] . $delimiter;
-            foreach ($namespace['other'] as $item) {
-                if ($item[0] === $fname) {
-                    $disabled = true;
-                    break;
+            // check if the folder is an other users virtual-root folder, then disable subscription option on it
+            if (!$disabled && $folder['level'] == 1 && !empty($namespace['other'])) {
+                $parts = explode($delimiter, $folder['id']);
+                $fname = $parts[0] . $delimiter;
+                foreach ($namespace['other'] as $item) {
+                    if ($item[0] === $fname) {
+                        $disabled = true;
+                        break;
+                    }
                 }
             }
-        }
-        // check if the folder is shared, then disable subscription option on it
-        if (!$disabled && $folder['virtual'] && !empty($namespace)) {
-            $tmp_ns = array_merge((array)$namespace['other'], (array)$namespace['shared']);
-            foreach ($tmp_ns as $item) {
-                if (strpos($folder['id'], $item[0]) === 0) {
-                    $disabled = true;
-                    break;
+            // check if the folder is shared, then disable subscription option on it (if not subscribed already)
+            if (!$disabled) {
+                $tmp_ns = array_merge((array)$namespace['other'], (array)$namespace['shared']);
+                foreach ($tmp_ns as $item) {
+                    if (strpos($folder['id'], $item[0]) === 0) {
+                        $disabled = true;
+                        break;
+                    }
                 }
             }
         }
@@ -363,12 +369,7 @@ function rcmail_folder_frame($attrib)
     if (!$attrib['id'])
         $attrib['id'] = 'rcmfolderframe';
 
-    $attrib['name'] = $attrib['id'];
-
-    $OUTPUT->set_env('contentframe', $attrib['name']);
-    $OUTPUT->set_env('blankpage', $attrib['src'] ? $OUTPUT->abs_url($attrib['src']) : 'program/blank.gif');
-
-    return html::iframe($attrib);
+    return $OUTPUT->frame($attrib, true);
 }
 
 function rcmail_rename_folder($oldname, $newname)
@@ -396,14 +397,19 @@ function rcmail_rename_folder($oldname, $newname)
         foreach ($a_threaded as $key => $val) {
             if ($key == $oldname) {
                 unset($a_threaded[$key]);
-    	        $a_threaded[$newname] = true;
+                $a_threaded[$newname] = true;
             }
             else if (preg_match($oldprefix, $key)) {
                 unset($a_threaded[$key]);
-	            $a_threaded[preg_replace($oldprefix, $newname.$delimiter, $key)] = true;
+                $a_threaded[preg_replace($oldprefix, $newname.$delimiter, $key)] = true;
             }
         }
         $RCMAIL->user->save_prefs(array('message_threading' => $a_threaded));
+
+        // #1488692: update session
+        if ($_SESSION['mbox'] === $oldname) {
+            $_SESSION['mbox'] = $newname;
+        }
 
         return true;
     }
@@ -414,8 +420,10 @@ function rcmail_rename_folder($oldname, $newname)
 
 $OUTPUT->set_pagetitle(rcube_label('folders'));
 $OUTPUT->include_script('list.js');
-$OUTPUT->set_env('quota', $STORAGE->get_capability('QUOTA'));
 $OUTPUT->set_env('prefix_ns', $STORAGE->get_namespace('prefix'));
+if ($STORAGE->get_capability('QUOTA')) {
+    $OUTPUT->set_env('quota', true);
+}
 
 // add some labels to client
 $OUTPUT->add_label('deletefolderconfirm', 'purgefolderconfirm', 'folderdeleting',

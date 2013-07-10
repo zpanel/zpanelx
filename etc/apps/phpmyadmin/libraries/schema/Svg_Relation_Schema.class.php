@@ -4,6 +4,9 @@
  *
  * @package PhpMyAdmin
  */
+if (! defined('PHPMYADMIN')) {
+    exit;
+}
 
 require_once 'Export_Relation_Schema.class.php';
 
@@ -179,7 +182,8 @@ class PMA_SVG extends XMLWriter
     {
         //ob_get_clean();
         $output = $this->flush();
-        PMA_download_header($fileName . '.svg', 'image/svg+xml', strlen($output));
+        PMA_Response::getInstance()->disable();
+        PMA_downloadHeader($fileName . '.svg', 'image/svg+xml', strlen($output));
         print $output;
     }
 
@@ -296,7 +300,7 @@ class PMA_SVG extends XMLWriter
 
         $modifier = 1;
         $font = strtolower($font);
-        switch($font){
+        switch ($font) {
         /*
          * no modifier for arial and sans-serif
          */
@@ -372,13 +376,14 @@ class Table_Stats
      * @see PMA_SVG, Table_Stats::Table_Stats_setWidth,
      *       Table_Stats::Table_Stats_setHeight
      */
-    function __construct($tableName, $font, $fontSize, $pageNumber,
-    &$same_wide_width, $showKeys = false, $showInfo = false)
-    {
+    function __construct(
+        $tableName, $font, $fontSize, $pageNumber,
+        &$same_wide_width, $showKeys = false, $showInfo = false
+    ) {
         global $svg, $cfgRelation, $db;
 
         $this->_tableName = $tableName;
-        $sql = 'DESCRIBE ' . PMA_backquote($tableName);
+        $sql = 'DESCRIBE ' . PMA_Util::backquote($tableName);
         $result = PMA_DBI_try_query($sql, null, PMA_DBI_QUERY_STORE);
         if (! $result || ! PMA_DBI_num_rows($result)) {
             $svg->dieSchema(
@@ -423,12 +428,12 @@ class Table_Stats
 
         // x and y
         $sql = 'SELECT x, y FROM '
-         . PMA_backquote($GLOBALS['cfgRelation']['db']) . '.'
-         . PMA_backquote($cfgRelation['table_coords'])
-         . ' WHERE db_name = \'' . PMA_sqlAddSlashes($db) . '\''
-         . ' AND   table_name = \'' . PMA_sqlAddSlashes($tableName) . '\''
+         . PMA_Util::backquote($GLOBALS['cfgRelation']['db']) . '.'
+         . PMA_Util::backquote($cfgRelation['table_coords'])
+         . ' WHERE db_name = \'' . PMA_Util::sqlAddSlashes($db) . '\''
+         . ' AND   table_name = \'' . PMA_Util::sqlAddSlashes($tableName) . '\''
          . ' AND   pdf_page_number = ' . $pageNumber;
-        $result = PMA_query_as_controluser($sql, false, PMA_DBI_QUERY_STORE);
+        $result = PMA_queryAsControlUser($sql, false, PMA_DBI_QUERY_STORE);
 
         if (!$result || !PMA_DBI_num_rows($result)) {
             $svg->dieSchema(
@@ -447,7 +452,7 @@ class Table_Stats
         $this->displayfield = PMA_getDisplayField($db, $tableName);
         // index
         $result = PMA_DBI_query(
-            'SHOW INDEX FROM ' . PMA_backquote($tableName) . ';',
+            'SHOW INDEX FROM ' . PMA_Util::backquote($tableName) . ';',
             null,
             PMA_DBI_QUERY_STORE
         );
@@ -482,7 +487,7 @@ class Table_Stats
      *
      * @global object    The current SVG image document
      *
-     * @return nothing
+     * @return void
      * @access private
      *
      * @see PMA_SVG
@@ -513,7 +518,7 @@ class Table_Stats
      *
      * @param integer $fontSize font size
      *
-     * @return nothing
+     * @return void
      * @access private
      */
     function _setHeightTable($fontSize)
@@ -530,7 +535,7 @@ class Table_Stats
      * @global object The current SVG image document
      *
      * @access public
-     * @return nothing
+     * @return void
      *
      * @see PMA_SVG,PMA_SVG::printElement
      */
@@ -600,7 +605,7 @@ class Relation_Stats
      * @param string $foreign_table The foreign table name
      * @param string $foreign_field The relation field in the foreign table
      *
-     * @return nothing
+     * @return void
      *
      * @see Relation_Stats::_getXy
      */
@@ -676,7 +681,7 @@ class Relation_Stats
      *
      * @global object The current SVG image document
      *
-     * @return nothing
+     * @return void
      * @access public
      *
      * @see PMA_SVG
@@ -764,17 +769,12 @@ class Relation_Stats
 class PMA_Svg_Relation_Schema extends PMA_Export_Relation_Schema
 {
 
-    private $tables = array();
+    private $_tables = array();
     private $_relations = array();
     private $_xMax = 0;
     private $_yMax = 0;
-    private $scale;
     private $_xMin = 100000;
     private $_yMin = 100000;
-    private $t_marg = 10;
-    private $b_marg = 10;
-    private $l_marg = 10;
-    private $r_marg = 10;
     private $_tablewidth;
 
     /**
@@ -794,7 +794,7 @@ class PMA_Svg_Relation_Schema extends PMA_Export_Relation_Schema
         $this->setShowColor(isset($_POST['show_color']));
         $this->setShowKeys(isset($_POST['show_keys']));
         $this->setTableDimension(isset($_POST['show_table_dimension']));
-        $this->setAllTableSameWidth(isset($_POST['all_table_same_wide']));
+        $this->setAllTablesSameWidth(isset($_POST['all_tables_same_width']));
         $this->setExportType($_POST['export_type']);
 
         $svg = new PMA_SVG();
@@ -812,17 +812,17 @@ class PMA_Svg_Relation_Schema extends PMA_Export_Relation_Schema
         $alltables = $this->getAllTables($db, $this->pageNumber);
 
         foreach ($alltables AS $table) {
-            if (! isset($this->tables[$table])) {
-                $this->tables[$table] = new Table_Stats(
+            if (! isset($this->_tables[$table])) {
+                $this->_tables[$table] = new Table_Stats(
                     $table, $svg->getFont(), $svg->getFontSize(), $this->pageNumber,
                     $this->_tablewidth, $this->showKeys, $this->tableDimension
                 );
             }
 
             if ($this->sameWide) {
-                $this->tables[$table]->width = $this->_tablewidth;
+                $this->_tables[$table]->width = $this->_tablewidth;
             }
-            $this->_setMinMax($this->tables[$table]);
+            $this->_setMinMax($this->_tables[$table]);
         }
         $seen_a_relation = false;
         foreach ($alltables as $one_table) {
@@ -860,7 +860,7 @@ class PMA_Svg_Relation_Schema extends PMA_Export_Relation_Schema
      *
      * @param string $table The table name
      *
-     * @return nothing
+     * @return void
      * @access private
      */
     private function _setMinMax($table)
@@ -883,30 +883,31 @@ class PMA_Svg_Relation_Schema extends PMA_Export_Relation_Schema
      * @param boolean $showInfo     Whether to display table position or not
      *
      * @access private
-     * @return nothing
+     * @return void
      *
      * @see _setMinMax,Table_Stats::__construct(),Relation_Stats::__construct()
      */
-    private function _addRelation($masterTable,$font,$fontSize, $masterField,
-    $foreignTable, $foreignField, $showInfo)
-    {
-        if (! isset($this->tables[$masterTable])) {
-            $this->tables[$masterTable] = new Table_Stats(
+    private function _addRelation(
+        $masterTable,$font,$fontSize, $masterField,
+        $foreignTable, $foreignField, $showInfo
+    ) {
+        if (! isset($this->_tables[$masterTable])) {
+            $this->_tables[$masterTable] = new Table_Stats(
                 $masterTable, $font, $fontSize, $this->pageNumber,
                 $this->_tablewidth, false, $showInfo
             );
-            $this->_setMinMax($this->tables[$masterTable]);
+            $this->_setMinMax($this->_tables[$masterTable]);
         }
-        if (! isset($this->tables[$foreignTable])) {
-            $this->tables[$foreignTable] = new Table_Stats(
+        if (! isset($this->_tables[$foreignTable])) {
+            $this->_tables[$foreignTable] = new Table_Stats(
                 $foreignTable, $font, $fontSize, $this->pageNumber,
                 $this->_tablewidth, false, $showInfo
             );
-            $this->_setMinMax($this->tables[$foreignTable]);
+            $this->_setMinMax($this->_tables[$foreignTable]);
         }
         $this->_relations[] = new Relation_Stats(
-            $this->tables[$masterTable], $masterField,
-            $this->tables[$foreignTable], $foreignField
+            $this->_tables[$masterTable], $masterField,
+            $this->_tables[$foreignTable], $foreignField
         );
     }
 
@@ -917,7 +918,7 @@ class PMA_Svg_Relation_Schema extends PMA_Export_Relation_Schema
      *
      * @param boolean $changeColor Whether to use one color per relation or not
      *
-     * @return nothing
+     * @return void
      * @access private
      *
      * @see Relation_Stats::relationDraw()
@@ -934,14 +935,14 @@ class PMA_Svg_Relation_Schema extends PMA_Export_Relation_Schema
      *
      * @param boolean $changeColor Whether to show color for primary fields or not
      *
-     * @return nothing
+     * @return void
      * @access private
      *
      * @see Table_Stats::Table_Stats_tableDraw()
      */
     private function _drawTables($changeColor)
     {
-        foreach ($this->tables as $table) {
+        foreach ($this->_tables as $table) {
             $table->tableDraw($changeColor);
         }
     }

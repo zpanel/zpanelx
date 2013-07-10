@@ -9,16 +9,16 @@
 /**
  * Gets some core libraries and displays a top message if required
  */
-require_once './libraries/common.inc.php';
-require_once './libraries/user_preferences.lib.php';
-require_once './libraries/config/config_functions.lib.php';
-require_once './libraries/config/messages.inc.php';
-require_once './libraries/config/ConfigFile.class.php';
-require_once './libraries/config/Form.class.php';
-require_once './libraries/config/FormDisplay.class.php';
-require './libraries/config/user_preferences.forms.php';
+require_once 'libraries/common.inc.php';
+require_once 'libraries/user_preferences.lib.php';
+require_once 'libraries/config/config_functions.lib.php';
+require_once 'libraries/config/messages.inc.php';
+require_once 'libraries/config/ConfigFile.class.php';
+require_once 'libraries/config/Form.class.php';
+require_once 'libraries/config/FormDisplay.class.php';
+require 'libraries/config/user_preferences.forms.php';
 
-PMA_userprefs_pageinit();
+PMA_userprefsPageInit();
 
 // handle form processing
 
@@ -42,22 +42,26 @@ if (isset($_POST['revert'])) {
     $form_display->fixErrors();
     // redirect
     $url_params = array('form' => $form_param);
-    PMA_sendHeaderLocation($cfg['PmaAbsoluteUri'] . 'prefs_forms.php'
-            . PMA_generate_common_url($url_params, '&'));
+    PMA_sendHeaderLocation(
+        $cfg['PmaAbsoluteUri'] . 'prefs_forms.php'
+        . PMA_generate_common_url($url_params, '&')
+    );
     exit;
 }
 
 $error = null;
 if ($form_display->process(false) && !$form_display->hasErrors()) {
     // save settings
-    $old_settings = PMA_load_userprefs();
-    $result = PMA_save_userprefs(ConfigFile::getInstance()->getConfigArray());
+    $result = PMA_saveUserprefs(ConfigFile::getInstance()->getConfigArray());
     if ($result === true) {
         // reload config
         $GLOBALS['PMA_Config']->loadUserPreferences();
         $hash = ltrim(filter_input(INPUT_POST, 'tab_hash'), '#');
-        PMA_userprefs_redirect($forms, $old_settings, 'prefs_forms.php', array(
-            'form' => $form_param), $hash);
+        PMA_userprefsRedirect(
+            'prefs_forms.php',
+            array('form' => $form_param),
+            $hash
+        );
         exit;
     } else {
         $error = $result;
@@ -65,9 +69,12 @@ if ($form_display->process(false) && !$form_display->hasErrors()) {
 }
 
 // display forms
-$GLOBALS['js_include'][] = 'config.js';
-require './libraries/header.inc.php';
-require './libraries/user_preferences.inc.php';
+$response = PMA_Response::getInstance();
+$header   = $response->getHeader();
+$scripts  = $header->getScripts();
+$scripts->addFile('config.js');
+
+require 'libraries/user_preferences.inc.php';
 if ($error) {
     $error->display();
 }
@@ -81,9 +88,4 @@ if ($form_display->hasErrors()) {
     <?php
 }
 $form_display->display(true, true);
-
-/**
- * Displays the footer
- */
-require './libraries/footer.inc.php';
 ?>

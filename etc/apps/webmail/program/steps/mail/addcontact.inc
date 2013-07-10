@@ -17,26 +17,14 @@
  +-----------------------------------------------------------------------+
  | Author: Thomas Bruederli <roundcube@gmail.com>                        |
  +-----------------------------------------------------------------------+
-
- $Id$
-
 */
 
 // only process ajax requests
 if (!$OUTPUT->ajax_call)
   return;
 
-$abook = $RCMAIL->config->get('default_addressbook');
-
-// Get configured addressbook
-$CONTACTS = $RCMAIL->get_address_book($abook, true);
-
-// Get first writeable addressbook if the configured doesn't exist
-// This can happen when user deleted the addressbook (e.g. Kolab folder)
-if ($abook == null || !is_object($CONTACTS)) {
-  $source = reset($RCMAIL->get_address_sources(true));
-  $CONTACTS = $RCMAIL->get_address_book($source['id'], true);
-}
+// Get default addressbook
+$CONTACTS = $RCMAIL->get_address_book(-1, true);
 
 if (!empty($_POST['_address']) && is_object($CONTACTS))
 {

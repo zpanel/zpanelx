@@ -28,13 +28,13 @@ function rcube_splitter(attrib)
 
     if (this.horizontal) {
       var top = this.p1pos.top + this.p1.offsetHeight;
-      this.layer = new rcube_layer(this.id, {x: 0, y: top, height: 10, 
-    	    width: '100%', vis: 1, parent: this.p1.parentNode});
+      this.layer = new rcube_layer(this.id, {x: 0, y: top, height: 10,
+        width: '100%', vis: 1, parent: this.p1.parentNode});
     }
     else {
       var left = this.p1pos.left + this.p1.offsetWidth;
-      this.layer = new rcube_layer(this.id, {x: left, y: 0, width: 10, 
-    	    height: '100%', vis: 1,  parent: this.p1.parentNode});
+      this.layer = new rcube_layer(this.id, {x: left, y: 0, width: 10,
+        height: '100%', vis: 1,  parent: this.p1.parentNode});
     }
 
     this.elm = this.layer.elm;
@@ -47,7 +47,7 @@ function rcube_splitter(attrib)
       rcube_event.add_listener({element: window, event:'resize', object:this, method:'onResize'});
 
     // read saved position from cookie
-    var cookie = bw.get_cookie(this.id);
+    var cookie = rcmail.get_cookie(this.id);
     if (cookie && !isNaN(cookie)) {
       this.pos = parseFloat(cookie);
       this.resize();
@@ -147,6 +147,7 @@ function rcube_splitter(attrib)
 
     this.p1pos = this.relative ? $(this.p1).position() : $(this.p1).offset();
     this.p2pos = this.relative ? $(this.p2).position() : $(this.p2).offset();
+
     return false;
   };
 
@@ -197,7 +198,7 @@ function rcube_splitter(attrib)
   {
     var exp = new Date();
     exp.setYear(exp.getFullYear() + 1);
-    bw.set_cookie(this.id, this.pos, exp);
+    rcmail.set_cookie(this.id, this.pos, exp);
   };
 
 } // end class rcube_splitter

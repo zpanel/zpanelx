@@ -8,30 +8,43 @@
 /**
  * Gets some core libraries
  */
-require_once './libraries/common.inc.php';
-$GLOBALS['js_include'][] = 'functions.js';
-$GLOBALS['js_include'][] = 'jquery/jquery-ui-1.8.16.custom.js';
+require_once 'libraries/common.inc.php';
 
-require_once './libraries/mysql_charsets.lib.php';
-if (!PMA_DRIZZLE) {
-    include_once './libraries/replication.inc.php';
+require_once 'libraries/mysql_charsets.lib.php';
+if (! PMA_DRIZZLE) {
+    include_once 'libraries/replication.inc.php';
 }
-require './libraries/build_html_for_db.lib.php';
+require 'libraries/build_html_for_db.lib.php';
 
-PMA_checkParameters(array('new_db'));
+/**
+ * Sets globals from $_POST
+ */
+$post_params = array(
+    'db_collation',
+    'new_db'
+);
+foreach ($post_params as $one_post_param) {
+    if (isset($_POST[$one_post_param])) {
+        $GLOBALS[$one_post_param] = $_POST[$one_post_param];
+    }
+}
+
+PMA_Util::checkParameters(array('new_db'));
 
 /**
  * Defines the url to return to in case of error in a sql statement
  */
-$err_url = 'main.php?' . PMA_generate_common_url();
+$err_url = 'index.php?' . PMA_generate_common_url();
 
 /**
  * Builds and executes the db creation sql query
  */
-$sql_query = 'CREATE DATABASE ' . PMA_backquote($new_db);
-if (!empty($db_collation)) {
+$sql_query = 'CREATE DATABASE ' . PMA_Util::backquote($new_db);
+if (! empty($db_collation)) {
     list($db_charset) = explode('_', $db_collation);
-    if (in_array($db_charset, $mysql_charsets) && in_array($db_collation, $mysql_collations[$db_charset])) {
+    if (in_array($db_charset, $mysql_charsets)
+        && in_array($db_collation, $mysql_collations[$db_charset])
+    ) {
         $sql_query .= ' DEFAULT' . PMA_generateCharsetQueryPart($db_collation);
     }
     $db_collation_for_ajax = $db_collation;
@@ -48,14 +61,15 @@ if (! $result) {
     $GLOBALS['table'] = '';
 
     /**
-     * If in an Ajax request, just display the message with {@link PMA_ajaxResponse}
+     * If in an Ajax request, just display the message with {@link PMA_Response}
      */
     if ($GLOBALS['is_ajax_request'] == true) {
-        PMA_ajaxResponse($message, false);
+        $response = PMA_Response::getInstance();
+        $response->isSuccess(false);
+        $response->addJSON('message', $message);
+    } else {
+        include_once 'index.php';
     }
-
-    include_once './libraries/header.inc.php';
-    include_once './main.php';
 } else {
     $message = PMA_Message::success(__('Database %1$s has been created.'));
     $message->addParam($new_db);
@@ -65,18 +79,13 @@ if (! $result) {
      * If in an Ajax request, build the output and send it
      */
     if ($GLOBALS['is_ajax_request'] == true) {
+        //Construct the html for the new database, so that it can be appended to
+        // the list of databases on server_databases.php
 
         /**
-         * String containing the SQL Query formatted in pretty HTML
-         * @global array $GLOBALS['extra_data']
-         * @name $extra_data
-         */
-        $extra_data['sql_query'] = PMA_showMessage(null, $sql_query, 'success');
-
-        //Construct the html for the new database, so that it can be appended to the list of databases on server_databases.php
-
-        /**
-         * Build the array to be passed to {@link PMA_generate_common_url} to generate the links
+         * Build the array to be passed to {@link PMA_generate_common_url}
+         * to generate the links
+         *
          * @global array $GLOBALS['db_url_params']
          * @name $db_url_params
          */
@@ -115,17 +124,25 @@ if (! $result) {
             );
         }
 
-        list($column_order, $generated_html) = PMA_buildHtmlForDb($current, $is_superuser, (isset($checkall) ? $checkall : ''), $url_query, $column_order, $replication_types, $replication_info);
+        list($column_order, $generated_html) = PMA_buildHtmlForDb(
+            $current, $is_superuser, $url_query,
+            $column_order, $replication_types, $replication_info
+        );
         $new_db_string .= $generated_html;
 
         $new_db_string .= '</tr>';
 
-        $extra_data['new_db_string'] = $new_db_string;
-
-        PMA_ajaxResponse($message, true, $extra_data);
+        $response = PMA_Response::getInstance();
+        $response->addJSON('message', $message);
+        $response->addJSON('new_db_string', $new_db_string);
+        $response->addJSON(
+            'sql_query',
+            PMA_Util::getMessage(
+                null, $sql_query, 'success'
+            )
+        );
+    } else {
+        include_once '' . $cfg['DefaultTabDatabase'];
     }
-
-    include_once './libraries/header.inc.php';
-    include_once './' . $cfg['DefaultTabDatabase'];
 }
 ?>

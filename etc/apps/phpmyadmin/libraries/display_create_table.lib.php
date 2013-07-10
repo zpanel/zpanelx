@@ -36,12 +36,12 @@ require_once './libraries/check_user_privileges.lib.php';
 $is_create_table_priv = true;
 
 ?>
-    <form id="create_table_form_minimal" method="post" action="tbl_create.php"<?php echo ($GLOBALS['cfg']['AjaxEnable'] ? ' class="ajax"' : ''); ?>>
+    <form id="create_table_form_minimal" method="post" action="tbl_create.php">
 <fieldset>
     <legend>
 <?php
 if ($GLOBALS['cfg']['PropertiesIconic']) {
-    echo PMA_getImage('b_newtbl.png');
+    echo PMA_Util::getImage('b_newtbl.png');
 }
 echo __('Create table');
 ?>

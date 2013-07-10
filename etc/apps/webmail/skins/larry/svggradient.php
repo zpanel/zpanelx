@@ -9,9 +9,9 @@
  * License. It is allowed to copy, distribute, transmit and to adapt the work
  * by keeping credits to the original autors in the README file.
  * See http://creativecommons.org/licenses/by-sa/3.0/ for details.
- *
- * $Id$
  */
+
+ini_set('error_reporting', E_ALL &~ (E_NOTICE | E_STRICT));
 
 header('Content-Type: image/svg+xml');
 header("Expires: ".gmdate("D, d M Y H:i:s", time()+864000)." GMT");
