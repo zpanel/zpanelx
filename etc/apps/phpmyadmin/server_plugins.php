@@ -6,44 +6,29 @@
  */
 
 /**
- * no need for variables importing
- * @ignore
- */
-if (! defined('PMA_NO_VARIABLES_IMPORT')) {
-    define('PMA_NO_VARIABLES_IMPORT', true);
-}
-
-/**
  * requirements
  */
-require_once './libraries/common.inc.php';
+require_once 'libraries/common.inc.php';
 
 /**
  * JS includes
  */
-$GLOBALS['js_include'][] = 'jquery/jquery-ui-1.8.16.custom.js';
-$GLOBALS['js_include'][] = 'jquery/jquery.cookie.js';
-$GLOBALS['js_include'][] = 'jquery/jquery.tablesorter.js';
-$GLOBALS['js_include'][] = 'server_plugins.js';
+$response = PMA_Response::getInstance();
+$header   = $response->getHeader();
+$scripts  = $header->getScripts();
+$scripts->addFile('jquery/jquery.tablesorter.js');
+$scripts->addFile('server_plugins.js');
 
 /**
  * Does the common work
  */
-require './libraries/server_common.inc.php';
-
-
-/**
- * Displays the links
- */
-require './libraries/server_links.inc.php';
+require 'libraries/server_common.inc.php';
 
 /**
  * Displays the sub-page heading
  */
 echo '<h2>' . "\n"
-   . ($GLOBALS['cfg']['MainPageIconic']
-        ? '<img class="icon" src="' . $pmaThemeImage . 'b_engine.png"'
-            .' width="16" height="16" alt="" />' : '')
+   . PMA_Util::getImage('b_engine.png')
    . "\n" . __('Plugins') . "\n"
    . '</h2>' . "\n";
 
@@ -100,10 +85,8 @@ pma_theme_image = '<?php echo $GLOBALS['pmaThemeImage']; ?>';
             <caption class="tblHeaders">
                 <a class="top" href="#serverinfo"><?php
                     echo __('Begin');
-                    echo $GLOBALS['cfg']['MainPageIconic']
-                        ? '<img src="' . $GLOBALS['pmaThemeImage'] .
-                            's_asc.png" width="11" height="9" align="middle" alt="" />'
-                        : ''; ?></a>
+                    echo PMA_Util::getImage('s_asc.png');
+                    ?></a>
                 <?php echo htmlspecialchars($plugin_type); ?>
             </caption>
             <thead>
@@ -199,10 +182,3 @@ pma_theme_image = '<?php echo $GLOBALS['pmaThemeImage']; ?>';
         </table>
     </div>
 </div>
-<?php
-/**
- * Sends the footer
- */
-require './libraries/footer.inc.php';
-
-?>

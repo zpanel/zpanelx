@@ -17,10 +17,9 @@
  +-----------------------------------------------------------------------+
  | Author: Thomas Bruederli <roundcube@gmail.com>                        |
  +-----------------------------------------------------------------------+
-
- $Id$
-
 */
+
+$afields = $RCMAIL->config->get('contactlist_fields');
 
 // Use search result
 if (!empty($_REQUEST['_search']) && isset($_SESSION['search'][$_REQUEST['_search']]))
@@ -46,11 +45,11 @@ if (!empty($_REQUEST['_search']) && isset($_SESSION['search'][$_REQUEST['_search
         $source->set_search_set($set);
 
         // get records
-        $result = $source->list_records(array('name', 'firstname', 'surname', 'email'));
+        $result = $source->list_records($afields);
 
         while ($row = $result->next()) {
             $row['sourceid'] = $s;
-            $key = rcmail_contact_key($row, $sort_col);
+            $key = rcube_addressbook::compose_contact_key($row, $sort_col);
             $records[$key] = $row;
         }
         unset($result);
@@ -76,7 +75,7 @@ else {
     $CONTACTS = rcmail_contact_source(null, true);
 
     // get contacts for this user
-    $result = $CONTACTS->list_records(array('name', 'firstname', 'surname', 'email'));
+    $result = $CONTACTS->list_records($afields);
 
     if (!$result->count && $result->searchonly) {
         $OUTPUT->show_message('contactsearchonly', 'notice');

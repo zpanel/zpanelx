@@ -1,5 +1,4 @@
 CREATE TABLE [dbo].[cache] (
-	[cache_id] [int] IDENTITY (1, 1) NOT NULL ,
 	[user_id] [int] NOT NULL ,
 	[cache_key] [varchar] (128) COLLATE Latin1_General_CI_AI NOT NULL ,
 	[created] [datetime] NOT NULL ,
@@ -93,7 +92,6 @@ CREATE TABLE [dbo].[users] (
 	[user_id] [int] IDENTITY (1, 1) NOT NULL ,
 	[username] [varchar] (128) COLLATE Latin1_General_CI_AI NOT NULL ,
 	[mail_host] [varchar] (128) COLLATE Latin1_General_CI_AI NOT NULL ,
-	[alias] [varchar] (128) COLLATE Latin1_General_CI_AI NOT NULL ,
 	[created] [datetime] NOT NULL ,
 	[last_login] [datetime] NULL ,
 	[language] [varchar] (5) COLLATE Latin1_General_CI_AI NULL ,
@@ -117,11 +115,10 @@ CREATE TABLE [dbo].[searches] (
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
 
-ALTER TABLE [dbo].[cache] WITH NOCHECK ADD 
-	 PRIMARY KEY  CLUSTERED 
-	(
-		[cache_id]
-	)  ON [PRIMARY] 
+CREATE TABLE [dbo].[system] (
+	[name] [varchar] (64) COLLATE Latin1_General_CI_AI NOT NULL ,
+	[value] [text] COLLATE Latin1_General_CI_AI NOT NULL 
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
 
 ALTER TABLE [dbo].[cache_index] WITH NOCHECK ADD 
@@ -191,6 +188,13 @@ ALTER TABLE [dbo].[searches] WITH NOCHECK ADD
 	CONSTRAINT [PK_searches_search_id] PRIMARY KEY CLUSTERED 
 	(
 		[search_id]
+	) ON [PRIMARY] 
+GO
+
+ALTER TABLE [dbo].[system] WITH NOCHECK ADD 
+	CONSTRAINT [PK_system_name] PRIMARY KEY CLUSTERED 
+	(
+		[name]
 	) ON [PRIMARY] 
 GO
 
@@ -282,6 +286,8 @@ GO
 
 CREATE  INDEX [IX_identities_user_id] ON [dbo].[identities]([user_id]) ON [PRIMARY]
 GO
+CREATE  INDEX [IX_identities_email] ON [dbo].[identities]([email],[del]) ON [PRIMARY]
+GO
 
 ALTER TABLE [dbo].[session] ADD 
 	CONSTRAINT [DF_session_sess_id] DEFAULT ('') FOR [sess_id],
@@ -295,14 +301,10 @@ GO
 ALTER TABLE [dbo].[users] ADD 
 	CONSTRAINT [DF_users_username] DEFAULT ('') FOR [username],
 	CONSTRAINT [DF_users_mail_host] DEFAULT ('') FOR [mail_host],
-	CONSTRAINT [DF_users_alias] DEFAULT ('') FOR [alias],
 	CONSTRAINT [DF_users_created] DEFAULT (getdate()) FOR [created]
 GO
 
 CREATE  UNIQUE INDEX [IX_users_username] ON [dbo].[users]([username],[mail_host]) ON [PRIMARY]
-GO
-
-CREATE  INDEX [IX_users_alias] ON [dbo].[users]([alias]) ON [PRIMARY]
 GO
 
 CREATE  UNIQUE INDEX [IX_dictionary_user_language] ON [dbo].[dictionary]([user_id],[language]) ON [PRIMARY]
@@ -369,3 +371,6 @@ CREATE TRIGGER [contact_delete_member] ON [dbo].[contacts]
     WHERE [contact_id] IN (SELECT [contact_id] FROM deleted)
 GO
 
+INSERT INTO [dbo].[system] ([name], [value]) VALUES ('roundcube-version', '2013011700')
+GO
+

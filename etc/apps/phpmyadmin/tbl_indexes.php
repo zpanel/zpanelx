@@ -9,17 +9,19 @@
 /**
  * Gets some core libraries
  */
-require_once './libraries/common.inc.php';
-require_once './libraries/Index.class.php';
-require_once './libraries/tbl_common.php';
+require_once 'libraries/common.inc.php';
+require_once 'libraries/Index.class.php';
+require_once 'libraries/tbl_common.inc.php';
 
 // Get fields and stores their name/type
 $fields = array();
 foreach (PMA_DBI_get_columns_full($db, $table) as $row) {
     if (preg_match('@^(set|enum)\((.+)\)$@i', $row['Type'], $tmp)) {
-        $tmp[2]         = substr(preg_replace('@([^,])\'\'@', '\\1\\\'',
-            ',' . $tmp[2]), 1);
-        $fields[$row['Field']] = $tmp[1] . '(' . str_replace(',', ', ', $tmp[2]) . ')';
+        $tmp[2] = substr(
+            preg_replace('@([^,])\'\'@', '\\1\\\'', ',' . $tmp[2]), 1
+        );
+        $fields[$row['Field']] = $tmp[1] . '('
+            . str_replace(',', ', ', $tmp[2]) . ')';
     } else {
         $fields[$row['Field']] = $row['Type'];
     }
@@ -46,42 +48,46 @@ if (isset($_REQUEST['do_save_data'])) {
     $error = false;
 
     // $sql_query is the one displayed in the query box
-    $sql_query = 'ALTER TABLE ' . PMA_backquote($db) . '.' . PMA_backquote($table);
+    $sql_query = 'ALTER TABLE ' . PMA_Util::backquote($db)
+        . '.' . PMA_Util::backquote($table);
 
     // Drops the old index
     if (! empty($_REQUEST['old_index'])) {
         if ($_REQUEST['old_index'] == 'PRIMARY') {
             $sql_query .= ' DROP PRIMARY KEY,';
         } else {
-            $sql_query .= ' DROP INDEX ' . PMA_backquote($_REQUEST['old_index']) . ',';
+            $sql_query .= ' DROP INDEX '
+                . PMA_Util::backquote($_REQUEST['old_index']) . ',';
         }
     } // end if
 
     // Builds the new one
     switch ($index->getType()) {
-        case 'PRIMARY':
-            if ($index->getName() == '') {
-                $index->setName('PRIMARY');
-            } elseif ($index->getName() != 'PRIMARY') {
-                $error = PMA_Message::error(__('The name of the primary key must be "PRIMARY"!'));
-            }
-            $sql_query .= ' ADD PRIMARY KEY';
-            break;
-        case 'FULLTEXT':
-        case 'UNIQUE':
-        case 'INDEX':
-        case 'SPATIAL':
-            if ($index->getName() == 'PRIMARY') {
-                $error = PMA_Message::error(__('Can\'t rename index to PRIMARY!'));
-            }
-            $sql_query .= ' ADD ' . $index->getType() . ' '
-                . ($index->getName() ? PMA_backquote($index->getName()) : '');
-            break;
+    case 'PRIMARY':
+        if ($index->getName() == '') {
+            $index->setName('PRIMARY');
+        } elseif ($index->getName() != 'PRIMARY') {
+            $error = PMA_Message::error(
+                __('The name of the primary key must be "PRIMARY"!')
+            );
+        }
+        $sql_query .= ' ADD PRIMARY KEY';
+        break;
+    case 'FULLTEXT':
+    case 'UNIQUE':
+    case 'INDEX':
+    case 'SPATIAL':
+        if ($index->getName() == 'PRIMARY') {
+            $error = PMA_Message::error(__('Can\'t rename index to PRIMARY!'));
+        }
+        $sql_query .= ' ADD ' . $index->getType() . ' '
+            . ($index->getName() ? PMA_Util::backquote($index->getName()) : '');
+        break;
     } // end switch
 
     $index_fields = array();
     foreach ($index->getColumns() as $key => $column) {
-        $index_fields[$key] = PMA_backquote($column->getName());
+        $index_fields[$key] = PMA_Util::backquote($column->getName());
         if ($column->getSubPart()) {
             $index_fields[$key] .= '(' . $column->getSubPart() . ')';
         }
@@ -93,26 +99,42 @@ if (isset($_REQUEST['do_save_data'])) {
         $sql_query .= ' (' . implode(', ', $index_fields) . ')';
     }
 
+    if (PMA_MYSQL_INT_VERSION > 50500) {
+        $sql_query .= "COMMENT '" 
+            . PMA_Util::sqlAddSlashes($index->getComment()) 
+            . "'";
+    }
+    $sql_query .= ';';
+
     if (! $error) {
         PMA_DBI_query($sql_query);
-        $message = PMA_Message::success(__('Table %1$s has been altered successfully'));
+        $message = PMA_Message::success(
+            __('Table %1$s has been altered successfully')
+        );
         $message->addParam($table);
 
-        if ( $GLOBALS['is_ajax_request'] == true) {
-            $extra_data['index_table'] = PMA_Index::getView($table, $db);
-            $extra_data['sql_query'] = PMA_showMessage(null, $sql_query);
-            PMA_ajaxResponse($message, $message->isSuccess(), $extra_data);
+        if ($GLOBALS['is_ajax_request'] == true) {
+            $response = PMA_Response::getInstance();
+            $response->addJSON('message', $message);
+            $response->addJSON('index_table', PMA_Index::getView($table, $db));
+            $response->addJSON(
+                'sql_query',
+                PMA_Util::getMessage(null, $sql_query)
+            );
+        } else {
+            $active_page = 'tbl_structure.php';
+            include 'tbl_structure.php';
         }
-
-        $active_page = 'tbl_structure.php';
-        include './tbl_structure.php';
         exit;
     } else {
-        if ( $GLOBALS['is_ajax_request'] == true) {
-            $extra_data['error'] = $error;
-            PMA_ajaxResponse($error, false);
+        if ($GLOBALS['is_ajax_request'] == true) {
+            $response = PMA_Response::getInstance();
+            $response->isSuccess(false);
+            $response->addJSON('message', $error);
+            exit;
+        } else {
+            $error->display();
         }
-        $error->display();
     }
 } // end builds the new index
 
@@ -122,11 +144,11 @@ if (isset($_REQUEST['do_save_data'])) {
  */
 
 // Displays headers (if needed)
-$GLOBALS['js_include'][] = 'indexes.js';
-require_once './libraries/tbl_info.inc.php';
-if ($GLOBALS['is_ajax_request'] != true) {
-    include_once './libraries/tbl_links.inc.php';
-}
+$response = PMA_Response::getInstance();
+$header   = $response->getHeader();
+$scripts  = $header->getScripts();
+$scripts->addFile('indexes.js');
+require_once 'libraries/tbl_info.inc.php';
 
 if (isset($_REQUEST['index']) && is_array($_REQUEST['index'])) {
     // coming already from form
@@ -144,7 +166,7 @@ if (isset($_REQUEST['index']) && is_array($_REQUEST['index'])) {
 // end preparing form values
 ?>
 
-<form action="./tbl_indexes.php" method="post" name="index_frm" id="index_frm" <?php echo ($GLOBALS['cfg']['AjaxEnable'] ? ' class="ajax"' : ''); ?>
+<form action="tbl_indexes.php" method="post" name="index_frm" id="index_frm" class="ajax"
     onsubmit="if (typeof(this.elements['index[Key_name]'].disabled) != 'undefined') {
         this.elements['index[Key_name]'].disabled = false}">
 <?php
@@ -166,17 +188,17 @@ echo PMA_generate_common_hidden_inputs($form_params);
 <fieldset id="index_edit_fields">
 <?php
 if ($GLOBALS['is_ajax_request'] != true) {
-?>
+    ?>
     <legend>
-<?php
+    <?php
     if (isset($_REQUEST['create_index'])) {
         echo __('Add index');
     } else {
         echo __('Edit index');
     }
-?>
+    ?>
     </legend>
-<?php
+    <?php
 }
 ?>
 <div class='index_info'>
@@ -185,19 +207,47 @@ if ($GLOBALS['is_ajax_request'] != true) {
             <strong>
                 <label for="input_index_name">
                     <?php echo __('Index name:'); ?>
-                    <?php echo PMA_showhint(PMA_Message::notice(__('("PRIMARY" <b>must</b> be the name of and <b>only of</b> a primary key!)'))); ?>
+                    <?php
+echo PMA_Util::showHint(
+    PMA_Message::notice(
+        __(
+            '("PRIMARY" <b>must</b> be the name of'
+            . ' and <b>only of</b> a primary key!)'
+        )
+    )
+);
+                    ?>
                 </label>
             </strong>
         </div>
         <input type="text" name="index[Key_name]" id="input_index_name" size="25"
-            value="<?php echo htmlspecialchars($index->getName()); ?>" onfocus="this.select()" />
+            value="<?php echo htmlspecialchars($index->getName()); ?>"
+            onfocus="this.select()" />
     </div>
+<?php
+if (PMA_MYSQL_INT_VERSION > 50500) {
+?>
+    <div>
+        <div class="label">
+            <strong>
+                <label for="input_index_comment">
+                    <?php echo __('Comment:'); ?>
+                </label>
+            </strong>
+        </div>
+        <input type="text" name="index[Index_comment]" id="input_index_comment" size="30"
+            value="<?php echo htmlspecialchars($index->getComment()); ?>"
+            onfocus="this.select()" />
+    </div>
+<?php
+}
+?>
     <div>
         <div class="label">
             <strong>
                 <label for="select_index_type">
                     <?php echo __('Index type:'); ?>
-                    <?php echo PMA_showMySQLDocu('SQL-Syntax', 'ALTER_TABLE'); ?>
+                    <?php echo PMA_Util::showMySQLDocu('SQL-Syntax', 'ALTER_TABLE'); ?>
                 </label>
             </strong>
         </div>
@@ -223,49 +273,63 @@ $spatial_types = array(
 );
 foreach ($index->getColumns() as $column) {
     ?>
-<tr class="<?php echo $odd_row ? 'odd' : 'even'; ?> noclick">
-    <td><select name="index[columns][names][]">
+    <tr class="<?php echo $odd_row ? 'odd' : 'even'; ?> noclick">
+      <td>
+        <select name="index[columns][names][]">
             <option value="">-- <?php echo __('Ignore'); ?> --</option>
     <?php
     foreach ($fields as $field_name => $field_type) {
-        if (($index->getType() != 'FULLTEXT' || preg_match('/(char|text)/i', $field_type))
-            && ($index->getType() != 'SPATIAL' || in_array($field_type, $spatial_types))
+        if (($index->getType() != 'FULLTEXT'
+            || preg_match('/(char|text)/i', $field_type))
+            && ($index->getType() != 'SPATIAL'
+            || in_array($field_type, $spatial_types))
         ) {
             echo '<option value="' . htmlspecialchars($field_name) . '"'
-                 . (($field_name == $column->getName()) ? ' selected="selected"' : '') . '>'
-                 . htmlspecialchars($field_name) . ' [' . htmlspecialchars($field_type) . ']'
+                 . (($field_name == $column->getName())
+                    ? ' selected="selected"'
+                    : '') . '>'
+                 . htmlspecialchars($field_name) . ' ['
+                 . htmlspecialchars($field_type) . ']'
                  . '</option>' . "\n";
         }
     } // end foreach $fields
     ?>
         </select>
-    </td>
-    <td><input type="text" size="5" onfocus="this.select()"
+      </td>
+      <td>
+        <input type="text" size="5" onfocus="this.select()"
             name="index[columns][sub_parts][]"
-            value="<?php if ($index->getType() != 'SPATIAL') { echo $column->getSubPart(); } ?>" />
-    </td>
-</tr>
+            value="<?php
+    if ($index->getType() != 'SPATIAL') {
+        echo $column->getSubPart();
+    }
+      ?>"/>
+      </td>
+    </tr>
     <?php
     $odd_row = !$odd_row;
 } // end foreach $edited_index_info['Sequences']
 for ($i = 0; $i < $add_fields; $i++) {
     ?>
-<tr class="<?php echo $odd_row ? 'odd' : 'even'; ?> noclick">
-    <td><select name="index[columns][names][]">
+    <tr class="<?php echo $odd_row ? 'odd' : 'even'; ?> noclick">
+      <td>
+        <select name="index[columns][names][]">
             <option value="">-- <?php echo __('Ignore'); ?> --</option>
     <?php
     foreach ($fields as $field_name => $field_type) {
         echo '<option value="' . htmlspecialchars($field_name) . '">'
-             . htmlspecialchars($field_name) . ' [' . htmlspecialchars($field_type) . ']'
+             . htmlspecialchars($field_name) . ' ['
+             . htmlspecialchars($field_type) . ']'
              . '</option>' . "\n";
     } // end foreach $fields
     ?>
         </select>
-    </td>
-    <td><input type="text" size="5" onfocus="this.select()"
+      </td>
+      <td>
+        <input type="text" size="5" onfocus="this.select()"
             name="index[columns][sub_parts][]" value="" />
-    </td>
-</tr>
+      </td>
+    </tr>
     <?php
     $odd_row = !$odd_row;
 } // end foreach $edited_index_info['Sequences']
@@ -275,34 +339,27 @@ for ($i = 0; $i < $add_fields; $i++) {
 </fieldset>
 <fieldset class="tblFooters">
 <?php
-    if ($GLOBALS['is_ajax_request'] != true) {
-?>
+if ($GLOBALS['is_ajax_request'] != true || ! empty($_REQUEST['ajax_page_request'])) {
+    ?>
     <input type="submit" name="do_save_data" value="<?php echo __('Save'); ?>" />
     <span id="addMoreColumns">
-<?php
-echo __('Or') . ' ';
-printf(
-    __('Add to index &nbsp;%s&nbsp;column(s)') . "\n",
-    '<input type="text" name="added_fields" size="2" value="1" />'
-);
-echo '<input type="submit" name="add_fields" value="' . __('Go') . '" />' . "\n";
-?>
+    <?php
+    echo __('Or') . ' ';
+    printf(
+        __('Add %s column(s) to index') . "\n",
+        '<input type="text" name="added_fields" size="2" value="1" />'
+    );
+    echo '<input type="submit" name="add_fields" value="' . __('Go') . '" />' . "\n";
+    ?>
     </span>
-<?php
-    } else {
-        $btn_value = sprintf(__('Add %d column(s) to index'), 1);
-        echo '<div class="slider"></div>';
-        echo '<div class="add_fields">';
-        echo '<input type="submit" value="' . $btn_value . '" />';
-        echo '</div>';
-    }
+    <?php
+} else {
+    $btn_value = sprintf(__('Add %s column(s) to index'), 1);
+    echo '<div class="slider"></div>';
+    echo '<div class="add_fields">';
+    echo '<input type="submit" value="' . $btn_value . '" />';
+    echo '</div>';
+}
 ?>
 </fieldset>
 </form>
-<?php
-
-/**
- * Displays the footer
- */
-require './libraries/footer.inc.php';
-?>

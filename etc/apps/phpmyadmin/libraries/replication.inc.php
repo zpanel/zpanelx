@@ -1,6 +1,7 @@
 <?php
 /* vim: set expandtab sw=4 ts=4 sts=4: */
 /**
+ * Replication helpers
  *
  * @package PhpMyAdmin
  */
@@ -78,7 +79,8 @@ $slave_variables  = array(
  *
  * @usedby PMA_replication_print_status_table()
  */
-// TODO change to regexp or something, to allow for negative match. To e.g. highlight 'Last_Error'
+// TODO change to regexp or something, to allow for negative match.
+// To e.g. highlight 'Last_Error'
 //
 $slave_variables_alerts = array(
     'Slave_IO_Running' => 'No',
@@ -89,7 +91,8 @@ $slave_variables_oks = array(
     'Slave_SQL_Running' => 'Yes',
 );
 
-// check which replication is available and set $server_{master/slave}_status and assign values
+// check which replication is available and
+// set $server_{master/slave}_status and assign values
 
 // replication info is more easily passed to functions
 /*
@@ -134,10 +137,12 @@ foreach ($replication_types as $type) {
     }
 }
 
-
 /**
- * @param $string contains "dbname.tablename"
- * @param $what   what to extract (db|table)
+ * Extracts database or table name from string
+ *
+ * @param string $string contains "dbname.tablename"
+ * @param string $what   what to extract (db|table)
+ *
  * @return $string the extracted part
  */
 function PMA_extract_db_or_table($string, $what = 'db')
@@ -149,9 +154,13 @@ function PMA_extract_db_or_table($string, $what = 'db')
         return $list[1];
     }
 }
+
 /**
+ * Configures replication slave
+ *
  * @param string $action  possible values: START or STOP
- * @param string $control default: null, possible values: SQL_THREAD or IO_THREAD or null. If it is set to null, it controls both SQL_THREAD and IO_THREAD
+ * @param string $control default: null, possible values: SQL_THREAD or IO_THREAD or null.
+ *                        If it is set to null, it controls both SQL_THREAD and IO_THREAD
  * @param mixed  $link    mysql link
  *
  * @return mixed output of PMA_DBI_try_query
@@ -170,31 +179,38 @@ function PMA_replication_slave_control($action, $control = null, $link = null)
 
     return PMA_DBI_try_query($action . " SLAVE " . $control . ";", $link);
 }
+
 /**
+ * Changes master for replication slave
+ *
  * @param string $user     replication user on master
  * @param string $password password for the user
  * @param string $host     master's hostname or IP
  * @param int    $port     port, where mysql is running
- * @param array  $pos      position of mysql replication, array should contain fields File and Position
+ * @param array  $pos      position of mysql replication,
+ *                         array should contain fields File and Position
  * @param bool   $stop     shall we stop slave?
  * @param bool   $start    shall we start slave?
  * @param mixed  $link     mysql link
  *
  * @return output of CHANGE MASTER mysql command
  */
-function PMA_replication_slave_change_master($user, $password, $host, $port, $pos, $stop = true, $start = true, $link = null)
-{
+function PMA_replication_slave_change_master($user, $password, $host, $port,
+    $pos, $stop = true, $start = true, $link = null
+) {
     if ($stop) {
         PMA_replication_slave_control("STOP", null, $link);
     }
 
-    $out = PMA_DBI_try_query('CHANGE MASTER TO ' .
+    $out = PMA_DBI_try_query(
+        'CHANGE MASTER TO ' .
         'MASTER_HOST=\'' . $host . '\',' .
         'MASTER_PORT=' . ($port * 1) . ',' .
         'MASTER_USER=\'' . $user . '\',' .
         'MASTER_PASSWORD=\'' . $password . '\',' .
         'MASTER_LOG_FILE=\'' . $pos["File"] . '\',' .
-        'MASTER_LOG_POS=' . $pos["Position"] . ';', $link);
+        'MASTER_LOG_POS=' . $pos["Position"] . ';', $link
+    );
 
     if ($start) {
         PMA_replication_slave_control("START", null, $link);
@@ -226,9 +242,12 @@ function PMA_replication_connect_to_master($user, $password, $host = null, $port
     return PMA_DBI_connect($user, $password, false, $server, true);
 }
 /**
+ * Fetches position and file of current binary log on master
+ *
  * @param mixed $link mysql link
  *
- * @return array - containing File and Position in MySQL replication on master server, useful for PMA_replication_slave_change_master
+ * @return array an array containing File and Position in MySQL replication
+ * on master server, useful for PMA_replication_slave_change_master
  */
 function PMA_replication_slave_bin_log_master($link = null)
 {
@@ -252,7 +271,8 @@ function PMA_replication_slave_bin_log_master($link = null)
 
 function PMA_replication_master_replicated_dbs($link = null)
 {
-    $data = PMA_DBI_fetch_result('SHOW MASTER STATUS', null, null, $link); // let's find out, which databases are replicated
+    // let's find out, which databases are replicated
+    $data = PMA_DBI_fetch_result('SHOW MASTER STATUS', null, null, $link);
 
     $do_db     = array();
     $ignore_db = array();
@@ -266,8 +286,9 @@ function PMA_replication_master_replicated_dbs($link = null)
 
     $tmp_alldbs = PMA_DBI_query('SHOW DATABASES;', $link);
     while ($tmp_row = PMA_DBI_fetch_row($tmp_alldbs)) {
-        if (PMA_is_system_schema($tmp_row[0]))
+        if (PMA_is_system_schema($tmp_row[0])) {
             continue;
+        }
         if (count($do_db) == 0) {
             if (array_search($tmp_row[0], $ignore_db) !== false) {
                 continue;
@@ -282,106 +303,5 @@ function PMA_replication_master_replicated_dbs($link = null)
     } // end while
 
     return $link;
-}
-/**
- * This function provides synchronization of structure and data between two mysql servers.
- *
- * @todo improve code sharing between the function and synchronization
- *
- * @param string $db       name of database, which should be synchronized
- * @param mixed  $src_link link of source server, note: if the server is current PMA server, use null
- * @param mixed  $trg_link link of target server, note: if the server is current PMA server, use null
- * @param bool   $data     if true, then data will be copied as well
- */
-
-function PMA_replication_synchronize_db($db, $src_link, $trg_link, $data = true)
-{
-    $src_db = $trg_db = $db;
-
-    $src_tables = PMA_DBI_get_tables($src_db, $src_link);
-
-    $trg_tables = PMA_DBI_get_tables($trg_db, $trg_link);
-
-    /**
-     * initializing arrays to save table names
-     */
-    $source_tables_uncommon = array();
-    $target_tables_uncommon = array();
-    $matching_tables = array();
-    $matching_tables_num = 0;
-
-    /**
-     * Criterion for matching tables is just their names.
-     * Finding the uncommon tables for the source database
-     * BY comparing the matching tables with all the tables in the source database
-     */
-    PMA_getMatchingTables($trg_tables, $src_tables, $matching_tables, $source_tables_uncommon);
-
-    /**
-     * Finding the uncommon tables for the target database
-     * BY comparing the matching tables with all the tables in the target database
-     */
-    PMA_getNonMatchingTargetTables($trg_tables, $matching_tables, $target_tables_uncommon);
-
-    /**
-     *
-     * Comparing Data In the Matching Tables
-     * It is assumed that the matching tables are structurally
-     * and typely exactly the same
-     */
-    $fields_num = array();
-    $matching_tables_fields = array();
-    $matching_tables_keys   = array();
-    $insert_array = array(array(array()));
-    $update_array = array(array(array()));
-    $delete_array = array();
-    $row_count = array();
-    $uncommon_tables_fields = array();
-    $matching_tables_num = sizeof($matching_tables);
-
-    for ($i = 0; $i < sizeof($matching_tables); $i++) {
-        PMA_dataDiffInTables($src_db, $trg_db, $src_link, $trg_link, $matching_tables, $matching_tables_fields, $update_array, $insert_array,
-            $delete_array, $fields_num, $i, $matching_tables_keys);
-    }
-    for ($j = 0; $j < sizeof($source_tables_uncommon); $j++) {
-        PMA_dataDiffInUncommonTables($source_tables_uncommon, $src_db, $src_link, $j, $row_count);
-    }
-
-    /**
-     * INTEGRATION OF STRUCTURE DIFFERENCE CODE
-     *
-     */
-    $source_columns = array();
-    $target_columns = array();
-    $alter_str_array = array(array());
-    $add_column_array = array(array());
-    $uncommon_columns = array();
-    $target_tables_keys = array();
-    $source_indexes = array();
-    $target_indexes = array();
-    $add_indexes_array = array();
-    $alter_indexes_array = array();
-    $remove_indexes_array = array();
-    $criteria = array('Field', 'Type', 'Null', 'Collation', 'Key', 'Default', 'Comment');
-
-    for ($counter = 0; $counter < $matching_tables_num; $counter++) {
-        PMA_structureDiffInTables($src_db, $trg_db, $src_link, $trg_link, $matching_tables, $source_columns,
-            $target_columns, $alter_str_array, $add_column_array, $uncommon_columns, $criteria, $target_tables_keys, $counter);
-
-        PMA_indexesDiffInTables($src_db, $trg_db, $src_link, $trg_link, $matching_tables, $source_indexes, $target_indexes,
-            $add_indexes_array, $alter_indexes_array, $remove_indexes_array, $counter);
-    }
-
-    /**
-     * Generating Create Table query for all the non-matching tables present in Source but not in Target and populating tables.
-     */
-    for ($q = 0; $q < sizeof($source_tables_uncommon); $q++) {
-        if (isset($source_tables_uncommon[$q])) {
-            PMA_createTargetTables($src_db, $trg_db, $src_link, $trg_link, $source_tables_uncommon, $q, $uncommon_tables_fields, false);
-        }
-        if (isset($row_count[$q]) && $data) {
-            PMA_populateTargetTables($src_db, $trg_db, $src_link, $trg_link, $source_tables_uncommon, $q, $uncommon_tables_fields, false);
-        }
-    }
 }
 ?>

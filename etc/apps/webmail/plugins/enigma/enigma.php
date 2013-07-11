@@ -47,6 +47,8 @@ class enigma extends rcube_plugin
         $rcmail = rcmail::get_instance();
         $this->rc = $rcmail;
 
+        $section = rcube_utils::get_input_value('_section', rcube_utils::INPUT_GET);
+
         if ($this->rc->task == 'mail') {
             // message parse/display hooks
             $this->add_hook('message_part_structure', array($this, 'parse_structure'));
@@ -79,7 +81,6 @@ class enigma extends rcube_plugin
             $this->register_action('plugin.enigma', array($this, 'preferences_ui'));
 
             // grab keys/certs management iframe requests
-            $section = get_input_value('_section', RCUBE_INPUT_GET);
             if ($this->rc->action == 'edit-prefs' && preg_match('/^enigma(certs|keys)/', $section)) {
                 $this->load_ui();
                 $this->ui->init($section);
@@ -429,13 +430,13 @@ class enigma extends rcube_plugin
             $style = "margin:0 1em; padding:0.2em 0.5em; border:1px solid #999; width: auto"
                 ." border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px";
 
-            // add box below messsage body
+            // add box below message body
             $p['content'] .= html::p(array('style' => $style),
                 html::a(array(
                     'href' => "#",
                     'onclick' => "return ".JS_OBJECT_NAME.".enigma_import_attachment('".JQ($part)."')",
                     'title' => $this->gettext('keyattimport')),
-                    html::img(array('src' => $this->url('skins/default/key_add.png'), 'style' => "vertical-align:middle")))
+                    html::img(array('src' => $this->url('skins/classic/key_add.png'), 'style' => "vertical-align:middle")))
                 . ' ' . html::span(null, $this->gettext('keyattfound')));
 
             $attach_script = true;

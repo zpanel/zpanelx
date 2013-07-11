@@ -15,7 +15,7 @@ $pma_table = new PMA_Table($GLOBALS['table'], $GLOBALS['db']);
 /**
  * Runs common work
  */
-require './libraries/tbl_common.php';
+require './libraries/tbl_common.inc.php';
 $url_query .= '&amp;goto=view_operations.php&amp;back=view_operations.php';
 $url_params['goto'] = $url_params['back'] = 'view_operations.php';
 
@@ -34,7 +34,7 @@ if (isset($_REQUEST['submitoptions'])) {
     $warning_messages = array();
 
     if (isset($_REQUEST['new_name'])) {
-        if ($pma_table->rename($_REQUEST['new_name'], null, $is_view = true)) {
+        if ($pma_table->rename($_REQUEST['new_name'])) {
             $_message .= $pma_table->getLastMessage();
             $result = true;
             $GLOBALS['table'] = $pma_table->getName();
@@ -47,17 +47,14 @@ if (isset($_REQUEST['submitoptions'])) {
     }
 }
 
-/**
- * Displays top menu links
- */
-require_once './libraries/tbl_links.inc.php';
-
 if (isset($result)) {
     // set to success by default, because result set could be empty
     // (for example, a table rename)
     $_type = 'success';
     if (empty($_message)) {
-        $_message = $result ? __('Your SQL query has been executed successfully') : __('Error');
+        $_message = $result
+            ? __('Your SQL query has been executed successfully')
+            : __('Error');
         // $result should exist, regardless of $_message
         $_type = $result ? 'success' : 'error';
     }
@@ -67,7 +64,9 @@ if (isset($result)) {
         $_message->isError(true);
         unset($warning_messages);
     }
-    PMA_showMessage($_message, $sql_query, $_type, $is_view = true);
+    echo PMA_Util::getMessage(
+        $_message, $sql_query, $_type, $is_view = true
+    );
     unset($_message, $_type);
 }
 
@@ -101,9 +100,3 @@ $url_params['back'] = 'view_operations.php';
 </form>
 </div>
 
-<?php
-/**
- * Displays the footer
- */
-require './libraries/footer.inc.php';
-?>

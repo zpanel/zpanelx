@@ -12,8 +12,6 @@
  +-----------------------------------------------------------------------+
  | Author: Eric Stadtherr <estadtherr@gmail.com>                         |
  +-----------------------------------------------------------------------+
-
- $Id: editor.js 000 2006-05-18 19:12:28Z roundcube $
 */
 
 // Initialize HTML editor
@@ -51,7 +49,7 @@ function rcmail_editor_init(config)
       theme_advanced_buttons1: 'bold,italic,underline,|,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,outdent,indent,ltr,rtl,blockquote,|,forecolor,backcolor,fontselect,fontsizeselect',
       theme_advanced_buttons2: 'link,unlink,table,|,emotions,charmap,image,media,|,code,search,undo,redo',
       spellchecker_languages: (rcmail.env.spellcheck_langs ? rcmail.env.spellcheck_langs : 'Dansk=da,Deutsch=de,+English=en,Espanol=es,Francais=fr,Italiano=it,Nederlands=nl,Polski=pl,Portugues=pt,Suomi=fi,Svenska=sv'),
-      spellchecker_rpc_url: '?_task=utils&_action=spell_html',
+      spellchecker_rpc_url: '?_task=utils&_action=spell_html&_remote=1',
       spellchecker_enable_learn_rpc: config.spelldict,
       accessibility_focus: false,
       oninit: 'rcmail_editor_callback'
@@ -82,7 +80,7 @@ function rcmail_editor_callback()
   if (rcmail.env.default_font)
     $(tinyMCE.get(rcmail.env.composebody).getBody()).css('font-family', rcmail.env.default_font);
 
-  if (elem && elem.type == 'select-one') {
+  if (elem && elem.type == 'select-one' && !rcmail.env.opened_extwin) {
     rcmail.change_identity(elem);
     // Focus previously focused element
     if (fe && fe.id != rcmail.env.composebody) {

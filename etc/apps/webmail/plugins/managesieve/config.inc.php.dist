@@ -1,7 +1,8 @@
 <?php
 
-// managesieve server port
-$rcmail_config['managesieve_port'] = 2000;
+// managesieve server port. When empty the port will be determined automatically
+// using getservbyname() function, with 4190 as a fallback.
+$rcmail_config['managesieve_port'] = null;
 
 // managesieve server address, default is localhost.
 // Replacement variables supported in host name:
@@ -24,8 +25,7 @@ $rcmail_config['managesieve_auth_cid'] = null;
 $rcmail_config['managesieve_auth_pw'] = null;
 
 // use or not TLS for managesieve server connection
-// it's because I've problems with TLS and dovecot's managesieve plugin
-// and it's not needed on localhost
+// Note: tls:// prefix in managesieve_host is also supported
 $rcmail_config['managesieve_usetls'] = false;
 
 // default contents of filters script (eg. default spam filter)

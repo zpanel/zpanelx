@@ -23,7 +23,7 @@ if (! defined('PHPMYADMIN')) {
  * @global  string   the current encoding code
  * @global  string   the available encoding codes list
  *
- * @return  boolean  always true
+ * @return boolean  always true
  */
 function PMA_internal_enc_check()
 {
@@ -46,7 +46,7 @@ function PMA_internal_enc_check()
  *
  * @global  string   the available encoding codes list
  *
- * @return  boolean  always true
+ * @return boolean  always true
  */
 function PMA_change_enc_order()
 {
@@ -67,13 +67,13 @@ function PMA_change_enc_order()
  * Kanji string encoding convert
  * 2002/1/4 by Y.Kawada
  *
- * @param string   the string to convert
- * @param string   the destination encoding code
- * @param string   set 'kana' convert to JIS-X208-kana
+ * @param string $str  the string to convert
+ * @param string $enc  the destination encoding code
+ * @param string $kana set 'kana' convert to JIS-X208-kana
  *
  * @global  string   the available encoding codes list
  *
- * @return  string   the converted string
+ * @return string   the converted string
  */
 function PMA_kanji_str_conv($str, $enc, $kana)
 {
@@ -101,11 +101,11 @@ function PMA_kanji_str_conv($str, $enc, $kana)
  * Kanji file encoding convert
  * 2002/1/4 by Y.Kawada
  *
- * @param string   the name of the file to convert
- * @param string   the destination encoding code
- * @param string   set 'kana' convert to JIS-X208-kana
+ * @param string $file the name of the file to convert
+ * @param string $enc  the destination encoding code
+ * @param string $kana set 'kana' convert to JIS-X208-kana
  *
- * @return  string   the name of the converted file
+ * @return string   the name of the converted file
  */
 function PMA_kanji_file_conv($file, $enc, $kana)
 {
@@ -135,9 +135,9 @@ function PMA_kanji_file_conv($file, $enc, $kana)
  * Defines radio form fields to switch between encoding modes
  * 2002/1/4 by Y.Kawada
  *
- * @param string   spaces character to prepend the output with
+ * @param string $spaces spaces character to prepend the output with
  *
- * @return  string   xhtml code for the radio controls
+ * @return string   xhtml code for the radio controls
  */
 function PMA_set_enc_form($spaces)
 {

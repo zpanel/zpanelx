@@ -7,41 +7,28 @@
  */
 
 /**
- * no need for variables importing
- * @ignore
- */
-if (! defined('PMA_NO_VARIABLES_IMPORT')) {
-    define('PMA_NO_VARIABLES_IMPORT', true);
-}
-
-/**
  * requirements
  */
-require_once './libraries/common.inc.php';
+require_once 'libraries/common.inc.php';
 
 /**
  * Does the common work
  */
-require './libraries/server_common.inc.php';
-require './libraries/StorageEngine.class.php';
-
-
-/**
- * Displays the links
- */
-require './libraries/server_links.inc.php';
+require 'libraries/server_common.inc.php';
+require 'libraries/StorageEngine.class.php';
 
 /**
  * Did the user request information about a certain storage engine?
  */
 if (empty($_REQUEST['engine'])
- || ! PMA_StorageEngine::isValid($_REQUEST['engine'])) {
+    || ! PMA_StorageEngine::isValid($_REQUEST['engine'])
+) {
 
     /**
      * Displays the sub-page heading
      */
     echo '<h2>' . "\n"
-       . ($GLOBALS['cfg']['MainPageIconic'] ? PMA_getImage('b_engine.png') : '')
+       . PMA_Util::getImage('b_engine.png')
        . "\n" . __('Storage Engines') . "\n"
        . '</h2>' . "\n";
 
@@ -69,7 +56,7 @@ if (empty($_REQUEST['engine'])
                 ? ' disabled'
                 : '')
            . '">' . "\n"
-           . '    <td><a href="./server_engines.php'
+           . '    <td><a rel="newpage" href="server_engines.php'
            . PMA_generate_common_url(array('engine' => $engine)) . '">' . "\n"
            . '            ' . htmlspecialchars($details['Engine']) . "\n"
            . '        </a></td>' . "\n"
@@ -78,21 +65,7 @@ if (empty($_REQUEST['engine'])
         $odd_row = !$odd_row;
     }
 
-    $PMA_Config = $GLOBALS['PMA_Config'];
-    if ($PMA_Config->get('BLOBSTREAMING_PLUGINS_EXIST')) {
-        // Special case for PBMS daemon which is not listed as an engine
-        echo '<tr class="'
-            . ($odd_row ? 'odd' : 'even')
-            .  '">' . "\n"
-            . '    <td><a href="./server_engines.php'
-            . PMA_generate_common_url(array('engine' => "PBMS")) . '">' . "\n"
-            . '            '  . "PBMS\n"
-            . '        </a></td>' . "\n"
-            . '    <td>' . htmlspecialchars("PrimeBase MediaStream (PBMS) daemon") . '</td>' . "\n"
-            . '</tr>' . "\n";
-    }
-
-   unset($odd_row, $engine, $details);
+    unset($odd_row, $engine, $details);
     echo '</tbody>' . "\n"
        . '</table>' . "\n";
 
@@ -104,9 +77,9 @@ if (empty($_REQUEST['engine'])
 
     $engine_plugin = PMA_StorageEngine::getEngine($_REQUEST['engine']);
     echo '<h2>' . "\n"
-       . ($GLOBALS['cfg']['MainPageIconic'] ? PMA_getImage('b_engine.png') : '')
+       . PMA_Util::getImage('b_engine.png')
        . '    ' . htmlspecialchars($engine_plugin->getTitle()) . "\n"
-       . '    ' . PMA_showMySQLDocu('', $engine_plugin->getMysqlHelpPage()) . "\n"
+       . '    ' . PMA_Util::showMySQLDocu('', $engine_plugin->getMysqlHelpPage()) . "\n"
        . '</h2>' . "\n\n";
     echo '<p>' . "\n"
        . '    <em>' . "\n"
@@ -114,24 +87,25 @@ if (empty($_REQUEST['engine'])
        . '    </em>' . "\n"
        . '</p>' . "\n\n";
     $infoPages = $engine_plugin->getInfoPages();
-    if (!empty($infoPages) && is_array($infoPages)) {
+    if (! empty($infoPages) && is_array($infoPages)) {
         echo '<p>' . "\n"
            . '    <strong>[</strong>' . "\n";
         if (empty($_REQUEST['page'])) {
             echo '    <strong>' . __('Variables') . '</strong>' . "\n";
         } else {
-            echo '    <a href="./server_engines.php'
-                . PMA_generate_common_url(array('engine' => $_REQUEST['engine'])) . '">'
-                . __('Variables') . '</a>' . "\n";
+            echo '    <a href="server_engines.php'
+                . PMA_generate_common_url(array('engine' => $_REQUEST['engine']))
+                . '">' . __('Variables') . '</a>' . "\n";
         }
         foreach ($infoPages as $current => $label) {
             echo '    <strong>|</strong>' . "\n";
             if (isset($_REQUEST['page']) && $_REQUEST['page'] == $current) {
                 echo '    <strong>' . $label . '</strong>' . "\n";
             } else {
-                echo '    <a href="./server_engines.php'
+                echo '    <a href="server_engines.php'
                     . PMA_generate_common_url(
-                        array('engine' => $_REQUEST['engine'], 'page' => $current))
+                        array('engine' => $_REQUEST['engine'], 'page' => $current)
+                    )
                     . '">' . htmlspecialchars($label) . '</a>' . "\n";
             }
         }
@@ -140,10 +114,10 @@ if (empty($_REQUEST['engine'])
            . '</p>' . "\n\n";
     }
     unset($infoPages, $page_output);
-    if (!empty($_REQUEST['page'])) {
+    if (! empty($_REQUEST['page'])) {
         $page_output = $engine_plugin->getPage($_REQUEST['page']);
     }
-    if (!empty($page_output)) {
+    if (! empty($page_output)) {
         echo $page_output;
     } else {
         echo '<p> ' . $engine_plugin->getSupportInformationMessage() . "\n"
@@ -151,10 +125,5 @@ if (empty($_REQUEST['engine'])
            . $engine_plugin->getHtmlVariables();
     }
 }
-
-/**
- * Sends the footer
- */
-require './libraries/footer.inc.php';
 
 ?>

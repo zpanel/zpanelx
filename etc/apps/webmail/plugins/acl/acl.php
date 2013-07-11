@@ -233,7 +233,7 @@ class acl extends rcube_plugin
 
         // Advanced rights
         $attrib['id'] = 'advancedrights';
-        foreach ($supported as $val) {
+        foreach ($supported as $key => $val) {
             $id = "acl$val";
             $ul .= html::tag('li', null,
                 $input->show('', array(
@@ -433,8 +433,9 @@ class acl extends rcube_plugin
         $acl   = trim(get_input_value('_acl', RCUBE_INPUT_GPC));
         $oldid = trim(get_input_value('_old', RCUBE_INPUT_GPC));
 
-        $acl   = array_intersect(str_split($acl), $this->rights_supported());
-        $users = $oldid ? array($user) : explode(',', $user);
+        $acl    = array_intersect(str_split($acl), $this->rights_supported());
+        $users  = $oldid ? array($user) : explode(',', $user);
+        $result = 0;
 
         foreach ($users as $user) {
             $user = trim($user);
@@ -442,7 +443,7 @@ class acl extends rcube_plugin
             if (!empty($this->specials) && in_array($user, $this->specials)) {
                 $username = $this->gettext($user);
             }
-            else {
+            else if (!empty($user)) {
                 if (!strpos($user, '@') && ($realm = $this->get_realm())) {
                     $user .= '@' . rcube_idn_to_ascii(preg_replace('/^@/', '', $realm));
                 }
@@ -452,6 +453,9 @@ class acl extends rcube_plugin
             if (!$acl || !$user || !strlen($mbox)) {
                 continue;
             }
+
+            $user     = $this->mod_login($user);
+            $username = $this->mod_login($username);
 
             if ($user != $_SESSION['username'] && $username != $_SESSION['username']) {
                 if ($this->rc->storage->set_acl($mbox, $user, $acl)) {
@@ -615,7 +619,7 @@ class acl extends rcube_plugin
     private function get_realm()
     {
         // When user enters a username without domain part, realm
-        // alows to add it to the username (and display correct username in the table)
+        // allows to add it to the username (and display correct username in the table)
 
         if (isset($_SESSION['acl_username_realm'])) {
             return $_SESSION['acl_username_realm'];
@@ -703,5 +707,24 @@ class acl extends rcube_plugin
             $this->rc->config->mail_domain($_SESSION['imap_host']));
 
         return $this->ldap->ready;
+    }
+
+    /**
+     * Modify user login according to 'login_lc' setting
+     */
+    protected function mod_login($user)
+    {
+        $login_lc = $this->rc->config->get('login_lc');
+
+        if ($login_lc === true || $login_lc == 2) {
+            $user = mb_strtolower($user);
+        }
+        // lowercase domain name
+        else if ($login_lc && strpos($user, '@')) {
+            list($local, $domain) = explode('@', $user);
+            $user = $local . '@' . mb_strtolower($domain);
+        }
+
+        return $user;
     }
 }

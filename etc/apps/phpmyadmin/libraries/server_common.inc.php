@@ -8,11 +8,6 @@ if (! defined('PHPMYADMIN')) {
 }
 
 /**
- * Gets some core libraries
- */
-require_once './libraries/common.inc.php';
-
-/**
  * Handles some variables that may have been sent by the calling script
  * Note: this can be called also from the db panel to get the privileges of
  *       a db, in which case we want to keep displaying the tabs of
@@ -30,12 +25,7 @@ $url_query = PMA_generate_common_url($db);
 /**
  * Defines the urls to return to in case of error in a sql statement
  */
-$err_url = 'main.php' . $url_query;
-
-/**
- * Displays the headers
- */
-require_once './libraries/header.inc.php';
+$err_url = 'index.php' . $url_query;
 
 /**
  * @global boolean Checks for superuser privileges
@@ -43,7 +33,7 @@ require_once './libraries/header.inc.php';
 $is_superuser = PMA_isSuperuser();
 
 // now, select the mysql db
-if ($is_superuser && !PMA_DRIZZLE) {
+if ($is_superuser && ! PMA_DRIZZLE) {
     PMA_DBI_select_db('mysql', $userlink);
 }
 
@@ -52,5 +42,15 @@ if ($is_superuser && !PMA_DRIZZLE) {
  */
 $binary_logs = PMA_DRIZZLE
     ? null
-    : PMA_DBI_fetch_result('SHOW MASTER LOGS', 'Log_name', null, null, PMA_DBI_QUERY_STORE);
+    : PMA_DBI_fetch_result(
+        'SHOW MASTER LOGS',
+        'Log_name',
+        null,
+        null,
+        PMA_DBI_QUERY_STORE
+    );
+
+PMA_Util::checkParameters(
+    array('is_superuser', 'url_query'), false
+);
 ?>

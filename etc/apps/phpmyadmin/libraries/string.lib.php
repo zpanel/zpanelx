@@ -3,9 +3,6 @@
 /**
  * Specialized String Functions for phpMyAdmin
  *
- * Copyright 2002 Robin Johnson <robbat2@users.sourceforge.net>
- * http://www.orbis-terrarum.net/?l=people.robbat2
- *
  * Defines a set of function callbacks that have a pure C version available if
  * the "ctype" extension is available, but otherwise have PHP versions to use
  * (that are slower).
@@ -13,7 +10,7 @@
  * The SQL Parser code relies heavily on these functions.
  *
  * @todo a .lib filename should not have code in main(), split or rename file
- * @package PhpMyAdmin
+ * @package PhpMyAdmin-String
  */
 if (! defined('PHPMYADMIN')) {
     exit;
@@ -41,10 +38,11 @@ if (@extension_loaded('ctype')) {
 /**
  * Checks if a given character position in the string is escaped or not
  *
- * @param string   string to check for
- * @param integer  the character to check for
- * @param integer  starting position in the string
- * @return  boolean  whether the character is escaped or not
+ * @param string  $string string to check for
+ * @param integer $pos    the character to check for
+ * @param integer $start  starting position in the string
+ *
+ * @return boolean  whether the character is escaped or not
  */
 function PMA_STR_charIsEscaped($string, $pos, $start = 0)
 {
@@ -72,10 +70,11 @@ function PMA_STR_charIsEscaped($string, $pos, $start = 0)
 /**
  * Checks if a number is in a range
  *
- * @param integer  number to check for
- * @param integer  lower bound
- * @param integer  upper bound
- * @return  boolean  whether the number is in the range or not
+ * @param integer $num   number to check for
+ * @param integer $lower lower bound
+ * @param integer $upper upper bound
+ *
+ * @return boolean  whether the number is in the range or not
  */
 function PMA_STR_numberInRangeInclusive($num, $lower, $upper)
 {
@@ -85,9 +84,10 @@ function PMA_STR_numberInRangeInclusive($num, $lower, $upper)
 /**
  * Checks if a character is an SQL identifier
  *
- * @param string   character to check for
- * @param boolean  whether the dot character is valid or not
- * @return  boolean  whether the character is an SQL identifier or not
+ * @param string  $c            character to check for
+ * @param boolean $dot_is_valid whether the dot character is valid or not
+ *
+ * @return boolean  whether the character is an SQL identifier or not
  */
 function PMA_STR_isSqlIdentifier($c, $dot_is_valid = false)
 {

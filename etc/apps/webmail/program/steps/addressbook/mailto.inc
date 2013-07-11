@@ -17,9 +17,6 @@
  +-----------------------------------------------------------------------+
  | Author: Thomas Bruederli <roundcube@gmail.com>                        |
  +-----------------------------------------------------------------------+
-
- $Id: copy.inc 471 2007-02-09 21:25:50Z thomasb $
-
 */
 
 $cids   = rcmail_get_cids();
@@ -71,7 +68,7 @@ if (!empty($mailto))
     $mailto_str = join(', ', $mailto);
     $mailto_id = substr(md5($mailto_str), 0, 16);
     $_SESSION['mailto'][$mailto_id] = urlencode($mailto_str);
-    $OUTPUT->redirect(array('task' => 'mail', '_action' => 'compose', '_mailto' => $mailto_id));
+    $OUTPUT->command('open_compose_step', array('_mailto' => $mailto_id));
 }
 else {
     $OUTPUT->show_message('nocontactsfound', 'warning');

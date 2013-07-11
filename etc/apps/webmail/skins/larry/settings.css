@@ -8,15 +8,13 @@
  * License. It is allowed to copy, distribute, transmit and to adapt the work
  * by keeping credits to the original autors in the README file.
  * See http://creativecommons.org/licenses/by-sa/3.0/ for details.
- *
- * $Id$
  */
 
 #settings-sections {
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 220px;
+	width: 200px;
 	bottom: 0;
 }
 
@@ -24,7 +22,7 @@
 #settings-right {
 	position: absolute;
 	top: 0;
-	left: 232px;
+	left: 212px;
 	right: 0;
 	bottom: 0;
 }
@@ -54,7 +52,7 @@
 #settings-sections span.listitem a,
 #settings-sections span.tablink a {
 	padding-left: 36px;
-	background-image: url(images/listicons.png);
+	background-image: url(images/listicons.png?v=bd98.25486);
 	background-position: -100px 0;
 	background-repeat: no-repeat;
 }
@@ -217,6 +215,39 @@
 	min-width: 30px;
 	padding: 3px 12px 3px 3px;
 	text-align: right;
+}
+
+.skinselection {
+	display: block;
+}
+
+.skinselection span {
+	display: inline-block;
+	vertical-align: middle;
+	padding-right: 1em;
+}
+
+.skinselection .skinname {
+	font-weight: bold;
+}
+
+.skinselection .skinlicense,
+.skinselection .skinlicense a {
+	font-style: italic;
+	color: #666;
+	text-decoration: none;
+}
+
+.skinselection .skinlicense a:hover {
+	text-decoration: underline;
+}
+
+img.skinthumbnail {
+	width: 64px;
+	height: 64px;
+	border: 1px solid #ccc;
+	background: #fff;
+	border-radius: 4px;
 }
 
 #pluginlist td.version {

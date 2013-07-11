@@ -1,4 +1,24 @@
+* version 6.2 [2013-02-17]
+-----------------------------------------------------------
+- Support tls:// prefix in managesieve_host option
+- Removed depracated functions usage
+- Don't trim whitespace in folder names (#1488955)
+
+* version 6.1 [2012-12-21]
+-----------------------------------------------------------
+- Fixed filter activation/deactivation confirmation message (#1488765)
+- Moved rcube_* classes to <plugin>/lib/Roundcube for compat. with Roundcube Framework autoloader
+- Fixed filter selection after filter deletion (#1488832)
+- Fixed compatibility with jQueryUI-1.9
+- Don't force 'stop' action on last rule in a script
+
+* version 6.0 [2012-10-03]
+-----------------------------------------------------------
 - Fixed issue with DBMail bug [http://pear.php.net/bugs/bug.php?id=19077] (#1488594)
+- Added support for enotify/notify (RFC5435, RFC5436, draft-ietf-sieve-notify-00)
+- Change default port to 4190 (IANA-allocated), add port auto-detection (#1488713)
+- Added request size limits detection and script corruption prevention (#1488648)
+- Fix so scripts listed in managesieve_filename_exceptions aren't displayed on the list (#1488724)
 
 * version 5.2 [2012-07-24]
 -----------------------------------------------------------
@@ -239,7 +259,7 @@
 - Added pagetitle setting
 - Added option 'managesieve_replace_delimiter'
 - Fixed errors on IE (still need some css fixes)
-
+    
 * version beta2 [2008-05-20]
 -----------------------------------------------------------    
 - Use 'if' only for first filter and 'elsif' for the rest

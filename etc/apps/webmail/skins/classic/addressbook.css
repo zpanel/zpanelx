@@ -21,9 +21,9 @@
   width: 32px;
   height: 32px;
   padding: 0;
-  margin-right: 10px;
+  margin: 0 5px;
   overflow: hidden;
-  background: url(images/abook_toolbar.png) 0 0 no-repeat transparent;
+  background: url(images/abook_toolbar.png?v=025d.15594) 0 0 no-repeat transparent;
   opacity: 0.99; /* this is needed to make buttons appear correctly in Chrome */
 }
 
@@ -148,7 +148,7 @@
 {
   display: block;
   font-size: 11px;
-  background: url(images/icons/folders.png) 5px -108px no-repeat;
+  background: url(images/icons/folders.png?v=87af.4822) 5px -108px no-repeat;
   border-bottom: 1px solid #EBEBEB;
   white-space: nowrap;
 }
@@ -308,6 +308,13 @@ body.iframe,
 
 #contactpic img {
 	width: 60px;
+}
+
+#contactpic.droptarget.hover {
+	background-color: #f0f0ee;
+	box-shadow: 0 0 5px 0 #999;
+	-moz-box-shadow: 0 0 5px 0 #999;
+	-o-box-shadow: 0 0 5px 0 #999;
 }
 
 #contactphoto .formlinks

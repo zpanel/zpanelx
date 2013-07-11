@@ -2,7 +2,8 @@
 
 #taskbar
 {
-  background: url(images/taskbar.gif) top right no-repeat;
+  background: url(images/taskbar.gif?v=5666.2033) top right no-repeat;
+  width: expression((parseInt(document.documentElement.clientWidth)-250)+'px');
 }
 
 img
@@ -25,22 +26,17 @@ body > #message div.confirmation,
 #message-objects div.warning,
 #message-objects div.confirmation
 {
-  background-image: url(images/display/icons.gif);
+  background-image: url(images/display/icons.gif?v=84d5.2329);
 }
 
 #messagemenu li a
 {
-  background-image: url(images/messageactions.gif);
+  background-image: url(images/messageactions.gif?v=dcdc.1916);
 }
 
 #mailboxlist li
 {
-  background-image: url(images/icons/folders.gif);
-}
-
-#attachment-list
-{
-  height: expression(Math.min(16, parseInt(document.documentElement.clientHeight))+'px');
+  background-image: url(images/icons/folders.gif?v=59af.2568);
 }
 
 #messagetoolbar a
@@ -53,7 +49,7 @@ body > #message div.confirmation,
 .boxfooter a.button,
 .boxfooter a.buttonPas
 {
-  background-image: url(images/icons/groupactions.gif);
+  background-image: url(images/icons/groupactions.gif?v=677d.496);
 }
 
 .pagenav
@@ -64,23 +60,23 @@ body > #message div.confirmation,
 .pagenav a.button,
 .pagenav a.buttonPas
 {
-  background-image: url(images/pagenav.gif);
+  background-image: url(images/pagenav.gif?v=2e75.355);
 }
 
 #listcontrols a.button,
 #listcontrols a.buttonPas {
-  background-image: url(images/mail_footer.gif);
+  background-image: url(images/mail_footer.gif?v=83fb.1336);
 }
 
 #messagetoolbar a.button,
 #messagetoolbar a.buttonPas {
-  background-image: url(images/mail_toolbar.gif);
+  background-image: url(images/mail_toolbar.gif?v=183d.12821);
 }
 
 #abooktoolbar a.button,
 #abooktoolbar a.buttonPas,
 #abooktoolbar span.separator {
-  background-image: url(images/abook_toolbar.gif);
+  background-image: url(images/abook_toolbar.gif?v=dfe4.5753);
 }
 
 ul.toolbarmenu li a,
@@ -110,7 +106,7 @@ ul.toolbarmenu li.separator_below
 
 #directorylist li
 {
-  background-image: url(images/icons/folders.gif);
+  background-image: url(images/icons/folders.gif?v=59af.2568);
 }
 
 .boxlistcontent
@@ -122,6 +118,11 @@ ul.toolbarmenu li.separator_below
 #compose-div .boxlistcontent
 {
   height: expression((parseInt(this.parentNode.offsetHeight)-23-parseInt(this.style.top?this.style.top:21))+'px');
+}
+
+#compose-body-div
+{
+  height: expression(parseInt(this.parentNode.offsetHeight)+'px');
 }
 
 #folder-manager
@@ -154,7 +155,7 @@ ul.toolbarmenu li.separator_below
 #messagelist tr td.subject span.forwarded,
 #messagelist tr td.subject span.unreadchildren
 {
-  background-image: url(images/messageicons.gif);
+  background-image: url(images/messageicons.gif?v=2f0b.2222);
 }
 
 #messagelist tr td div.collapsed,
@@ -175,4 +176,9 @@ body.iframe .boxtitle
 #sourcename
 {
   zoom: 1;
+}
+
+#abookactions a
+{
+  background-image: url(images/icons/groupactions.gif?v=677d.496);
 }

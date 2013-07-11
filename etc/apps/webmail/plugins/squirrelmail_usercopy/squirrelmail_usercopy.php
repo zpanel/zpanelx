@@ -151,10 +151,10 @@ class squirrelmail_usercopy extends rcube_plugin
 			$this->prefs = array();
 
 			/* connect to squirrelmail database */
-			$db = new rcube_mdb2($rcmail->config->get('squirrelmail_dsn'));
-			$db->db_connect('r'); // connect in read mode
+			$db = rcube_db::factory($rcmail->config->get('squirrelmail_dsn'));
 
-			// $db->set_debug(true);
+			$db->set_debug($rcmail->config->get('sql_debug'));
+			$db->db_connect('r'); // connect in read mode
 
 			/* retrieve prefs */
 			$userprefs_table = $rcmail->config->get('squirrelmail_userprefs_table');
@@ -179,7 +179,7 @@ class squirrelmail_usercopy extends rcube_plugin
 				$rec['firstname'] = rcube_charset_convert(rtrim($sql_array['firstname']), $db_charset);
 				$rec['surname']   = rcube_charset_convert(rtrim($sql_array['lastname']), $db_charset);
 				$rec['email']     = rcube_charset_convert(rtrim($sql_array['email']), $db_charset);
-				$rec['note']      = rcube_charset_convert(rtrim($sql_array['label']), $db_charset);
+				$rec['notes']      = rcube_charset_convert(rtrim($sql_array['label']), $db_charset);
 
 				if ($rec['name'] && $rec['email'])
 					$this->abook[] = $rec;

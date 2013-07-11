@@ -17,9 +17,6 @@
  +-----------------------------------------------------------------------+
  | Author: Thomas Bruederli <roundcube@gmail.com>                        |
  +-----------------------------------------------------------------------+
-
- $Id$
-
 */
 
 $CONTACTS = rcmail_contact_source(null, true, true);
@@ -85,7 +82,7 @@ if (empty($a_record['name'])) {
 // do input checks (delegated to $CONTACTS instance)
 if (!$CONTACTS->validate($a_record)) {
     $err = (array)$CONTACTS->get_error();
-    $OUTPUT->show_message($err['message'] ? $err['message'] : 'formincomplete', 'warning');
+    $OUTPUT->show_message($err['message'] ? Q($err['message']) : 'formincomplete', 'warning');
     $GLOBALS['EDIT_RECORD'] = $a_record;  // store submitted data to be used in edit form
     rcmail_overwrite_action($return_action);
     return;
@@ -164,7 +161,6 @@ else {
     $source = $orig_source;
 
   // show notice if existing contacts with same e-mail are found
-  $existing = false;
   foreach ($CONTACTS->get_col_values('email', $a_record, true) as $email) {
       if ($email && ($res = $CONTACTS->search('email', $email, 1, false, true)) && $res->count) {
           $OUTPUT->show_message('contactexists', 'notice', null, false);
@@ -183,18 +179,24 @@ else {
     $insert_id = $plugin['result'];
 
   if ($insert_id) {
+    $CONTACTS->reset();
+
     // add new contact to the specified group
     if ($CONTACTS->groups && $CONTACTS->group_id) {
       $plugin = $RCMAIL->plugins->exec_hook('group_addmembers', array(
         'group_id' => $CONTACTS->group_id, 'ids' => $insert_id, 'source' => $source));
 
+      $counts = $CONTACTS->count();
+
       if (!$plugin['abort']) {
-        if (($maxnum = $RCMAIL->config->get('max_group_members', 0)) && ($CONTACTS->count()->count + 1 > $maxnum))
+        if (($maxnum = $RCMAIL->config->get('max_group_members', 0)) && ($counts->count + 1 > $maxnum))
           $OUTPUT->show_message('maxgroupmembersreached', 'warning', array('max' => $maxnum));
 
-        $CONTACTS->add_to_group($gid, $plugin['ids']);
+        $CONTACTS->add_to_group($plugin['group_id'], $plugin['ids']);
       }
     }
+    else
+      $counts = $CONTACTS->count();
 
     if ((string)$source === (string)$orig_source) {
       // add contact row or jump to the page where it should appear
@@ -206,7 +208,7 @@ else {
 
       // update record count display
       $CONTACTS->reset();
-      $OUTPUT->command('parent.set_rowcount', rcmail_get_rowcount_text());
+      $OUTPUT->command('parent.set_rowcount', rcmail_get_rowcount_text($counts));
     }
     else {
       // re-set iframe

@@ -4,8 +4,11 @@
  *
  * @package PhpMyAdmin
  */
+if (! defined('PHPMYADMIN')) {
+    exit;
+}
 
-require_once "Export_Relation_Schema.class.php";
+require_once 'Export_Relation_Schema.class.php';
 
 /**
  * This Class is EPS Library and
@@ -301,7 +304,7 @@ class PMA_EPS
 
         $modifier = 1;
         $font = strtolower($font);
-        switch($font){
+        switch ($font) {
         /*
          * no modifier for arial and sans-serif
          */
@@ -354,7 +357,8 @@ class PMA_EPS
             //ob_end_clean();
         //}
         $output = $this->stringCommands;
-        PMA_download_header($fileName . '.eps', 'image/x-eps', strlen($output));
+        PMA_Response::getInstance()->disable();
+        PMA_downloadHeader($fileName . '.eps', 'image/x-eps', strlen($output));
         print $output;
     }
 }
@@ -406,13 +410,14 @@ class Table_Stats
      * @see PMA_EPS, Table_Stats::Table_Stats_setWidth,
      *      Table_Stats::Table_Stats_setHeight
      */
-    function __construct($tableName, $font, $fontSize, $pageNumber, &$same_wide_width,
-    $showKeys = false, $showInfo = false)
-    {
+    function __construct(
+        $tableName, $font, $fontSize, $pageNumber, &$same_wide_width,
+        $showKeys = false, $showInfo = false
+    ) {
         global $eps, $cfgRelation, $db;
 
         $this->_tableName = $tableName;
-        $sql = 'DESCRIBE ' . PMA_backquote($tableName);
+        $sql = 'DESCRIBE ' . PMA_Util::backquote($tableName);
         $result = PMA_DBI_try_query($sql, null, PMA_DBI_QUERY_STORE);
         if (! $result || ! PMA_DBI_num_rows($result)) {
             $eps->dieSchema(
@@ -455,12 +460,12 @@ class Table_Stats
 
         // x and y
         $sql = 'SELECT x, y FROM '
-            . PMA_backquote($GLOBALS['cfgRelation']['db']) . '.'
-            . PMA_backquote($cfgRelation['table_coords'])
-            . ' WHERE db_name = \'' . PMA_sqlAddSlashes($db) . '\''
-            . ' AND   table_name = \'' . PMA_sqlAddSlashes($tableName) . '\''
+            . PMA_Util::backquote($GLOBALS['cfgRelation']['db']) . '.'
+            . PMA_Util::backquote($cfgRelation['table_coords'])
+            . ' WHERE db_name = \'' . PMA_Util::sqlAddSlashes($db) . '\''
+            . ' AND   table_name = \'' . PMA_Util::sqlAddSlashes($tableName) . '\''
             . ' AND   pdf_page_number = ' . $pageNumber;
-        $result = PMA_query_as_controluser($sql, false, PMA_DBI_QUERY_STORE);
+        $result = PMA_queryAsControlUser($sql, false, PMA_DBI_QUERY_STORE);
 
         if (! $result || ! PMA_DBI_num_rows($result)) {
             $eps->dieSchema(
@@ -478,7 +483,7 @@ class Table_Stats
         $this->displayfield = PMA_getDisplayField($db, $tableName);
         // index
         $result = PMA_DBI_query(
-            'SHOW INDEX FROM ' . PMA_backquote($tableName) . ';',
+            'SHOW INDEX FROM ' . PMA_Util::backquote($tableName) . ';',
             null, PMA_DBI_QUERY_STORE
         );
         if (PMA_DBI_num_rows($result) > 0) {
@@ -793,7 +798,7 @@ class Relation_Stats
  */
 class PMA_Eps_Relation_Schema extends PMA_Export_Relation_Schema
 {
-    private $tables = array();
+    private $_tables = array();
     private $_relations = array();
 
     /**
@@ -813,7 +818,7 @@ class PMA_Eps_Relation_Schema extends PMA_Export_Relation_Schema
         $this->setShowColor(isset($_POST['show_color']));
         $this->setShowKeys(isset($_POST['show_keys']));
         $this->setTableDimension(isset($_POST['show_table_dimension']));
-        $this->setAllTableSameWidth(isset($_POST['all_table_same_wide']));
+        $this->setAllTablesSameWidth(isset($_POST['all_tables_same_width']));
         $this->setOrientation($_POST['orientation']);
         $this->setExportType($_POST['export_type']);
 
@@ -833,15 +838,15 @@ class PMA_Eps_Relation_Schema extends PMA_Export_Relation_Schema
         $alltables = $this->getAllTables($db, $this->pageNumber);
 
         foreach ($alltables AS $table) {
-            if (! isset($this->tables[$table])) {
-                $this->tables[$table] = new Table_Stats(
+            if (! isset($this->_tables[$table])) {
+                $this->_tables[$table] = new Table_Stats(
                     $table, $eps->getFont(), $eps->getFontSize(), $this->pageNumber,
                     $this->_tablewidth, $this->showKeys, $this->tableDimension
                 );
             }
 
             if ($this->sameWide) {
-                $this->tables[$table]->width = $this->_tablewidth;
+                $this->_tables[$table]->width = $this->_tablewidth;
             }
         }
 
@@ -892,24 +897,25 @@ class PMA_Eps_Relation_Schema extends PMA_Export_Relation_Schema
      * @access private
      * @see _setMinMax,Table_Stats::__construct(),Relation_Stats::__construct()
      */
-    private function _addRelation($masterTable, $font, $fontSize, $masterField,
-    $foreignTable, $foreignField, $showInfo)
-    {
-        if (! isset($this->tables[$masterTable])) {
-            $this->tables[$masterTable] = new Table_Stats(
+    private function _addRelation(
+        $masterTable, $font, $fontSize, $masterField,
+        $foreignTable, $foreignField, $showInfo
+    ) {
+        if (! isset($this->_tables[$masterTable])) {
+            $this->_tables[$masterTable] = new Table_Stats(
                 $masterTable, $font, $fontSize, $this->pageNumber,
                 $this->_tablewidth, false, $showInfo
             );
         }
-        if (! isset($this->tables[$foreignTable])) {
-            $this->tables[$foreignTable] = new Table_Stats(
+        if (! isset($this->_tables[$foreignTable])) {
+            $this->_tables[$foreignTable] = new Table_Stats(
                 $foreignTable, $font, $fontSize, $this->pageNumber,
                 $this->_tablewidth, false, $showInfo
             );
         }
         $this->_relations[] = new Relation_Stats(
-            $this->tables[$masterTable], $masterField,
-            $this->tables[$foreignTable], $foreignField
+            $this->_tables[$masterTable], $masterField,
+            $this->_tables[$foreignTable], $foreignField
         );
     }
 
@@ -943,7 +949,7 @@ class PMA_Eps_Relation_Schema extends PMA_Export_Relation_Schema
      */
     private function _drawTables($changeColor)
     {
-        foreach ($this->tables as $table) {
+        foreach ($this->_tables as $table) {
             $table->tableDraw($changeColor);
         }
     }

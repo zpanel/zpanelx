@@ -17,9 +17,6 @@
  +-----------------------------------------------------------------------+
  | Author: Aleksander Machniak <alec@alec.pl>                            |
  +-----------------------------------------------------------------------+
-
- $Id$
-
 */
 
 // WARNING: folder names in UI are encoded with RCMAIL_CHARSET
@@ -81,7 +78,7 @@ function rcmail_folder_form($attrib)
 
     // Location (name)
     if ($options['protected']) {
-        $foldername = Q(str_replace($delimiter, ' &raquo; ', rcmail_localize_folderpath($mbox_imap)));
+        $foldername = str_replace($delimiter, ' &raquo; ', Q(rcmail_localize_folderpath($mbox_imap)));
     }
     else if ($options['norename']) {
         $foldername = Q($folder);

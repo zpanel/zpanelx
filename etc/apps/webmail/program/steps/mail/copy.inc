@@ -17,9 +17,6 @@
  +-----------------------------------------------------------------------+
  | Author: Aleksander Machniak <alec@alec.pl>                            |
  +-----------------------------------------------------------------------+
-
- $Id$
-
 */
 
 // only process ajax requests
@@ -27,10 +24,10 @@ if (!$OUTPUT->ajax_call)
   return;
 
 // move messages
-if (!empty($_POST['_uid']) && !empty($_POST['_target_mbox'])) {
-    $uids = get_input_value('_uid', RCUBE_INPUT_POST);
+if (!empty($_POST['_uid']) && strlen($_POST['_target_mbox'])) {
+    $uids   = get_input_value('_uid', RCUBE_INPUT_POST);
     $target = get_input_value('_target_mbox', RCUBE_INPUT_POST, true);
-    $mbox = get_input_value('_mbox', RCUBE_INPUT_POST, true);
+    $mbox   = get_input_value('_mbox', RCUBE_INPUT_POST, true);
 
     $copied = $RCMAIL->storage->copy_message($uids, $target, $mbox);
 
@@ -50,7 +47,7 @@ if (!empty($_POST['_uid']) && !empty($_POST['_target_mbox'])) {
 }
 // unknown action or missing query param
 else {
-    exit;
+    $OUTPUT->show_message('internalerror', 'error');
 }
 
 // send response

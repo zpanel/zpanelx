@@ -4,13 +4,17 @@
  *
  * @package PhpMyAdmin
  */
+if (! defined('PHPMYADMIN')) {
+    exit;
+}
 
 require_once './libraries/Message.class.php';
 
 /**
  * Handles the recently used tables.
  *
- * @TODO Change the release version in table pma_recent (#recent in Documentation.html)
+ * @TODO Change the release version in table pma_recent
+ * (#recent in documentation)
  *
  * @package PhpMyAdmin
  */
@@ -22,7 +26,7 @@ class PMA_RecentTable
      * @access  private
      * @var string
      */
-    private $pma_table;
+    private $_pmaTable;
 
     /**
      * Reference to session variable containing recently used tables.
@@ -41,15 +45,17 @@ class PMA_RecentTable
 
     public function __construct()
     {
-        if (strlen($GLOBALS['cfg']['Server']['pmadb']) &&
-            strlen($GLOBALS['cfg']['Server']['recent'])) {
-            $this->pma_table = PMA_backquote($GLOBALS['cfg']['Server']['pmadb']) .".".
-                               PMA_backquote($GLOBALS['cfg']['Server']['recent']);
+        if (strlen($GLOBALS['cfg']['Server']['pmadb'])
+            && strlen($GLOBALS['cfg']['Server']['recent'])
+        ) {
+            $this->_pmaTable
+                = PMA_Util::backquote($GLOBALS['cfg']['Server']['pmadb']) . "."
+                . PMA_Util::backquote($GLOBALS['cfg']['Server']['recent']);
         }
         $server_id = $GLOBALS['server'];
         if (! isset($_SESSION['tmp_user_values']['recent_tables'][$server_id])) {
-            $_SESSION['tmp_user_values']['recent_tables'][$server_id] =
-                isset($this->pma_table) ? $this->getFromDb() : array();
+            $_SESSION['tmp_user_values']['recent_tables'][$server_id]
+                = isset($this->_pmaTable) ? $this->getFromDb() : array();
         }
         $this->tables =& $_SESSION['tmp_user_values']['recent_tables'][$server_id];
     }
@@ -70,17 +76,16 @@ class PMA_RecentTable
     /**
      * Returns recently used tables from phpMyAdmin database.
      *
-     *
      * @return array
      */
     public function getFromDb()
     {
         // Read from phpMyAdmin database, if recent tables is not in session
         $sql_query
-            = " SELECT `tables` FROM " . $this->pma_table .
+            = " SELECT `tables` FROM " . $this->_pmaTable .
             " WHERE `username` = '" . $GLOBALS['cfg']['Server']['user'] . "'";
 
-        $row = PMA_DBI_fetch_array(PMA_query_as_controluser($sql_query));
+        $row = PMA_DBI_fetch_array(PMA_queryAsControlUser($sql_query));
         if (isset($row[0])) {
             return json_decode($row[0], true);
         } else {
@@ -91,35 +96,39 @@ class PMA_RecentTable
     /**
      * Save recent tables into phpMyAdmin database.
      *
-     *
      * @return true|PMA_Message
      */
     public function saveToDb()
     {
         $username = $GLOBALS['cfg']['Server']['user'];
         $sql_query
-            = " REPLACE INTO " . $this->pma_table . " (`username`, `tables`)" .
-            " VALUES ('" . $username . "', '" . PMA_sqlAddSlashes(json_encode($this->tables)) . "')";
+            = " REPLACE INTO " . $this->_pmaTable . " (`username`, `tables`)" .
+                " VALUES ('" . $username . "', '"
+                . PMA_Util::sqlAddSlashes(
+                    json_encode($this->tables)
+                ) . "')";
 
         $success = PMA_DBI_try_query($sql_query, $GLOBALS['controllink']);
 
-        if (!$success) {
+        if (! $success) {
             $message = PMA_Message::error(__('Could not save recent table'));
             $message->addMessage('<br /><br />');
-            $message->addMessage(PMA_Message::rawError(PMA_DBI_getError($GLOBALS['controllink'])));
+            $message->addMessage(
+                PMA_Message::rawError(PMA_DBI_getError($GLOBALS['controllink']))
+            );
             return $message;
         }
         return true;
     }
 
     /**
-     * Trim recent table according to the LeftRecentTable configuration.
+     * Trim recent table according to the NumRecentTables configuration.
      *
      * @return boolean True if trimming occurred
      */
     public function trim()
     {
-        $max = max($GLOBALS['cfg']['LeftRecentTable'], 0);
+        $max = max($GLOBALS['cfg']['NumRecentTables'], 0);
         $trimming_occured = count($this->tables) > $max;
         while (count($this->tables) > $max) {
             array_pop($this->tables);
@@ -135,18 +144,24 @@ class PMA_RecentTable
     public function getHtmlSelectOption()
     {
         // trim and save, in case where the configuration is changed
-        if ($this->trim() && isset($this->pma_table)) {
+        if ($this->trim() && isset($this->_pmaTable)) {
             $this->saveToDb();
         }
 
         $html = '<option value="">(' . __('Recent tables') . ') ...</option>';
         if (count($this->tables)) {
             foreach ($this->tables as $table) {
-                $html .= '<option value="' . htmlspecialchars(json_encode($table)) . '">' .
-                         htmlspecialchars('`' . $table['db'] . '`.`' . $table['table'] . '`') . '</option>';
+                $html .= '<option value="'
+                    . htmlspecialchars(json_encode($table)) . '">'
+                    . htmlspecialchars(
+                        '`' . $table['db'] . '`.`' . $table['table'] . '`'
+                    )
+                    . '</option>';
             }
         } else {
-            $html .= '<option value="">' . __('There are no recent tables') . '</option>';
+            $html .= '<option value="">'
+                . __('There are no recent tables')
+                . '</option>';
         }
         return $html;
     }
@@ -158,9 +173,7 @@ class PMA_RecentTable
      */
     public function getHtmlSelect()
     {
-        $html  = '<input type="hidden" name="goto" id="LeftDefaultTabTable" value="' .
-                         htmlspecialchars($GLOBALS['cfg']['LeftDefaultTabTable']) . '" />';
-        $html .= '<select name="selected_recent_table" id="recentTable">';
+        $html  = '<select name="selected_recent_table" id="recentTable">';
         $html .= $this->getHtmlSelectOption();
         $html .= '</select>';
 
@@ -170,8 +183,8 @@ class PMA_RecentTable
     /**
      * Add recently used tables.
      *
-     * @param string $db Database name where the table is located
-     * @param string $table Table name
+     * @param string $db    database name where the table is located
+     * @param string $table table name
      *
      * @return true|PMA_Message True if success, PMA_Message if not
      */
@@ -186,7 +199,7 @@ class PMA_RecentTable
             array_unshift($this->tables, $table_arr);
             $this->tables = array_merge(array_unique($this->tables, SORT_REGULAR));
             $this->trim();
-            if (isset($this->pma_table)) {
+            if (isset($this->_pmaTable)) {
                 return $this->saveToDb();
             }
         }

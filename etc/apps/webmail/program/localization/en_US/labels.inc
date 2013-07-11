@@ -1,23 +1,19 @@
 <?php
 
 /*
-
  +-----------------------------------------------------------------------+
- | language/en_US/labels.inc                                             |
+ | localization/<lang>/labels.inc                                        |
  |                                                                       |
- | Language file of the Roundcube Webmail client                         |
- | Copyright (C) 2005-2011, The Roundcube Dev Team                       |
+ | Localization file of the Roundcube Webmail client                     |
+ | Copyright (C) 2005-2012, The Roundcube Dev Team                       |
  |                                                                       |
  | Licensed under the GNU General Public License version 3 or            |
  | any later version with exceptions for skins & plugins.                |
  | See the README file for a full license statement.                     |
  |                                                                       |
  +-----------------------------------------------------------------------+
- | Author: Thomas Bruederli <roundcube@gmail.com>                        |
- +-----------------------------------------------------------------------+
 
- @version $Id$
-
+ For translation see https://www.transifex.com/projects/p/roundcube-webmail/resource/labels/
 */
 
 $labels = array();
@@ -45,6 +41,7 @@ $labels['junk']   = 'Junk';
 // message listing
 $labels['subject'] = 'Subject';
 $labels['from']    = 'From';
+$labels['sender']  = 'Sender';
 $labels['to']      = 'To';
 $labels['cc']      = 'Cc';
 $labels['bcc']     = 'Bcc';
@@ -67,6 +64,8 @@ $labels['copy']     = 'Copy';
 $labels['move']     = 'Move';
 $labels['moveto']   = 'Move to...';
 $labels['download'] = 'Download';
+$labels['showattachment'] = 'Show';
+$labels['showanyway'] = 'Show it anyway';
 
 $labels['filename'] = 'File name';
 $labels['filesize'] = 'File size';
@@ -163,6 +162,7 @@ $labels['unread'] = 'Unread';
 $labels['flagged'] = 'Flagged';
 $labels['unanswered'] = 'Unanswered';
 $labels['deleted'] = 'Deleted';
+$labels['undeleted'] = 'Not deleted';
 $labels['invert'] = 'Invert';
 $labels['filter'] = 'Filter';
 $labels['list'] = 'List';
@@ -200,14 +200,16 @@ $labels['quicksearch']  = 'Quick search';
 $labels['resetsearch']  = 'Reset search';
 $labels['searchmod']  = 'Search modifiers';
 $labels['msgtext']  = 'Entire message';
+$labels['body']  = 'Body';
 
 $labels['openinextwin'] = 'Open in new window';
 $labels['emlsave'] = 'Download (.eml)';
 
 // message compose
 $labels['editasnew']      = 'Edit as new';
-$labels['savemessage']    = 'Save as draft';
+$labels['send']           = 'Send';
 $labels['sendmessage']    = 'Send message';
+$labels['savemessage']    = 'Save as draft';
 $labels['addattachment']  = 'Attach a file';
 $labels['charset']        = 'Charset';
 $labels['editortype']     = 'Editor type';
@@ -239,6 +241,9 @@ $labels['nosubject']  = '(no subject)';
 $labels['showimages'] = 'Display images';
 $labels['alwaysshow'] = 'Always show images from $sender';
 $labels['isdraft']    = 'This is a draft message.';
+$labels['andnmore']   = '$nr more...';
+$labels['togglemoreheaders'] = 'Show more message headers';
+$labels['togglefullheaders'] = 'Toggle raw message headers';
 
 $labels['htmltoggle'] = 'HTML';
 $labels['plaintoggle'] = 'Plain text';
@@ -353,7 +358,7 @@ $labels['importcontacts'] = 'Import contacts';
 $labels['importfromfile'] = 'Import from file:';
 $labels['importtarget'] = 'Add new contacts to address book:';
 $labels['importreplace'] = 'Replace the entire address book';
-$labels['importtext'] = 'You can upload contacts from an existing address book.<br/>We currently support importing addresses from the <a href="http://en.wikipedia.org/wiki/VCard">vCard</a> data format.';
+$labels['importdesc'] = 'You can upload contacts from an existing address book.<br/>We currently support importing addresses from the <a href="http://en.wikipedia.org/wiki/VCard">vCard</a> or CSV (comma-separated) data format.';
 $labels['done'] = 'Done';
 
 // settings
@@ -373,6 +378,8 @@ $labels['edititem'] = 'Edit item';
 $labels['preferhtml'] = 'Display HTML';
 $labels['defaultcharset'] = 'Default Character Set';
 $labels['htmlmessage'] = 'HTML Message';
+$labels['messagepart'] = 'Part';
+$labels['digitalsig'] = 'Digital Signature';
 $labels['dateformat'] = 'Date format';
 $labels['timeformat'] = 'Time format';
 $labels['prettydate'] = 'Pretty dates';
@@ -383,8 +390,11 @@ $labels['timezone']  = 'Time zone';
 $labels['pagesize']  = 'Rows per page';
 $labels['signature'] = 'Signature';
 $labels['dstactive']  = 'Daylight saving time';
+$labels['showinextwin'] = 'Open message in a new window';
+$labels['composeextwin'] = 'Compose in a new window';
 $labels['htmleditor'] = 'Compose HTML messages';
-$labels['htmlonreply'] = 'on reply to HTML message only';
+$labels['htmlonreply'] = 'on reply to HTML message';
+$labels['htmlonreplyandforward'] = 'on forward or reply to HTML message';
 $labels['htmlsignature'] = 'HTML signature';
 $labels['previewpane'] = 'Show preview pane';
 $labels['skin'] = 'Interface skin';
@@ -410,7 +420,7 @@ $labels['always'] = 'always';
 $labels['showinlineimages'] = 'Display attached images below the message';
 $labels['autosavedraft']  = 'Automatically save draft';
 $labels['everynminutes']  = 'every $n minute(s)';
-$labels['keepalive']  = 'Check for new messages on';
+$labels['refreshinterval']  = 'Refresh (check for new messages, etc.)';
 $labels['never']  = 'never';
 $labels['immediately']  = 'immediately';
 $labels['messagesdisplaying'] = 'Displaying Messages';
@@ -432,22 +442,20 @@ $labels['maintenance'] = 'Maintenance';
 $labels['newmessage'] = 'New Message';
 $labels['signatureoptions'] = 'Signature Options';
 $labels['whenreplying'] = 'When replying';
-$labels['replytopposting'] = 'start new message above original';
-$labels['replybottomposting'] = 'start new message below original';
+$labels['replyempty'] = 'do not quote the original message';
+$labels['replytopposting'] = 'start new message above the quote';
+$labels['replybottomposting'] = 'start new message below the quote';
 $labels['replyremovesignature'] = 'When replying remove original signature from message';
 $labels['autoaddsignature'] = 'Automatically add signature';
 $labels['newmessageonly'] = 'new message only';
 $labels['replyandforwardonly'] = 'replies and forwards only';
-$labels['replysignaturepos'] = 'When replying or forwarding place signature';
-$labels['belowquote'] = 'below the quote';
-$labels['abovequote'] = 'above the quote';
 $labels['insertsignature'] = 'Insert signature';
 $labels['previewpanemarkread']  = 'Mark previewed messages as read';
 $labels['afternseconds']  = 'after $n seconds';
 $labels['reqmdn'] = 'Always request a return receipt';
 $labels['reqdsn'] = 'Always request a delivery status notification';
 $labels['replysamefolder'] = 'Place replies in the folder of the message being replied to';
-$labels['defaultaddressbook'] = 'Add new contacts to the selected addressbook';
+$labels['defaultabook'] = 'Default address book';
 $labels['autocompletesingle'] = 'Skip alternative email addresses in autocompletion';
 $labels['listnamedisplay'] = 'List contacts as';
 $labels['spellcheckbeforesend'] = 'Check spelling before sending a message';
@@ -487,6 +495,7 @@ $labels['sortasc']  = 'Sort ascending';
 $labels['sortdesc'] = 'Sort descending';
 $labels['undo'] = 'Undo';
 
+$labels['installedplugins'] = 'Installed plugins';
 $labels['plugin'] = 'Plugin';
 $labels['version'] = 'Version';
 $labels['source'] = 'Source';

@@ -2,30 +2,40 @@
 
 /*
  +-----------------------------------------------------------------------+
- | localization/ar_SA/messages.inc                                       |
+ | localization/<lang>/messages.inc                                      |
  |                                                                       |
- | Language file of the Roundcube Webmail client                         |
- | Copyright (C) 2012, The Roundcube Dev Team                            |
- | Licensed under the GNU General Public License                         |
+ | Localization file of the Roundcube Webmail client                     |
+ | Copyright (C) 2005-2013, The Roundcube Dev Team                       |
+ |                                                                       |
+ | Licensed under the GNU General Public License version 3 or            |
+ | any later version with exceptions for skins & plugins.                |
+ | See the README file for a full license statement.                     |
  |                                                                       |
  +-----------------------------------------------------------------------+
- | Author: Thomas                                                        |
- +-----------------------------------------------------------------------+
+
+ For translation see https://www.transifex.com/projects/p/roundcube-webmail/resource/messages/
 */
 
 $messages = array();
-$messages['loginfailed'] = 'فشل تسجيل الدخول';
+$messages['errortitle']  = 'An error occurred!';
+$messages['loginfailed']  = 'فشل تسجيل الدخول';
 $messages['cookiesdisabled'] = 'المتصفح الخاص بك لا يقبل الكوكيز';
 $messages['sessionerror'] = 'انتهت صلاحية الجلسة الحالية أو أنها غيرصالحة';
+$messages['storageerror'] = 'فشل الاتصال بخادم IMAP';
 $messages['servererror'] = 'خطأ في الخادم!';
 $messages['servererrormsg'] = 'خطأ خادم: $msg';
 $messages['dberror'] = 'خطأ في قاعدة البيانات!';
+$messages['requesttimedout'] = 'Request timed out';
 $messages['errorreadonly'] = 'تعذر تنفيذ العملية. المجلد للقراءة فقط.';
 $messages['errornoperm'] = 'تعذر تنفيذ العملية. ليست لديك الصلاحية.';
+$messages['erroroverquota'] = 'Unable to perform operation. No free disk space.';
+$messages['erroroverquotadelete'] = 'No free disk space. Use SHIFT+DEL to delete a message.';
 $messages['invalidrequest'] = 'طلب غير صالح! لم تحفظ أية بيانات.';
+$messages['invalidhost'] = 'Invalid server name.';
 $messages['nomessagesfound'] = 'لم يعثر على أية رسائل في صندوق البريد هذا';
 $messages['loggedout'] = 'قمت بإنهاء هذه الجلسة بنجاح. إلى اللقاء!';
 $messages['mailboxempty'] = 'صندوق البريد فارغ';
+$messages['refreshing'] = 'Refreshing...';
 $messages['loading'] = 'جاري العمل...';
 $messages['uploading'] = 'جاري رفع الملف...';
 $messages['uploadingmany'] = 'جاري تحميل الملفات...';
@@ -52,11 +62,11 @@ $messages['errormoving'] = 'تعذر نقل هذه الرسالة';
 $messages['errorcopying'] = 'تعذر نسخ الرسائل';
 $messages['errordeleting'] = 'تعذر حذف هذه الرسالة';
 $messages['errormarking'] = 'تعذر تحديد الرسائل';
-$messages['deletecontactconfirm'] = 'هل تريد حقاً حذف المراسلـ(ين) المحدد(ين)؟';
-$messages['deletegroupconfirm'] = 'هل تريد فعلاً حذف المجموعة المحددة؟';
+$messages['deletecontactconfirm']  = 'هل تريد حقاً حذف المراسلـ(ين) المحدد(ين)؟';
+$messages['deletegroupconfirm']  = 'هل تريد فعلاً حذف المجموعة المحددة؟';
 $messages['deletemessagesconfirm'] = 'هل تريد حذف الرسائل المحددة؟';
-$messages['deletefolderconfirm'] = 'هل تريد حقاً حذف هذا المجلد؟';
-$messages['purgefolderconfirm'] = 'هل تريد حقاً حذف جميع الرسائل في هذاالمجلد؟';
+$messages['deletefolderconfirm']  = 'هل تريد حقاً حذف هذا المجلد؟';
+$messages['purgefolderconfirm']  = 'هل تريد حقاً حذف جميع الرسائل في هذاالمجلد؟';
 $messages['contactdeleting'] = 'جاري حذف المُراسلين...';
 $messages['groupdeleting'] = 'جاري حذف المجموعة...';
 $messages['folderdeleting'] = 'جاري حذف المجلد...';
@@ -65,15 +75,16 @@ $messages['foldersubscribing'] = 'الإشتراك في المجلد...';
 $messages['folderunsubscribing'] = 'إلغاء الإشتراك في المجد...';
 $messages['formincomplete'] = 'لم يتم تعبئة بيانات الاستمارة بالكامل';
 $messages['noemailwarning'] = 'الرجاء إدخال عنوان بريد إلكتروني صالح';
-$messages['nonamewarning'] = 'الرجاء إدخال اسم';
+$messages['nonamewarning']  = 'الرجاء إدخال اسم';
 $messages['nopagesizewarning'] = 'الرجاء إدخال حجم الصفحة';
 $messages['nosenderwarning'] = 'رجاء اكتب عنوان البريد الالكترونيللمُرسل';
 $messages['norecipientwarning'] = 'الرجاء إدخال اسم مستقبل واحد على الأقل';
-$messages['nosubjectwarning'] = 'حقل "الموضوع" فارغ. هل تريد كتابة موضوعللرسالة؟';
+$messages['nosubjectwarning']  = 'حقل "الموضوع" فارغ. هل تريد كتابة موضوعللرسالة؟';
 $messages['nobodywarning'] = 'إرسال هذه الرسالة دون نص؟';
 $messages['notsentwarning'] = 'لم يتم إرسال الرسالة. هل تريد تجاهلالرسالة؟';
 $messages['noldapserver'] = 'الرجاء اختيار خادم ldap للبحث فيه';
 $messages['nosearchname'] = 'الرجاء إدخال اسم مراسل أو عنوان بريدإلكتروني';
+$messages['notuploadedwarning'] = 'لم يتم رفع جميع المرفقات بعد. رجاءً الانتظار أو إلغاء عملية الرفع.';
 $messages['searchsuccessful'] = 'عثر على $nr رسائل';
 $messages['contactsearchsuccessful'] = 'عُثر على $nr مُراسَل';
 $messages['searchnomatch'] = 'لم يعثر على شيء';
@@ -103,18 +114,22 @@ $messages['addingmember'] = 'جاري إضافة المُراسلين إلى ا�
 $messages['removingmember'] = 'جاري إزالة المراسلين من المجموعة...';
 $messages['receiptsent'] = 'أرسل إيصال الاستلام بنجاح';
 $messages['errorsendingreceipt'] = 'تعذر إرسال إيصال الاستلام';
+$messages['deleteidentityconfirm'] = 'Do you really want to delete this identity?';
 $messages['nodeletelastidentity'] = 'لا يمكن حذف هذا السجل حيث أنه الوحيدالمتبقي.';
 $messages['forbiddencharacter'] = 'اسم المجلّد يحتوي حروفاً ممنوعة';
 $messages['selectimportfile'] = 'رجاء اختر ملفاً لرفعه';
 $messages['addresswriterror'] = 'دفتر العناوين المحدد غير قابل للكتابة';
 $messages['contactaddedtogroup'] = 'تمت إضافة المراسلين إلى هذه المجموعةبنجاح';
 $messages['contactremovedfromgroup'] = 'تمت إزالة المراسلين من هذه المجموعةبنجاح';
+$messages['nogroupassignmentschanged'] = 'No group assignments changed.';
 $messages['importwait'] = 'جاري الاستيراد، رجاء انتظر...';
-$messages['importerror'] = 'فشل الاستيراد! الملف المرفوع ليس ملف vCardصالح.';
+$messages['importformaterror'] = 'Import failed! The uploaded file is not a valid import data file.';
 $messages['importconfirm'] = '<b>تم استيراد $inserted مراسلين بنجاح، وتجاهل$skipped موجودين مسبقاً</b>:<p><em>$names</em></p>';
 $messages['importconfirmskipped'] = '<b>تم تجاهل $skipped عناصر موجودة</b>';
 $messages['opnotpermitted'] = 'العملية ممنوعة!';
 $messages['nofromaddress'] = 'عنوان البريد الالكتروني غير محدد فيالهويّة المنتقاة';
+$messages['editorwarning'] = 'يتسبب الانتقال إلى محرر النص البسيط بضياع جميع التنسيق. هل تريد الاستمرار؟';
+$messages['httpreceivedencrypterror'] = 'حدث خطأ جسيم في التهيئة. رجاءً اتصال بمدير الخادم حالاً. <b>لا يمكن إرسال بريدك.</b>';
 $messages['smtpconnerror'] = 'خطأ SMTP ($code): تعذر الاتصال بالخادم';
 $messages['smtpautherror'] = 'خطأ SMTP ($code): تعذر التحقق من هويتك';
 $messages['smtpfromerror'] = 'خطأ SMTP ($code): تعذر تحديد المرسل "$from" ($msg)';
@@ -150,4 +165,7 @@ $messages['invalidimageformat'] = 'ليست صيغة صورة صحيحة';
 $messages['mispellingsfound'] = 'عُثر على أخطاء إملائية في الرسالة';
 $messages['parentnotwritable'] = 'تعذر إنشاء/نقل المجلد إلى المجلد المحدد.ليست لديك الصلاحية.';
 $messages['messagetoobig'] = 'جزء الرسالة أكبر بكثير مما يمكن معالجته.';
+$messages['attachmentvalidationerror'] = 'WARNING! This attachment is suspicious because its type doesn\'t match the type declared in the message. If you do not trust the sender, you shouldn\'t open it in the browser because it may contain malicious contents.<br/><br/><em>Expected: $expected; found: $detected</em>';
+$messages['noscriptwarning'] = 'Warning: This webmail service requires Javascript! In order to use it please enable Javascript in your browser\'s settings.';
 
+?>

@@ -42,12 +42,11 @@ class help extends rcube_plugin
             'label'      => 'help.help',
         ), 'taskbar');
 
-        $skin = $rcmail->config->get('skin');
-        if (!file_exists($this->home."/skins/$skin/help.css"))
-            $skin = 'default';
-
-        // add style for taskbar button (must be here) and Help UI    
-        $this->include_stylesheet("skins/$skin/help.css");
+        // add style for taskbar button (must be here) and Help UI
+        $skin_path = $this->local_skin_path();
+        if (is_file($this->home . "/$skin_path/help.css")) {
+            $this->include_stylesheet("$skin_path/help.css");
+        }
     }
 
     function action()
@@ -91,8 +90,7 @@ class help extends rcube_plugin
 
         $attrib['name'] = $attrib['id'];
 
-        return html::tag('iframe', $attrib, '', array(
-            'id', 'class', 'style', 'src', 'width', 'height', 'frameborder'));
+        return $rcmail->output->frame($attrib);
     }
 
 }

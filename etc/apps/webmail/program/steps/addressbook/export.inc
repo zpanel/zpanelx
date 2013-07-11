@@ -19,9 +19,6 @@
  | Author: Thomas Bruederli <roundcube@gmail.com>                        |
  | Author: Aleksander Machniak <machniak@kolabsys.com>                   |
  +-----------------------------------------------------------------------+
-
- $Id$
-
 */
 
 // Use search result
@@ -45,7 +42,7 @@ if (!empty($_REQUEST['_search']) && isset($_SESSION['search'][$_REQUEST['_search
 
         while ($row = $result->next()) {
             $row['sourceid'] = $s;
-            $key = rcmail_contact_key($row, $sort_col);
+            $key = rcube_addressbook::compose_contact_key($row, $sort_col);
             $records[$key] = $row;
         }
         unset($result);
@@ -76,7 +73,9 @@ header('Content-Disposition: attachment; filename="rcube_contacts.vcf"');
 while ($result && ($row = $result->next())) {
     // we already have a vcard record
     if ($row['vcard'] && $row['name']) {
-        $row['vcard'] = preg_replace('/\r?\n/', rcube_vcard::$eol, $row['vcard']);
+        // fix folding and end-of-line chars
+        $row['vcard'] = preg_replace('/\r|\n\s+/', '', $row['vcard']);
+        $row['vcard'] = preg_replace('/\n/', rcube_vcard::$eol, $row['vcard']);
         echo rcube_vcard::rfc2425_fold($row['vcard']) . rcube_vcard::$eol;
     }
     // copy values into vcard object

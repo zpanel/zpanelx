@@ -5,7 +5,7 @@
  | program/steps/utils/error.inc                                         |
  |                                                                       |
  | This file is part of the Roundcube Webmail client                     |
- | Copyright (C) 2005-2011, The Roundcube Dev Team                       |
+ | Copyright (C) 2005-2012, The Roundcube Dev Team                       |
  |                                                                       |
  | Licensed under the GNU General Public License version 3 or            |
  | any later version with exceptions for skins & plugins.                |
@@ -17,19 +17,17 @@
  +-----------------------------------------------------------------------+
  | Author: Thomas Bruederli <roundcube@gmail.com>                        |
  +-----------------------------------------------------------------------+
-
- $Id$
-
 */
 
+$rcmail = rcmail::get_instance();
 
 // browser is not compatible with this application
 if ($ERROR_CODE==409) {
-  $user_agent = $_SERVER['HTTP_USER_AGENT'];
+  $user_agent = htmlentities($_SERVER['HTTP_USER_AGENT']);
   $__error_title = 'Your browser does not suit the requirements for this application';
   $__error_text = <<<EOF
 <i>Supported browsers:</i><br />
-&raquo; &nbsp;Microsoft Internet Explorer 6+<br />
+&raquo; &nbsp;Microsoft Internet Explorer 7+<br />
 &raquo; &nbsp;Mozilla Firefox 3+<br />
 &raquo; &nbsp;Chrome 10+<br />
 &raquo; &nbsp;Safari 4+<br />
@@ -88,7 +86,7 @@ else {
   $__error_title = "SERVICE CURRENTLY NOT AVAILABLE!";
   $__error_text  = "Please contact your server-administrator.";
 
-  if (($CONFIG['debug_level'] & 4) && $ERROR_MESSAGE)
+  if (($rcmail->config->get('debug_level') & 4) && $ERROR_MESSAGE)
     $__error_text = $ERROR_MESSAGE;
   else
     $__error_text = sprintf('Error No. [%s]', $ERROR_CODE);
@@ -97,7 +95,7 @@ else {
 $HTTP_ERR_CODE = $ERROR_CODE && $ERROR_CODE < 600 ? $ERROR_CODE : 500;
 
 // Ajax request
-if ($OUTPUT && ($OUTPUT instanceof rcube_json_output)) {
+if ($rcmail->output && $rcmail->output->type == 'js') {
   header("HTTP/1.0 $HTTP_ERR_CODE $__error_title");
   die;
 }
@@ -110,13 +108,13 @@ $__page_content = <<<EOF
 </div>
 EOF;
 
-if ($OUTPUT && $OUTPUT->template_exists('error')) {
-  $OUTPUT->reset();
-  $OUTPUT->send('error');
+if ($rcmail->output && $rcmail->output->template_exists('error')) {
+  $rcmail->output->reset();
+  $rcmail->output->send('error');
 }
 
-$__skin = $CONFIG->skin ? $CONFIG->skin : 'default';
-$__productname = $CONFIG['product_name'] ? $CONFIG['product_name'] : 'Roundcube Webmail';
+$__skin = $rcmail->config->get('skin', 'default');
+$__productname = $rcmail->config->get('product_name', 'Roundcube Webmail');
 
 // print system error page
 print <<<EOF

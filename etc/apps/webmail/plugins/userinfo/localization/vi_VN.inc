@@ -2,21 +2,24 @@
 
 /*
  +-----------------------------------------------------------------------+
- | localization/vi_VN/labels.inc                                         |
+ | plugins/userinfo/localization/<lang>.inc                              |
  |                                                                       |
- | Language file of the Roundcube Webmail client                         |
- | Copyright (C) 2012, The Roundcube Dev Team                            |
- | Licensed under the GNU General Public License                         |
+ | Localization file of the Roundcube Webmail Userinfo plugin            |
+ | Copyright (C) 2012-2013, The Roundcube Dev Team                       |
+ |                                                                       |
+ | Licensed under the GNU General Public License version 3 or            |
+ | any later version with exceptions for skins & plugins.                |
+ | See the README file for a full license statement.                     |
  |                                                                       |
  +-----------------------------------------------------------------------+
- | Author: Hung Pham <phamhung77@gmail.com>                              |
- +-----------------------------------------------------------------------+
- @version $Id$
+
+ For translation see https://www.transifex.com/projects/p/roundcube-webmail/resource/plugin-userinfo/
 */
 
 $labels = array();
 $labels['userinfo'] = 'Thông tin người dùng';
-$labels['created'] = 'đã khởi tạo';
-$labels['lastlogin'] = 'lần đăng nhập cuối';
-$labels['defaultidentity'] = 'nhận dạng mặc định';
+$labels['created'] = 'Được tạo';
+$labels['lastlogin'] = 'Lần đăng nhập cuối';
+$labels['defaultidentity'] = 'Nhận diện mặc định';
 
+?>

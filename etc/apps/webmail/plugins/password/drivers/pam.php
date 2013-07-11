@@ -11,9 +11,10 @@ class rcube_pam_password
 {
     function save($currpass, $newpass)
     {
-        $user = $_SESSION['username'];
+        $user  = $_SESSION['username'];
+        $error = '';
 
-        if (extension_loaded('pam')) {
+        if (extension_loaded('pam') || extension_loaded('pam_auth')) {
             if (pam_auth($user, $currpass, $error, false)) {
                 if (pam_chpass($user, $currpass, $newpass)) {
                     return PASSWORD_SUCCESS;

@@ -7,13 +7,13 @@
  * It's clickable interface which operates on text scripts and communicates
  * with server using managesieve protocol. Adds Filters tab in Settings.
  *
- * @version 5.0
+ * @version @package_version@
  * @author Aleksander Machniak <alec@alec.pl>
  *
  * Configuration (see config.inc.php.dist)
  *
- * Copyright (C) 2008-2011, The Roundcube Dev Team
- * Copyright (C) 2011, Kolab Systems AG
+ * Copyright (C) 2008-2012, The Roundcube Dev Team
+ * Copyright (C) 2011-2012, Kolab Systems AG
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2
@@ -27,8 +27,6 @@
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- *
- * $Id$
  */
 
 class managesieve extends rcube_plugin
@@ -64,8 +62,9 @@ class managesieve extends rcube_plugin
         "x-beenthere",
     );
 
-    const VERSION = '5.2';
+    const VERSION  = '6.2';
     const PROGNAME = 'Roundcube (Managesieve)';
+    const PORT     = 4190;
 
 
     function init()
@@ -111,16 +110,16 @@ class managesieve extends rcube_plugin
     function mail_task_handler()
     {
         // use jQuery for popup window
-        $this->require_plugin('jqueryui'); 
+        $this->require_plugin('jqueryui');
 
         // include js script and localization
         $this->init_ui();
 
         // include styles
-        $skin = $this->rc->config->get('skin');
-        if (!file_exists($this->home."/skins/$skin/managesieve_mail.css"))
-            $skin = 'default';
-        $this->include_stylesheet("skins/$skin/managesieve_mail.css");
+        $skin_path = $this->local_skin_path();
+        if (is_file($this->home . "/$skin_path/managesieve_mail.css")) {
+            $this->include_stylesheet("$skin_path/managesieve_mail.css");
+        }
 
         // add 'Create filter' item to message menu
         $this->api->add_content(html::tag('li', null, 
@@ -201,18 +200,33 @@ class managesieve extends rcube_plugin
         $include_path .= ini_get('include_path');
         set_include_path($include_path);
 
-        $host = rcube_parse_host($this->rc->config->get('managesieve_host', 'localhost'));
-        $port = $this->rc->config->get('managesieve_port', 2000);
+        // Get connection parameters
+        $host = $this->rc->config->get('managesieve_host', 'localhost');
+        $port = $this->rc->config->get('managesieve_port');
+        $tls  = $this->rc->config->get('managesieve_usetls', false);
 
+        $host = rcube_parse_host($host);
         $host = rcube_idn_to_ascii($host);
+
+        // remove tls:// prefix, set TLS flag
+        if (($host = preg_replace('|^tls://|i', '', $host, 1, $cnt)) && $cnt) {
+            $tls = true;
+        }
+
+        if (empty($port)) {
+            $port = getservbyname('sieve', 'tcp');
+            if (empty($port)) {
+                $port = self::PORT;
+            }
+        }
 
         $plugin = $this->rc->plugins->exec_hook('managesieve_connect', array(
             'user'      => $_SESSION['username'],
             'password'  => $this->rc->decrypt($_SESSION['password']),
             'host'      => $host,
             'port'      => $port,
+            'usetls'    => $tls,
             'auth_type' => $this->rc->config->get('managesieve_auth_type'),
-            'usetls'    => $this->rc->config->get('managesieve_usetls', false),
             'disabled'  => $this->rc->config->get('managesieve_disabled_extensions'),
             'debug'     => $this->rc->config->get('managesieve_debug', false),
             'auth_cid'  => $this->rc->config->get('managesieve_auth_cid'),
@@ -525,9 +539,37 @@ class managesieve extends rcube_plugin
         // Init plugin and handle managesieve connection
         $error = $this->managesieve_start();
 
-        // filters set add action
-        if (!empty($_POST['_newset'])) {
+        // get request size limits (#1488648)
+        $max_post = max(array(
+            ini_get('max_input_vars'),
+            ini_get('suhosin.request.max_vars'),
+            ini_get('suhosin.post.max_vars'),
+        ));
+        $max_depth = max(array(
+            ini_get('suhosin.request.max_array_depth'),
+            ini_get('suhosin.post.max_array_depth'),
+        ));
 
+        // check request size limit
+        if ($max_post && count($_POST, COUNT_RECURSIVE) >= $max_post) {
+            rcube::raise_error(array(
+                'code' => 500, 'type' => 'php',
+                'file' => __FILE__, 'line' => __LINE__,
+                'message' => "Request size limit exceeded (one of max_input_vars/suhosin.request.max_vars/suhosin.post.max_vars)"
+                ), true, false);
+            $this->rc->output->show_message('managesieve.filtersaveerror', 'error');
+        }
+        // check request depth limits
+        else if ($max_depth && count($_POST['_header']) > $max_depth) {
+            rcube::raise_error(array(
+                'code' => 500, 'type' => 'php',
+                'file' => __FILE__, 'line' => __LINE__,
+                'message' => "Request size limit exceeded (one of suhosin.request.max_array_depth/suhosin.post.max_array_depth)"
+                ), true, false);
+            $this->rc->output->show_message('managesieve.filtersaveerror', 'error');
+        }
+        // filters set add action
+        else if (!empty($_POST['_newset'])) {
             $name       = get_input_value('_name', RCUBE_INPUT_POST, true);
             $copy       = get_input_value('_copy', RCUBE_INPUT_POST, true);
             $from       = get_input_value('_from', RCUBE_INPUT_POST);
@@ -624,6 +666,14 @@ class managesieve extends rcube_plugin
             $days           = get_input_value('_action_days', RCUBE_INPUT_POST);
             $subject        = get_input_value('_action_subject', RCUBE_INPUT_POST, true);
             $flags          = get_input_value('_action_flags', RCUBE_INPUT_POST);
+            $varnames       = get_input_value('_action_varname', RCUBE_INPUT_POST);
+            $varvalues      = get_input_value('_action_varvalue', RCUBE_INPUT_POST);
+            $varmods        = get_input_value('_action_varmods', RCUBE_INPUT_POST);
+            $notifyaddrs    = get_input_value('_action_notifyaddress', RCUBE_INPUT_POST);
+            $notifybodies   = get_input_value('_action_notifybody', RCUBE_INPUT_POST);
+            $notifymessages = get_input_value('_action_notifymessage', RCUBE_INPUT_POST);
+            $notifyfrom     = get_input_value('_action_notifyfrom', RCUBE_INPUT_POST);
+            $notifyimp      = get_input_value('_action_notifyimportance', RCUBE_INPUT_POST);
 
             // we need a "hack" for radiobuttons
             foreach ($sizeitems as $item)
@@ -785,7 +835,7 @@ class managesieve extends rcube_plugin
 
                 case 'fileinto':
                 case 'fileinto_copy':
-                    $mailbox = $this->strip_value($mailboxes[$idx]);
+                    $mailbox = $this->strip_value($mailboxes[$idx], false, false);
                     $this->form['actions'][$i]['target'] = $this->mod_mailbox($mailbox, 'in');
                     if ($type == 'fileinto_copy') {
                         $type = 'fileinto';
@@ -857,6 +907,42 @@ class managesieve extends rcube_plugin
                         $this->errors['actions'][$i]['reason'] = $this->gettext('cannotbeempty');
                     if ($this->form['actions'][$i]['days'] && !preg_match('/^[0-9]+$/', $this->form['actions'][$i]['days']))
                         $this->errors['actions'][$i]['days'] = $this->gettext('forbiddenchars');
+                    break;
+
+                case 'set':
+                    $this->form['actions'][$i]['name'] = $varnames[$idx];
+                    $this->form['actions'][$i]['value'] = $varvalues[$idx];
+                    foreach ((array)$varmods[$idx] as $v_m) {
+                        $this->form['actions'][$i][$v_m] = true;
+                    }
+
+                    if (empty($varnames[$idx])) {
+                        $this->errors['actions'][$i]['name'] = $this->gettext('cannotbeempty');
+                    }
+                    else if (!preg_match('/^[0-9a-z_]+$/i', $varnames[$idx])) {
+                        $this->errors['actions'][$i]['name'] = $this->gettext('forbiddenchars');
+                    }
+
+                    if (!isset($varvalues[$idx]) || $varvalues[$idx] === '') {
+                        $this->errors['actions'][$i]['value'] = $this->gettext('cannotbeempty');
+                    }
+                    break;
+
+                case 'notify':
+                    if (empty($notifyaddrs[$idx])) {
+                        $this->errors['actions'][$i]['address'] = $this->gettext('cannotbeempty');
+                    }
+                    else if (!check_email($notifyaddrs[$idx])) {
+                        $this->errors['actions'][$i]['address'] = $this->gettext('noemailwarning');
+                    }
+                    if (!empty($notifyfrom[$idx]) && !check_email($notifyfrom[$idx])) {
+                        $this->errors['actions'][$i]['from'] = $this->gettext('noemailwarning');
+                    }
+                    $this->form['actions'][$i]['address'] = $notifyaddrs[$idx];
+                    $this->form['actions'][$i]['body'] = $notifybodies[$idx];
+                    $this->form['actions'][$i]['message'] = $notifymessages[$idx];
+                    $this->form['actions'][$i]['from'] = $notifyfrom[$idx];
+                    $this->form['actions'][$i]['importance'] = $notifyimp[$idx];
                     break;
                 }
 
@@ -1006,9 +1092,9 @@ class managesieve extends rcube_plugin
 
         $this->rc->output->set_env('contentframe', $attrib['name']);
         $this->rc->output->set_env('blankpage', $attrib['src'] ?
-        $this->rc->output->abs_url($attrib['src']) : 'program/blank.gif');
+        $this->rc->output->abs_url($attrib['src']) : 'program/resources/blank.gif');
 
-        return html::tag('iframe', $attrib);
+        return $this->rc->output->frame($attrib);
     }
 
     function filterset_form($attrib)
@@ -1456,6 +1542,12 @@ class managesieve extends rcube_plugin
             $select_action->add(Q($this->gettext('addflags')), 'addflag');
             $select_action->add(Q($this->gettext('removeflags')), 'removeflag');
         }
+        if (in_array('variables', $this->exts)) {
+            $select_action->add(Q($this->gettext('setvariable')), 'set');
+        }
+        if (in_array('enotify', $this->exts) || in_array('notify', $this->exts)) {
+            $select_action->add(Q($this->gettext('notify')), 'notify');
+        }
         $select_action->add(Q($this->gettext('rulestop')), 'stop');
 
         $select_type = $action['type'];
@@ -1519,6 +1611,70 @@ class managesieve extends rcube_plugin
         }
         $out .= '</div>';
 
+        // set variable
+        $set_modifiers = array(
+            'lower',
+            'upper',
+            'lowerfirst',
+            'upperfirst',
+            'quotewildcard',
+            'length'
+        );
+
+        $out .= '<div id="action_set' .$id.'" style="display:' .($action['type']=='set' ? 'inline' : 'none') .'">';
+        $out .= '<span class="label">' .Q($this->gettext('setvarname')) . '</span><br />'
+            .'<input type="text" name="_action_varname['.$id.']" id="action_varname'.$id.'" '
+            .'value="' . Q($action['name']) . '" size="35" '
+            . $this->error_class($id, 'action', 'name', 'action_varname') .' />';
+        $out .= '<br /><span class="label">' .Q($this->gettext('setvarvalue')) . '</span><br />'
+            .'<input type="text" name="_action_varvalue['.$id.']" id="action_varvalue'.$id.'" '
+            .'value="' . Q($action['value']) . '" size="35" '
+            . $this->error_class($id, 'action', 'value', 'action_varvalue') .' />';
+        $out .= '<br /><span class="label">' .Q($this->gettext('setvarmodifiers')) . '</span><br />';
+        foreach ($set_modifiers as $j => $s_m) {
+            $s_m_id = 'action_varmods' . $id . $s_m;
+            $out .= sprintf('<input type="checkbox" name="_action_varmods[%s][]" value="%s" id="%s"%s />%s<br>',
+                $id, $s_m, $s_m_id,
+                (array_key_exists($s_m, (array)$action) && $action[$s_m] ? ' checked="checked"' : ''),
+                Q($this->gettext('var' . $s_m)));
+        }
+        $out .= '</div>';
+
+        // notify
+        // skip :options tag - not used by the mailto method
+        $out .= '<div id="action_notify' .$id.'" style="display:' .($action['type']=='notify' ? 'inline' : 'none') .'">';
+        $out .= '<span class="label">' .Q($this->gettext('notifyaddress')) . '</span><br />'
+            .'<input type="text" name="_action_notifyaddress['.$id.']" id="action_notifyaddress'.$id.'" '
+            .'value="' . Q($action['address']) . '" size="35" '
+            . $this->error_class($id, 'action', 'address', 'action_notifyaddress') .' />';
+        $out .= '<br /><span class="label">'. Q($this->gettext('notifybody')) .'</span><br />'
+            .'<textarea name="_action_notifybody['.$id.']" id="action_notifybody' .$id. '" '
+            .'rows="3" cols="35" '. $this->error_class($id, 'action', 'method', 'action_notifybody') . '>'
+            . Q($action['body'], 'strict', false) . "</textarea>\n";
+        $out .= '<br /><span class="label">' .Q($this->gettext('notifysubject')) . '</span><br />'
+            .'<input type="text" name="_action_notifymessage['.$id.']" id="action_notifymessage'.$id.'" '
+            .'value="' . Q($action['message']) . '" size="35" '
+            . $this->error_class($id, 'action', 'message', 'action_notifymessage') .' />';
+        $out .= '<br /><span class="label">' .Q($this->gettext('notifyfrom')) . '</span><br />'
+            .'<input type="text" name="_action_notifyfrom['.$id.']" id="action_notifyfrom'.$id.'" '
+            .'value="' . Q($action['from']) . '" size="35" '
+            . $this->error_class($id, 'action', 'from', 'action_notifyfrom') .' />';
+        $importance_options = array(
+            3 => 'notifyimportancelow',
+            2 => 'notifyimportancenormal',
+            1 => 'notifyimportancehigh'
+        );
+        $select_importance = new html_select(array(
+            'name' => '_action_notifyimportance[' . $id . ']',
+            'id' => '_action_notifyimportance' . $id,
+            'class' => $this->error_class($id, 'action', 'importance', 'action_notifyimportance')));
+        foreach ($importance_options as $io_v => $io_n) {
+            $select_importance->add(Q($this->gettext($io_n)), $io_v);
+        }
+        $out .= '<br /><span class="label">' . Q($this->gettext('notifyimportance')) . '</span><br />';
+        $out .= $select_importance->show($action['importance'] ? $action['importance'] : 2);
+        $out .= '</div>';
+
         // mailbox select
         if ($action['type'] == 'fileinto')
             $mailbox = $this->mod_mailbox($action['target'], 'out');
@@ -1552,16 +1708,16 @@ class managesieve extends rcube_plugin
 
     private function genid()
     {
-        $result = preg_replace('/[^0-9]/', '', microtime(true));
-        return $result;
+        return preg_replace('/[^0-9]/', '', microtime(true));
     }
 
-    private function strip_value($str, $allow_html=false)
+    private function strip_value($str, $allow_html = false, $trim = true)
     {
-        if (!$allow_html)
+        if (!$allow_html) {
             $str = strip_tags($str);
+        }
 
-        return trim($str);
+        return $trim ? trim($str) : $str;
     }
 
     private function error_class($id, $type, $target, $elem_prefix='')
@@ -1691,6 +1847,12 @@ class managesieve extends rcube_plugin
             // Get active script name
             if ($active = $this->sieve->get_active()) {
                 $this->active = array($active);
+            }
+
+            // Hide scripts from config
+            $exceptions = $this->rc->config->get('managesieve_filename_exceptions');
+            if (!empty($exceptions)) {
+                $this->list = array_diff($this->list, (array)$exceptions);
             }
         }
 

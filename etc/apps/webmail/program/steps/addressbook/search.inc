@@ -19,9 +19,6 @@
  | Author: Thomas Bruederli <roundcube@gmail.com>                        |
  | Author: Aleksander Machniak <machniak@kolabsys.com>                   |
  +-----------------------------------------------------------------------+
-
- $Id: search.inc 456 2007-01-10 12:34:33Z thomasb $
-
 */
 
 if ($RCMAIL->action == 'search-create') {
@@ -148,6 +145,7 @@ function rcmail_contact_search()
     $search_set = array();
     $records    = array();
     $sort_col   = $RCMAIL->config->get('addressbook_sort_col', 'name');
+    $afields = $RCMAIL->config->get('contactlist_fields');
 
     foreach ($sources as $s) {
         $source = $RCMAIL->get_address_book($s['id']);
@@ -182,11 +180,11 @@ function rcmail_contact_search()
         }
 
         // get records
-        $result = $source->list_records(array('name', 'firstname', 'surname', 'email'));
+        $result = $source->list_records($afields);
 
         while ($row = $result->next()) {
             $row['sourceid'] = $s['id'];
-            $key = rcmail_contact_key($row, $sort_col);
+            $key = rcube_addressbook::compose_contact_key($row, $sort_col);
             $records[$key] = $row;
         }
 
@@ -302,8 +300,12 @@ function rcmail_contact_search_form($attrib)
             $label    = isset($colprop['label']) ? $colprop['label'] : rcube_label($col);
             $category = $colprop['category'] ? $colprop['category'] : 'other';
 
-            if ($ftype == 'text')
+            // load jquery UI datepicker for date fields 
+            if ($colprop['type'] == 'date')
+                $colprop['class'] .= ($colprop['class'] ? ' ' : '') . 'datepicker';
+            else if ($ftype == 'text')
                 $colprop['size'] = $i_size;
+
 
             $content  = html::div('row', html::div('contactfieldlabel label', Q($label))
                 . html::div('contactfieldcontent', rcmail_get_edit_field('search_'.$col, '', $colprop, $ftype)));

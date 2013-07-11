@@ -4,7 +4,7 @@
  * configures general layout
  * for detailed layout configuration please refer to the css files
  *
- * @package PhpMyAdmin-theme
+ * @package    PhpMyAdmin-theme
  * @subpackage Original
  */
 
@@ -12,7 +12,7 @@
  * navi frame
  */
 // navi frame width
-$GLOBALS['cfg']['NaviWidth']                = 200;
+$GLOBALS['cfg']['NaviWidth']                = 240;
 
 // foreground (text) color for the navi frame
 $GLOBALS['cfg']['NaviColor']                = '#000000';
@@ -40,7 +40,8 @@ $GLOBALS['cfg']['BrowsePointerColor']       = '#000000';
 // background of the pointer in browse mode
 $GLOBALS['cfg']['BrowsePointerBackground']  = '#CCFFCC';
 
-// foreground (text) color of the marker (visually marks row by clicking on it) in browse mode
+// foreground (text) color of the marker (visually marks row by clicking on it)
+// in browse mode
 $GLOBALS['cfg']['BrowseMarkerColor']        = '#000000';
 
 // background of the marker (visually marks row by clicking on it) in browse mode

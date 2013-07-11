@@ -1,4 +1,5 @@
 <?php
+/* vim: set expandtab sw=4 ts=4 sts=4: */
 /**
  * Functions used to generate GIS visualizations.
  *
@@ -72,7 +73,7 @@ function PMA_GIS_modifyQuery($sql_query, $visualizationSettings)
                 }
             }
         }
-        // If select cluase is *
+        // If select clause is *
     } else {
         // If label column is chosen add it to the query
         if (isset($visualizationSettings['labelColumn'])
