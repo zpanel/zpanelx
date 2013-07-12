@@ -245,7 +245,7 @@
                     <td><input name="inNewPhone" type="text" id="inNewPhone" size="20" maxlength="50" value="<@ FormPhone @>" /></td>
                 </tr>
                 <tr>
-                    <th><: Send welcome email? :></th>
+                    <th><: Send welcome email? :>:</th>
                     <td><input name="inSWE" type="checkbox" id="inSWE" value="1" checked="checked" /></td>
                 </tr>
                 <tr>
