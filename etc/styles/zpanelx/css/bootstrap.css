@@ -1270,7 +1270,7 @@ input[type="color"] {
 input,
 select,
 textarea {
-  width: 100%;
+  width: 85%;
 }
 
 input[type="file"],
