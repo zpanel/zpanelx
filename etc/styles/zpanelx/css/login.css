@@ -1,151 +1,146 @@
-/* Login Page Stylesheet */
+/* Theme Styles */
 
-html, body {
-  background-color: #fff;
-  font-family: 'Ubuntu', sans-serif;
-}
+/* Grey (Bootstrap Default) */
 a:link, a:visited {
-  color:#5fbf5e;
-  text-decoration:none;
+	color:#999;
+	text-decoration:none;
 }
 a:hover, a:active {
-  color:#5fbf5e;
-  text-decoration:underline;
+	color:#000;
+	text-decoration:none;
+}
+.powered a:link, .powered a:visited {
+	color:#999;
+	text-decoration:none;
+}
+.powered a:hover, .powered a:active {
+	color:#000;
+	text-decoration:none;
+}
+.panel {
+	background-color:#fff;
+	border: 1px solid #ddd;
+}
+.panel-heading {
+	background-color: #f5f5f5;
+	border-bottom: 1px solid #ddd;
+}
+.logo {
+  background-image: url("../img/zplogin-black.png");
+}
+.panel-footer {
+	background-color: #f5f5f5;
+	border-top: 1px solid #ddd;
 }
 
-.loginwrapper {
-  background-color: #fff;
-  height: 370px;
-  width: 400px;
-  padding:5px;
-  position: absolute;
-  top:0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
+/* Black
+a:link, a:visited {
+	color:#777;
+	text-decoration:none;
 }
-
-.loginform {
-  margin: 29px 0 0 0;
+a:hover, a:active {
+	color:#fff;
+	text-decoration:none;
 }
-
-.loginwrapper .form-horizontal .control-label{
-  float: left;
-  width: 140px;
-  padding: 5px 5px 0 0;
-  text-align:right;
+.powered a:link, .powered a:visited {
+	color:#777;
+	text-decoration:none;
 }
-.loginwrapper .form-horizontal .controls {
-  display: inline-block;
-  padding-left: 20px;
-  margin-left: 130px;
-  margin-left: 0;
-  text-align:left;
+.powered a:hover, .powered a:active {
+	color:#000;
+	text-decoration:none;
 }
-
-.logcheckbox {
-  position:relative;
-  bottom:10px;
-  right:10px;
+.panel {
+	background-color:#fff;
+	border: 2px solid #333;
 }
-
-.vbox {
-  text-align:center;
-  padding-top:10px;
+.panel-heading {
+	background-color: #333;
+	border-bottom: 1px solid #333;
 }
-
-.loginbtm {
-  background: rgb(239,239,239); /* Old browsers */
-  padding:20px 0;
-  -webkit-border-radius: 0px 0px 5px 5px;
-  border-radius: 0px 0px 5px 5px;
-  border-top:1px solid #ccc;
+.logo {
+  background-image: url("../img/zplogin-white.png");
 }
-.loginbtm > div {
-  display: inline-block;
-  width: 44%;
-  text-align: right;
+.panel-footer {
+	background-color: #333;
+	border-top: 1px solid #333;
 }
-.login-head img{
-    width: 226px;
-    float: none;
+*/
+
+/* Blue
+a:link, a:visited {
+	color:#999;
+	text-decoration:none;
 }
-.login-head {
-    margin: 0;
+a:hover, a:active {
+	color:#000;
+	text-decoration:none;
 }
-.login-panel {
-    padding: 0;
+.powered a:link, .powered a:visited {
+	color:#999;
+	text-decoration:none;
 }
-.alert {
-  width: 90%;
-  margin: 20px;
+.powered a:hover, .powered a:active {
+	color:#000;
+	text-decoration:none;
 }
-
-/* PrettyCheckable Stylesheet */
-.clearfix:before, .clearfix:after {
-  content: "";
-  display: table;
+.panel {
+	background-color:#fff;
+	border: 2px solid #3B5998;
 }
-
-.clearfix:after {clear: both;}
-
-.clearfix {*zoom: 1;}
-
-.prettycheckbox,
-.prettyradio {
-    display: inline-block;
-    padding:0;
-    margin:0;
+.panel-heading {
+	background-color: #3B5998;
+	border-bottom: 1px solid #3B5998;
 }
-
-.prettycheckbox a,
-.prettyradio a{
-    width: 30px;
-    height: 30px;
-    background: url(prettyCheckable-blue.png) top left no-repeat;
-    display: block;
-    float: left;
-    cursor: pointer;
-    margin:0;
+.logo {
+  background-image: url("../img/zplogin-white.png");
 }
-
-.prettycheckbox.green a,
-.prettyradio.green a{ background-image: url(prettyCheckable-green.png);}
-
-.prettyradio a {background-position: 0 -120px;}
-
-.prettycheckbox a:focus,
-.prettyradio a:focus {outline: 0 none;}
-
-.prettycheckbox a:focus{background-position: 0 -30px;}
-.prettyradio a:focus{background-position: 0 -150px;}
-
-.prettycheckbox a.checked{ background-position: 0 -60px; }
-.prettyradio a.checked { background-position: 0 -180px; }
-
-.prettycheckbox a.checked:focus{ background-position: 0 -90px; }
-.prettyradio a.checked:focus { background-position: 0 -210px; }
-
-.prettycheckbox label,
-.prettyradio label {
-  display: block;
-  float: left;
-  margin: 6px 5px;
-  cursor: pointer;
+.panel-footer {
+	background-color: #3B5998;
+	border-top: 1px solid #3B5998;
 }
+*/
 
-.prettycheckbox.disabled a,
-.prettyradio.disabled a,
-.prettycheckbox.disabled label,
-.prettyradio.disabled label{
-  cursor:not-allowed;
+/* Core Styles */
+.wrapper {
+	position: fixed;
+	left: 50%;
+	top: 45%;
+	height: 280px;
+	margin-top: -140px;
+	width: 400px;
+	margin-left: -200px;
 }
-
-.prettycheckbox.disabled a {
-  background-position: 0 -240px;
+.panel {
+	padding: 0;
+	overflow: hidden;
 }
-
-.prettyradio.disabled a {
-  background-position: 0 -270px;
+.alerts {
+	padding: 0 15px;
+}
+.alerts>div {
+	margin: 15px 0 0 0;
+}
+.panel-heading {
+	margin: 0;
+	padding: 15px 0;
+	font-size: 0;
+}
+.logo {
+	display: inline-block;
+	width: 226px;
+	height: 40px;
+}
+.panel-content {
+	padding: 15px;
+}
+.checkbox {
+	margin-bottom: 0;
+}
+.panel-footer {
+	margin: 0;
+	padding: 15px 10%;
+	line-height: 35px;
+	vertical-align: center;
+	font-weight: bold;
 }

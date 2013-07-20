@@ -2,8 +2,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Control Panel - Login</title>
-    <meta name="viewport" content="width=device-width">
+    <title>ZPanel > Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
 
     <!-- Favicons -->
@@ -24,19 +24,9 @@
     <meta name="msapplication-TileColor" content="#222222">
     <meta name="msapplication-TileImage" content="/etc/styles/zpanelx/img/ico/fav144.png">
 
-    <!-- styles -->
-    <link href="/etc/styles/zpanelx/css/bootstrap.css" rel="stylesheet">
-    <link href="/etc/styles/zpanelx/css/style.css" rel="stylesheet">
-    <link href="/etc/styles/zpanelx/css/login.css" rel="stylesheet">
-
-
     <!-- HTML5 shim for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="/etc/styles/zpanelx/js/html5shiv.js"></script>
-    <![endif]-->
-    <script>
-        document.write('<style type="text/css">body {display:none;}<\/style>');
-    </script>
+    <!--[if lt IE 9]><script src="/etc/styles/zpanelx/js/html5shiv.js"></script><![endif]-->
+
     <!-- Anti ClickJacking Protection! -->
     <style id="antiClickjack">body{display:none !important;}</style>
     <script>
@@ -48,215 +38,176 @@
         }
     </script>
 
-<style type="text/css">
-
-</style>
-
-
+    <!-- Styles -->
+    <link href="/etc/styles/zpanelx/css/bootstrap.css" rel="stylesheet">
+    <link href="/etc/styles/zpanelx/css/login.css" rel="stylesheet">
 </head>
-<body>
-    <div class="loginwrapper">
 
+<body>     
 
-
-
-<div class="panel login-panel">
-    <div class="panel-heading login-head">
-        <img src="/etc/styles/zpanelx/images/zplogo_v9.png">
-    </div>
-    <div class="panel-content form-horizontaL">
-
-
-        <?php
-        if (isset($_GET['invalidlogin'])) {
-        echo '
-        <div class="alert alert-danger fade in">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        Invalid Username or Password!
-        </div>';
-        }
-        if (isset($_GET['loggedout'])) {
-        echo '
-        <div class="alert alert-success fade in">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        Logout Successful!
-        </div>';
-        }
-        if(isset($_GET['sessionIssue'])){
-        echo '
-        <div class="alert alert-danger fade in">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        You have been logged out, please login again.
-        </div>';
-        }
-        if (isset($_GET['passwordreset'])) {
-        echo '
-        <div class="alert alert-success fade in">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        Your password has been reset!
-        </div>';
-        }
-        //if (runtime_sessionsecurity::checkProxy()) {
-        //  echo '
-        //  <div class="alert alert-info fade in logalert">
-        //    <button type="button" class="close" data-dismiss="alert">&times;</button>
-        //    It seems you are behind a proxy or on a webserver. Try disabling Session Security and logging in again.
-        //  </div>';
-        //}
-        ?>
-
-            <!-- Reset Password Form -->
-            <?php if (isset($_GET['resetkey'])) { ?>
-            <form action="<?php echo $_SERVER['PHP_SELF']; ?>?resetkey=<?php echo $_GET['resetkey']; ?>" method="post" name="frmZConfirm" id="frmZConfirm" class="form-horizontal loginform">
-                <div class="loginmid">
-                    <div class="control-group">
-                        <label class="control-label" for="inputNewPass1">New Password:</label>
-                        <div class="controls">
-                            <input type="password" class="input-medium" id="inputNewPass1" name="inConfEmail" placeholder="New Password" required>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="inputNewPass2">Confirm Password:</label>
-                        <div class="controls">
-                            <input type="password" class="input-medium" id="inputNewPass2" name="inConfEmail" placeholder="Confirm Password" required>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="inPassword">EMail:</label>
-                        <div class="controls">
-                            <input type="text" class="input-medium" id="inPassword" name="inConfEmail" placeholder="Email" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="loginbtm">
-                    <div>
-                        <!-- <a href="javascript:void(0);" id="backtologin2">Back To Login</a> -->
-                    </div>
-                    <div>
-                        <button type="submit" class="btn btn-primary" name="sublogin2" value="LogIn">Submit</button>
-                    </div>
-                </div>
-                <?php echo runtime_csfr::Token(); ?>
-            </form>
-            <!-- End Reset Password Form -->
-
-
-            <?php } else {?>
-
-            <!-- Forgot Password Form -->
-            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="frmZForgot" id="frmZForgot" class="form-horizontal loginform" style="display: none;">
-                <div class="loginmid">
-                    <div class="control-group">
-                        <label class="control-label" for="inputEmail">
-                            Email:
-                        </label>
-                        <div class="controls">
-                            <input type="text" class="input-medium" id="inputEmail" name="inForgotPassword" placeholder="Email" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="loginbtm">
-                    <div>
-                        <a href="javascript:void(0);" id="backtologin">Back To Login</a>
-                    </div>
-                    <div>
-                        <button type="submit" class="btn btn-primary" name="sublogin2" value="LogIn">Submit</button>
-                    </div>
-                </div>
-                <?php echo runtime_csfr::Token(); ?>
-            </form>
-            <!-- End Forgot Password Form -->
-
-
-
-            <!-- Login Form -->
-            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="frmZLogin" id="frmZLogin" class="form-horizontal loginform">
-                <div class="loginmid">
-                    <div class="control-group">
-                        <label class="control-label" for="inputUsername">Username:</label>
-                        <div class="controls">
-                            <input type="text" class="input-medium" id="inputUsername" name="inUsername" placeholder="Username" required>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="inPassword">Password:</label>
-                        <div class="controls">
-                            <input type="password" class="input-medium" id="inPassword" name="inPassword" placeholder="Password" required>
-                        </div>
-                    </div>
-                    <div class="fluid-row">
-                        <div class="controls">
-                            <label class="checkbox">
-                                <input type="checkbox" data-label="Remember Me" name="inRemember" value="1">
-                                <input type="checkbox" data-label="Enable Session Security" name="inSessionSecurity" checked>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="loginbtm">
-                    <div>
-                        <a href="javascript:void(0);" id="forgotpw">Forgot Password?</a>
-                    </div>
-                    <div>
-                        <button type="submit" class="btn btn-primary" name="sublogin2" value="LogIn">Login</button>
-                    </div>
-                </div>
-                <?php echo runtime_csfr::Token(); ?>
-            </form>
-            <!-- End Login Form -->
-
-
-
-            <?php }?>
-
-
-
-    </div><!--/panel content-->
-</div>
-
-
-        <p class="vbox">Powered By: <a href="http://www.zpanelcp.com/" target="_new">ZPanel <?php echo sys_versions::ShowZpanelVersion(); ?></a></p>
-
-    </div>
-
+<div class="wrapper">
+	<div class="panel">
+	    <div class="panel-heading text-center">
+	        <span class="logo"></span>
+	    </div>
+		    
+    	<!-- Alerts -->
+    	<div class="alerts">
+		    <?php
+		    if (isset($_GET['invalidlogin'])) {
+		    echo '
+		    <div class="alert alert-danger in">
+		        <button type="button" class="close" data-dismiss="alert">&times;</button>
+		        Invalid Username or Password!
+		    </div>';
+		    }
+		    if (isset($_GET['loggedout'])) {
+		    echo '
+		    <div class="alert alert-success in">
+		        <button type="button" class="close" data-dismiss="alert">&times;</button>
+		        Logout Successful!
+		    </div>';
+		    }
+		    if(isset($_GET['sessionIssue'])){
+		    echo '
+		    <div class="alert alert-danger in">
+		        <button type="button" class="close" data-dismiss="alert">&times;</button>
+		        You have been logged out, please login again.
+		    </div>';
+		    }
+		    if (isset($_GET['passwordreset'])) {
+		    echo '
+		    <div class="alert alert-success in">
+		        <button type="button" class="close" data-dismiss="alert">&times;</button>
+		        Your password has been reset!
+		    </div>';
+		    }
+		    ?>
+		</div>
+	    <!-- End Alerts -->   
+	    
+		<!-- Password Reset Form -->
+		<?php if (isset($_GET['resetkey'])) { ?>
+		<form action="<?php echo $_SERVER['PHP_SELF']; ?>?resetkey=<?php echo $_GET['resetkey']; ?>" method="post" name="frmZConfirm" id="frmZConfirm" class="form-horizontal">               
+	        <div class="panel-content">
+		        <div class="row">
+		            <label for="inNewPass" class="col-5 control-label">New Password</label>
+		            <div class="col-7">
+		                <input type="password" id="inNewPass" name="inNewPass" placeholder="New Password" required>
+		            </div>
+		        </div>
+		        <div class="row">
+		            <label for="inNewPass2" class="col-5 control-label">Confirm Password</label>
+		            <div class="col-7">
+		                <input type="password" id="inNewPass2" name="inNewPass2" placeholder="Confirm Password" required>
+		            </div>
+		        </div>
+		        <div class="row">
+		            <label for="inConfEmail" class="col-5 control-label">EMail</label>
+		            <div class="col-7">
+		                <input type="email" id="inConfEmail" name="inConfEmail" placeholder="EMail" required>
+		            </div>
+		        </div>
+	        </div>
+		    <div class="row panel-footer text-center">
+		        <div class="col-12">
+		            <button type="submit" name="sublogin2" class="btn btn-primary">Submit</button>
+		        </div>
+		    </div>
+		    <?php echo runtime_csfr::Token(); ?>
+		</form>
+		<!-- End Password Reset Form -->
+		
+		<?php } else {?>
+		
+		<!-- Forgot Password Form -->
+		<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="frmZForgot" id="frmZForgot" class="form-horizontal" style="display: none;">               
+			<div class="panel-content">	        
+		        <div class="row">
+		            <label for="inputEmail" class="col-3 control-label">Email</label>
+		            <div class="col-9">
+		                <input type="email" id="inputEmail" name="inForgotPassword" placeholder="Email" required>
+		            </div>
+		        </div>
+		    </div>
+		    <div class="row panel-footer">
+		        <div class="col-6">
+		            <a href="javascript:void(0);" id="load-login">Back To Login</a>
+		        </div>
+		        <div class="col-6 text-right">
+		            <button type="submit" name="sublogin2" class="btn btn-primary">Login</button>
+		        </div>
+		    </div>
+		    <?php echo runtime_csfr::Token(); ?>
+		</form>
+		<!-- End Forgot Password Form -->
+                
+		<!-- Login Form -->
+		<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="frmZLogin" id="frmZLogin" class="form-horizontal">
+		<div class="panel-content">               
+		        <div class="row">
+		            <label for="inputUsername" class="col-3 control-label">Username</label>
+		            <div class="col-9">
+		                <input type="text" id="inputUsername" name="inUsername" placeholder="Username" required>
+		            </div>
+		        </div>
+		        <div class="row">
+		            <label for="inputPassword" class="col-3 control-label">Password</label>
+		            <div class="col-9">
+		                <input type="password" id="inPassword" name="inPassword" placeholder="Password" required>
+		                <div class="checkbox">
+		                    <label>
+		                    <input type="checkbox" name="inRemember" value="1" checked> Remember Me
+		                    </label>
+		                </div>
+		            </div>
+		        </div>
+	        </div>
+		    <div class="row panel-footer">
+		        <div class="col-6">
+		            <a href="javascript:void(0);" id="load-pw">Forgot Password?</a>
+		        </div>
+		        <div class="col-6 text-right">
+		            <button type="submit" name="sublogin2" class="btn btn-primary">Login</button>
+		        </div>
+		    </div>
+		    <?php echo runtime_csfr::Token(); ?>
+		</form>
+		<!-- End Login Form -->
+		
+		<?php }?>
+			
+	</div> <!-- /panel -->
+	
+	<div class="col-12 text-center powered">
+		Powered By: <a href="http://www.zpanelcp.com/" target="_new">ZPanel <?php echo sys_versions::ShowZpanelVersion(); ?></a>
+	</div>
+	
+</div> <!-- /wrapper -->
 
     <!-- javascript
     ================================================== -->
     <script src="/etc/styles/zpanelx/js/jquery.js"></script>
-    <script src="/etc/styles/zpanelx/js/prettyCheckable.js"></script>
-    <!-- Pretty Checkable @ https://github.com/arthurgouveia/prettyCheckable -->
-    <script>
-        $().ready(function() {
-            $('input:checkbox').prettyCheckable({
-                color: 'green',
-                customClass: 'logcheckbox'
-            });
-        });
-    </script>
-    <!-- Login Form Transitions -->
-    <script>
-        $('#forgotpw').click(function() {
-            $('#frmZLogin').slideUp('slow', function() {
-                $('#frmZForgot').slideDown("slow");
-            });
-        });
-        $('#backtologin').click(function() {
-            $('#frmZForgot').slideUp('slow', function() {
-                $('#frmZLogin').slideDown("slow");
-            });
-        });
-        $('#backtologin2').click(function() {
-            $('#frmZConfirm').slideUp('slow', function() {
-                $('#frmZLogin').slideDown("slow");
-            });
-        });
+    <script src="/etc/styles/zpanelx/js/bootstrap-alert.js"></script>
 
-    </script>
-    <!-- Page Fade In After Load -->
     <script>
-        $(window).load(function() {
-            $("body").fadeIn();
+        //Login Form Transitions
+        $('#load-pw').click(function() {
+            $('#frmZLogin').slideUp('slow', function() {
+            	$('#frmZForgot').slideDown('slow');
+            });
+        });
+        $('#load-login').click(function() {
+            $('#frmZForgot').slideUp('slow', function() {
+                $('#frmZLogin').slideDown('slow');
+            });
+        });
+        
+        //Clear URL After Alert Acknowledge
+        $('.close').click(function() {
+            window.history.replaceState(null, null, 'index.php');
         });
     </script>
+
 </body>
 </html>
