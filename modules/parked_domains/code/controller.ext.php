@@ -3,7 +3,7 @@
 /**
  *
  * ZPanel - A Cross-Platform Open-Source Web Hosting Control panel.
- * 
+ *
  * @package ZPanel
  * @version $Id$
  * @author Bobby Allen - ballen@zpanelcp.com
@@ -91,8 +91,8 @@ class module_controller {
     static function ExecuteDeleteParkedDomain($id) {
         global $zdbh;
         runtime_hook::Execute('OnBeforeDeleteParkedDomain');
-        $sql = $zdbh->prepare("UPDATE x_vhosts 
-							   SET vh_deleted_ts=:time 
+        $sql = $zdbh->prepare("UPDATE x_vhosts
+							   SET vh_deleted_ts=:time
 							   WHERE vh_id_pk=:id");
         $sql->bindParam(':id', $id);
         $time = time();
@@ -166,7 +166,7 @@ class module_controller {
         $sql = "SELECT COUNT(*) FROM x_vhosts WHERE vh_name_vc=:domain AND vh_deleted_ts IS NULL";
         $numrows = $zdbh->prepare($sql);
         $numrows->bindParam(':domain', $domain);
-        
+
         if ($numrows->execute()) {
             if ($numrows->fetchColumn() > 0) {
                 self::$alreadyexists = TRUE;
@@ -276,7 +276,7 @@ class module_controller {
 
     static function getCreateParkedDomain() {
         $currentuser = ctrl_users::GetUserDetail();
-        return ($currentuser['parkeddomainquota'] < 0) or //-1 = unlimited 
+        return ($currentuser['parkeddomainquota'] < 0) or //-1 = unlimited
                ($currentuser['parkeddomainquota'] > ctrl_users::GetQuotaUsages('parkeddomains', $currentuser['userid']));
     }
 
@@ -346,7 +346,14 @@ class module_controller {
 
     static function getModuleIcon() {
         global $controller;
-        return '/modules/' . $controller->GetControllerRequest('URL', 'module') . '/assets/icon.png';
+        $mod_folder = $controller->GetControllerRequest('URL', 'module');
+        // Check is Userland Theme has a Module Icon Override
+        if (file_exists('etc/styles/' . ui_template::GetUserTemplate() . '/images/'.$mod_folder.'/assets/icon.png')) {
+            $module_icon = 'etc/styles/' . ui_template::GetUserTemplate() . '/images/'.$mod_folder.'/assets/icon.png';
+        } else {
+            $module_icon = 'modules/' . $mod_folder . '/assets/icon.png';
+        }
+        return $module_icon;
     }
 
     static function getModuleDesc() {
@@ -362,7 +369,7 @@ class module_controller {
             $used = ctrl_users::GetQuotaUsages('parkeddomains', $currentuser['userid']);
             $free = max($maximum - $used, 0);
             return  '<img src="etc/lib/pChart2/zpanel/z3DPie.php?score=' . $free . '::' . $used
-                  . '&labels=Free: ' . $free . '::Used: ' . $used 
+                  . '&labels=Free: ' . $free . '::Used: ' . $used
                   . '&legendfont=verdana&legendfontsize=8&imagesize=240::190&chartsize=120::90&radius=100&legendsize=150::160"'
                   . ' alt="'.ui_language::translate('Pie chart').'/>';
         }

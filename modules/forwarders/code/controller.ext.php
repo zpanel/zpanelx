@@ -3,7 +3,7 @@
 /**
  *
  * ZPanel - A Cross-Platform Open-Source Web Hosting Control panel.
- * 
+ *
  * @package ZPanel
  * @version $Id$
  * @author Bobby Allen - ballen@zpanelcp.com
@@ -307,7 +307,7 @@ class module_controller {
             $used = ctrl_users::GetQuotaUsages('forwarders', $currentuser['userid']);
             $free = max($maximum - $used, 0);
             return  '<img src="etc/lib/pChart2/zpanel/z3DPie.php?score=' . $free . '::' . $used
-                  . '&labels=Free: ' . $free . '::Used: ' . $used 
+                  . '&labels=Free: ' . $free . '::Used: ' . $used
                   . '&legendfont=verdana&legendfontsize=8&imagesize=240::190&chartsize=120::90&radius=100&legendsize=150::160"'
                   . ' alt="'.ui_language::translate('Pie chart').'"/>';
         }
@@ -319,7 +319,14 @@ class module_controller {
 
     static function getModuleIcon() {
         global $controller;
-        return "modules/" . $controller->GetControllerRequest('URL', 'module') . "/assets/icon.png";
+        $mod_folder = $controller->GetControllerRequest('URL', 'module');
+        // Check is Userland Theme has a Module Icon Override
+        if (file_exists('etc/styles/' . ui_template::GetUserTemplate() . '/images/'.$mod_folder.'/assets/icon.png')) {
+            $module_icon = 'etc/styles/' . ui_template::GetUserTemplate() . '/images/'.$mod_folder.'/assets/icon.png';
+        } else {
+            $module_icon = 'modules/' . $mod_folder . '/assets/icon.png';
+        }
+        return $module_icon;
     }
 
     static function getModuleDesc() {

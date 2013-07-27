@@ -87,7 +87,7 @@ class module_controller {
     }
 
     static function getInit() {
-        
+
     }
 
     static function getDescription() {
@@ -101,7 +101,13 @@ class module_controller {
 
     static function getModuleIcon() {
         global $controller;
-        $module_icon = "/modules/" . $controller->GetControllerRequest('URL', 'module') . "/assets/icon.png";
+        $mod_folder = $controller->GetControllerRequest('URL', 'module');
+        // Check is Userland Theme has a Module Icon Override
+        if (file_exists('etc/styles/' . ui_template::GetUserTemplate() . '/images/'.$mod_folder.'/assets/icon.png')) {
+            $module_icon = 'etc/styles/' . ui_template::GetUserTemplate() . '/images/'.$mod_folder.'/assets/icon.png';
+        } else {
+            $module_icon = 'modules/' . $mod_folder . '/assets/icon.png';
+        }
         return $module_icon;
     }
 

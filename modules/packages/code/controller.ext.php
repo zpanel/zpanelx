@@ -3,7 +3,7 @@
 /**
  *
  * ZPanel - A Cross-Platform Open-Source Web Hosting Control panel.
- * 
+ *
  * @package ZPanel
  * @version $Id$
  * @author Bobby Allen - ballen@zpanelcp.com
@@ -68,8 +68,8 @@ class module_controller {
 
     static function ListCurrentPackage($id) {
         global $zdbh;
-        $sql = "SELECT * FROM x_packages 
-				LEFT JOIN x_quotas  ON (x_packages.pk_id_pk=x_quotas.qt_package_fk) 
+        $sql = "SELECT * FROM x_packages
+				LEFT JOIN x_quotas  ON (x_packages.pk_id_pk=x_quotas.qt_package_fk)
 				WHERE pk_id_pk=:id AND pk_deleted_ts IS NULL";
         //$numrows = $zdbh->query($sql);
         $numrows = $zdbh->prepare($sql);
@@ -141,8 +141,8 @@ class module_controller {
         $sql->bindParam(':pk_id_pk', $pk_id_pk);
         $sql->execute();
         $sql = $zdbh->prepare("
-			UPDATE x_packages 
-			SET pk_deleted_ts = :time 
+			UPDATE x_packages
+			SET pk_deleted_ts = :time
 			WHERE pk_id_pk = :pk_id_pk");
         $time = time();
         $sql->bindParam(':time', $time);
@@ -248,7 +248,7 @@ class module_controller {
         runtime_hook::Execute('OnBeforeUpdatePackage');
         $sql = $zdbh->prepare("UPDATE x_packages SET pk_name_vc=:packagename,
 								pk_enablephp_in = :php,
-								pk_enablecgi_in = :cgi 
+								pk_enablecgi_in = :cgi
 								WHERE pk_id_pk  = :pid");
 
         $php = fs_director::GetCheckboxValue($EnablePHP);
@@ -258,7 +258,7 @@ class module_controller {
         $sql->bindParam(':pid', $pid);
         $sql->bindParam(':packagename', $packagename);
         $sql->execute();
-        $sql = $zdbh->prepare("UPDATE x_quotas SET qt_domains_in = :Domains, 
+        $sql = $zdbh->prepare("UPDATE x_quotas SET qt_domains_in = :Domains,
 								qt_parkeddomains_in = :ParkedDomains,
 								qt_ftpaccounts_in   = :FTPAccounts,
 								qt_subdomains_in    = :SubDomains,
@@ -630,7 +630,13 @@ class module_controller {
 
     static function getModuleIcon() {
         global $controller;
-        $module_icon = "modules/" . $controller->GetControllerRequest('URL', 'module') . "/assets/icon.png";
+        $mod_folder = $controller->GetControllerRequest('URL', 'module');
+        // Check is Userland Theme has a Module Icon Override
+        if (file_exists('etc/styles/' . ui_template::GetUserTemplate() . '/images/'.$mod_folder.'/assets/icon.png')) {
+            $module_icon = 'etc/styles/' . ui_template::GetUserTemplate() . '/images/'.$mod_folder.'/assets/icon.png';
+        } else {
+            $module_icon = 'modules/' . $mod_folder . '/assets/icon.png';
+        }
         return $module_icon;
     }
 
