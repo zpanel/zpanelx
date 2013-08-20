@@ -169,8 +169,10 @@ class module_controller {
                     @mkdir($full_path, 777);
                     @chmod($full_path, 0777);
                 }
-            } else {
+            } elseif($home == 2) {
                 $homedirectory_to_use = '/' . $destination;
+            } else {
+                $homedirectory_to_use = '/' . $domainDestination;
             }
             $sql = $zdbh->prepare("INSERT INTO x_ftpaccounts (ft_acc_fk, ft_user_vc, ft_directory_vc, ft_access_vc, ft_password_vc, ft_created_ts) VALUES (:userid, :username, :homedir, :accesstype, :password, :time)");
             $sql->bindParam(':userid', $currentuser['userid']);
