@@ -24,7 +24,7 @@ readme_directory = /usr/share/doc/postfix-2.2.2/README_FILES
 inet_interfaces = all
 mydomain = control.yourdomain.com
 myhostname = control.yourdomain.com
-mynetworks = all
+mynetworks = 127.0.0.0/8
 mydestination = localhost.$mydomain, localhost
 relay_domains = proxy:mysql:/etc/zpanel/configs/postfix/mysql-relay_domains_maps.cf
 
