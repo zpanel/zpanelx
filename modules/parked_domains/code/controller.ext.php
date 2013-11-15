@@ -364,7 +364,7 @@ class module_controller {
             return  '<img src="etc/lib/pChart2/zpanel/z3DPie.php?score=' . $free . '::' . $used
                   . '&labels=Free: ' . $free . '::Used: ' . $used 
                   . '&legendfont=verdana&legendfontsize=8&imagesize=240::190&chartsize=120::90&radius=100&legendsize=150::160"'
-                  . ' alt="'.ui_language::translate('Pie chart').'/>';
+                  . ' alt="'.ui_language::translate('Pie chart').'"/>';
         }
     }
 
