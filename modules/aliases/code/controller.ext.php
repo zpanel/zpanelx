@@ -391,30 +391,35 @@ class module_controller {
         return $message;
     }
 
-    static function getForwardUsagepChart() {
+    static function getForwardUsagepChart() 
+    {
         global $controller;
         $currentuser = ctrl_users::GetUserDetail();
-        $line = "";
-        $forwardersquota = $currentuser['forwardersquota'];
-        $forwarders = ctrl_users::GetQuotaUsages('forwarders', $currentuser['userid']);
-        $total = $forwardersquota;
-        $used = $forwarders;
-        $free = $total - $used;
-        $line .= "<img src=\"etc/lib/pChart2/zpanel/z3DPie.php?score=" . $free . "::" . $used . "&labels=Free: " . $free . "::Used: " . $used . "&legendfont=verdana&legendfontsize=8&imagesize=240::190&chartsize=120::90&radius=100&legendsize=150::160\"/>";
-        return $line;
-    }
-
-    static function getQuotaLimit() {
-        global $zdbh;
-        global $controller;
-        $currentuser = ctrl_users::GetUserDetail();
-        if ($currentuser['forwardersquota'] > ctrl_users::GetQuotaUsages('forwarders', $currentuser['userid'])) {
-            return true;
-        } else {
-            return false;
+        $maximum = $currentuser['forwardersquota'];
+        if ($maximum < 0) 
+		    { //-1 = unlimited
+            return '<img src="'. ui_tpl_assetfolderpath::Template().'images/unlimited.png" alt="'.ui_language::translate('Unlimited').'"/>';
+        } 
+		    else 
+		    {
+            $used = ctrl_users::GetQuotaUsages('forwarders', $currentuser['userid']);
+            $free = max($maximum - $used, 0);
+            return  '<img src="etc/lib/pChart2/zpanel/z3DPie.php?score=' . $free . '::' . $used
+                  . '&labels=Free: ' . $free . '::Used: ' . $used
+                  . '&legendfont=verdana&legendfontsize=8&imagesize=240::190&chartsize=120::90&radius=100&legendsize=150::160"'
+                  . ' alt="'.ui_language::translate('Pie chart').'"/>';
         }
     }
 
+
+    static function getQuotaLimit() 
+    {
+        $currentuser = ctrl_users::GetUserDetail();
+        return ($currentuser['forwardersquota'] < 0 ) or //-1 = unlimited
+               ($currentuser['forwardersquota'] > ctrl_users::GetQuotaUsages('forwarders', $currentuser['userid']));
+    }
+
+    
     static function getResult() {
         if (!fs_director::CheckForEmptyValue(self::$alreadyexists)) {
             return ui_sysmessage::shout(ui_language::translate("A mailbox, alias, forwarder or distrubution list already exists with that name."), "zannounceerror");
