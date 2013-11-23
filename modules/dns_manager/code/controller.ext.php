@@ -1450,20 +1450,20 @@ $line .='
         return $message;
     }
 
+#PP correction :
+# - removed the empty velue before first domain number
+# - removed $RecordArray construction from array with same content
     static function TriggerDNSUpdate($id) {
         global $zdbh;
         global $controller;
-        $GetRecords = ctrl_options::GetSystemOption('dns_hasupdates');
-        $records = explode(",", $GetRecords);
-        foreach ($records as $record) {
-            $RecordArray[] = $record;
-        }
-        if (!in_array($id, $RecordArray)) {
-            $newlist = $GetRecords . ',' . $id;
-            $newlist = str_replace(',,', ',', $newlist);
+        $RecordsList = ctrl_options::GetSystemOption('dns_hasupdates');
+        $RecordArray = explode(',', $RecordsList);
+        if (!in_array($id, $RecordArray)) 
+        {
+            $RecordsList .= (empty($RecordsList)) ? $id : ','.$id;
             $sql = "UPDATE x_settings SET so_value_tx=:newlist WHERE so_name_vc='dns_hasupdates'";
             $sql = $zdbh->prepare($sql);
-            $sql->bindParam(':newlist', $newlist);
+            $sql->bindParam(':newlist', $RecordsList);
             $sql->execute();
             return true;
         }
