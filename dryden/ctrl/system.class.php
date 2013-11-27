@@ -9,74 +9,32 @@
  * @copyright ZPanel Project (http://www.zpanelcp.com/)
  * @link http://www.zpanelcp.com/
  * @license GPL (http://www.gnu.org/licenses/gpl.html)
+ * @Update 10-10-2013 and shrink Pascal Peyemorte
  */
 class ctrl_system
 {
-
     /**
      * Safely run an escaped system() command.
      * @param string $command The command of which to be executed.
      * @param array $args Any arguments seperated by a space should be in a seperate array value.
+     * @param $args can also be a value
      * @return string
      */
-    static function systemCommand($command, array $args)
+    static function systemCommand($command, $args)
     {
-
-        $escapedCommand = self::escapeCommand($command);
-        $escapedArgs = self::escapeArgs($args);
-        $builtEscapedCommand = self::buildescapedCommand($escapedCommand, $escapedArgs);
-
-        system($builtEscapedCommand, $systemReturnValue);
-
+        $escapedCommand = escapeshellcmd($command);
+        if (is_array($args))
+        { //$args is an array, treat separately each param
+            foreach ($args as $arg)
+            {
+                $escapedCommand .= ' ' . escapeshellarg($arg);
+            }
+        }
+        else
+        { //$args is not an array. Assume it is compatible with string
+            $escapedCommand .= ' ' . escapeshellarg($args);
+        }
+        system($escapedCommand, $systemReturnValue);
         return $systemReturnValue;
     }
-
-    /**
-     * Escapes shell metacharacters from the command.
-     * @param string $command The command to be escaped.
-     * @return string
-     */
-    static private function escapeCommand($command)
-    {
-        return escapeshellcmd($command);
-    }
-
-    /**
-     * Escapes a string to be used as a shell argument.
-     * @param array $args Array of arguments of which to be escaped.
-     * @return array
-     */
-    static private function escapeArgs(array $args)
-    {
-        $escapedArgs = array();
-
-        foreach ($args as $arg) {
-            $escapedArgs[] = escapeshellarg($arg);
-        }
-
-        return $escapedArgs;
-    }
-
-    /**
-     * Builds the escaped command complete with the specified arguments.
-     * @param string $escapedCommand
-     * @param array $escapedArgs
-     * @return string
-     */
-    static private function buildescapedCommand($escapedCommand, array $escapedArgs)
-    {
-        $escapedArgString = null;
-
-        foreach ($escapedArgs as $escapedArg) {
-            $escapedArgString .= " " . $escapedArg;
-        }
-
-        return $escapedCommand . $escapedArgString;
-    }
-
-    static private function commandBlackList()
-    {
-
-    }
-
 }

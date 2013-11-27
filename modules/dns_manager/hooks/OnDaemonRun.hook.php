@@ -1,10 +1,13 @@
 <?php
 
 echo fs_filehandler::NewLine() . "START DNS Manager Hook" . fs_filehandler::NewLine();
-if ( ui_module::CheckModuleEnabled( 'DNS Config' ) ) {
+if ( ui_module::CheckModuleEnabled( 'DNS Config' ) ) 
+{
     echo "DNS Manager module ENABLED..." . fs_filehandler::NewLine();
-    if ( !fs_director::CheckForEmptyValue( ctrl_options::GetSystemOption( 'dns_hasupdates' ) ) ) {
+    if ( !fs_director::CheckForEmptyValue( ctrl_options::GetSystemOption( 'dns_hasupdates' ) ) ) 
+    {
         echo "DNS Records have changed... Writing new/updated records..." . fs_filehandler::NewLine();
+        CheckDatabaseUpgrade();
         WriteDNSZoneRecordsHook();
         WriteDNSNamedHook();
         ResetDNSRecordsUpatedHook();
@@ -20,92 +23,116 @@ else {
 }
 echo "END DNS Manager Hook." . fs_filehandler::NewLine();
 
+//SOA number must have unique increment number per day. Its storage require a new column per domain
+function CheckDatabaseUpgrade()
+{
+   global $zdbh;
+
+   $sql = $zdbh->prepare('show columns FROM x_vhosts LIKE "vh_soaserial_vc"');
+   $sql->execute();
+   if (!$sql->fetch())
+   { //the column is missing, add it
+     $sql = $zdbh->prepare('ALTER TABLE x_vhosts ADD vh_soaserial_vc CHAR(10) DEFAULT "AAAAMMDDSS"');
+     $sql->execute;
+   }
+}
+
 function WriteDNSZoneRecordsHook()
 {
     global $zdbh;
-    $dnsrecords                = array( );
-    $RecordsNeedingUpdateArray = array( );
-    //Get all the records needing upadated and put them in an array.
-    $GetRecordsNeedingUpdate   = ctrl_options::GetSystemOption( 'dns_hasupdates' );
-    $RecordsNeedingUpdate      = explode( ",", $GetRecordsNeedingUpdate );
-    foreach ( $RecordsNeedingUpdate as $RecordNeedingUpdate ) {
-        $RecordsNeedingUpdateArray[ ] = $RecordNeedingUpdate;
+    //Get list of domains id that require to be updated
+    $DomainsNeedingUpdate = explode( ",", ctrl_options::GetSystemOption( 'dns_hasupdates' ));
+
+    //Get list of domains id that have rows in the dns table
+    $DomainsInDnsTable = array();
+    $sql = $zdbh->prepare( "SELECT dn_vhost_fk FROM x_dns WHERE dn_deleted_ts IS NULL GROUP BY dn_vhost_fk" );
+    $sql->execute();
+    while ( $rowdns = $sql->fetch() ) 
+    {
+         $DomainsInDnsTable[ ] = $rowdns[ 'dn_vhost_fk' ];
     }
-    //Get all the domain ID's we need and put them in an array.
-    $sql     = "SELECT COUNT(*) FROM x_dns WHERE dn_deleted_ts IS NULL";
-    if ( $numrows = $zdbh->query( $sql ) ) {
-        if ( $numrows->fetchColumn() <> 0 ) {
-            $sql    = $zdbh->prepare( "SELECT * FROM x_dns WHERE dn_deleted_ts IS NULL GROUP BY dn_vhost_fk" );
-            $sql->execute();
-            while ( $rowdns = $sql->fetch() ) {
-                $dnsrecords[ ] = $rowdns[ 'dn_vhost_fk' ];
-            }
-        }
-    }
+    
+    //Get list of domain to update that have rows in the dns table
+    $DomainsToUpdate = array_intersect($DomainsNeedingUpdate, $DomainsInDnsTable);
+
     //Now we have all domain ID's, loop through them and find records for each zone file.
-    foreach ( $dnsrecords as $dnsrecord ) {
-        //if (in_array($dnsrecord, $RecordsNeedingUpdateArray)){
-        $sql     = "SELECT COUNT(*) FROM x_dns WHERE dn_vhost_fk=:dnsrecord AND dn_deleted_ts IS NULL";
-        $numrows = $zdbh->prepare( $sql );
-        $numrows->bindParam( ':dnsrecord', $dnsrecord );
+    foreach ($DomainsToUpdate as $domain_id ) 
+    {
+        //Get domain name and SOA serial
+        $domaininfo = $zdbh->prepare( 'SELECT vh_name_vc, vh_soaserial_vc FROM x_vhosts WHERE vh_id_pk=:domain' );
+        $domaininfo->bindparam(':domain', $domain_id);
+        $domaininfo->execute();
+        $domain = $domaininfo->fetch();
+        $DomainName = $domain['vh_name_vc'];
+        $SoaSerial = $domain['vh_soaserial_vc'];
+          
+        //Ensure SOA serial is uptodate and unique
+        $SoaDate = date( "Ymd" );
+        if (substr($SoaSerial, 0, 8) != $SoaDate)
+        {
+            $SoaSerial = $SoaDate . '00';
+        }
+        else
+        {
+            $SoaRev = 1 + substr($SoaSerial, 8, 2);
+            $SoaSerial = $SoaDate . (($SoaRev < 10) ? '0' : '') . $SoaRev;
+        } 
+        $updatesoa = $zdbh->prepare( 'UPDATE x_vhosts SET vh_soaserial_vc=:serial WHERE vh_id_pk=:domain' );
+        $updatesoa->bindparam(':serial', $SoaSerial);
+        $updatesoa->bindparam(':domain', $domain_id);
+        $updatesoa->execute();
 
-        if ( $numrows->execute() ) {
-            if ( $numrows->fetchColumn() <> 0 ) {
-                $sql     = $zdbh->prepare( "SELECT * FROM x_dns WHERE dn_vhost_fk=:dnsrecord AND dn_deleted_ts IS NULL ORDER BY dn_type_vc" );
-                $sql->bindParam( ':dnsrecord', $dnsrecord );
-                $sql->execute();
-//              $domain = $zdbh->query("SELECT dn_name_vc FROM x_dns WHERE dn_vhost_fk=" . $dnsrecord . " AND dn_deleted_ts IS NULL")->Fetch();
-                $numrows = $zdbh->prepare( "SELECT dn_name_vc FROM x_dns WHERE dn_vhost_fk=:dnsrecord AND dn_deleted_ts IS NULL" );
-                $numrows->bindParam( ':dnsrecord', $dnsrecord );
-                $numrows->execute();
-                $domain  = $numrows->fetch();
+        //Create zone directory if it doesnt exists...
+        if ( !is_dir( ctrl_options::GetSystemOption( 'zone_dir' ) ) ) 
+        {
+            fs_director::CreateDirectory( ctrl_options::GetSystemOption( 'zone_dir' ) );
+            fs_director::SetFileSystemPermissions( ctrl_options::GetSystemOption( 'zone_dir' ) );
+        }
+        $zone_file = (ctrl_options::GetSystemOption( 'zone_dir' )) . $DomainName . ".txt";
+        $line      = "$" . "TTL 10800" . fs_filehandler::NewLine();
+        $line .= "@ IN SOA ns1." . $DomainName . ".    postmaster." . $DomainName . ". (" . fs_filehandler::NewLine();
+        $line .= "    " . $SoaSerial . "	;serial" . fs_filehandler::NewLine();
+        $line .= "    " . ctrl_options::GetSystemOption( 'refresh_ttl' ) . "    ;refresh after 6 hours" . fs_filehandler::NewLine();
+        $line .= "    " . ctrl_options::GetSystemOption( 'retry_ttl' ) . "    ;retry after 1 hour" . fs_filehandler::NewLine();
+        $line .= "    " . ctrl_options::GetSystemOption( 'expire_ttl' ) . "   ;expire after 1 week" . fs_filehandler::NewLine();
+        $line .= "    " . ctrl_options::GetSystemOption( 'minimum_ttl' ) . " )    ;minimum TTL of 1 day" . fs_filehandler::NewLine();
 
-                //Create zone directory if it doesnt exists...
-                if ( !is_dir( ctrl_options::GetSystemOption( 'zone_dir' ) ) ) {
-                    fs_director::CreateDirectory( ctrl_options::GetSystemOption( 'zone_dir' ) );
-                    fs_director::SetFileSystemPermissions( ctrl_options::GetSystemOption( 'zone_dir' ) );
-                }
-                $zone_file = (ctrl_options::GetSystemOption( 'zone_dir' )) . $domain[ 'dn_name_vc' ] . ".txt";
-                $line      = "$" . "TTL 10800" . fs_filehandler::NewLine();
-                $line .= "@ IN SOA ns1." . $domain[ 'dn_name_vc' ] . ".    ";
-                $line .= "postmaster." . $domain[ 'dn_name_vc' ] . ". (" . fs_filehandler::NewLine();
-                $line .= "                       " . date( "Ymdt" ) . "	;serial" . fs_filehandler::NewLine();
-                $line .= "                       " . ctrl_options::GetSystemOption( 'refresh_ttl' ) . "      ;refresh after 6 hours" . fs_filehandler::NewLine();
-                $line .= "                       " . ctrl_options::GetSystemOption( 'retry_ttl' ) . "       ;retry after 1 hour" . fs_filehandler::NewLine();
-                $line .= "                       " . ctrl_options::GetSystemOption( 'expire_ttl' ) . "     ;expire after 1 week" . fs_filehandler::NewLine();
-                $line .= "                       " . ctrl_options::GetSystemOption( 'minimum_ttl' ) . " )    ;minimum TTL of 1 day" . fs_filehandler::NewLine();
-                while ( $rowdns    = $sql->fetch() ) {
-                    if ( $rowdns[ 'dn_type_vc' ] == "A" ) {
-                        $line .= $rowdns[ 'dn_host_vc' ] . "		" . $rowdns[ 'dn_ttl_in' ] . "		IN		A		" . $rowdns[ 'dn_target_vc' ] . fs_filehandler::NewLine();
-                    }
-                    if ( $rowdns[ 'dn_type_vc' ] == "AAAA" ) {
-                        $line .= $rowdns[ 'dn_host_vc' ] . "		" . $rowdns[ 'dn_ttl_in' ] . "		IN		AAAA		" . $rowdns[ 'dn_target_vc' ] . fs_filehandler::NewLine();
-                    }
-                    if ( $rowdns[ 'dn_type_vc' ] == "CNAME" ) {
-                        $line .= $rowdns[ 'dn_host_vc' ] . "              " . $rowdns[ 'dn_ttl_in' ] . "            IN              CNAME           " . $rowdns[ 'dn_target_vc' ] . ($rowdns[ 'dn_target_vc' ] == '@' ? '' : '.') . fs_filehandler::NewLine();
-                    }
-                    if ( $rowdns[ 'dn_type_vc' ] == "MX" ) {
-                        $line .= $rowdns[ 'dn_host_vc' ] . "		" . $rowdns[ 'dn_ttl_in' ] . "		IN		MX		" . $rowdns[ 'dn_priority_in' ] . "	" . $rowdns[ 'dn_target_vc' ] . "." . fs_filehandler::NewLine();
-                    }
-                    if ( $rowdns[ 'dn_type_vc' ] == "TXT" ) {
-                        $line .= $rowdns[ 'dn_host_vc' ] . "		" . $rowdns[ 'dn_ttl_in' ] . "		IN		TXT		\"" . stripslashes( $rowdns[ 'dn_target_vc' ] ) . "\"" . fs_filehandler::NewLine();
-                    }
-                    if ( $rowdns[ 'dn_type_vc' ] == "SRV" ) {
-                        $line .= $rowdns[ 'dn_host_vc' ] . "		" . $rowdns[ 'dn_ttl_in' ] . "		IN		SRV		" . $rowdns[ 'dn_priority_in' ] . "	" . $rowdns[ 'dn_weight_in' ] . "	" . $rowdns[ 'dn_port_in' ] . "	" . $rowdns[ 'dn_target_vc' ] . "." . fs_filehandler::NewLine();
-                    }
-                    if ( $rowdns[ 'dn_type_vc' ] == "SPF" ) {
-                        $line .= $rowdns[ 'dn_host_vc' ] . "		" . $rowdns[ 'dn_ttl_in' ] . "		IN		SPF		\"" . stripslashes( $rowdns[ 'dn_target_vc' ] ) . "\"" . fs_filehandler::NewLine();
-                    }
-                    if ( $rowdns[ 'dn_type_vc' ] == "NS" ) {
-                        $line .= $rowdns[ 'dn_host_vc' ] . "		" . $rowdns[ 'dn_ttl_in' ] . "		IN		NS		" . $rowdns[ 'dn_target_vc' ] . "." . fs_filehandler::NewLine();
-                    }
-                }
-                echo "Updating zone record: " . $domain[ 'dn_name_vc' ] . fs_filehandler::NewLine();
-                fs_filehandler::UpdateFile( $zone_file, 0777, $line );
+        $sql = $zdbh->prepare( 'SELECT * FROM x_dns WHERE dn_vhost_fk=:dnsrecord AND dn_deleted_ts IS NULL ORDER BY dn_type_vc' );
+        $sql->bindParam(':dnsrecord', $domain_id );
+        $sql->execute();
+        while ( $rowdns = $sql->fetch() ) 
+        {  
+            switch ($rowdns[ 'dn_type_vc' ]) 
+            {
+                case "A" :
+                    $line .= $rowdns[ 'dn_host_vc' ] . "		" . $rowdns[ 'dn_ttl_in' ] . "		IN		A		" . $rowdns[ 'dn_target_vc' ] . fs_filehandler::NewLine();
+                    break;
+                case "AAAA" :
+                    $line .= $rowdns[ 'dn_host_vc' ] . "		" . $rowdns[ 'dn_ttl_in' ] . "		IN		AAAA		" . $rowdns[ 'dn_target_vc' ] . fs_filehandler::NewLine();
+                    break;
+                case "CNAME" : 
+                    $line .= $rowdns[ 'dn_host_vc' ] . "		" . $rowdns[ 'dn_ttl_in' ] . "		IN    CNAME   " . $rowdns[ 'dn_target_vc' ] . ($rowdns[ 'dn_target_vc' ] == '@' ? '' : '.') . fs_filehandler::NewLine();
+                    break;
+                case "MX" :
+                    $line .= $rowdns[ 'dn_host_vc' ] . "		" . $rowdns[ 'dn_ttl_in' ] . "		IN		MX		" . $rowdns[ 'dn_priority_in' ] . "	" . $rowdns[ 'dn_target_vc' ] . "." . fs_filehandler::NewLine();
+                    break;
+                case "TXT" :
+                    $line .= $rowdns[ 'dn_host_vc' ] . "		" . $rowdns[ 'dn_ttl_in' ] . "		IN		TXT		\"" . stripslashes( $rowdns[ 'dn_target_vc' ] ) . "\"" . fs_filehandler::NewLine();
+                    break;
+                case "SRV" :
+                    $line .= $rowdns[ 'dn_host_vc' ] . "		" . $rowdns[ 'dn_ttl_in' ] . "		IN		SRV		" . $rowdns[ 'dn_priority_in' ] . "	" . $rowdns[ 'dn_weight_in' ] . "	" . $rowdns[ 'dn_port_in' ] . "	" . $rowdns[ 'dn_target_vc' ] . "." . fs_filehandler::NewLine();
+                    break;
+                case "SPF" :
+                    $line .= $rowdns[ 'dn_host_vc' ] . "		" . $rowdns[ 'dn_ttl_in' ] . "		IN		SPF		\"" . stripslashes( $rowdns[ 'dn_target_vc' ] ) . "\"" . fs_filehandler::NewLine();
+                    break;
+                case "NS" : 
+                    $line .= $rowdns[ 'dn_host_vc' ] . "		" . $rowdns[ 'dn_ttl_in' ] . "		IN		NS		" . $rowdns[ 'dn_target_vc' ] . "." . fs_filehandler::NewLine();
+                    break;
             }
         }
+        echo 'Updating zone record: ' . $DomainName . fs_filehandler::NewLine();
+        fs_filehandler::UpdateFile( $zone_file, 0777, $line );
     }
-    //}
 }
 
 function WriteDNSNamedHook()

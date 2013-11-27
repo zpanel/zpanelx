@@ -87,7 +87,7 @@
                 </tr>
                 <tr>
                     <th><: No. Forwarders :>:</th>
-                    <td><input name="inNoFowarders" type="text" id="inNoFowarders" size="5" maxlength="3" value="<@ EditCurrentForwarders @>" onkeypress="return isNumberKeyOrNeg(event)"/> (-1 = unlimited)</td>
+                    <td><input name="inNoFowarders" type="text" id="inNoFowarders" size="5" maxlength="3" value="<@ EditCurrentForwarders @>" onkeypress="return isNumberKeyOrNeg(event)"/> (-1 = unlimited) <: (Note : Forwarders quota include also Aliases counts) :></td>
                 </tr>
                 <tr>
                     <th><: No. Dist Lists :>:</th>
@@ -189,7 +189,7 @@
                 </tr>
                 <tr>
                     <th><: No. Forwarders :>:</th>
-                    <td><input name="inNoFowarders" type="text" id="inNoFowarders" value="0" size="5" maxlength="3" onkeypress="return isNumberKeyOrNeg(event)" /> (-1 = unlimited)</td>
+                    <td><input name="inNoFowarders" type="text" id="inNoFowarders" value="0" size="5" maxlength="3" onkeypress="return isNumberKeyOrNeg(event)" /> (-1 = unlimited) <: (Note : Forwarders quota include also Aliases counts) :></td>
                 </tr>
                 <tr>
                     <th><: No. Dist Lists :>:</th>
@@ -213,7 +213,8 @@
                 </tr>
                 <tr>
                     <th></th>
-                    <td><button class="button-loader btn btn-primary" type="submit" id="button" name="inSubmit" value="inSave"><: Save :></button></td>
+                    <td><button class="button-loader btn btn-primary" type="submit" id="button" name="inSubmit" value="inSave"><: Save :></button>
+                    </td>
                 </tr>
             </table>
             <@ CSFR_Tag @>

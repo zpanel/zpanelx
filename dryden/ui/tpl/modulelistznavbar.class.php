@@ -20,7 +20,6 @@ class ui_tpl_modulelistznavbar
         $line = '<li ' . $active . '><a href="."><: Home :></a></li>';
 
         $modcats = ui_moduleloader::GetModuleCats();
-        rsort($modcats);
 
         foreach ($modcats as $modcat) {
             $shortName = $modcat['mc_name_vc'];
