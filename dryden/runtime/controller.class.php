@@ -74,31 +74,20 @@ class runtime_controller {
      * @retrun mixed Returns that array data if avaliable (is set) otherwise will return 'false'.
      */
     public function GetControllerRequest($type = "URL", $name) {
-        if ($type == 'FORM') {
-            if (isset($this->vars_post[0][$name])) {
-                return $this->vars_post[0][$name];
-            } else {
-                return false;
-            }
-        } elseif ($type == 'URL') {
-            if (isset($this->vars_get[0][$name])) {
-                return $this->vars_get[0][$name];
-            } else {
-                return false;
-            }
-        } elseif ($type == 'USER') {
-            if (isset($this->vars_session[0][$name])) {
-                return $this->vars_session[0][$name];
-            } else {
-                return false;
-            }
-        } else {
-            if (isset($this->vars_cookie[0][$name])) {
-                return $this->vars_cookie[0][$name];
-            } else {
-                return false;
-            }
-        }
+    	switch(strtoupper($type))
+		{
+			case "FORM":
+				return (isset($this->vars_post[0][$name]))?$this->vars_post[0][$name]:false;
+			break;
+			case "URL":
+				return (isset($this->vars_get[0][$name]))?$this->vars_get[0][$name]:false;
+			break;
+			case "USER":
+				return (isset($this->vars_session[0][$name]))?$this->vars_session[0][$name]:false;
+			break;
+			default:
+				return (isset($this->vars_cookie[0][$name]))?$this->vars_cookie[0][$name]:false;
+		}
         return false;
     }
 
@@ -109,15 +98,20 @@ class runtime_controller {
      * @return array List of all set variables for the requested type.
      */
     public function GetAllControllerRequests($type = "URL") {
-        if ($type == 'FORM') {
-            return $this->vars_post[0];
-        } elseif ($type == 'URL') {
-            return $this->vars_get[0];
-        } elseif ($type == 'USER') {
-            return $this->vars_session[0];
-        } else {
-            return $this->vars_cookie[0];
-        }
+    	switch(strtoupper($type))
+		{
+			case "FORM":
+				return $this->vars_post[0];
+			break;
+			case "URL":
+				return $this->vars_get[0];
+			break;
+			case "USER":
+				return $this->vars_session[0];
+			break;	
+			default:
+				return $this->vars_cookie[0];
+		}
         return false;
     }
 
@@ -126,9 +120,7 @@ class runtime_controller {
      * @return boolean
      */
     public function GetAction() {
-        if (isset($this->vars_get[0]['action']))
-            return $this->vars_get[0]['action'];
-        return false;
+    	return (isset($this->vars_get[0]['action']))?$this->vars_get[0]['action']:false;
     }
 
     /**
@@ -136,9 +128,7 @@ class runtime_controller {
      * @return boolean
      */
     public function GetOptions() {
-        if (isset($this->vars_get[0]['options']))
-            return $this->vars_get[0]['options'];
-        return false;
+    	return (isset($this->vars_get[0]['options']))?$this->vars_get[0]['options']:false;
     }
 
     /**
@@ -146,9 +136,7 @@ class runtime_controller {
      * @return boolean
      */
     public function GetCurrentModule() {
-        if (isset($this->vars_get[0]['module']))
-            return $this->vars_get[0]['module'];
-        return false;
+    	return (isset($this->vars_get[0]['module']))?$this->vars_get[0]['module']:false;
     }
 
     /**
@@ -206,9 +194,7 @@ class runtime_controller {
      * @return boolean
      */
     static function IsCLI() {
-        if (!@$_SERVER['HTTP_USER_AGENT'])
-            return true;
-        return false;
+    	return !!$_SERVER['HTTP_USER_AGENT'];
     }
 
     /**
