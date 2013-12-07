@@ -136,8 +136,7 @@ class ctrl_users {
         $numrows = $zdbh->prepare("SELECT COUNT(*) FROM x_vhosts WHERE vh_acc_fk= :userid AND vh_deleted_ts IS NULL AND vh_type_in= :type");
         $numrows->bindParam(':userid', $userid);
         $numrows->bindParam(':type', $type);
-        $status = $sql->execute();
-        return ($status && $numrows->fetchColumn() <> 0)?count($numrows->fetchColumn()):0;
+        return ($sql->execute() && $numrows->fetchColumn() <> 0)?count($numrows->fetchColumn()):0;
     }
 
     /**
@@ -151,8 +150,7 @@ class ctrl_users {
         global $zdbh;
         $sql = $zdbh->prepare("SELECT COUNT(*) FROM x_accounts WHERE ac_id_pk= :uid AND ac_enabled_in=1 AND ac_deleted_ts IS NULL");
         $sql->bindParam(':uid', $uid);
-        $status = $sql->execute();
-		return ($status && $numrows->fetchColumn() <> 0)?true:false;
+		return ($sql->execute() && $sql->fetchColumn() <> 0)?true:false;
     }
 
     /**
