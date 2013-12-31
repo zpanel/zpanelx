@@ -34,7 +34,7 @@ class runtime_controller {
 
     /**
      * Get the latest requests and updates the values avaliable to the model/view.
-     * @author Bobby Allen (ballen@zpanelcp.com)
+     * @author Bobby Allen (ballen@zpanelcp.com) & VJ Patel (meetthevj@gmail.com)
      */
     public function Init() {
 
@@ -46,23 +46,40 @@ class runtime_controller {
 
         //Here we get the users information
         $user = ctrl_users::GetUserDetail();
-
-        if (!isset($this->vars_session[0]['zpuid'])) {
-            ui_module::GetLoginTemplate();
-        }
-
-        if (isset($this->vars_get[0]['module'])) {
-            ui_module::getModule($this->GetCurrentModule());
-        }
-        if (isset($this->vars_get[0]['action'])) {
-            if (ctrl_groups::CheckGroupModulePermissions($user['usergroupid'], ui_module::GetModuleID())) {
-                if ((class_exists('module_controller', FALSE)) && (method_exists('module_controller', 'do' . $this->vars_get[0]['action']))) {
-                    call_user_func(array('module_controller', 'do' . $this->vars_get[0]['action']));
-                } else {
-                    echo ui_sysmessage::shout("No 'do" . runtime_xss::xssClean($this->vars_get[0]['action']) . "' class exists - Please create it to enable controller actions and runtime placeholders within your module.");
-                }
-            }
-        }
+		
+		if ($_SERVER['QUERY_STRING'] == '' && !isset($this->vars_session[0]['zpuid'])) // load login
+		{
+			ui_module::GetLoginTemplate();
+		}
+		else if ($_SERVER['QUERY_STRING'] != '' && !isset($this->vars_session[0]['zpuid'])) // redirect to login if unauthorised access
+		{
+			header('Location: /');
+		}
+				
+		if (isset($this->vars_get[0]['action'])) // if there is an action
+		{
+			if (ctrl_groups::CheckGroupModulePermissions($user['usergroupid'], ui_module::GetModuleID())) // if the user has access to the module
+			{
+				if ((class_exists('module_controller', FALSE)) && (method_exists('module_controller', 'do' . $this->vars_get[0]['action']))) 
+				{
+					call_user_func(array('module_controller', 'do' . $this->vars_get[0]['action']));
+				} 
+				else 
+				{
+					echo ui_sysmessage::shout("No 'do" . runtime_xss::xssClean($this->vars_get[0]['action']) . "' class exists - Please create it to enable controller actions and runtime placeholders within your module.");
+				}
+			}
+		}
+		
+		if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') // include the template if non AJAX request
+		{
+			if ($this->vars_get[0]['module'])
+			{
+				ui_module::getModule($this->GetCurrentModule());
+			}
+			ui_templateparser::Generate("etc/styles/" . ui_template::GetUserTemplate());
+		}	
+  
         return;
     }
 
