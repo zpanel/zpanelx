@@ -15,7 +15,7 @@ class runtime_dataobject {
     /**
      * @var array The associated array of which to store all dataobject entites in. 
      */
-    var $object;
+    private $object;
 
     function __construct() {
         $this->object = array();
