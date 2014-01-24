@@ -3,7 +3,7 @@
 /**
  *
  * ZPanel - A Cross-Platform Open-Source Web Hosting Control panel.
- * 
+ *
  * @package ZPanel
  * @version $Id$
  * @author Bobby Allen - ballen@zpanelcp.com
@@ -35,12 +35,12 @@ class module_controller {
         if ($currentuser['username'] == 'zadmin') {
             $sql = "SELECT * FROM x_accounts WHERE ac_deleted_ts IS NULL ORDER BY ac_user_vc";
             $numrows = $zdbh->prepare($sql);
-            $numrows->execute();        
+            $numrows->execute();
         } else {
             $sql = "SELECT * FROM x_accounts WHERE ac_reseller_fk = :userid AND ac_deleted_ts IS NULL ORDER BY ac_user_vc";
             $numrows = $zdbh->prepare($sql);
             $numrows->bindParam(':userid', $currentuser['userid']);
-            $numrows->execute();        
+            $numrows->execute();
         }
 
         //$numrows = $zdbh->query($sql);
@@ -78,11 +78,11 @@ class module_controller {
         $currentuser = ctrl_users::GetUserDetail();
         if ($currentuser['username'] == 'zadmin') {
             $sql = "SELECT * FROM x_accounts WHERE ac_deleted_ts IS NULL ORDER BY ac_user_vc";
-            $numrows = $zdbh->prepare($sql);          
+            $numrows = $zdbh->prepare($sql);
         } else {
             $sql = "SELECT * FROM x_accounts WHERE ac_reseller_fk = :userid AND ac_deleted_ts IS NULL";
             $numrows = $zdbh->prepare($sql);
-            $numrows->bindParam(':userid', $currentuser['userid']);            
+            $numrows->bindParam(':userid', $currentuser['userid']);
         }
         if ($numrows->execute()) {
             if ($numrows->fetchColumn() <> 0) {
@@ -114,7 +114,13 @@ class module_controller {
 
     static function getModuleIcon() {
         global $controller;
-        $module_icon = "modules/" . $controller->GetControllerRequest('URL', 'module') . "/assets/icon.png";
+        $mod_folder = $controller->GetControllerRequest('URL', 'module');
+        // Check is Userland Theme has a Module Icon Override
+        if (file_exists('etc/styles/' . ui_template::GetUserTemplate() . '/images/'.$mod_folder.'/assets/icon.png')) {
+            $module_icon = 'etc/styles/' . ui_template::GetUserTemplate() . '/images/'.$mod_folder.'/assets/icon.png';
+        } else {
+            $module_icon = 'modules/' . $mod_folder . '/assets/icon.png';
+        }
         return $module_icon;
     }
 

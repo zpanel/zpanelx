@@ -3,7 +3,7 @@
 /**
  *
  * ZPanel - A Cross-Platform Open-Source Web Hosting Control panel.
- * 
+ *
  * @package ZPanel
  * @version $Id$
  * @author Bobby Allen - ballen@zpanelcp.com
@@ -311,7 +311,7 @@ class module_controller {
         global $zdbh;
         runtime_hook::Execute('OnBeforeSetClientAccount');
         $sql = $zdbh->prepare("UPDATE x_accounts
-								SET :column=:value 
+								SET :column=:value
 								WHERE ac_id_pk=:userid");
         $sql->bindParam(':column', $column);
         $sql->bindParam(':value', $value);
@@ -338,29 +338,29 @@ class module_controller {
         runtime_hook::Execute('OnBeforeDeleteClient');
         $sql = $zdbh->prepare("
 			UPDATE x_accounts
-			SET ac_deleted_ts=:time 
+			SET ac_deleted_ts=:time
 			WHERE ac_id_pk=:userid");
         $time = time();
         $sql->bindParam(':time', $time);
         $sql->bindParam(':userid', $userid);
         $sql->execute();
         $sql = $zdbh->prepare("
-			UPDATE x_accounts 
+			UPDATE x_accounts
 			SET ac_reseller_fk = :moveid
 			WHERE ac_reseller_fk = :userid");
         $sql->bindParam(':moveid', $moveid);
         $sql->bindParam(':userid', $userid);
         $sql->execute();
         $sql = $zdbh->prepare("
-			UPDATE x_packages 
-			SET pk_reseller_fk = :moveid 
+			UPDATE x_packages
+			SET pk_reseller_fk = :moveid
 			WHERE pk_reseller_fk = :userid");
         $sql->bindParam(':moveid', $moveid);
         $sql->bindParam(':userid', $userid);
         $sql->execute();
         $sql = $zdbh->prepare("
-			UPDATE x_groups 
-			SET ug_reseller_fk = :moveid 
+			UPDATE x_groups
+			SET ug_reseller_fk = :moveid
 			WHERE ug_reseller_fk = :userid");
         $sql->bindParam(':moveid', $moveid);
         $sql->bindParam(':userid', $userid);
@@ -533,7 +533,7 @@ class module_controller {
         fs_director::SetFileSystemPermissions(ctrl_options::GetSystemOption('hosted_dir') . $username . "/public_html", 0777);
         fs_director::CreateDirectory(ctrl_options::GetSystemOption('hosted_dir') . $username . "/backups");
         fs_director::SetFileSystemPermissions(ctrl_options::GetSystemOption('hosted_dir') . $username . "/backups", 0777);
-        // Send the user account details via. email (if requested)... 
+        // Send the user account details via. email (if requested)...
         if ($sendemail <> 0) {
             if (isset($_SERVER['HTTPS'])) {
                 $protocol = 'https://';
@@ -632,7 +632,7 @@ class module_controller {
                 return true;
             } else {
                 self::$not_unique_email = true;
-                return false; 
+                return false;
             }
         } else {
             self::$not_unique_email = true;
@@ -671,18 +671,18 @@ class module_controller {
         $line = ui_language::translate("Hi {{fullname}},\r\rWe are pleased to inform you that your new hosting account is now active!\r\rYou can access your web hosting control panel using this link:\r{{controlpanelurl}}\r\rYour username and password is as follows:\rUsername: {{username}}\rPassword: {{password}}\r\rMany thanks,\rThe management");
         return $line;
     }
-    
+
     /**
      * Checks if the user already exists in the x_accounts table.
      * @global type $zdbh The ZPanelX database handle.
      * @param type $username The username to check against.
      * @return boolean
      */
-    static function CheckUserExits($username){ 
+    static function CheckUserExits($username){
         global $zdbh;
             $sql = "SELECT COUNT(*) FROM x_accounts WHERE LOWER(ac_user_vc)=:username";
             $uniqueuser = $zdbh->prepare($sql);
-            $uniqueuser->bindParam(':username', strtolower($username));       
+            $uniqueuser->bindParam(':username', strtolower($username));
             if ($uniqueuser->execute()) {
                 if ($uniqueuser->fetchColumn() > 0) {
                     return true;
@@ -691,7 +691,7 @@ class module_controller {
                 }
             } else {
                 return true;
-            }        
+            }
     }
 
     /**
@@ -1020,7 +1020,13 @@ class module_controller {
 
     static function getModuleIcon() {
         global $controller;
-        $module_icon = "modules/" . $controller->GetControllerRequest('URL', 'module') . "/assets/icon.png";
+        $mod_folder = $controller->GetControllerRequest('URL', 'module');
+        // Check is Userland Theme has a Module Icon Override
+        if (file_exists('etc/styles/' . ui_template::GetUserTemplate() . '/images/'.$mod_folder.'/assets/icon.png')) {
+            $module_icon = 'etc/styles/' . ui_template::GetUserTemplate() . '/images/'.$mod_folder.'/assets/icon.png';
+        } else {
+            $module_icon = 'modules/' . $mod_folder . '/assets/icon.png';
+        }
         return $module_icon;
     }
 

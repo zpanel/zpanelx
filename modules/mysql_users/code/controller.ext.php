@@ -3,7 +3,7 @@
 /**
  *
  * ZPanel - A Cross-Platform Open-Source Web Hosting Control panel.
- * 
+ *
  * @package ZPanel
  * @version $Id$
  * @author Bobby Allen - ballen@zpanelcp.com
@@ -57,7 +57,7 @@ class module_controller {
                 $rowdb = $find->fetch();
 
                 if (!$rowdb) {
-                    
+
                 }
             }
             return true;
@@ -352,7 +352,7 @@ class module_controller {
         }
         $sql = $zdbh->prepare("
 			UPDATE x_mysql_users
-			SET mu_deleted_ts = :time 
+			SET mu_deleted_ts = :time
 			WHERE mu_id_pk = :mu_id_pk");
         $time = time();
         $sql->bindParam(':time', $time);
@@ -389,7 +389,7 @@ class module_controller {
         $numrows->bindParam(':myuserid', $myuserid);
         $numrows->execute();
         $rowuser = $numrows->fetch();
-        
+
         $my_name_vc = $zdbh->mysqlRealEscapeString($rowdb['my_name_vc']);
         $mu_name_vc = $zdbh->mysqlRealEscapeString($rowuser['mu_name_vc']);
         $mu_access_vc = $zdbh->mysqlRealEscapeString($rowuser['mu_access_vc']);
@@ -421,17 +421,17 @@ class module_controller {
     static function ExecuteRemoveDB($myuserid, $mapid) { // <-- mmid = dbmaps
         global $zdbh;
         runtime_hook::Execute('OnBeforeRemoveDatabaseAccess');
-     
+
         $numrows = $zdbh->prepare("SELECT * FROM x_mysql_dbmap WHERE mm_id_pk=:mapid");
         $numrows->bindParam(':mapid', $mapid);
         $numrows->execute();
         $rowdbmap = $numrows->fetch();
-     
+
         $numrows = $zdbh->prepare("SELECT * FROM x_mysql_databases WHERE my_id_pk=:mm_database_fk AND my_deleted_ts IS NULL");
         $numrows->bindParam(':mm_database_fk', $rowdbmap['mm_database_fk']);
         $numrows->execute();
         $rowdb = $numrows->fetch();
-       
+
         $numrows = $zdbh->prepare("SELECT * FROM x_mysql_users WHERE mu_id_pk=:myuserid AND mu_deleted_ts IS NULL");
         $numrows->bindParam(':myuserid', $myuserid);
         $numrows->execute();
@@ -439,7 +439,7 @@ class module_controller {
 
         $sql = $zdbh->prepare("REVOKE ALL PRIVILEGES ON `" . $rowdb['my_name_vc'] . "`.* FROM '" . $rowuser['mu_name_vc'] . "'@'" . $rowuser['mu_access_vc'] . "'");
         $sql->execute();
-        
+
         $sql = $zdbh->prepare("FLUSH PRIVILEGES");
         $sql->execute();
 
@@ -456,7 +456,7 @@ class module_controller {
     static function ExecuteResetPassword($myuserid, $password) {
         global $zdbh;
         runtime_hook::Execute('OnBeforeResetDatabasePassword');
-        //$rowuser = $zdbh->query("SELECT * FROM x_mysql_users WHERE mu_id_pk=" . $myuserid . " AND mu_deleted_ts IS NULL")->fetch();        
+        //$rowuser = $zdbh->query("SELECT * FROM x_mysql_users WHERE mu_id_pk=" . $myuserid . " AND mu_deleted_ts IS NULL")->fetch();
         $numrows = $zdbh->prepare("SELECT * FROM x_mysql_users WHERE mu_id_pk=:myuserid AND mu_deleted_ts IS NULL");
         $numrows->bindParam(':myuserid', $myuserid);
         $numrows->execute();
@@ -727,7 +727,13 @@ class module_controller {
 
     static function getModuleIcon() {
         global $controller;
-        $module_icon = "modules/" . $controller->GetControllerRequest('URL', 'module') . "/assets/icon.png";
+        $mod_folder = $controller->GetControllerRequest('URL', 'module');
+        // Check is Userland Theme has a Module Icon Override
+        if (file_exists('etc/styles/' . ui_template::GetUserTemplate() . '/images/'.$mod_folder.'/assets/icon.png')) {
+            $module_icon = 'etc/styles/' . ui_template::GetUserTemplate() . '/images/'.$mod_folder.'/assets/icon.png';
+        } else {
+            $module_icon = 'modules/' . $mod_folder . '/assets/icon.png';
+        }
         return $module_icon;
     }
 
