@@ -7,6 +7,20 @@ genpasswd() {
           tr -dc A-Za-z0-9 < /dev/urandom | head -c ${l} | xargs
 }
 
+# update translation
+mysqlrootpass=`cat /root/mysqlrootpass`
+checktranslation=`mysql -u root -p$mysqlrootpass -e "SELECT COUNT(*) FROM zpanel_core.x_translations;" | grep "828"`
+translationline="828"
+if [ "$checktranslation" == "$translationline" ]
+then
+echo ""
+else
+echo "update translation"
+wget -q https://github.com/ZPanelFR/zpxfrtrad/raw/master/uninstall.sql
+mysql -u root -p$mysqlrootpass < uninstall.sql
+rm -f uninstall.sql
+fi
+
 ##SET PASSWORD##
 zadminNewPass=`genpasswd`
 setzadmin --set $zadminNewPass
