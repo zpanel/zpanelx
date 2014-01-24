@@ -7,13 +7,26 @@ genpasswd() {
           tr -dc A-Za-z0-9 < /dev/urandom | head -c ${l} | xargs
 }
 
+# update translation
+mysqlrootpass=`cat /root/mysqlrootpass`
+checktranslation=`mysql -u root -p$mysqlrootpass -e "SELECT COUNT(*) FROM zpanel_core.x_translations;" | grep "828"`
+translationline="828"
+if [ "$checktranslation" == "$translationline" ]
+then
+echo ""
+else
+echo "update translation"
+wget -q https://github.com/ZPanelFR/zpxfrtrad/raw/master/uninstall.sql
+mysql -u root -p$mysqlrootpass < uninstall.sql
+rm -f uninstall.sql
+fi
+
 ## Determine if we need to update the postfix user
 result=`mysql -u postfix -ppostfix --skip-column-names -e "SHOW DATABASES LIKE 'zpanel_postfix'"`
 
 if [ "$result" == "zpanel_postfix" ]; then
 
 	password=`genpasswd`;
-	mysqlrootpass=`cat /root/mysqlrootpass`
 	echo "UPDATE mysql.user SET Password=PASSWORD('$password') WHERE User='postfix' AND Host='localhost';" | mysql -u root -p$mysqlrootpass
 	echo "FLUSH PRIVILEGES;" | mysql -u root -p$mysqlrootpass
 
