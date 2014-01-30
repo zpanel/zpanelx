@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+<name>Repo Browser</name>
+<version>101</version>
+<type>user</type>
+<defaultcat>Administrator</defaultcat>
+<desc>Repo Browser allows you to manage your custom module repositories.</desc>
+<authorname>RusTus</authorname>
+<authoremail>rustus@zpanelcp.com</authoremail>
+<authorurl>http://rustus.txt-clan.com/</authorurl>
+<updateurl>http://rustus.txt-clan.com/repo_browser.xml</updateurl>
+</module>
