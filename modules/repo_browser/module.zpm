@@ -1,0 +1,385 @@
+<div class="zmodule_content panel" id="zmodule_header_<@ ModuleName @>">
+    <div class="panel-heading">
+        <img src="<@ ModuleIcon @>" width="35" height="35" border="0" alt="<@ ModuleName @>">
+
+        <div class="zmodule_title">
+            <@ ModuleName @>
+        </div>
+
+        <div class="zmodule_desc" id="zmodule_desc_<@ ModuleName @>"><@ ModuleDesc @></div>
+
+    </div>
+	<@ result @>
+	<@ ZppyOut @>
+	
+    <% if isConfirmZPPYPatch %>
+    <div class="znotice alert alert-block alert-info"><img src="<@ ModulePath @>assets/warning.png" border="0">
+        <h2><: ZPPY Patch Needed :></h2>
+        <p><: For ZPanel versions BELOW 10.1.0 Repo Browser can not uninstall a module until your zppy file is patched. Your original file will be saved so you can revert back at a later time if you wish. :></p>
+		<p><: Press the PATCH button to install the modded zppy file and try uninstalling the module again. :></p>
+        <form action="./?module=repo_browser&action=PatchZPPY" method="post">
+            <table class="none" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td colspan="2" align="right">
+                        <input type="hidden" name="inPatch" value="<@ CurrentRepo @>">
+                        <button class="button-loader delete btn btn-danger fg-button ui-state-default ui-corner-all" type="submit" ><: Patch :></button>
+                        <button class="button-loader btn btn-primary fg-button ui-state-default ui-corner-all" type="button" onclick="window.location.href='./?module=repo_browser';return false;"><: Cancel :></button>&nbsp;
+                    </td>
+                </tr>
+            </table>
+            <@ CSFR_Tag @>
+        </form>
+    </div>
+    <% endif %>
+	
+    <% if isConfirmDeleteRepo %>
+    <div class="zform_wrapper panel">
+        <div class="panel-heading"><h2><: Remove Repository :>: <@ CurrentRepo @> ?</h2></div>
+        <p><: Please confirm that you want to remove this repository from your ZPanel server. :></p>
+		<p><strong>NOTE:</strong> Removing the repository will not uninstall any modules, but you will no longer be able to view then in Repo Browser.  Use Module Admin instead.</p>
+        <form action="./?module=repo_browser&action=ConfirmDeleteRepo" method="post">
+            <table class="none" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td colspan="2" align="right">
+                        <input type="hidden" name="inDelete" value="<@ CurrentRepo @>">
+                        <button class="button-loader delete btn btn-danger fg-button ui-state-default ui-corner-all" type="submit" ><: Remove :></button>
+                        <button class="button-loader btn btn-primary fg-button ui-state-default ui-corner-all" type="button" onclick="window.location.href='./?module=repo_browser';return false;"><: Cancel :></button>&nbsp;
+						<input type="checkbox" name="inDebugZPPY" value="1"> <: Debug ZPPY Client output :>?
+                    </td>
+                </tr>
+            </table>
+            <@ CSFR_Tag @>
+        </form>
+    </div>
+    <% endif %>
+	
+    <% if isConfirmAddRepo %>
+    <div class="zform_wrapper alert alert-block alert-info">
+        <img src="<@ ModulePath @>assets/warning.png" border="0">
+		<h2><: Validation failed for repository :>: <@ CurrentRepo @></h2>
+        <p><: The repository you are trying to add does not appear to be a valid ZPanel repository, or the repository may be offline. You can choose to ignore this and add the repository anyway.  :></p>
+        <form action="./?module=repo_browser&action=ConfirmAddRepo" method="post">
+            <table class="none" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td colspan="2" align="right">
+                        <input type="hidden" name="inConfirmAddRepo" value="<@ CurrentRepo @>">
+                        <button class="button-loader btn btn-primary fg-button ui-state-default ui-corner-all" type="submit" ><: Add Anyway :></button>
+                        <button class="button-loader btn btn-primary fg-button ui-state-default ui-corner-all" type="button" onclick="window.location.href='./?module=repo_browser';return false;"><: Cancel :></button>&nbsp;
+						<input type="checkbox" name="inDebugZPPY" value="1"> <: Debug ZPPY Client output :>?
+                    </td>
+                </tr>
+            </table>
+            <@ CSFR_Tag @>
+        </form>
+    </div>
+    <% endif %>
+	
+    <% if isConfirmDeleteModule %>
+    <div class="zform_wrapper panel">
+        <div class="panel-heading"><h2><: Remove Module :>: <@ CurrentModuleName @> ?</h2></div>
+        <p><: Please confirm that you want to remove this module from your ZPanel server. :></p>
+        <form action="./?module=repo_browser&action=ConfirmDeleteModule" method="post">
+            <table class="none" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td colspan="2" align="right">
+                        <input type="hidden" name="inDelete" value="<@ CurrentModuleFull @>">
+                        <button class="button-loader delete btn btn-danger fg-button ui-state-default ui-corner-all" type="submit" ><: Remove :></button>
+                        <button class="button-loader btn btn-primary fg-button ui-state-default ui-corner-all" type="button" onclick="window.location.href='./?module=repo_browser';return false;"><: Cancel :></button>&nbsp;
+						<input type="checkbox" name="inDebugZPPY" value="1"> <: Debug ZPPY Client output :>?
+                    </td>
+                </tr>
+            </table>
+            <@ CSFR_Tag @>
+        </form>
+    </div>
+    <% endif %>
+
+	<% if isConfirmInstallModule %>
+    <div class="zform_wrapper panel">
+        <div class="panel-heading"><h2><: Install Module :>: <@ CurrentModuleName @> ?</h2></div>
+        <p><: Please confirm that you want to install this module on your ZPanel server. :></p>
+        <form action="./?module=repo_browser&action=ConfirmInstallModule" method="post">
+            <table class="none" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td colspan="2" align="right">
+                        <input type="hidden" name="inInstall" value="<@ CurrentModuleFull @>">
+                        <button class="button-loader btn btn-primary fg-button ui-state-default ui-corner-all" type="submit" ><: Install :></button>
+                        <button class="button-loader btn btn-primary fg-button ui-state-default ui-corner-all" type="button" onclick="window.location.href='./?module=repo_browser';return false;"><: Cancel :></button>&nbsp;
+						<input type="checkbox" name="inDebugZPPY" value="1"> <: Debug ZPPY Client output :>?
+                    </td>
+                </tr>
+            </table>
+            <@ CSFR_Tag @>
+        </form>
+    </div>
+    <% endif %>
+
+	<% if isConfirmUpdateVersionDB %>
+    <div class="zform_wrapper panel">
+        <div class="panel-heading"><h2><: Update Module Database Version Number :>: <@ CurrentModuleName @> ?</h2></div>
+        <p><: You are about to manually update the version number that ZPanel is reporting with the version number that is actually reported by your module file. :></p>
+		<p><: ZPanel database version :>: <strong><@ CurrentModuleInstalledVersion @></strong><br><: Will be set to version :>: <strong><@ CurrentModuleVersion @></strong>
+        <form action="./?module=repo_browser&action=ConfirmUpdateVersionDB" method="post">
+            <table class="none" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td colspan="2" align="right">
+                        <input type="hidden" name="inUpdate" value="<@ CurrentModuleName @>">
+						<input type="hidden" name="inVersion" value="<@ CurrentModuleVersion @>">
+                        <button class="button-loader btn btn-primary fg-button ui-state-default ui-corner-all" type="submit" ><: Update :></button>
+                        <button class="button-loader btn btn-primary fg-button ui-state-default ui-corner-all" type="button" onclick="window.location.href='./?module=repo_browser';return false;"><: Cancel :></button>&nbsp;
+                    </td>
+                </tr>
+            </table>
+            <@ CSFR_Tag @>
+        </form>
+    </div>
+    <% endif %>
+	
+	<% if isConfirmUpdateModule %>
+    <div class="zform_wrapper panel">
+        <div class="panel-heading"><h2><: Update Module :>: <@ CurrentModuleName @> ?</h2></div>
+        <p><: Please confirm that you want to install this module on your ZPanel server. :></p>
+        <form action="./?module=repo_browser&action=ConfirmUpdateModule" method="post">
+            <table class="none" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td colspan="2" align="right">
+                        <input type="hidden" name="inUpdate" value="<@ CurrentModuleFull @>">
+                        <button class="button-loader btn btn-primary fg-button ui-state-default ui-corner-all" type="submit" ><: Update :></button>
+                        <button class="button-loader btn btn-primary fg-button ui-state-default ui-corner-all" type="button" onclick="window.location.href='./?module=repo_browser';return false;"><: Cancel :></button>&nbsp;
+						<input type="checkbox" name="inDebugZPPY" value="1"> <: Debug ZPPY Client output :>?
+                    </td>
+                </tr>
+            </table>
+            <@ CSFR_Tag @>
+        </form>
+    </div>
+    <% endif %>
+
+
+	<% if isMain %>
+	<div class="zform_wrapper panel">
+		<div class="panel-heading"><h2><: Available Modules :></h2></div>
+		<% if TotalPackages %>
+		<p><strong><@ totalpackages @></strong> <: total modules :>.</p>
+		<% endif %>
+		<% if ModuleList %>
+			<form action="./?module=repo_browser&action=DeleteModule" method="post">
+			<table class="zgrid table table-striped">
+				<tr>
+					<th><: Module :></th><th colspan="2"><: Status :></th><th><: Module Information :></th><th>&nbsp;</th><th>&nbsp;</th>
+				</tr>
+				<% loop ModuleList %>
+				<tr valign="top">
+					<td>
+						<strong><& installedhtml &></strong>
+						<div id="repostats" class="repostats" item_id="<& reponame &>:::<& modulename &>"><img src='<@ ModulePath @>assets/ajax-loader-bar-small.gif' alt='loading...' /></div>
+					</td>
+					<td nowrap><a href="<& url &>" title="Download <& modulename &>">&dArr;</a></td>
+					<td nowrap><div id="controls" class="controls" item_id="M:::<& url &>"><img src='<@ ModulePath @>assets/ajax-loader.gif' alt='loading...' /></div></td>
+					<td><div id="modinfo" class="modinfo" item_id="<& reponame &>:::<& modulename &>"><img src='<@ ModulePath @>assets/ajax-loader-bar.gif' alt='loading...' /></div>
+						<br>
+						<div id="update" class="update" item_id="<& reponame &>:::<& modulename &>"></div>
+					</td>					
+					
+					
+					<td><button class="<& buttoncss &>" type="submit" name="in<& buttonaction &>Module" id="in<& buttonaction &>Module" value="<& reponame &>:::<& modulename &>"><& buttonaction &></button></td>
+				</tr>
+				<% endloop %>
+			</table>
+			<@ CSFR_Tag @>
+			</form>
+		<% else %>
+			<p><: No modules available for download. :></p>
+		<% endif %>	
+	</div>
+
+		<div class="zform_wrapper panel">
+		<div class="panel-heading"><h2><: Repositories :></h2></div>
+		<% if RepoList %>
+			<form action="./?module=repo_browser&action=DeleteRepo" method="post">
+			<table class="zgrid table table-striped">
+				<tr>
+				<th>Status</th><th>Repo Address</th><th>Remove Repo</th>
+				</tr>
+				<% loop RepoList %>
+				<tr>
+					<td style="width:50px;"><div id="controls" class="controls" item_id="R:::<& line &>"><img src='<@ ModulePath @>assets/ajax-loader.gif' alt='loading...' /></div></td>
+					<td nowrap>( <strong>http://</strong> ) &nbsp;<& line &></td>
+					<td><button class="button-loader delete btn btn-danger fg-button ui-state-default ui-corner-all" type="submit" name="inDeleteRepo" id="inDeleteRepo" value="<& line &>"><: Remove :></button></td>
+				</tr>
+				<% endloop %>
+			</table>
+		<@ CSFR_Tag @>
+		</form>
+		<% else %>
+			<p><: You currently do not have any repositories configured. :></p>
+		<% endif %>
+		<form action="./?module=repo_browser&action=AddRepo" method="post">
+		<table class="none">
+			<tr>
+				<td><strong>http://</strong></td><td><input name="inAddRepo" type="text" id="inAddRepo" size="60" value=""/></td><td><button class="button-loader btn btn-primary fg-button ui-state-default ui-corner-all" type="submit" name="inSubmit" id="inSubmit" value=""><: Add :></button></td>
+			</tr>
+		</table>
+		<@ CSFR_Tag @>
+		</form>	
+	</div>
+	
+	<div class="zform_wrapper panel">
+		<div class="panel-heading"><h2><: ZPPY Client :></h2></div>
+		<p><: Manually run a ZPPY client command. :></p>
+		<form action="./?module=repo_browser&action=RunZPPYCommand" method="post">
+		<table class="none">
+			<tr>
+				<td nowrap>zppy</td><td><input name="inRunZPPYCommand" type="text" id="inRunZPPYCommand" size="60" value=""/></td><td><button class="button-loader btn btn-primary fg-button ui-state-default ui-corner-all" type="submit" name="inSubmit" id="inSubmit" value=""><: Run Command :></button></td>
+			</tr>
+		</table>
+					<table class="none">
+						<tr>
+							<td colspan="2">
+							<strong>Usage:</strong> zppy [action] [modulename]<br><br>
+							<strong>Actions:</strong>
+							<td>
+						</tr>
+						<tr>
+							<td width="50px" nowrap>install [modulename]</td>
+							<td>- Install a named module.</td>
+						</tr>
+						<tr>
+							<td nowrap>upgrade [modulename]</td>
+							<td>- Updates a named module.</td>
+						</tr>
+						<tr>
+							<td nowrap>update</td>
+							<td>- Updates local avaliable package list.</td>
+						</tr>
+						<tr>
+							<td nowrap>remove [modulename]</td>
+							<td>- Remove a named module.</td>
+						</tr>
+						<tr>
+							<td nowrap>repo add [fqdn]</td>
+							<td>- Adds a package repository.</td>
+						</tr>
+						<tr>
+							<td nowrap>repo remove [fqdn]</td>
+							<td>- Removes a package repository.</td>
+						</tr>
+						<tr>
+							<td nowrap>repo list</td>
+							<td>- Displays all your current avaliable package repositories.</td>
+						</tr>
+						<tr>
+							<td nowrap>checkperms</td>
+							<td>- Checks permissions on the cache files.</td>
+						</tr>
+						<tr>
+							<td nowrap>--version</td>
+							<td>- Displays the Zpanel version.</td>
+						</tr>
+						<tr>
+							<td nowrap>--help</td>
+							<td>- Displays this text.</td>
+						</tr>
+					</table>
+		<@ CSFR_Tag @>
+		</form>
+	</div>
+
+        <h2><: Module Developer Notes :></h2>
+		<a href="#" id="devnotes_1_a" onclick="toggle_visibility('1')"><strong>Open Developer Notes</strong></a>
+		<div class="zform_wrapper" id="devnotes_1" style="display:none;">
+            <table class="none">
+                <tr valign="top">
+                    <td>
+						<p><img src="<@ ModulePath @>assets/item.png" width="16" height="16">
+						Custom modules with the same folder name as a ZPanel Core Module will not appear in the Repo Browser.  This is by design.
+						</p>
+						<p><img src="<@ ModulePath @>assets/item.png" width="16" height="16">
+						For ZPanel versions below 10.1.0, When you run the ZPPY patch, Repo Browser will rename your current ZPPY file to <strong>/etc/bin/zppy_repo_bak</strong> it then copies the patched version of ZPPY to that directory from <strong>/modules/repo_browser/bin/zppy</strong> 
+						</p>
+						<p><img src="<@ ModulePath @>assets/item.png" width="16" height="16">
+						If you have a repository and would like your download stats to show up in Repo Browser, then you need to copy the file <strong>/modules/repo_browser/bin/repostats.php</strong> into the base directory of your repository. Make sure to edit that file and change the path variables speciffic to your server.
+						</p>
+						<p><img src="<@ ModulePath @>assets/item.png" width="16" height="16">
+						Normally if a package is not installed, then there is no way to get any information about it.  If you would like information to show up about a module that has not been installed yet, then Repo Browser will take advantage of the modules update.xml file in your repository. Repo Browser will look for additional XML Tags in that file to display the information.  Adding the extra XML Tags will not hurt the modules normal operation.</p>
+						<p>
+						The extra XML tags are the same tags that are found in the module's normal module.xml file: <desc></desc><authorname></authorname><authoremail></authoremail><authorurl></authorurl>. An example of Repo Browsers update.xml file is found below.  Once the XML Tags are in place then if someone has not yet installed your module they will still be able to get the same information about it.<br><br>
+						<strong>SAMPLE UPDATE.XML IN REPOSITORY:</strong> rustus.txt-clan.com/repo_browser.xml<br>
+	<xmp>
+	<updateserver>
+	<latestversion>100</latestversion>
+	<downloadurl>http://rustus.txt-clan.com/repo_browser.zpp</downloadurl>
+	<desc>Repo Browser allows you to manage your custom module repositories.</desc>
+	<updatedesc>Information can be posted here about your update revisions.</updatedesc>
+	<ostype>all</ostype> NOTE: win=windows only. lin=linux only. all=all operating systems.
+	<zpversion>10.0.2:10.1.0</zpversion>
+	<authorname>RusTus</authorname>
+	<authoremail>rustus@zpanelcp.com</authoremail>
+	<authorurl>http://rustus.txt-clan.com</authorurl>
+	</updateserver>
+	</xmp>
+						</p>
+						<br><br>
+						
+					</td>
+                </tr>      
+            </table>
+			</div>
+                <script type="text/javascript">
+                    $(document).ready(function() { 
+                        $("#devnotes_1").hide();
+                        $("#devnotes_1_a").click(function(){
+                            if ($("#devnotes_1").is(":visible")) {
+                                $("#devnotes_1").slideUp("fast");
+                                $(this).addClass("active");
+                                return false;
+                            } else {
+                                $("#devnotes_1").slideDown("fast");
+                                $(this).removeClass("active");
+                                return false;
+                            }
+                        }); 
+                    })
+                </script>
+	<% endif %>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.controls').each(function(i) {
+            var itemId = $(this).attr('item_id');
+            //$(this).load('ajax.php?request=controls&item_id=' + itemId)
+			$(this).load('modules/repo_browser/code/ajax.php?id=<@ ZPanelID @>&request=' + itemId)
+        });
+    });
+    $(document).ready(function() {
+        $('.modinfo').each(function(i) {
+            var itemId = $(this).attr('item_id');
+
+			$(this).load('modules/repo_browser/code/ajax.php?id=<@ ZPanelID @>&modinfo=' + itemId)
+        });
+    });
+    $(document).ready(function() {
+        $('.update').each(function(i) {
+            var itemId = $(this).attr('item_id');
+			$(this).load('modules/repo_browser/code/ajax.php?id=<@ ZPanelID @>&update=' + itemId)
+        });
+    });
+    $(document).ready(function() {
+        $('.repostats').each(function(i) {
+            var itemId = $(this).attr('item_id');
+			$(this).load('modules/repo_browser/code/ajax.php?id=<@ ZPanelID @>&repostat=' + itemId)
+        });
+    });
+</script>
+<script type="text/javascript">
+    <!--
+    function toggle_visibility(id) {
+        var e = document.getElementById(id);
+        if(e.style.display == 'none')
+            e.style.display = 'block';
+        else
+            e.style.display = 'none';
+    }
+    //-->
+</script>
