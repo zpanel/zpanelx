@@ -24,7 +24,7 @@
     <meta name="msapplication-TileColor" content="#222222">
     <meta name="msapplication-TileImage" content="/etc/styles/zpanelx/img/ico/fav144.png">
 
-    <!-- styles -->
+    <!-- Styles -->
     <link href="/etc/styles/zpanelx/global-css/bootstrap.css" rel="stylesheet">
     <link href="/etc/styles/zpanelx/global-css/login.css" rel="stylesheet">
 
@@ -51,170 +51,166 @@
 <body>
     <div class="loginwrapper">
 
+        <div class="panel login-panel">
+            
+            <div class="panel-heading login-head">
+                <img src="/etc/styles/zpanelx/images/zplogo_v9.png">
+            </div>
+            
+            <!-- Panel Content -->
+            <div class="panel-content form-horizontal">
 
+                <?php
+                if (isset($_GET['invalidlogin'])) {
+                echo '
+                <div class="alert alert-danger fade in">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                Invalid Username or Password!
+                </div>';
+                }
+                if (isset($_GET['loggedout'])) {
+                echo '
+                <div class="alert alert-success fade in">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                Logout Successful!
+                </div>';
+                }
+                if (isset($_GET['sessionIssue'])) {
+                echo '
+                <div class="alert alert-danger fade in">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                You have been logged out, please login again.
+                </div>';
+                }
+                if (isset($_GET['passwordreset'])) {
+                echo '
+                <div class="alert alert-success fade in">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                Your password has been reset!
+                </div>';
+                }
+                
+                //if (runtime_sessionsecurity::checkProxy()) {
+                //  echo '
+                //  <div class="alert alert-info fade in logalert">
+                //    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                //    It seems you are behind a proxy or on a webserver. Try disabling Session Security and logging in again.
+                //  </div>';
+                //}
+                ?>
 
-
-<div class="panel login-panel">
-    <div class="panel-heading login-head">
-        <img src="/etc/styles/zpanelx/images/zplogo_v9.png">
-    </div>
-    <div class="panel-content form-horizontaL">
-
-
-        <?php
-        if (isset($_GET['invalidlogin'])) {
-        echo '
-        <div class="alert alert-danger fade in">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        Invalid Username or Password!
-        </div>';
-        }
-        if (isset($_GET['loggedout'])) {
-        echo '
-        <div class="alert alert-success fade in">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        Logout Successful!
-        </div>';
-        }
-        if(isset($_GET['sessionIssue'])){
-        echo '
-        <div class="alert alert-danger fade in">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        You have been logged out, please login again.
-        </div>';
-        }
-        if (isset($_GET['passwordreset'])) {
-        echo '
-        <div class="alert alert-success fade in">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        Your password has been reset!
-        </div>';
-        }
-        //if (runtime_sessionsecurity::checkProxy()) {
-        //  echo '
-        //  <div class="alert alert-info fade in logalert">
-        //    <button type="button" class="close" data-dismiss="alert">&times;</button>
-        //    It seems you are behind a proxy or on a webserver. Try disabling Session Security and logging in again.
-        //  </div>';
-        //}
-        ?>
-
-            <!-- Reset Password Form -->
-            <?php if (isset($_GET['resetkey'])) { ?>
-            <form action="<?php echo $_SERVER['PHP_SELF']; ?>?resetkey=<?php echo $_GET['resetkey']; ?>" method="post" name="frmZConfirm" id="frmZConfirm" class="form-horizontal loginform">
-                <div class="loginmid">
-                    <div class="control-group">
-                        <label class="control-label" for="inputNewPass1">New Password:</label>
-                        <div class="controls">
-                            <input type="password" class="input-medium" id="inputNewPass1" name="inConfEmail" placeholder="New Password" required>
+                <!-- Reset Password Form -->
+                <?php if (isset($_GET['resetkey'])) { ?>
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>?resetkey=<?php echo $_GET['resetkey']; ?>" method="post" name="frmZConfirm" id="frmZConfirm" class="form-horizontal loginform">
+                        <div class="loginmid">
+                            <div class="control-group">
+                                <label class="control-label" for="inputNewPass1">New Password:</label>
+                                <div class="controls">
+                                    <input type="password" class="input-medium" id="inputNewPass1" name="inConfEmail" placeholder="New Password" required>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="inputNewPass2">Confirm Password:</label>
+                                <div class="controls">
+                                    <input type="password" class="input-medium" id="inputNewPass2" name="inConfEmail" placeholder="Confirm Password" required>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="inPassword">EMail:</label>
+                                <div class="controls">
+                                    <input type="text" class="input-medium" id="inPassword" name="inConfEmail" placeholder="Email" required>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="inputNewPass2">Confirm Password:</label>
-                        <div class="controls">
-                            <input type="password" class="input-medium" id="inputNewPass2" name="inConfEmail" placeholder="Confirm Password" required>
+                        <div class="loginbtm">
+                            <div>
+                                <!-- <a href="javascript:void(0);" id="backtologin2">Back To Login</a> -->
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-primary" name="sublogin2" value="LogIn">Submit</button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="inPassword">EMail:</label>
-                        <div class="controls">
-                            <input type="text" class="input-medium" id="inPassword" name="inConfEmail" placeholder="Email" required>
+                        <?php echo runtime_csfr::Token(); ?>
+                    </form>
+                    <!-- End Reset Password Form -->
+
+
+                <?php } else { ?>
+
+                    <!-- Forgot Password Form -->
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="frmZForgot" id="frmZForgot" class="form-horizontal loginform" style="display: none;">
+                        <div class="loginmid">
+                            <div class="control-group">
+                                <label class="control-label" for="inputEmail">
+                                    Email:
+                                </label>
+                                <div class="controls">
+                                    <input type="text" class="input-medium" id="inputEmail" name="inForgotPassword" placeholder="Email" required>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="loginbtm">
-                    <div>
-                        <!-- <a href="javascript:void(0);" id="backtologin2">Back To Login</a> -->
-                    </div>
-                    <div>
-                        <button type="submit" class="btn btn-primary" name="sublogin2" value="LogIn">Submit</button>
-                    </div>
-                </div>
-                <?php echo runtime_csfr::Token(); ?>
-            </form>
-            <!-- End Reset Password Form -->
-
-
-            <?php } else {?>
-
-            <!-- Forgot Password Form -->
-            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="frmZForgot" id="frmZForgot" class="form-horizontal loginform" style="display: none;">
-                <div class="loginmid">
-                    <div class="control-group">
-                        <label class="control-label" for="inputEmail">
-                            Email:
-                        </label>
-                        <div class="controls">
-                            <input type="text" class="input-medium" id="inputEmail" name="inForgotPassword" placeholder="Email" required>
+                        <div class="loginbtm">
+                            <div>
+                                <a href="javascript:void(0);" id="backtologin">Back To Login</a>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-primary" name="sublogin2" value="LogIn">Submit</button>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="loginbtm">
-                    <div>
-                        <a href="javascript:void(0);" id="backtologin">Back To Login</a>
-                    </div>
-                    <div>
-                        <button type="submit" class="btn btn-primary" name="sublogin2" value="LogIn">Submit</button>
-                    </div>
-                </div>
-                <?php echo runtime_csfr::Token(); ?>
-            </form>
-            <!-- End Forgot Password Form -->
+                        <?php echo runtime_csfr::Token(); ?>
+                    </form>
+                    <!-- End Forgot Password Form -->
 
 
 
-            <!-- Login Form -->
-            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="frmZLogin" id="frmZLogin" class="form-horizontal loginform">
-                <div class="loginmid">
-                    <div class="control-group">
-                        <label class="control-label" for="inputUsername">Username:</label>
-                        <div class="controls">
-                            <input type="text" class="input-medium" id="inputUsername" name="inUsername" placeholder="Username" required>
+                    <!-- Login Form -->
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="frmZLogin" id="frmZLogin" class="form-horizontal loginform">
+                        <div class="loginmid">
+                            <div class="control-group">
+                                <label class="control-label" for="inputUsername">Username:</label>
+                                <div class="controls">
+                                    <input type="text" class="input-medium" id="inputUsername" name="inUsername" placeholder="Username" required>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="inPassword">Password:</label>
+                                <div class="controls">
+                                    <input type="password" class="input-medium" id="inPassword" name="inPassword" placeholder="Password" required>
+                                </div>
+                            </div>
+                            <div class="fluid-row">
+                                <div class="controls">
+                                    <label class="checkbox">
+                                        <input type="checkbox" data-label="Remember Me" name="inRemember" value="1">
+                                        <input type="checkbox" data-label="Enable Session Security" name="inSessionSecurity" checked>
+                                    </label>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="inPassword">Password:</label>
-                        <div class="controls">
-                            <input type="password" class="input-medium" id="inPassword" name="inPassword" placeholder="Password" required>
+                        <div class="loginbtm">
+                            <div>
+                                <a href="javascript:void(0);" id="forgotpw">Forgot Password?</a>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-primary" name="sublogin2" value="LogIn">Login</button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="fluid-row">
-                        <div class="controls">
-                            <label class="checkbox">
-                                <input type="checkbox" data-label="Remember Me" name="inRemember" value="1">
-                                <input type="checkbox" data-label="Enable Session Security" name="inSessionSecurity" checked>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="loginbtm">
-                    <div>
-                        <a href="javascript:void(0);" id="forgotpw">Forgot Password?</a>
-                    </div>
-                    <div>
-                        <button type="submit" class="btn btn-primary" name="sublogin2" value="LogIn">Login</button>
-                    </div>
-                </div>
-                <?php echo runtime_csfr::Token(); ?>
-            </form>
-            <!-- End Login Form -->
+                        <?php echo runtime_csfr::Token(); ?>
+                    </form>
+                    <!-- End Login Form -->
 
+                <?php } ?>
 
-
-            <?php }?>
-
-
-
-    </div><!--/panel content-->
-</div>
-
+            </div>
+            <!-- End Panel Content-->
+            
+        </div>
 
         <p class="vbox">Powered By: <a href="http://www.zpanelcp.com/" target="_blank">ZPanel</a></p>
 
     </div>
 
-
-    <!-- javascript
+    <!-- JavaScript
     ================================================== -->
     <script src="/etc/styles/zpanelx/js/jquery.js"></script>
     <script src="/etc/styles/zpanelx/js/prettyCheckable.js"></script>
