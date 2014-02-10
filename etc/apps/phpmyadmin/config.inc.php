@@ -71,11 +71,9 @@ $cfg['Servers'][$i]['AllowNoPassword'] = false;
 
 /*
  * Directories for saving/loading files from server
- * You may need to specify an exact path here or warnings may show
- * For example, on Linux: '/etc/zpanel/panel/etc/tmp/'
  */
-$cfg['UploadDir'] = '../tmp/';
-$cfg['SaveDir'] = '../tmp/';
+$cfg['UploadDir'] = '../../tmp';
+$cfg['SaveDir'] = '../../tmp';
 
 /**
  * Defines whether a user should be displayed a "show all (records)"
