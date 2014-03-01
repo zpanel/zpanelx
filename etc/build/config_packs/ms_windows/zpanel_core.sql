@@ -186,6 +186,32 @@ CREATE TABLE `x_dns` (
 
 /*Data for the table `x_dns` */
 
+/* Table structure for table `x_dns_create` */
+CREATE TABLE IF NOT EXISTS `zpanel_core`.`x_dns_create` (
+  `dc_id_pk` int(6) unsigned NOT NULL AUTO_INCREMENT,
+  `dc_acc_fk` int(6) DEFAULT NULL,
+  `dc_type_vc` varchar(50) DEFAULT NULL,
+  `dc_host_vc` varchar(100) DEFAULT NULL,
+  `dc_ttl_in` int(30) DEFAULT NULL,
+  `dc_target_vc` varchar(100) DEFAULT NULL,
+  `dc_priority_in` int(50) DEFAULT NULL,
+  `dc_weight_in` int(50) DEFAULT NULL,
+  `dc_port_in` int(50) DEFAULT NULL,
+  PRIMARY KEY (`dc_id_pk`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+/* Data for the table `x_dns_create` */
+INSERT INTO `zpanel_core`.`x_dns_create` (`dc_id_pk`, `dc_acc_fk`, `dc_type_vc`, `dc_host_vc`, `dc_ttl_in`, `dc_target_vc`, `dc_priority_in`, `dc_weight_in`, `dc_port_in`) VALUES
+(1, 0, 'A', '@', 3600, ':IP:', NULL, NULL, NULL),
+(2, 0, 'CNAME', 'www', 3600, '@', NULL, NULL, NULL),
+(3, 0, 'CNAME', 'ftp', 3600, '@', NULL, NULL, NULL),
+(4, 0, 'A', 'mail', 86400, ':IP:', NULL, NULL, NULL),
+(5, 0, 'MX', '@', 86400, 'mail.:DOMAIN:', 10, NULL, NULL),
+(6, 0, 'A', 'ns1', 172800, ':IP:', NULL, NULL, NULL),
+(7, 0, 'A', 'ns2', 172800, ':IP:', NULL, NULL, NULL),
+(8, 0, 'NS', '@', 172800, 'ns1.:DOMAIN:', NULL, NULL, NULL),
+(9, 0, 'NS', '@', 172800, 'ns2.:DOMAIN:', NULL, NULL, NULL);
+
 /*Table structure for table `x_faqs` */
 
 DROP TABLE IF EXISTS `x_faqs`;
@@ -746,7 +772,7 @@ insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx
 insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx`,`so_defvalues_tx`,`so_desc_tx`,`so_module_vc`,`so_usereditable_en`) values (111,'dns_hasupdates','DNS Updated',NULL,NULL,NULL,NULL,'false');
 insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx`,`so_defvalues_tx`,`so_desc_tx`,`so_module_vc`,`so_usereditable_en`) values (112,'mailer_type','Mail method','mail','mail|smtp|sendmail','Method to use when sending emails out. (mail = PHP Mail())','ZPanel Config','true');
 insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx`,`so_defvalues_tx`,`so_desc_tx`,`so_module_vc`,`so_usereditable_en`) values (113,'daemon_run_interval','Number of seconds between each daemon execution','300',NULL,'The total number of seconds between each daemon run (default 300 = 5 mins)','ZPanel Config','false');
-insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx`,`so_defvalues_tx`,`so_desc_tx`,`so_module_vc`,`so_usereditable_en`) values (114,'debug_mode','ZPanel Debug Mode','dev','dev|prod','Whether or not to show PHP debug errors,warnings and notices','ZPanel Config','true');
+insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx`,`so_defvalues_tx`,`so_desc_tx`,`so_module_vc`,`so_usereditable_en`) values (114,'debug_mode','ZPanel Debug Mode','prod','dev|prod','Whether or not to show PHP debug errors,warnings and notices','ZPanel Config','true');
 insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx`,`so_defvalues_tx`,`so_desc_tx`,`so_module_vc`,`so_usereditable_en`) values (115,'password_minlength','Min Password Length','6',NULL,'Minimum length required for new passwords','ZPanel Config','true');
 insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx`,`so_defvalues_tx`,`so_desc_tx`,`so_module_vc`,`so_usereditable_en`) values (116,'cron_reload','Cron Reload',NULL,NULL,'Cron reload command for apache user in Linux Only','Cron Config','true');
 insert  into `x_settings`(`so_id_pk`,`so_name_vc`,`so_cleanname_vc`,`so_value_tx`,`so_defvalues_tx`,`so_desc_tx`,`so_module_vc`,`so_usereditable_en`) values (117,'login_csfr','Remote Login Forms','false','false|true','Disables CSFR protection on the login form to enable remote login forms.','ZPanel Config','true');

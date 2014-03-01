@@ -7,7 +7,7 @@
  * @package ZPanel
  * @version $Id$
  * @author Bobby Allen - ballen@bobbyallen.me
- * @copyright (c) 2008-2011 ZPanel Group - http://www.zpanelcp.com/
+ * @copyright (c) 2008-2014 ZPanel Group - http://www.zpanelcp.com/
  * @license http://opensource.org/licenses/gpl-3.0.html GNU Public License v3
  *
  * This program (ZPanel) is free software: you can redistribute it and/or modify
@@ -464,6 +464,19 @@ class module_controller extends ctrl_module
         $packages = self::ListPackages($currentuser['userid']);
         if ($packages)
             return $packages;
+        return false;
+    }
+
+    static function getPackageListDropdown()
+    {
+        $currentuser = ctrl_users::GetUserDetail();
+        $packages = self::ListPackages($currentuser['userid']);
+        $available = array();
+        foreach ($packages as $package) {
+            if ($package['packageid'] != $_GET['other']) $available[] = $package;
+        }
+        if (count($available) > 0)
+            return $available;
         return false;
     }
 
