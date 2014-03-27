@@ -12,7 +12,7 @@ class webservice extends ws_xmws
         $sql->bindParam(':name', $domainName);
         $sql->execute();
         $domainID = $sql->fetch();
-        return $domainID['vh_id_pk'];
+        return $domainID ? $domainID['vh_id_pk'] : -1;
     }
 
     /**
@@ -30,18 +30,20 @@ class webservice extends ws_xmws
         $uid = ws_generic::GetTagValue('uid', $request_data['content']);
         $domainID = self::GetDomainID($uid, $domainName);
 
-        $sql = $zdbh->prepare("SELECT * FROM x_dns WHERE dn_acc_fk=:userid AND dn_vhost_fk=:domainID AND dn_deleted_ts IS NULL ORDER BY dn_host_vc ASC");
-        $sql->bindParam(':userid', $uid);
-        $sql->bindParam(':domainID', $domainID);
-        $sql->execute();
+        if ($domainID != -1) {
+            $sql = $zdbh->prepare("SELECT * FROM x_dns WHERE dn_acc_fk=:userid AND dn_vhost_fk=:domainID AND dn_deleted_ts IS NULL ORDER BY dn_host_vc ASC");
+            $sql->bindParam(':userid', $uid);
+            $sql->bindParam(':domainID', $domainID);
+            $sql->execute();
 
-        while ($rowdns = $sql->fetch()) {
-            $response_xml = $response_xml . ws_xmws::NewXMLContentSection('dns_record', array(
-                        'hostName' => $rowdns['dn_host_vc'],
-                        'type' => $rowdns['dn_type_vc'],
-                        'target' => $rowdns['dn_target_vc'],
-                        'ttl' => $rowdns['dn_ttl_in'],
-            ));
+            while ($rowdns = $sql->fetch()) {
+                $response_xml = $response_xml . ws_xmws::NewXMLContentSection('dns_record', array(
+                            'hostName' => $rowdns['dn_host_vc'],
+                            'type' => $rowdns['dn_type_vc'],
+                            'target' => $rowdns['dn_target_vc'],
+                            'ttl' => $rowdns['dn_ttl_in'],
+                ));
+            }
         }
 
         $dataobject = new runtime_dataobject();
@@ -71,23 +73,27 @@ class webservice extends ws_xmws
         $target = ws_generic::GetTagValue('target', $request_data['content']);
         $ttl = ws_generic::GetTagValue('ttl', $request_data['content']);
         $domainID = self::GetDomainID($uid, $domainName);
+        $created = "false";
 
-        module_controller::createDNSRecord(array(
-            "uid" => $uid,
-            "domainName" => $domainName,
-            "domainID" => $domainID,
-            "type" => $type,
-            "hostName" => $hostName,
-            "ttl" => $ttl,
-            "target" => $target
-        ));
+        if ($domainID != -1) {
+            module_controller::createDNSRecord(array(
+                "uid" => $uid,
+                "domainName" => $domainName,
+                "domainID" => $domainID,
+                "type" => $type,
+                "hostName" => $hostName,
+                "ttl" => $ttl,
+                "target" => $target
+            ));
+            $created = "true";
+        }
 
         $response_xml = $response_xml . ws_xmws::NewXMLContentSection('dns_record', array(
                     'domainName' => $domainName,
                     'hostName' => $hostName,
                     'type' => $type,
                     'target' => $target,
-                    'created' => 'true'
+                    'created' => $created
         ));
 
         $dataobject = new runtime_dataobject();
@@ -117,7 +123,14 @@ class webservice extends ws_xmws
         $domainName = ws_generic::GetTagValue('domainName', $request_data['content']);
         $domainID = self::GetDomainID($uid, $domainName);
 
-        $sqlstr = "SELECT * FROM x_dns WHERE dn_acc_fk=:userid AND vh_deleted_ts IS NULL AND dn_vhost_fk=:domainID ";
+        if ($domainID == -1) {
+            $dataobject = new runtime_dataobject();
+            $dataobject->addItemValue('response', '');
+            $dataobject->addItemValue('content', $response_xml);
+            return $dataobject->getDataObject();
+        }
+
+        $sqlstr = "SELECT * FROM x_dns WHERE dn_acc_fk=:userid AND dn_deleted_ts IS NULL AND dn_vhost_fk=:domainID ";
 
         // iterate through optional parameters
         foreach ($tags as $tag => $sql_param) {
