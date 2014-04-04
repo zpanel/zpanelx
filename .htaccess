@@ -1,5 +1,5 @@
 RewriteEngine on
-RewriteRule ^api/v1/([A-Za-z-_]+)/?$ bin/api.php?m=$1 [L]
+RewriteRule ^api/v1/([A-Za-z0-9-_]+)/?$ bin/api.php?m=$1 [L]
 RewriteRule ^apps/([^/\.]+)/?$ etc/apps/$1 [L]
 
 # Sample rules how to ban Zpanel from IP Access:
