@@ -57,7 +57,7 @@
                 if (isset($_GET['invalidlogin'])) {
                 echo '
                 <div class="alert alert-danger fade in">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 Invalid Username or Password!
                 </div>';
                 }
@@ -197,6 +197,8 @@
     <!-- Javascript
     ================================================== -->
     <script src="/etc/styles/zpanelx/js/jquery.js"></script>
+    <script src="/etc/styles/zpanelx/js/bootstrap-transition.js"></script>
+    <script src="/etc/styles/zpanelx/js/bootstrap-alert.js"></script>
     <script src="/etc/styles/zpanelx/js/prettyCheckable.js"></script>
     <!-- Pretty checkable @ https://github.com/arthurgouveia/prettyCheckable -->
     <script>
