@@ -62,9 +62,17 @@ function WriteDNSZoneRecordsHook()
             fs_director::CreateDirectory(ctrl_options::GetSystemOption('zone_dir'));
             fs_director::SetFileSystemPermissions(ctrl_options::GetSystemOption('zone_dir'));
         }
+        //Get the first namserver
+        $sql = $zdbh->prepare('SELECT * FROM x_dns WHERE dn_vhost_fk=:dnsrecord AND dn_type_vc="NS" AND dn_deleted_ts IS NULL ORDER BY dn_type_vc');
+        $sql->bindParam(':dnsrecord', $domain_id);
+        $sql->execute();
+        $nameserver = $sql->fetch();
+        //Use the first nameserver if exists, else use ns1.domainname
+        $soa = (count($nameserver) > 0 && strlen($nameserver['dn_target_vc']) > 0 ? $nameserver['dn_target_vc'] : 'ns1.'. $DomainName);
+        
         $zone_file = (ctrl_options::GetSystemOption('zone_dir')) . $DomainName . ".txt";
         $line = "$" . "TTL 10800" . fs_filehandler::NewLine();
-        $line .= "@ IN SOA ns1." . $DomainName . ".    postmaster." . $DomainName . ". (" . fs_filehandler::NewLine();
+        $line .= "@ IN SOA " . $soa . ".    postmaster." . $DomainName . ". (" . fs_filehandler::NewLine();
         $line .= "    " . $SoaSerial . "  ;serial" . fs_filehandler::NewLine();
         $line .= "    " . ctrl_options::GetSystemOption('refresh_ttl') . "    ;refresh after 6 hours" . fs_filehandler::NewLine();
         $line .= "    " . ctrl_options::GetSystemOption('retry_ttl') . "    ;retry after 1 hour" . fs_filehandler::NewLine();
