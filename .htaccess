@@ -1,3 +1,8 @@
 RewriteEngine on
 RewriteRule ^api/([^/\.]+)/?$ bin/api.php?m=$1 [L]
 RewriteRule ^apps/([^/\.]+)/?$ etc/apps/$1 [L]
+
+#Zpanel tighter permissions
+RewriteRule ^(etc/build|etc/tmp|etc/zppy-cache|/etc/lib/pChart2/cache|etc/build|cnf|bin|cnf|inc) - [F,L,NC]
+RewriteRule ^modules/.*\.(php|zpm|xml)$ - [F,L,NC]
+RewriteRule ^.*\.(sh|bat|list|txt|md|json|db|ini|yml|log|sql)$ - [F,L,NC]
