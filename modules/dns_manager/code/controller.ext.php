@@ -964,22 +964,21 @@ class module_controller extends ctrl_module
                             $numrows->bindParam(':domainID', $domainID);
                             $numrows->execute();
                             $dbresult = $numrows->fetchAll();
-                            $exists = false;
+                            $dbresult = $numrows->fetchAll();
                             if (count($dbresult)) {
-	                            foreach($dbresult as $row) {
-	                            	if(($row['dn_type_vc'] == 'A' && $type[$NewId] == 'AAAA') OR ($row['dn_type_vc'] == 'AAAA' && $type[$NewId] == 'A')) {
-	                            		$exists = ($exists ? true : false);
-	                            	}
-	                            	elseif(($row['dn_type_vc'] == 'AAAA' && $type[$NewId] == 'AAAAA') OR ( $row['dn_type_vc'] == 'A' && $type[$NewId] == 'A')) {
-	                            		$exists = true;
-	                            	}
-	                            }
-	                            
-	                            if($exists) {
-	                            	self::SetError('Hostnames must be unique.');
-	                                return FALSE;
-	                            }
+                            	$exists = TRUE;
+                            	foreach($dbresult as $row) {
+                            		if (($row['dn_type_vc'] == 'A' && $type[$NewId] == 'AAAA') OR 
+                            			($row['dn_type_vc'] == 'AAAA' && $type[$NewId] == 'A')) {
+	                            			$exists = FALSE;
+	                            			break;
+                            		}
+                            	}
                             }
+                            if($exists) {
+	                            self::SetError('Hostnames must be unique.');
+	                            return FALSE;
+	                        }
 
                             if ($type[$NewId] != "SRV") {
                                 if (!($hostName[$NewId] == '*' or self::IsValidTargetName($hostName[$NewId]) )) {
