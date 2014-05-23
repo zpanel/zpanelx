@@ -1006,6 +1006,9 @@ class module_controller extends ctrl_module
     static function getDefaultEmailBody()
     {
         global $controller;
+        if ($emailBodyFromSetting = ctrl_options::GetSystemOption('defaultEmailBody')){
+            return $emailBodyFromSetting;
+        }
         return self::DefaultEmailBody();
     }
 
