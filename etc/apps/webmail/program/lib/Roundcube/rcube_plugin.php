@@ -10,412 +10,503 @@
  | See the README file for a full license statement.                     |
  |                                                                       |
  | PURPOSE:                                                              |
- |  Abstract plugins interface/class                                     |
- |  All plugins need to extend this class                                |
+ |   Plugins repository                                                  |
  +-----------------------------------------------------------------------+
  | Author: Thomas Bruederli <roundcube@gmail.com>                        |
  +-----------------------------------------------------------------------+
 */
 
+// location where plugins are loade from
+if (!defined('RCUBE_PLUGINS_DIR')) {
+    define('RCUBE_PLUGINS_DIR', RCUBE_INSTALL_PATH . 'plugins/');
+}
+
 /**
- * Plugin interface class
+ * The plugin loader and global API
  *
  * @package    Framework
  * @subpackage PluginAPI
  */
-abstract class rcube_plugin
+class rcube_plugin_api
 {
-    /**
-     * Class name of the plugin instance
-     *
-     * @var string
-     */
-    public $ID;
+    static protected $instance;
+
+    public $dir;
+    public $url = 'plugins/';
+    public $task = '';
+    public $output;
+    public $handlers              = array();
+    public $allowed_prefs         = array();
+    public $allowed_session_prefs = array();
+
+    protected $plugins = array();
+    protected $tasks = array();
+    protected $actions = array();
+    protected $actionmap = array();
+    protected $objectsmap = array();
+    protected $template_contents = array();
+    protected $active_hook = false;
+
+    // Deprecated names of hooks, will be removed after 0.5-stable release
+    protected $deprecated_hooks = array(
+        'create_user'       => 'user_create',
+        'kill_session'      => 'session_destroy',
+        'upload_attachment' => 'attachment_upload',
+        'save_attachment'   => 'attachment_save',
+        'get_attachment'    => 'attachment_get',
+        'cleanup_attachments' => 'attachments_cleanup',
+        'display_attachment' => 'attachment_display',
+        'remove_attachment' => 'attachment_delete',
+        'outgoing_message_headers' => 'message_outgoing_headers',
+        'outgoing_message_body' => 'message_outgoing_body',
+        'address_sources'   => 'addressbooks_list',
+        'get_address_book'  => 'addressbook_get',
+        'create_contact'    => 'contact_create',
+        'save_contact'      => 'contact_update',
+        'contact_save'      => 'contact_update',
+        'delete_contact'    => 'contact_delete',
+        'manage_folders'    => 'folders_list',
+        'list_mailboxes'    => 'mailboxes_list',
+        'save_preferences'  => 'preferences_save',
+        'user_preferences'  => 'preferences_list',
+        'list_prefs_sections' => 'preferences_sections_list',
+        'list_identities'   => 'identities_list',
+        'create_identity'   => 'identity_create',
+        'delete_identity'   => 'identity_delete',
+        'save_identity'     => 'identity_update',
+        'identity_save'     => 'identity_update',
+        // to be removed after 0.8
+        'imap_init'         => 'storage_init',
+        'mailboxes_list'    => 'storage_folders',
+        'imap_connect'      => 'storage_connect',
+    );
 
     /**
-     * Instance of Plugin API
+     * This implements the 'singleton' design pattern
      *
-     * @var rcube_plugin_api
+     * @return rcube_plugin_api The one and only instance if this class
      */
-    public $api;
-
-    /**
-     * Regular expression defining task(s) to bind with 
-     *
-     * @var string
-     */
-    public $task;
-
-    /**
-     * Disables plugin in AJAX requests
-     *
-     * @var boolean
-     */
-    public $noajax = false;
-
-    /**
-     * Disables plugin in framed mode
-     *
-     * @var boolean
-     */
-    public $noframe = false;
-
-    /**
-     * A list of config option names that can be modified
-     * by the user via user interface (with save-prefs command)
-     *
-     * @var array
-     */
-    public $allowed_prefs;
-
-    protected $home;
-    protected $urlbase;
-    private $mytask;
-
-
-    /**
-     * Default constructor.
-     *
-     * @param rcube_plugin_api $api Plugin API
-     */
-    public function __construct($api)
+    static function get_instance()
     {
-        $this->ID      = get_class($this);
-        $this->api     = $api;
-        $this->home    = $api->dir . $this->ID;
-        $this->urlbase = $api->url . $this->ID . '/';
+        if (!self::$instance) {
+            self::$instance = new rcube_plugin_api();
+        }
+
+        return self::$instance;
     }
 
     /**
-     * Initialization method, needs to be implemented by the plugin itself
+     * Private constructor
      */
-    abstract function init();
+    protected function __construct()
+    {
+        $this->dir = slashify(RCUBE_PLUGINS_DIR);
+    }
 
     /**
-     * Provide information about this
+     * Initialize plugin engine
      *
-     * @return array Meta information about a plugin or false if not implemented
+     * This has to be done after rcmail::load_gui() or rcmail::json_init()
+     * was called because plugins need to have access to rcmail->output
+     *
+     * @param object rcube Instance of the rcube base class
+     * @param string Current application task (used for conditional plugin loading)
      */
-    public static function info()
+    public function init($app, $task = '')
     {
+        $this->task   = $task;
+        $this->output = $app->output;
+
+        // register an internal hook
+        $this->register_hook('template_container', array($this, 'template_container_hook'));
+
+        // maybe also register a shudown function which triggers
+        // shutdown functions of all plugin objects
+    }
+
+    /**
+     * Load and init all enabled plugins
+     *
+     * This has to be done after rcmail::load_gui() or rcmail::json_init()
+     * was called because plugins need to have access to rcmail->output
+     *
+     * @param array List of configured plugins to load
+     * @param array List of plugins required by the application
+     */
+    public function load_plugins($plugins_enabled, $required_plugins = array())
+    {
+        foreach ($plugins_enabled as $plugin_name) {
+            $this->load_plugin($plugin_name);
+        }
+
+        // check existance of all required core plugins
+        foreach ($required_plugins as $plugin_name) {
+            $loaded = false;
+            foreach ($this->plugins as $plugin) {
+                if ($plugin instanceof $plugin_name) {
+                    $loaded = true;
+                    break;
+                }
+            }
+
+            // load required core plugin if no derivate was found
+            if (!$loaded) {
+                $loaded = $this->load_plugin($plugin_name);
+            }
+
+            // trigger fatal error if still not loaded
+            if (!$loaded) {
+                rcube::raise_error(array(
+                    'code' => 520, 'type' => 'php',
+                    'file' => __FILE__, 'line' => __LINE__,
+                    'message' => "Requried plugin $plugin_name was not loaded"), true, true);
+            }
+        }
+    }
+
+    /**
+     * Load the specified plugin
+     *
+     * @param string Plugin name
+     *
+     * @return boolean True on success, false if not loaded or failure
+     */
+    public function load_plugin($plugin_name)
+    {
+        static $plugins_dir;
+
+        if (!$plugins_dir) {
+            $dir         = dir($this->dir);
+            $plugins_dir = unslashify($dir->path);
+        }
+
+        // plugin already loaded
+        if ($this->plugins[$plugin_name] || class_exists($plugin_name, false)) {
+            return true;
+        }
+
+        $fn = $plugins_dir . DIRECTORY_SEPARATOR . $plugin_name
+            . DIRECTORY_SEPARATOR . $plugin_name . '.php';
+
+        if (file_exists($fn)) {
+            include $fn;
+
+            // instantiate class if exists
+            if (class_exists($plugin_name, false)) {
+                $plugin = new $plugin_name($this);
+                // check inheritance...
+                if (is_subclass_of($plugin, 'rcube_plugin')) {
+                    // ... task, request type and framed mode
+                    if ((!$plugin->task || preg_match('/^('.$plugin->task.')$/i', $this->task))
+                        && (!$plugin->noajax || (is_object($this->output) && $this->output->type == 'html'))
+                        && (!$plugin->noframe || empty($_REQUEST['_framed']))
+                    ) {
+                        $plugin->init();
+                        $this->plugins[$plugin_name] = $plugin;
+                    }
+
+                    if (!empty($plugin->allowed_prefs)) {
+                        $this->allowed_prefs = array_merge($this->allowed_prefs, $plugin->allowed_prefs);
+                    }
+
+                    return true;
+                }
+            }
+            else {
+                rcube::raise_error(array('code' => 520, 'type' => 'php',
+                    'file' => __FILE__, 'line' => __LINE__,
+                    'message' => "No plugin class $plugin_name found in $fn"),
+                    true, false);
+            }
+        }
+        else {
+            rcube::raise_error(array('code' => 520, 'type' => 'php',
+                'file' => __FILE__, 'line' => __LINE__,
+                'message' => "Failed to load plugin file $fn"), true, false);
+        }
+
         return false;
     }
 
     /**
-     * Attempt to load the given plugin which is required for the current plugin
+     * Allows a plugin object to register a callback for a certain hook
      *
-     * @param string Plugin name
-     * @return boolean True on success, false on failure
+     * @param string $hook Hook name
+     * @param mixed  $callback String with global function name or array($obj, 'methodname')
      */
-    public function require_plugin($plugin_name)
+    public function register_hook($hook, $callback)
     {
-        return $this->api->load_plugin($plugin_name, true);
-    }
-
-    /**
-     * Load local config file from plugins directory.
-     * The loaded values are patched over the global configuration.
-     *
-     * @param string $fname Config file name relative to the plugin's folder
-     *
-     * @return boolean True on success, false on failure
-     */
-    public function load_config($fname = 'config.inc.php')
-    {
-        $fpath = $this->home.'/'.$fname;
-        $rcube = rcube::get_instance();
-
-        if (($is_local = is_file($fpath)) && !$rcube->config->load_from_file($fpath)) {
-            rcube::raise_error(array(
-                'code' => 527, 'type' => 'php',
+        if (is_callable($callback)) {
+            if (isset($this->deprecated_hooks[$hook])) {
+                rcube::raise_error(array('code' => 522, 'type' => 'php',
+                    'file' => __FILE__, 'line' => __LINE__,
+                    'message' => "Deprecated hook name. "
+                        . $hook . ' -> ' . $this->deprecated_hooks[$hook]), true, false);
+                $hook = $this->deprecated_hooks[$hook];
+            }
+            $this->handlers[$hook][] = $callback;
+        }
+        else {
+            rcube::raise_error(array('code' => 521, 'type' => 'php',
                 'file' => __FILE__, 'line' => __LINE__,
-                'message' => "Failed to load config from $fpath"), true, false);
-            return false;
-        }
-        else if (!$is_local) {
-            // Search plugin_name.inc.php file in any configured path
-            return $rcube->config->load_from_file($this->ID . '.inc.php');
-        }
-
-        return true;
-    }
-
-    /**
-     * Register a callback function for a specific (server-side) hook
-     *
-     * @param string $hook     Hook name
-     * @param mixed  $callback Callback function as string or array
-     *                         with object reference and method name
-     */
-    public function add_hook($hook, $callback)
-    {
-        $this->api->register_hook($hook, $callback);
-    }
-
-    /**
-     * Unregister a callback function for a specific (server-side) hook.
-     *
-     * @param string $hook     Hook name
-     * @param mixed  $callback Callback function as string or array
-     *                         with object reference and method name
-     */
-    public function remove_hook($hook, $callback)
-    {
-        $this->api->unregister_hook($hook, $callback);
-    }
-
-    /**
-     * Load localized texts from the plugins dir
-     *
-     * @param string $dir        Directory to search in
-     * @param mixed  $add2client Make texts also available on the client
-     *                           (array with list or true for all)
-     */
-    public function add_texts($dir, $add2client = false)
-    {
-        $domain = $this->ID;
-        $lang   = $_SESSION['language'];
-        $langs  = array_unique(array('en_US', $lang));
-        $locdir = slashify(realpath(slashify($this->home) . $dir));
-        $texts  = array();
-
-        // Language aliases used to find localization in similar lang, see below
-        $aliases = array(
-            'de_CH' => 'de_DE',
-            'es_AR' => 'es_ES',
-            'fa_AF' => 'fa_IR',
-            'nl_BE' => 'nl_NL',
-            'pt_BR' => 'pt_PT',
-            'zh_CN' => 'zh_TW',
-        );
-
-        // use buffering to handle empty lines/spaces after closing PHP tag
-        ob_start();
-
-        foreach ($langs as $lng) {
-            $fpath = $locdir . $lng . '.inc';
-            if (is_file($fpath) && is_readable($fpath)) {
-                include $fpath;
-                $texts = (array)$labels + (array)$messages + (array)$texts;
-            }
-            else if ($lng != 'en_US') {
-                // Find localization in similar language (#1488401)
-                $alias = null;
-                if (!empty($aliases[$lng])) {
-                    $alias = $aliases[$lng];
-                }
-                else if ($key = array_search($lng, $aliases)) {
-                    $alias = $key;
-                }
-
-                if (!empty($alias)) {
-                    $fpath = $locdir . $alias . '.inc';
-                    if (is_file($fpath) && is_readable($fpath)) {
-                        include $fpath;
-                        $texts = (array)$labels + (array)$messages + (array)$texts;
-                    }
-                }
-            }
-        }
-
-        ob_end_clean();
-
-        // prepend domain to text keys and add to the application texts repository
-        if (!empty($texts)) {
-            $add = array();
-            foreach ($texts as $key => $value) {
-                $add[$domain.'.'.$key] = $value;
-            }
-
-            $rcube = rcube::get_instance();
-            $rcube->load_language($lang, $add);
-
-            // add labels to client
-            if ($add2client && method_exists($rcube->output, 'add_label')) {
-                if (is_array($add2client)) {
-                    $js_labels = array_map(array($this, 'label_map_callback'), $add2client);
-                }
-                else {
-                    $js_labels = array_keys($add);
-                }
-                $rcube->output->add_label($js_labels);
-            }
+                'message' => "Invalid callback function for $hook"), true, false);
         }
     }
 
     /**
-     * Wrapper for add_label() adding the plugin ID as domain
+     * Allow a plugin object to unregister a callback.
+     *
+     * @param string $hook Hook name
+     * @param mixed  $callback String with global function name or array($obj, 'methodname')
      */
-    public function add_label()
+    public function unregister_hook($hook, $callback)
     {
-        $rcube = rcube::get_instance();
-
-        if (method_exists($rcube->output, 'add_label')) {
-            $args = func_get_args();
-            if (count($args) == 1 && is_array($args[0])) {
-                $args = $args[0];
-            }
-
-            $args = array_map(array($this, 'label_map_callback'), $args);
-            $rcube->output->add_label($args);
+        $callback_id = array_search($callback, $this->handlers[$hook]);
+        if ($callback_id !== false) {
+            unset($this->handlers[$hook][$callback_id]);
         }
     }
 
     /**
-     * Wrapper for rcube::gettext() adding the plugin ID as domain
+     * Triggers a plugin hook.
+     * This is called from the application and executes all registered handlers
      *
-     * @param string $p Message identifier
+     * @param string $hook Hook name
+     * @param array $args Named arguments (key->value pairs)
      *
-     * @return string Localized text
-     * @see rcube::gettext()
+     * @return array The (probably) altered hook arguments
      */
-    public function gettext($p)
+    public function exec_hook($hook, $args = array())
     {
-        return rcube::get_instance()->gettext($p, $this->ID);
+        if (!is_array($args)) {
+            $args = array('arg' => $args);
+        }
+
+        $args += array('abort' => false);
+        $this->active_hook = $hook;
+
+        foreach ((array)$this->handlers[$hook] as $callback) {
+            $ret = call_user_func($callback, $args);
+            if ($ret && is_array($ret)) {
+                $args = $ret + $args;
+            }
+
+            if ($args['abort']) {
+                break;
+            }
+        }
+
+        $this->active_hook = false;
+        return $args;
+    }
+
+    /**
+     * Let a plugin register a handler for a specific request
+     *
+     * @param string $action   Action name (_task=mail&_action=plugin.foo)
+     * @param string $owner    Plugin name that registers this action
+     * @param mixed  $callback Callback: string with global function name or array($obj, 'methodname')
+     * @param string $task     Task name registered by this plugin
+     */
+    public function register_action($action, $owner, $callback, $task = null)
+    {
+        // check action name
+        if ($task)
+            $action = $task.'.'.$action;
+        else if (strpos($action, 'plugin.') !== 0)
+            $action = 'plugin.'.$action;
+
+        // can register action only if it's not taken or registered by myself
+        if (!isset($this->actionmap[$action]) || $this->actionmap[$action] == $owner) {
+            $this->actions[$action] = $callback;
+            $this->actionmap[$action] = $owner;
+        }
+        else {
+            rcube::raise_error(array('code' => 523, 'type' => 'php',
+                'file' => __FILE__, 'line' => __LINE__,
+                'message' => "Cannot register action $action;"
+                    ." already taken by another plugin"), true, false);
+        }
+    }
+
+    /**
+     * This method handles requests like _task=mail&_action=plugin.foo
+     * It executes the callback function that was registered with the given action.
+     *
+     * @param string $action Action name
+     */
+    public function exec_action($action)
+    {
+        if (isset($this->actions[$action])) {
+            call_user_func($this->actions[$action]);
+        }
+        else if (rcube::get_instance()->action != 'refresh') {
+            rcube::raise_error(array('code' => 524, 'type' => 'php',
+                'file' => __FILE__, 'line' => __LINE__,
+                'message' => "No handler found for action $action"), true, true);
+        }
+    }
+
+    /**
+     * Register a handler function for template objects
+     *
+     * @param string $name Object name
+     * @param string $owner Plugin name that registers this action
+     * @param mixed  $callback Callback: string with global function name or array($obj, 'methodname')
+     */
+    public function register_handler($name, $owner, $callback)
+    {
+        // check name
+        if (strpos($name, 'plugin.') !== 0) {
+            $name = 'plugin.' . $name;
+        }
+
+        // can register handler only if it's not taken or registered by myself
+        if (is_object($this->output)
+            && (!isset($this->objectsmap[$name]) || $this->objectsmap[$name] == $owner)
+        ) {
+            $this->output->add_handler($name, $callback);
+            $this->objectsmap[$name] = $owner;
+        }
+        else {
+            rcube::raise_error(array('code' => 525, 'type' => 'php',
+                'file' => __FILE__, 'line' => __LINE__,
+                'message' => "Cannot register template handler $name;"
+                    ." already taken by another plugin or no output object available"), true, false);
+        }
     }
 
     /**
      * Register this plugin to be responsible for a specific task
      *
-     * @param string $task Task name (only characters [a-z0-9_-] are allowed)
+     * @param string $task Task name (only characters [a-z0-9_.-] are allowed)
+     * @param string $owner Plugin name that registers this action
      */
-    public function register_task($task)
+    public function register_task($task, $owner)
     {
-        if ($this->api->register_task($task, $this->ID)) {
-            $this->mytask = $task;
+        // tasks are irrelevant in framework mode
+        if (!class_exists('rcmail', false)) {
+            return true;
         }
+
+        if ($task != asciiwords($task)) {
+            rcube::raise_error(array('code' => 526, 'type' => 'php',
+                'file' => __FILE__, 'line' => __LINE__,
+                'message' => "Invalid task name: $task."
+                    ." Only characters [a-z0-9_.-] are allowed"), true, false);
+        }
+        else if (in_array($task, rcmail::$main_tasks)) {
+            rcube::raise_error(array('code' => 526, 'type' => 'php',
+                'file' => __FILE__, 'line' => __LINE__,
+                'message' => "Cannot register taks $task;"
+                    ." already taken by another plugin or the application itself"), true, false);
+        }
+        else {
+            $this->tasks[$task] = $owner;
+            rcmail::$main_tasks[] = $task;
+            return true;
+        }
+
+        return false;
     }
 
     /**
-     * Register a handler for a specific client-request action
+     * Checks whether the given task is registered by a plugin
      *
-     * The callback will be executed upon a request like /?_task=mail&_action=plugin.myaction
+     * @param string $task Task name
      *
-     * @param string $action  Action name (should be unique)
-     * @param mixed $callback Callback function as string
-     *                        or array with object reference and method name
+     * @return boolean True if registered, otherwise false
      */
-    public function register_action($action, $callback)
+    public function is_plugin_task($task)
     {
-        $this->api->register_action($action, $this->ID, $callback, $this->mytask);
+        return $this->tasks[$task] ? true : false;
     }
 
     /**
-     * Register a handler function for a template object
+     * Check if a plugin hook is currently processing.
+     * Mainly used to prevent loops and recursion.
      *
-     * When parsing a template for display, tags like <roundcube:object name="plugin.myobject" />
-     * will be replaced by the return value if the registered callback function.
+     * @param string $hook Hook to check (optional)
      *
-     * @param string $name     Object name (should be unique and start with 'plugin.')
-     * @param mixed  $callback Callback function as string or array with object reference
-     *                         and method name
+     * @return boolean True if any/the given hook is currently processed, otherwise false
      */
-    public function register_handler($name, $callback)
+    public function is_processing($hook = null)
     {
-        $this->api->register_handler($name, $this->ID, $callback);
+        return $this->active_hook && (!$hook || $this->active_hook == $hook);
     }
 
     /**
-     * Make this javascipt file available on the client
+     * Include a plugin script file in the current HTML page
      *
-     * @param string $fn File path; absolute or relative to the plugin directory
+     * @param string $fn Path to script
      */
     public function include_script($fn)
     {
-        $this->api->include_script($this->resource_url($fn));
+        if (is_object($this->output) && $this->output->type == 'html') {
+            $src = $this->resource_url($fn);
+            $this->output->add_header(html::tag('script',
+                array('type' => "text/javascript", 'src' => $src)));
+        }
     }
 
     /**
-     * Make this stylesheet available on the client
+     * Include a plugin stylesheet in the current HTML page
      *
-     * @param string $fn File path; absolute or relative to the plugin directory
+     * @param string $fn Path to stylesheet
      */
     public function include_stylesheet($fn)
     {
-        $this->api->include_stylesheet($this->resource_url($fn));
-    }
-
-    /**
-     * Append a button to a certain container
-     *
-     * @param array $p Hash array with named parameters (as used in skin templates)
-     * @param string $container Container name where the buttons should be added to
-     *
-     * @see rcube_remplate::button()
-     */
-    public function add_button($p, $container)
-    {
-        if ($this->api->output->type == 'html') {
-            // fix relative paths
-            foreach (array('imagepas', 'imageact', 'imagesel') as $key) {
-                if ($p[$key]) {
-                    $p[$key] = $this->api->url . $this->resource_url($p[$key]);
-                }
-            }
-
-            $this->api->add_content($this->api->output->button($p), $container);
+        if (is_object($this->output) && $this->output->type == 'html') {
+            $src = $this->resource_url($fn);
+            $this->output->include_css($src);
         }
     }
 
     /**
-     * Generate an absolute URL to the given resource within the current
-     * plugin directory
+     * Save the given HTML content to be added to a template container
      *
-     * @param string $fn The file name
-     *
-     * @return string Absolute URL to the given resource
+     * @param string $html HTML content
+     * @param string $container Template container identifier
      */
-    public function url($fn)
+    public function add_content($html, $container)
     {
-        return $this->api->url . $this->resource_url($fn);
+        $this->template_contents[$container] .= $html . "\n";
     }
 
     /**
-     * Make the given file name link into the plugin directory
+     * Returns list of loaded plugins names
+     *
+     * @return array List of plugin names
+     */
+    public function loaded_plugins()
+    {
+        return array_keys($this->plugins);
+    }
+
+    /**
+     * Callback for template_container hooks
+     *
+     * @param array $attrib
+     * @return array
+     */
+    protected function template_container_hook($attrib)
+    {
+        $container = $attrib['name'];
+        return array('content' => $attrib['content'] . $this->template_contents[$container]);
+    }
+
+    /**
+     * Make the given file name link into the plugins directory
      *
      * @param string $fn Filename
-     */
-    private function resource_url($fn)
-    {
-        if ($fn[0] != '/' && !preg_match('|^https?://|i', $fn)) {
-            return $this->ID . '/' . $fn;
-        }
-        else {
-            return $fn;
-        }
-    }
-
-    /**
-     * Provide path to the currently selected skin folder within the plugin directory
-     * with a fallback to the default skin folder.
-     *
-     * @return string Skin path relative to plugins directory
-     */
-    public function local_skin_path()
-    {
-        $rcube = rcube::get_instance();
-        foreach (array($rcube->config->get('skin'), 'larry') as $skin) {
-            $skin_path = 'skins/' . $skin;
-            if (is_dir(realpath(slashify($this->home) . $skin_path))) {
-                break;
-            }
-        }
-
-        return $skin_path;
-    }
-
-    /**
-     * Callback function for array_map
-     *
-     * @param string $key Array key.
      * @return string
      */
-    private function label_map_callback($key)
+    protected function resource_url($fn)
     {
-        if (strpos($key, $this->ID.'.') === 0) {
-            return $key;
-        }
-
-        return $this->ID.'.'.$key;
+        if ($fn[0] != '/' && !preg_match('|^https?://|i', $fn))
+            return $this->url . $fn;
+        else
+            return $fn;
     }
 }
+?>
