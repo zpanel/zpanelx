@@ -248,7 +248,7 @@ class module_controller extends ctrl_module
         if (stristr($a, '.')) {
             $part = explode(".", $a);
             foreach ($part as $check) {
-                if (!preg_match('/^[a-z\d][a-z\d-]{0,62}$/i', $check) || preg_match('/-$/', $check)) {
+                if (!preg_match('/^[\*a-z\d][a-z\d-]{0,62}$/i', $check) || preg_match('/-$/', $check)) {
                     return false;
                 }
             }
