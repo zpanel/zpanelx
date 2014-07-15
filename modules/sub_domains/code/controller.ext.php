@@ -243,19 +243,25 @@ class module_controller extends ctrl_module
         return in_array($error, $errordocs);
     }
 
-    static function IsValidDomainName($a)
+static function IsValidDomainName($a)
     {
-        if (stristr($a, '.')) {
-            $part = explode(".", $a);
-            foreach ($part as $check) {
-                if (!preg_match('/^[\*a-z\d][a-z\d-]{0,62}$/i', $check) || preg_match('/-$/', $check)) {
-                    return false;
-                }
+    $currentuser = ctrl_users::GetUserDetail();
+  
+    if (stristr($a, '.')) {
+        $part = explode(".", $a);
+        foreach ($part as $check) {
+            if (($currentuser['subdomainquota'] < 0) && (preg_match('/^[\*a-z\d][a-z\d-]{0,62}$/i', $check)) && (!preg_match('/-$/', $check))) {
+            	return true;
             }
-        } else {
-            return false;
+            elseif (($currentuser['subdomainquota'] > 0) && (preg_match('/^[a-z\d][a-z\d-]{0,62}$/i', $check)) && (!preg_match('/-$/', $check))) {
+            	return true;
+            } else {
+            	return false;
+            }
         }
-        return true;
+    } else {
+    	return false;
+    	}                
     }
 
     static function IsValidEmail($email)
