@@ -90,18 +90,11 @@ function WriteVhostConfigFile()
     $line .= "" . fs_filehandler::NewLine();
 
     // ZPanel default virtual host container
-    $line .= "NameVirtualHost *:" . ctrl_options::GetSystemOption( 'apache_port' ) . "" . fs_filehandler::NewLine();
-    foreach ( $customPortList as $port ) {
-        $line .= "NameVirtualHost *:" . $port . "" . fs_filehandler::NewLine();
-    }
-    $line .= "" . fs_filehandler::NewLine();
     $line .= "# Configuration for ZPanel control panel." . fs_filehandler::NewLine();
-    $line .= "<VirtualHost *:" . ctrl_options::GetSystemOption( 'apache_port' ) . ">" . fs_filehandler::NewLine();
+    $line .= "<VirtualHost *:" . ctrl_options::GetSystemOption( 'zpanel_port' ) . ">" . fs_filehandler::NewLine();
     $line .= "ServerAdmin " . $serveremail . fs_filehandler::NewLine();
     $line .= "DocumentRoot \"" . ctrl_options::GetSystemOption( 'zpanel_root' ) . "\"" . fs_filehandler::NewLine();
     $line .= "ServerName " . ctrl_options::GetSystemOption( 'zpanel_domain' ) . "" . fs_filehandler::NewLine();
-    // disable *.zpaneldomain as Zpanel host is already default
-    // $line .= "ServerAlias *." . ctrl_options::GetSystemOption( 'zpanel_domain' ) . "" . fs_filehandler::NewLine();
     $line .= "AddType application/x-httpd-php .php" . fs_filehandler::NewLine();
     $line .= "<Directory \"" . ctrl_options::GetSystemOption( 'zpanel_root' ) . "\">" . fs_filehandler::NewLine();
     $line .= "Options FollowSymLinks" . fs_filehandler::NewLine();
@@ -441,14 +434,12 @@ function WriteVhostConfigFile()
         $vsql->bindParam( ':time', $time );
         $vsql->execute();
         echo "Finished writting Apache Config... Now reloading Apache..." . fs_filehandler::NewLine();
-        if ( sys_versions::ShowOSPlatformVersion() == "Windows" ) {
-            $returnValue = ctrl_system::systemCommand(
-                    ctrl_options::GetSystemOption( 'httpd_exe' ), ctrl_options::GetSystemOption( 'apache_restart' )
-            );
-            echo "Apache reload" . ((0 === $returnValue ) ? "suceeded" : "failed") . "." . fs_filehandler::NewLine();
-        }
-        else {
-            
+        
+        $returnValue = 0;
+
+        if (sys_versions::ShowOSPlatformVersion() == "Windows") {
+            system("" . ctrl_options::GetSystemOption('httpd_exe') . " " . ctrl_options::GetSystemOption('apache_restart') . "", $returnValue);
+        } else {
             $command = ctrl_options::GetSystemOption( 'zsudo' );
             $args = array(
                 "service",
@@ -456,13 +447,11 @@ function WriteVhostConfigFile()
                 ctrl_options::GetSystemOption( 'apache_restart' )
             );
             $returnValue = ctrl_system::systemCommand( $command, $args );
-
-            echo "Apache reload " . ((0 === $returnValue ) ? "suceeded" : "failed") . "." . fs_filehandler::NewLine();
         }
-
         
-    }
-    else {
+        echo "Apache reload " . ((0 === $returnValue ) ? "suceeded" : "failed") . "." . fs_filehandler::NewLine();
+
+    } else {
         return false;
     }
 }
