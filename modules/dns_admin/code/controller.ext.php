@@ -247,7 +247,7 @@ class module_controller extends ctrl_module
 
 
 
-        $line .= "</div>";
+        //$line .= "</div>";
         $line .= "</div>";
         $line .= "</div>";
         $line .= "</div>";
