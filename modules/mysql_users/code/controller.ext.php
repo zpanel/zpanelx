@@ -514,7 +514,7 @@ class module_controller extends ctrl_module
 
     static function IsValidUserName($username)
     {
-        if (!preg_match('/^[a-z\d][a-z\d-]{0,62}$/i', $username) || preg_match('/-$/', $username)) {
+        if (!preg_match('/^[a-z\d][a-z\d-\_]{0,62}$/i', $username) || preg_match('/-$/', $username)) {
             return false;
         } else {
             if (strlen($username) < 17) {
