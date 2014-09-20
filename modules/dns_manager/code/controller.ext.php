@@ -959,15 +959,27 @@ class module_controller extends ctrl_module
                         //HOSTNAME
                         if (isset($hostName[$NewId]) && !fs_director::CheckForEmptyValue($hostName[$NewId]) && $hostName[$NewId] != "@") {
                             //Check that hostname does not already exist.
-                            $numrows = $zdbh->prepare('SELECT dn_id_pk FROM x_dns WHERE dn_host_vc=:hostName2 AND dn_vhost_fk=:domainID AND dn_deleted_ts IS NULL');
+                            $numrows = $zdbh->prepare('SELECT dn_id_pk, dn_type_vc FROM x_dns WHERE dn_host_vc=:hostName2 AND dn_vhost_fk=:domainID AND dn_deleted_ts IS NULL');
                             $hostName2 = $hostName[$NewId];
                             $numrows->bindParam(':hostName2', $hostName2);
                             $numrows->bindParam(':domainID', $domainID);
                             $numrows->execute();
-                            if ($numrows->fetch()) {
-                                self::SetError('Hostnames must be unique.');
-                                return FALSE;
+                            $dbresult = $numrows->fetchAll();
+                            $dbresult = $numrows->fetchAll();
+                            if (count($dbresult)) {
+                            	$exists = TRUE;
+                            	foreach($dbresult as $row) {
+                            		if (($row['dn_type_vc'] == 'A' && $type[$NewId] == 'AAAA') OR 
+                            			($row['dn_type_vc'] == 'AAAA' && $type[$NewId] == 'A')) {
+	                            			$exists = FALSE;
+	                            			break;
+                            		}
+                            	}
                             }
+                            if($exists) {
+	                            self::SetError('Hostnames must be unique.');
+	                            return FALSE;
+	                        }
 
                             if ($type[$NewId] != "SRV") {
                                 if (!($hostName[$NewId] == '*' or self::IsValidTargetName($hostName[$NewId]) )) {
