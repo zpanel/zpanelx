@@ -527,7 +527,7 @@ class module_controller extends ctrl_module
 
     static function IsValidPassword($password)
     {
-        if (!ctype_alnum($password)) {
+        if (!preg_match('/^[a-zA-Z0-9\*\&\.\-\_\?\!\%]+$/',$password)) {
             return false;
         }
         return true;
