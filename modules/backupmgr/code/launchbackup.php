@@ -76,7 +76,9 @@ if ($_SESSION['zpuid'] == $userid) {
 function dirSize($directory) {
     $size = 0;
     foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory)) as $file) {
-        $size+=$file->getSize();
+        try {
+            $size+=$file->getSize();
+        } catch (RuntimeException $e) { }
     }
     return $size;
 }
