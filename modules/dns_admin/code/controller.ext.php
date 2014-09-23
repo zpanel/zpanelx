@@ -989,18 +989,18 @@ class module_controller extends ctrl_module
                                                             'NS',
                                                             '@',
                                                             172800,
-                                                            :vh_name_vc2,
+                                                            :ns1,
                                                             NULL,
                                                             NULL,
                                                             NULL,
                                                             :time)");
         $sql->bindParam(':userID', $userID);
         $Domain = 'ns1.' . $domainName['vh_name_vc'];
-        $sql->bindParam(':vh_name_vc', $Domain);
+        $sql->bindParam(':ns1', $Domain);
         $sql->bindParam(':domainID', $domainID);
         $time = time();
         $sql->bindParam(':time', $time);
-        $sql->bindParam(':vh_name_vc2', $domainName['vh_name_vc']);
+        $sql->bindParam(':vh_name_vc', $domainName['vh_name_vc']);
         $sql->execute();
         $sql = $zdbh->prepare("INSERT INTO x_dns (dn_acc_fk,
                                                             dn_name_vc,
@@ -1032,6 +1032,10 @@ class module_controller extends ctrl_module
         $sql->bindParam(':time', $time);
         $sql->bindParam(':vh_name_vc', $domainName['vh_name_vc']);
         $sql->execute();
+        
+        self::TriggerDNSUpdate($domainID);
+
+        
         return;
     }
 
