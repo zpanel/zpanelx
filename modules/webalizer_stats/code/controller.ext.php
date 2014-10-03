@@ -92,5 +92,12 @@ class module_controller extends ctrl_module
     {
         
     }
+    
+    /**
+    * STANDARD MODULE STATIC METHODS!
+    */
+    static function getDescription() {
+        return ui_module::GetModuleDescription();
+    }
 
 }
