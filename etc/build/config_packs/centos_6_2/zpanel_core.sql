@@ -174,7 +174,7 @@ CREATE TABLE `x_dns` (
   `dn_type_vc` varchar(50) DEFAULT NULL,
   `dn_host_vc` varchar(100) DEFAULT NULL,
   `dn_ttl_in` int(30) DEFAULT NULL,
-  `dn_target_vc` varchar(100) DEFAULT NULL,
+  `dn_target_vc` varchar(255) DEFAULT NULL,
   `dn_texttarget_tx` text,
   `dn_priority_in` int(50) DEFAULT NULL,
   `dn_weight_in` int(50) DEFAULT NULL,
