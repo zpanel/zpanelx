@@ -136,6 +136,8 @@ function WriteVhostConfigFile()
     $sql->execute();
     while ( $rowvhost = $sql->fetch() ) {
 
+        $customportused = false;
+
         // Grab some variables we will use for later...
         $vhostuser = ctrl_users::GetUserDetail( $rowvhost[ 'vh_acc_fk' ] );
         $bandwidth = ctrl_users::GetQuotaUsages( 'bandwidth', $vhostuser[ 'userid' ] );
@@ -163,7 +165,9 @@ function WriteVhostConfigFile()
             $vhostPort = ctrl_options::GetSystemOption( 'apache_port' );
         }
         else {
+            //Todo when a custom port is defined port 80 is no longer defined in vhost
             $vhostPort = $rowvhost[ 'vh_custom_port_in' ];
+            $customportused = true;
         }
 
         if ( fs_director::CheckForEmptyValue( $rowvhost[ 'vh_custom_ip_vc' ] ) ) {
@@ -388,6 +392,96 @@ function WriteVhostConfigFile()
                 $line .= fs_filehandler::NewLine();
                 if ( $rowvhost[ 'vh_portforward_in' ] <> 0 ) {
                     $line .= BuildVhostPortForward( $rowvhost[ 'vh_name_vc' ], $vhostPort, $useremail );
+                } else if ($customportused) {
+                    // Edit by MarkusTenghamn 11-8-2014
+                    // This is a temporary fix to still run port 80 if a custom port is defined
+                    // ctrl_options::GetSystemOption( 'apache_port' );
+
+                    $line .= "# DOMAIN: " . $rowvhost[ 'vh_name_vc' ] . fs_filehandler::NewLine();
+                    $line .= "<virtualhost " . $vhostIp . ":" . ctrl_options::GetSystemOption( 'apache_port' ) . ">" . fs_filehandler::NewLine();
+
+                    /*
+                     * todo
+                     */
+                    // Bandwidth Settings
+                    //$line .= "Include C:/ZPanel/bin/apache/conf/mod_bw/mod_bw/mod_bw_Administration.conf" . fs_filehandler::NewLine();
+                    // Server name, alias, email settings
+                    $line .= "ServerName " . $rowvhost[ 'vh_name_vc' ] . fs_filehandler::NewLine();
+                    $line .= "ServerAlias " . $serveralias . fs_filehandler::NewLine();
+                    $line .= "ServerAdmin " . $useremail . fs_filehandler::NewLine();
+                    // Document root
+                    $line .= "DocumentRoot \"" . ctrl_options::GetSystemOption( 'hosted_dir' ) . $vhostuser[ 'username' ] . "/public_html" . $rowvhost[ 'vh_directory_vc' ] . "\"" . fs_filehandler::NewLine();
+                    // Get Package openbasedir and suhosin enabled options
+                    if ( ctrl_options::GetSystemOption( 'use_openbase' ) == "true" ) {
+                        if ( $rowvhost[ 'vh_obasedir_in' ] <> 0 ) {
+                            $line .= "php_admin_value open_basedir \"" . ctrl_options::GetSystemOption( 'hosted_dir' ) . $vhostuser[ 'username' ] . "/public_html" . $rowvhost[ 'vh_directory_vc' ] . ctrl_options::GetSystemOption( 'openbase_seperator' ) . ctrl_options::GetSystemOption( 'openbase_temp' ) . "\"" . fs_filehandler::NewLine();
+                        }
+                    }
+                    if ( ctrl_options::GetSystemOption( 'use_suhosin' ) == "true" ) {
+                        if ( $rowvhost[ 'vh_suhosin_in' ] <> 0 ) {
+                            $line .= ctrl_options::GetSystemOption( 'suhosin_value' ) . fs_filehandler::NewLine();
+                        }
+                    }
+                    // Logs
+                    if ( !is_dir( ctrl_options::GetSystemOption( 'log_dir' ) . "domains/" . $vhostuser[ 'username' ] . "/" ) ) {
+                        fs_director::CreateDirectory( ctrl_options::GetSystemOption( 'log_dir' ) . "domains/" . $vhostuser[ 'username' ] . "/" );
+                    }
+                    $line .= "ErrorLog \"" . ctrl_options::GetSystemOption( 'log_dir' ) . "domains/" . $vhostuser[ 'username' ] . "/" . $rowvhost[ 'vh_name_vc' ] . "-error.log\" " . fs_filehandler::NewLine();
+                    $line .= "CustomLog \"" . ctrl_options::GetSystemOption( 'log_dir' ) . "domains/" . $vhostuser[ 'username' ] . "/" . $rowvhost[ 'vh_name_vc' ] . "-access.log\" " . ctrl_options::GetSystemOption( 'access_log_format' ) . fs_filehandler::NewLine();
+                    $line .= "CustomLog \"" . ctrl_options::GetSystemOption( 'log_dir' ) . "domains/" . $vhostuser[ 'username' ] . "/" . $rowvhost[ 'vh_name_vc' ] . "-bandwidth.log\" " . ctrl_options::GetSystemOption( 'bandwidth_log_format' ) . fs_filehandler::NewLine();
+
+                    // Directory options
+                    $line .= "<Directory />" . fs_filehandler::NewLine();
+                    $line .= "Options FollowSymLinks Indexes" . fs_filehandler::NewLine();
+                    $line .= "AllowOverride All" . fs_filehandler::NewLine();
+                    $line .= "Order Allow,Deny" . fs_filehandler::NewLine();
+                    $line .= "Allow from all" . fs_filehandler::NewLine();
+                    $line .= "</Directory>" . fs_filehandler::NewLine();
+
+                    // Get Package php and cgi enabled options
+                    $rows        = $zdbh->prepare( "SELECT * FROM x_packages WHERE pk_id_pk=:packageid AND pk_deleted_ts IS NULL" );
+                    $rows->bindParam( ':packageid', $vhostuser[ 'packageid' ] );
+                    $rows->execute();
+                    $packageinfo = $rows->fetch();
+                    if ( $packageinfo[ 'pk_enablephp_in' ] <> 0 ) {
+                        $line .= ctrl_options::GetSystemOption( 'php_handler' ) . fs_filehandler::NewLine();
+                    }
+                    if ( $packageinfo[ 'pk_enablecgi_in' ] <> 0 ) {
+                        $line .= ctrl_options::GetSystemOption( 'cgi_handler' ) . fs_filehandler::NewLine();
+                        if ( !is_dir( ctrl_options::GetSystemOption( 'hosted_dir' ) . $vhostuser[ 'username' ] . "/public_html" . $rowvhost[ 'vh_directory_vc' ] . "/_cgi-bin" ) ) {
+                            fs_director::CreateDirectory( ctrl_options::GetSystemOption( 'hosted_dir' ) . $vhostuser[ 'username' ] . "/public_html" . $rowvhost[ 'vh_directory_vc' ] . "/_cgi-bin" );
+                        }
+                    }
+
+                    // Error documents:- Error pages are added automatically if they are found in the _errorpages directory
+                    // and if they are a valid error code, and saved in the proper format, i.e. <error_number>.html
+                    $errorpages = ctrl_options::GetSystemOption( 'hosted_dir' ) . $vhostuser[ 'username' ] . "/public_html" . $rowvhost[ 'vh_directory_vc' ] . "/_errorpages";
+                    if ( is_dir( $errorpages ) ) {
+                        if ( $handle = opendir( $errorpages ) ) {
+                            while ( ($file = readdir( $handle )) !== false ) {
+                                if ( $file != "." && $file != ".." ) {
+                                    $page = explode( ".", $file );
+                                    if ( !fs_director::CheckForEmptyValue( CheckErrorDocument( $page[ 0 ] ) ) ) {
+                                        $line .= "ErrorDocument " . $page[ 0 ] . " /_errorpages/" . $page[ 0 ] . ".html" . fs_filehandler::NewLine();
+                                    }
+                                }
+                            }
+                            closedir( $handle );
+                        }
+                    }
+
+                    // Directory indexes
+                    $line .= ctrl_options::GetSystemOption( 'dir_index' ) . fs_filehandler::NewLine();
+
+                    // Global custom global vh entry
+                    $line .= "# Custom Global Settings (if any exist)" . fs_filehandler::NewLine();
+                    $line .= ctrl_options::GetSystemOption( 'global_vhcustom' ) . fs_filehandler::NewLine();
+                    // End Virtual Host Settings
+                    $line .= "</virtualhost>" . fs_filehandler::NewLine();
+                    $line .= "# END DOMAIN: " . $rowvhost[ 'vh_name_vc' ] . fs_filehandler::NewLine();
+                    $line .= "################################################################" . fs_filehandler::NewLine();
+                    $line .= fs_filehandler::NewLine();
+                    // END Edit by MarkusTenghamn 11-8-2014
                 }
                 $line .= fs_filehandler::NewLine();
             }
