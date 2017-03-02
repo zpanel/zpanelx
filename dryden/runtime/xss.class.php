@@ -137,13 +137,16 @@ class runtime_xss {
         if ($settings[5]) {
             $data = self::removeHarmfullStrings($data);
         }
-        if ($settings[6]) {
-            $data = self::htmlentitiesProtection($data, ENT_QUOTES, 'UTF-8');
-        }
         
         //Below is enforced protection
         $data = self::htmlspecialcharsProtection($data);
         
+        // This must follow the htmlspecialcharsProtection in order to avoid
+        // problems like A converted to &alpha; and then to &amp;alpha;
+        if ($settings[6]) {
+            $data = self::htmlentitiesProtection($data, ENT_QUOTES, 'UTF-8');
+        }
+
         if ($settings[0]) {
             $data = self::fixEntitys($data);
         }
