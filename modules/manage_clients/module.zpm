@@ -200,7 +200,7 @@
                 </tr>
                 <tr>
                     <th><: Password :>:</th>
-                    <td><input type="text" name="inNewPassword" id="input-password" size="30" value="<@ RandomPassword @>" /> <a href="#" class="link-password" id="generate"><: Generate Password :></a></td>
+                    <td><input type="text" name="inNewPassword" id="input-password" size="30" value="<@ RandomPassword @>" /> <a href="#" class="link-password" id="generate"><br/><: Generate Password :></a></td>
                 </tr>
                 <tr>
                     <th><: Group :>:</th>
