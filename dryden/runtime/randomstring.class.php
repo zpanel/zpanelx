@@ -34,7 +34,7 @@ class runtime_randomstring{
         }
         
         //randomise string again
-        mt_srand($seed);
+        mt_srand((int) $seed);
         mt_rand();
         
         //Make the random number into a random string

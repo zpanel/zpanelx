@@ -22,11 +22,11 @@
    var $pChartObject;
 
    /* Class creator */
-   function pSplit()
+   function __construct()
     { }
 
    /* Create the encoded string */
-   function drawSplitPath($Object,$Values,$Format="")
+   function drawSplitPath($Object,$Values,$Format=[])
     {
      $this->pChartObject = $Object;
 
@@ -94,7 +94,7 @@
 
        $Settings = array("R"=>$Palette[$Key]["R"],"G"=>$Palette[$Key]["G"],"B"=>$Palette[$Key]["B"],"Alpha"=>$Palette[$Key]["Alpha"],"NoDraw"=>TRUE,"Segments"=>$Segments,"Surrounding"=>$Surrounding);
 
-       $PolyGon = "";
+       $PolyGon = [];
 
        $Angle    = $Object->getAngle($X2,$RightY1,$X1,$LeftY1);
        $VectorX1 = cos(deg2rad($Angle+90)) * $Force + ($X2-$X1)/2 + $X1;

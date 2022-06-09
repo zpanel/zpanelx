@@ -66,7 +66,7 @@ function WriteVhostConfigFile()
         $serveremail = "postmaster@" . ctrl_options::GetSystemOption( 'zpanel_domain' );
     }
 
-    $customPort = array( );
+    $customPorts = array( );
     $portQuery  = $zdbh->prepare( "SELECT vh_custom_port_in, vh_deleted_ts FROM zpanel_core.x_vhosts WHERE vh_custom_port_in IS NOT NULL AND vh_deleted_ts IS NULL" );
     $portQuery->execute();
     while ( $rowport    = $portQuery->fetch() ) {
@@ -106,8 +106,7 @@ function WriteVhostConfigFile()
     $line .= "<Directory \"" . ctrl_options::GetSystemOption( 'zpanel_root' ) . "\">" . fs_filehandler::NewLine();
     $line .= "Options FollowSymLinks" . fs_filehandler::NewLine();
     $line .= "	AllowOverride All" . fs_filehandler::NewLine();
-    $line .= "	Order allow,deny" . fs_filehandler::NewLine();
-    $line .= "	Allow from all" . fs_filehandler::NewLine();
+    $line .= "	Require all granted" . fs_filehandler::NewLine();
     $line .= "</Directory>" . fs_filehandler::NewLine();
     $line .= "" . fs_filehandler::NewLine();
     $line .= "# Custom settings are loaded below this line (if any exist)" . fs_filehandler::NewLine();
@@ -202,8 +201,7 @@ function WriteVhostConfigFile()
                 $line .= "<Directory />" . fs_filehandler::NewLine();
                 $line .= "Options FollowSymLinks Indexes" . fs_filehandler::NewLine();
                 $line .= "AllowOverride All" . fs_filehandler::NewLine();
-                $line .= "Order Allow,Deny" . fs_filehandler::NewLine();
-                $line .= "Allow from all" . fs_filehandler::NewLine();
+                $line .= "Require all granted" . fs_filehandler::NewLine();
                 $line .= "</Directory>" . fs_filehandler::NewLine();
                 $line .= ctrl_options::GetSystemOption( 'php_handler' ) . fs_filehandler::NewLine();
                 $line .= ctrl_options::GetSystemOption( 'dir_index' ) . fs_filehandler::NewLine();
@@ -236,8 +234,7 @@ function WriteVhostConfigFile()
                 $line .= "<Directory />" . fs_filehandler::NewLine();
                 $line .= "Options FollowSymLinks Indexes" . fs_filehandler::NewLine();
                 $line .= "AllowOverride All" . fs_filehandler::NewLine();
-                $line .= "Order Allow,Deny" . fs_filehandler::NewLine();
-                $line .= "Allow from all" . fs_filehandler::NewLine();
+                $line .= "Require all granted" . fs_filehandler::NewLine();
                 $line .= "</Directory>" . fs_filehandler::NewLine();
                 $line .= ctrl_options::GetSystemOption( 'php_handler' ) . fs_filehandler::NewLine();
                 $line .= ctrl_options::GetSystemOption( 'dir_index' ) . fs_filehandler::NewLine();
@@ -269,8 +266,7 @@ function WriteVhostConfigFile()
                 $line .= "<Directory />" . fs_filehandler::NewLine();
                 $line .= "Options FollowSymLinks Indexes" . fs_filehandler::NewLine();
                 $line .= "AllowOverride All" . fs_filehandler::NewLine();
-                $line .= "Order Allow,Deny" . fs_filehandler::NewLine();
-                $line .= "Allow from all" . fs_filehandler::NewLine();
+                $line .= "Require all granted" . fs_filehandler::NewLine();
                 $line .= "</Directory>" . fs_filehandler::NewLine();
                 $line .= ctrl_options::GetSystemOption( 'php_handler' ) . fs_filehandler::NewLine();
                 $line .= ctrl_options::GetSystemOption( 'dir_index' ) . fs_filehandler::NewLine();
@@ -334,8 +330,7 @@ function WriteVhostConfigFile()
                 $line .= "<Directory />" . fs_filehandler::NewLine();
                 $line .= "Options FollowSymLinks Indexes" . fs_filehandler::NewLine();
                 $line .= "AllowOverride All" . fs_filehandler::NewLine();
-                $line .= "Order Allow,Deny" . fs_filehandler::NewLine();
-                $line .= "Allow from all" . fs_filehandler::NewLine();
+                $line .= "Require all granted" . fs_filehandler::NewLine();
                 $line .= "</Directory>" . fs_filehandler::NewLine();
 
                 // Get Package php and cgi enabled options
@@ -412,8 +407,7 @@ function WriteVhostConfigFile()
             $line .= "<Directory />" . fs_filehandler::NewLine();
             $line .= "Options FollowSymLinks Indexes" . fs_filehandler::NewLine();
             $line .= "AllowOverride All" . fs_filehandler::NewLine();
-            $line .= "Order Allow,Deny" . fs_filehandler::NewLine();
-            $line .= "Allow from all" . fs_filehandler::NewLine();
+            $line .= "Require all granted" . fs_filehandler::NewLine();
             $line .= "</Directory>" . fs_filehandler::NewLine();
             $line .= ctrl_options::GetSystemOption( 'dir_index' ) . fs_filehandler::NewLine();
             $line .= "</virtualhost>" . fs_filehandler::NewLine();
@@ -445,7 +439,7 @@ function WriteVhostConfigFile()
             $returnValue = ctrl_system::systemCommand(
                     ctrl_options::GetSystemOption( 'httpd_exe' ), ctrl_options::GetSystemOption( 'apache_restart' )
             );
-            echo "Apache reload" . ((0 === $returnValue ) ? "suceeded" : "failed") . "." . fs_filehandler::NewLine();
+            echo "Apache reload " . ((0 === $returnValue ) ? "suceeded" : "failed") . "." . fs_filehandler::NewLine();
         }
         else {
             
@@ -538,6 +532,7 @@ function TriggerApacheQuotaUsage()
             $findsize->bindParam( ':acc', $rowvhost[ 'vh_acc_fk' ] );
             $findsize->execute();
             $checksize = $findsize->fetch();
+            if(!$checksize) continue;
 
             $currentuser = ctrl_users::GetUserDetail( $rowvhost[ 'vh_acc_fk' ] );
             if ( $checksize[ 'bd_diskover_in' ] != $checksize[ 'bd_diskcheck_in' ] && $checksize[ 'bd_diskover_in' ] == 1 ) {

@@ -297,7 +297,7 @@ class module_controller extends ctrl_module
         runtime_csfr::Protect();
         $currentuser = ctrl_users::GetUserDetail();
         $formvars = $controller->GetAllControllerRequests('FORM');
-        if (self::ExecuteAddParkedDomain($currentuser['userid'], $formvars['inDomain'])) {
+        if ((new module_controller())->ExecuteAddParkedDomain($currentuser['userid'], $formvars['inDomain'])) {
             self::$ok = TRUE;
             return true;
         } else {

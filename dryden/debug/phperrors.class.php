@@ -19,11 +19,9 @@ class debug_phperrors {
      */
     static function SetMode($mode = '') {
         if ($mode == 'dev') {
-            error_reporting('E_ALL');
-            ini_set('error_reporting', E_ALL);
+            error_reporting(E_ALL);
         } else {
-            error_reporting('E_NONE');
-            ini_set('error_reporting', E_NONE);
+            error_reporting(0);
         }
     }
 

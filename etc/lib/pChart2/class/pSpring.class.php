@@ -43,11 +43,11 @@
    var $Labels;
 
    /* Class creator */
-   function pSpring()
+   function __construct()
     {
      /* Initialise data arrays */
-     $this->Data = "";
-     $this->Links = "";
+     $this->Data = [];
+     $this->Links = [];
 
      /* Set nodes defaults */
      $this->Default["R"]		= 255;
@@ -83,7 +83,7 @@
     }
 
    /* Set default links options */
-   function setLinkDefaults($Settings="")
+   function setLinkDefaults($Settings=[])
     {
      if ( isset($Settings["R"]) )     { $this->Default["LinkR"] = $Settings["R"]; }
      if ( isset($Settings["G"]) )     { $this->Default["LinkG"] = $Settings["G"]; }
@@ -92,7 +92,7 @@
     }
 
    /* Set default links options */
-   function setLabelsSettings($Settings="")
+   function setLabelsSettings($Settings=[])
     {
      if ( isset($Settings["Type"]) )  { $this->Labels["Type"] = $Settings["Type"]; }
      if ( isset($Settings["R"]) )     { $this->Labels["R"] = $Settings["R"]; }
@@ -136,7 +136,7 @@
      $this->Links[$FromNode][$ToNode]["Ticks"] = $Ticks; $this->Links[$ToNode][$FromNode]["Ticks"] = $Ticks;
     }
 
-   function setNodeDefaults($Settings="")
+   function setNodeDefaults($Settings=[])
     {
      if ( isset($Settings["R"]) ) { $this->Default["R"]					= $Settings["R"]; }
      if ( isset($Settings["G"]) ) { $this->Default["G"]					= $Settings["G"]; }
@@ -158,7 +158,7 @@
     }
 
    /* Add a node */
-   function addNode($NodeID,$Settings="")
+   function addNode($NodeID,$Settings=[])
     {
      /* if the node already exists, ignore */
      if (isset($this->Data[$NodeID])) { return(0); }
@@ -209,7 +209,7 @@
     }
 
    /* Set color attribute for a list of nodes */
-   function setNodesColor($Nodes,$Settings="")
+   function setNodesColor($Nodes,$Settings=[])
     {
      if ( is_array($Nodes) )
       {
@@ -541,7 +541,7 @@
       }
 
      /* Dump all links */
-     $Links = "";
+     $Links = [];
      foreach($this->Data as $Key => $Settings)
       {
        $X1 = $Settings["X"];
@@ -634,7 +634,7 @@
     }
 
    /* Create the encoded string */
-   function drawSpring($Object,$Settings="")
+   function drawSpring($Object,$Settings=[])
     {
      $this->pChartObject = $Object;
 
@@ -680,7 +680,7 @@
      if ( $CenterGraph ) { $this->center(); }
 
      /* Draw the connections */
-     $Drawn = "";
+     $Drawn = [];
      foreach($this->Data as $Key => $Settings)
       {
        $X	= $Settings["X"];
@@ -690,14 +690,14 @@
         {
          foreach ($Settings["Connections"] as $ID => $NodeID)
           {
-           if ( !isset($Drawn[$Key]) )    { $Drawn[$Key] = ""; }
-           if ( !isset($Drawn[$NodeID]) ) { $Drawn[$NodeID] = ""; }
+           if ( !isset($Drawn[$Key]) )    { $Drawn[$Key] = []; }
+           if ( !isset($Drawn[$NodeID]) ) { $Drawn[$NodeID] = []; }
 
            if ( isset($this->Data[$NodeID]) && !isset($Drawn[$Key][$NodeID]) && !isset($Drawn[$NodeID][$Key]) )
             {
              $Color = array("R"=>$this->Default["LinkR"],"G"=>$this->Default["LinkG"],"B"=>$this->Default["LinkB"],"Alpha"=>$this->Default["Alpha"]);
 
-             if ( $this->Links != "" )
+             if ( $this->Links != [] )
               {
                if ( isset($this->Links[$Key][$NodeID]["R"]) )
                 { $Color = array("R"=>$this->Links[$Key][$NodeID]["R"],"G"=>$this->Links[$Key][$NodeID]["G"],"B"=>$this->Links[$Key][$NodeID]["B"],"Alpha"=>$this->Links[$Key][$NodeID]["Alpha"]); }
@@ -711,7 +711,7 @@
              $this->pChartObject->drawLine($X,$Y,$X2,$Y2,$Color);
              $Drawn[$Key][$NodeID] = TRUE;
 
-             if ( isset($this->Links) && $this->Links != "" )
+             if ( isset($this->Links) && $this->Links != [] )
               {
                if ( isset($this->Links[$Key][$NodeID]["Name"]) || isset($this->Links[$NodeID][$Key]["Name"]) )
                 {
@@ -767,7 +767,7 @@
         }
        elseif ( $Shape == NODE_SHAPE_TRIANGLE )
         {
-         $Points = "";
+         $Points = [];
          $Points[] = cos(deg2rad(270)) * $Size + $X; $Points[] = sin(deg2rad(270)) * $Size + $Y;
          $Points[] = cos(deg2rad(45)) * $Size + $X;  $Points[] = sin(deg2rad(45)) * $Size + $Y;
          $Points[] = cos(deg2rad(135)) * $Size + $X; $Points[] = sin(deg2rad(135)) * $Size + $Y;

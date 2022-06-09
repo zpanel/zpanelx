@@ -82,7 +82,7 @@
    var $LastChartLayout	= CHART_LAST_LAYOUT_REGULAR;	// Last layout : regular or stacked
 
    /* Class constructor */
-   function pImage($XSize,$YSize,$DataSet=NULL,$TransparentBackground=FALSE)
+   function __construct($XSize,$YSize,$DataSet=NULL,$TransparentBackground=FALSE)
     {
      $this->TransparentBackground = $TransparentBackground;
 
@@ -107,7 +107,7 @@
     }
 
    /* Enable / Disable and set shadow properties */
-   function setShadow($Enabled=TRUE,$Format="")
+   function setShadow($Enabled=TRUE,$Format=[])
     {
      $X	    = isset($Format["X"]) ? $Format["X"] : 2;
      $Y	    = isset($Format["Y"]) ? $Format["Y"] : 2;
@@ -231,7 +231,7 @@
     }
 
    /* Set current font properties */
-   function setFontProperties($Format="")
+   function setFontProperties($Format=[])
     {
      $R		= isset($Format["R"]) ? $Format["R"] : -1;
      $G		= isset($Format["G"]) ? $Format["G"] : -1;
@@ -320,7 +320,7 @@
     {
      if ( !isset($this->DataSet->Data["Series"][$SerieName]) ) { return(-1); }
 
-     $Result = "";
+     $Result = [];
      foreach($this->DataSet->Data["Series"][$SerieName]["Data"] as $Key => $Value)
       { if ( $Value != VOID && isset($Values[$Key]) ) { $Result[] = $Values[$Key]; } }
      return($Result);
@@ -343,7 +343,7 @@
       }
      elseif( $this->ImageMapStorageMode == IMAGE_MAP_STORAGE_FILE )
       {
-       $TempArray = "";
+       $TempArray = [];
        $Handle    = @fopen($this->ImageMapStorageFolder."/".$this->ImageMapFileName.".map", "r");
        if ($Handle)
         {
@@ -381,7 +381,7 @@
       }
      elseif( $this->ImageMapStorageMode == IMAGE_MAP_STORAGE_FILE )
       {
-       $TempArray = "";
+       $TempArray = [];
        $Handle    = @fopen($this->ImageMapStorageFolder."/".$this->ImageMapFileName.".map", "r");
        if ($Handle)
         {
@@ -445,13 +445,13 @@
    /* Reverse an array of points */
    function reversePlots($Plots)
     {
-     $Result = "";
+     $Result = [];
      for($i=count($Plots)-2;$i>=0;$i=$i-2) { $Result[] = $Plots[$i]; $Result[] = $Plots[$i+1]; }
      return($Result);
     }
 
    /* Mirror Effect */
-   function drawAreaMirror($X,$Y,$Width,$Height,$Format="")
+   function drawAreaMirror($X,$Y,$Width,$Height,$Format=[])
     {
      $StartAlpha	= isset($Format["StartAlpha"]) ? $Format["StartAlpha"] : 80;
      $EndAlpha		= isset($Format["EndAlpha"]) ? $Format["EndAlpha"] : 0;

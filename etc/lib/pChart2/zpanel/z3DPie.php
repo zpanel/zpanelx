@@ -1,7 +1,7 @@
 <?php
 
 /* CAT:Pie charts */
-error_reporting('E_ALL');
+error_reporting(E_ALL);
 /* pChart library inclusions */
 include("../class/pData.class.php");
 include("../class/pDraw.class.php");

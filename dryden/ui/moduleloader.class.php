@@ -32,12 +32,12 @@ class ui_moduleloader {
         }
 
         $numrows = $zdbh->prepare($sql);
-        $numrows->bindParam(':catname', $catname);
+        if($catname != '') $numrows->bindParam(':catname', $catname);
         $numrows->execute();
 
-        if ($numrows->fetchColumn() <> 0) {
+        if ($numrows->fetch() != false) {
             $sql = $zdbh->prepare($sql);
-            $sql->bindParam(':uid', $uid);
+            if($catname != '') $sql->bindParam(':uid', $uid);
             $res = array();
             $sql->execute();
             $has_icons = false;

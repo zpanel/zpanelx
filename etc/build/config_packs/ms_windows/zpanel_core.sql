@@ -356,7 +356,7 @@ CREATE TABLE `x_modcats` (
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 /*Data for the table `x_modcats` */
-
+insert  into `x_modcats`(`mc_id_pk`, `mc_name_vc`) values (0, 'Configuration');
 insert  into `x_modcats`(`mc_id_pk`,`mc_name_vc`) values (1,'Account Information');
 insert  into `x_modcats`(`mc_id_pk`,`mc_name_vc`) values (2,'Server Admin');
 insert  into `x_modcats`(`mc_id_pk`,`mc_name_vc`) values (3,'Advanced');

@@ -1,0 +1,4 @@
+checkdistro.php - Tests detection of distribution 
+distrotest.php  - Generates a txt file for distribution testing 
+cputest.php     - Displays anonymized /proc/cpuinfo
+checkpng.php    - Tests the display of distribution logos

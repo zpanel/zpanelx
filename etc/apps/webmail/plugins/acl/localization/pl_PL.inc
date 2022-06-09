@@ -2,23 +2,23 @@
 
 /*
  +-----------------------------------------------------------------------+
- | plugins/acl/localization/<lang>.inc                                   |
- |                                                                       |
  | Localization file of the Roundcube Webmail ACL plugin                 |
- | Copyright (C) 2012-2013, The Roundcube Dev Team                       |
+ |                                                                       |
+ | Copyright (C) The Roundcube Dev Team                                  |
  |                                                                       |
  | Licensed under the GNU General Public License version 3 or            |
  | any later version with exceptions for skins & plugins.                |
  | See the README file for a full license statement.                     |
- |                                                                       |
  +-----------------------------------------------------------------------+
 
  For translation see https://www.transifex.com/projects/p/roundcube-webmail/resource/plugin-acl/
 */
+
 $labels['sharing'] = 'Udostępnianie';
 $labels['myrights'] = 'Prawa dostępu';
 $labels['username'] = 'Użytkownik:';
 $labels['advanced'] = 'Tryb zaawansowany';
+$labels['add'] = 'Dodaj';
 $labels['newuser'] = 'Dodaj rekord';
 $labels['editperms'] = 'Edytuj zezwolenia';
 $labels['actions'] = 'Akcje na prawach...';
@@ -80,6 +80,10 @@ $labels['longaclfull'] = 'Pełna kontrola włącznie z administrowaniem folderem
 $labels['longaclread'] = 'Folder może być otwarty w trybie do odczytu';
 $labels['longaclwrite'] = 'Wiadomości mogą być oznaczane, zapisywane i kopiowane do folderu';
 $labels['longacldelete'] = 'Wiadomości mogą być usuwane';
+$labels['longaclother'] = 'Inne prawa dostępu';
+$labels['ariasummaryacltable'] = 'Spis praw dostępu';
+$labels['arialabelaclactions'] = 'Lista działań';
+$labels['arialabelaclform'] = 'Formularz praw dostępu';
 $messages['deleting'] = 'Usuwanie praw dostępu...';
 $messages['saving'] = 'Zapisywanie praw dostępu...';
 $messages['updatesuccess'] = 'Pomyślnie zmieniono prawa dostępu';
@@ -91,4 +95,3 @@ $messages['createerror'] = 'Nie udało się dodać praw dostępu';
 $messages['deleteconfirm'] = 'Czy na pewno chcesz usunąć prawa wybranym użytkownikom?';
 $messages['norights'] = 'Nie wybrano praw dostępu!';
 $messages['nouser'] = 'Nie podano nazwy użytkownika!';
-?>

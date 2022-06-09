@@ -8,7 +8,7 @@
  * @package   PSI_Output
  * @author    Michael Cramer <BigMichi1@users.sourceforge.net>
  * @copyright 2009 phpSysInfo
- * @license   http://opensource.org/licenses/gpl-2.0.php GNU General Public License
+ * @license   http://opensource.org/licenses/gpl-2.0.php GNU General Public License version 2, or (at your option) any later version
  * @version   SVN: $Id: class.Output.inc.php 569 2012-04-16 06:08:18Z namiltd $
  * @link      http://phpsysinfo.sourceforge.net
  */
@@ -19,7 +19,7 @@
  * @package   PSI_Output
  * @author    Michael Cramer <BigMichi1@users.sourceforge.net>
  * @copyright 2009 phpSysInfo
- * @license   http://opensource.org/licenses/gpl-2.0.php GNU General Public License
+ * @license   http://opensource.org/licenses/gpl-2.0.php GNU General Public License version 2, or (at your option) any later version
  * @version   Release: 3.0
  * @link      http://phpsysinfo.sourceforge.net
  */
@@ -28,7 +28,7 @@ abstract class Output
     /**
      * error object for logging errors
      *
-     * @var Error
+     * @var PSI_Error
      */
     protected $error;
 
@@ -37,11 +37,9 @@ abstract class Output
      */
     public function __construct()
     {
-        $this->error = Error::singleton();
+        $this->error = PSI_Error::singleton();
         $this->_checkConfig();
         CommonFunctions::checkForExtensions();
-//        $this->error = Error::singleton();
-//        $this->_checkConfig();
     }
 
     /**
@@ -51,11 +49,8 @@ abstract class Output
      */
     private function _checkConfig()
     {
-        if (!is_readable(APP_ROOT.'/config.php')) {
-            $this->error->addError('file_exists(config.php)', 'config.php does not exist or is not readable by the webserver in the phpsysinfo directory.');
-        } else {
-            include_once APP_ROOT.'/config.php';
-        }
+        include_once PSI_APP_ROOT.'/read_config.php';
+
         if ($this->error->errorsExist()) {
             $this->error->errorsAsXML();
         }

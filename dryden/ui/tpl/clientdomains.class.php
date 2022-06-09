@@ -39,7 +39,7 @@ class ui_tpl_clientdomains {
      * @param  object  $db           Database Object
      * @return string                Returns all domains as a string
      */
-    public static function getDomains($type = 'domain', $domain_limit = 4, $user, $db){
+    public static function getDomains($type = 'domain', $domain_limit = 4, $user = null, $db = null){
 
         $zdbh = $db;
 

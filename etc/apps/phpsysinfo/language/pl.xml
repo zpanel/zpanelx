@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!-- $Id: pl.xml 699 2012-09-15 11:57:13Z namiltd $ -->
 <!--
 phpSysInfo language file Language: Polish Created by: Damian Pasternok
@@ -118,7 +118,7 @@ phpSysInfo language file Language: Polish Created by: Damian Pasternok
     <exp>Rozmiar</exp>
   </expression>
   <expression id="038" name="totals">
-    <exp>Całkowite</exp>
+    <exp>Łącznie</exp>
   </expression>
   <expression id="039" name="kb">
     <exp>kB</exp>
@@ -317,5 +317,95 @@ phpSysInfo language file Language: Polish Created by: Damian Pasternok
   </expression>
   <expression id="104" name="ups_battery_date">
     <exp>Data baterii</exp>
+  </expression>
+  <expression id="105" name="current">
+    <exp>Prąd</exp>
+  </expression>
+  <expression id="106" name="current_mark">
+    <exp>A</exp>
+  </expression>
+  <expression id="107" name="machine">
+    <exp>Maszyna</exp>
+  </expression>
+  <expression id="108" name="ups_line_frequency">
+    <exp>Częstotliwość linii</exp>
+  </expression>
+  <expression id="109" name="Hz">
+    <exp>Hz</exp>
+  </expression>
+  <expression id="110" name="Processes">
+    <exp>Procesy</exp>
+  </expression>
+  <expression id="111" name="ProcessesRunning">
+    <exp>uruchomione</exp>
+  </expression>
+  <expression id="112" name="ProcessesSleeping">
+    <exp>uśpione</exp>
+  </expression>
+  <expression id="113" name="ProcessesStopped">
+    <exp>zatrzymane</exp>
+  </expression>
+  <expression id="114" name="ProcessesZombie">
+    <exp>zombi</exp>
+  </expression>
+  <expression id="115" name="ProcessesWaiting">
+    <exp>oczekujące</exp>
+  </expression>
+  <expression id="116" name="ProcessesOther">
+    <exp>inne</exp>
+  </expression>
+  <expression id="117" name="tb">
+    <exp>Urządzenia TB</exp>
+  </expression>
+  <expression id="118" name="i2c">
+    <exp>Urządzenia I2C</exp>
+  </expression>
+  <expression id="119" name="no_processors">
+    <exp>Liczba procesorów</exp>
+  </expression>
+  <expression id="120" name="no_devices">
+    <exp>Liczba urządzeń</exp>
+  </expression>
+  <expression id="121" name="other">
+    <exp>Inne</exp>
+  </expression>
+  <expression id="122" name="manufacturer">
+    <exp>Producent</exp>
+  </expression>
+  <expression id="123" name="product">
+    <exp>Produkt</exp>
+  </expression>
+  <expression id="124" name="serial">
+    <exp>Number seryjny</exp>
+  </expression>
+  <expression id="125" name="memfree">
+    <exp>Wolne</exp>
+  </expression>
+  <expression id="126" name="nvme">
+    <exp>Urządzenia NVMe</exp>
+  </expression>
+  <expression id="127" name="os">
+    <exp>Typ systemu</exp>
+  </expression>
+  <expression id="128" name="no_memories">
+    <exp>Liczba chipów pamięci</exp>
+  </expression>
+  <expression id="129" name="speed">
+    <exp>Prędkość</exp>
+  </expression>
+  <expression id="130" name="mem">
+    <exp>Chipy Pamięci</exp>
+  </expression>
+  <expression id="131" name="mtps">
+    <exp>MT/s</exp>
+  </expression>
+  <expression id="132" name="gtps">
+    <exp>GT/s</exp>
+  </expression>
+  <expression id="133" name="ups_beeper_status">
+    <exp>Status brzęczka</exp>
+  </expression>
+  <expression id="134" name="virtualizer">
+    <exp>Wirtualizer</exp>
   </expression>
 </tns:translation>

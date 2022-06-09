@@ -30,7 +30,6 @@ div#nyroModalFull div#nyroModalWrapper a#closeBut {
 	right: -13px;
 	width: 12px;
 	height: 12px;
-	text-indent: -9999em;
 	background: url(../../gfx/close.gif) no-repeat;
 	outline: 0;
 }
@@ -94,12 +93,12 @@ div#nyroModalFull div#nyroModalWrapper div#nyroModalContent a.nyroModalPrev {
 	left: 0;
 }
 div#nyroModalFull div#nyroModalWrapper div#nyroModalContent a.nyroModalPrev:hover {
-	background-image: url(../../gfx/prev.png);
+	background-image: url(../../gfx/prev.gif);
 }
 div#nyroModalFull div#nyroModalWrapper div#nyroModalContent a.nyroModalNext {
 	right: 0;
 	background-position: right 20%;
 }
 div#nyroModalFull div#nyroModalWrapper div#nyroModalContent a.nyroModalNext:hover {
-	background-image: url(../../gfx/next.png);
+	background-image: url(../../gfx/next.gif);
 }

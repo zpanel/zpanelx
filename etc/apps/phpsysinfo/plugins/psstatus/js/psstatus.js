@@ -34,18 +34,23 @@ var psstatus_show = false, psstatus_table;
  * @param {jQuery} xml plugin-XML
  */
 function psstatus_populate(xml) {
-    var name = "", status = 0, state = "";
+    var name = "", status = 0, state = "", hostname = "";
 
     psstatus_table.fnClearTable();
+
+    hostname = $("Plugins Plugin_PSStatus", xml).attr('Hostname');
+    if (hostname !== undefined) {
+        $('span[class=Hostname_PSStatus]').html(hostname);
+    }
 
     $("Plugins Plugin_PSStatus Process", xml).each(function psstatus_getprocess(idp) {
         name = $(this).attr("Name");
         status = parseInt($(this).attr("Status"), 10);
-        if (status === 1 && !isNaN(status)) {
-            state = "<span style=\"display:none;\">" + status.toString() + "</span><img src=\"./plugins/psstatus/gfx/online.png\" alt=\"online\" />";
+        if (!isNaN(status) && (status === 1)) {
+            state = "<span style=\"display:none;\">" + status.toString() + "</span><img src=\"./plugins/psstatus/gfx/online.gif\" alt=\"online\" title=\"\" style=\"width:18px;\" />";
         }
         else {
-            state = "<span style=\"display:none;\">" + status.toString() + "</span><img src=\"./plugins/psstatus/gfx/offline.png\" alt=\"offline\" />";
+            state = "<span style=\"display:none;\">" + status.toString() + "</span><img src=\"./plugins/psstatus/gfx/offline.gif\" alt=\"offline\" title=\"\" style=\"width:18px;\" />";
         }
         psstatus_table.fnAddData(["<span style=\"display:none;\">" + name + "</span>" + name, state]);
         psstatus_show = true;
@@ -58,16 +63,18 @@ function psstatus_populate(xml) {
 function psstatus_buildTable() {
     var html = "";
 
-    html += "<table id=\"Plugin_PSStatusTable\" style=\"border-spacing:0;\">\n";
-    html += "  <thead>\n";
-    html += "    <tr>\n";
-    html += "      <th>" + genlang(3, false, "PSStatus") + "</th>\n";
-    html += "      <th>" + genlang(4, false, "PSStatus") + "</th>\n";
-    html += "    </tr>\n";
-    html += "  </thead>\n";
-    html += "  <tbody>\n";
-    html += "  </tbody>\n";
-    html += "</table>\n";
+    html += "<div style=\"overflow-x:auto;\">\n";
+    html += "  <table id=\"Plugin_PSStatusTable\" style=\"border-collapse:collapse;\">\n";
+    html += "    <thead>\n";
+    html += "      <tr>\n";
+    html += "        <th>" + genlang(2, "PSStatus") + "</th>\n";
+    html += "        <th>" + genlang(3, "PSStatus") + "</th>\n";
+    html += "      </tr>\n";
+    html += "    </thead>\n";
+    html += "    <tbody>\n";
+    html += "    </tbody>\n";
+    html += "  </table>\n";
+    html += "</div>\n";
 
     $("#Plugin_PSStatus").append(html);
 
@@ -92,6 +99,7 @@ function psstatus_buildTable() {
  * load the xml via ajax
  */
 function psstatus_request() {
+    $("#Reload_PSStatusTable").attr("title", "reload");
     $.ajax({
         url: "xml.php?plugin=PSStatus",
         dataType: "xml",
@@ -111,7 +119,7 @@ function psstatus_request() {
 
 $(document).ready(function psstatus_buildpage() {
     $("#footer").before(buildBlock("PSStatus", 1, true));
-    $("#Plugin_PSStatus").css("width", "451px");
+    $("#Plugin_PSStatus").addClass("halfsize");
 
     psstatus_buildTable();
 
@@ -119,6 +127,6 @@ $(document).ready(function psstatus_buildpage() {
 
     $("#Reload_PSStatusTable").click(function psstatus_reload(id) {
         psstatus_request();
-        $("#Reload_PSStatusTable").attr("title",datetime());
+        $(this).attr("title", datetime());
     });
 });

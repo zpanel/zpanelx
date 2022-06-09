@@ -1,19 +1,18 @@
 -- Roundcube Webmail initial database structure
 
 
-/*!40014  SET FOREIGN_KEY_CHECKS=0 */;
+SET FOREIGN_KEY_CHECKS=0;
 
 -- Table structure for table `session`
 
 CREATE TABLE `session` (
  `sess_id` varchar(128) NOT NULL,
- `created` datetime NOT NULL DEFAULT '1000-01-01 00:00:00',
  `changed` datetime NOT NULL DEFAULT '1000-01-01 00:00:00',
  `ip` varchar(40) NOT NULL,
  `vars` mediumtext NOT NULL,
  PRIMARY KEY(`sess_id`),
  INDEX `changed_index` (`changed`)
-) /*!40000 ENGINE=INNODB */ /*!40101 CHARACTER SET utf8 COLLATE utf8_general_ci */;
+) ROW_FORMAT=DYNAMIC ENGINE=INNODB CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 
 -- Table structure for table `users`
@@ -24,38 +23,38 @@ CREATE TABLE `users` (
  `mail_host` varchar(128) NOT NULL,
  `created` datetime NOT NULL DEFAULT '1000-01-01 00:00:00',
  `last_login` datetime DEFAULT NULL,
- `language` varchar(5),
- `preferences` text,
+ `failed_login` datetime DEFAULT NULL,
+ `failed_login_counter` int(10) UNSIGNED DEFAULT NULL,
+ `language` varchar(16),
+ `preferences` longtext,
  PRIMARY KEY(`user_id`),
  UNIQUE `username` (`username`, `mail_host`)
-) /*!40000 ENGINE=INNODB */ /*!40101 CHARACTER SET utf8 COLLATE utf8_general_ci */;
+) ROW_FORMAT=DYNAMIC ENGINE=INNODB CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 
 -- Table structure for table `cache`
 
 CREATE TABLE `cache` (
  `user_id` int(10) UNSIGNED NOT NULL,
- `cache_key` varchar(128) /*!40101 CHARACTER SET ascii COLLATE ascii_general_ci */ NOT NULL,
- `created` datetime NOT NULL DEFAULT '1000-01-01 00:00:00',
+ `cache_key` varchar(128) BINARY NOT NULL,
  `expires` datetime DEFAULT NULL,
  `data` longtext NOT NULL,
+ PRIMARY KEY (`user_id`, `cache_key`),
  CONSTRAINT `user_id_fk_cache` FOREIGN KEY (`user_id`)
    REFERENCES `users`(`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
- INDEX `expires_index` (`expires`),
- INDEX `user_cache_index` (`user_id`,`cache_key`)
-) /*!40000 ENGINE=INNODB */ /*!40101 CHARACTER SET utf8 COLLATE utf8_general_ci */;
+ INDEX `expires_index` (`expires`)
+) ROW_FORMAT=DYNAMIC ENGINE=INNODB CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 
 -- Table structure for table `cache_shared`
 
 CREATE TABLE `cache_shared` (
- `cache_key` varchar(255) /*!40101 CHARACTER SET ascii COLLATE ascii_general_ci */ NOT NULL,
- `created` datetime NOT NULL DEFAULT '1000-01-01 00:00:00',
+ `cache_key` varchar(255) BINARY NOT NULL,
  `expires` datetime DEFAULT NULL,
  `data` longtext NOT NULL,
- INDEX `expires_index` (`expires`),
- INDEX `cache_key_index` (`cache_key`)
-) /*!40000 ENGINE=INNODB */ /*!40101 CHARACTER SET utf8 COLLATE utf8_general_ci */;
+ PRIMARY KEY (`cache_key`),
+ INDEX `expires_index` (`expires`)
+) ROW_FORMAT=DYNAMIC ENGINE=INNODB CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 
 -- Table structure for table `cache_index`
@@ -70,7 +69,7 @@ CREATE TABLE `cache_index` (
    REFERENCES `users`(`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
  INDEX `expires_index` (`expires`),
  PRIMARY KEY (`user_id`, `mailbox`)
-) /*!40000 ENGINE=INNODB */ /*!40101 CHARACTER SET utf8 COLLATE utf8_general_ci */;
+) ROW_FORMAT=DYNAMIC ENGINE=INNODB CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 
 -- Table structure for table `cache_thread`
@@ -84,7 +83,7 @@ CREATE TABLE `cache_thread` (
    REFERENCES `users`(`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
  INDEX `expires_index` (`expires`),
  PRIMARY KEY (`user_id`, `mailbox`)
-) /*!40000 ENGINE=INNODB */ /*!40101 CHARACTER SET utf8 COLLATE utf8_general_ci */;
+) ROW_FORMAT=DYNAMIC ENGINE=INNODB CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 
 -- Table structure for table `cache_messages`
@@ -100,7 +99,23 @@ CREATE TABLE `cache_messages` (
    REFERENCES `users`(`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
  INDEX `expires_index` (`expires`),
  PRIMARY KEY (`user_id`, `mailbox`, `uid`)
-) /*!40000 ENGINE=INNODB */ /*!40101 CHARACTER SET utf8 COLLATE utf8_general_ci */;
+) ROW_FORMAT=DYNAMIC ENGINE=INNODB CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+
+-- Table structure for table `collected_addresses`
+
+CREATE TABLE `collected_addresses` (
+ `address_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+ `changed` datetime NOT NULL DEFAULT '1000-01-01 00:00:00',
+ `name` varchar(255) NOT NULL DEFAULT '',
+ `email` varchar(255) NOT NULL,
+ `user_id` int(10) UNSIGNED NOT NULL,
+ `type` int(10) UNSIGNED NOT NULL,
+ PRIMARY KEY(`address_id`),
+ CONSTRAINT `user_id_fk_collected_addresses` FOREIGN KEY (`user_id`)
+   REFERENCES `users`(`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ UNIQUE INDEX `user_email_collected_addresses_index` (`user_id`, `type`, `email`)
+) ROW_FORMAT=DYNAMIC ENGINE=INNODB CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 
 -- Table structure for table `contacts`
@@ -120,7 +135,8 @@ CREATE TABLE `contacts` (
  CONSTRAINT `user_id_fk_contacts` FOREIGN KEY (`user_id`)
    REFERENCES `users`(`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
  INDEX `user_contacts_index` (`user_id`,`del`)
-) /*!40000 ENGINE=INNODB */ /*!40101 CHARACTER SET utf8 COLLATE utf8_general_ci */;
+) ROW_FORMAT=DYNAMIC ENGINE=INNODB CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
 
 -- Table structure for table `contactgroups`
 
@@ -134,7 +150,10 @@ CREATE TABLE `contactgroups` (
   CONSTRAINT `user_id_fk_contactgroups` FOREIGN KEY (`user_id`)
     REFERENCES `users`(`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   INDEX `contactgroups_user_index` (`user_id`,`del`)
-) /*!40000 ENGINE=INNODB */ /*!40101 CHARACTER SET utf8 COLLATE utf8_general_ci */;
+) ROW_FORMAT=DYNAMIC ENGINE=INNODB CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+
+-- Table structure for table `contactgroupmembers`
 
 CREATE TABLE `contactgroupmembers` (
   `contactgroup_id` int(10) UNSIGNED NOT NULL,
@@ -146,7 +165,7 @@ CREATE TABLE `contactgroupmembers` (
   CONSTRAINT `contact_id_fk_contacts` FOREIGN KEY (`contact_id`)
     REFERENCES `contacts`(`contact_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   INDEX `contactgroupmembers_contact_index` (`contact_id`)
-) /*!40000 ENGINE=INNODB */;
+) ROW_FORMAT=DYNAMIC ENGINE=INNODB;
 
 
 -- Table structure for table `identities`
@@ -162,26 +181,27 @@ CREATE TABLE `identities` (
  `email` varchar(128) NOT NULL,
  `reply-to` varchar(128) NOT NULL DEFAULT '',
  `bcc` varchar(128) NOT NULL DEFAULT '',
- `signature` text,
+ `signature` longtext,
  `html_signature` tinyint(1) NOT NULL DEFAULT '0',
  PRIMARY KEY(`identity_id`),
  CONSTRAINT `user_id_fk_identities` FOREIGN KEY (`user_id`)
    REFERENCES `users`(`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
  INDEX `user_identities_index` (`user_id`, `del`),
  INDEX `email_identities_index` (`email`, `del`)
-) /*!40000 ENGINE=INNODB */ /*!40101 CHARACTER SET utf8 COLLATE utf8_general_ci */;
+) ROW_FORMAT=DYNAMIC ENGINE=INNODB CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 
 -- Table structure for table `dictionary`
 
 CREATE TABLE `dictionary` (
-  `user_id` int(10) UNSIGNED DEFAULT NULL,
-  `language` varchar(5) NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, -- redundant, for compat. with Galera Cluster
+  `user_id` int(10) UNSIGNED DEFAULT NULL, -- NULL here is for "shared dictionaries"
+  `language` varchar(16) NOT NULL,
   `data` longtext NOT NULL,
   CONSTRAINT `user_id_fk_dictionary` FOREIGN KEY (`user_id`)
     REFERENCES `users`(`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   UNIQUE `uniqueness` (`user_id`, `language`)
-) /*!40000 ENGINE=INNODB */ /*!40101 CHARACTER SET utf8 COLLATE utf8_general_ci */;
+) ROW_FORMAT=DYNAMIC ENGINE=INNODB CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 
 -- Table structure for table `searches`
@@ -196,8 +216,22 @@ CREATE TABLE `searches` (
  CONSTRAINT `user_id_fk_searches` FOREIGN KEY (`user_id`)
    REFERENCES `users`(`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
  UNIQUE `uniqueness` (`user_id`, `type`, `name`)
-) /*!40000 ENGINE=INNODB */ /*!40101 CHARACTER SET utf8 COLLATE utf8_general_ci */;
+) ROW_FORMAT=DYNAMIC ENGINE=INNODB CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
+-- Table structure for table `filestore`
+
+CREATE TABLE `filestore` (
+ `file_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+ `user_id` int(10) UNSIGNED NOT NULL,
+ `context` varchar(32) NOT NULL,
+ `filename` varchar(128) NOT NULL,
+ `mtime` int(10) NOT NULL,
+ `data` longtext NOT NULL,
+ PRIMARY KEY (`file_id`),
+ CONSTRAINT `user_id_fk_filestore` FOREIGN KEY (`user_id`)
+   REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ UNIQUE `uniqueness` (`user_id`, `context`, `filename`)
+) ROW_FORMAT=DYNAMIC ENGINE=INNODB CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- Table structure for table `system`
 
@@ -205,8 +239,8 @@ CREATE TABLE `system` (
  `name` varchar(64) NOT NULL,
  `value` mediumtext,
  PRIMARY KEY(`name`)
-) /*!40000 ENGINE=INNODB */ /*!40101 CHARACTER SET utf8 COLLATE utf8_general_ci */;
+) ROW_FORMAT=DYNAMIC ENGINE=INNODB CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-/*!40014 SET FOREIGN_KEY_CHECKS=1 */;
+SET FOREIGN_KEY_CHECKS=1;
 
-INSERT INTO system (name, value) VALUES ('roundcube-version', '2013061000');
+INSERT INTO `system` (`name`, `value`) VALUES ('roundcube-version', '2020122900');

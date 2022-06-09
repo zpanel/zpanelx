@@ -1,81 +1,54 @@
 <?php
-/* vim: set expandtab sw=4 ts=4 sts=4: */
 /**
  * Front controller for config view / download and clear
- *
- * @package PhpMyAdmin-Setup
  */
 
-/**
- * Core libraries.
- */
-require './lib/common.inc.php';
-require_once './libraries/config/Form.class.php';
-require_once './libraries/config/FormDisplay.class.php';
-require_once './setup/lib/ConfigGenerator.class.php';
+declare(strict_types=1);
 
-require './libraries/config/setup.forms.php';
+use PhpMyAdmin\Config\Forms\Setup\ConfigForm;
+use PhpMyAdmin\Core;
+use PhpMyAdmin\ResponseRenderer;
+use PhpMyAdmin\Setup\ConfigGenerator;
+use PhpMyAdmin\Url;
 
-$form_display = new FormDisplay($GLOBALS['ConfigFile']);
-$form_display->registerForm('_config.php', $forms['_config.php']);
-$form_display->save('_config.php');
-$config_file_path = $GLOBALS['ConfigFile']->getFilePath();
+if (! defined('ROOT_PATH')) {
+    // phpcs:disable PSR1.Files.SideEffects
+    define('ROOT_PATH', dirname(__DIR__) . DIRECTORY_SEPARATOR);
+    // phpcs:enable
+}
+
+// phpcs:disable PSR1.Files.SideEffects
+define('PHPMYADMIN', true);
+// phpcs:enable
+
+require ROOT_PATH . 'setup/lib/common.inc.php';
+
+$form_display = new ConfigForm($GLOBALS['ConfigFile']);
+$form_display->save('Config');
+
+$response = ResponseRenderer::getInstance();
+$response->disable();
 
 if (isset($_POST['eol'])) {
-    $_SESSION['eol'] = ($_POST['eol'] == 'unix') ? 'unix' : 'win';
+    $_SESSION['eol'] = $_POST['eol'] === 'unix' ? 'unix' : 'win';
 }
 
-if (PMA_ifSetOr($_POST['submit_clear'], '')) {
-    //
+if (isset($_POST['submit_clear']) && is_scalar($_POST['submit_clear']) ? $_POST['submit_clear'] : '') {
     // Clear current config and return to main page
-    //
     $GLOBALS['ConfigFile']->resetConfigData();
     // drop post data
-    header('HTTP/1.1 303 See Other');
-    header('Location: index.php');
-    exit;
-} elseif (PMA_ifSetOr($_POST['submit_download'], '')) {
-    //
-    // Output generated config file
-    //
-    PMA_downloadHeader('config.inc.php', 'text/plain');
-    echo ConfigGenerator::getConfigFile($GLOBALS['ConfigFile']);
-    exit;
-} elseif (PMA_ifSetOr($_POST['submit_save'], '')) {
-    //
-    // Save generated config file on the server
-    //
-    file_put_contents(
-        $config_file_path,
-        ConfigGenerator::getConfigFile($GLOBALS['ConfigFile'])
-    );
-    header('HTTP/1.1 303 See Other');
-    header('Location: index.php?action_done=config_saved');
-    exit;
-} elseif (PMA_ifSetOr($_POST['submit_load'], '')) {
-    //
-    // Load config file from the server
-    //
-    $cfg = array();
-    include_once $config_file_path;
-    $GLOBALS['ConfigFile']->setConfigData($cfg);
-    header('HTTP/1.1 303 See Other');
-    header('Location: index.php');
-    exit;
-} elseif (PMA_ifSetOr($_POST['submit_delete'], '')) {
-    //
-    // Delete config file on the server
-    //
-    @unlink($config_file_path);
-    header('HTTP/1.1 303 See Other');
-    header('Location: index.php');
-    exit;
-} else {
-    //
-    // Show generated config file in a <textarea>
-    //
-    header('HTTP/1.1 303 See Other');
-    header('Location: index.php?page=config');
+    $response->generateHeader303('index.php' . Url::getCommonRaw());
     exit;
 }
-?>
+
+if (isset($_POST['submit_download']) && is_scalar($_POST['submit_download']) ? $_POST['submit_download'] : '') {
+    // Output generated config file
+    Core::downloadHeader('config.inc.php', 'text/plain');
+    $response->disable();
+    echo ConfigGenerator::getConfigFile($GLOBALS['ConfigFile']);
+    exit;
+}
+
+// Show generated config file in a <textarea>
+$response->generateHeader303('index.php' . Url::getCommonRaw(['page' => 'config']));
+exit;

@@ -9,7 +9,7 @@
  * @author    Artem Volk <artvolk@mail.ru>
  * @author    Anders Häggström <hagge@users.sourceforge.net>
  * @copyright 2009 phpSysInfo
- * @license   http://opensource.org/licenses/gpl-2.0.php GNU General Public License
+ * @license   http://opensource.org/licenses/gpl-2.0.php GNU General Public License version 2, or (at your option) any later version
  * @version   SVN: $Id: class.nut.inc.php 661 2012-08-27 11:26:39Z namiltd $
  * @link      http://phpsysinfo.sourceforge.net
  */
@@ -21,7 +21,7 @@
  * @author    Artem Volk <artvolk@mail.ru>
  * @author    Anders Häggström <hagge@users.sourceforge.net>
  * @copyright 2009 phpSysInfo
- * @license   http://opensource.org/licenses/gpl-2.0.php GNU General Public License
+ * @license   http://opensource.org/licenses/gpl-2.0.php GNU General Public License version 2, or (at your option) any later version
  * @version   Release: 3.0
  * @link      http://phpsysinfo.sourceforge.net
  */
@@ -40,56 +40,124 @@ class Nut extends UPS
     public function __construct()
     {
         parent::__construct();
-        CommonFunctions::executeProgram('upsc', '-l', $output);
-        $ups_names = preg_split("/\n/", $output, -1, PREG_SPLIT_NO_EMPTY);
-        foreach ($ups_names as $value) {
-            CommonFunctions::executeProgram('upsc', $value, $temp);
-            $this->_output[$value] = $temp;
+        if (!defined('PSI_UPS_NUT_ACCESS')) {
+             define('PSI_UPS_NUT_ACCESS', false);
         }
-    }
-
-    /**
-     * check if a specific value is set in an array
-     *
-     * @param object $hash array in which a specific value should be found
-     * @param object $key  key that is looked for in the array
-     *
-     * @return array
-     */
-    private function _checkIsSet($hash, $key)
-    {
-        return isset($hash[$key]) ? $hash[$key] : '';
+        switch (strtolower(PSI_UPS_NUT_ACCESS)) {
+        case 'data':
+            if (defined('PSI_UPS_NUT_LIST') && is_string(PSI_UPS_NUT_LIST)) {
+                if (preg_match(ARRAY_EXP, PSI_UPS_NUT_LIST)) {
+                    $upss = eval(PSI_UPS_NUT_LIST);
+                } else {
+                    $upss = array(PSI_UPS_NUT_LIST);
+                }
+            } else {
+               $upss = array('UPS');
+            }
+            $un = 0;
+            foreach ($upss as $ups) {
+                $temp = "";
+                CommonFunctions::rftsdata("upsnut{$un}.tmp", $temp);
+                if (! empty($temp)) {
+                    $this->_output[$ups] = $temp;
+                }
+                $un++;
+            }
+            break;
+        default:
+            if (defined('PSI_UPS_NUT_LIST') && is_string(PSI_UPS_NUT_LIST)) {
+                if (preg_match(ARRAY_EXP, PSI_UPS_NUT_LIST)) {
+                    $upses = eval(PSI_UPS_NUT_LIST);
+                } else {
+                    $upses = array(PSI_UPS_NUT_LIST);
+                }
+                foreach ($upses as $ups) {
+                    CommonFunctions::executeProgram('upsc', '-l '.trim($ups), $output, PSI_DEBUG);
+                    $ups_names = preg_split("/\n/", $output, -1, PREG_SPLIT_NO_EMPTY);
+                    foreach ($ups_names as $ups_name) {
+                        $upsname = trim($ups_name).'@'.trim($ups);
+                        $temp = "";
+                        CommonFunctions::executeProgram('upsc', $upsname, $temp, PSI_DEBUG);
+                        if (! empty($temp)) {
+                            $this->_output[$upsname] = $temp;
+                        }
+                    }
+                }
+            } else { //use default if address and port not defined
+                if (!defined('PSI_EMU_HOSTNAME')) {
+                    CommonFunctions::executeProgram('upsc', '-l', $output, PSI_DEBUG);
+                } else {
+                    CommonFunctions::executeProgram('upsc', '-l '.PSI_EMU_HOSTNAME, $output, PSI_DEBUG);
+                }
+                $ups_names = preg_split("/\n/", $output, -1, PREG_SPLIT_NO_EMPTY);
+                foreach ($ups_names as $ups_name) {
+                    $temp = "";
+                    CommonFunctions::executeProgram('upsc', trim($ups_name), $temp, PSI_DEBUG);
+                    if (! empty($temp)) {
+                        $this->_output[trim($ups_name)] = $temp;
+                    }
+                }
+            }
+        }
     }
 
     /**
      * parse the input and store data in resultset for xml generation
      *
-     * @return array
+     * @return void
      */
     private function _info()
     {
         if (! empty($this->_output)) {
-            foreach ($this->_output as $name=>$value) {
+            foreach ($this->_output as $name => $value) {
                 $temp = preg_split("/\n/", $value, -1, PREG_SPLIT_NO_EMPTY);
                 $ups_data = array();
-                foreach ($temp as $value) {
-                    $line = preg_split('/: /', $value, 2);
+                foreach ($temp as $valueTemp) {
+                    $line = preg_split('/: /', $valueTemp, 2);
                     $ups_data[$line[0]] = isset($line[1]) ? trim($line[1]) : '';
                 }
                 $dev = new UPSDevice();
                 //General
                 $dev->setName($name);
-                $dev->setModel($this->_checkIsSet($ups_data, 'ups.model'));
-                $dev->setMode($this->_checkIsSet($ups_data, 'driver.name'));
-                $dev->setStatus($this->_checkIsSet($ups_data, 'ups.status'));
+                if (isset($ups_data['ups.model'])) {
+                    $dev->setModel($ups_data['ups.model']);
+                }
+                if (isset($ups_data['driver.name'])) {
+                    $dev->setMode($ups_data['driver.name']);
+                }
+                if (isset($ups_data['ups.status'])) {
+                    $dev->setStatus($ups_data['ups.status']);
+                }
+                if (isset($ups_data['ups.beeper.status'])) {
+                    $dev->setBeeperStatus($ups_data['ups.beeper.status']);
+                }
 
                 //Line
-                $dev->setLineVoltage($this->_checkIsSet($ups_data, 'input.voltage'));
-                $dev->setLoad($this->_checkIsSet($ups_data, 'ups.load'));
+                if (isset($ups_data['input.voltage'])) {
+                    $dev->setLineVoltage($ups_data['input.voltage']);
+                }
+                if (isset($ups_data['input.frequency'])) {
+                    $dev->setLineFrequency($ups_data['input.frequency']);
+                }
+                if (isset($ups_data['ups.load'])) {
+                    $dev->setLoad($ups_data['ups.load']);
+                }
 
                 //Battery
-                $dev->setBatteryVoltage($this->_checkIsSet($ups_data, 'battery.voltage'));
-                $dev->setBatterCharge($this->_checkIsSet($ups_data, 'battery.charge'));
+                if (isset($ups_data['battery.voltage'])) {
+                    $dev->setBatteryVoltage($ups_data['battery.voltage']);
+                }
+                if (isset($ups_data['battery.charge'])) {
+                    $dev->setBatterCharge($ups_data['battery.charge']);
+                }
+                if (isset($ups_data['battery.runtime'])) {
+                    $dev->setTimeLeft(round($ups_data['battery.runtime']/60, 2));
+                }
+
+                //Temperature
+                if (isset($ups_data['ups.temperature'])) {
+                    $dev->setTemperatur($ups_data['ups.temperature']);
+                }
 
                 $this->upsinfo->setUpsDevices($dev);
             }
@@ -101,7 +169,7 @@ class Nut extends UPS
      *
      * @see PSI_Interface_UPS::build()
      *
-     * @return Void
+     * @return void
      */
     public function build()
     {

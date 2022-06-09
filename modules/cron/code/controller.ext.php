@@ -131,10 +131,14 @@ class module_controller extends ctrl_module
         if (fs_director::CheckForEmptyValue(self::CheckCronForErrors())) {
             // If the user submitted a 'new' request then we will simply add the cron task to the database...
             $sql = $zdbh->prepare("INSERT INTO x_cronjobs (ct_acc_fk, ct_script_vc, ct_description_tx, ct_timing_vc, ct_fullpath_vc, ct_created_ts) VALUES (:userid, :script, :desc, :timing, :fullpath, " . time() . ")");
-            $sql->bindParam(':userid', $controller->GetControllerRequest('FORM', 'inUserID'));
-            $sql->bindParam(':script', $controller->GetControllerRequest('FORM', 'inScript'));
-            $sql->bindParam(':desc', $controller->GetControllerRequest('FORM', 'inDescription'));
-            $sql->bindParam(':timing', $controller->GetControllerRequest('FORM', 'inTiming'));
+            $userid = $controller->GetControllerRequest('FORM', 'inUserID');
+            $sql->bindParam(':userid', $userid);
+            $script = $controller->GetControllerRequest('FORM', 'inScript');
+            $sql->bindParam(':script', $script);
+            $desc = $controller->GetControllerRequest('FORM', 'inDescription');
+            $sql->bindParam(':desc', $desc);
+            $timing = $controller->GetControllerRequest('FORM', 'inTiming');
+            $sql->bindParam(':timing', $timing);
             $full_path = ctrl_options::GetSystemOption('hosted_dir') . $currentuser['username'] . "/public_html/" . $controller->GetControllerRequest('FORM', 'inScript');
             $sql->bindParam(':fullpath', $full_path);
             $sql->execute();
@@ -162,9 +166,11 @@ class module_controller extends ctrl_module
                 $sql->execute();
                 while ($rowcrons = $sql->fetch()) {
                     if (!fs_director::CheckForEmptyValue($controller->GetControllerRequest('FORM', 'inDelete_' . $rowcrons['ct_id_pk'] . ''))) {
+                        $time = time();
+
                         $sql2 = $zdbh->prepare("UPDATE x_cronjobs SET ct_deleted_ts=:time WHERE ct_id_pk=:cronid");
                         $sql2->bindParam(':cronid', $rowcrons['ct_id_pk']);
-                        $sql2->bindParam(':time', time());
+                        $sql2->bindParam(':time', $time);
                         $sql2->execute();
                         self::WriteCronFile();
                         self::$ok = TRUE;
@@ -214,7 +220,8 @@ class module_controller extends ctrl_module
         $sql = "SELECT COUNT(*) FROM x_cronjobs WHERE ct_acc_fk=:userid AND ct_script_vc=:inScript AND ct_deleted_ts IS NULL";
         $numrows = $zdbh->prepare($sql);
         $numrows->bindParam(':userid', $currentuser['userid']);
-        $numrows->bindParam(':inScript', $controller->GetControllerRequest('FORM', 'inScript'));
+        $request = $controller->GetControllerRequest('FORM', 'inScript');
+        $numrows->bindParam(':inScript', $request);
         if ($numrows->execute()) {
             if ($numrows->fetchColumn() <> 0) {
                 self::$alreadyexists = TRUE;

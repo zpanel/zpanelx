@@ -4,3 +4,5 @@
 /cnf/db.php
 /.vagrant
 .idea
+*.cache
+/etc/apps/phpmyadmin/tmp

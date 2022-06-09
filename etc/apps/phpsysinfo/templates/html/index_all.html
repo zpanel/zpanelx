@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="Content-Script-Type" content="text/javascript" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
-    <link rel="shortcut icon" href="gfx/favicon.png" />
+    <link rel="shortcut icon" href="gfx/favicon.gif" />
     <link type="text/css" rel="stylesheet" href="./templates/phpsysinfo.css" />
     <title>phpSysInfo - Redirection</title>
     <noscript>
@@ -13,7 +13,21 @@
     </noscript>
     <script type="text/JavaScript" language="JavaScript">
       <!--
-      var sTargetURL = "index.php?disp=dynamic";
+      var sTargetURL = "index.php?disp=static";
+      //-->
+    </script>
+    <script type="text/JavaScript" language="JavaScript1.1">
+      <!--
+      sTargetURL = "index.php?disp=bootstrap";
+      //-->
+    </script>
+    <!--[if lt IE 8]>
+        <script type="text/JavaScript" language="JavaScript">
+            sTargetURL = "index.php?disp=dynamic";
+        </script>
+    <![endif]-->
+    <script type="text/JavaScript" language="JavaScript">
+      <!--
       function doRedirect() {
         setTimeout( "window.location.href = sTargetURL", 2*1000 );
       }

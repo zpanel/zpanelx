@@ -2,23 +2,23 @@
 
 /*
  +-----------------------------------------------------------------------+
- | plugins/acl/localization/<lang>.inc                                   |
- |                                                                       |
  | Localization file of the Roundcube Webmail ACL plugin                 |
- | Copyright (C) 2012-2013, The Roundcube Dev Team                       |
+ |                                                                       |
+ | Copyright (C) The Roundcube Dev Team                                  |
  |                                                                       |
  | Licensed under the GNU General Public License version 3 or            |
  | any later version with exceptions for skins & plugins.                |
  | See the README file for a full license statement.                     |
- |                                                                       |
  +-----------------------------------------------------------------------+
 
  For translation see https://www.transifex.com/projects/p/roundcube-webmail/resource/plugin-acl/
 */
+
 $labels['sharing'] = 'Razmjena';
 $labels['myrights'] = 'Prava pristupa';
 $labels['username'] = 'Korisnik:';
 $labels['advanced'] = 'Napredni mod';
+$labels['add'] = 'Dodaj';
 $labels['newuser'] = 'Dodaj unos';
 $labels['editperms'] = 'Uredi dozvole';
 $labels['actions'] = 'Akcije za prava pristupa...';
@@ -80,6 +80,10 @@ $labels['longaclfull'] = 'Puna kontrola uključujući i administraciju foldera';
 $labels['longaclread'] = 'Folder je moguće otvoriti radi čitanja';
 $labels['longaclwrite'] = 'Moguće je označavati, zapisivati i kopirati poruke u folder';
 $labels['longacldelete'] = 'Moguće je obrisati poruke';
+$labels['longaclother'] = 'Ostala prava pristupa';
+$labels['ariasummaryacltable'] = 'Lista prava pristupa';
+$labels['arialabelaclactions'] = 'Lista akcija';
+$labels['arialabelaclform'] = 'Obrazac za prava pristupa';
 $messages['deleting'] = 'Brišem prava pristupa...';
 $messages['saving'] = 'Snimam prava pristupa...';
 $messages['updatesuccess'] = 'Prava pristupa su uspješno promijenjena';
@@ -91,4 +95,3 @@ $messages['createerror'] = 'Nije moguće dodati prava pristupa';
 $messages['deleteconfirm'] = 'Jeste li sigurni da želite ukloniti prava pristupa za odabrane korisnike?';
 $messages['norights'] = 'Niste odabrali prava pristupa!';
 $messages['nouser'] = 'Niste odabrali korisničko ime!';
-?>

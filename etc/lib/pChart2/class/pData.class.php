@@ -57,19 +57,19 @@
   {
    var $Data;
 
-   var $Palette = array("0"=>array("R"=>188,"G"=>224,"B"=>46,"Alpha"=>100),
-                        "1"=>array("R"=>224,"G"=>100,"B"=>46,"Alpha"=>100),
-                        "2"=>array("R"=>224,"G"=>214,"B"=>46,"Alpha"=>100),
-                        "3"=>array("R"=>46,"G"=>151,"B"=>224,"Alpha"=>100),
-                        "4"=>array("R"=>176,"G"=>46,"B"=>224,"Alpha"=>100),
-                        "5"=>array("R"=>224,"G"=>46,"B"=>117,"Alpha"=>100),
-                        "6"=>array("R"=>92,"G"=>224,"B"=>46,"Alpha"=>100),
-                        "7"=>array("R"=>224,"G"=>176,"B"=>46,"Alpha"=>100));
-
    /* Class creator */
-   function pData()
+   function __construct()
     {
-     $this->Data = "";
+    $this->Palette = array("0"=>array("R"=>188,"G"=>224,"B"=>46,"Alpha"=>100),
+                  "1"=>array("R"=>224,"G"=>100,"B"=>46,"Alpha"=>100),
+                  "2"=>array("R"=>224,"G"=>214,"B"=>46,"Alpha"=>100),
+                  "3"=>array("R"=>46,"G"=>151,"B"=>224,"Alpha"=>100),
+                  "4"=>array("R"=>176,"G"=>46,"B"=>224,"Alpha"=>100),
+                  "5"=>array("R"=>224,"G"=>46,"B"=>117,"Alpha"=>100),
+                  "6"=>array("R"=>92,"G"=>224,"B"=>46,"Alpha"=>100),
+                  "7"=>array("R"=>224,"G"=>176,"B"=>46,"Alpha"=>100));
+                        
+     $this->Data = [];
      $this->Data["XAxisDisplay"]	= AXIS_FORMAT_DEFAULT;
      $this->Data["XAxisFormat"]		= NULL;
      $this->Data["XAxisName"]		= NULL;
@@ -528,7 +528,7 @@
    function loadPalette($FileName,$Overwrite=FALSE)
     {
      if ( !file_exists($FileName) ) { return(-1); }
-     if ( $Overwrite ) { $this->Palette = ""; }
+     if ( $Overwrite ) { $this->Palette = []; }
 
      $fileHandle = @fopen($FileName, "r");
      if (!$fileHandle) { return(-1); }
@@ -537,13 +537,16 @@
        $buffer = fgets($fileHandle, 4096);
        if ( preg_match("/,/",$buffer) )
         {
-         list($R,$G,$B,$Alpha) = preg_split("/,/",$buffer);
-         if ( $this->Palette == "" ) { $ID = 0; } else { $ID = count($this->Palette); }
-         $this->Palette[$ID] = array("R"=>$R,"G"=>$G,"B"=>$B,"Alpha"=>$Alpha);
+         $Alpha = "";
+         if (count(preg_split("/,/",$buffer)) == 4) list($R,$G,$B,$Alpha) = preg_split("/,/",$buffer);
+         else {
+          list($R,$G,$B) = preg_split("/,/",$buffer);
+          $Alpha = "100";
+         }
+         $this->Palette[] = array("R"=>$R,"G"=>$G,"B"=>$B,"Alpha"=>$Alpha);
         }
       }
      fclose($fileHandle);
-
      /* Apply changes to current series */
      $ID = 0;
      if ( isset($this->Data["Series"]))
@@ -611,7 +614,7 @@
     {
      $Abscissa = $this->Data["Abscissa"];
 
-     $SelectedSeries = "";
+     $SelectedSeries = [];
      $MaxVal         = 0;
      foreach($this->Data["Axis"] as $AxisID => $Axis)
       {
@@ -664,7 +667,7 @@
     }
 
    /* Load data from a CSV (or similar) data source */
-   function importFromCSV($FileName,$Options="")
+   function importFromCSV($FileName,$Options=[])
     {
      $Delimiter		= isset($Options["Delimiter"]) ? $Options["Delimiter"] : ",";
      $GotHeader		= isset($Options["GotHeader"]) ? $Options["GotHeader"] : FALSE;
@@ -674,7 +677,7 @@
      $Handle = @fopen($FileName,"r");
      if ($Handle)
       {
-       $HeaderParsed = FALSE; $SerieNames = "";
+       $HeaderParsed = FALSE; $SerieNames = [];
        while (!feof($Handle))
         {
          $Buffer = fgets($Handle, 4096);
@@ -691,7 +694,7 @@
             }
            else
             {
-             if ($SerieNames == "" ) { foreach($Values as $Key => $Name) {  if ( !in_array($Key,$SkipColumns) ) { $SerieNames[$Key] = $DefaultSerieName.$Key; } } }
+             if ($SerieNames == [] ) { foreach($Values as $Key => $Name) {  if ( !in_array($Key,$SkipColumns) ) { $SerieNames[$Key] = $DefaultSerieName.$Key; } } }
              foreach($Values as $Key => $Value) {  if ( !in_array($Key,$SkipColumns) ) { $this->addPoints($Value,$SerieNames[$Key]); } }
             }
           }
@@ -701,7 +704,7 @@
     }
 
    /* Create a dataset based on a formula */
-   function createFunctionSerie($SerieName,$Formula="",$Options="")
+   function createFunctionSerie($SerieName,$Formula="",$Options=[])
     {
      $MinX		= isset($Options["MinX"]) ? $Options["MinX"] : -10;
      $MaxX		= isset($Options["MaxX"]) ? $Options["MaxX"] : 10;
@@ -712,7 +715,7 @@
 
      if ( $Formula == "" ) { return(0); }
 
-     $Result = ""; $Abscissa = "";
+     $Result = []; $Abscissa = [];
      for($i=$MinX; $i<=$MaxX; $i=$i+$XStep)
       {
        $Expression = "\$return = '!'.(".str_replace("z",$i,$Formula).");";
@@ -738,7 +741,7 @@
       {
        if (isset($this->Data["Series"][$SerieName]))
         {
-         $Data = "";
+         $Data = [];
          foreach($this->Data["Series"][$SerieName]["Data"] as $Key => $Value)
           { if ( $Value == VOID ) { $Data[] = VOID; } else { $Data[] = -$Value; } }
          $this->Data["Series"][$SerieName]["Data"] = $Data;
@@ -775,7 +778,11 @@
 
    /* Convert a string to a single elements array */
    function convertToArray($Value)
-    { $Values = ""; $Values[] = $Value; return($Values); }
+    { 
+      $arr = preg_split('/[.]*/', $Value);
+      array_shift($arr);
+      array_pop($arr);
+      return $arr; }
 
    /* Class string wrapper */
    function __toString()

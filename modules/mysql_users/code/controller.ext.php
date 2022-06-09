@@ -198,15 +198,10 @@ class module_controller extends ctrl_module
         runtime_hook::Execute('OnBeforeCreateDatabaseUser');
         $password = fs_director::GenerateRandomPassword(9, 4);
         // Create user in MySQL
-        $sql = $zdbh->prepare("CREATE USER :username@:access;");
+        $sql = $zdbh->prepare("CREATE USER :username@:access IDENTIFIED BY :userpassword;");
         $sql->bindParam(':username', $username);
         $sql->bindParam(':access', $access);
-        $sql->execute();
-        // Set MySQL password for new user...
-        $sql = $zdbh->prepare("SET PASSWORD FOR :username@:access=PASSWORD(:password)");
-        $sql->bindParam(':username', $username);
-        $sql->bindParam(':access', $access);
-        $sql->bindParam(':password', $password);
+        $sql->bindParam(':userpassword', $password);
         $sql->execute();
         // Get the database name from the ID...
         $numrows = $zdbh->prepare("SELECT * FROM x_mysql_databases WHERE my_id_pk=:database AND my_deleted_ts IS NULL");
@@ -405,9 +400,6 @@ class module_controller extends ctrl_module
         $mu_name_vc = $zdbh->mysqlRealEscapeString($rowuser['mu_name_vc']);
         $mu_access_vc = $zdbh->mysqlRealEscapeString($rowuser['mu_access_vc']);
         $sql = $zdbh->prepare("GRANT ALL PRIVILEGES ON `$my_name_vc`.* TO `$mu_name_vc`@`$mu_access_vc`");
-        $sql->bindParam(':my_name_vc', $rowdb['my_name_vc'], PDO::PARAM_STR);
-        $sql->bindParam(':mu_name_vc', $rowuser['mu_name_vc'], PDO::PARAM_STR);
-        $sql->bindParam(':mu_access_vc', $rowuser['mu_access_vc'], PDO::PARAM_STR);
         $sql->execute();
         $sql = $zdbh->prepare("FLUSH PRIVILEGES");
         $sql->execute();
@@ -514,15 +506,11 @@ class module_controller extends ctrl_module
 
     static function IsValidUserName($username)
     {
-        if (!preg_match('/^[a-z\d][a-z\d-\_]{0,62}$/i', $username) || preg_match('/-$/', $username)) {
-            return false;
-        } else {
-            if (strlen($username) < 17) {
-                // Enforce the MySQL username limit! (http://dev.mysql.com/doc/refman/4.1/en/user-names.html)
-                return true;
-            }
-            return false;
+        if (strlen($username) < 17) {
+            // Enforce the MySQL username limit! (http://dev.mysql.com/doc/refman/4.1/en/user-names.html)
+            return true;
         }
+        return false;
     }
 
     static function IsValidPassword($password)
