@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!-- $Id: cz.xml 699 2012-09-15 11:57:13Z namiltd $ -->
 <!--
 phpSysInfo language file Language: Czech Created by: Peter 'Pessoft' Kolínek
@@ -79,7 +79,7 @@ phpSysInfo language file Language: Czech Created by: Peter 'Pessoft' Kolínek
     <exp>Odeslané</exp>
   </expression>
   <expression id="025" name="errors">
-    <exp>Chyby/zahozené</exp>
+    <exp>Chyby/Zahozené</exp>
   </expression>
   <expression id="026" name="connections">
     <exp>Navázaná síťová spojení</exp>
@@ -121,7 +121,7 @@ phpSysInfo language file Language: Czech Created by: Peter 'Pessoft' Kolínek
     <exp>Celkem</exp>
   </expression>
   <expression id="039" name="kb">
-    <exp>KB</exp>
+    <exp>kB</exp>
   </expression>
   <expression id="040" name="mb">
     <exp>MB</exp>
@@ -136,7 +136,7 @@ phpSysInfo language file Language: Czech Created by: Peter 'Pessoft' Kolínek
     <exp>Kapacita</exp>
   </expression>
   <expression id="044" name="template">
-    <exp>Téma vzhledu</exp>
+    <exp>Šablona vzhledu</exp>
   </expression>
   <expression id="045" name="language">
     <exp>Jazyk</exp>
@@ -295,27 +295,117 @@ phpSysInfo language file Language: Czech Created by: Peter 'Pessoft' Kolínek
     <exp>B</exp>
   </expression>
   <expression id="097" name="syslang">
-    <exp>System Language</exp>
+    <exp>Systémový jazyk</exp>
   </expression>
   <expression id="098" name="codepage">
-    <exp>Code Page</exp>
+    <exp>Znaková stránka</exp>
   </expression>
   <expression id="099" name="details">
-    <exp>Details</exp>
+    <exp>Podrobnosti</exp>
   </expression>
   <expression id="100" name="cpuspeedMax">
-    <exp>CPU Speed Max</exp>
+    <exp>Nejvyšší frekvence CPU</exp>
   </expression>
   <expression id="101" name="cpuspeedMin">
-    <exp>CPU Speed Min</exp>
+    <exp>Nejnižší frekvence CPU</exp>
   </expression>
   <expression id="102" name="power">
-    <exp>Power</exp>
+    <exp>Výkon</exp>
   </expression>
   <expression id="103" name="power_mark">
     <exp>W</exp>
   </expression>
   <expression id="104" name="ups_battery_date">
-    <exp>Battery date</exp>
+    <exp>Datum baterie</exp>
+  </expression>
+  <expression id="105" name="current">
+    <exp>Proud</exp>
+  </expression>
+  <expression id="106" name="current_mark">
+    <exp>A</exp>
+  </expression>
+  <expression id="107" name="machine">
+    <exp>Zařízení</exp>
+  </expression>
+  <expression id="108" name="ups_line_frequency">
+    <exp>Frekvence sítě</exp>
+  </expression>
+  <expression id="109" name="Hz">
+    <exp>Hz</exp>
+  </expression>
+  <expression id="110" name="Processes">
+    <exp>Procesy</exp>
+  </expression>
+  <expression id="111" name="ProcessesRunning">
+    <exp>aktivní</exp>
+  </expression>
+  <expression id="112" name="ProcessesSleeping">
+    <exp>neaktivní</exp>
+  </expression>
+  <expression id="113" name="ProcessesStopped">
+    <exp>zastavené</exp>
+  </expression>
+  <expression id="114" name="ProcessesZombie">
+    <exp>zombie</exp>
+  </expression>
+  <expression id="115" name="ProcessesWaiting">
+    <exp>čekající</exp>
+  </expression>
+  <expression id="116" name="ProcessesOther">
+    <exp>ostatní</exp>
+  </expression>
+  <expression id="117" name="tb">
+    <exp>TB zařízení</exp>
+  </expression>
+  <expression id="118" name="i2c">
+    <exp>I2C zařízení</exp>
+  </expression>
+  <expression id="119" name="no_processors">
+    <exp>Počet procesorů</exp>
+  </expression>
+  <expression id="120" name="no_devices">
+    <exp>Počet zařízení</exp>
+  </expression>
+  <expression id="121" name="other">
+    <exp>Ostatní</exp>
+  </expression>
+  <expression id="122" name="manufacturer">
+    <exp>Výrobce</exp>
+  </expression>
+  <expression id="123" name="product">
+    <exp>Produkt</exp>
+  </expression>
+  <expression id="124" name="serial">
+    <exp>Sériové číslo</exp>
+  </expression>
+  <expression id="125" name="memfree">
+    <exp>Volné</exp>
+  </expression>
+  <expression id="126" name="nvme">
+    <exp>NVMe zařízení</exp>
+  </expression>
+  <expression id="127" name="os">
+    <exp>Typ OS</exp>
+  </expression>
+  <expression id="128" name="no_memories">
+    <exp>Počet paměťových čipů</exp>
+  </expression>
+  <expression id="129" name="speed">
+    <exp>Rychlost</exp>
+  </expression>
+  <expression id="130" name="mem">
+    <exp>Paměťové čipy</exp>
+  </expression>
+  <expression id="131" name="mtps">
+    <exp>MT/s</exp>
+  </expression>
+  <expression id="132" name="gtps">
+    <exp>GT/s</exp>
+  </expression>
+  <expression id="133" name="ups_beeper_status">
+    <exp>Stav pípáku</exp>
+  </expression>
+  <expression id="134" name="virtualizer">
+    <exp>Virtualizer</exp>
   </expression>
 </tns:translation>

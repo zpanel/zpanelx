@@ -22,8 +22,10 @@ CREATE TABLE users (
     mail_host varchar(128) DEFAULT '' NOT NULL,
     created timestamp with time zone DEFAULT now() NOT NULL,
     last_login timestamp with time zone DEFAULT NULL,
-    "language" varchar(5),
-    preferences text DEFAULT ''::text NOT NULL,
+    failed_login timestamp with time zone DEFAULT NULL,
+    failed_login_counter integer DEFAULT NULL,
+    "language" varchar(16),
+    preferences text DEFAULT NULL,
     CONSTRAINT users_username_key UNIQUE (username, mail_host)
 );
 
@@ -35,7 +37,6 @@ CREATE TABLE users (
 
 CREATE TABLE "session" (
     sess_id varchar(128) DEFAULT '' PRIMARY KEY,
-    created timestamp with time zone DEFAULT now() NOT NULL,
     changed timestamp with time zone DEFAULT now() NOT NULL,
     ip varchar(41) NOT NULL,
     vars text NOT NULL
@@ -79,6 +80,35 @@ CREATE TABLE identities (
 
 CREATE INDEX identities_user_id_idx ON identities (user_id, del);
 CREATE INDEX identities_email_idx ON identities (email, del);
+
+--
+-- Sequence "collected_addresses_seq"
+-- Name: collected_addresses_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE collected_addresses_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+--
+-- Table "collected_addresses"
+-- Name: collected_addresses; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE collected_addresses (
+    address_id integer DEFAULT nextval('collected_addresses_seq'::text) PRIMARY KEY,
+    user_id integer NOT NULL
+        REFERENCES users (user_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    changed timestamp with time zone DEFAULT now() NOT NULL,
+    name varchar(255) DEFAULT '' NOT NULL,
+    email varchar(255) NOT NULL,
+    "type" integer NOT NULL
+);
+
+CREATE UNIQUE INDEX collected_addresses_user_id_idx ON collected_addresses (user_id, "type", email);
 
 
 --
@@ -166,12 +196,11 @@ CREATE TABLE "cache" (
     user_id integer NOT NULL
         REFERENCES users (user_id) ON DELETE CASCADE ON UPDATE CASCADE,
     cache_key varchar(128) DEFAULT '' NOT NULL,
-    created timestamp with time zone DEFAULT now() NOT NULL,
     expires timestamp with time zone DEFAULT NULL,
-    data text NOT NULL
+    data text NOT NULL,
+    PRIMARY KEY (user_id, cache_key)
 );
 
-CREATE INDEX cache_user_id_idx ON "cache" (user_id, cache_key);
 CREATE INDEX cache_expires_idx ON "cache" (expires);
 
 --
@@ -180,13 +209,11 @@ CREATE INDEX cache_expires_idx ON "cache" (expires);
 --
 
 CREATE TABLE "cache_shared" (
-    cache_key varchar(255) NOT NULL,
-    created timestamp with time zone DEFAULT now() NOT NULL,
+    cache_key varchar(255) NOT NULL PRIMARY KEY,
     expires timestamp with time zone DEFAULT NULL,
     data text NOT NULL
 );
 
-CREATE INDEX cache_shared_cache_key_idx ON "cache_shared" (cache_key);
 CREATE INDEX cache_shared_expires_idx ON "cache_shared" (expires);
 
 --
@@ -248,7 +275,7 @@ CREATE INDEX cache_messages_expires_idx ON cache_messages (expires);
 CREATE TABLE dictionary (
     user_id integer DEFAULT NULL
         REFERENCES users (user_id) ON DELETE CASCADE ON UPDATE CASCADE,
-   "language" varchar(5) NOT NULL,
+   "language" varchar(16) NOT NULL,
     data text NOT NULL,
     CONSTRAINT dictionary_user_id_language_key UNIQUE (user_id, "language")
 );
@@ -279,6 +306,32 @@ CREATE TABLE searches (
     CONSTRAINT searches_user_id_key UNIQUE (user_id, "type", name)
 );
 
+--
+-- Sequence "filestore_seq"
+-- Name: filestore_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE "filestore_seq"
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+--
+-- Table "filestore"
+-- Name: filestore; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE "filestore" (
+    file_id integer DEFAULT nextval('filestore_seq'::text) PRIMARY KEY,
+    user_id integer NOT NULL
+        REFERENCES users (user_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    context varchar(32) NOT NULL,
+    filename varchar(128) NOT NULL,
+    mtime integer NOT NULL,
+    data text NOT NULL,
+    CONSTRAINT filestore_user_id_filename UNIQUE (user_id, context, filename)
+);
 
 --
 -- Table "system"
@@ -290,4 +343,4 @@ CREATE TABLE "system" (
     value text
 );
 
-INSERT INTO system (name, value) VALUES ('roundcube-version', '2013061000');
+INSERT INTO "system" (name, value) VALUES ('roundcube-version', '2020122900');

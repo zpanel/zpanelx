@@ -75,7 +75,7 @@ class runtime_controller
      * @param string $name The named key of the array.
      * @retrun mixed Returns that array data if avaliable (is set) otherwise will return 'false'.
      */
-    public function GetControllerRequest($type = "URL", $name)
+    public function GetControllerRequest($type = "URL", $name = "")
     {
         if ($type == 'FORM') {
             if (isset($this->vars_post[0][$name])) {

@@ -31,7 +31,7 @@ $z_db_pass = $pass;
 try {
     $mail_db = new db_driver("mysql:host=" . $host . ";dbname=" . $mailserver_db . "", $z_db_user, $z_db_pass);
 } catch (PDOException $e) {
-    
+	throw new Error("Failed while connecting to database");
 }
 
 // Deleting hMail Mailboxes
@@ -174,9 +174,9 @@ if (!fs_director::CheckForEmptyValue(self::$create)) {
 											 	0,
 											 	'',
 											 	'',
-											 	'',
+											 	now(),
 											 	0,
-											 	'',
+											 	now(),
 											 	'',
 											 	'')";
         $sql = $mail_db->prepare($sql);

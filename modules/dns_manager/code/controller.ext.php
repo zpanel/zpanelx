@@ -32,7 +32,7 @@ class module_controller extends ctrl_module
     static $ResultOk;
     static $ResultErr;
 
-    private function SetError($ErrorText)
+    public function SetError($ErrorText)
     {
         if (empty(self::$ResultErr))
             self::$ResultErr = $ErrorText;
@@ -392,12 +392,14 @@ class module_controller extends ctrl_module
         $sql = $zdbh->prepare("SELECT * FROM x_vhosts WHERE vh_acc_fk=:userid AND vh_type_in !=2 AND vh_deleted_ts IS NULL");
         $sql->bindParam(':userid', $currentuser['userid']);
         $sql->execute();
+        $viIdPk;
         while ($rowdomains = $sql->fetch()) {
+            if (empty($viIdPk) ) {$viIdPk = $rowdomains['vh_id_pk'];}
             $line .= "<option value=\"" . $rowdomains['vh_id_pk'] . "\">" . $rowdomains['vh_name_vc'] . "</option>";
         }
         $line .= "</select></td>";
         $line .= "<td>";
-        $line .= '<button type="submit" class="btn btn-large btn-primary" name="inSelect" value="' . $rowdomains['vh_id_pk'] . '"><i class="glyphicon glyphicon-pencil"></i>  ' . ui_language::translate("Edit") . '</button>';
+        $line .= '<button type="submit" class="btn btn-large btn-primary" name="inSelect" value="' . $viIdPk . '"><i class="glyphicon glyphicon-pencil"></i>  ' . ui_language::translate("Edit") . '</button>';
         $line .= '</td>';
         $line .= '</tr>';
         $line .= '</table>';
@@ -873,7 +875,7 @@ class module_controller extends ctrl_module
                 //TTL
                 if (isset($ttl[$id]) && !fs_director::CheckForEmptyValue($ttl[$id]) && $ttl[$id] != $original_ttl[$id]) {
                     if (!is_numeric($ttl[$id])) {
-                        self::SetError('TTL must be a numeric value.');
+                        (new module_controller())->SetError('TTL must be a numeric value.');
                         return FALSE;
                     }
                 }
@@ -882,12 +884,12 @@ class module_controller extends ctrl_module
                 if (isset($target[$id]) && !fs_director::CheckForEmptyValue($target[$id]) && $target[$id] != $original_target[$id]) {
                     if ($type[$id] == "A") {
                         if (!self::IsValidIPv4($target[$id])) {
-                            self::SetError('IP Address is not a valid IPV4 address.');
+                            (new module_controller())->SetError('IP Address is not a valid IPV4 address.');
                             return FALSE;
                         }
                     } elseif ($type[$id] == "AAAA") {
                         if (!self::IsValidIPv6($target[$id])) {
-                            self::SetError('IP Address is not a valid IPV6 address');
+                            (new module_controller())->SetError('IP Address is not a valid IPV6 address');
                             return FALSE;
                         }
                     } elseif ($type[$id] == "TXT") {
@@ -897,13 +899,13 @@ class module_controller extends ctrl_module
                     } else {
                         if (!self::IsValidIP($target[$id])) {
                             if (!self::IsValidDomainName($target[$id])) {
-                                self::SetError('An invalid domain name character was entered. Domain names are limited to alphanumeric characters and hyphens.');
+                                (new module_controller())->SetError('An invalid domain name character was entered. Domain names are limited to alphanumeric characters and hyphens.');
                                 return FALSE;
                             }
                         }
                         if (!self::IsValidDomainName($target[$id])) {
                             if (!self::IsValidIP($target[$id])) {
-                                self::SetError('Target is not a valid IP address');
+                                (new module_controller())->SetError('Target is not a valid IP address');
                                 return FALSE;
                             }
                         }
@@ -913,11 +915,11 @@ class module_controller extends ctrl_module
                 //PRIORITY
                 if (isset($priority[$id]) && !fs_director::CheckForEmptyValue($priority[$id]) && $priority[$id] != $original_priority[$id]) {
                     if (!is_numeric($priority[$id])) {
-                        self::SetError('Priority must be a numeric value.');
+                        (new module_controller())->SetError('Priority must be a numeric value.');
                         return FALSE;
                     }
                     if ($priority[$id] < 0 || $priority[$id] > 65535) {
-                        self::SetError('The priority of a dns record must be a numeric value between 0 and 65535');
+                        (new module_controller())->SetError('The priority of a dns record must be a numeric value between 0 and 65535');
                         return FALSE;
                     }
                 }
@@ -925,11 +927,11 @@ class module_controller extends ctrl_module
                 //WEIGHT
                 if (isset($weight[$id]) && !fs_director::CheckForEmptyValue($weight[$id]) && $weight[$id] != $original_weight[$id]) {
                     if (!is_numeric($weight[$id])) {
-                        self::SetError('Weight must be a numeric value.');
+                        (new module_controller())->SetError('Weight must be a numeric value.');
                         return FALSE;
                     }
                     if ($weight[$id] < 0 || $weight[$id] > 65535) {
-                        self::SetError('The weight of a dns record must be a numeric value between 0 and 65535');
+                        (new module_controller())->SetError('The weight of a dns record must be a numeric value between 0 and 65535');
                         return FALSE;
                     }
                 }
@@ -937,11 +939,11 @@ class module_controller extends ctrl_module
                 //PORT
                 if (isset($port[$id]) && !fs_director::CheckForEmptyValue($port[$id]) && $port[$id] != $original_port[$id]) {
                     if (!is_numeric($port[$id])) {
-                        self::SetError('PORT must be a numeric value.');
+                        (new module_controller())->SetError('PORT must be a numeric value.');
                         return FALSE;
                     }
                     if ($port[$id] < 0 || $port[$id] > 65535) {
-                        self::SetError('The port of a dns record must be a numeric value between 0 and 65535');
+                        (new module_controller())->SetError('The port of a dns record must be a numeric value between 0 and 65535');
                         return FALSE;
                     }
                 }
@@ -965,13 +967,13 @@ class module_controller extends ctrl_module
                             $numrows->bindParam(':domainID', $domainID);
                             $numrows->execute();
                             if ($numrows->fetch()) {
-                                self::SetError('Hostnames must be unique.');
+                                (new module_controller())->SetError('Hostnames must be unique.');
                                 return FALSE;
                             }
 
                             if ($type[$NewId] != "SRV") {
                                 if (!($hostName[$NewId] == '*' or self::IsValidTargetName($hostName[$NewId]) )) {
-                                    self::SetError('Hostname invalid.');
+                                    (new module_controller())->SetError('Hostname invalid.');
                                     return FALSE;
                                 }
                             }
@@ -979,7 +981,7 @@ class module_controller extends ctrl_module
                         //TTL
                         if (isset($ttl[$NewId]) && !fs_director::CheckForEmptyValue($ttl[$NewId])) {
                             if (!is_numeric($ttl[$NewId])) {
-                                self::SetError('TTL must be a numeric value.');
+                                (new module_controller())->SetError('TTL must be a numeric value.');
                                 return FALSE;
                             }
                         }
@@ -987,12 +989,12 @@ class module_controller extends ctrl_module
                         if (isset($target[$NewId]) && !fs_director::CheckForEmptyValue($target[$NewId])) {
                             if ($type[$NewId] == "A") {
                                 if (!self::IsValidIPv4($target[$NewId])) {
-                                    self::SetError('IP Address is not a valid IPV4 address.');
+                                    (new module_controller())->SetError('IP Address is not a valid IPV4 address.');
                                     return FALSE;
                                 }
                             } elseif ($type[$NewId] == "AAAA") {
                                 if (!self::IsValidIPv6($target[$NewId])) {
-                                    self::SetError('IP Address is not a valid IPV6 address');
+                                    (new module_controller())->SetError('IP Address is not a valid IPV6 address');
                                     return FALSE;
                                 }
                             } elseif ($type[$NewId] == "TXT") {
@@ -1004,13 +1006,13 @@ class module_controller extends ctrl_module
                             } else {
                                 if (!self::IsValidIP($target[$NewId])) {
                                     if (!self::IsValidDomainName($target[$NewId])) {
-                                        self::SetError('An invalid domain name character was entered. Domain names are limited to alphanumeric characters and hyphens.');
+                                        (new module_controller())->SetError('An invalid domain name character was entered. Domain names are limited to alphanumeric characters and hyphens.');
                                         return FALSE;
                                     }
                                 }
                                 if (!self::IsValidDomainName($target[$NewId])) {
                                     if (!self::IsValidIP($target[$NewId])) {
-                                        self::SetError('Target is not a valid IP address');
+                                        (new module_controller())->SetError('Target is not a valid IP address');
                                         return FALSE;
                                     }
                                 }
@@ -1019,33 +1021,33 @@ class module_controller extends ctrl_module
                         //PRIORITY
                         if (isset($priority[$NewId]) && !fs_director::CheckForEmptyValue($priority[$NewId])) {
                             if (!is_numeric($priority[$NewId])) {
-                                self::SetError('Priority must be a numeric value.');
+                                (new module_controller())->SetError('Priority must be a numeric value.');
                                 return FALSE;
                             }
                             if ($priority[$NewId] < 0 || $priority[$NewId] > 65535) {
-                                self::SetError('The priority of a dns record must be a numeric value between 0 and 65535');
+                                (new module_controller())->SetError('The priority of a dns record must be a numeric value between 0 and 65535');
                                 return FALSE;
                             }
                         }
                         //WEIGHT
                         if (isset($weight[$NewId]) && !fs_director::CheckForEmptyValue($weight[$NewId])) {
                             if (!is_numeric($weight[$NewId])) {
-                                self::SetError('Weight must be a numeric value.');
+                                (new module_controller())->SetError('Weight must be a numeric value.');
                                 return FALSE;
                             }
                             if ($weight[$NewId] < 0 || $weight[$NewId] > 65535) {
-                                self::SetError('The weight of a dns record must be a numeric value between 0 and 65535');
+                                (new module_controller())->SetError('The weight of a dns record must be a numeric value between 0 and 65535');
                                 return FALSE;
                             }
                         }
                         //PORT
                         if (isset($port[$NewId]) && !fs_director::CheckForEmptyValue($port[$NewId])) {
                             if (!is_numeric($port[$NewId])) {
-                                self::SetError('PORT must be a numeric value.');
+                                (new module_controller())->SetError('PORT must be a numeric value.');
                                 return FALSE;
                             }
                             if ($port[$NewId] < 0 || $port[$NewId] > 65535) {
-                                self::SetError('The port of a dns record must be a numeric value between 0 and 65535');
+                                (new module_controller())->SetError('The port of a dns record must be a numeric value between 0 and 65535');
                                 return FALSE;
                             }
                         }

@@ -2,23 +2,23 @@
 
 /*
  +-----------------------------------------------------------------------+
- | plugins/acl/localization/<lang>.inc                                   |
- |                                                                       |
  | Localization file of the Roundcube Webmail ACL plugin                 |
- | Copyright (C) 2012-2013, The Roundcube Dev Team                       |
+ |                                                                       |
+ | Copyright (C) The Roundcube Dev Team                                  |
  |                                                                       |
  | Licensed under the GNU General Public License version 3 or            |
  | any later version with exceptions for skins & plugins.                |
  | See the README file for a full license statement.                     |
- |                                                                       |
  +-----------------------------------------------------------------------+
 
  For translation see https://www.transifex.com/projects/p/roundcube-webmail/resource/plugin-acl/
 */
+
 $labels['sharing'] = 'Condivisione';
 $labels['myrights'] = 'Diritti d\'accesso';
 $labels['username'] = 'Utente:';
 $labels['advanced'] = 'Modalità avanzata';
+$labels['add'] = 'Aggiungi';
 $labels['newuser'] = 'Aggiungi voce';
 $labels['editperms'] = 'Modifica permessi';
 $labels['actions'] = 'Azioni permessi d\'accesso...';
@@ -47,7 +47,7 @@ $labels['acldelete'] = 'Elimina';
 $labels['shortacll'] = 'Ricerca';
 $labels['shortaclr'] = 'Lettura';
 $labels['shortacls'] = 'Mantieni';
-$labels['shortaclw'] = 'Scrittura';
+$labels['shortaclw'] = 'Scrivi';
 $labels['shortacli'] = 'Inserisci';
 $labels['shortaclp'] = 'Invio';
 $labels['shortaclc'] = 'Crea';
@@ -80,6 +80,10 @@ $labels['longaclfull'] = 'Controllo completo incluso cartella di amministrazione
 $labels['longaclread'] = 'Questa cartella può essere aperta in lettura';
 $labels['longaclwrite'] = 'I messaggi possono essere marcati, scritti o copiati nella cartella';
 $labels['longacldelete'] = 'I messaggi possono essere eliminati';
+$labels['longaclother'] = 'Altri diritti di accesso';
+$labels['ariasummaryacltable'] = 'Elenco dei diritti di accesso';
+$labels['arialabelaclactions'] = 'Lista azioni';
+$labels['arialabelaclform'] = 'Modulo di accesso';
 $messages['deleting'] = 'Sto eliminando i diritti di accesso...';
 $messages['saving'] = 'Sto salvando i diritti di accesso...';
 $messages['updatesuccess'] = 'I diritti d\'accesso sono stati cambiati';
@@ -88,7 +92,6 @@ $messages['createsuccess'] = 'I diritti d\'accesso sono stati aggiunti';
 $messages['updateerror'] = 'Impossibile aggiornare i diritti d\'accesso';
 $messages['deleteerror'] = 'Impossibile eliminare i diritti d\'accesso';
 $messages['createerror'] = 'Impossibile aggiungere i diritti d\'accesso';
-$messages['deleteconfirm'] = 'Sei sicuro, vuoi rimuovere i diritti d\'accesso degli utenti selezionati?';
+$messages['deleteconfirm'] = 'Sei sicuro di voler rimuovere i diritti d\'accesso degli utenti selezionati?';
 $messages['norights'] = 'Nessun diritto specificato!';
 $messages['nouser'] = 'Lo username non è stato specificato!';
-?>

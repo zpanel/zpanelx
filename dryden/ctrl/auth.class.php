@@ -106,7 +106,7 @@ class ctrl_auth
      * @param bool $checkingcookie The authentication request has come from a set cookie.
      * @return mixed Returns 'false' if the authentication fails otherwise will return the user ID.
      */
-    static function Authenticate($username, $password, $rememberme = false, $iscookie = false, $sessionSecuirty)
+    static function Authenticate($username, $password, $rememberme = false, $iscookie = false, $sessionSecuirty = true)
     {
         global $zdbh;
         $sqlString = "SELECT * FROM

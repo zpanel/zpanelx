@@ -1,0 +1,2 @@
+[03-Jun-2022 11:54:44 +0000]: <idecfg3d> DB Error: SQLSTATE[HY000] [1045] Access denied for user 'roundcube'@'localhost' (using password: NO) in O:\Apache24 - opylo\htdocs\zpanelx\etc\apps\webmail\program\lib\Roundcube\rcube_db.php on line 194 (GET /etc/apps/webmail/)
+[03-Jun-2022 11:54:44 +0000]: <idecfg3d> PHP Error: config.inc.php was not found. (GET /etc/apps/webmail/)

@@ -181,13 +181,15 @@ class module_controller extends ctrl_module
             } else {
                 $homedirectory_to_use = '/' . $destination;
             }
+            $time = time();
+            
             $sql = $zdbh->prepare("INSERT INTO x_ftpaccounts (ft_acc_fk, ft_user_vc, ft_directory_vc, ft_access_vc, ft_password_vc, ft_created_ts) VALUES (:userid, :username, :homedir, :accesstype, :password, :time)");
             $sql->bindParam(':userid', $currentuser['userid']);
             $sql->bindParam(':username', $username);
             $sql->bindParam(':homedir', $homedirectory_to_use);
             $sql->bindParam(':accesstype', $access_type);
             $sql->bindParam(':password', $password);
-            $sql->bindParam(':time', time());
+            $sql->bindParam(':time', $time);
             $sql->execute();
             self::$create = true;
             // Include FTP server specific file here.

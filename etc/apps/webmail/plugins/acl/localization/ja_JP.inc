@@ -2,23 +2,23 @@
 
 /*
  +-----------------------------------------------------------------------+
- | plugins/acl/localization/<lang>.inc                                   |
- |                                                                       |
  | Localization file of the Roundcube Webmail ACL plugin                 |
- | Copyright (C) 2012-2013, The Roundcube Dev Team                       |
+ |                                                                       |
+ | Copyright (C) The Roundcube Dev Team                                  |
  |                                                                       |
  | Licensed under the GNU General Public License version 3 or            |
  | any later version with exceptions for skins & plugins.                |
  | See the README file for a full license statement.                     |
- |                                                                       |
  +-----------------------------------------------------------------------+
 
  For translation see https://www.transifex.com/projects/p/roundcube-webmail/resource/plugin-acl/
 */
+
 $labels['sharing'] = '共有';
 $labels['myrights'] = 'アクセス権';
 $labels['username'] = 'ユーザー:';
 $labels['advanced'] = '詳細なモード';
+$labels['add'] = '追加';
 $labels['newuser'] = '項目を追加';
 $labels['editperms'] = '編集の権限';
 $labels['actions'] = 'アクセス権の動作...';
@@ -80,6 +80,10 @@ $labels['longaclfull'] = 'フォルダーの管理を含めた完全な制御を
 $labels['longaclread'] = 'フォルダーを読むことを可能';
 $labels['longaclwrite'] = 'メッセージにマークの設定、書き込み、フォルダーに複製を可能';
 $labels['longacldelete'] = 'メッセージの削除を可能';
+$labels['longaclother'] = '他のアクセス権';
+$labels['ariasummaryacltable'] = 'アクセス権の一覧';
+$labels['arialabelaclactions'] = '動作を一覧';
+$labels['arialabelaclform'] = 'アクセス権の欄';
 $messages['deleting'] = 'アクセス権を削除中...';
 $messages['saving'] = 'アクセス権を保存中...';
 $messages['updatesuccess'] = 'アクセス権を変更しました。';
@@ -91,4 +95,3 @@ $messages['createerror'] = 'アクセス権を追加できません。';
 $messages['deleteconfirm'] = '選択したユーザーのアクセス件を本当に削除したいですか?';
 $messages['norights'] = '何の権限も指定されていません!';
 $messages['nouser'] = 'ユーザー名を指定していません!';
-?>

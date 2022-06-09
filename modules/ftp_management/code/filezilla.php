@@ -25,7 +25,7 @@
  *
  */
 // Set some variables for filezilla from the x_ftp_settings database table...
-$ftp_reload = "\"" . ctrl_options::GetSystemOption('ftp_service_root') . ctrl_options::GetSystemOption('ftp_service') . "\" /reload-config";
+$ftp_reload = "\"" . ctrl_options::GetSystemOption('ftp_service_root') . "/" . ctrl_options::GetSystemOption('ftp_service') . "\" /reload-config";
 $ftpconfigfile = ctrl_options::GetSystemOption('ftp_config_file');
 $getftpconfigfile = file_get_contents($ftpconfigfile);
 $ftpsettings = '/<Settings>(.*)<\/Settings>/msU';

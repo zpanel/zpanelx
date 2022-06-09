@@ -26,6 +26,8 @@ class sys_monitoring {
         } else {
             $ip = $_SERVER['SERVER_ADDR'];
         }
+        if ($ip == "::1") $ip = "localhost";
+        
         $fp = @fsockopen($ip, $port, $errno, $errstr, $timeout);
         if (!$fp) {
             runtime_hook::Execute('OnPortStatusDown');

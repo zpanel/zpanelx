@@ -1,15 +1,13 @@
 CREATE TABLE [dbo].[cache] (
 	[user_id] [int] NOT NULL ,
-	[cache_key] [varchar] (128) COLLATE Latin1_General_CI_AI NOT NULL ,
-	[created] [datetime] NOT NULL ,
+	[cache_key] [varchar] (128) COLLATE Latin1_General_CS_AS NOT NULL ,
 	[expires] [datetime] NULL ,
 	[data] [text] COLLATE Latin1_General_CI_AI NOT NULL 
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
 
 CREATE TABLE [dbo].[cache_shared] (
-	[cache_key] [varchar] (255) COLLATE Latin1_General_CI_AI NOT NULL ,
-	[created] [datetime] NOT NULL ,
+	[cache_key] [varchar] (255) COLLATE Latin1_General_CS_AS NOT NULL ,
 	[expires] [datetime] NULL ,
 	[data] [text] COLLATE Latin1_General_CI_AI NOT NULL 
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
@@ -17,7 +15,7 @@ GO
 
 CREATE TABLE [dbo].[cache_index] (
 	[user_id] [int] NOT NULL ,
-	[mailbox] [varchar] (128) COLLATE Latin1_General_CI_AI NOT NULL ,
+	[mailbox] [varchar] (128) COLLATE Latin1_General_CS_AS NOT NULL ,
 	[expires] [datetime] NULL ,
 	[valid] [char] (1) COLLATE Latin1_General_CI_AI NOT NULL ,
 	[data] [text] COLLATE Latin1_General_CI_AI NOT NULL 
@@ -26,7 +24,7 @@ GO
 
 CREATE TABLE [dbo].[cache_thread] (
 	[user_id] [int] NOT NULL ,
-	[mailbox] [varchar] (128) COLLATE Latin1_General_CI_AI NOT NULL ,
+	[mailbox] [varchar] (128) COLLATE Latin1_General_CS_AS NOT NULL ,
 	[expires] [datetime] NULL ,
 	[data] [text] COLLATE Latin1_General_CI_AI NOT NULL 
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
@@ -34,12 +32,22 @@ GO
 
 CREATE TABLE [dbo].[cache_messages] (
 	[user_id] [int] NOT NULL ,
-	[mailbox] [varchar] (128) COLLATE Latin1_General_CI_AI NOT NULL ,
+	[mailbox] [varchar] (128) COLLATE Latin1_General_CS_AS NOT NULL ,
 	[uid] [int] NOT NULL ,
 	[expires] [datetime] NULL ,
 	[data] [text] COLLATE Latin1_General_CI_AI NOT NULL ,
 	[flags] [int] NOT NULL
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[collected_addresses] (
+	[address_id] [int] IDENTITY (1, 1) NOT NULL ,
+	[user_id] [int] NOT NULL ,
+	[changed] [datetime] NOT NULL ,
+	[name] [varchar] (255) COLLATE Latin1_General_CI_AI NOT NULL ,
+	[email] [varchar] (255) COLLATE Latin1_General_CI_AI NOT NULL ,
+	[type] [int] NOT NULL 
+) ON [PRIMARY]
 GO
 
 CREATE TABLE [dbo].[contacts] (
@@ -90,7 +98,6 @@ GO
 
 CREATE TABLE [dbo].[session] (
 	[sess_id] [varchar] (128) COLLATE Latin1_General_CI_AI NOT NULL ,
-	[created] [datetime] NOT NULL ,
 	[changed] [datetime] NULL ,
 	[ip] [varchar] (40) COLLATE Latin1_General_CI_AI NOT NULL ,
 	[vars] [text] COLLATE Latin1_General_CI_AI NOT NULL 
@@ -99,18 +106,20 @@ GO
 
 CREATE TABLE [dbo].[users] (
 	[user_id] [int] IDENTITY (1, 1) NOT NULL ,
-	[username] [varchar] (128) COLLATE Latin1_General_CI_AI NOT NULL ,
+	[username] [varchar] (128) COLLATE Latin1_General_CS_AS NOT NULL ,
 	[mail_host] [varchar] (128) COLLATE Latin1_General_CI_AI NOT NULL ,
 	[created] [datetime] NOT NULL ,
 	[last_login] [datetime] NULL ,
-	[language] [varchar] (5) COLLATE Latin1_General_CI_AI NULL ,
+	[failed_login] [datetime] NULL ,
+	[failed_login_counter] [int] NULL ,
+	[language] [varchar] (16) COLLATE Latin1_General_CI_AI NULL ,
 	[preferences] [text] COLLATE Latin1_General_CI_AI NULL 
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
 
 CREATE TABLE [dbo].[dictionary] (
 	[user_id] [int] ,
-	[language] [varchar] (5) COLLATE Latin1_General_CI_AI NOT NULL ,
+	[language] [varchar] (16) COLLATE Latin1_General_CI_AI NOT NULL ,
 	[data] [text] COLLATE Latin1_General_CI_AI NOT NULL 
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
@@ -124,10 +133,34 @@ CREATE TABLE [dbo].[searches] (
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
 
+CREATE TABLE [dbo].[filestore] (
+	[file_id] [int] IDENTITY (1, 1) NOT NULL ,
+	[user_id] [int] NOT NULL ,
+	[context] [varchar] (32) COLLATE Latin1_General_CI_AI NOT NULL ,
+	[filename] [varchar] (128) COLLATE Latin1_General_CI_AI NOT NULL ,
+	[mtime] [int] NOT NULL ,
+	[data] [text] COLLATE Latin1_General_CI_AI NULL ,
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
 CREATE TABLE [dbo].[system] (
 	[name] [varchar] (64) COLLATE Latin1_General_CI_AI NOT NULL ,
 	[value] [text] COLLATE Latin1_General_CI_AI NOT NULL 
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[cache] WITH NOCHECK ADD 
+	 PRIMARY KEY CLUSTERED 
+	(
+		[user_id],[cache_key]
+	) ON [PRIMARY] 
+GO
+
+ALTER TABLE [dbo].[cache_shared] WITH NOCHECK ADD 
+	 PRIMARY KEY CLUSTERED 
+	(
+		[cache_key]
+	) ON [PRIMARY] 
 GO
 
 ALTER TABLE [dbo].[cache_index] WITH NOCHECK ADD 
@@ -151,52 +184,66 @@ ALTER TABLE [dbo].[cache_messages] WITH NOCHECK ADD
 	) ON [PRIMARY] 
 GO
 
+ALTER TABLE [dbo].[collected_addresses] WITH NOCHECK ADD 
+	CONSTRAINT [PK_collected_addresses_address_id] PRIMARY KEY  CLUSTERED 
+	(
+		[address_id]
+	) ON [PRIMARY] 
+GO
+
 ALTER TABLE [dbo].[contacts] WITH NOCHECK ADD 
 	CONSTRAINT [PK_contacts_contact_id] PRIMARY KEY  CLUSTERED 
 	(
 		[contact_id]
-	)  ON [PRIMARY] 
+	) ON [PRIMARY] 
 GO
 
 ALTER TABLE [dbo].[contactgroups] WITH NOCHECK ADD 
 	CONSTRAINT [PK_contactgroups_contactgroup_id] PRIMARY KEY CLUSTERED 
 	(
 		[contactgroup_id]
-	)  ON [PRIMARY] 
+	) ON [PRIMARY] 
 GO
 
 ALTER TABLE [dbo].[contactgroupmembers] WITH NOCHECK ADD 
 	CONSTRAINT [PK_contactgroupmembers_id] PRIMARY KEY CLUSTERED 
 	(
 		[contactgroup_id], [contact_id]
-	)  ON [PRIMARY] 
+	) ON [PRIMARY] 
 GO
 
 ALTER TABLE [dbo].[identities] WITH NOCHECK ADD 
 	 PRIMARY KEY  CLUSTERED 
 	(
 		[identity_id]
-	)  ON [PRIMARY] 
+	) ON [PRIMARY] 
 GO
 
 ALTER TABLE [dbo].[session] WITH NOCHECK ADD 
 	CONSTRAINT [PK_session_sess_id] PRIMARY KEY  CLUSTERED 
 	(
 		[sess_id]
-	)  ON [PRIMARY] 
+	) ON [PRIMARY] 
 GO
 
 ALTER TABLE [dbo].[users] WITH NOCHECK ADD 
 	CONSTRAINT [PK_users_user_id] PRIMARY KEY  CLUSTERED 
 	(
 		[user_id]
-	)  ON [PRIMARY] 
+	) ON [PRIMARY] 
 GO
 
 ALTER TABLE [dbo].[searches] WITH NOCHECK ADD 
 	CONSTRAINT [PK_searches_search_id] PRIMARY KEY CLUSTERED 
 	(
 		[search_id]
+	) ON [PRIMARY] 
+GO
+
+ALTER TABLE [dbo].[filestore] WITH NOCHECK ADD 
+	CONSTRAINT [PK_filestore_file_id] PRIMARY KEY  CLUSTERED 
+	(
+		[file_id]
 	) ON [PRIMARY] 
 GO
 
@@ -209,12 +256,7 @@ GO
 
 ALTER TABLE [dbo].[cache] ADD 
 	CONSTRAINT [DF_cache_user_id] DEFAULT ('0') FOR [user_id],
-	CONSTRAINT [DF_cache_cache_key] DEFAULT ('') FOR [cache_key],
-	CONSTRAINT [DF_cache_created] DEFAULT (getdate()) FOR [created]
-GO
-
-ALTER TABLE [dbo].[cache_shared] ADD 
-	CONSTRAINT [DF_cache_shared_created] DEFAULT (getdate()) FOR [created]
+	CONSTRAINT [DF_cache_cache_key] DEFAULT ('') FOR [cache_key]
 GO
 
 ALTER TABLE [dbo].[cache_index] ADD 
@@ -225,22 +267,16 @@ ALTER TABLE [dbo].[cache_messages] ADD
 	CONSTRAINT [DF_cache_messages_flags] DEFAULT (0) FOR [flags]
 GO
 
-CREATE  INDEX [IX_cache_user_id] ON [dbo].[cache]([user_id]) ON [PRIMARY]
+CREATE INDEX [IX_cache_shared_cache_key] ON [dbo].[cache_shared]([cache_key]) ON [PRIMARY]
 GO
 
-CREATE  INDEX [IX_cache_cache_key] ON [dbo].[cache]([cache_key]) ON [PRIMARY]
+CREATE INDEX [IX_cache_index_user_id] ON [dbo].[cache_index]([user_id]) ON [PRIMARY]
 GO
 
-CREATE  INDEX [IX_cache_shared_cache_key] ON [dbo].[cache_shared]([cache_key]) ON [PRIMARY]
+CREATE INDEX [IX_cache_thread_user_id] ON [dbo].[cache_thread]([user_id]) ON [PRIMARY]
 GO
 
-CREATE  INDEX [IX_cache_index_user_id] ON [dbo].[cache_index]([user_id]) ON [PRIMARY]
-GO
-
-CREATE  INDEX [IX_cache_thread_user_id] ON [dbo].[cache_thread]([user_id]) ON [PRIMARY]
-GO
-
-CREATE  INDEX [IX_cache_messages_user_id] ON [dbo].[cache_messages]([user_id]) ON [PRIMARY]
+CREATE INDEX [IX_cache_messages_user_id] ON [dbo].[cache_messages]([user_id]) ON [PRIMARY]
 GO
 
 CREATE INDEX [IX_cache_expires] ON [dbo].[cache]([expires]) ON [PRIMARY]
@@ -258,6 +294,15 @@ GO
 CREATE INDEX [IX_cache_messages_expires] ON [dbo].[cache_messages]([expires]) ON [PRIMARY]
 GO
 
+ALTER TABLE [dbo].[collected_addresses] ADD 
+	CONSTRAINT [DF_collected_addresses_user_id] DEFAULT (0) FOR [user_id],
+	CONSTRAINT [DF_collected_addresses_changed] DEFAULT (getdate()) FOR [changed],
+	CONSTRAINT [DF_collected_addresses_name] DEFAULT ('') FOR [name]
+GO
+
+CREATE UNIQUE INDEX [IX_collected_addresses_user_id] ON [dbo].[collected_addresses]([user_id],[type],[email]) ON [PRIMARY]
+GO
+
 ALTER TABLE [dbo].[contacts] ADD 
 	CONSTRAINT [DF_contacts_user_id] DEFAULT (0) FOR [user_id],
 	CONSTRAINT [DF_contacts_changed] DEFAULT (getdate()) FOR [changed],
@@ -269,7 +314,7 @@ ALTER TABLE [dbo].[contacts] ADD
 	CONSTRAINT [CK_contacts_del] CHECK ([del] = '1' or [del] = '0')
 GO
 
-CREATE  INDEX [IX_contacts_user_id] ON [dbo].[contacts]([user_id]) ON [PRIMARY]
+CREATE INDEX [IX_contacts_user_id] ON [dbo].[contacts]([user_id]) ON [PRIMARY]
 GO
 
 ALTER TABLE [dbo].[contactgroups] ADD 
@@ -280,7 +325,7 @@ ALTER TABLE [dbo].[contactgroups] ADD
 	CONSTRAINT [CK_contactgroups_del] CHECK ([del] = '1' or [del] = '0')
 GO
 
-CREATE  INDEX [IX_contactgroups_user_id] ON [dbo].[contacts]([user_id]) ON [PRIMARY]
+CREATE INDEX [IX_contactgroups_user_id] ON [dbo].[contactgroups]([user_id]) ON [PRIMARY]
 GO
 
 ALTER TABLE [dbo].[contactgroupmembers] ADD 
@@ -289,7 +334,7 @@ ALTER TABLE [dbo].[contactgroupmembers] ADD
 	CONSTRAINT [DF_contactgroupmembers_created] DEFAULT (getdate()) FOR [created]
 GO
 
-CREATE  INDEX [IX_contactgroupmembers_contact_id] ON [dbo].[contactgroupmembers]([contact_id]) ON [PRIMARY]
+CREATE INDEX [IX_contactgroupmembers_contact_id] ON [dbo].[contactgroupmembers]([contact_id]) ON [PRIMARY]
 GO
 
 ALTER TABLE [dbo].[identities] ADD 
@@ -302,22 +347,24 @@ ALTER TABLE [dbo].[identities] ADD
 	CONSTRAINT [DF_identities_reply] DEFAULT ('') FOR [reply-to],
 	CONSTRAINT [DF_identities_bcc] DEFAULT ('') FOR [bcc],
 	CONSTRAINT [DF_identities_html_signature] DEFAULT ('0') FOR [html_signature],
-	 CHECK ([standard] = '1' or [standard] = '0'),
-	 CHECK ([del] = '1' or [del] = '0')
+	CHECK ([standard] = '1' or [standard] = '0'),
+	CHECK ([del] = '1' or [del] = '0')
 GO
 
-CREATE  INDEX [IX_identities_user_id] ON [dbo].[identities]([user_id]) ON [PRIMARY]
+CREATE INDEX [IX_identities_user_id] ON [dbo].[identities]([user_id]) ON [PRIMARY]
 GO
-CREATE  INDEX [IX_identities_email] ON [dbo].[identities]([email],[del]) ON [PRIMARY]
+CREATE INDEX [IX_identities_email] ON [dbo].[identities]([email],[del]) ON [PRIMARY]
 GO
 
 ALTER TABLE [dbo].[session] ADD 
 	CONSTRAINT [DF_session_sess_id] DEFAULT ('') FOR [sess_id],
-	CONSTRAINT [DF_session_created] DEFAULT (getdate()) FOR [created],
 	CONSTRAINT [DF_session_ip] DEFAULT ('') FOR [ip]
 GO
 
-CREATE  INDEX [IX_session_changed] ON [dbo].[session]([changed]) ON [PRIMARY]
+CREATE INDEX [IX_session_changed] ON [dbo].[session]([changed]) ON [PRIMARY]
+GO
+
+CREATE INDEX [IX_filestore_user_id] ON [dbo].[filestore]([user_id]) ON [PRIMARY]
 GO
 
 ALTER TABLE [dbo].[users] ADD 
@@ -326,10 +373,10 @@ ALTER TABLE [dbo].[users] ADD
 	CONSTRAINT [DF_users_created] DEFAULT (getdate()) FOR [created]
 GO
 
-CREATE  UNIQUE INDEX [IX_users_username] ON [dbo].[users]([username],[mail_host]) ON [PRIMARY]
+CREATE UNIQUE INDEX [IX_users_username] ON [dbo].[users]([username],[mail_host]) ON [PRIMARY]
 GO
 
-CREATE  UNIQUE INDEX [IX_dictionary_user_language] ON [dbo].[dictionary]([user_id],[language]) ON [PRIMARY]
+CREATE UNIQUE INDEX [IX_dictionary_user_language] ON [dbo].[dictionary]([user_id],[language]) ON [PRIMARY]
 GO
 
 ALTER TABLE [dbo].[searches] ADD 
@@ -340,7 +387,15 @@ GO
 CREATE UNIQUE INDEX [IX_searches_user_type_name] ON [dbo].[searches]([user_id],[type],[name]) ON [PRIMARY]
 GO
 
+CREATE UNIQUE INDEX [IX_filestore_user_id_context_filename] ON [dbo].[filestore]([user_id],[context],[filename]) ON [PRIMARY]
+GO
+
 ALTER TABLE [dbo].[identities] ADD CONSTRAINT [FK_identities_user_id] 
+    FOREIGN KEY ([user_id]) REFERENCES [dbo].[users] ([user_id])
+    ON DELETE CASCADE ON UPDATE CASCADE
+GO
+
+ALTER TABLE [dbo].[collected_addresses] ADD CONSTRAINT [FK_collected_addresses_user_id]
     FOREIGN KEY ([user_id]) REFERENCES [dbo].[users] ([user_id])
     ON DELETE CASCADE ON UPDATE CASCADE
 GO
@@ -385,6 +440,11 @@ ALTER TABLE [dbo].[searches] ADD CONSTRAINT [FK_searches_user_id]
     ON DELETE CASCADE ON UPDATE CASCADE
 GO
 
+ALTER TABLE [dbo].[filestore] ADD CONSTRAINT [FK_filestore_user_id]
+    FOREIGN KEY ([user_id]) REFERENCES [dbo].[users] ([user_id])
+    ON DELETE CASCADE ON UPDATE CASCADE
+GO
+
 -- Use trigger instead of foreign key (#1487112)
 -- "Introducing FOREIGN KEY constraint ... may cause cycles or multiple cascade paths."
 CREATE TRIGGER [contact_delete_member] ON [dbo].[contacts]
@@ -393,6 +453,6 @@ CREATE TRIGGER [contact_delete_member] ON [dbo].[contacts]
     WHERE [contact_id] IN (SELECT [contact_id] FROM deleted)
 GO
 
-INSERT INTO [dbo].[system] ([name], [value]) VALUES ('roundcube-version', '2013061000')
+INSERT INTO [dbo].[system] ([name], [value]) VALUES ('roundcube-version', '2020122900')
 GO
 

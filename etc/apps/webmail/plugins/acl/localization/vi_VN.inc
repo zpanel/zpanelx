@@ -2,23 +2,25 @@
 
 /*
  +-----------------------------------------------------------------------+
- | plugins/acl/localization/<lang>.inc                                   |
- |                                                                       |
  | Localization file of the Roundcube Webmail ACL plugin                 |
- | Copyright (C) 2012-2013, The Roundcube Dev Team                       |
+ |                                                                       |
+ | Copyright (C) The Roundcube Dev Team                                  |
  |                                                                       |
  | Licensed under the GNU General Public License version 3 or            |
  | any later version with exceptions for skins & plugins.                |
  | See the README file for a full license statement.                     |
- |                                                                       |
  +-----------------------------------------------------------------------+
 
  For translation see https://www.transifex.com/projects/p/roundcube-webmail/resource/plugin-acl/
 */
+
 $labels['sharing'] = 'Chia sẻ';
 $labels['myrights'] = 'Quyền truy cập';
 $labels['username'] = 'Người dùng:';
+$labels['advanced'] = 'Chế độ tính năng cao hơn';
+$labels['add'] = 'Thêm';
 $labels['newuser'] = 'Thêm bài viết';
+$labels['editperms'] = 'Sửa đổi quyền sử dụng';
 $labels['actions'] = 'Các thao tác quyền truy cập';
 $labels['anyone'] = 'Tất cả người dùng (bất kỳ ai)';
 $labels['anonymous'] = 'Khách (nặc danh)';
@@ -36,6 +38,7 @@ $labels['aclt'] = 'Xóa thư';
 $labels['acle'] = 'Thải bỏ';
 $labels['aclx'] = 'Xóa giữ liệu';
 $labels['acla'] = 'Quản lý';
+$labels['acln'] = 'Thông tin chú thích';
 $labels['aclfull'] = 'Quản lý toàn bộ';
 $labels['aclother'] = 'Loại khác';
 $labels['aclread'] = 'Đọc';
@@ -54,6 +57,7 @@ $labels['shortaclt'] = 'Xoá';
 $labels['shortacle'] = 'Thải bỏ';
 $labels['shortaclx'] = 'Giữ liệu được xóa';
 $labels['shortacla'] = 'Quản lý';
+$labels['shortacln'] = 'Chú thích';
 $labels['shortaclother'] = 'Loại khác';
 $labels['shortaclread'] = 'Đọc';
 $labels['shortaclwrite'] = 'Viết';
@@ -71,10 +75,15 @@ $labels['longaclt'] = 'Cờ đánh dấu thư xóa có thể thay đổi';
 $labels['longacle'] = 'Thư có thể thải bỏ';
 $labels['longaclx'] = 'Giữ liệu có thể xóa được hoặc đặt lại tên';
 $labels['longacla'] = 'Quyên truy cập giữ liệu có thể thay đổi';
+$labels['longacln'] = 'Dữ liệu thông tin (chú thích) của thư có thể thay đổi';
 $labels['longaclfull'] = 'Quản lý toàn bộ bao gồm cả sự thi hành giữ liệu';
 $labels['longaclread'] = 'Giữ liệu có thể được mở để đọc';
 $labels['longaclwrite'] = 'Thư có thể được đánh dấu, ghi hoăc sao chép vào giữ liệu';
 $labels['longacldelete'] = 'Thư có thể bị xóa';
+$labels['longaclother'] = 'Quyền truy cập khác';
+$labels['ariasummaryacltable'] = 'Danh sách quyền truy cập';
+$labels['arialabelaclactions'] = 'Danh sách hành động';
+$labels['arialabelaclform'] = 'Bảng khai quyền truy cập';
 $messages['deleting'] = 'Xóa quyền truy cập...';
 $messages['saving'] = 'Lưu quyền truy cập...';
 $messages['updatesuccess'] = 'Thay đổi quyền truy cập thành công...';
@@ -86,4 +95,3 @@ $messages['createerror'] = 'Không thể thêm quyền truy cập';
 $messages['deleteconfirm'] = 'Bạn có chắc là muốn xóa bỏ quyền truy cập của người dùng được chọn?';
 $messages['norights'] = 'Chưa có quyền nào được chỉ định!';
 $messages['nouser'] = 'Chưa có tên truy nhập được chỉ định!';
-?>

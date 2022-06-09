@@ -111,7 +111,7 @@ class JavaScriptPacker
     private function _pack($script)
     {
         for ($i = 0; isset($this->_parsers[$i]); $i++) {
-            $script = call_user_func(array(&$this,$this->_parsers[$i]), $script);
+            $script = call_user_func(array(&$this, $this->_parsers[$i]), $script);
         }
 
         return $script;
@@ -159,8 +159,9 @@ class JavaScriptPacker
     {
         $parser = new ParseMaster();
         // replace: $name -> n, $$name -> na
-        $parser->add('/((\\x24+)([a-zA-Z$_]+))(\\d*)/',
-                     array('fn' => '_replace_name')
+        $parser->add(
+            '/((\\x24+)([a-zA-Z$_]+))(\\d*)/',
+            array('fn' => '_replace_name')
         );
         // replace: _name -> _0, double-underscore (__name) is ignored
         $regexp = '/\\b_[A-Za-z\\d]\\w*/';
@@ -169,7 +170,8 @@ class JavaScriptPacker
         // quick ref
         $encoded = $keywords['encoded'];
 
-        $parser->add($regexp,
+        $parser->add(
+            $regexp,
             array(
                 'fn' => '_replace_encoded',
                 'data' => $encoded
@@ -194,7 +196,8 @@ class JavaScriptPacker
         $encoded = $keywords['encoded'];
 
         // encode
-        $parser->add($regexp,
+        $parser->add(
+            $regexp,
             array(
                 'fn' => '_replace_encoded',
                 'data' => $encoded
@@ -311,12 +314,12 @@ class JavaScriptPacker
         }
         // convert from a string to an array
         ksort($keywords['sorted']);
-        $keywords = "'" . implode('|',$keywords['sorted']) . "'.split('|')";
+        $keywords = "'" . implode('|', $keywords['sorted']) . "'.split('|')";
 
         $encode = ($this->_encoding > 62) ? '_encode95' : $this->_getEncoder($ascii);
         $encode = $this->_getJSFunction($encode);
-        $encode = preg_replace('/_encoding/','$ascii', $encode);
-        $encode = preg_replace('/arguments\\.callee/','$encode', $encode);
+        $encode = preg_replace('/_encoding/', '$ascii', $encode);
+        $encode = preg_replace('/arguments\\.callee/', '$encode', $encode);
         $inline = '\\$count' . ($ascii > 10 ? '.toString(\\$ascii)' : '');
 
         // $decode: code snippet to speed up decoding
@@ -521,7 +524,7 @@ class JavaScriptPacker
 ';
 //};
 /*
-'	if (!\'\'.replace(/^/, String)) {
+'    if (!\'\'.replace(/^/, String)) {
         // decode all the values we need
         while ($count--) $decode[$encode($count)] = $keywords[$count] || $encode($count);
         // global replacement function
@@ -757,8 +760,7 @@ class ParseMaster
             $regexp = '/'.'\\'.$escapeChar.'/';
             $this->buffer = array('escapeChar'=> $escapeChar, 'i' => 0);
 
-            return preg_replace_callback
-            (
+            return preg_replace_callback(
                 $regexp,
                 array(&$this, '_unescapeBis'),
                 $string

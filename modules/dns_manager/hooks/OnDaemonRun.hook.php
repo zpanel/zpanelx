@@ -62,7 +62,7 @@ function WriteDNSZoneRecordsHook()
             fs_director::CreateDirectory(ctrl_options::GetSystemOption('zone_dir'));
             fs_director::SetFileSystemPermissions(ctrl_options::GetSystemOption('zone_dir'));
         }
-        $zone_file = (ctrl_options::GetSystemOption('zone_dir')) . $DomainName . ".txt";
+        $zone_file = (ctrl_options::GetSystemOption('zone_dir')) . "/" . $DomainName . ".txt";
         $line = "$" . "TTL 10800" . fs_filehandler::NewLine();
         $line .= "@ IN SOA ns1." . $DomainName . ".    postmaster." . $DomainName . ". (" . fs_filehandler::NewLine();
         $line .= "    " . $SoaSerial . "  ;serial" . fs_filehandler::NewLine();
@@ -128,18 +128,18 @@ function WriteDNSNamedHook()
         fs_director::CreateDirectory(ctrl_options::GetSystemOption('named_dir'));
         fs_director::SetFileSystemPermissions(ctrl_options::GetSystemOption('named_dir'));
     }
-    $named_file = ctrl_options::GetSystemOption('named_dir') . ctrl_options::GetSystemOption('named_conf');
+    $named_file = ctrl_options::GetSystemOption('named_dir') . "/" . ctrl_options::GetSystemOption('named_conf');
     echo "Updating " . $named_file . fs_filehandler::NewLine();
     // Now we have all domain ID's, loop through them and find records for each zone file.
-    $line = "";
+    $line = "\n/// ZPanel gereated\n\n";
     foreach ($domains as $domain) {
-        echo "CHECKING ZONE FILE: " . ctrl_options::GetSystemOption('zone_dir') . $domain . ".txt..." . fs_filehandler::NewLine();
+        echo "CHECKING ZONE FILE: " . ctrl_options::GetSystemOption('zone_dir') . "/" . $domain . ".txt..." . fs_filehandler::NewLine();
 
 
         $command = ctrl_options::GetSystemOption('named_checkzone');
         $args = array(
             $domain,
-            ctrl_options::GetSystemOption('zone_dir') . $domain . ".txt",
+            ctrl_options::GetSystemOption('zone_dir') . "/" . $domain . ".txt",
         );
         $retval = ctrl_system::systemCommand($command, $args);
 
@@ -147,14 +147,19 @@ function WriteDNSNamedHook()
             echo "Syntax check passed. Adding zone to " . ctrl_options::GetSystemOption('named_conf') . fs_filehandler::NewLine();
             $line .= "zone \"" . $domain . "\" IN {" . fs_filehandler::NewLine();
             $line .= "	type master;" . fs_filehandler::NewLine();
-            $line .= "	file \"" . ctrl_options::GetSystemOption('zone_dir') . $domain . ".txt\";" . fs_filehandler::NewLine();
+            $line .= "	file \"" . ctrl_options::GetSystemOption('zone_dir'). "/" . $domain . ".txt\";" . fs_filehandler::NewLine();
             $line .= "	allow-transfer { " . ctrl_options::GetSystemOption('allow_xfer') . "; };" . fs_filehandler::NewLine();
             $line .= "};" . fs_filehandler::NewLine();
         } else {
             echo "Syntax ERROR. Skipping zone record." . fs_filehandler::NewLine();
         }
     }
-    fs_filehandler::UpdateFile($named_file, 0777, $line);
+    $oldData = fs_filehandler::ReadFileContents($named_file);
+    $pointer = strpos($oldData, "/// ZPanel gereated");
+    
+    if ($pointer) $oldData = substr($oldData, 0, $pointer-1).$line;
+    else $oldData .= $line;
+    fs_filehandler::UpdateFile($named_file, 0777, $oldData);
 }
 
 function ResetDNSRecordsUpatedHook()
@@ -181,9 +186,9 @@ function PurgeOldZoneDNSRecordsHook()
     $zonefiles = scandir(ctrl_options::GetSystemOption('zone_dir'));
     foreach ($zonefiles as $zonefile) {
         if (!in_array(substr($zonefile, 0, -4), $domains) && $zonefile != "." && $zonefile != "..") {
-            if (file_exists(ctrl_options::GetSystemOption('zone_dir') . $zonefile)) {
+            if (file_exists(ctrl_options::GetSystemOption('zone_dir'). "/" . $zonefile)) {
                 echo "Purging old zone record from disk: " . substr($zonefile, 0, -4) . fs_filehandler::NewLine();
-                unlink(ctrl_options::GetSystemOption('zone_dir') . $zonefile);
+                @unlink(ctrl_options::GetSystemOption('zone_dir') . "/" . $zonefile);
             }
         }
     }
@@ -192,7 +197,7 @@ function PurgeOldZoneDNSRecordsHook()
 function ReloadBindHook()
 {
     if (sys_versions::ShowOSPlatformVersion() == "Windows") {
-        $reload_bind = ctrl_options::GetSystemOption('bind_dir') . "rndc.exe reload";
+        $reload_bind = '"' . ctrl_options::GetSystemOption('bind_dir') . '/rndc.exe" reload';
     } else {
         $reload_bind = ctrl_options::GetSystemOption('zsudo') . " service " . ctrl_options::GetSystemOption('bind_service') . " reload";
     }

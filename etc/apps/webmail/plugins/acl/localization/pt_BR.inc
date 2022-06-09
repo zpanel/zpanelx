@@ -2,23 +2,23 @@
 
 /*
  +-----------------------------------------------------------------------+
- | plugins/acl/localization/<lang>.inc                                   |
- |                                                                       |
  | Localization file of the Roundcube Webmail ACL plugin                 |
- | Copyright (C) 2012-2013, The Roundcube Dev Team                       |
+ |                                                                       |
+ | Copyright (C) The Roundcube Dev Team                                  |
  |                                                                       |
  | Licensed under the GNU General Public License version 3 or            |
  | any later version with exceptions for skins & plugins.                |
  | See the README file for a full license statement.                     |
- |                                                                       |
  +-----------------------------------------------------------------------+
 
  For translation see https://www.transifex.com/projects/p/roundcube-webmail/resource/plugin-acl/
 */
+
 $labels['sharing'] = 'Compartilhamento';
 $labels['myrights'] = 'Permissões de Acesso';
 $labels['username'] = 'Usuário:';
 $labels['advanced'] = 'Modo avançado';
+$labels['add'] = 'Adicionar';
 $labels['newuser'] = 'Adicionar entrada';
 $labels['editperms'] = 'Editar permissões';
 $labels['actions'] = 'Ações de direito de acesso...';
@@ -36,7 +36,7 @@ $labels['aclk'] = 'Criar subpastas';
 $labels['acld'] = 'Apagar mensagens';
 $labels['aclt'] = 'Apagar mensagens';
 $labels['acle'] = 'Expurgar';
-$labels['aclx'] = 'Apagar pasta';
+$labels['aclx'] = 'Excluir pasta';
 $labels['acla'] = 'Administrar';
 $labels['acln'] = 'Inserir anotações nas mensagens';
 $labels['aclfull'] = 'Controle total';
@@ -80,6 +80,10 @@ $labels['longaclfull'] = 'Controle total incluindo a pasta de administração';
 $labels['longaclread'] = 'A pasta pode ser aberta para leitura';
 $labels['longaclwrite'] = 'As mensagens podem ser marcadas, salvas ou copiadas para a pasta';
 $labels['longacldelete'] = 'Mensagens podem ser apagadas';
+$labels['longaclother'] = 'Outras permissões de acesso';
+$labels['ariasummaryacltable'] = 'Lista de permissões de acesso';
+$labels['arialabelaclactions'] = 'Lista de ações';
+$labels['arialabelaclform'] = 'Formulário de permissões de acesso';
 $messages['deleting'] = 'Apagando permissões de acesso...';
 $messages['saving'] = 'Salvando permissões de acesso...';
 $messages['updatesuccess'] = 'Permissões de acesso alteradas com sucesso';
@@ -91,4 +95,3 @@ $messages['createerror'] = 'Não foi possível adicionar as permissões de acess
 $messages['deleteconfirm'] = 'Tem certeza que deseja remover as permissões de acesso do(s) usuário(s) delecionado(s)?';
 $messages['norights'] = 'Não foram definidas permissões!';
 $messages['nouser'] = 'Nome de usuário não especificado!';
-?>

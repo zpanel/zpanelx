@@ -23,10 +23,10 @@
    var $CRC;
 
    /* Class creator */
-   function pBarcode128($BasePath="")
+   function __construct($BasePath="")
     {
-     $this->Codes   = "";
-     $this->Reverse = "";
+     $this->Codes   = [];
+     $this->Reverse = [];
 
      $FileHandle = @fopen($BasePath."data/128B.db", "r");
 
@@ -48,7 +48,7 @@
     }
 
    /* Return the projected size of a barcode */
-   function getSize($TextString,$Format="")
+   function getSize($TextString,$Format=[])
     {
      $Angle		= isset($Format["Angle"]) ? $Format["Angle"] : 0;
      $ShowLegend	= isset($Format["ShowLegend"]) ? $Format["ShowLegend"] : FALSE;
@@ -76,7 +76,7 @@
      return(array("Width"=>$AreaWidth,"Height"=>$AreaHeight));
     }
 
-   function encode128($Value,$Format="")
+   function encode128($Value,$Format=[])
     {
      $this->Result  = "11010010000";
      $this->CRC     = 104;
@@ -101,7 +101,7 @@
     }
 
    /* Create the encoded string */
-   function draw($Object,$Value,$X,$Y,$Format="")
+   function draw($Object,$Value,$X,$Y,$Format=[])
     {
      $this->pChartObject = $Object;
 

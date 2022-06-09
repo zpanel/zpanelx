@@ -15,7 +15,9 @@ $mtime = $mtime[1] + $mtime[0];
 $starttime = $mtime;
 $class_name = null;
 
-function __autoload($class_name)
+spl_autoload_register('autoload');
+
+function autoload($class_name)
 {
     $path = 'dryden/' . str_replace('_', '/', $class_name) . '.class.php';
     if (file_exists($path)) {
